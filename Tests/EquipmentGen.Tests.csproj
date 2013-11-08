@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
