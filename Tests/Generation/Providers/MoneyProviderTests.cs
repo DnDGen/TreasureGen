@@ -1,4 +1,4 @@
-﻿using D20Dice.Dice;
+﻿using D20Dice;
 using EquipmentGen.Core.Data.Moneys;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -47,7 +47,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d2,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d2(1, 0), Times.Once);
+            mockDice.Verify(d => d.d2(1), Times.Once);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d3,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d3(1, 0), Times.Once);
+            mockDice.Verify(d => d.d3(1), Times.Once);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d4,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d4(1, 0), Times.Once);
+            mockDice.Verify(d => d.d4(1), Times.Once);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d6,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d6(1, 0), Times.Once);
+            mockDice.Verify(d => d.d6(1), Times.Once);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d8,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d8(1, 0), Times.Once);
+            mockDice.Verify(d => d.d8(1), Times.Once);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d10,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d10(1, 0), Times.Once);
+            mockDice.Verify(d => d.d10(1), Times.Once);
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d12,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d12(1, 0), Times.Once);
+            mockDice.Verify(d => d.d12(1), Times.Once);
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d20,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.d4(1, 0), Times.Once);
+            mockDice.Verify(d => d.d4(1), Times.Once);
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns("Copper,1d100,100");
 
             moneyProvider.GetMoney(1);
-            mockDice.Verify(d => d.Percentile(1, 0), Times.Once);
+            mockDice.Verify(d => d.Percentile(1), Times.Once);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns(result);
 
                 moneyProvider.GetMoney(1);
-                mockDice.Verify(d => d.d6(rolls, 0), Times.Once);
+                mockDice.Verify(d => d.d6(rolls), Times.Once);
             }
         }
 
@@ -148,7 +148,7 @@ namespace EquipmentGen.Tests.Generation.Providers
         {
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
                 .Returns("Copper,1d4,1");
-            mockDice.Setup(d => d.d4(It.IsAny<Int32>(), It.IsAny<Int32>())).Returns(2);
+            mockDice.Setup(d => d.d4(It.IsAny<Int32>())).Returns(2);
 
             var money = moneyProvider.GetMoney(1);
             Assert.That(money.Quantity, Is.EqualTo(2));
@@ -159,7 +159,7 @@ namespace EquipmentGen.Tests.Generation.Providers
         {
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
                 .Returns("Copper,1d4,10");
-            mockDice.Setup(d => d.d4(It.IsAny<Int32>(), It.IsAny<Int32>())).Returns(2);
+            mockDice.Setup(d => d.d4(It.IsAny<Int32>())).Returns(2);
 
             var money = moneyProvider.GetMoney(1);
             Assert.That(money.Quantity, Is.EqualTo(20));

@@ -1,4 +1,4 @@
-﻿using D20Dice.Dice;
+﻿using D20Dice;
 using EquipmentGen.Core.Data.Moneys;
 using EquipmentGen.Core.Generation.Providers;
 using System;

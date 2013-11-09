@@ -1,4 +1,4 @@
-﻿using D20Dice.Dice;
+﻿using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
@@ -62,7 +62,7 @@ namespace EquipmentGen.Tests.Generation.Xml.Data
 
         private String GetResult(Int32 roll)
         {
-            mockDice.Setup(d => d.Percentile(1, 0)).Returns(roll);
+            mockDice.Setup(d => d.Percentile(1)).Returns(roll);
             return percentileResultProvider.GetPercentileResult(tableName);
         }
     }

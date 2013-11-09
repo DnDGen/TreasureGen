@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="D20Dice">
-      <HintPath>..\packages\D20Dice.1.0.0\lib\D20Dice.dll</HintPath>
+    <Reference Include="D20Dice, Version=1.0.5061.17532, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\D20Dice.2.0\lib\D20Dice.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>

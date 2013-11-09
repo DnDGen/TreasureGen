@@ -1,4 +1,4 @@
-﻿using D20Dice.Dice;
+﻿using D20Dice;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers;
 

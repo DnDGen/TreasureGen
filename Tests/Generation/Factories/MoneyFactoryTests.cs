@@ -1,8 +1,9 @@
-﻿using D20Dice.Dice;
+﻿using D20Dice;
 using EquipmentGen.Core.Data.Moneys;
 using EquipmentGen.Core.Generation.Factories;
 using Moq;
 using NUnit.Framework;
+using System;
 
 namespace EquipmentGen.Tests.Generation.Factories
 {
@@ -27,8 +28,8 @@ namespace EquipmentGen.Tests.Generation.Factories
         [Test]
         public void GetsMoneyFromLevelMoneyTable()
         {
-            mockDice.Setup(d => d.Percentile(1, 0)).Returns(20);
-            mockDice.Setup(d => d.d6(1, 0)).Returns(2);
+            mockDice.Setup(d => d.Percentile(It.IsAny<Int32>())).Returns(20);
+            mockDice.Setup(d => d.d6(It.IsAny<Int32>())).Returns(2);
 
             var money = MoneyFactory.CreateWith(mockDice.Object, 1);
             Assert.That(money.Currency, Is.EqualTo(MoneyConstants.Copper));
