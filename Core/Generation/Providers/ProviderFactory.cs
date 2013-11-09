@@ -6,11 +6,17 @@ namespace EquipmentGen.Core.Generation.Providers
 {
     public static class ProviderFactory
     {
-        public static IPercentileResultProvider CreatePercentileResultProviderUsing(IDice dice)
+        public static IPercentileResultProvider CreatePercentileResultProviderWith(IDice dice)
         {
             var streamLoader = new EmbeddedResourceStreamLoader();
             var xmlParser = new PercentileXmlParser(streamLoader);
             return new PercentileResultProvider(xmlParser, dice);
+        }
+
+        public static IMoneyProvider CreateMoneyProviderWith(IDice dice)
+        {
+            var percentileResultProvider = CreatePercentileResultProviderWith(dice);
+            return new MoneyProvider(percentileResultProvider);
         }
     }
 }

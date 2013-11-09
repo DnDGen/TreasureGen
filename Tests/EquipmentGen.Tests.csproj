@@ -51,6 +51,8 @@
     <Compile Include="Data\Moneys\MoneyConstantsTests.cs" />
     <Compile Include="Generation\Factories\MoneyFactoryTests.cs" />
     <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
+    <Compile Include="Generation\Providers\MoneyProviderTests.cs" />
+    <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />

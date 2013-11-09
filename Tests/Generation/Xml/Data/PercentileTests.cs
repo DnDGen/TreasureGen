@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Generation.Xml.Data
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-            percentileResultProvider = ProviderFactory.CreatePercentileResultProviderUsing(mockDice.Object);
+            percentileResultProvider = ProviderFactory.CreatePercentileResultProviderWith(mockDice.Object);
         }
 
         protected void AssertEmpty(Int32 roll)

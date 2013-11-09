@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Generation.Factories
         [Test]
         public void MoneyFactoryReturnsMoney()
         {
-            var money = MoneyFactory.CreateWith(mockDice.Object);
+            var money = MoneyFactory.CreateWith(mockDice.Object, 0);
             Assert.That(money, Is.Not.Null);
         }
 
@@ -30,7 +30,7 @@ namespace EquipmentGen.Tests.Generation.Factories
             mockDice.Setup(d => d.Percentile(1, 0)).Returns(20);
             mockDice.Setup(d => d.d6(1, 0)).Returns(2);
 
-            var money = MoneyFactory.CreateWith(mockDice.Object);
+            var money = MoneyFactory.CreateWith(mockDice.Object, 1);
             Assert.That(money.Currency, Is.EqualTo(MoneyConstants.Copper));
             Assert.That(money.Quantity, Is.EqualTo(2000));
         }

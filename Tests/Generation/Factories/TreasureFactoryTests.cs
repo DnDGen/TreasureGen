@@ -19,14 +19,14 @@ namespace EquipmentGen.Tests.Generation.Factories
         [Test]
         public void TreasureFactoryReturnsTreasure()
         {
-            var treasure = TreasureFactory.CreateUsing(mockDice.Object);
+            var treasure = TreasureFactory.CreateUsing(mockDice.Object, 1);
             Assert.That(treasure, Is.Not.Null);
         }
 
         [Test]
         public void TreasureMoneyIsSetByMoneyFactory()
         {
-            var treasure = TreasureFactory.CreateUsing(mockDice.Object);
+            var treasure = TreasureFactory.CreateUsing(mockDice.Object, 1);
             Assert.That(treasure.Money, Is.Not.Null);
         }
     }
