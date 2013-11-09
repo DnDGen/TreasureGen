@@ -20,39 +20,17 @@ namespace EquipmentGen.Core.Generation.Providers
         {
             var tableName = String.Format("Level{0}Money", level);
             var percentileResult = percentileResultProvider.GetPercentileResult(tableName);
-            var parsedResult = percentileResult.Split(',');
 
             var money = new Money();
+            if (String.IsNullOrEmpty(percentileResult))
+                return money;
+
+            var parsedResult = percentileResult.Split(',');
+
             money.Currency = parsedResult[0];
-            money.Quantity = RollMoney(parsedResult[1], Convert.ToInt32(parsedResult[2]));
+            money.Quantity = dice.Roll(parsedResult[1]);
 
             return money;
-        }
-
-        private Int32 RollMoney(String rollString, Int32 multiplier)
-        {
-            var parsedRoll = rollString.Split('d');
-            var rollQuantity = Convert.ToInt32(parsedRoll[0]);
-
-            var roll = GetRoll(rollQuantity, parsedRoll[1]);
-            return roll * multiplier;
-        }
-
-        private Int32 GetRoll(Int32 quantity, String rollDie)
-        {
-            switch (rollDie)
-            {
-                case "2": return dice.d2(quantity);
-                case "3": return dice.d3(quantity);
-                case "4": return dice.d4(quantity);
-                case "6": return dice.d6(quantity);
-                case "8": return dice.d8(quantity);
-                case "10": return dice.d10(quantity);
-                case "12": return dice.d12(quantity);
-                case "20": return dice.d20(quantity);
-                case "100": return dice.Percentile(quantity);
-                default: throw new ArgumentOutOfRangeException();
-            }
         }
     }
 }
