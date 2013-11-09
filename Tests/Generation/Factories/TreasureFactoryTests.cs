@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Generation.Factories
 {
+    [TestFixture]
     public class TreasureFactoryTests
     {
         private Mock<IDice> mockDice;
@@ -20,6 +21,13 @@ namespace EquipmentGen.Tests.Generation.Factories
         {
             var treasure = TreasureFactory.CreateUsing(mockDice.Object);
             Assert.That(treasure, Is.Not.Null);
+        }
+
+        [Test]
+        public void TreasureMoneyIsSetByMoneyFactory()
+        {
+            var treasure = TreasureFactory.CreateUsing(mockDice.Object);
+            Assert.That(treasure.Money, Is.Not.Null);
         }
     }
 }

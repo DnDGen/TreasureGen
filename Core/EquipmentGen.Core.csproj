@@ -43,8 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Moneys\Money.cs" />
+    <Compile Include="Data\Moneys\MoneyConstants.cs" />
     <Compile Include="Data\Treasure.cs" />
+    <Compile Include="Generation\Factories\MoneyFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
+    <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
+    <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
+    <Compile Include="Generation\Providers\ProviderFactory.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IStreamLoader.cs" />

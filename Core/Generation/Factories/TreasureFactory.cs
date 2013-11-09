@@ -1,5 +1,4 @@
-﻿using System;
-using D20Dice.Dice;
+﻿using D20Dice.Dice;
 using EquipmentGen.Core.Data;
 
 namespace EquipmentGen.Core.Generation.Factories
@@ -8,7 +7,11 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         public static Treasure CreateUsing(IDice dice)
         {
-            throw new NotImplementedException();
+            var treasure = new Treasure();
+
+            treasure.Money = MoneyFactory.CreateWith(dice);
+
+            return treasure;
         }
     }
 }
