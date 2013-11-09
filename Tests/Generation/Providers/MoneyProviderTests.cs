@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Generation.Providers
         {
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockDice = new Mock<IDice>();
-            moneyProvider = new MoneyProvider(mockPercentileResultProvider.Object);
+            moneyProvider = new MoneyProvider(mockPercentileResultProvider.Object, mockDice.Object);
         }
 
         [Test]

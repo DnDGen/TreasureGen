@@ -16,7 +16,7 @@ namespace EquipmentGen.Core.Generation.Providers
         public static IMoneyProvider CreateMoneyProviderWith(IDice dice)
         {
             var percentileResultProvider = CreatePercentileResultProviderWith(dice);
-            return new MoneyProvider(percentileResultProvider);
+            return new MoneyProvider(percentileResultProvider, dice);
         }
     }
 }
