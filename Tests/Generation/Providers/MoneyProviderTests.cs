@@ -40,8 +40,7 @@ namespace EquipmentGen.Tests.Generation.Providers
                 .Returns(String.Empty);
 
             var money = moneyProvider.GetMoney(1);
-            Assert.That(money.Currency, Is.EqualTo(String.Empty));
-            Assert.That(money.Quantity, Is.EqualTo(0));
+            Assert.That(money.ToString(), Is.EqualTo(String.Empty));
         }
 
         [Test]
