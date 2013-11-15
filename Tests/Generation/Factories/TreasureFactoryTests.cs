@@ -24,10 +24,24 @@ namespace EquipmentGen.Tests.Generation.Factories
         }
 
         [Test]
-        public void TreasureCoinIsSetByCoinFactory()
+        public void CoinIsSet()
         {
             var treasure = TreasureFactory.CreateUsing(mockDice.Object, 1);
             Assert.That(treasure.Coin, Is.Not.Null);
+        }
+
+        [Test]
+        public void GoodsAreSet()
+        {
+            var treasure = TreasureFactory.CreateUsing(mockDice.Object, 1);
+            Assert.That(treasure.Goods, Is.Not.Null);
+        }
+
+        [Test]
+        public void ItemsAreSet()
+        {
+            var treasure = TreasureFactory.CreateUsing(mockDice.Object, 1);
+            Assert.That(treasure.Items, Is.Not.Null);
         }
     }
 }

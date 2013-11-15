@@ -11,6 +11,7 @@ namespace EquipmentGen.Core.Generation.Factories
             var treasure = new Treasure();
 
             treasure.Coin = CoinFactory.CreateWith(dice, level);
+            treasure.Goods = GoodsFactory.CreateWith(dice, level);
 
             return treasure;
         }
