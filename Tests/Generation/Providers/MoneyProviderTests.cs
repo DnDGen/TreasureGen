@@ -1,10 +1,10 @@
-﻿using D20Dice;
+﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data.Moneys;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
 using NUnit.Framework;
-using System;
 
 namespace EquipmentGen.Tests.Generation.Providers
 {
@@ -54,8 +54,7 @@ namespace EquipmentGen.Tests.Generation.Providers
         public void ParsesRollOutOfPercentileResults()
         {
             var roll = "1d2*100";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
-                .Returns("Copper," + roll);
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns("Copper," + roll);
             mockDice.Setup(d => d.Roll(roll)).Returns(9266);
 
             var money = moneyProvider.GetMoney(1);

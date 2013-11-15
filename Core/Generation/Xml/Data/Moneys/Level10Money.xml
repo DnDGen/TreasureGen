@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>11</lower>
+    <content>Silver,2d10*1000</content>
+    <upper>24</upper>
+  </object>
+  <object>
+    <lower>25</lower>
+    <content>Gold,6d4*100</content>
+    <upper>79</upper>
+  </object>
+  <object>
+    <lower>80</lower>
+    <content>Platinum,5d6*10</content>
+    <upper>100</upper>
+  </object>
+</percentile>

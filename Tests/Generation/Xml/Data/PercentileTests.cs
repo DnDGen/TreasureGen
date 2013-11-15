@@ -1,9 +1,9 @@
-﻿using D20Dice;
+﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
 using NUnit.Framework;
-using System;
 
 namespace EquipmentGen.Tests.Generation.Xml.Data
 {
