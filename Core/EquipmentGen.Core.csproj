@@ -43,14 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Moneys\Money.cs" />
-    <Compile Include="Data\Moneys\MoneyConstants.cs" />
+    <Compile Include="Data\Coins\Coin.cs" />
+    <Compile Include="Data\Coins\CoinConstants.cs" />
+    <Compile Include="Data\Goods\Good.cs" />
+    <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Treasure.cs" />
-    <Compile Include="Generation\Factories\MoneyFactory.cs" />
+    <Compile Include="Generation\Factories\CoinFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
-    <Compile Include="Generation\Providers\Interfaces\IMoneyProvider.cs" />
+    <Compile Include="Generation\Providers\Interfaces\ICoinProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
-    <Compile Include="Generation\Providers\MoneyProvider.cs" />
+    <Compile Include="Generation\Providers\CoinProvider.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\ProviderFactory.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
@@ -61,68 +63,69 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level2Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level2Coins.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level1Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level1Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level3Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level3Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level20Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level20Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level12Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level12Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level13Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level13Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level14Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level14Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level15Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level15Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level16Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level16Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level17Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level17Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level18Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level18Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level19Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level19Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level4Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level4Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level5Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level5Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level6Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level6Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level7Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level7Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level8Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level8Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level9Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level9Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level10Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level10Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level11Money.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Coins\Level11Coins.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

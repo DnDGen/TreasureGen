@@ -13,10 +13,10 @@ namespace EquipmentGen.Core.Generation.Providers
             return new PercentileResultProvider(xmlParser, dice);
         }
 
-        public static IMoneyProvider CreateMoneyProviderWith(IDice dice)
+        public static ICoinProvider CreateCoinProviderWith(IDice dice)
         {
             var percentileResultProvider = CreatePercentileResultProviderWith(dice);
-            return new MoneyProvider(percentileResultProvider, dice);
+            return new CoinProvider(percentileResultProvider, dice);
         }
     }
 }

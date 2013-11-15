@@ -1,6 +1,6 @@
-﻿using D20Dice;
+﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data;
-using System;
 
 namespace EquipmentGen.Core.Generation.Factories
 {
@@ -10,7 +10,7 @@ namespace EquipmentGen.Core.Generation.Factories
         {
             var treasure = new Treasure();
 
-            treasure.Money = MoneyFactory.CreateWith(dice, level);
+            treasure.Coin = CoinFactory.CreateWith(dice, level);
 
             return treasure;
         }
