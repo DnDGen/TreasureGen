@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>14</lower>
+    <content>Copper,1d10*1000</content>
+    <upper>23</upper>
+  </object>
+  <object>
+    <lower>24</lower>
+    <content>Silver,2d10*100</content>
+    <upper>43</upper>
+  </object>
+  <object>
+    <lower>44</lower>
+    <content>Gold,4d10*10</content>
+    <upper>95</upper>
+  </object>
+  <object>
+    <lower>96</lower>
+    <content>Platinum,2d8*10</content>
+    <upper>100</upper>
+  </object>
+</percentile>

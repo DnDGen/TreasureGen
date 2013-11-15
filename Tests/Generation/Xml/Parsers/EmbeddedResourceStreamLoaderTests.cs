@@ -1,7 +1,7 @@
-﻿using System.IO;
-using EquipmentGen.Core.Generation.Xml.Parsers;
+﻿using EquipmentGen.Core.Generation.Xml.Parsers;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using NUnit.Framework;
+using System.IO;
 
 namespace EquipmentGen.Tests.Generation.Xml.Parsers
 {
@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Generation.Xml.Parsers
         [Test]
         public void GetsFileIfItIsAnEmbeddeResource()
         {
-            using (var stream = streamLoader.LoadStream("GoodCharacterClasses.xml"))
+            using (var stream = streamLoader.LoadStream("Level1Money.xml"))
             {
                 //no error was thrown, so the stream was successfully loaded
                 Assert.Pass();

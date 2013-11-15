@@ -9,11 +9,8 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         public static Money CreateWith(IDice dice, Int32 level)
         {
-            var money = new Money();
-
             var moneyProvider = ProviderFactory.CreateMoneyProviderWith(dice);
-
-            return money;
+            return moneyProvider.GetMoney(level);
         }
     }
 }

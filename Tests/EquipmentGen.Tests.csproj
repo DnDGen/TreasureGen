@@ -57,6 +57,7 @@
     <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
     <Compile Include="Generation\Xml\Data\Moneys\Level1MoneyTests.cs" />
     <Compile Include="Generation\Xml\Data\Moneys\Level2MoneyTests.cs" />
+    <Compile Include="Generation\Xml\Data\Moneys\Level3MoneyTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />

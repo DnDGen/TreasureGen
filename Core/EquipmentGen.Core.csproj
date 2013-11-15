@@ -60,7 +60,9 @@
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Moneys\Level2Money.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

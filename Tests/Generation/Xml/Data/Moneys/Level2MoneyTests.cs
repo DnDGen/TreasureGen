@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Generation.Xml.Data.Moneys
         }
 
         [Test]
-        public void EmptyPercentile()
+        public void Level2EmptyPercentile()
         {
             AssertEmpty(1, 13);
         }
