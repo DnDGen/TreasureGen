@@ -46,9 +46,12 @@
     <Compile Include="Data\Coins\Coin.cs" />
     <Compile Include="Data\Coins\CoinConstants.cs" />
     <Compile Include="Data\Goods\Good.cs" />
+    <Compile Include="Data\Goods\GoodsConstants.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Treasure.cs" />
+    <Compile Include="Generation\Factories\ArtFactory.cs" />
     <Compile Include="Generation\Factories\CoinFactory.cs" />
+    <Compile Include="Generation\Factories\GemFactory.cs" />
     <Compile Include="Generation\Factories\GoodsFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
     <Compile Include="Generation\Providers\Interfaces\ICoinProvider.cs" />

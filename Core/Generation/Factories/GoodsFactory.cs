@@ -15,12 +15,24 @@ namespace EquipmentGen.Core.Generation.Factories
             var amount = dice.Roll(result[1]);
 
             var goods = new List<Good>();
+
             while (amount-- > 0)
             {
-                throw new NotImplementedException();
+                var good = GenerateGood(type, dice);
+                goods.Add(good);
             }
 
             return goods;
+        }
+
+        private static Good GenerateGood(String type, IDice dice)
+        {
+            switch (type)
+            {
+                case GoodsConstants.Gem: return GemFactory.CreateWith(dice);
+                case GoodsConstants.Art: return ArtFactory.CreateWith(dice);
+                default: throw new ArgumentOutOfRangeException();
+            }
         }
 
         private static String[] GetResult(IDice dice, Int32 level)
