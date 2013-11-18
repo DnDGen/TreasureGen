@@ -17,6 +17,9 @@ namespace EquipmentGen.Core.Generation.Providers
         {
             var tableName = String.Format("Level{0}Goods", level);
             var result = percentileResultProvider.GetPercentileResult(tableName);
+
+            
+
             var parsedResult = result.Split(',');
 
             var goodResult = new GoodPercentileResult();

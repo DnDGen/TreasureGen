@@ -80,6 +80,13 @@
     <Compile Include="Generation\Xml\Data\Coins\Level4CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level5CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level6CoinsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level1GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level2GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level3GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level4GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level5GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level6GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level7GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />

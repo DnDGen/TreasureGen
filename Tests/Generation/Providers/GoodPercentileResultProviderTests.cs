@@ -41,5 +41,15 @@ namespace EquipmentGen.Tests.Generation.Providers
             var result = provider.GetGoodPercentileResult(1);
             Assert.That(result.RollToDetermineAmount, Is.EqualTo("roll to determine amount"));
         }
+
+        [Test]
+        public void EmptyPercentileResultGivesEmptyGood()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns(String.Empty);
+
+            var result = provider.GetGoodPercentileResult(1);
+            Assert.That(result.GoodType, Is.EqualTo(String.Empty));
+            Assert.That(result.RollToDetermineAmount, Is.EqualTo(String.Empty));
+        }
     }
 }
