@@ -58,6 +58,7 @@
     <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
     <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Generation\Providers\CoinProviderTests.cs" />
+    <Compile Include="Generation\Providers\GoodPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level7CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level8CoinsTests.cs" />

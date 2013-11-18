@@ -10,15 +10,15 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         public static IEnumerable<Good> CreateWith(IDice dice, Int32 level)
         {
-            var result = GetResult(dice, level);
-            var type = result[0];
-            var amount = dice.Roll(result[1]);
+            var goodPercentileResultProvider = ProviderFactory.CreateGoodPercentileResultProviderWith(dice);
+            var result = goodPercentileResultProvider.GetGoodPercentileResult(level);
+            var amount = dice.Roll(result.RollToDetermineAmount);
 
             var goods = new List<Good>();
 
             while (amount-- > 0)
             {
-                var good = GenerateGood(type, dice);
+                var good = GenerateGood(result.GoodType, dice);
                 goods.Add(good);
             }
 
@@ -33,15 +33,6 @@ namespace EquipmentGen.Core.Generation.Factories
                 case GoodsConstants.Art: return ArtFactory.CreateWith(dice);
                 default: throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private static String[] GetResult(IDice dice, Int32 level)
-        {
-            var percentileResultProvider = ProviderFactory.CreatePercentileResultProviderWith(dice);
-            var tableName = String.Format("Level{0}Goods", level);
-            var result = percentileResultProvider.GetPercentileResult(tableName);
-
-            return result.Split(',');
         }
     }
 }

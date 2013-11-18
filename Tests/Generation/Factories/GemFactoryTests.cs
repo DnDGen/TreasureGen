@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Generation.Factories
         }
 
         [Test]
-        public void GemIsCreated()
+        public void GemIsGenerated()
         {
             var gem = GemFactory.CreateWith(mockDice.Object);
             Assert.That(gem, Is.Not.Null);

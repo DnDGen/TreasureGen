@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Generation.Factories
         }
 
         [Test]
-        public void ArtIsCreated()
+        public void ArtIsGenerated()
         {
             var art = ArtFactory.CreateWith(mockDice.Object);
             Assert.That(art, Is.Not.Null);

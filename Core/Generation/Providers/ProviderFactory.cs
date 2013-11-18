@@ -18,5 +18,11 @@ namespace EquipmentGen.Core.Generation.Providers
             var percentileResultProvider = CreatePercentileResultProviderWith(dice);
             return new CoinProvider(percentileResultProvider, dice);
         }
+
+        public static IGoodPercentileResultProvider CreateGoodPercentileResultProviderWith(IDice dice)
+        {
+            var percentileResultProvider = CreatePercentileResultProviderWith(dice);
+            return new GoodPercentileResultProvider(percentileResultProvider);
+        }
     }
 }

@@ -54,9 +54,12 @@
     <Compile Include="Generation\Factories\GemFactory.cs" />
     <Compile Include="Generation\Factories\GoodsFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
+    <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\ICoinProvider.cs" />
+    <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\CoinProvider.cs" />
+    <Compile Include="Generation\Providers\Objects\GoodPercentileResult.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\ProviderFactory.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
