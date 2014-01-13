@@ -7,8 +7,8 @@
     <ProjectGuid>{8482E490-6350-4DBF-A4D7-3B346FE1F0D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EquipmentGen.Tests</RootNamespace>
-    <AssemblyName>EquipmentGen.Tests</AssemblyName>
+    <RootNamespace>EquipmentGen.Tests.Unit</RootNamespace>
+    <AssemblyName>EquipmentGen.Tests.Unit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -86,6 +86,19 @@
     <Compile Include="Generation\Xml\Data\Goods\Level4GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level5GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level6GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level8GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level9GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level10GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level11GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level12GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level13GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level14GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level15GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level16GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level17GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level18GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level19GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Level20GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level7GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />

@@ -1,7 +1,7 @@
 ﻿using EquipmentGen.Core.Data.Goods;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Data.Goods
+namespace EquipmentGen.Tests.Unit.Data.Goods
 {
     [TestFixture]
     public class GoodsConstantsTests

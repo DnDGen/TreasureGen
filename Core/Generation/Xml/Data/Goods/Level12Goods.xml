@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>18</lower>
+        <content>Gem,1d10</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Art,1d8</content>
+        <upper>100</upper>
+    </object>
+</percentile>

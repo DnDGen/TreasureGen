@@ -1,15 +1,15 @@
-﻿using D20Dice;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace EquipmentGen.Tests.Generation.Providers
+namespace EquipmentGen.Tests.Unit.Generation.Providers
 {
     [TestFixture]
     public class PercentileResultProviderTests

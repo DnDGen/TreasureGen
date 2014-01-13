@@ -6,7 +6,7 @@ using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Xml.Parsers
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
 {
     [TestFixture]
     public class PercentileXmlParserTests

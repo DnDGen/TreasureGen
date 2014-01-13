@@ -53,6 +53,11 @@
     <Compile Include="Generation\Factories\CoinFactory.cs" />
     <Compile Include="Generation\Factories\GemFactory.cs" />
     <Compile Include="Generation\Factories\GoodsFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IArtFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\ICoinFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IGemFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IGoodsFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\ITreasureFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\ICoinProvider.cs" />
@@ -61,7 +66,6 @@
     <Compile Include="Generation\Providers\CoinProvider.cs" />
     <Compile Include="Generation\Providers\Objects\GoodPercentileResult.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
-    <Compile Include="Generation\Providers\ProviderFactory.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IStreamLoader.cs" />
@@ -132,7 +136,66 @@
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Coins\Level11Coins.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level10Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level11Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level12Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level13Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level14Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level15Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level16Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level17Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level18Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level19Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level1Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level20Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level2Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level3Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level4Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level5Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level6Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level7Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level8Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Level9Goods.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

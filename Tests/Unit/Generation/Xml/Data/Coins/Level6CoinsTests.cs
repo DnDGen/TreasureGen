@@ -2,7 +2,7 @@
 using EquipmentGen.Core.Data.Coins;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Xml.Data.Coins
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Coins
 {
     [TestFixture]
     public class Level6CoinTests : PercentileTests

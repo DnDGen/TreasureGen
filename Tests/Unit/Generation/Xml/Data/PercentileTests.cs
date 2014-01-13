@@ -5,7 +5,7 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Xml.Data
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
 {
     [TestFixture]
     public abstract class PercentileTests

@@ -5,7 +5,7 @@ using EquipmentGen.Core.Generation.Factories;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Factories
+namespace EquipmentGen.Tests.Unit.Generation.Factories
 {
     [TestFixture]
     public class GoodsFactoryTests

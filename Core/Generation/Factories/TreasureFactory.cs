@@ -1,17 +1,29 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Core.Data;
+using EquipmentGen.Core.Generation.Factories.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Factories
 {
-    public static class TreasureFactory
+    public class TreasureFactory : ITreasureFactory
     {
-        public static Treasure CreateUsing(IDice dice, Int32 level)
+        private IDice dice;
+        private ICoinFactory coinFactory;
+        private IGoodsFactory goodsFactory;
+
+        public TreasureFactory(IDice dice, ICoinFactory coinFactory, IGoodsFactory goodsFactory)
+        {
+            this.dice = dice;
+            this.coinFactory = coinFactory;
+            this.goodsFactory = goodsFactory;
+        }
+
+        public Treasure CreateWith(Int32 level)
         {
             var treasure = new Treasure();
 
-            treasure.Coin = CoinFactory.CreateWith(dice, level);
-            treasure.Goods = GoodsFactory.CreateWith(dice, level);
+            treasure.Coin = coinFactory.CreateWith(level);
+            treasure.Goods = goodsFactory.CreateWith(level);
 
             return treasure;
         }

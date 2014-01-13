@@ -1,25 +1,28 @@
 ﻿using D20Dice;
 using EquipmentGen.Core.Generation.Factories;
+using EquipmentGen.Core.Generation.Factories.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Factories
+namespace EquipmentGen.Tests.Unit.Generation.Factories
 {
     [TestFixture]
     public class ArtFactoryTests
     {
         private Mock<IDice> mockDice;
+        private IArtFactory factory;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<IDice>();
+            factory = new ArtFactory(mockDice.Object);
         }
 
         [Test]
         public void ArtIsGenerated()
         {
-            var art = ArtFactory.CreateWith(mockDice.Object);
+            var art = factory.Create();
             Assert.That(art, Is.Not.Null);
         }
     }

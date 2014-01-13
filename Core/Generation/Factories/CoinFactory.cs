@@ -1,16 +1,22 @@
 ﻿using System;
-using D20Dice;
 using EquipmentGen.Core.Data.Coins;
-using EquipmentGen.Core.Generation.Providers;
+using EquipmentGen.Core.Generation.Factories.Interfaces;
+using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Factories
 {
-    public static class CoinFactory
+    public class CoinFactory : ICoinFactory
     {
-        public static Coin CreateWith(IDice dice, Int32 level)
+        private ICoinProvider coinProvider;
+
+        public CoinFactory(ICoinProvider coinProvider)
         {
-            var CoinProvider = ProviderFactory.CreateCoinProviderWith(dice);
-            return CoinProvider.GetCoin(level);
+            this.coinProvider = coinProvider;
+        }
+
+        public Coin CreateWith(Int32 level)
+        {
+            return coinProvider.GetCoin(level);
         }
     }
 }

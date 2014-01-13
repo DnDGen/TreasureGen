@@ -6,7 +6,7 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Providers
+namespace EquipmentGen.Tests.Unit.Generation.Providers
 {
     [TestFixture]
     public class CoinProviderTests

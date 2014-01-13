@@ -2,7 +2,7 @@
 using EquipmentGen.Core.Data.Goods;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Generation.Xml.Data.Goods
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Goods
 {
     [TestFixture]
     public class Level1GoodsTests : PercentileTests

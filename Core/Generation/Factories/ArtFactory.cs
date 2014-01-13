@@ -1,12 +1,20 @@
-﻿using D20Dice;
+﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data.Goods;
-using System;
+using EquipmentGen.Core.Generation.Factories.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Factories
 {
-    public static class ArtFactory
+    public class ArtFactory : IArtFactory
     {
-        public static Good CreateWith(IDice dice)
+        private IDice dice;
+
+        public ArtFactory(IDice dice)
+        {
+            this.dice = dice;
+        }
+
+        public Good Create()
         {
             throw new NotImplementedException();
         }
