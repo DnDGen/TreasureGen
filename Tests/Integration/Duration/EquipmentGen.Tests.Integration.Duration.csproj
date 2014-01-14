@@ -52,12 +52,20 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DurationTest.cs" />
+    <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
+    <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
+    <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\EquipmentGen.Core.csproj">
       <Project>{5d5b7132-a3b7-4330-8235-10caad07382c}</Project>
       <Name>EquipmentGen.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\EquipmentGen.Tests.Integration.Common.csproj">
+      <Project>{4386b84e-fcca-4fc2-84d7-bd4161ca4612}</Project>
+      <Name>EquipmentGen.Tests.Integration.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

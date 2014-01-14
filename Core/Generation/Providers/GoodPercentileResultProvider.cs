@@ -29,5 +29,10 @@ namespace EquipmentGen.Core.Generation.Providers
 
             return goodResult;
         }
+
+        public String GetGoodPercentileResult(String goodType)
+        {
+            return percentileResultProvider.GetPercentileResult(goodType);
+        }
     }
 }

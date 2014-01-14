@@ -52,9 +52,7 @@
     <Compile Include="Data\Coins\CoinConstantsTests.cs" />
     <Compile Include="Data\Coins\CoinTests.cs" />
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
-    <Compile Include="Generation\Factories\ArtFactoryTests.cs" />
     <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
-    <Compile Include="Generation\Factories\GemFactoryTests.cs" />
     <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
     <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Generation\Providers\CoinPercentileResultProviderTests.cs" />

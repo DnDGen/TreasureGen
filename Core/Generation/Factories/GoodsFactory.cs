@@ -12,61 +12,38 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         private IGoodPercentileResultProvider goodPercentileResultProvider;
         private IDice dice;
-        private IGemFactory gemFactory;
-        private IArtFactory artFactory;
+        private IGoodDescriptionProvider goodDescriptionProvider;
 
         public GoodsFactory(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice,
-            IGemFactory gemFactory, IArtFactory artFactory)
+            IGoodDescriptionProvider goodDescriptionProvider)
         {
             this.goodPercentileResultProvider = goodPercentileResultProvider;
             this.dice = dice;
-            this.gemFactory = gemFactory;
-            this.artFactory = artFactory;
+            this.goodDescriptionProvider = goodDescriptionProvider;
         }
 
         public IEnumerable<Good> CreateAtLevel(Int32 level)
         {
             var result = goodPercentileResultProvider.GetGoodPercentileResult(level);
-            var amount = dice.Roll(result.RollToDetermineAmount);
 
-            return GenerateGoods(result.GoodType, amount);
-        }
-
-        private IEnumerable<Good> GenerateGoods(String type, Int32 amount)
-        {
-            if (String.IsNullOrEmpty(type))
+            if (String.IsNullOrEmpty(result.GoodType))
                 return Enumerable.Empty<Good>();
 
-            if (type == GoodsConstants.Gem)
-                return GenerateGems(amount);
+            var goods = new List<Good>();
 
-            return GenerateArt(amount);
-        }
-
-        private IEnumerable<Good> GenerateGems(Int32 amount)
-        {
-            var gems = new List<Good>();
-
+            var amount = dice.Roll(result.RollToDetermineAmount);
             while (amount-- > 0)
             {
-                var gem = gemFactory.Create();
-                gems.Add(gem);
+                var valueRoll = goodPercentileResultProvider.GetGoodPercentileResult(result.GoodType);
+                var good = new Good();
+
+                good.Description = goodDescriptionProvider.GetDescriptionFor(valueRoll);
+                good.ValueInGold = dice.Roll(valueRoll);
+
+                goods.Add(good);
             }
 
-            return gems;
-        }
-
-        private IEnumerable<Good> GenerateArt(Int32 amount)
-        {
-            var art = new List<Good>();
-
-            while (amount-- > 0)
-            {
-                var artObject = artFactory.Create();
-                art.Add(artObject);
-            }
-
-            return art;
+            return goods;
         }
     }
 }

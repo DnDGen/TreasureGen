@@ -21,7 +21,10 @@ namespace EquipmentGen.Core.Generation.Factories
         {
             var result = coinProvider.GetCoinPercentileResult(level);
 
-            var coin = new Coin();
+            var coin = new Coin() { Currency = String.Empty };
+
+            if (String.IsNullOrEmpty(result.CoinType))
+                return coin;
 
             coin.Currency = result.CoinType;
             coin.Quantity = dice.Roll(result.RollToDetermineAmount);

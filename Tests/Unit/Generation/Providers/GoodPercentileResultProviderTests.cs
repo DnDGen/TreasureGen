@@ -51,5 +51,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             Assert.That(result.GoodType, Is.EqualTo(String.Empty));
             Assert.That(result.RollToDetermineAmount, Is.EqualTo(String.Empty));
         }
+
+        [Test]
+        public void GettingValuePercentileComesFromProvider()
+        {
+            var goodType = "good type";
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(goodType)).Returns("value result");
+
+            var result = provider.GetGoodPercentileResult(goodType);
+            Assert.That(result, Is.EqualTo("value result"));
+        }
     }
 }

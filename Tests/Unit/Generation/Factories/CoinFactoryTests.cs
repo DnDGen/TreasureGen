@@ -22,6 +22,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         public void Setup()
         {
             result = new CoinPercentileResult();
+            result.CoinType = "coin type";
+
             mockCoinProvider = new Mock<ICoinPercentileResultProvider>();
             mockCoinProvider.Setup(p => p.GetCoinPercentileResult(It.IsAny<Int32>())).Returns(result);
 
@@ -39,14 +41,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         [Test]
         public void CoinIsEmptyIfPercentileResultIsEmpty()
         {
+            result.CoinType = String.Empty;
+
             var coin = factory.CreateAtLevel(1);
-            Assert.That(coin.ToString(), Is.EqualTo(String.Empty));
+            Assert.That(coin.Currency, Is.EqualTo(String.Empty));
+            Assert.That(coin.Quantity, Is.EqualTo(0));
         }
 
         [Test]
         public void ParsesCurrencyOutOfPercentileResult()
         {
-            result.CoinType = "coin type";
             var coin = factory.CreateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(result.CoinType));
         }

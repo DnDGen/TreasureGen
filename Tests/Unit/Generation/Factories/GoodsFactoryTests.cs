@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using D20Dice;
+using EquipmentGen.Core.Data.Goods;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Core.Generation.Providers.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -14,18 +16,26 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
     {
         private Mock<IDice> mockDice;
         private Mock<IGoodPercentileResultProvider> mockGoodPercentileResultProvider;
-        private Mock<IGemFactory> mockGemFactory;
-        private Mock<IArtFactory> mockArtFactory;
+        private Mock<IGoodDescriptionProvider> mockGoodDescriptionProvider;
         private IGoodsFactory factory;
+
+        private GoodPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            result = new GoodPercentileResult();
+            result.GoodType = GoodsConstants.Art;
+            result.RollToDetermineAmount = "12";
+
             mockGoodPercentileResultProvider = new Mock<IGoodPercentileResultProvider>();
-            mockGemFactory = new Mock<IGemFactory>();
-            mockArtFactory = new Mock<IArtFactory>();
-            factory = new GoodsFactory(mockGoodPercentileResultProvider.Object, mockDice.Object, mockGemFactory.Object, mockArtFactory.Object);
+            mockGoodPercentileResultProvider.Setup(p => p.GetGoodPercentileResult(It.IsAny<Int32>())).Returns(result);
+
+            mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(12);
+
+            mockGoodDescriptionProvider = new Mock<IGoodDescriptionProvider>();
+            factory = new GoodsFactory(mockGoodPercentileResultProvider.Object, mockDice.Object, mockGoodDescriptionProvider.Object);
         }
 
         [Test]
@@ -36,11 +46,31 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         }
 
         [Test]
+        public void GetResultFromGoodsPercentileResultProvider()
+        {
+            factory.CreateAtLevel(1);
+            mockGoodPercentileResultProvider.Verify(p => p.GetGoodPercentileResult(1), Times.Once);
+        }
+
+        [Test]
+        public void EmptyGoodsIfNoGoodType()
+        {
+            result.GoodType = String.Empty;
+            var goods = factory.CreateAtLevel(1);
+            Assert.That(goods.Any(), Is.False);
+        }
+
+        [Test]
         public void ReturnsNumberOfGoodsDeterminedByDice()
         {
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(9266);
             var goods = factory.CreateAtLevel(1);
-            Assert.That(goods.Count(), Is.EqualTo(9266));
+            Assert.That(goods.Count(), Is.EqualTo(12));
+        }
+
+        [Test]
+        public void GetValueOfGoodFromProvider()
+        {
+
         }
     }
 }

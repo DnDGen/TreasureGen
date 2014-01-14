@@ -1,4 +1,7 @@
-﻿using D20Dice;
+﻿using System.Collections.Generic;
+using D20Dice;
+using EquipmentGen.Core.Data.Coins;
+using EquipmentGen.Core.Data.Goods;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using Moq;
@@ -31,24 +34,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         }
 
         [Test]
-        public void CoinIsSet()
+        public void CoinIsSetByCoinFactory()
         {
+            var coin = new Coin();
+            mockCoinFactory.Setup(f => f.CreateAtLevel(1)).Returns(coin);
+
             var treasure = factory.CreateAtLevel(1);
-            Assert.That(treasure.Coin, Is.Not.Null);
+            Assert.That(treasure.Coin, Is.EqualTo(coin));
         }
 
         [Test]
-        public void GoodsAreSet()
+        public void GoodsAreSetByGoodsFactory()
         {
-            var treasure = factory.CreateAtLevel(1);
-            Assert.That(treasure.Goods, Is.Not.Null);
-        }
+            var goods = new List<Good>();
+            mockGoodsFactory.Setup(f => f.CreateAtLevel(1)).Returns(goods);
 
-        [Test]
-        public void ItemsAreSet()
-        {
             var treasure = factory.CreateAtLevel(1);
-            Assert.That(treasure.Items, Is.Not.Null);
+            Assert.That(treasure.Goods, Is.EqualTo(goods));
         }
     }
 }
