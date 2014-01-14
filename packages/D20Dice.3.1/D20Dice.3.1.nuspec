@@ -12,5 +12,7 @@
     <releaseNotes>String input can do addition, subtraction, multiplication, and paranthetical statements.  Dice follow the "1d2" format.
 
 Example: "(2d3+2)*2", rolling a 2 and a 1, computes to 10</releaseNotes>
+    <copyright />
+    <language />
   </metadata>
 </package>

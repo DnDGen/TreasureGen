@@ -18,12 +18,12 @@ namespace EquipmentGen.Core.Generation.Factories
             this.goodsFactory = goodsFactory;
         }
 
-        public Treasure CreateWith(Int32 level)
+        public Treasure CreateAtLevel(Int32 level)
         {
             var treasure = new Treasure();
 
-            treasure.Coin = coinFactory.CreateWith(level);
-            treasure.Goods = goodsFactory.CreateWith(level);
+            treasure.Coin = coinFactory.CreateAtLevel(level);
+            treasure.Goods = goodsFactory.CreateAtLevel(level);
 
             return treasure;
         }

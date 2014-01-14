@@ -18,11 +18,12 @@ namespace EquipmentGen.Core.Generation.Providers
             var tableName = String.Format("Level{0}Goods", level);
             var result = percentileResultProvider.GetPercentileResult(tableName);
 
-            
+            var goodResult = new GoodPercentileResult() { GoodType = String.Empty, RollToDetermineAmount = String.Empty };
+            if (String.IsNullOrEmpty(result))
+                return goodResult;
 
             var parsedResult = result.Split(',');
 
-            var goodResult = new GoodPercentileResult();
             goodResult.GoodType = parsedResult[0];
             goodResult.RollToDetermineAmount = parsedResult[1];
 

@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Factories.Interfaces
 {
     public interface ICoinFactory
     {
-        Coin CreateWith(Int32 level);
+        Coin CreateAtLevel(Int32 level);
     }
 }

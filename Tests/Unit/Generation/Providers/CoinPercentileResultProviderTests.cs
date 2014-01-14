@@ -1,5 +1,4 @@
 ﻿using System;
-using D20Dice;
 using EquipmentGen.Core.Data.Coins;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -9,11 +8,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generation.Providers
 {
     [TestFixture]
-    public class CoinProviderTests
+    public class CoinPercentileResultProviderTests
     {
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
-        private Mock<IDice> mockDice;
-        private ICoinProvider coinProvider;
+        private ICoinPercentileResultProvider coinPercentileResultProvider;
 
         [SetUp]
         public void Setup()
@@ -22,43 +20,33 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
                 .Returns("Copper,2d4*100");
 
-            mockDice = new Mock<IDice>();
-            coinProvider = new CoinProvider(mockPercentileResultProvider.Object, mockDice.Object);
+            coinPercentileResultProvider = new CoinPercentileResultProvider(mockPercentileResultProvider.Object);
         }
 
         [Test]
         public void AccessesPercentileResultProviderWithTableOfLevelCoin()
         {
-            coinProvider.GetCoin(1);
+            coinPercentileResultProvider.GetCoinPercentileResult(1);
             mockPercentileResultProvider.Verify(p => p.GetPercentileResult("Level1Coins"), Times.Once);
         }
 
         [Test]
-        public void CoinIsEmptyIfPercentileResultIsEmpty()
+        public void CoinPercentileResultIsEmptyIfPercentileResultIsEmpty()
         {
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
                 .Returns(String.Empty);
 
-            var coin = coinProvider.GetCoin(1);
-            Assert.That(coin.ToString(), Is.EqualTo(String.Empty));
+            var result = coinPercentileResultProvider.GetCoinPercentileResult(1);
+            Assert.That(result.CoinType, Is.EqualTo(String.Empty));
+            Assert.That(result.RollToDetermineAmount, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public void ParsesCurrencyOutOfPercentileResult()
         {
-            var coin = coinProvider.GetCoin(1);
-            Assert.That(coin.Currency, Is.EqualTo(CoinConstants.Copper));
-        }
-
-        [Test]
-        public void ParsesRollOutOfPercentileResults()
-        {
-            var roll = "1d2*100";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns("Copper," + roll);
-            mockDice.Setup(d => d.Roll(roll)).Returns(9266);
-
-            var coin = coinProvider.GetCoin(1);
-            Assert.That(coin.Quantity, Is.EqualTo(9266));
+            var result = coinPercentileResultProvider.GetCoinPercentileResult(1);
+            Assert.That(result.CoinType, Is.EqualTo(CoinConstants.Copper));
+            Assert.That(result.RollToDetermineAmount, Is.EqualTo("2d4*100"));
         }
     }
 }

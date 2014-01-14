@@ -2238,6 +2238,21 @@
             </code>
             </example>
         </member>
+        <member name="T:Moq.ReturnsExtensions">
+            <summary>
+            Defines async extension methods on IReturns.
+            </summary>
+        </member>
+        <member name="M:Moq.ReturnsExtensions.ReturnsAsync``2(Moq.Language.IReturns{``0,System.Threading.Tasks.Task{``1}},``1)">
+            <summary>
+            Allows to specify the return value of an asynchronous method.
+            </summary>
+        </member>
+        <member name="M:Moq.ReturnsExtensions.ThrowsAsync``2(Moq.Language.IReturns{``0,System.Threading.Tasks.Task{``1}},System.Exception)">
+            <summary>
+            Allows to specify the exception thrown by an asynchronous method.
+            </summary>
+        </member>
         <member name="T:Moq.Language.ISetupSequentialResult`1">
             <summary>
             Language for ReturnSequence
@@ -2366,7 +2381,7 @@
 				// that expectation was not marked as verifiable.
 				this.VerifyAll();
 			</code>
-		</example><exception cref="T:Moq.MockException">At least one expectation was not met.</exception>		
+		</example><exception cref="T:Moq.MockException">At least one expectation was not met.</exception>        
         </member>
         <member name="M:Moq.Mock.GetInterceptor(System.Linq.Expressions.Expression,Moq.Mock)">
             <summary>

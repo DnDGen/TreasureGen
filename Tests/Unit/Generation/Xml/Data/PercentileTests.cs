@@ -2,6 +2,7 @@
 using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Core.Generation.Xml.Parsers;
 using Moq;
 using NUnit.Framework;
 
@@ -19,7 +20,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-            percentileResultProvider = ProviderFactory.CreatePercentileResultProviderWith(mockDice.Object);
+            var streamLoader = new EmbeddedResourceStreamLoader();
+            var percentileXmlParser = new PercentileXmlParser(streamLoader);
+            percentileResultProvider = new PercentileResultProvider(percentileXmlParser, mockDice.Object);
         }
 
         protected void AssertEmpty(Int32 roll)

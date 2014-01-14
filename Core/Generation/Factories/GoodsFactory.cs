@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Data.Goods;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
@@ -23,30 +24,49 @@ namespace EquipmentGen.Core.Generation.Factories
             this.artFactory = artFactory;
         }
 
-        public IEnumerable<Good> CreateWith(Int32 level)
+        public IEnumerable<Good> CreateAtLevel(Int32 level)
         {
             var result = goodPercentileResultProvider.GetGoodPercentileResult(level);
             var amount = dice.Roll(result.RollToDetermineAmount);
 
-            var goods = new List<Good>();
+            return GenerateGoods(result.GoodType, amount);
+        }
+
+        private IEnumerable<Good> GenerateGoods(String type, Int32 amount)
+        {
+            if (String.IsNullOrEmpty(type))
+                return Enumerable.Empty<Good>();
+
+            if (type == GoodsConstants.Gem)
+                return GenerateGems(amount);
+
+            return GenerateArt(amount);
+        }
+
+        private IEnumerable<Good> GenerateGems(Int32 amount)
+        {
+            var gems = new List<Good>();
 
             while (amount-- > 0)
             {
-                var good = GenerateGood(result.GoodType);
-                goods.Add(good);
+                var gem = gemFactory.Create();
+                gems.Add(gem);
             }
 
-            return goods;
+            return gems;
         }
 
-        private Good GenerateGood(String type)
+        private IEnumerable<Good> GenerateArt(Int32 amount)
         {
-            switch (type)
+            var art = new List<Good>();
+
+            while (amount-- > 0)
             {
-                case GoodsConstants.Gem: return gemFactory.Create();
-                case GoodsConstants.Art: return artFactory.Create();
-                default: throw new ArgumentOutOfRangeException();
+                var artObject = artFactory.Create();
+                art.Add(artObject);
             }
+
+            return art;
         }
     }
 }

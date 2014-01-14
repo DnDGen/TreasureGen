@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Factories.Interfaces
 {
     public interface ITreasureFactory
     {
-        Treasure CreateWith(Int32 level);
+        Treasure CreateAtLevel(Int32 level);
     }
 }

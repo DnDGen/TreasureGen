@@ -13,7 +13,7 @@ namespace EquipmentGen.Bootstrap
         {
             Bind<ITreasureFactory>().To<TreasureFactory>();
             Bind<ICoinFactory>().To<CoinFactory>();
-            Bind<ICoinProvider>().To<CoinProvider>();
+            Bind<ICoinPercentileResultProvider>().To<CoinPercentileResultProvider>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
         }
     }
