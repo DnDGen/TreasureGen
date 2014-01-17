@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Data.Goods;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -16,30 +15,33 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
     {
         private Mock<IDice> mockDice;
         private Mock<IGoodPercentileResultProvider> mockGoodPercentileResultProvider;
+        private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private IGoodsFactory factory;
 
-        private GoodPercentileResult result;
+        private TypeAndAmountPercentileResult typeAndAmountResult;
         private GoodValuePercentileResult valueResult;
 
         [SetUp]
         public void Setup()
         {
-            result = new GoodPercentileResult();
-            result.GoodType = GoodsConstants.Art;
-            result.RollToDetermineAmount = "2";
+            typeAndAmountResult = new TypeAndAmountPercentileResult();
+            typeAndAmountResult.Type = "type";
+            typeAndAmountResult.RollToDetermineAmount = "roll";
 
             valueResult = new GoodValuePercentileResult();
             valueResult.ValueRoll = "92d66";
             valueResult.Descriptions = new[] { "description 1", "description 2" };
 
+            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(typeAndAmountResult);
+
             mockGoodPercentileResultProvider = new Mock<IGoodPercentileResultProvider>();
-            mockGoodPercentileResultProvider.Setup(p => p.GetGoodPercentileResult(It.IsAny<Int32>())).Returns(result);
             mockGoodPercentileResultProvider.Setup(p => p.GetGoodValuePercentileResult(It.IsAny<String>())).Returns(valueResult);
 
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(Convert.ToInt32(result.RollToDetermineAmount));
+            mockDice.Setup(d => d.Roll(typeAndAmountResult.RollToDetermineAmount)).Returns(2);
 
-            factory = new GoodsFactory(mockGoodPercentileResultProvider.Object, mockDice.Object);
+            factory = new GoodsFactory(mockGoodPercentileResultProvider.Object, mockDice.Object, mockTypeAndAmountPercentileResultProvider.Object);
         }
 
         [Test]
@@ -53,13 +55,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         public void GetResultFromGoodsPercentileResultProvider()
         {
             factory.CreateAtLevel(1);
-            mockGoodPercentileResultProvider.Verify(p => p.GetGoodPercentileResult(1), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level1Goods"), Times.Once);
         }
 
         [Test]
         public void EmptyGoodsIfNoGoodType()
         {
-            result.GoodType = String.Empty;
+            typeAndAmountResult.Type = String.Empty;
             var goods = factory.CreateAtLevel(1);
             Assert.That(goods.Any(), Is.False);
         }
@@ -75,7 +77,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         public void GetValueOfGoodFromProvider()
         {
             factory.CreateAtLevel(1);
-            mockGoodPercentileResultProvider.Verify(p => p.GetGoodValuePercentileResult(result.GoodType), Times.Exactly(2));
+            mockGoodPercentileResultProvider.Verify(p => p.GetGoodValuePercentileResult("typeValue"), Times.Exactly(2));
         }
 
         [Test]

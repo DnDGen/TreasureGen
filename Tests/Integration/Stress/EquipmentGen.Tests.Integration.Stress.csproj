@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
     <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
+    <Compile Include="Generation\Factories\ItemsFactoryTests.cs" />
     <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StressTests.cs" />

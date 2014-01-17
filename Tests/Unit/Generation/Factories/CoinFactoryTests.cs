@@ -12,36 +12,37 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
     [TestFixture]
     public class CoinFactoryTests
     {
-        private Mock<ICoinPercentileResultProvider> mockCoinProvider;
+        private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private Mock<IDice> mockDice;
         private ICoinFactory factory;
 
-        private CoinPercentileResult result;
+        private TypeAndAmountPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
-            result = new CoinPercentileResult();
-            result.CoinType = "coin type";
+            result = new TypeAndAmountPercentileResult();
+            result.Type = "coin type";
 
-            mockCoinProvider = new Mock<ICoinPercentileResultProvider>();
-            mockCoinProvider.Setup(p => p.GetCoinPercentileResult(It.IsAny<Int32>())).Returns(result);
+            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>()))
+                .Returns(result);
 
             mockDice = new Mock<IDice>();
-            factory = new CoinFactory(mockCoinProvider.Object, mockDice.Object);
+            factory = new CoinFactory(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object);
         }
 
         [Test]
         public void CoinFactoryReturnsCoinFromCoinPercentileResultProvider()
         {
             factory.CreateAtLevel(1);
-            mockCoinProvider.Verify(p => p.GetCoinPercentileResult(1), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level1Coins"), Times.Once);
         }
 
         [Test]
         public void CoinIsEmptyIfPercentileResultIsEmpty()
         {
-            result.CoinType = String.Empty;
+            result.Type = String.Empty;
 
             var coin = factory.CreateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(String.Empty));
@@ -52,7 +53,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         public void ParsesCurrencyOutOfPercentileResult()
         {
             var coin = factory.CreateAtLevel(1);
-            Assert.That(coin.Currency, Is.EqualTo(result.CoinType));
+            Assert.That(coin.Currency, Is.EqualTo(result.Type));
         }
 
         [Test]

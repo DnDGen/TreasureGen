@@ -10,28 +10,33 @@ namespace EquipmentGen.Core.Generation.Factories
 {
     public class GoodsFactory : IGoodsFactory
     {
+        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IGoodPercentileResultProvider goodPercentileResultProvider;
         private IDice dice;
 
-        public GoodsFactory(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice)
+        public GoodsFactory(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice,
+            ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
         {
             this.goodPercentileResultProvider = goodPercentileResultProvider;
             this.dice = dice;
+            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
         }
 
         public IEnumerable<Good> CreateAtLevel(Int32 level)
         {
-            var result = goodPercentileResultProvider.GetGoodPercentileResult(level);
+            var tableName = String.Format("Level{0}Goods", level);
+            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
 
-            if (String.IsNullOrEmpty(result.GoodType))
+            if (String.IsNullOrEmpty(typeAndAmountResult.Type))
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
 
-            var amount = dice.Roll(result.RollToDetermineAmount);
+            var amount = dice.Roll(typeAndAmountResult.RollToDetermineAmount);
+            tableName = String.Format("{0}Value", typeAndAmountResult.Type);
             while (amount-- > 0)
             {
-                var valueResult = goodPercentileResultProvider.GetGoodValuePercentileResult(result.GoodType);
+                var valueResult = goodPercentileResultProvider.GetGoodValuePercentileResult(tableName);
                 var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
                 var index = dice.Roll(roll);
 

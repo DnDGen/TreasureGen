@@ -33,8 +33,8 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void CoinPercentileResultProviderNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<ICoinPercentileResultProvider>();
-            var second = kernel.Get<ICoinPercentileResultProvider>();
+            var first = kernel.Get<ITypeAndAmountPercentileResultProvider>();
+            var second = kernel.Get<ITypeAndAmountPercentileResultProvider>();
             Assert.That(first, Is.Not.EqualTo(second));
         }
 
@@ -91,6 +91,14 @@ namespace EquipmentGen.Tests.Integration.Common
         {
             var first = kernel.Get<ITreasureFactory>();
             var second = kernel.Get<ITreasureFactory>();
+            Assert.That(first, Is.Not.EqualTo(second));
+        }
+
+        [Test]
+        public void ItemsFactoryNotGeneratedAsSingletons()
+        {
+            var first = kernel.Get<IItemsFactory>();
+            var second = kernel.Get<IItemsFactory>();
             Assert.That(first, Is.Not.EqualTo(second));
         }
     }

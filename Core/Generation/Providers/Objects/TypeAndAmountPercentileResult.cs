@@ -2,9 +2,9 @@
 
 namespace EquipmentGen.Core.Generation.Providers.Objects
 {
-    public class CoinPercentileResult
+    public class TypeAndAmountPercentileResult
     {
-        public String CoinType { get; set; }
+        public String Type { get; set; }
         public String RollToDetermineAmount { get; set; }
     }
 }

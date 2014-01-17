@@ -5,10 +5,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Factories
 {
     [TestFixture]
-    public class GoodsFactoryTests : StressTest
+    public class ItemsFactoryTests : StressTest
     {
         [Inject]
-        public IGoodsFactory GoodsFactory { get; set; }
+        public IItemsFactory ItemsFactory { get; set; }
 
         [SetUp]
         public void Setup()
@@ -23,19 +23,20 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Factories
         }
 
         [Test]
-        public void GoodsFactoryReturnsGoods()
+        public void ItemsFactoryReturnsItems()
         {
             while (TestShouldKeepRunning())
             {
                 var level = GetNewLevel();
-                var goods = GoodsFactory.CreateAtLevel(level);
+                var items = ItemsFactory.CreateAtLevel(level);
 
-                Assert.That(goods, Is.Not.Null);
+                Assert.That(items, Is.Not.Null);
 
-                foreach (var good in goods)
+                foreach (var item in items)
                 {
-                    Assert.That(good.Description, Is.Not.Empty);
-                    Assert.That(good.ValueInGold, Is.GreaterThanOrEqualTo(0));
+                    Assert.That(item.Name, Is.Not.Empty);
+                    Assert.That(item.Traits, Is.Not.Null);
+                    Assert.That(item.MagicalBonus, Is.GreaterThanOrEqualTo(0));
                 }
             }
 

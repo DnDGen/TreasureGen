@@ -2,6 +2,7 @@
 using D20Dice;
 using EquipmentGen.Core.Data.Coins;
 using EquipmentGen.Core.Data.Goods;
+using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using Moq;
@@ -15,6 +16,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         private Mock<IDice> mockDice;
         private Mock<ICoinFactory> mockCoinFactory;
         private Mock<IGoodsFactory> mockGoodsFactory;
+        private Mock<IItemsFactory> mockItemsFactory;
         private ITreasureFactory factory;
 
         [SetUp]
@@ -23,7 +25,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             mockDice = new Mock<IDice>();
             mockCoinFactory = new Mock<ICoinFactory>();
             mockGoodsFactory = new Mock<IGoodsFactory>();
-            factory = new TreasureFactory(mockDice.Object, mockCoinFactory.Object, mockGoodsFactory.Object);
+            mockItemsFactory = new Mock<IItemsFactory>();
+            factory = new TreasureFactory(mockCoinFactory.Object, mockGoodsFactory.Object, mockItemsFactory.Object);
         }
 
         [Test]
@@ -51,6 +54,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
 
             var treasure = factory.CreateAtLevel(1);
             Assert.That(treasure.Goods, Is.EqualTo(goods));
+        }
+
+        [Test]
+        public void ItemsAreSetByItemsFactory()
+        {
+            var items = new List<Item>();
+            mockItemsFactory.Setup(f => f.CreateAtLevel(1)).Returns(items);
+
+            var treasure = factory.CreateAtLevel(1);
+            Assert.That(treasure.Items, Is.EqualTo(items));
         }
     }
 }

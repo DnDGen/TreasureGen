@@ -1,5 +1,4 @@
 ﻿using System;
-using D20Dice;
 using EquipmentGen.Core.Data;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 
@@ -7,15 +6,15 @@ namespace EquipmentGen.Core.Generation.Factories
 {
     public class TreasureFactory : ITreasureFactory
     {
-        private IDice dice;
         private ICoinFactory coinFactory;
         private IGoodsFactory goodsFactory;
+        private IItemsFactory itemsFactory;
 
-        public TreasureFactory(IDice dice, ICoinFactory coinFactory, IGoodsFactory goodsFactory)
+        public TreasureFactory(ICoinFactory coinFactory, IGoodsFactory goodsFactory, IItemsFactory itemsFactory)
         {
-            this.dice = dice;
             this.coinFactory = coinFactory;
             this.goodsFactory = goodsFactory;
+            this.itemsFactory = itemsFactory;
         }
 
         public Treasure CreateAtLevel(Int32 level)
@@ -24,6 +23,7 @@ namespace EquipmentGen.Core.Generation.Factories
 
             treasure.Coin = coinFactory.CreateAtLevel(level);
             treasure.Goods = goodsFactory.CreateAtLevel(level);
+            treasure.Items = itemsFactory.CreateAtLevel(level);
 
             return treasure;
         }

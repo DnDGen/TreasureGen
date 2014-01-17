@@ -14,14 +14,15 @@ namespace EquipmentGen.Bootstrap
         public override void Load()
         {
             Bind<ICoinFactory>().To<CoinFactory>();
-            Bind<ICoinPercentileResultProvider>().To<CoinPercentileResultProvider>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsFactory>().To<GoodsFactory>();
+            Bind<IItemsFactory>().To<ItemsFactory>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<ITreasureFactory>().To<TreasureFactory>();
+            Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
         }
     }
 }

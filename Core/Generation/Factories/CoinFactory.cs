@@ -8,25 +8,26 @@ namespace EquipmentGen.Core.Generation.Factories
 {
     public class CoinFactory : ICoinFactory
     {
-        private ICoinPercentileResultProvider coinProvider;
+        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IDice dice;
 
-        public CoinFactory(ICoinPercentileResultProvider coinProvider, IDice dice)
+        public CoinFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice)
         {
-            this.coinProvider = coinProvider;
+            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
         }
 
         public Coin CreateAtLevel(Int32 level)
         {
-            var result = coinProvider.GetCoinPercentileResult(level);
+            var tableName = String.Format("Level{0}Coins", level);
+            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
 
             var coin = new Coin() { Currency = String.Empty };
 
-            if (String.IsNullOrEmpty(result.CoinType))
+            if (String.IsNullOrEmpty(result.Type))
                 return coin;
 
-            coin.Currency = result.CoinType;
+            coin.Currency = result.Type;
             coin.Quantity = dice.Roll(result.RollToDetermineAmount);
 
             return coin;
