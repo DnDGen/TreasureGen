@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
@@ -53,13 +54,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GettingValuePercentileComesFromProvider()
+        public void GoodValuePercentileComesFromProvider()
         {
             var goodType = "good type";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(goodType)).Returns("value result");
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(goodType + "Value")).Returns("value roll,description 1,description 2");
 
-            var result = provider.GetGoodPercentileResult(goodType);
-            Assert.That(result, Is.EqualTo("value result"));
+            var result = provider.GetGoodValuePercentileResult(goodType);
+            Assert.That(result.ValueRoll, Is.EqualTo("value roll"));
+            Assert.That(result.Descriptions, Contains.Item("description 1"));
+            Assert.That(result.Descriptions, Contains.Item("description 2"));
+            Assert.That(result.Descriptions.Count(), Is.EqualTo(2));
         }
     }
 }

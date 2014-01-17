@@ -78,6 +78,8 @@
     <Compile Include="Generation\Xml\Data\Coins\Level4CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level5CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level6CoinsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Art\ArtValueTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Gems\GemValueTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level1GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level2GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level3GoodsTests.cs" />
@@ -115,6 +117,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

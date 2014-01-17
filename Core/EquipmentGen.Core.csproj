@@ -55,15 +55,14 @@
     <Compile Include="Generation\Factories\Interfaces\IGoodsFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\ITreasureFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
-    <Compile Include="Generation\Providers\GoodDescriptionProvider.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\ICoinPercentileResultProvider.cs" />
-    <Compile Include="Generation\Providers\Interfaces\IGoodDescriptionProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\CoinPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Objects\CoinPercentileResult.cs" />
     <Compile Include="Generation\Providers\Objects\GoodPercentileResult.cs" />
+    <Compile Include="Generation\Providers\Objects\GoodValuePercentileResult.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />
@@ -194,6 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Art\ArtValue.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Goods\Gems\GemValue.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

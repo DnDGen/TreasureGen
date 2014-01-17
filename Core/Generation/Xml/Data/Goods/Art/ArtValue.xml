@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>1d10*10,silver ewer,carved bone statuette,carved ivory statuette,finely wrought small gold bracelet</content>
+    <upper>10</upper>
+  </object>
+  <object>
+    <lower>11</lower>
+    <content>3d6*10,cloth of gold vestments,black velvet mask with numerous citrines,silver chalice with lapis lazuli gems</content>
+    <upper>25</upper>
+  </object>
+  <object>
+    <lower>26</lower>
+    <content>1d6*100,large well-done wool tapestry,brass mug with jade inlays</content>
+    <upper>40</upper>
+  </object>
+  <object>
+    <lower>41</lower>
+    <content>1d10*100,silver comb with moonstones,silver-plated steel longsword with jet jewel in hilt</content>
+    <upper>50</upper>
+  </object>
+  <object>
+    <lower>51</lower>
+    <content>2d6*100,carved harp of exotic wood with ivory inlay and zircon gems,10 lb. solid gold idol</content>
+    <upper>60</upper>
+  </object>
+  <object>
+    <lower>61</lower>
+    <content>3d6*100,gold dragon comb with red garnet eye,gold and topaz bottle stopper cork,ceremonial electrum dagger with a star ruby in the pommel</content>
+    <upper>70</upper>
+  </object>
+  <object>
+    <lower>71</lower>
+    <content>4d6*100,eyepatch with mock eye of sapphire and moonstone,fire opal pendant on a fine gold chain,old masterpiece painting</content>
+    <upper>80</upper>
+  </object>
+  <object>
+    <lower>81</lower>
+    <content>5d6*100,embroidered silk and velvet mantle with numerous moonstones,sapphire pendant on gold chain</content>
+    <upper>85</upper>
+  </object>
+  <object>
+    <lower>86</lower>
+    <content>1d4*1000,embroidered and bejeweled glove,jeweled anklet,gold music box</content>
+    <upper>90</upper>
+  </object>
+  <object>
+    <lower>91</lower>
+    <content>1d6*1000,golden circlet with four aquamarines,a necklace of small pink pearls</content>
+    <upper>95</upper>
+  </object>
+  <object>
+    <lower>96</lower>
+    <content>2d4*1000,jeweled gold crown,jeweled electrum ring</content>
+    <upper>99</upper>
+  </object>
+  <object>
+    <lower>100</lower>
+    <content>2d6*1000,gold and ruby ring,gold cup set with emeralds</content>
+    <upper>100</upper>
+  </object>
+</percentile>

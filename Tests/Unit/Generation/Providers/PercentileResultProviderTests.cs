@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -83,100 +82,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
                 var result = percentileResultProvider.GetPercentileResult(tableName);
                 Assert.That(result, Is.EqualTo("content"));
             }
-        }
-
-        [Test]
-        public void GetAllResultsIncludesEmptyStringIfEmptyTable()
-        {
-            table.Clear();
-            var results = percentileResultProvider.GetAllResults(tableName);
-
-            Assert.That(results.Contains(String.Empty), Is.True);
-            Assert.That(results.Count(), Is.EqualTo(1));
-        }
-
-        [Test]
-        public void GetAllResultsReturnsAllContentValues()
-        {
-            for (var i = 1; i < 10; i++)
-                table.Add(new PercentileObject() { Content = String.Format("Item {0}", i) });
-
-            var results = percentileResultProvider.GetAllResults(tableName);
-
-            foreach (var percentileObject in table)
-                Assert.That(results.Contains(percentileObject.Content), Is.True);
-        }
-
-        [Test]
-        public void GetAllResultsIncludesEmptyStringIfIncompleteTable()
-        {
-            var results = percentileResultProvider.GetAllResults(tableName);
-            Assert.That(results.Contains(String.Empty), Is.True);
-        }
-
-        [Test]
-        public void GetAllResultsCachesTable()
-        {
-            percentileResultProvider.GetAllResults(tableName);
-            percentileResultProvider.GetAllResults(tableName);
-
-            mockPercentileXmlParser.Verify(p => p.Parse(tableName + ".xml"), Times.Once());
-        }
-
-        [Test]
-        public void CompleteTableWithOneEntryIsSeenAsComplete()
-        {
-            DetermineUpperLimits(1);
-        }
-
-        [Test]
-        public void CompleteTableWithTwoEntriesIsSeenAsComplete()
-        {
-            DetermineUpperLimits(2);
-        }
-
-        [Test]
-        public void CompleteTableWithThreeEntriesIsSeenAsComplete()
-        {
-            DetermineUpperLimits(3);
-        }
-
-        private void DetermineUpperLimits(Int32 numberOfLimits)
-        {
-            var upperLimits = new[] { 100 };
-
-            if (numberOfLimits == 1)
-                AssertPercentileObjects(upperLimits);
-            else
-                DetermineUpperLimits(numberOfLimits, upperLimits);
-        }
-
-        private void DetermineUpperLimits(Int32 numberOfLimits, IEnumerable<Int32> upperLimits)
-        {
-            for (var newUpperLimit = upperLimits.First() - 1; newUpperLimit > 0; newUpperLimit--)
-            {
-                var addedUpperLimits = upperLimits.Union(new[] { newUpperLimit }).OrderBy(l => l);
-
-                if (numberOfLimits <= addedUpperLimits.Count())
-                    AssertPercentileObjects(addedUpperLimits);
-                else
-                    DetermineUpperLimits(numberOfLimits, addedUpperLimits);
-            }
-        }
-
-        private void AssertPercentileObjects(IEnumerable<Int32> upperLimits)
-        {
-            if (upperLimits.Last() != 100 || upperLimits.Distinct().Count() != upperLimits.Count())
-                throw new ArgumentException();
-
-            table.Clear();
-            table.Add(new PercentileObject() { LowerLimit = 1, UpperLimit = upperLimits.First() });
-
-            for (var i = 1; i < upperLimits.Count(); i++)
-                table.Add(new PercentileObject() { LowerLimit = upperLimits.ElementAt(i - 1) + 1, UpperLimit = upperLimits.ElementAt(i) });
-
-            var results = percentileResultProvider.GetAllResults(tableName);
-            Assert.That(results.Contains(String.Empty), Is.False);
         }
     }
 }

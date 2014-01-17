@@ -12,14 +12,11 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         private IGoodPercentileResultProvider goodPercentileResultProvider;
         private IDice dice;
-        private IGoodDescriptionProvider goodDescriptionProvider;
 
-        public GoodsFactory(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice,
-            IGoodDescriptionProvider goodDescriptionProvider)
+        public GoodsFactory(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice)
         {
             this.goodPercentileResultProvider = goodPercentileResultProvider;
             this.dice = dice;
-            this.goodDescriptionProvider = goodDescriptionProvider;
         }
 
         public IEnumerable<Good> CreateAtLevel(Int32 level)
@@ -34,11 +31,13 @@ namespace EquipmentGen.Core.Generation.Factories
             var amount = dice.Roll(result.RollToDetermineAmount);
             while (amount-- > 0)
             {
-                var valueRoll = goodPercentileResultProvider.GetGoodPercentileResult(result.GoodType);
-                var good = new Good();
+                var valueResult = goodPercentileResultProvider.GetGoodValuePercentileResult(result.GoodType);
+                var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
+                var index = dice.Roll(roll);
 
-                good.Description = goodDescriptionProvider.GetDescriptionFor(valueRoll);
-                good.ValueInGold = dice.Roll(valueRoll);
+                var good = new Good();
+                good.Description = valueResult.Descriptions.ElementAt(index);
+                good.ValueInGold = dice.Roll(valueResult.ValueRoll);
 
                 goods.Add(good);
             }

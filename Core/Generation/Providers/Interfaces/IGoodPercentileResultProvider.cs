@@ -6,6 +6,6 @@ namespace EquipmentGen.Core.Generation.Providers.Interfaces
     public interface IGoodPercentileResultProvider
     {
         GoodPercentileResult GetGoodPercentileResult(Int32 level);
-        String GetGoodPercentileResult(String goodType);
+        GoodValuePercentileResult GetGoodValuePercentileResult(String goodType);
     }
 }

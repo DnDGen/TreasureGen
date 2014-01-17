@@ -33,18 +33,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Factories
                 var goods = GoodsFactory.CreateAtLevel(level);
 
                 Assert.That(goods, Is.Not.Null);
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void GoodsFactoryReturnsGoodsWithGoods()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var level = GetNewLevel();
-                var goods = GoodsFactory.CreateAtLevel(level);
 
                 if (goods.Any())
                 {

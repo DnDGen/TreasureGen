@@ -16,7 +16,6 @@ namespace EquipmentGen.Bootstrap
             Bind<ICoinFactory>().To<CoinFactory>();
             Bind<ICoinPercentileResultProvider>().To<CoinPercentileResultProvider>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGoodDescriptionProvider>().To<GoodDescriptionProvider>();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsFactory>().To<GoodsFactory>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();

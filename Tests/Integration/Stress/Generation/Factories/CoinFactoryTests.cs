@@ -30,34 +30,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Factories
                 var level = GetNewLevel();
                 var coin = CoinFactory.CreateAtLevel(level);
 
-                Assert.That(coin, Is.Not.Null);
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void CoinFactoryReturnsCoinWithCurrency()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var level = GetNewLevel();
-                var coin = CoinFactory.CreateAtLevel(level);
-
-                Assert.That(coin.Currency, Is.Not.Null);
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void CoinFactoryReturnsCoinWithQuantity()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var level = GetNewLevel();
-                var coin = CoinFactory.CreateAtLevel(level);
-
+                Assert.That(coin, Is.Not.Null, "coin");
+                Assert.That(coin.Currency, Is.Not.Null, "currency");
                 Assert.That(coin.Quantity, Is.GreaterThanOrEqualTo(0));
             }
 

@@ -1,10 +1,10 @@
-﻿using D20Dice;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using D20Dice;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EquipmentGen.Core.Generation.Providers
 {
@@ -50,34 +50,6 @@ namespace EquipmentGen.Core.Generation.Providers
         private Boolean RollIsInRange(Int32 roll, PercentileObject percentileObject)
         {
             return percentileObject.LowerLimit <= roll && roll <= percentileObject.UpperLimit;
-        }
-
-        public IEnumerable<String> GetAllResults(String tableName)
-        {
-            if (!cachedTables.ContainsKey(tableName))
-                CacheTable(tableName);
-
-            var results = new List<String>();
-
-            foreach (var percentileObject in cachedTables[tableName])
-                results.Add(percentileObject.Content);
-
-            if (!CompleteTable(cachedTables[tableName]))
-                results.Add(String.Empty);
-
-            return results;
-        }
-
-        private Boolean CompleteTable(IEnumerable<PercentileObject> table)
-        {
-            if (!table.Any())
-                return false;
-
-            var percentileRolls = new List<Int32>();
-            for (var i = 1; i <= 100; i++)
-                percentileRolls.Add(i);
-
-            return percentileRolls.All(r => table.Any(p => RollIsInRange(r, p)));
         }
     }
 }
