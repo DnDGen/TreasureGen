@@ -9,17 +9,15 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         private IPercentileResultProvider percentileResultProvider;
         private IAlchemicalItemFactory alchemicalItemFactory;
-        private IGearFactory armorFactory;
-        private IGearFactory weaponFactory;
+        private IGearFactoryFactory gearFactoryFactory;
         private IToolFactory toolFactory;
 
         public PowerFactoryFactory(IPercentileResultProvider percentileResultProvider, IAlchemicalItemFactory alchemicalItemFactory,
-            IGearFactory armorFactory, IGearFactory weaponFactory, IToolFactory toolFactory)
+            IGearFactoryFactory gearFactoryFactory, IToolFactory toolFactory)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.alchemicalItemFactory = alchemicalItemFactory;
-            this.armorFactory = armorFactory;
-            this.weaponFactory = weaponFactory;
+            this.gearFactoryFactory = gearFactoryFactory;
             this.toolFactory = toolFactory;
         }
 
@@ -37,7 +35,7 @@ namespace EquipmentGen.Core.Generation.Factories
 
         private IPowerFactory CreateMundaneItemFactory()
         {
-            return new MundaneItemFactory(percentileResultProvider, alchemicalItemFactory, armorFactory, weaponFactory, toolFactory);
+            return new MundaneItemFactory(percentileResultProvider, alchemicalItemFactory, gearFactoryFactory, toolFactory);
         }
     }
 }

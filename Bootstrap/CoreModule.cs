@@ -16,10 +16,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IAlchemicalItemFactory>().To<AlchemicalItemFactory>();
             Bind<ICoinFactory>().To<CoinFactory>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGearFactory>().To<ArmorFactory>().Named("ArmorFactory");
-            Bind<IGearFactory>().To<ArmorFactory>().Named("armorFactory");
-            Bind<IGearFactory>().To<WeaponFactory>().Named("WeaponFactory");
-            Bind<IGearFactory>().To<WeaponFactory>().Named("weaponFactory");
+            Bind<IGearFactoryFactory>().To<GearFactoryFactory>();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsFactory>().To<GoodsFactory>();
             Bind<IItemsFactory>().To<ItemsFactory>();

@@ -52,7 +52,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
+    <Compile Include="Generation\Factories\GearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
     <Compile Include="Generation\Factories\ItemsFactoryTests.cs" />
     <Compile Include="Generation\Factories\MundaneItemFactoryTests.cs" />

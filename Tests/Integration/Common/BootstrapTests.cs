@@ -1,6 +1,5 @@
 ﻿using D20Dice;
 using EquipmentGen.Bootstrap;
-using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
@@ -120,47 +119,11 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void ArmorFactoryNotGeneratedAsSingletons()
+        public void GearFactoryFactoryNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IGearFactory>("ArmorFactory");
-            var second = kernel.Get<IGearFactory>("ArmorFactory");
+            var first = kernel.Get<IGearFactoryFactory>();
+            var second = kernel.Get<IGearFactoryFactory>();
             Assert.That(first, Is.Not.EqualTo(second));
-        }
-
-        [Test]
-        public void ArmorFactoryIsGeneratedUppercase()
-        {
-            var factory = kernel.Get<IGearFactory>("ArmorFactory");
-            Assert.That(factory, Is.TypeOf<ArmorFactory>());
-        }
-
-        [Test]
-        public void ArmorFactoryIsGeneratedLowercase()
-        {
-            var factory = kernel.Get<IGearFactory>("armorFactory");
-            Assert.That(factory, Is.TypeOf<ArmorFactory>());
-        }
-
-        [Test]
-        public void WeaponFactoryNotGeneratedAsSingletons()
-        {
-            var first = kernel.Get<IGearFactory>("WeaponFactory");
-            var second = kernel.Get<IGearFactory>("WeaponFactory");
-            Assert.That(first, Is.Not.EqualTo(second));
-        }
-
-        [Test]
-        public void WeaponFactoryIsGeneratedUppercase()
-        {
-            var factory = kernel.Get<IGearFactory>("WeaponFactory");
-            Assert.That(factory, Is.TypeOf<WeaponFactory>());
-        }
-
-        [Test]
-        public void WeaponFactoryIsGeneratedLowercase()
-        {
-            var factory = kernel.Get<IGearFactory>("weaponFactory");
-            Assert.That(factory, Is.TypeOf<WeaponFactory>());
         }
 
         [Test]

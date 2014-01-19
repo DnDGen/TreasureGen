@@ -56,10 +56,12 @@
     <Compile Include="Generation\Factories\AlchemicalItemFactory.cs" />
     <Compile Include="Generation\Factories\ArmorFactory.cs" />
     <Compile Include="Generation\Factories\CoinFactory.cs" />
+    <Compile Include="Generation\Factories\GearFactoryFactory.cs" />
     <Compile Include="Generation\Factories\GoodsFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IAlchemicalItemFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\ICoinFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IGearFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IGearFactoryFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IGoodsFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IItemsFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IPowerFactory.cs" />

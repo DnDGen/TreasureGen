@@ -17,12 +17,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         {
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockAlchemicalItemFactory = new Mock<IAlchemicalItemFactory>();
-            var mockArmorFactory = new Mock<IGearFactory>();
-            var mockWeaponFactory = new Mock<IGearFactory>();
+            var mockGearFactoryFactory = new Mock<IGearFactoryFactory>();
             var mockToolFactory = new Mock<IToolFactory>();
 
             factory = new PowerFactoryFactory(mockPercentileResultProvider.Object, mockAlchemicalItemFactory.Object,
-                mockArmorFactory.Object, mockWeaponFactory.Object, mockToolFactory.Object);
+                mockGearFactoryFactory.Object, mockToolFactory.Object);
         }
 
         [Test]
