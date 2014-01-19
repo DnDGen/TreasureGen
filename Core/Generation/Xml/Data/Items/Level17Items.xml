@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>34</lower>
+    <content>Medium,1d3</content>
+    <upper>83</upper>
+  </object>
+  <object>
+    <lower>84</lower>
+    <content>Major,1</content>
+    <upper>100</upper>
+  </object>
+</percentile>

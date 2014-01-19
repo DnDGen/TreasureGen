@@ -22,21 +22,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
         [Test]
         public void Level14ItemsMinorPercentile()
         {
-            var content = String.Format("{0},1d6", ItemsConstants.Minor);
+            var content = String.Format("{0},1d6", ItemsConstants.Power.Minor);
             AssertContent(content, 20, 58);
         }
 
         [Test]
         public void Level14ItemsMediumPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Medium);
+            var content = String.Format("{0},1", ItemsConstants.Power.Medium);
             AssertContent(content, 59, 92);
         }
 
         [Test]
         public void Level14ItemsMajorPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Major);
+            var content = String.Format("{0},1", ItemsConstants.Power.Major);
             AssertContent(content, 93, 100);
         }
     }

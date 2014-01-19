@@ -9,25 +9,49 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void MundaneConstant()
         {
-            Assert.That(ItemsConstants.Mundane, Is.EqualTo("Mundane"));
+            Assert.That(ItemsConstants.Power.Mundane, Is.EqualTo("Mundane"));
         }
 
         [Test]
         public void MinorConstant()
         {
-            Assert.That(ItemsConstants.Minor, Is.EqualTo("Minor"));
+            Assert.That(ItemsConstants.Power.Minor, Is.EqualTo("Minor"));
         }
 
         [Test]
         public void MediumConstant()
         {
-            Assert.That(ItemsConstants.Medium, Is.EqualTo("Medium"));
+            Assert.That(ItemsConstants.Power.Medium, Is.EqualTo("Medium"));
         }
 
         [Test]
         public void MajorConstant()
         {
-            Assert.That(ItemsConstants.Major, Is.EqualTo("Major"));
+            Assert.That(ItemsConstants.Power.Major, Is.EqualTo("Major"));
+        }
+
+        [Test]
+        public void AlchemicalItemConstant()
+        {
+            Assert.That(ItemsConstants.ItemTypes.AlchemicalItem, Is.EqualTo("Alchemical Item"));
+        }
+
+        [Test]
+        public void ArmorConstant()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Armor, Is.EqualTo("Armor"));
+        }
+
+        [Test]
+        public void WeaponConstant()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Weapon, Is.EqualTo("Weapon"));
+        }
+
+        [Test]
+        public void ToolConstant()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Tool, Is.EqualTo("Tool"));
         }
     }
 }

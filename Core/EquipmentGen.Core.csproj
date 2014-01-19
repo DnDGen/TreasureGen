@@ -47,17 +47,34 @@
     <Compile Include="Data\Coins\CoinConstants.cs" />
     <Compile Include="Data\Goods\Good.cs" />
     <Compile Include="Data\Goods\GoodsConstants.cs" />
+    <Compile Include="Data\Items\AlchemicalItem.cs" />
+    <Compile Include="Data\Items\BasicItem.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\ItemsConstants.cs" />
+    <Compile Include="Data\Items\Gear.cs" />
     <Compile Include="Data\Treasure.cs" />
+    <Compile Include="Generation\Factories\AlchemicalItemFactory.cs" />
+    <Compile Include="Generation\Factories\ArmorFactory.cs" />
     <Compile Include="Generation\Factories\CoinFactory.cs" />
     <Compile Include="Generation\Factories\GoodsFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IAlchemicalItemFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\ICoinFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IGearFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IGoodsFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IItemsFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IPowerFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IPowerFactoryFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IToolFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\ITreasureFactory.cs" />
+    <Compile Include="Generation\Factories\MajorItemFactory.cs" />
+    <Compile Include="Generation\Factories\MediumItemFactory.cs" />
+    <Compile Include="Generation\Factories\MinorItemFactory.cs" />
+    <Compile Include="Generation\Factories\MundaneItemFactory.cs" />
+    <Compile Include="Generation\Factories\PowerFactoryFactory.cs" />
     <Compile Include="Generation\Factories\ItemsFactory.cs" />
+    <Compile Include="Generation\Factories\ToolFactory.cs" />
     <Compile Include="Generation\Factories\TreasureFactory.cs" />
+    <Compile Include="Generation\Factories\WeaponFactory.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
@@ -201,6 +218,66 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Goods\Gems\GemValue.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level10Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level11Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level12Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level13Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level14Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level15Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level16Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level17Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level18Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level19Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level1Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level20Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level2Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level3Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level4Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level5Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level6Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level7Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level8Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\Level9Items.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

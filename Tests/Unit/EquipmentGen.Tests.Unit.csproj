@@ -52,10 +52,14 @@
     <Compile Include="Data\Coins\CoinConstantsTests.cs" />
     <Compile Include="Data\Coins\CoinTests.cs" />
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
+    <Compile Include="Data\Items\AlchemicalItemTests.cs" />
+    <Compile Include="Data\Items\GearTests.cs" />
     <Compile Include="Data\Items\ItemsConstantsTests.cs" />
     <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
     <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
     <Compile Include="Generation\Factories\ItemsFactoryTests.cs" />
+    <Compile Include="Generation\Factories\MundaneItemFactoryTests.cs" />
+    <Compile Include="Generation\Factories\PowerFactoryFactoryTests.cs" />
     <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProviderTests.cs" />
@@ -102,6 +106,12 @@
     <Compile Include="Generation\Xml\Data\Goods\Level19GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level20GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level7GoodsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level20ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level19ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level18ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level17ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level16ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\Level15ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level14ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level13ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level12ItemsTests.cs" />

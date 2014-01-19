@@ -33,11 +33,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Factories
                 Assert.That(items, Is.Not.Null);
 
                 foreach (var item in items)
-                {
                     Assert.That(item.Name, Is.Not.Empty);
-                    Assert.That(item.Traits, Is.Not.Null);
-                    Assert.That(item.MagicalBonus, Is.GreaterThanOrEqualTo(0));
-                }
             }
 
             AssertIterations();

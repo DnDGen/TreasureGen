@@ -13,14 +13,21 @@ namespace EquipmentGen.Bootstrap
     {
         public override void Load()
         {
+            Bind<IAlchemicalItemFactory>().To<AlchemicalItemFactory>();
             Bind<ICoinFactory>().To<CoinFactory>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
+            Bind<IGearFactory>().To<ArmorFactory>().Named("ArmorFactory");
+            Bind<IGearFactory>().To<ArmorFactory>().Named("armorFactory");
+            Bind<IGearFactory>().To<WeaponFactory>().Named("WeaponFactory");
+            Bind<IGearFactory>().To<WeaponFactory>().Named("weaponFactory");
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsFactory>().To<GoodsFactory>();
             Bind<IItemsFactory>().To<ItemsFactory>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
+            Bind<IPowerFactoryFactory>().To<PowerFactoryFactory>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
+            Bind<IToolFactory>().To<ToolFactory>();
             Bind<ITreasureFactory>().To<TreasureFactory>();
             Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
         }
