@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Empty backpack</content>
+    <upper>3</upper>
+  </object>
+    <object>
+        <lower>4</lower>
+        <content>Crowbar</content>
+        <upper>6</upper>
+    </object>
+    <object>
+        <lower>7</lower>
+        <content>Bullseye lantern</content>
+        <upper>11</upper>
+    </object>
+    <object>
+        <lower>12</lower>
+        <content>Simple lock</content>
+        <upper>16</upper>
+    </object>
+    <object>
+        <lower>17</lower>
+        <content>Average lock</content>
+        <upper>21</upper>
+    </object>
+    <object>
+        <lower>22</lower>
+        <content>Good lock</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Superior lock</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Masterwork manacles</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Small steel mirror</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Silk rope (50')</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Spyglass</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Masterwork artisan's tools</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>Climber's kit</content>
+        <upper>63</upper>
+    </object>
+  <object>
+    <lower>64</lower>
+    <content>Disguise kit</content>
+    <upper>68</upper>
+  </object>
+  <object>
+    <lower>69</lower>
+    <content>Healer's kit</content>
+    <upper>73</upper>
+  </object>
+  <object>
+    <lower>74</lower>
+    <content>Silver holy symbol</content>
+    <upper>77</upper>
+  </object>
+    <object>
+        <lower>78</lower>
+        <content>Hourglass</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Magnifying glass</content>
+        <upper>88</upper>
+    </object>
+    <object>
+        <lower>89</lower>
+        <content>Masterwork musical instrument</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Masterwork thieves' tools</content>
+        <upper>100</upper>
+    </object>
+</percentile>

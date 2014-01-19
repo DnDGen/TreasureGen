@@ -10,15 +10,15 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private IAlchemicalItemGenerator alchemicalItemFactory;
-        private IGearGeneratorFactory gearFactoryFactory;
+        private IGearGeneratorFactory gearGeneratorFactory;
         private IToolGenerator toolGenerator;
 
         public MundaneItemGenerator(IPercentileResultProvider percentileResultProvider, IAlchemicalItemGenerator alchemicalItemFactory,
-            IGearGeneratorFactory gearFactoryFactory, IToolGenerator toolGenerator)
+            IGearGeneratorFactory gearGeneratorFactory, IToolGenerator toolGenerator)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.alchemicalItemFactory = alchemicalItemFactory;
-            this.gearFactoryFactory = gearFactoryFactory;
+            this.gearGeneratorFactory = gearGeneratorFactory;
             this.toolGenerator = toolGenerator;
         }
 
@@ -42,7 +42,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         private Item CreateGear(String type)
         {
-            var factory = gearFactoryFactory.CreateWith(type);
+            var factory = gearGeneratorFactory.CreateWith(type);
             return factory.GenerateAtPower(ItemsConstants.Power.Mundane);
         }
     }

@@ -53,6 +53,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
+    <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\ArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />

@@ -56,6 +56,8 @@
     <Compile Include="Data\Items\GearTests.cs" />
     <Compile Include="Data\Items\ItemsConstantsTests.cs" />
     <Compile Include="Generation\Factories\GearGeneratorFactoryTests.cs" />
+    <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\ArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />
@@ -128,6 +130,8 @@
     <Compile Include="Generation\Xml\Data\Items\Level3ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level2ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level1ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\AlchemicalItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\ToolsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />

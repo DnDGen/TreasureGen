@@ -1,5 +1,7 @@
 ﻿using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Core.Generation.Providers.Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Generators
@@ -8,11 +10,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     public class ToolGeneratorTests
     {
         private IToolGenerator generator;
+        private Mock<IPercentileResultProvider> mockPercentileResultProvider;
 
         [SetUp]
         public void Setup()
         {
-            generator = new ToolGenerator();
+            mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
+            generator = new ToolGenerator(mockPercentileResultProvider.Object);
         }
 
         [Test]
@@ -20,7 +24,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var tool = generator.Generate();
             Assert.That(tool, Is.Not.Null);
-            Assert.That(tool.Name, Is.Not.Empty);
+        }
+
+        [Test]
+        public void ToolGeneratorSetsToolNameByPercentileResult()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("Tools")).Returns("tool");
+            var tool = generator.Generate();
+            Assert.That(tool.Name, Is.EqualTo("tool"));
         }
     }
 }
