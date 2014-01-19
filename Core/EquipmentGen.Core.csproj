@@ -48,35 +48,35 @@
     <Compile Include="Data\Goods\Good.cs" />
     <Compile Include="Data\Goods\GoodsConstants.cs" />
     <Compile Include="Data\Items\AlchemicalItem.cs" />
-    <Compile Include="Data\Items\BasicItem.cs" />
+    <Compile Include="Data\Items\Tool.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\ItemsConstants.cs" />
     <Compile Include="Data\Items\Gear.cs" />
     <Compile Include="Data\Treasure.cs" />
-    <Compile Include="Generation\Factories\AlchemicalItemFactory.cs" />
-    <Compile Include="Generation\Factories\ArmorFactory.cs" />
-    <Compile Include="Generation\Factories\CoinFactory.cs" />
-    <Compile Include="Generation\Factories\GearFactoryFactory.cs" />
-    <Compile Include="Generation\Factories\GoodsFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IAlchemicalItemFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\ICoinFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IGearFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IGearFactoryFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IGoodsFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IItemsFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IPowerFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IPowerFactoryFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IToolFactory.cs" />
-    <Compile Include="Generation\Factories\Interfaces\ITreasureFactory.cs" />
-    <Compile Include="Generation\Factories\MajorItemFactory.cs" />
-    <Compile Include="Generation\Factories\MediumItemFactory.cs" />
-    <Compile Include="Generation\Factories\MinorItemFactory.cs" />
-    <Compile Include="Generation\Factories\MundaneItemFactory.cs" />
-    <Compile Include="Generation\Factories\PowerFactoryFactory.cs" />
-    <Compile Include="Generation\Factories\ItemsFactory.cs" />
-    <Compile Include="Generation\Factories\ToolFactory.cs" />
-    <Compile Include="Generation\Factories\TreasureFactory.cs" />
-    <Compile Include="Generation\Factories\WeaponFactory.cs" />
+    <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
+    <Compile Include="Generation\Generators\ArmorGenerator.cs" />
+    <Compile Include="Generation\Generators\CoinGenerator.cs" />
+    <Compile Include="Generation\Factories\GearGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\GoodsGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IAlchemicalItemGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\ICoinGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IGearGenerator.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IGearGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IGoodsGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IItemsGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IPowerItemGenerator.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IPowerItemGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IToolGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
+    <Compile Include="Generation\Generators\MajorItemGenerator.cs" />
+    <Compile Include="Generation\Generators\MediumItemGenerator.cs" />
+    <Compile Include="Generation\Generators\MinorItemGenerator.cs" />
+    <Compile Include="Generation\Generators\MundaneItemGenerator.cs" />
+    <Compile Include="Generation\Factories\PowerItemGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\ItemsGenerator.cs" />
+    <Compile Include="Generation\Generators\ToolGenerator.cs" />
+    <Compile Include="Generation\Generators\TreasureGenerator.cs" />
+    <Compile Include="Generation\Generators\WeaponGenerator.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
@@ -280,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\Level9Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\MundaneItems.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

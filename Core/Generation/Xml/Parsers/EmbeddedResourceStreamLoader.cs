@@ -13,10 +13,10 @@ namespace EquipmentGen.Core.Generation.Xml.Parsers
             var executingAssembly = Assembly.GetExecutingAssembly();
             var resources = executingAssembly.GetManifestResourceNames();
 
-            if (!resources.Any(r => r.Contains(filename)))
+            if (!resources.Any(r => r.EndsWith(filename)))
                 throw new FileNotFoundException(filename);
 
-            var streamSource = resources.First(r => r.Contains(filename));
+            var streamSource = resources.First(r => r.EndsWith(filename));
 
             return executingAssembly.GetManifestResourceStream(streamSource);
         }

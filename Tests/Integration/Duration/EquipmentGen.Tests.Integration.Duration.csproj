@@ -53,11 +53,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DurationTest.cs" />
-    <Compile Include="Generation\Factories\CoinFactoryTests.cs" />
-    <Compile Include="Generation\Factories\GoodsFactoryTests.cs" />
-    <Compile Include="Generation\Factories\ItemsFactoryTests.cs" />
-    <Compile Include="Generation\Factories\MundaneItemFactoryTests.cs" />
-    <Compile Include="Generation\Factories\TreasureFactoryTests.cs" />
+    <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\MundaneItemGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

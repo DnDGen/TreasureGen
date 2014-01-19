@@ -1,6 +1,8 @@
 ﻿using D20Dice;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
+using EquipmentGen.Core.Generation.Generators;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers;
@@ -13,19 +15,19 @@ namespace EquipmentGen.Bootstrap
     {
         public override void Load()
         {
-            Bind<IAlchemicalItemFactory>().To<AlchemicalItemFactory>();
-            Bind<ICoinFactory>().To<CoinFactory>();
+            Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
+            Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGearFactoryFactory>().To<GearFactoryFactory>();
+            Bind<IGearGeneratorFactory>().To<GearGeneratorFactory>();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
-            Bind<IGoodsFactory>().To<GoodsFactory>();
-            Bind<IItemsFactory>().To<ItemsFactory>();
+            Bind<IGoodsGenerator>().To<GoodsGenerator>();
+            Bind<IItemsGenerator>().To<ItemsGenerator>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
-            Bind<IPowerFactoryFactory>().To<PowerFactoryFactory>();
+            Bind<IPowerItemGeneratorFactory>().To<PowerItemGeneratorFactory>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
-            Bind<IToolFactory>().To<ToolFactory>();
-            Bind<ITreasureFactory>().To<TreasureFactory>();
+            Bind<IToolGenerator>().To<ToolGenerator>();
+            Bind<ITreasureGenerator>().To<TreasureGenerator>();
             Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
         }
     }

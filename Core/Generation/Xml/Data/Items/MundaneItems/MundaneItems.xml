@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Alchemical Item</content>
+    <upper>17</upper>
+  </object>
+  <object>
+    <lower>18</lower>
+    <content>Armor</content>
+    <upper>50</upper>
+  </object>
+  <object>
+    <lower>51</lower>
+    <content>Weapon</content>
+    <upper>83</upper>
+  </object>
+  <object>
+    <lower>84</lower>
+    <content>Tool</content>
+    <upper>100</upper>
+  </object>
+</percentile>
