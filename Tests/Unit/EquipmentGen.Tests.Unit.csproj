@@ -131,6 +131,9 @@
     <Compile Include="Generation\Xml\Data\Items\Level2ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level1ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\AlchemicalItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\ArmorSizesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShieldsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\ToolsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />

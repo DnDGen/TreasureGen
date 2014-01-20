@@ -47,6 +47,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(item, Is.Not.Null);
                 Assert.That(item.Name, Is.Not.Empty);
                 Assert.That(itemTypes, Contains.Item(item.GetType()));
+
+                if (item is Gear)
+                {
+                    var gear = item as Gear;
+                    Assert.That(gear.MagicalBonus, Is.EqualTo(0));
+                    Assert.That(gear.Abilities, Is.Empty);
+                }
             }
 
             AssertIterations();

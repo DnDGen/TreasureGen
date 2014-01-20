@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using EquipmentGen.Core.Data.Items;
+﻿using EquipmentGen.Core.Data.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Data.Items
@@ -13,20 +11,14 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [SetUp]
         public void Setup()
         {
-            gear = new Gear() { Name = "shiny gear", Abilities = Enumerable.Empty<String>(), Traits = Enumerable.Empty<String>() };
+            gear = new Gear();
+            gear.Name = "shiny gear";
         }
 
         [Test]
         public void PlainGear()
         {
             Assert.That(gear.ToString(), Is.EqualTo(gear.Name));
-        }
-
-        [Test]
-        public void MasterworkGear()
-        {
-            gear.IsMasterwork = true;
-            Assert.That(gear.ToString(), Is.EqualTo("Masterwork shiny gear"));
         }
 
         [Test]
@@ -39,42 +31,54 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void GearWithOneTrait()
         {
-            gear.Traits = new[] { "trait" };
+            gear.Traits.Add("trait");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait)"));
         }
 
         [Test]
         public void GearWithTwoTraits()
         {
-            gear.Traits = new[] { "trait", "other trait" };
+            gear.Traits.Add("trait");
+            gear.Traits.Add("other trait");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait, other trait)"));
         }
 
         [Test]
         public void GearWithThreeTraits()
         {
-            gear.Traits = new[] { "trait", "other trait", "third trait" };
+            gear.Traits.Add("trait");
+            gear.Traits.Add("other trait");
+            gear.Traits.Add("third trait");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait, other trait, third trait)"));
         }
 
         [Test]
         public void GearWithOneAbility()
         {
-            gear.Abilities = new[] { "ability" };
+            gear.Abilities.Add("ability");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability"));
         }
 
         [Test]
         public void GearWithTwoAbilities()
         {
-            gear.Abilities = new[] { "ability", "second ability" };
+            gear.Abilities.Add("ability");
+            gear.Abilities.Add("second ability");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability and second ability"));
         }
 
         [Test]
         public void GearWithThreeAbilities()
         {
-            gear.Abilities = new[] { "ability", "second ability", "third ability" };
+            gear.Abilities.Add("ability");
+            gear.Abilities.Add("second ability");
+            gear.Abilities.Add("third ability");
+
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability, second ability, and third ability"));
         }
 
@@ -82,8 +86,12 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         public void GearWithMagicalBonusAndAbilitiesAndTraits()
         {
             gear.MagicalBonus = 2;
-            gear.Abilities = new[] { "ability", "second ability", "third ability" };
-            gear.Traits = new[] { "trait", "other trait", "third trait" };
+            gear.Abilities.Add("ability");
+            gear.Abilities.Add("second ability");
+            gear.Abilities.Add("third ability");
+            gear.Traits.Add("trait");
+            gear.Traits.Add("other trait");
+            gear.Traits.Add("third trait");
 
             Assert.That(gear.ToString(), Is.EqualTo("+2 shiny gear of ability, second ability, and third ability (trait, other trait, third trait)"));
         }

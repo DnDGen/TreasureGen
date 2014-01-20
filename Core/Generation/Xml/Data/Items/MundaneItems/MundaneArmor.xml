@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Chain shirt</content>
+    <upper>12</upper>
+  </object>
+    <object>
+        <lower>13</lower>
+        <content>Masterwork studded leather</content>
+        <upper>18</upper>
+    </object>
+    <object>
+        <lower>19</lower>
+        <content>Breastplate</content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Banded mail</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Half-plate</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Full plate</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Darkwood</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Masterwork shield</content>
+        <upper>100</upper>
+    </object>
+</percentile>

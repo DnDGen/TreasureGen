@@ -19,5 +19,16 @@ namespace EquipmentGen.Core.Data.Items
             public const String Weapon = "Weapon";
             public const String Tool = "Tool";
         }
+
+        public static class Gear
+        {
+            public static class Traits
+            {
+                public const String Masterwork = "Masterwork";
+                public const String Darkwood = "Darkwood";
+                public const String Small = "Small";
+                public const String Medium = "Medium";
+            }
+        }
     }
 }

@@ -7,51 +7,75 @@ namespace EquipmentGen.Tests.Unit.Data.Items
     public class ItemsConstantsTests
     {
         [Test]
-        public void MundaneConstant()
+        public void MundanePowerConstant()
         {
             Assert.That(ItemsConstants.Power.Mundane, Is.EqualTo("Mundane"));
         }
 
         [Test]
-        public void MinorConstant()
+        public void MinorPowerConstant()
         {
             Assert.That(ItemsConstants.Power.Minor, Is.EqualTo("Minor"));
         }
 
         [Test]
-        public void MediumConstant()
+        public void MediumPowerConstant()
         {
             Assert.That(ItemsConstants.Power.Medium, Is.EqualTo("Medium"));
         }
 
         [Test]
-        public void MajorConstant()
+        public void MajorPowerConstant()
         {
             Assert.That(ItemsConstants.Power.Major, Is.EqualTo("Major"));
         }
 
         [Test]
-        public void AlchemicalItemConstant()
+        public void AlchemicalItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.AlchemicalItem, Is.EqualTo("Alchemical Item"));
         }
 
         [Test]
-        public void ArmorConstant()
+        public void ArmorItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Armor, Is.EqualTo("Armor"));
         }
 
         [Test]
-        public void WeaponConstant()
+        public void WeaponItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Weapon, Is.EqualTo("Weapon"));
         }
 
         [Test]
-        public void ToolConstant()
+        public void ToolItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Tool, Is.EqualTo("Tool"));
+        }
+
+        [Test]
+        public void MasterworkGearTraitConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Masterwork, Is.EqualTo("Masterwork"));
+        }
+
+        [Test]
+        public void DarkwoodGearTraitConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Darkwood, Is.EqualTo("Darkwood"));
+        }
+
+        [Test]
+        public void SmallGearTraitConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Small, Is.EqualTo("Small"));
+        }
+
+        [Test]
+        public void MediumGearTraitConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Medium, Is.EqualTo("Medium"));
         }
     }
 }

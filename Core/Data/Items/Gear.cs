@@ -6,10 +6,16 @@ namespace EquipmentGen.Core.Data.Items
 {
     public class Gear : Item
     {
-        public IEnumerable<String> Traits { get; set; }
+        public List<String> Traits { get; set; }
         public Int32 MagicalBonus { get; set; }
-        public IEnumerable<String> Abilities { get; set; }
+        public List<String> Abilities { get; set; }
         public Boolean IsMasterwork { get; set; }
+
+        public Gear()
+        {
+            Traits = new List<String>();
+            Abilities = new List<String>();
+        }
 
         public override String ToString()
         {
@@ -35,8 +41,6 @@ namespace EquipmentGen.Core.Data.Items
         {
             if (MagicalBonus > 0)
                 return String.Format("+{0}", MagicalBonus);
-            else if (IsMasterwork)
-                return "Masterwork";
 
             return String.Empty;
         }

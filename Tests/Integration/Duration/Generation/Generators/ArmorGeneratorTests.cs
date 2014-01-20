@@ -15,14 +15,12 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 
         private IGearGenerator armorGenerator;
         private String power;
-        private Int32 level;
 
         [SetUp]
         public void Setup()
         {
             armorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
             power = GetNewPower();
-            level = GetNewLevel();
 
             StartTest();
         }
@@ -34,16 +32,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void ArmorGeneratorAtPowerDuration()
+        public void ArmorGeneratorDuration()
         {
             armorGenerator.GenerateAtPower(power);
-            AssertDuration();
-        }
-
-        [Test]
-        public void ArmorGeneratorAtLevelDuration()
-        {
-            armorGenerator.GenerateAtLevel(level);
             AssertDuration();
         }
     }

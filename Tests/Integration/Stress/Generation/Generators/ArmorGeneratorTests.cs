@@ -28,30 +28,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void ArmorGeneratorReturnsArmorAtPower()
+        public void ArmorGeneratorReturnsArmor()
         {
             while (TestShouldKeepRunning())
             {
                 var power = GetNewPower();
                 var armor = armorGenerator.GenerateAtPower(power);
-
-                Assert.That(armor, Is.Not.Null);
-                Assert.That(armor.Name, Is.Not.Empty);
-                Assert.That(armor.MagicalBonus, Is.Not.Negative);
-                Assert.That(armor.Abilities, Is.Not.Null);
-                Assert.That(armor.Traits, Is.Not.Null);
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void ArmorGeneratorReturnsArmorAtLevel()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var level = GetNewLevel();
-                var armor = armorGenerator.GenerateAtLevel(level);
 
                 Assert.That(armor, Is.Not.Null);
                 Assert.That(armor.Name, Is.Not.Empty);
