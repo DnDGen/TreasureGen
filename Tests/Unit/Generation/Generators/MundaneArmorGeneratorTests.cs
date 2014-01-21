@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -77,6 +78,22 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item("small"));
             Assert.That(armor.Traits.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void MundaneArmorGeneratorGetsSpecialMaterialFromPercentileResultProvider()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("SpecialMaterials")).Returns("special material");
+
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Traits, Contains.Item("special material"));
+        }
+
+        [Test]
+        public void MundaneArmorGeneratorDoesNotAddEmptyStringToTraits()
+        {
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Traits, Is.Not.Contains(String.Empty));
         }
     }
 }
