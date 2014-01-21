@@ -24,114 +24,118 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void CoinFactoriesNotGeneratedAsSingletons()
+        public void CoinGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<ICoinGenerator>();
-            var second = kernel.Get<ICoinGenerator>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<ICoinGenerator>();
         }
 
         [Test]
         public void CoinPercentileResultProviderNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<ITypeAndAmountPercentileResultProvider>();
-            var second = kernel.Get<ITypeAndAmountPercentileResultProvider>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<ITypeAndAmountPercentileResultProvider>();
         }
 
         [Test]
         public void DiceGeneratedAsSingletons()
         {
-            var first = kernel.Get<IDice>();
-            var second = kernel.Get<IDice>();
-            Assert.That(first, Is.EqualTo(second));
+            AssertSingleton<IDice>();
         }
 
         [Test]
         public void GoodPercentileResultProviderNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IGoodPercentileResultProvider>();
-            var second = kernel.Get<IGoodPercentileResultProvider>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IGoodPercentileResultProvider>();
         }
 
         [Test]
-        public void GoodsFactoryNotGeneratedAsSingletons()
+        public void GoodsGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IGoodsGenerator>();
-            var second = kernel.Get<IGoodsGenerator>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IGoodsGenerator>();
         }
 
         [Test]
         public void PercentileResultProviderGeneratedAsSingletons()
         {
-            var first = kernel.Get<IPercentileResultProvider>();
-            var second = kernel.Get<IPercentileResultProvider>();
-            Assert.That(first, Is.EqualTo(second));
+            AssertSingleton<IPercentileResultProvider>();
         }
 
         [Test]
         public void PercentileXmlParserNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IPercentileXmlParser>();
-            var second = kernel.Get<IPercentileXmlParser>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IPercentileXmlParser>();
         }
 
         [Test]
         public void EmbeddedResourceStreamLoaderNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IStreamLoader>();
-            var second = kernel.Get<IStreamLoader>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IStreamLoader>();
         }
 
         [Test]
-        public void TreasureFactoryNotGeneratedAsSingletons()
+        public void TreasureGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<ITreasureGenerator>();
-            var second = kernel.Get<ITreasureGenerator>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<ITreasureGenerator>();
         }
 
         [Test]
-        public void ItemsFactoryNotGeneratedAsSingletons()
+        public void ItemsGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IItemsGenerator>();
-            var second = kernel.Get<IItemsGenerator>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IItemsGenerator>();
         }
 
         [Test]
-        public void PowerFactoryFactoryNotGenerateAsSingletons()
+        public void AlchemicalItemGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IPowerItemGeneratorFactory>();
-            var second = kernel.Get<IPowerItemGeneratorFactory>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IAlchemicalItemGenerator>();
         }
 
         [Test]
-        public void AlchemicalFactoryNotGeneratedAsSingletons()
+        public void PowerGearGeneratorFactoryNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IAlchemicalItemGenerator>();
-            var second = kernel.Get<IAlchemicalItemGenerator>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IPowerGearGeneratorFactory>();
         }
 
         [Test]
-        public void GearFactoryFactoryNotGeneratedAsSingletons()
+        public void ToolGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IGearGeneratorFactory>();
-            var second = kernel.Get<IGearGeneratorFactory>();
-            Assert.That(first, Is.Not.EqualTo(second));
+            AssertNotSingleton<IToolGenerator>();
         }
 
         [Test]
-        public void ToolFactoryNotGeneratedAsSingletons()
+        public void PowerItemGeneratorNotGeneratedAsSingletons()
         {
-            var first = kernel.Get<IToolGenerator>();
-            var second = kernel.Get<IToolGenerator>();
+            AssertNotSingleton<IPowerItemGenerator>();
+        }
+
+        [Test]
+        public void MundaneGearGeneratorFactoryNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IMundaneGearGeneratorFactory>();
+        }
+
+        [Test]
+        public void MundaneItemGeneratorNotGeneratedAssinglestons()
+        {
+            AssertNotSingleton<IMundaneItemGenerator>();
+        }
+
+        [Test]
+        public void MagicalItemGeneratorFactoryNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IMagicalItemGeneratorFactory>();
+        }
+
+        private void AssertSingleton<T>()
+        {
+            var first = kernel.Get<T>();
+            var second = kernel.Get<T>();
+            Assert.That(first, Is.EqualTo(second));
+        }
+
+        private void AssertNotSingleton<T>()
+        {
+            var first = kernel.Get<T>();
+            var second = kernel.Get<T>();
             Assert.That(first, Is.Not.EqualTo(second));
         }
     }

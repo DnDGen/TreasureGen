@@ -77,5 +77,47 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(ItemsConstants.Gear.Traits.Medium, Is.EqualTo("Medium"));
         }
+
+        [Test]
+        public void PotionItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Potion, Is.EqualTo("Potion"));
+        }
+
+        [Test]
+        public void RingItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Ring, Is.EqualTo("Ring"));
+        }
+
+        [Test]
+        public void RodItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Rod, Is.EqualTo("Rod"));
+        }
+
+        [Test]
+        public void ScrollItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Scroll, Is.EqualTo("Scroll"));
+        }
+
+        [Test]
+        public void StaffItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Staff, Is.EqualTo("Staff"));
+        }
+
+        [Test]
+        public void WandItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.Wand, Is.EqualTo("Wand"));
+        }
+
+        [Test]
+        public void WondrousItemTypeConstants()
+        {
+            Assert.That(ItemsConstants.ItemTypes.WondrousItem, Is.EqualTo("Wondrous item"));
+        }
     }
 }

@@ -3,37 +3,33 @@ using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using Moq;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Factories
 {
     [TestFixture]
-    public class GearGeneratorFactoryTests
+    public class PowerGearGeneratorFactoryTests
     {
-        private IGearGeneratorFactory factory;
+        private IPowerGearGeneratorFactory factory;
 
         [SetUp]
         public void Setup()
         {
-            var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            var mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            factory = new GearGeneratorFactory(mockPercentileResultProvider.Object, mockTypeAndAmountPercentileResultProvider.Object);
+            factory = new PowerGearGeneratorFactory();
         }
 
         [Test]
-        public void GearGeneratorFactoryProducesArmorGenerator()
+        public void PowerGearGeneratorFactoryProducesArmorGenerator()
         {
             var generator = factory.CreateWith(ItemsConstants.ItemTypes.Armor);
-            Assert.That(generator, Is.TypeOf<ArmorGenerator>());
+            Assert.That(generator, Is.TypeOf<PowerArmorGenerator>());
         }
 
         [Test]
-        public void GearGeneratorFactoryProducesWeaponGenerator()
+        public void PowerGearGeneratorFactoryProducesWeaponGenerator()
         {
             var generator = factory.CreateWith(ItemsConstants.ItemTypes.Weapon);
-            Assert.That(generator, Is.TypeOf<WeaponGenerator>());
+            Assert.That(generator, Is.TypeOf<PowerWeaponGenerator>());
         }
 
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]

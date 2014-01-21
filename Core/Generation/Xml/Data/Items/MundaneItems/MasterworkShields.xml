@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Buckler</content>
+    <upper>17</upper>
+  </object>
+    <object>
+        <lower>18</lower>
+        <content>Light wooden shield</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Light steel shield</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Heavy wooden shield</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Heavy steel shield</content>
+        <upper>100</upper>
+    </object>
+</percentile>

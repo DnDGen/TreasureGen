@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
@@ -12,9 +11,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
     public class MundaneItemGeneratorTests : StressTest
     {
         [Inject]
-        public IPowerItemGeneratorFactory PowerItemGeneratorFactory { get; set; }
+        public IMundaneItemGenerator MundaneItemGenerator { get; set; }
 
-        private IPowerItemGenerator mundaneItemGenerator;
         private IEnumerable<Type> itemTypes;
 
         [SetUp]
@@ -23,11 +21,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
             itemTypes = new[]
             {
                 typeof(AlchemicalItem),
-                typeof(Tool),
+                typeof(BasicItem),
                 typeof(Gear)
             };
 
-            mundaneItemGenerator = PowerItemGeneratorFactory.CreateWith(ItemsConstants.Power.Mundane);
             StartTest();
         }
 
@@ -42,7 +39,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var item = mundaneItemGenerator.Generate();
+                var item = MundaneItemGenerator.Generate();
 
                 Assert.That(item, Is.Not.Null);
                 Assert.That(item.Name, Is.Not.Empty);

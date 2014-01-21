@@ -48,35 +48,40 @@
     <Compile Include="Data\Goods\Good.cs" />
     <Compile Include="Data\Goods\GoodsConstants.cs" />
     <Compile Include="Data\Items\AlchemicalItem.cs" />
-    <Compile Include="Data\Items\Tool.cs" />
+    <Compile Include="Data\Items\BasicItem.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\ItemsConstants.cs" />
     <Compile Include="Data\Items\Gear.cs" />
     <Compile Include="Data\Treasure.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IMagicalItemGeneratorFactory.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IMundaneGearGeneratorFactory.cs" />
+    <Compile Include="Generation\Factories\MagicalItemGeneratorFactory.cs" />
+    <Compile Include="Generation\Factories\MundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
-    <Compile Include="Generation\Generators\ArmorGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IMagicalItemGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IMundaneGearGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IMundaneItemGenerator.cs" />
+    <Compile Include="Generation\Generators\MundaneArmorGenerator.cs" />
     <Compile Include="Generation\Generators\CoinGenerator.cs" />
-    <Compile Include="Generation\Factories\GearGeneratorFactory.cs" />
+    <Compile Include="Generation\Factories\PowerGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\GoodsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IAlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ICoinGenerator.cs" />
-    <Compile Include="Generation\Generators\Interfaces\IGearGenerator.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IGearGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IPowerGearGenerator.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IPowerGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\Interfaces\IGoodsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IItemsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IPowerItemGenerator.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IPowerItemGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\Interfaces\IToolGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
-    <Compile Include="Generation\Generators\MajorItemGenerator.cs" />
-    <Compile Include="Generation\Generators\MediumItemGenerator.cs" />
-    <Compile Include="Generation\Generators\MinorItemGenerator.cs" />
+    <Compile Include="Generation\Generators\PowerItemGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneItemGenerator.cs" />
-    <Compile Include="Generation\Factories\PowerItemGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\ItemsGenerator.cs" />
+    <Compile Include="Generation\Generators\MundaneWeaponGenerator.cs" />
+    <Compile Include="Generation\Generators\PowerArmorGenerator.cs" />
     <Compile Include="Generation\Generators\ToolGenerator.cs" />
     <Compile Include="Generation\Generators\TreasureGenerator.cs" />
-    <Compile Include="Generation\Generators\WeaponGenerator.cs" />
+    <Compile Include="Generation\Generators\PowerWeaponGenerator.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
@@ -296,7 +301,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\ArmorSizes.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShields.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,8 +2,6 @@
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Generation.Factories;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -18,7 +16,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     {
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private Mock<IDice> mockDice;
-        private Mock<IPowerItemGeneratorFactory> mockPowerItemGeneratorFactory;
         private Mock<IPowerItemGenerator> mockPowerItemGenerator;
         private IItemsGenerator generator;
 
@@ -36,10 +33,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockDice = new Mock<IDice>();
 
             mockPowerItemGenerator = new Mock<IPowerItemGenerator>();
-            mockPowerItemGeneratorFactory = new Mock<IPowerItemGeneratorFactory>();
-            mockPowerItemGeneratorFactory.Setup(f => f.CreateWith(It.IsAny<String>())).Returns(mockPowerItemGenerator.Object);
 
-            generator = new ItemsGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object, mockPowerItemGeneratorFactory.Object);
+            generator = new ItemsGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object, mockPowerItemGenerator.Object);
         }
 
         [Test]
@@ -64,19 +59,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void ItemsGeneratorGetsPowerItemGeneratorFromPowerItemGeneratorFactory()
-        {
-            generator.GenerateAtLevel(1);
-            mockPowerItemGeneratorFactory.Verify(f => f.CreateWith("power"), Times.Once);
-        }
-
-        [Test]
         public void ItemsGeneratorCallsPowerItemGeneratorFiveTimesWhenAmountIsFive()
         {
             mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(5);
 
             generator.GenerateAtLevel(1);
-            mockPowerItemGenerator.Verify(f => f.Generate(), Times.Exactly(5));
+            mockPowerItemGenerator.Verify(f => f.GenerateAtPower("power"), Times.Exactly(5));
         }
 
         [Test]
@@ -84,8 +72,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(2);
             var firstItem = new AlchemicalItem();
-            var secondItem = new Tool();
-            mockPowerItemGenerator.SetupSequence(f => f.Generate()).Returns(firstItem).Returns(secondItem);
+            var secondItem = new BasicItem();
+            mockPowerItemGenerator.SetupSequence(f => f.GenerateAtPower("power")).Returns(firstItem).Returns(secondItem);
 
             var items = generator.GenerateAtLevel(1);
             Assert.That(items.Count(), Is.EqualTo(2));

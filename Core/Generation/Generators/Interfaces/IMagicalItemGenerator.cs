@@ -3,8 +3,8 @@ using EquipmentGen.Core.Data.Items;
 
 namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
-    public interface IGearGenerator
+    public interface IMagicalItemGenerator
     {
-        Gear GenerateAtPower(String power);
+        Item GenerateAtPower(String power);
     }
 }

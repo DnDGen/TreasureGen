@@ -3,8 +3,8 @@ using EquipmentGen.Core.Generation.Generators.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Factories.Interfaces
 {
-    public interface IPowerItemGeneratorFactory
+    public interface IMundaneGearGeneratorFactory
     {
-        IPowerItemGenerator CreateWith(String power);
+        IMundaneGearGenerator CreateWith(String type);
     }
 }

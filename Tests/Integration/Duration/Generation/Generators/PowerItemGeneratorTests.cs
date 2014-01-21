@@ -1,18 +1,22 @@
-﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using System;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class MundaneItemGeneratorTests : DurationTest
+    public class PowerItemGeneratorTests : DurationTest
     {
         [Inject]
-        public IMundaneItemGenerator MundaneItemGenerator { get; set; }
+        public IPowerItemGenerator PowerItemGenerator { get; set; }
+
+        private String power;
 
         [SetUp]
         public void Setup()
         {
+            power = GetNewPower();
             StartTest();
         }
 
@@ -23,9 +27,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void MundaneItemGeneratorDuration()
+        public void PowerItemGeneratorDuration()
         {
-            MundaneItemGenerator.Generate();
+            PowerItemGenerator.GenerateAtPower(power);
             AssertDuration();
         }
     }

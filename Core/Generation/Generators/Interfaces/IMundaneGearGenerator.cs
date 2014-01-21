@@ -2,8 +2,8 @@
 
 namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
-    public interface IToolGenerator
+    public interface IMundaneGearGenerator
     {
-        BasicItem Generate();
+        Gear Generate();
     }
 }

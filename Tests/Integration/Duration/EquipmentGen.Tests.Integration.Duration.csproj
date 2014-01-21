@@ -54,11 +54,13 @@
   <ItemGroup>
     <Compile Include="DurationTest.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\ArmorGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\PowerArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneItemGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\PowerItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

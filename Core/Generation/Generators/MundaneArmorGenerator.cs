@@ -5,21 +5,18 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Generators
 {
-    public class ArmorGenerator : IGearGenerator
+    public class MundaneArmorGenerator : IMundaneGearGenerator
     {
         private IPercentileResultProvider percentileResultProvider;
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
 
-        public ArmorGenerator(IPercentileResultProvider percentileResultProvider, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
+        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
-            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
         }
 
-        public Gear GenerateAtPower(String power)
+        public Gear Generate()
         {
-            var tableName = String.Format("{0}Armor", power);
-            var result = percentileResultProvider.GetPercentileResult(tableName);
+            var result = percentileResultProvider.GetPercentileResult("MundaneArmor");
 
             var gear = new Gear();
 
@@ -35,7 +32,7 @@ namespace EquipmentGen.Core.Generation.Generators
             }
             else if (result.StartsWith(ItemsConstants.Gear.Traits.Masterwork, StringComparison.InvariantCultureIgnoreCase))
             {
-                gear.Name = result.Replace("Masterwork ", String.Empty).Replace("masterwork ", String.Empty);
+                gear.Name = result.Replace("Masterwork ", String.Empty);
                 gear.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
             }
             else

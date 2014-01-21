@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using D20Dice;
 using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 
@@ -12,14 +11,14 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IDice dice;
-        private IPowerItemGeneratorFactory powerItemGeneratorFactory;
+        private IPowerItemGenerator powerItemGenerator;
 
         public ItemsGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice,
-            IPowerItemGeneratorFactory powerItemGeneratorFactory)
+            IPowerItemGenerator powerItemGenerator)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
-            this.powerItemGeneratorFactory = powerItemGeneratorFactory;
+            this.powerItemGenerator = powerItemGenerator;
         }
 
         public IEnumerable<Item> GenerateAtLevel(Int32 level)
@@ -28,13 +27,11 @@ namespace EquipmentGen.Core.Generation.Generators
             var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
 
             var amount = dice.Roll(typeAndAmountResult.RollToDetermineAmount);
-            var powerItemGenerator = powerItemGeneratorFactory.CreateWith(typeAndAmountResult.Type);
-
             var items = new List<Item>();
 
             while (amount-- > 0)
             {
-                var item = powerItemGenerator.Generate();
+                var item = powerItemGenerator.GenerateAtPower(typeAndAmountResult.Type);
                 items.Add(item);
             }
 

@@ -18,13 +18,16 @@ namespace EquipmentGen.Bootstrap
             Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGearGeneratorFactory>().To<GearGeneratorFactory>();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
+            Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
+            Bind<IMundaneGearGeneratorFactory>().To<MundaneGearGeneratorFactory>();
+            Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
-            Bind<IPowerItemGeneratorFactory>().To<PowerItemGeneratorFactory>();
+            Bind<IPowerItemGenerator>().To<PowerItemGenerator>();
+            Bind<IPowerGearGeneratorFactory>().To<PowerGearGeneratorFactory>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();

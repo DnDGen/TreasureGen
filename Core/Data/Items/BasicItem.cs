@@ -1,4 +1,4 @@
 ﻿namespace EquipmentGen.Core.Data.Items
 {
-    public class Tool : Item { }
+    public class BasicItem : Item { }
 }

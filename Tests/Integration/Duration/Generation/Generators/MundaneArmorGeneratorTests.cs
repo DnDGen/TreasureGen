@@ -1,5 +1,4 @@
-﻿using System;
-using EquipmentGen.Core.Data.Items;
+﻿using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -8,20 +7,17 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class ArmorGeneratorTests : DurationTest
+    public class MundaneArmorGeneratorTests : DurationTest
     {
         [Inject]
-        public IGearGeneratorFactory GearGeneratorFactory { get; set; }
+        public IMundaneGearGeneratorFactory GearGeneratorFactory { get; set; }
 
-        private IGearGenerator armorGenerator;
-        private String power;
+        private IMundaneGearGenerator mundaneArmorGenerator;
 
         [SetUp]
         public void Setup()
         {
-            armorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
-            power = GetNewPower();
-
+            mundaneArmorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
             StartTest();
         }
 
@@ -32,9 +28,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void ArmorGeneratorDuration()
+        public void MundaneArmorGeneratorDuration()
         {
-            armorGenerator.GenerateAtPower(power);
+            mundaneArmorGenerator.Generate();
             AssertDuration();
         }
     }

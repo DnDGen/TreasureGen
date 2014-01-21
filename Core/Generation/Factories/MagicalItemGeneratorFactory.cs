@@ -1,13 +1,12 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Core.Generation.Factories
 {
-    public class MediumItemGenerator : IPowerItemGenerator
+    public class MagicalItemGeneratorFactory : IMagicalItemGeneratorFactory
     {
-        public Item Generate()
+        public IMagicalItemGenerator CreateWith(String type)
         {
             throw new NotImplementedException();
         }
