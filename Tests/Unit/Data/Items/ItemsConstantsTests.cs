@@ -79,45 +79,63 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         }
 
         [Test]
-        public void PotionItemTypeConstants()
+        public void PotionItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Potion, Is.EqualTo("Potion"));
         }
 
         [Test]
-        public void RingItemTypeConstants()
+        public void RingItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Ring, Is.EqualTo("Ring"));
         }
 
         [Test]
-        public void RodItemTypeConstants()
+        public void RodItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Rod, Is.EqualTo("Rod"));
         }
 
         [Test]
-        public void ScrollItemTypeConstants()
+        public void ScrollItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Scroll, Is.EqualTo("Scroll"));
         }
 
         [Test]
-        public void StaffItemTypeConstants()
+        public void StaffItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Staff, Is.EqualTo("Staff"));
         }
 
         [Test]
-        public void WandItemTypeConstants()
+        public void WandItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.Wand, Is.EqualTo("Wand"));
         }
 
         [Test]
-        public void WondrousItemTypeConstants()
+        public void WondrousItemTypeConstant()
         {
             Assert.That(ItemsConstants.ItemTypes.WondrousItem, Is.EqualTo("Wondrous item"));
+        }
+
+        [Test]
+        public void CommonMeleeWeaponTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.WeaponTypes.CommonMelee, Is.EqualTo("CommonMelee"));
+        }
+
+        [Test]
+        public void UncommonWeaponTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.WeaponTypes.Uncommon, Is.EqualTo("Uncommon"));
+        }
+
+        [Test]
+        public void CommonRangedWeaponTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.WeaponTypes.CommonRanged, Is.EqualTo("CommonRanged"));
         }
     }
 }

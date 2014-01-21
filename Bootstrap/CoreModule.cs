@@ -16,6 +16,7 @@ namespace EquipmentGen.Bootstrap
         public override void Load()
         {
             Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
+            Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();

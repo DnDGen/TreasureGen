@@ -10,11 +10,11 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private IAlchemicalItemGenerator alchemicalItemFactory;
-        private IPowerGearGeneratorFactory gearGeneratorFactory;
+        private IMundaneGearGeneratorFactory gearGeneratorFactory;
         private IToolGenerator toolGenerator;
 
         public MundaneItemGenerator(IPercentileResultProvider percentileResultProvider, IAlchemicalItemGenerator alchemicalItemFactory,
-            IPowerGearGeneratorFactory gearGeneratorFactory, IToolGenerator toolGenerator)
+            IMundaneGearGeneratorFactory gearGeneratorFactory, IToolGenerator toolGenerator)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.alchemicalItemFactory = alchemicalItemFactory;
@@ -34,16 +34,16 @@ namespace EquipmentGen.Core.Generation.Generators
             {
                 case ItemsConstants.ItemTypes.AlchemicalItem: return alchemicalItemFactory.Generate();
                 case ItemsConstants.ItemTypes.Armor:
-                case ItemsConstants.ItemTypes.Weapon: return CreateGear(type);
+                case ItemsConstants.ItemTypes.Weapon: return GenerateGear(type);
                 case ItemsConstants.ItemTypes.Tool: return toolGenerator.Generate();
                 default: throw new ArgumentOutOfRangeException();
             }
         }
 
-        private Item CreateGear(String type)
+        private Item GenerateGear(String type)
         {
-            var factory = gearGeneratorFactory.CreateWith(type);
-            return factory.GenerateAtPower(ItemsConstants.Power.Mundane);
+            var generator = gearGeneratorFactory.CreateWith(type);
+            return generator.Generate();
         }
     }
 }

@@ -48,16 +48,20 @@
     <Compile Include="Data\Goods\Good.cs" />
     <Compile Include="Data\Goods\GoodsConstants.cs" />
     <Compile Include="Data\Items\AlchemicalItem.cs" />
+    <Compile Include="Data\Items\Ammunition.cs" />
     <Compile Include="Data\Items\BasicItem.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\ItemsConstants.cs" />
     <Compile Include="Data\Items\Gear.cs" />
+    <Compile Include="Data\Items\TraitItem.cs" />
     <Compile Include="Data\Treasure.cs" />
     <Compile Include="Generation\Factories\Interfaces\IMagicalItemGeneratorFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IMundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Factories\MagicalItemGeneratorFactory.cs" />
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
+    <Compile Include="Generation\Generators\AmmunitionGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IAmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMagicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMundaneGearGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMundaneItemGenerator.cs" />
@@ -74,6 +78,13 @@
     <Compile Include="Generation\Generators\Interfaces\IPowerItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IToolGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
+    <Compile Include="Generation\Generators\RodGenerator.cs" />
+    <Compile Include="Generation\Generators\ScrollGenerator.cs" />
+    <Compile Include="Generation\Generators\StaffGenerator.cs" />
+    <Compile Include="Generation\Generators\WandGenerator.cs" />
+    <Compile Include="Generation\Generators\WondrousItemGenerator.cs" />
+    <Compile Include="Generation\Generators\RingGenerator.cs" />
+    <Compile Include="Generation\Generators\PotionGenerator.cs" />
     <Compile Include="Generation\Generators\PowerItemGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneItemGenerator.cs" />
     <Compile Include="Generation\Generators\ItemsGenerator.cs" />
@@ -303,6 +314,33 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\MinorItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\DarkwoodShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\MediumItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\MajorItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\MundaneWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\CommonMeleeWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\CommonRangedWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\UncommonWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\Ammunition.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

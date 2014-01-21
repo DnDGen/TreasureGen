@@ -3,6 +3,7 @@ using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -18,7 +19,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         public void Setup()
         {
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object);
+            var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
+            factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object);
         }
 
         [Test]

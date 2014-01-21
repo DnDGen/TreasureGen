@@ -4,16 +4,13 @@ using System.Linq;
 
 namespace EquipmentGen.Core.Data.Items
 {
-    public class Gear : Item
+    public class Gear : TraitItem
     {
-        public List<String> Traits { get; set; }
         public Int32 MagicalBonus { get; set; }
         public List<String> Abilities { get; set; }
-        public Boolean IsMasterwork { get; set; }
 
         public Gear()
         {
-            Traits = new List<String>();
             Abilities = new List<String>();
         }
 
@@ -21,8 +18,6 @@ namespace EquipmentGen.Core.Data.Items
         {
             var bonus = GetBonusString();
             var abilities = GetAbilitiesString();
-            var traits = GetTraitsString();
-
             var result = Name;
 
             if (!String.IsNullOrEmpty(bonus))
@@ -31,10 +26,8 @@ namespace EquipmentGen.Core.Data.Items
             if (!String.IsNullOrEmpty(abilities))
                 result = String.Join(" of ", result, abilities);
 
-            if (!String.IsNullOrEmpty(traits))
-                result = String.Format("{0} ({1})", result, traits);
-
-            return result;
+            var baseString = base.ToString();
+            return baseString.Replace(Name, result);
         }
 
         private String GetBonusString()
@@ -76,14 +69,6 @@ namespace EquipmentGen.Core.Data.Items
 
                 return traits;
             }
-
-            return String.Empty;
-        }
-
-        private String GetTraitsString()
-        {
-            if (Traits.Any())
-                return String.Join(", ", Traits);
 
             return String.Empty;
         }

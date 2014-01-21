@@ -29,33 +29,6 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         }
 
         [Test]
-        public void GearWithOneTrait()
-        {
-            gear.Traits.Add("trait");
-
-            Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait)"));
-        }
-
-        [Test]
-        public void GearWithTwoTraits()
-        {
-            gear.Traits.Add("trait");
-            gear.Traits.Add("other trait");
-
-            Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait, other trait)"));
-        }
-
-        [Test]
-        public void GearWithThreeTraits()
-        {
-            gear.Traits.Add("trait");
-            gear.Traits.Add("other trait");
-            gear.Traits.Add("third trait");
-
-            Assert.That(gear.ToString(), Is.EqualTo("shiny gear (trait, other trait, third trait)"));
-        }
-
-        [Test]
         public void GearWithOneAbility()
         {
             gear.Abilities.Add("ability");

@@ -29,6 +29,13 @@ namespace EquipmentGen.Core.Data.Items
 
         public static class Gear
         {
+            public static class WeaponTypes
+            {
+                public const String CommonMelee = "CommonMelee";
+                public const String Uncommon = "Uncommon";
+                public const String CommonRanged = "CommonRanged";
+            }
+
             public static class Traits
             {
                 public const String Masterwork = "Masterwork";

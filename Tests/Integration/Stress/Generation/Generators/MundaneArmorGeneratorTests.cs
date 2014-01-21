@@ -36,9 +36,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(armor, Is.Not.Null);
                 Assert.That(armor.Name, Is.Not.Empty);
-                Assert.That(armor.MagicalBonus, Is.EqualTo(0));
-                Assert.That(armor.Abilities, Is.Empty);
                 Assert.That(armor.Traits, Is.Not.Null);
+                Assert.That(armor.Abilities, Is.Empty);
+                Assert.That(armor.MagicalBonus, Is.EqualTo(0));
             }
 
             AssertIterations();

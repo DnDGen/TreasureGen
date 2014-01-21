@@ -125,6 +125,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<IMagicalItemGeneratorFactory>();
         }
 
+        [Test]
+        public void AmmunitionGeneratorNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IAmmunitionGenerator>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();
