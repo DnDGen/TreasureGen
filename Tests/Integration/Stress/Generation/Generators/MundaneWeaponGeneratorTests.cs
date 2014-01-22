@@ -1,4 +1,7 @@
-﻿using EquipmentGen.Core.Data.Items;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -13,11 +16,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         public IMundaneGearGeneratorFactory mundaneGearGeneratorFactory { get; set; }
 
         private IMundaneGearGenerator mundaneWeaponGenerator;
+        private IEnumerable<String> gearMaterialTypes;
 
         [SetUp]
         public void Setup()
         {
             mundaneWeaponGenerator = mundaneGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Weapon);
+            gearMaterialTypes = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Wood };
             StartTest();
         }
 
@@ -39,6 +44,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(weapon.Traits, Is.Not.Null);
                 Assert.That(weapon.Abilities, Is.Empty);
                 Assert.That(weapon.MagicalBonus, Is.EqualTo(0));
+                Assert.That(weapon.Types, Contains.Item(ItemsConstants.ItemTypes.Weapon));
+
+                var intersection = weapon.Types.Intersect(gearMaterialTypes);
+                Assert.That(intersection, Is.Not.Empty);
 
                 if (weapon is Ammunition)
                 {

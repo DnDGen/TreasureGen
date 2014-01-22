@@ -94,7 +94,9 @@
     <Compile Include="Generation\Generators\TreasureGenerator.cs" />
     <Compile Include="Generation\Generators\PowerWeaponGenerator.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
+    <Compile Include="Generation\Providers\Interfaces\IGearTypesProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
+    <Compile Include="Generation\Providers\Interfaces\IMaterialProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\ITypeAndAmountPercentileResultProvider.cs" />

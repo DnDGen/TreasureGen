@@ -33,12 +33,12 @@
     </object>
     <object>
         <lower>81</lower>
-        <content>Darkwood</content>
+        <content>DarkwoodShields</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Masterwork shield</content>
+        <content>MasterworkShields</content>
         <upper>100</upper>
     </object>
 </percentile>

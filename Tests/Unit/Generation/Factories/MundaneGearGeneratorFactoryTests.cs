@@ -20,7 +20,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         {
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
-            factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object);
+            var mockMaterialsProvider = new Mock<IMaterialsProvider>();
+            var mockGearTypeProvider = new Mock<IGearTypesProvider>();
+            factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object,
+                mockMaterialsProvider.Object, mockGearTypeProvider.Object);
         }
 
         [Test]

@@ -50,13 +50,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DarkwoodShieldsPercentile()
         {
-            AssertContent("Darkwood", 81, 90);
+            AssertContent("DarkwoodShields", 81, 90);
         }
 
         [Test]
         public void MasterworkShieldsPercentile()
         {
-            AssertContent("Masterwork shield", 91, 100);
+            AssertContent("MasterworkShields", 91, 100);
         }
     }
 }

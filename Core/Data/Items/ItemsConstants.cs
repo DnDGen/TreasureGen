@@ -29,11 +29,13 @@ namespace EquipmentGen.Core.Data.Items
 
         public static class Gear
         {
-            public static class WeaponTypes
+            public static class Types
             {
                 public const String CommonMelee = "CommonMelee";
                 public const String Uncommon = "Uncommon";
                 public const String CommonRanged = "CommonRanged";
+                public const String Wood = "Wood";
+                public const String Metal = "Metal";
             }
 
             public static class Traits

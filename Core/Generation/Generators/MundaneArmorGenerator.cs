@@ -8,42 +8,56 @@ namespace EquipmentGen.Core.Generation.Generators
     public class MundaneArmorGenerator : IMundaneGearGenerator
     {
         private IPercentileResultProvider percentileResultProvider;
+        private IMaterialsProvider materialsProvider;
+        private IGearTypesProvider gearTypesProvider;
 
-        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider)
+        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, IMaterialsProvider materialsProvider,
+            IGearTypesProvider gearTypesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
+            this.materialsProvider = materialsProvider;
+            this.gearTypesProvider = gearTypesProvider;
         }
 
         public Gear Generate()
         {
             var result = percentileResultProvider.GetPercentileResult("MundaneArmor");
 
-            var gear = new Gear();
+            var armor = new Gear();
 
-            if (result == ItemsConstants.Gear.Traits.Darkwood)
+            if (result == "DarkwoodShields")
             {
-                gear.Name = percentileResultProvider.GetPercentileResult("DarkwoodShields");
-                gear.Traits.Add(ItemsConstants.Gear.Traits.Darkwood);
+                armor.Name = percentileResultProvider.GetPercentileResult(result);
+                armor.Traits.Add(ItemsConstants.Gear.Traits.Darkwood);
             }
-            else if (result == "Masterwork shield")
+            else if (result == "MasterworkShields")
             {
-                gear.Name = percentileResultProvider.GetPercentileResult("MasterworkShields");
-                gear.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+                armor.Name = percentileResultProvider.GetPercentileResult(result);
+                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
             }
             else if (result.StartsWith(ItemsConstants.Gear.Traits.Masterwork, StringComparison.InvariantCultureIgnoreCase))
             {
-                gear.Name = result.Replace("Masterwork ", String.Empty);
-                gear.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+                armor.Name = result.Replace("Masterwork ", String.Empty);
+                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
             }
             else
             {
-                gear.Name = result;
+                armor.Name = result;
             }
 
-            var size = percentileResultProvider.GetPercentileResult("ArmorSizes");
-            gear.Traits.Add(size);
+            var types = gearTypesProvider.GetGearTypesFor(armor.Name);
+            armor.Types.AddRange(types);
 
-            return gear;
+            var size = percentileResultProvider.GetPercentileResult("ArmorSizes");
+            armor.Traits.Add(size);
+
+            if (materialsProvider.HasSpecialMaterial())
+            {
+                var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
+                armor.Traits.Add(specialMaterial);
+            }
+
+            return armor;
         }
     }
 }

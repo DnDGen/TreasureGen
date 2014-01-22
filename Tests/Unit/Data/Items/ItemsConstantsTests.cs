@@ -123,19 +123,31 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void CommonMeleeWeaponTypeGearConstant()
         {
-            Assert.That(ItemsConstants.Gear.WeaponTypes.CommonMelee, Is.EqualTo("CommonMelee"));
+            Assert.That(ItemsConstants.Gear.Types.CommonMelee, Is.EqualTo("CommonMelee"));
         }
 
         [Test]
         public void UncommonWeaponTypeGearConstant()
         {
-            Assert.That(ItemsConstants.Gear.WeaponTypes.Uncommon, Is.EqualTo("Uncommon"));
+            Assert.That(ItemsConstants.Gear.Types.Uncommon, Is.EqualTo("Uncommon"));
         }
 
         [Test]
         public void CommonRangedWeaponTypeGearConstant()
         {
-            Assert.That(ItemsConstants.Gear.WeaponTypes.CommonRanged, Is.EqualTo("CommonRanged"));
+            Assert.That(ItemsConstants.Gear.Types.CommonRanged, Is.EqualTo("CommonRanged"));
+        }
+
+        [Test]
+        public void WoodTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Wood, Is.EqualTo("Wood"));
+        }
+
+        [Test]
+        public void MetalTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Metal, Is.EqualTo("Metal"));
         }
     }
 }

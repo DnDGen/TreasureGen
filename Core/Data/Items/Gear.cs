@@ -8,69 +8,45 @@ namespace EquipmentGen.Core.Data.Items
     {
         public Int32 MagicalBonus { get; set; }
         public List<String> Abilities { get; set; }
+        public List<String> Types { get; set; }
 
         public Gear()
         {
             Abilities = new List<String>();
+            Types = new List<String>();
         }
 
         public override String ToString()
         {
-            var bonus = GetBonusString();
-            var abilities = GetAbilitiesString();
-            var result = Name;
+            var gearString = Name;
 
-            if (!String.IsNullOrEmpty(bonus))
-                result = String.Join(" ", bonus, result);
+            if (MagicalBonus != 0)
+            {
+                var bonus = String.Format("+{0}", MagicalBonus);
+                gearString = String.Join(" ", bonus, gearString);
+            }
 
-            if (!String.IsNullOrEmpty(abilities))
-                result = String.Join(" of ", result, abilities);
+            if (Abilities.Any())
+            {
+                var abilities = GetAbilitiesString();
+                gearString = String.Join(" of ", gearString, abilities);
+            }
 
             var baseString = base.ToString();
-            return baseString.Replace(Name, result);
-        }
-
-        private String GetBonusString()
-        {
-            if (MagicalBonus > 0)
-                return String.Format("+{0}", MagicalBonus);
-
-            return String.Empty;
+            return baseString.Replace(Name, gearString);
         }
 
         private String GetAbilitiesString()
         {
-            var count = Abilities.Count();
-
-            if (count == 1)
-            {
-                return Abilities.First();
-            }
-            else if (count == 2)
-            {
+            if (Abilities.Count < 3)
                 return String.Join(" and ", Abilities);
-            }
-            else if (count > 2)
-            {
-                var traits = String.Empty;
-                var last = Abilities.Last();
-                var first = Abilities.First();
 
-                foreach (var trait in Abilities)
-                {
-                    if (trait != first)
-                        traits += ", ";
+            var abilitiesString = String.Join(", ", Abilities);
+            var last = Abilities.Last();
+            var indexOfLast = abilitiesString.LastIndexOf(last);
+            abilitiesString = abilitiesString.Insert(indexOfLast, "and ");
 
-                    if (trait == last)
-                        traits += "and ";
-
-                    traits += trait;
-                }
-
-                return traits;
-            }
-
-            return String.Empty;
+            return abilitiesString;
         }
     }
 }

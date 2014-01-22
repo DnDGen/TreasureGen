@@ -9,29 +9,41 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
+        private IMaterialsProvider materialsProvider;
+        private IGearTypesProvider gearTypesProvider;
 
-        public MundaneWeaponGenerator(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator)
+        public MundaneWeaponGenerator(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
+            IMaterialsProvider materialsProvider, IGearTypesProvider gearTypesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;
+            this.materialsProvider = materialsProvider;
+            this.gearTypesProvider = gearTypesProvider;
         }
 
         public Gear Generate()
         {
             var type = percentileResultProvider.GetPercentileResult("MundaneWeapons");
-
-
             var tableName = String.Format("{0}Weapons", type);
             var weaponName = percentileResultProvider.GetPercentileResult(tableName);
 
             if (weaponName == "Ammunition")
                 return ammunitionGenerator.Generate();
 
-            var gear = new Gear();
-            gear.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
-            gear.Name = weaponName;
+            var weapon = new Gear();
+            weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+            weapon.Name = weaponName;
 
-            return gear;
+            var types = gearTypesProvider.GetGearTypesFor(weapon.Name);
+            weapon.Types.AddRange(types);
+
+            if (materialsProvider.HasSpecialMaterial())
+            {
+                var specialMaterial = materialsProvider.GetSpecialMaterialFor(weapon.Types);
+                weapon.Traits.Add(specialMaterial);
+            }
+
+            return weapon;
         }
     }
 }

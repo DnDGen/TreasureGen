@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DarkwoodShieldPercentile()
         {
-            AssertContent("Shield", 51, 100);
+            AssertContent("Heavy wooden shield", 51, 100);
         }
     }
 }

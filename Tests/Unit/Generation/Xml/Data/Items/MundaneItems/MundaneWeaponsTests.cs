@@ -15,19 +15,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void MundaneCommonMeleeWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.WeaponTypes.CommonMelee, 1, 50);
+            AssertContent(ItemsConstants.Gear.Types.CommonMelee, 1, 50);
         }
 
         [Test]
         public void MundaneUncommonWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.WeaponTypes.Uncommon, 51, 70);
+            AssertContent(ItemsConstants.Gear.Types.Uncommon, 51, 70);
         }
 
         [Test]
         public void MundaneRangedWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.WeaponTypes.CommonRanged, 71, 100);
+            AssertContent(ItemsConstants.Gear.Types.CommonRanged, 71, 100);
         }
     }
 }
