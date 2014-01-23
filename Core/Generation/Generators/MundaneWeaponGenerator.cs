@@ -33,9 +33,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var weapon = new Gear();
             weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
             weapon.Name = weaponName;
-
-            var types = gearTypesProvider.GetGearTypesFor(weapon.Name);
-            weapon.Types.AddRange(types);
+            weapon.Types = gearTypesProvider.GetGearTypesFor(weapon.Name);
 
             if (materialsProvider.HasSpecialMaterial())
             {

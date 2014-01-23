@@ -71,6 +71,7 @@
     <Compile Include="Generation\Generators\PowerItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
+    <Compile Include="Generation\Providers\GearTypesProviderTests.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\CommonRangedWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\DarkwoodShieldsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\GearTypesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShieldsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneWeaponsTests.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\UncommonWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
+    <Compile Include="Generation\Xml\Parsers\GearTypesXmlParserTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

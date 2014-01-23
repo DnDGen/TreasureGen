@@ -106,6 +106,8 @@
     <Compile Include="Generation\Providers\Objects\GoodValuePercentileResult.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
+    <Compile Include="Generation\Xml\Parsers\GearTypesXmlParser.cs" />
+    <Compile Include="Generation\Xml\Parsers\Interfaces\IGearTypesXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Objects\PercentileObject.cs" />

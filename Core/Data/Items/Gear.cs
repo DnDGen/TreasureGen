@@ -8,7 +8,7 @@ namespace EquipmentGen.Core.Data.Items
     {
         public Int32 MagicalBonus { get; set; }
         public List<String> Abilities { get; set; }
-        public List<String> Types { get; set; }
+        public IEnumerable<String> Types { get; set; }
 
         public Gear()
         {

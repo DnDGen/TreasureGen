@@ -45,8 +45,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 armor.Name = result;
             }
 
-            var types = gearTypesProvider.GetGearTypesFor(armor.Name);
-            armor.Types.AddRange(types);
+            armor.Types = gearTypesProvider.GetGearTypesFor(armor.Name);
 
             var size = percentileResultProvider.GetPercentileResult("ArmorSizes");
             armor.Traits.Add(size);

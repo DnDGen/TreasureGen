@@ -143,6 +143,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertSingleton<IGearTypesProvider>();
         }
 
+        [Test]
+        public void GearTypesXmlParserNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IGearTypesXmlParser>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();

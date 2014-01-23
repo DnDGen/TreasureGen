@@ -36,6 +36,9 @@ namespace EquipmentGen.Core.Data.Items
                 public const String CommonRanged = "CommonRanged";
                 public const String Wood = "Wood";
                 public const String Metal = "Metal";
+                public const String DoubleWeapon = "Double weapon";
+                public const String Melee = "Melee";
+                public const String Ranged = "Ranged";
             }
 
             public static class Traits

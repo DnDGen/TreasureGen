@@ -149,5 +149,23 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(ItemsConstants.Gear.Types.Metal, Is.EqualTo("Metal"));
         }
+
+        [Test]
+        public void DoubleWeaponTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.DoubleWeapon, Is.EqualTo("Double weapon"));
+        }
+
+        [Test]
+        public void MeleeTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Melee, Is.EqualTo("Melee"));
+        }
+
+        [Test]
+        public void RangedTypeGearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Ranged, Is.EqualTo("Ranged"));
+        }
     }
 }
