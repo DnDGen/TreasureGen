@@ -131,6 +131,18 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<IAmmunitionGenerator>();
         }
 
+        [Test]
+        public void MaterialsProviderNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IMaterialsProvider>();
+        }
+
+        [Test]
+        public void GearTypesProviderGeneratedAsSingletons()
+        {
+            AssertSingleton<IGearTypesProvider>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();
