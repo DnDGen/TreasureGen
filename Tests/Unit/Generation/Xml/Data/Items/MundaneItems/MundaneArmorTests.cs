@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Core.Data.Items;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
@@ -14,49 +15,49 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void ChainShirtPercentile()
         {
-            AssertContent("Chain shirt", 1, 12);
+            AssertContent(ItemsConstants.Gear.Armor.ChainShirt, 1, 12);
         }
 
         [Test]
-        public void MasterworkStuddedLeatherPercentile()
+        public void StuddedLeatherArmorPercentile()
         {
-            AssertContent("Masterwork studded leather", 13, 18);
+            AssertContent(ItemsConstants.Gear.Armor.StuddedLeatherArmor, 13, 18);
         }
 
         [Test]
         public void BreastplatePercentile()
         {
-            AssertContent("Breastplate", 19, 26);
+            AssertContent(ItemsConstants.Gear.Armor.Breastplate, 19, 26);
         }
 
         [Test]
         public void BandedMailPercentile()
         {
-            AssertContent("Banded mail", 27, 34);
+            AssertContent(ItemsConstants.Gear.Armor.BandedMail, 27, 34);
         }
 
         [Test]
         public void HalfPlatePercentile()
         {
-            AssertContent("Half-plate", 35, 54);
+            AssertContent(ItemsConstants.Gear.Armor.HalfPlate, 35, 54);
         }
 
         [Test]
         public void FullPlatePercentile()
         {
-            AssertContent("Full plate", 55, 80);
+            AssertContent(ItemsConstants.Gear.Armor.FullPlate, 55, 80);
         }
 
         [Test]
-        public void DarkwoodShieldsPercentile()
+        public void DarkwoodPercentile()
         {
-            AssertContent("DarkwoodShields", 81, 90);
+            AssertContent(ItemsConstants.Gear.Traits.Darkwood, 81, 90);
         }
 
         [Test]
-        public void MasterworkShieldsPercentile()
+        public void MasterworkPercentile()
         {
-            AssertContent("MasterworkShields", 91, 100);
+            AssertContent(ItemsConstants.Gear.Traits.Masterwork, 91, 100);
         }
     }
 }

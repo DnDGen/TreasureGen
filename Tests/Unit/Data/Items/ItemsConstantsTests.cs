@@ -299,5 +299,149 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(ItemsConstants.Gear.Traits.AlchemicalSilver, Is.EqualTo("Alchemical silver"));
         }
+
+        [Test]
+        public void DaggerConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Dagger, Is.EqualTo("Dagger"));
+        }
+
+        [Test]
+        public void GreataxeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Greataxe, Is.EqualTo("Greataxe"));
+        }
+
+        [Test]
+        public void GreatswordConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Greatsword, Is.EqualTo("Greatsword"));
+        }
+
+        [Test]
+        public void KamaConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Kama, Is.EqualTo("Kama"));
+        }
+
+        [Test]
+        public void LongswordConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Longsword, Is.EqualTo("Longsword"));
+        }
+
+        [Test]
+        public void LightMaceConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.LightMace, Is.EqualTo("Light mace"));
+        }
+
+        [Test]
+        public void HeavyMaceConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.HeavyMace, Is.EqualTo("Heavy mace"));
+        }
+
+        [Test]
+        public void NunchakuConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Nunchaku, Is.EqualTo("Nunchaku"));
+        }
+
+        [Test]
+        public void QuarterstaffConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Quarterstaff, Is.EqualTo("Quarterstaff"));
+        }
+
+        [Test]
+        public void RapierConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Rapier, Is.EqualTo("Rapier"));
+        }
+
+        [Test]
+        public void ScimitarConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Scimitar, Is.EqualTo("Scimitar"));
+        }
+
+        [Test]
+        public void ShortspearConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Shortspear, Is.EqualTo("Shortspear"));
+        }
+
+        [Test]
+        public void SianghamConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Siangham, Is.EqualTo("Siangham"));
+        }
+
+        [Test]
+        public void BastardSwordConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.BastardSword, Is.EqualTo("Bastard sword"));
+        }
+
+        [Test]
+        public void ShortSwordConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.ShortSword, Is.EqualTo("Short sword"));
+        }
+
+        [Test]
+        public void DwarvenWaraxeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.DwarvenWaraxe, Is.EqualTo("Dwarven waraxe"));
+        }
+
+        [Test]
+        public void OrcDoubleAxeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.OrcDoubleAxe, Is.EqualTo("Orc double axe"));
+        }
+
+        [Test]
+        public void BattleaxeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Battleaxe, Is.EqualTo("Battleaxe"));
+        }
+
+        [Test]
+        public void SpikedChainConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.SpikedChain, Is.EqualTo("Spiekd chain"));
+        }
+
+        [Test]
+        public void ClubConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Club, Is.EqualTo("Club"));
+        }
+
+        [Test]
+        public void HandCrossbowConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.HandCrossbow, Is.EqualTo("Hand crossbow"));
+        }
+
+        [Test]
+        public void RepeatingCrossbowConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.RepeatingCrossbow, Is.EqualTo("Repeating crossbow"));
+        }
+
+        [Test]
+        public void PunchingDaggerConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.PunchingDagger, Is.EqualTo("Punching dagger"));
+        }
+
+        [Test]
+        public void FalchionConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Weapons.Falchion, Is.EqualTo("Falchion"));
+        }
     }
 }

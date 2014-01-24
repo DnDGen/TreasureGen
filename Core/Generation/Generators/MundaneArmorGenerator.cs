@@ -22,35 +22,28 @@ namespace EquipmentGen.Core.Generation.Generators
         public Gear Generate()
         {
             var result = percentileResultProvider.GetPercentileResult("MundaneArmor");
-
             var armor = new Gear();
 
-            if (result == "DarkwoodShields")
+            if (result == ItemsConstants.Gear.Traits.Darkwood || result == ItemsConstants.Gear.Traits.Masterwork)
             {
-                armor.Name = percentileResultProvider.GetPercentileResult(result);
-                armor.Traits.Add(ItemsConstants.Gear.Traits.Darkwood);
-            }
-            else if (result == "MasterworkShields")
-            {
-                armor.Name = percentileResultProvider.GetPercentileResult(result);
-                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
-            }
-            else if (result.StartsWith(ItemsConstants.Gear.Traits.Masterwork, StringComparison.InvariantCultureIgnoreCase))
-            {
-                armor.Name = result.Replace("Masterwork ", String.Empty);
-                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+                var tableName = String.Format("{0}Shields", result);
+                armor.Name = percentileResultProvider.GetPercentileResult(tableName);
+                armor.Traits.Add(result);
             }
             else
             {
                 armor.Name = result;
             }
 
+            if (armor.Name == ItemsConstants.Gear.Armor.StuddedLeatherArmor)
+                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+
             armor.Types = gearTypesProvider.GetGearTypesFor(armor.Name);
 
             var size = percentileResultProvider.GetPercentileResult("ArmorSizes");
             armor.Traits.Add(size);
 
-            if (materialsProvider.HasSpecialMaterial())
+            if (!armor.Traits.Contains(ItemsConstants.Gear.Traits.Darkwood) && materialsProvider.HasSpecialMaterial())
             {
                 var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
                 armor.Traits.Add(specialMaterial);

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Core.Data.Items;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
@@ -14,13 +15,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DarkwoodBucklerPercentile()
         {
-            AssertContent("Buckler", 1, 50);
+            AssertContent(ItemsConstants.Gear.Armor.Buckler, 1, 50);
         }
 
         [Test]
         public void DarkwoodShieldPercentile()
         {
-            AssertContent("Heavy wooden shield", 51, 100);
+            AssertContent(ItemsConstants.Gear.Armor.HeavyWoodenShield, 51, 100);
         }
     }
 }

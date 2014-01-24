@@ -29,6 +29,11 @@ namespace EquipmentGen.Core.Data.Items
 
         public static class Gear
         {
+            public static class Weapons
+            {
+                public const String Dagger = "Dagger";
+            }
+
             public static class Armor
             {
                 public const String PaddedArmor = "Padded armor";

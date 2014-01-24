@@ -8,7 +8,7 @@
   </object>
     <object>
         <lower>13</lower>
-        <content>Masterwork studded leather</content>
+        <content>Studded leather armor</content>
         <upper>18</upper>
     </object>
     <object>
@@ -33,12 +33,12 @@
     </object>
     <object>
         <lower>81</lower>
-        <content>DarkwoodShields</content>
+        <content>Darkwood</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>MasterworkShields</content>
+        <content>Masterwork</content>
         <upper>100</upper>
     </object>
 </percentile>
