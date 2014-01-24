@@ -12,7 +12,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
     public class GearTypesProviderTests
     {
         private IGearTypesProvider gearTypesProvider;
-        private Mock<IGearTypesXmlParser> mockGearTypesXmlParser;
+        private Mock<ITypesXmlParser> mockGearTypesXmlParser;
 
         private IEnumerable<String> expected;
 
@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             var table = new Dictionary<String, IEnumerable<String>>();
             table.Add("gear name", expected);
 
-            mockGearTypesXmlParser = new Mock<IGearTypesXmlParser>();
+            mockGearTypesXmlParser = new Mock<ITypesXmlParser>();
             mockGearTypesXmlParser.Setup(p => p.Parse("GearTypes.xml")).Returns(table);
 
             gearTypesProvider = new GearTypesProvider(mockGearTypesXmlParser.Object);

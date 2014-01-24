@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -38,7 +39,16 @@ namespace EquipmentGen.Core.Generation.Generators
             if (materialsProvider.HasSpecialMaterial())
             {
                 var specialMaterial = materialsProvider.GetSpecialMaterialFor(weapon.Types);
-                weapon.Traits.Add(specialMaterial);
+                if (!String.IsNullOrEmpty(specialMaterial))
+                    weapon.Traits.Add(specialMaterial);
+
+                if (weapon.Types.Contains(ItemsConstants.Gear.Types.DoubleWeapon) && materialsProvider.HasSpecialMaterial())
+                {
+                    var secondSpecialMaterial = materialsProvider.GetSpecialMaterialFor(weapon.Types);
+
+                    if (specialMaterial != secondSpecialMaterial && !String.IsNullOrEmpty(secondSpecialMaterial))
+                        weapon.Traits.Add(secondSpecialMaterial);
+                }
             }
 
             return weapon;

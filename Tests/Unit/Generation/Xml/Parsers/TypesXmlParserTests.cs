@@ -9,11 +9,11 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
 {
     [TestFixture]
-    public class GearTypesXmlParserTests
+    public class TypesXmlParserTests
     {
-        private IGearTypesXmlParser gearTypesXmlParser;
+        private ITypesXmlParser typesXmlParser;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String filename = "PercentileXmlParserTests.xml";
+        private const String filename = "TypesXmlParserTests.xml";
 
         [SetUp]
         public void Setup()
@@ -23,25 +23,25 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
             mockStreamLoader = new Mock<IStreamLoader>();
             mockStreamLoader.Setup(l => l.LoadStream(filename)).Returns(GetStream());
 
-            gearTypesXmlParser = new GearTypesXmlParser(mockStreamLoader.Object);
+            typesXmlParser = new TypesXmlParser(mockStreamLoader.Object);
         }
 
         [Test]
         public void LoadXmlFromStream()
         {
-            var objects = gearTypesXmlParser.Parse(filename);
+            var objects = typesXmlParser.Parse(filename);
 
             Assert.That(objects.Count(), Is.EqualTo(2));
 
-            var armorTypes = objects["armor"];
-            Assert.That(armorTypes, Contains.Item("armor type 1"));
-            Assert.That(armorTypes, Contains.Item("armor type 2"));
+            var armorTypes = objects["key 1"];
+            Assert.That(armorTypes, Contains.Item("type 1"));
+            Assert.That(armorTypes, Contains.Item("type 2"));
             Assert.That(armorTypes.Count(), Is.EqualTo(2));
 
-            var weaponTypes = objects["weapon"];
-            Assert.That(weaponTypes, Contains.Item("weapon type 1"));
-            Assert.That(weaponTypes, Contains.Item("weapon type 2"));
-            Assert.That(weaponTypes, Contains.Item("weapon type 3"));
+            var weaponTypes = objects["key 2"];
+            Assert.That(weaponTypes, Contains.Item("type 1"));
+            Assert.That(weaponTypes, Contains.Item("type 2"));
+            Assert.That(weaponTypes, Contains.Item("type 3"));
             Assert.That(weaponTypes.Count(), Is.EqualTo(3));
         }
 
@@ -52,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
 
         private void MakeXmlFile()
         {
-            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><gearTypes><object><gear>armor</gear><type>armor type 1</type><type>armor type 2</type></object><object><gear>weapon</gear><type>weapon type 1</type><type>weapon type 2</type><type>weapon type 3</type></object></gearTypes>";
+            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><types><object><key>key 1</key><type>type 1</type><type>type 2</type></object><object><key>key 2</key><type>type 1</type><type>type 2</type><type>type 3</type></object></types>";
             File.WriteAllText(filename, content);
         }
     }

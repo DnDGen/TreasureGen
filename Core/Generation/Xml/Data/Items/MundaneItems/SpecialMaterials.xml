@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<types>
+  <object>
+    <key>Adamantine</key>
+      <type>Metal</type>
+  </object>
+    <object>
+        <key>Dragonhide</key>
+        <type>Armor</type>
+    </object>
+    <object>
+        <key>Cold iron</key>
+        <type>Weapon</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Mithral</key>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Alchemical silver</key>
+        <type>Weapon</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Darkwood</key>
+        <type>Wood</type>
+    </object>
+</types>

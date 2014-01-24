@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Data.Items;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
@@ -15,19 +14,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void MundaneCommonMeleeWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Types.CommonMelee, 1, 50);
+            AssertContent("CommonMelee", 1, 50);
         }
 
         [Test]
         public void MundaneUncommonWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Types.Uncommon, 51, 70);
+            AssertContent("Uncommon", 51, 70);
         }
 
         [Test]
         public void MundaneRangedWeaponPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Types.CommonRanged, 71, 100);
+            AssertContent("CommonRanged", 71, 100);
         }
     }
 }

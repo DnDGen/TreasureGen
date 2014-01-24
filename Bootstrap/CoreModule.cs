@@ -20,7 +20,6 @@ namespace EquipmentGen.Bootstrap
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGearTypesProvider>().To<GearTypesProvider>().InSingletonScope();
-            Bind<IGearTypesXmlParser>().To<GearTypesXmlParser>();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
@@ -36,6 +35,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
             Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
+            Bind<ITypesXmlParser>().To<TypesXmlParser>();
         }
     }
 }

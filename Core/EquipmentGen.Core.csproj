@@ -106,8 +106,8 @@
     <Compile Include="Generation\Providers\Objects\GoodValuePercentileResult.cs" />
     <Compile Include="Generation\Providers\PercentileResultProvider.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
-    <Compile Include="Generation\Xml\Parsers\GearTypesXmlParser.cs" />
-    <Compile Include="Generation\Xml\Parsers\Interfaces\IGearTypesXmlParser.cs" />
+    <Compile Include="Generation\Xml\Parsers\TypesXmlParser.cs" />
+    <Compile Include="Generation\Xml\Parsers\Interfaces\ITypesXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Objects\PercentileObject.cs" />
@@ -347,6 +347,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\Ammunition.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\GearTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\SpecialMaterials.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

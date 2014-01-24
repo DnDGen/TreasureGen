@@ -144,9 +144,9 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void GearTypesXmlParserNotGeneratedAsSingletons()
+        public void TypesXmlParserNotGeneratedAsSingletons()
         {
-            AssertNotSingleton<IGearTypesXmlParser>();
+            AssertNotSingleton<ITypesXmlParser>();
         }
 
         private void AssertSingleton<T>()

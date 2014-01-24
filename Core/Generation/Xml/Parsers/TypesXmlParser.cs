@@ -5,11 +5,11 @@ using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Xml.Parsers
 {
-    public class GearTypesXmlParser : IGearTypesXmlParser
+    public class TypesXmlParser : ITypesXmlParser
     {
         private IStreamLoader streamLoader;
 
-        public GearTypesXmlParser(IStreamLoader streamLoader)
+        public TypesXmlParser(IStreamLoader streamLoader)
         {
             this.streamLoader = streamLoader;
         }
@@ -26,7 +26,7 @@ namespace EquipmentGen.Core.Generation.Xml.Parsers
                 var objects = xmlDocument.DocumentElement.ChildNodes;
                 foreach (XmlNode node in objects)
                 {
-                    var name = node.SelectSingleNode("gear").InnerText;
+                    var name = node.SelectSingleNode("key").InnerText;
                     var types = GetTypesFrom(node);
 
                     results.Add(name, types);

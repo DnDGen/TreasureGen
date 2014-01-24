@@ -29,11 +29,32 @@ namespace EquipmentGen.Core.Data.Items
 
         public static class Gear
         {
+            public static class Armor
+            {
+                public const String PaddedArmor = "Padded armor";
+                public const String LeatherArmor = "Leather armor";
+                public const String StuddedLeatherArmor = "Studded leather armor";
+                public const String ChainShirt = "Chain shirt";
+                public const String HideArmor = "Hide armor";
+                public const String ScaleMail = "Scale mail";
+                public const String Chainmail = "Chainmail";
+                public const String Breastplate = "Breastplate";
+                public const String SplintMail = "Splint mail";
+                public const String BandedMail = "Banded mail";
+                public const String HalfPlate = "Half-plate";
+                public const String FullPlate = "Full plate";
+                public const String Buckler = "Buckler";
+                public const String LightWoodenShield = "Light wooden shield";
+                public const String LightSteelShield = "Light steel shield";
+                public const String HeavyWoodenShield = "Heavy wooden shield";
+                public const String HeavySteelShield = "Heavy steel shield";
+                public const String TowerShield = "Tower shield";
+            }
+
             public static class Types
             {
-                public const String CommonMelee = "CommonMelee";
+                public const String Common = "Common";
                 public const String Uncommon = "Uncommon";
-                public const String CommonRanged = "CommonRanged";
                 public const String Wood = "Wood";
                 public const String Metal = "Metal";
                 public const String DoubleWeapon = "Double weapon";
@@ -47,6 +68,11 @@ namespace EquipmentGen.Core.Data.Items
                 public const String Darkwood = "Darkwood";
                 public const String Small = "Small";
                 public const String Medium = "Medium";
+                public const String Adamantine = "Adamantine";
+                public const String Dragonhide = "Dragonhide";
+                public const String ColdIron = "Cold iron";
+                public const String Mithral = "Mithral";
+                public const String AlchemicalSilver = "Alchemical silver";
             }
         }
     }

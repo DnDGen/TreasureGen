@@ -123,19 +123,13 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void CommonMeleeWeaponTypeGearConstant()
         {
-            Assert.That(ItemsConstants.Gear.Types.CommonMelee, Is.EqualTo("CommonMelee"));
+            Assert.That(ItemsConstants.Gear.Types.Common, Is.EqualTo("Common"));
         }
 
         [Test]
         public void UncommonWeaponTypeGearConstant()
         {
             Assert.That(ItemsConstants.Gear.Types.Uncommon, Is.EqualTo("Uncommon"));
-        }
-
-        [Test]
-        public void CommonRangedWeaponTypeGearConstant()
-        {
-            Assert.That(ItemsConstants.Gear.Types.CommonRanged, Is.EqualTo("CommonRanged"));
         }
 
         [Test]
@@ -166,6 +160,144 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         public void RangedTypeGearConstant()
         {
             Assert.That(ItemsConstants.Gear.Types.Ranged, Is.EqualTo("Ranged"));
+        }
+
+        [Test]
+        public void PaddedArmorConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.PaddedArmor, Is.EqualTo("Padded armor"));
+        }
+
+        [Test]
+        public void LeatherArmorConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.LeatherArmor, Is.EqualTo("Leather armor"));
+        }
+
+        [Test]
+        public void StuddedLeatherArmorConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.StuddedLeatherArmor, Is.EqualTo("Studded leather armor"));
+        }
+
+        [Test]
+        public void ChainShirtConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.ChainShirt, Is.EqualTo("Chain shirt"));
+        }
+
+        [Test]
+        public void HideArmorConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.HideArmor, Is.EqualTo("Hide armor"));
+        }
+
+        [Test]
+        public void ScaleMailConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.ScaleMail, Is.EqualTo("Scale mail"));
+        }
+
+        [Test]
+        public void ChainmailConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.Chainmail, Is.EqualTo("Chainmail"));
+        }
+
+        [Test]
+        public void BreastplateConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.Breastplate, Is.EqualTo("Breastplate"));
+        }
+
+        [Test]
+        public void SplintMailConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.SplintMail, Is.EqualTo("Splint mail"));
+        }
+
+        [Test]
+        public void BandedMailConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.BandedMail, Is.EqualTo("Banded mail"));
+        }
+
+        [Test]
+        public void HalfPlateConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.HalfPlate, Is.EqualTo("Half-plate"));
+        }
+
+        [Test]
+        public void FullPlateConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.FullPlate, Is.EqualTo("Full plate"));
+        }
+
+        [Test]
+        public void BucklerConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.Buckler, Is.EqualTo("Buckler"));
+        }
+
+        [Test]
+        public void LightWoodenShieldConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.LightWoodenShield, Is.EqualTo("Light wooden shield"));
+        }
+
+        [Test]
+        public void LightSteelShieldConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.LightSteelShield, Is.EqualTo("Light steel shield"));
+        }
+
+        [Test]
+        public void HeavyWoodenShieldConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.HeavyWoodenShield, Is.EqualTo("Heavy wooden shield"));
+        }
+
+        [Test]
+        public void HeavySteelShieldConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.HeavySteelShield, Is.EqualTo("Heavy steel shield"));
+        }
+
+        [Test]
+        public void TowerShieldConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Armor.TowerShield, Is.EqualTo("Tower shield"));
+        }
+
+        [Test]
+        public void AdamantineConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Adamantine, Is.EqualTo("Adamantine"));
+        }
+
+        [Test]
+        public void DragonhideConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Dragonhide, Is.EqualTo("Dragonhide"));
+        }
+
+        [Test]
+        public void ColdIronConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.ColdIron, Is.EqualTo("Cold iron"));
+        }
+
+        [Test]
+        public void MithralConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.Mithral, Is.EqualTo("Mithral"));
+        }
+
+        [Test]
+        public void AlchemicalSilverConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Traits.AlchemicalSilver, Is.EqualTo("Alchemical silver"));
         }
     }
 }

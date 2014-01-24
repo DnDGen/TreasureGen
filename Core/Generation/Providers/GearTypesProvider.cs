@@ -7,11 +7,11 @@ namespace EquipmentGen.Core.Generation.Providers
 {
     public class GearTypesProvider : IGearTypesProvider
     {
-        private IGearTypesXmlParser gearTypesXmlParser;
+        private ITypesXmlParser gearTypesXmlParser;
 
         private Dictionary<String, IEnumerable<String>> table;
 
-        public GearTypesProvider(IGearTypesXmlParser gearTypesXmlParser)
+        public GearTypesProvider(ITypesXmlParser gearTypesXmlParser)
         {
             this.gearTypesXmlParser = gearTypesXmlParser;
         }
