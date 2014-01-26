@@ -38,17 +38,17 @@
     </object>
     <object>
         <lower>47</lower>
-        <content>Composite (+0) Shortbow</content>
+        <content>Composite (+0) shortbow</content>
         <upper>51</upper>
     </object>
     <object>
         <lower>52</lower>
-        <content>Composite (+1) Shortbow</content>
+        <content>Composite (+1) shortbow</content>
         <upper>56</upper>
     </object>
     <object>
         <lower>57</lower>
-        <content>Composite (+2) Shortbow</content>
+        <content>Composite (+2) shortbow</content>
         <upper>61</upper>
     </object>
     <object>
@@ -63,27 +63,27 @@
     </object>
     <object>
         <lower>76</lower>
-        <content>Composite (+0) Longbow</content>
+        <content>Composite (+0) longbow</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Composite (+1) Longbow</content>
+        <content>Composite (+1) longbow</content>
         <upper>85</upper>
     </object>
     <object>
         <lower>86</lower>
-        <content>Composite (+2) Longbow</content>
+        <content>Composite (+2) longbow</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Composite (+3) Longbow</content>
+        <content>Composite (+3) longbow</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>Composite (+4) Longbow</content>
+        <content>Composite (+4) longbow</content>
         <upper>100</upper>
     </object>
 </percentile>

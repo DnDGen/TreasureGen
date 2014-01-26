@@ -15,433 +15,728 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void BucklerGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.Buckler, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Wood);
+            var types = new[] 
+            { 
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Wood
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.Buckler, types);
         }
 
         [Test]
         public void LightWoodenShieldGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.LightWoodenShield, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Wood);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Wood
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.LightWoodenShield, types);
         }
 
         [Test]
         public void LightSteelShieldGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.LightSteelShield, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Metal 
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.LightSteelShield, types);
         }
 
         [Test]
         public void HeavyWoodenShieldGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.HeavyWoodenShield, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Wood);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Wood
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.HeavyWoodenShield, types);
         }
 
         [Test]
         public void HeavySteelShieldGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.HeavySteelShield, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[]
+            { 
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.HeavySteelShield, types);
         }
 
         [Test]
         public void TowerShieldGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.TowerShield, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Wood);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Wood
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.TowerShield, types);
         }
 
         [Test]
         public void PaddedArmorGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.PaddedArmor, ItemsConstants.ItemTypes.Armor);
+            var types = new[]
+            { 
+                ItemsConstants.ItemTypes.Armor
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.PaddedArmor, types);
         }
 
         [Test]
         public void LeatherArmorGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.LeatherArmor, ItemsConstants.ItemTypes.Armor);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Armor
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.LeatherArmor, types);
         }
 
         [Test]
         public void StuddedLeatherArmorGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.StuddedLeatherArmor, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.StuddedLeatherArmor, types);
         }
 
         [Test]
         public void ChainShirtArmorGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.ChainShirt, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.ChainShirt, types);
         }
 
         [Test]
         public void HideArmorGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.HideArmor, ItemsConstants.ItemTypes.Armor);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.HideArmor, types);
         }
 
         [Test]
         public void ScaleMailGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.ScaleMail, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            { 
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.ScaleMail, types);
         }
 
         [Test]
         public void ChainmailGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.Chainmail, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[]
+            { 
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.Chainmail, types);
         }
 
         [Test]
         public void BreastplateGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.Breastplate, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.Breastplate, types);
         }
 
         [Test]
         public void SplintMailGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.SplintMail, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal 
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.SplintMail, types);
         }
 
         [Test]
         public void BandedMailGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.BandedMail, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.BandedMail, types);
         }
 
         [Test]
         public void HalfPlateGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.HalfPlate, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Armor,
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.HalfPlate, types);
         }
 
         [Test]
         public void FullPlateGearTypes()
         {
-            AssertContent(ItemsConstants.Gear.Armor.FullPlate, ItemsConstants.ItemTypes.Armor, ItemsConstants.Gear.Types.Metal);
+            var types = new[] 
+            { 
+                ItemsConstants.ItemTypes.Armor, 
+                ItemsConstants.Gear.Types.Metal
+            };
+
+            AssertContent(ItemsConstants.Gear.Armor.FullPlate, types);
         }
 
         [Test]
         public void DaggerGearTypes()
         {
-            AssertContent("Dagger", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Dagger, types);
         }
 
         [Test]
         public void GreataxeGearTypes()
         {
-            AssertContent("Greataxe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Greataxe, types);
         }
 
         [Test]
         public void GreatswordGearTypes()
         {
-            AssertContent("Greatsword", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee 
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Greatsword, types);
         }
 
         [Test]
         public void KamaGearTypes()
         {
-            AssertContent("Kama", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Wood,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Kama, types);
         }
 
         [Test]
         public void LongswordGearTypes()
         {
-            AssertContent("Longsword", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee 
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Longsword, types);
         }
 
         [Test]
         public void LightMaceGearTypes()
         {
-            AssertContent("Light mace", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee 
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.LightMace, types);
         }
 
         [Test]
         public void HeavyMaceGearTypes()
         {
-            AssertContent("Heavy mace", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon, 
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common, 
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.HeavyMace, types);
         }
 
         [Test]
         public void NunchakuGearTypes()
         {
-            AssertContent("Nunchaku", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Wood,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Nunchaku, types);
         }
 
         [Test]
         public void QuarterstaffGearTypes()
         {
-            AssertContent("Quarterstaff", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.DoubleWeapon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Wood,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.DoubleWeapon, 
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Quarterstaff, types);
         }
 
         [Test]
         public void RapierGearTypes()
         {
-            AssertContent("Rapier", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal, 
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Rapier, types);
         }
 
         [Test]
         public void ScimitarGearTypes()
         {
-            AssertContent("Scimitar", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common, 
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Scimitar, types);
         }
 
         [Test]
         public void ShortspearGearTypes()
         {
-            AssertContent("Shortspear", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Wood,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee 
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Shortspear, types);
         }
 
         [Test]
         public void SianghamGearTypes()
         {
-            AssertContent("Siangham", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.Siangham, types);
         }
 
         [Test]
         public void BastardSwordGearTypes()
         {
-            AssertContent("Bastard sword", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[]
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.BastardSword, types);
         }
 
         [Test]
         public void ShortSwordGearTypes()
         {
-            AssertContent("Short sword", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal,
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee 
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.ShortSword, types);
         }
 
         [Test]
         public void DwarvenWaraxeGearTypes()
         {
-            AssertContent("Dwarven waraxe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Melee);
+            var types = new[] 
+            {
+                ItemsConstants.ItemTypes.Weapon,
+                ItemsConstants.Gear.Types.Metal, 
+                ItemsConstants.Gear.Types.Common,
+                ItemsConstants.Gear.Types.Melee
+            };
+
+            AssertContent(ItemsConstants.Gear.Weapons.DwarvenWaraxe, types);
         }
 
         [Test]
         public void OrcDoubleAxeGearTypes()
         {
-            AssertContent("Orc double axe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.DoubleWeapon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.OrcDoubleAxe, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.DoubleWeapon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void BattleaxeGearTypes()
         {
-            AssertContent("Battleaxe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Battleaxe, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void SpikedChainGearTypes()
         {
-            AssertContent("Spiked chain", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.SpikedChain, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void ClubGearTypes()
         {
-            AssertContent("Club", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Club, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void HandCrossbowGearTypes()
         {
-            AssertContent("Hand crossbow", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.HandCrossbow, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
         }
 
         [Test]
         public void RepeatingCrossbowGearTypes()
         {
-            AssertContent("Repeating crossbow", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.RepeatingCrossbow, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
         }
 
         [Test]
         public void PunchingDaggerGearTypes()
         {
-            AssertContent("Punching dagger", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.PunchingDagger, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void FalchionGearTypes()
         {
-            AssertContent("Falchion", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Falchion, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void DireFlailGearTypes()
         {
-            AssertContent("Dire flail", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.DireFlail, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
         }
 
         [Test]
         public void HeavyFlailGearTypes()
         {
-            AssertContent("Heavy flail", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.HeavyFlail, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void LightFlailGearTypes()
         {
-            AssertContent("Light flail", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.LightFlail, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void GauntletGearTypes()
         {
-            AssertContent("Gauntlet", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Gauntlet, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void SpikedGauntletGearTypes()
         {
-            AssertContent("Spiked gauntlet", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.SpikedGauntlet, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void GlaiveGearTypes()
         {
-            AssertContent("Glaive", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Glaive, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void GreatclubGearTypes()
         {
-            AssertContent("Greatclub", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Greatclub, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void GuisarmeGearTypes()
         {
-            AssertContent("Guisarme", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Guisarme, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void HalberdGearTypes()
         {
-            AssertContent("Halberd", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Halberd, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void HalfspearGearTypes()
         {
-            AssertContent("Halfspear", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Halfspear, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void GnomeHookedHammerGearTypes()
         {
-            AssertContent("Gnome hooked hammer", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.GnomeHookedHammer, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
         }
 
         [Test]
         public void LightHammerGearTypes()
         {
-            AssertContent("Light hammer", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.LightHammer, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void HandaxeGearTypes()
         {
-            AssertContent("Handaxe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Handaxe, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void KukriGearTypes()
         {
-            AssertContent("Kukri", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Kukri, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void LanceGearTypes()
         {
-            AssertContent("Lance", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Lance, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void LongspearGearTypes()
         {
-            AssertContent("Longspear", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Longspear, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void MorningstarGearTypes()
         {
-            AssertContent("Morningstar", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Morningstar, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void NetGearTypes()
         {
-            AssertContent("Net", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Net, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
         }
 
         [Test]
         public void HeavyPickGearTypes()
         {
-            AssertContent("Heavy pick", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.HeavyPick, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void LightPickGearTypes()
         {
-            AssertContent("Light pick", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.LightPick, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void RanseurGearTypes()
         {
-            AssertContent("Ranseur", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Ranseur, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void SapGearTypes()
         {
-            AssertContent("Sap", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Sap, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void ScytheGearTypes()
         {
-            AssertContent("Scythe", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Scythe, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Wood, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void ShurikenGearTypes()
         {
-            AssertContent("Shuriken", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Shuriken, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Ranged);
         }
 
         [Test]
         public void SickleGearTypes()
         {
-            AssertContent("Sickle", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Sickle, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void TwoBladedSwordGearTypes()
         {
-            AssertContent("Two-bladed sword", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.TwoBladedSword, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
         }
 
         [Test]
         public void TridentGearTypes()
         {
-            AssertContent("Trident", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Trident, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void DwarvenUrgroshGearTypes()
         {
-            AssertContent("Dwarven urgrosh", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.DwarvenUrgrosh, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.DoubleWeapon);
         }
 
         [Test]
         public void WarhammerGearTypes()
         {
-            AssertContent("Warhammer", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Warhammer, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
         }
 
         [Test]
         public void WhipGearTypes()
         {
-            AssertContent("Whip", ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Whip, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Uncommon, ItemsConstants.Gear.Types.Melee);
+        }
+
+        [Test]
+        public void ArrowGearTypes()
+        {
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.Arrow, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Ranged, ItemsConstants.Gear.Types.Ammunition, ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Wood);
+        }
+
+        [Test]
+        public void CrossbowBoltGearTypes()
+        {
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.CrossbowBolt, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Ranged, ItemsConstants.Gear.Types.Ammunition, ItemsConstants.Gear.Types.Metal);
+        }
+
+        [Test]
+        public void SlingBulletGearTypes()
+        {
+            var types = new[] { };
+            AssertContent(ItemsConstants.Gear.Weapons.SlingBullet, ItemsConstants.ItemTypes.Weapon, ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Ranged, ItemsConstants.Gear.Types.Ammunition, ItemsConstants.Gear.Types.Metal);
         }
     }
 }

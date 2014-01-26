@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Core.Data.Items;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
@@ -14,103 +15,103 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void AmmunitionPercentile()
         {
-            AssertContent("Ammunition", 1, 10);
+            AssertContent(ItemsConstants.Gear.Types.Ammunition, 1, 10);
         }
 
         [Test]
         public void ThrowingAxePercentile()
         {
-            AssertContent("Throwing axe", 11, 15);
+            AssertContent(ItemsConstants.Gear.Weapons.ThrowingAxe, 11, 15);
         }
 
         [Test]
         public void HeavyCrossbowPercentile()
         {
-            AssertContent("Heavy crossbow", 16, 25);
+            AssertContent(ItemsConstants.Gear.Weapons.HeavyCrossbow, 16, 25);
         }
 
         [Test]
         public void LightCrossbowPercentile()
         {
-            AssertContent("Light crossbow", 26, 35);
+            AssertContent(ItemsConstants.Gear.Weapons.LightCrossbow, 26, 35);
         }
 
         [Test]
         public void DartPercentile()
         {
-            AssertContent("Dart", 36, 39);
+            AssertContent(ItemsConstants.Gear.Weapons.Dart, 36, 39);
         }
 
         [Test]
         public void JavelinPercentile()
         {
-            AssertContent("Javelin", 40, 41);
+            AssertContent(ItemsConstants.Gear.Weapons.Javelin, 40, 41);
         }
 
         [Test]
         public void ShortbowPercentile()
         {
-            AssertContent("Shortbow", 42, 46);
+            AssertContent(ItemsConstants.Gear.Weapons.Shortbow, 42, 46);
         }
 
         [Test]
-        public void Composite0ShortbowPercentile()
+        public void CompositePlus0ShortbowPercentile()
         {
-            AssertContent("Composite (+0) Shortbow", 47, 51);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus0Shortbow, 47, 51);
         }
 
         [Test]
-        public void Composite1ShortbowPercentile()
+        public void CompositePlus1ShortbowPercentile()
         {
-            AssertContent("Composite (+1) Shortbow", 52, 56);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus1Shortbow, 52, 56);
         }
 
         [Test]
-        public void Composite2ShortbowPercentile()
+        public void CompositePlus2ShortbowPercentile()
         {
-            AssertContent("Composite (+2) Shortbow", 57, 61);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus2Shortbow, 57, 61);
         }
 
         [Test]
         public void SlingPercentile()
         {
-            AssertContent("Sling", 62, 65);
+            AssertContent(ItemsConstants.Gear.Weapons.Sling, 62, 65);
         }
 
         [Test]
         public void LongbowPercentile()
         {
-            AssertContent("Longbow", 66, 75);
+            AssertContent(ItemsConstants.Gear.Weapons.Longbow, 66, 75);
         }
 
         [Test]
-        public void Composite0LongbowPercentile()
+        public void CompositePlus0LongbowPercentile()
         {
-            AssertContent("Composite (+0) Longbow", 76, 80);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus0Longbow, 76, 80);
         }
 
         [Test]
-        public void Composite1LongbowPercentile()
+        public void CompositePlus1LongbowPercentile()
         {
-            AssertContent("Composite (+1) Longbow", 81, 85);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus1Longbow, 81, 85);
         }
 
         [Test]
-        public void Composite2LongbowPercentile()
+        public void CompositePlus2LongbowPercentile()
         {
-            AssertContent("Composite (+2) Longbow", 86, 90);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus2Longbow, 86, 90);
         }
 
         [Test]
-        public void Composite3LongbowPercentile()
+        public void CompositePlus3LongbowPercentile()
         {
-            AssertContent("Composite (+3) Longbow", 91, 95);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus3Longbow, 91, 95);
         }
 
         [Test]
-        public void Composite4LongbowPercentile()
+        public void CompositePlus4LongbowPercentile()
         {
-            AssertContent("Composite (+4) Longbow", 96, 100);
+            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus4Longbow, 96, 100);
         }
     }
 }

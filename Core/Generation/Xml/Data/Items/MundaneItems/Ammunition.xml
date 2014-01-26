@@ -3,17 +3,17 @@
 <percentile>
   <object>
     <lower>1</lower>
-    <content>Arrows</content>
+    <content>Arrow</content>
     <upper>50</upper>
   </object>
     <object>
         <lower>51</lower>
-        <content>Crossbow bolts</content>
+        <content>Crossbow bolt</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Sling bullets</content>
+        <content>Sling bullet</content>
         <upper>100</upper>
     </object>
 </percentile>

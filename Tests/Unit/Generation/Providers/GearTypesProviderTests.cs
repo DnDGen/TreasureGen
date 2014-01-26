@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EquipmentGen.Core.Generation.Exceptions;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
@@ -42,6 +43,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             gearTypesProvider.GetGearTypesFor("gear name");
             gearTypesProvider.GetGearTypesFor("gear name");
             mockGearTypesXmlParser.Verify(p => p.Parse(It.IsAny<String>()), Times.Once);
+        }
+
+        [Test, ExpectedException(typeof(ItemNotFoundException))]
+        public void GearTypesProviderThrowsErrorIfGearNotFound()
+        {
+            gearTypesProvider.GetGearTypesFor("unknown gear name");
         }
     }
 }

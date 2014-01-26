@@ -28,10 +28,11 @@ namespace EquipmentGen.Core.Generation.Generators
             var tableName = String.Format("{0}Weapons", type);
             var weaponName = percentileResultProvider.GetPercentileResult(tableName);
 
-            if (weaponName == "Ammunition")
-                return ammunitionGenerator.Generate();
-
             var weapon = new Gear();
+
+            if (weaponName == "Ammunition")
+                weapon = ammunitionGenerator.Generate();
+
             weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
             weapon.Name = weaponName;
             weapon.Types = gearTypesProvider.GetGearTypesFor(weapon.Name);

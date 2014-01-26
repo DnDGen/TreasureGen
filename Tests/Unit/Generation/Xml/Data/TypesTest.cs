@@ -22,15 +22,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
             typesXmlParser = new TypesXmlParser(streamLoader);
         }
 
-        protected void AssertContent(String gearName, params String[] expectedTypes)
+        protected void AssertContent(String gearName, IEnumerable<String> expectedTypes)
         {
             CacheTable();
 
             var actualTypes = table[gearName];
 
+
             foreach (var expectedType in expectedTypes)
                 Assert.That(actualTypes, Contains.Item(expectedType));
 
+            Assert.That(actualTypes, Contains.Item(expectedTypes));
             Assert.That(actualTypes.Count(), Is.EqualTo(expectedTypes.Count()));
         }
 

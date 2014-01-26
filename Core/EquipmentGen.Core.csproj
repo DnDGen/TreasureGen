@@ -55,6 +55,7 @@
     <Compile Include="Data\Items\Gear.cs" />
     <Compile Include="Data\Items\TraitItem.cs" />
     <Compile Include="Data\Treasure.cs" />
+    <Compile Include="Generation\Exceptions\ItemNotFoundException.cs" />
     <Compile Include="Generation\Factories\Interfaces\IMagicalItemGeneratorFactory.cs" />
     <Compile Include="Generation\Factories\Interfaces\IMundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Factories\MagicalItemGeneratorFactory.cs" />

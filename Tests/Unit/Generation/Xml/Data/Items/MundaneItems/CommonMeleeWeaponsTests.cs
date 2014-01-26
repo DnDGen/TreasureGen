@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Core.Data.Items;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
@@ -14,97 +15,97 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DaggerPercentile()
         {
-            AssertContent("Dagger", 1, 4);
+            AssertContent(ItemsConstants.Gear.Weapons.Dagger, 1, 4);
         }
 
         [Test]
         public void GreataxePercentile()
         {
-            AssertContent("Greataxe", 5, 14);
+            AssertContent(ItemsConstants.Gear.Weapons.Greataxe, 5, 14);
         }
 
         [Test]
         public void GreatswordPercentile()
         {
-            AssertContent("Greatsword", 15, 24);
+            AssertContent(ItemsConstants.Gear.Weapons.Greatsword, 15, 24);
         }
 
         [Test]
         public void KamaPercentile()
         {
-            AssertContent("Kama", 25, 28);
+            AssertContent(ItemsConstants.Gear.Weapons.Kama, 25, 28);
         }
 
         [Test]
         public void LongswordPercentile()
         {
-            AssertContent("Longsword", 29, 41);
+            AssertContent(ItemsConstants.Gear.Weapons.Longsword, 29, 41);
         }
 
         [Test]
         public void LightMacePercentile()
         {
-            AssertContent("Light mace", 42, 45);
+            AssertContent(ItemsConstants.Gear.Weapons.LightMace, 42, 45);
         }
 
         [Test]
         public void HeavyMacePercentile()
         {
-            AssertContent("Heavy mace", 46, 50);
+            AssertContent(ItemsConstants.Gear.Weapons.HeavyMace, 46, 50);
         }
 
         [Test]
         public void NunchakuPercentile()
         {
-            AssertContent("Nunchaku", 51, 54);
+            AssertContent(ItemsConstants.Gear.Weapons.Nunchaku, 51, 54);
         }
 
         [Test]
         public void QuarterstaffPercentile()
         {
-            AssertContent("Quarterstaff", 55, 57);
+            AssertContent(ItemsConstants.Gear.Weapons.Quarterstaff, 55, 57);
         }
 
         [Test]
         public void RapierPercentile()
         {
-            AssertContent("Rapier", 58, 61);
+            AssertContent(ItemsConstants.Gear.Weapons.Rapier, 58, 61);
         }
 
         [Test]
         public void ScimitarPercentile()
         {
-            AssertContent("Scimitar", 62, 66);
+            AssertContent(ItemsConstants.Gear.Weapons.Scimitar, 62, 66);
         }
 
         [Test]
         public void ShortspearPercentile()
         {
-            AssertContent("Shortspear", 67, 70);
+            AssertContent(ItemsConstants.Gear.Weapons.Shortspear, 67, 70);
         }
 
         [Test]
         public void SianghamPercentile()
         {
-            AssertContent("Siangham", 71, 74);
+            AssertContent(ItemsConstants.Gear.Weapons.Siangham, 71, 74);
         }
 
         [Test]
         public void BastardSwordPercentile()
         {
-            AssertContent("Bastard sword", 75, 84);
+            AssertContent(ItemsConstants.Gear.Weapons.BastardSword, 75, 84);
         }
 
         [Test]
         public void ShortSwordPercentile()
         {
-            AssertContent("Short sword", 85, 89);
+            AssertContent(ItemsConstants.Gear.Weapons.ShortSword, 85, 89);
         }
 
         [Test]
         public void DwarvenWaraxePercentile()
         {
-            AssertContent("Dwarven waraxe", 90, 100);
+            AssertContent(ItemsConstants.Gear.Weapons.DwarvenWaraxe, 90, 100);
         }
     }
 }
