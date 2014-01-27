@@ -62,6 +62,7 @@
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\PowerGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />

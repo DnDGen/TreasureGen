@@ -27,15 +27,19 @@ namespace EquipmentGen.Core.Generation.Generators
             var type = percentileResultProvider.GetPercentileResult("MundaneWeapons");
             var tableName = String.Format("{0}Weapons", type);
             var weaponName = percentileResultProvider.GetPercentileResult(tableName);
-
             var weapon = new Gear();
 
             if (weaponName == "Ammunition")
+            {
                 weapon = ammunitionGenerator.Generate();
+            }
+            else
+            {
+                weapon.Name = weaponName;
+                weapon.Types = gearTypesProvider.GetGearTypesFor(weapon.Name);
+            }
 
             weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
-            weapon.Name = weaponName;
-            weapon.Types = gearTypesProvider.GetGearTypesFor(weapon.Name);
 
             if (materialsProvider.HasSpecialMaterial())
             {

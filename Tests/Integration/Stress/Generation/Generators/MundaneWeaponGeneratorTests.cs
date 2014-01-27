@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(weapon, Is.Not.Null);
                 Assert.That(weapon.Name, Is.Not.Empty);
-                Assert.That(weapon.Traits, Is.Not.Null);
+                Assert.That(weapon.Traits, Contains.Item(ItemsConstants.Gear.Traits.Masterwork));
                 Assert.That(weapon.Abilities, Is.Empty);
                 Assert.That(weapon.MagicalBonus, Is.EqualTo(0));
                 Assert.That(weapon.Types, Contains.Item(ItemsConstants.ItemTypes.Weapon));
@@ -55,14 +55,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 intersection = range.Intersect(weapon.Types);
                 Assert.That(intersection, Is.Not.Empty, "Range");
-
-                if (weapon is Ammunition)
-                {
-                    var ammo = weapon as Ammunition;
-                    Assert.That(ammo.Quantity, Is.GreaterThan(0));
-                    Assert.That(ammo.Types, Contains.Item(ItemsConstants.Gear.Types.Ranged));
-                    Assert.That(ammo.Types, Contains.Item(ItemsConstants.Gear.Types.Ammunition));
-                }
             }
 
             AssertIterations();
