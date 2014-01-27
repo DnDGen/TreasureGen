@@ -108,5 +108,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             material = materialsProvider.GetSpecialMaterialFor(new[] { "type" });
             Assert.That(material, Is.EqualTo("special material 2"));
         }
+
+        [Test]
+        public void IfNoAllowedMaterial_ReturnEmptyString()
+        {
+            var material = materialsProvider.GetSpecialMaterialFor(new[] { "type" });
+            Assert.That(material, Is.Empty);
+        }
     }
 }

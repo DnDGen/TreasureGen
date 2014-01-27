@@ -142,5 +142,18 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Types, Is.Not.Contains(ItemsConstants.Gear.Types.Metal));
         }
+
+        [Test]
+        public void DragonhideIsNotWood()
+        {
+            var types = new[] { ItemsConstants.Gear.Types.Wood };
+            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("armor type")).Returns(types);
+
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
+            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns(ItemsConstants.Gear.Traits.Dragonhide);
+
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Types, Is.Not.Contains(ItemsConstants.Gear.Types.Wood));
+        }
     }
 }

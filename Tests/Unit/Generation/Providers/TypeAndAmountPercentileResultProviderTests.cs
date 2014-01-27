@@ -36,8 +36,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
                 .Returns(String.Empty);
 
             var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
-            Assert.That(result.Type, Is.EqualTo(String.Empty));
-            Assert.That(result.RollToDetermineAmount, Is.EqualTo(String.Empty));
+            Assert.That(result.Type, Is.Empty);
+            Assert.That(result.RollToDetermineAmount, Is.Empty);
         }
 
         [Test]

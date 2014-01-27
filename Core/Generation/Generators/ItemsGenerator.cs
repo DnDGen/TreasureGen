@@ -26,9 +26,11 @@ namespace EquipmentGen.Core.Generation.Generators
             var tableName = String.Format("Level{0}Items", level);
             var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
 
-            var amount = dice.Roll(typeAndAmountResult.RollToDetermineAmount);
             var items = new List<Item>();
+            if (String.IsNullOrEmpty(typeAndAmountResult.RollToDetermineAmount))
+                return items;
 
+            var amount = dice.Roll(typeAndAmountResult.RollToDetermineAmount);
             while (amount-- > 0)
             {
                 var item = powerItemGenerator.GenerateAtPower(typeAndAmountResult.Type);

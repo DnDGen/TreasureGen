@@ -16,13 +16,17 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         public IMundaneGearGeneratorFactory mundaneGearGeneratorFactory { get; set; }
 
         private IMundaneGearGenerator mundaneWeaponGenerator;
-        private IEnumerable<String> gearMaterialTypes;
+
+        private IEnumerable<String> commonality;
+        private IEnumerable<String> range;
 
         [SetUp]
         public void Setup()
         {
             mundaneWeaponGenerator = mundaneGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Weapon);
-            gearMaterialTypes = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.Gear.Types.Wood };
+            commonality = new[] { ItemsConstants.Gear.Types.Common, ItemsConstants.Gear.Types.Uncommon };
+            range = new[] { ItemsConstants.Gear.Types.Melee, ItemsConstants.Gear.Types.Ranged };
+
             StartTest();
         }
 
@@ -46,13 +50,16 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(weapon.MagicalBonus, Is.EqualTo(0));
                 Assert.That(weapon.Types, Contains.Item(ItemsConstants.ItemTypes.Weapon));
 
-                var intersection = weapon.Types.Intersect(gearMaterialTypes);
-                Assert.That(intersection, Is.Not.Empty);
+                var intersection = commonality.Intersect(weapon.Types);
+                Assert.That(intersection, Is.Not.Empty, "Commonality");
+
+                intersection = range.Intersect(weapon.Types);
+                Assert.That(intersection, Is.Not.Empty, "Range");
 
                 if (weapon is Ammunition)
                 {
                     var ammo = weapon as Ammunition;
-                    Assert.That(ammo.Quantity, Is.GreaterThanOrEqualTo(0));
+                    Assert.That(ammo.Quantity, Is.GreaterThan(0));
                 }
             }
 

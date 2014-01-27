@@ -15,37 +15,43 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void AdamantineTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Adamantine, ItemsConstants.Gear.Types.Metal);
+            var types = new[] { ItemsConstants.Gear.Types.Metal };
+            AssertContent(ItemsConstants.Gear.Traits.Adamantine, types);
         }
 
         [Test]
         public void DragonhideTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Dragonhide, ItemsConstants.ItemTypes.Armor);
+            var types = new[] { ItemsConstants.ItemTypes.Armor };
+            AssertContent(ItemsConstants.Gear.Traits.Dragonhide, types);
         }
 
         [Test]
         public void ColdIronTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.ColdIron, ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon);
+            var types = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon };
+            AssertContent(ItemsConstants.Gear.Traits.ColdIron, types);
         }
 
         [Test]
         public void MithralTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Mithral, ItemsConstants.Gear.Types.Metal);
+            var types = new[] { ItemsConstants.Gear.Types.Metal };
+            AssertContent(ItemsConstants.Gear.Traits.Mithral, types);
         }
 
         [Test]
         public void AlchemicalSilverTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.AlchemicalSilver, ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon);
+            var types = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon };
+            AssertContent(ItemsConstants.Gear.Traits.AlchemicalSilver, types);
         }
 
         [Test]
         public void DarkwoodTypes()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Darkwood, ItemsConstants.Gear.Types.Wood);
+            var types = new[] { ItemsConstants.Gear.Types.Wood };
+            AssertContent(ItemsConstants.Gear.Traits.Darkwood, types);
         }
     }
 }

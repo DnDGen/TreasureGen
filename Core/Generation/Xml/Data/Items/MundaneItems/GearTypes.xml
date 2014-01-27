@@ -476,4 +476,141 @@
         <type>Uncommon</type>
         <type>Melee</type>
     </object>
+    <object>
+        <key>Arrow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Wood</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Crossbow bolt</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Sling bullet</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Composite (+0) longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+1) longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+2) longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+3) longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+4) longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+0) shortbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+1) shortbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Composite (+2) shortbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Longbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Shortbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Dart</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Heavy crossbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Light crossbow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+    </object>
+    <object>
+        <key>Javelin</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Wood</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Sling</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+    </object>
+    <object>
+        <key>Throwing axe</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Metal</type>
+    </object>
 </types>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -47,6 +48,12 @@ namespace EquipmentGen.Core.Generation.Generators
             {
                 var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
                 armor.Traits.Add(specialMaterial);
+
+                if (specialMaterial == ItemsConstants.Gear.Traits.Dragonhide
+                    && (armor.Types.Contains(ItemsConstants.Gear.Types.Metal) || armor.Types.Contains(ItemsConstants.Gear.Types.Wood)))
+                {
+                    armor.Types = armor.Types.Where(t => t != ItemsConstants.Gear.Types.Metal && t != ItemsConstants.Gear.Types.Wood);
+                }
             }
 
             return armor;

@@ -80,5 +80,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             Assert.That(items, Contains.Item(firstItem));
             Assert.That(items, Contains.Item(secondItem));
         }
+
+        [Test]
+        public void IfTypeAndAmountProviderReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
+        {
+            result.Type = String.Empty;
+            result.RollToDetermineAmount = String.Empty;
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
+            mockDice.Setup(d => d.Roll(String.Empty)).Throws(new FormatException());
+
+            var items = generator.GenerateAtLevel(1);
+            Assert.That(items, Is.Empty);
+        }
     }
 }

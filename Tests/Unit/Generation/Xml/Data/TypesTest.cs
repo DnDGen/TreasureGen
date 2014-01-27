@@ -28,11 +28,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
 
             var actualTypes = table[gearName];
 
-
             foreach (var expectedType in expectedTypes)
                 Assert.That(actualTypes, Contains.Item(expectedType));
 
-            Assert.That(actualTypes, Contains.Item(expectedTypes));
             Assert.That(actualTypes.Count(), Is.EqualTo(expectedTypes.Count()));
         }
 
