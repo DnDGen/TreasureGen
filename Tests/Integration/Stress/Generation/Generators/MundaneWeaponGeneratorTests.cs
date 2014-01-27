@@ -60,6 +60,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 {
                     var ammo = weapon as Ammunition;
                     Assert.That(ammo.Quantity, Is.GreaterThan(0));
+                    Assert.That(ammo.Types, Contains.Item(ItemsConstants.Gear.Types.Ranged));
+                    Assert.That(ammo.Types, Contains.Item(ItemsConstants.Gear.Types.Ammunition));
                 }
             }
 

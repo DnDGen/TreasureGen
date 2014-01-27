@@ -47,24 +47,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemsGeneratorGetsItemTypeFromTypeAndAmountPercentileResultProvider()
         {
-            generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level1Items"), Times.Once);
+            generator.GenerateAtLevel(9266);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level9266Items"), Times.Once);
         }
 
         [Test]
         public void ItemsGeneratorGetsAmountFromRoll()
         {
-            generator.GenerateAtLevel(1);
-            mockDice.Verify(d => d.Roll(result.RollToDetermineAmount), Times.Once);
-        }
+            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(9266);
 
-        [Test]
-        public void ItemsGeneratorCallsPowerItemGeneratorFiveTimesWhenAmountIsFive()
-        {
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(5);
-
-            generator.GenerateAtLevel(1);
-            mockPowerItemGenerator.Verify(f => f.GenerateAtPower("power"), Times.Exactly(5));
+            var items = generator.GenerateAtLevel(1);
+            Assert.That(items.Count(), Is.EqualTo(9266));
         }
 
         [Test]
@@ -86,7 +79,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result.Type = String.Empty;
             result.RollToDetermineAmount = String.Empty;
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("Level1Items")).Returns(result);
             mockDice.Setup(d => d.Roll(String.Empty)).Throws(new FormatException());
 
             var items = generator.GenerateAtLevel(1);
