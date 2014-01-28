@@ -25,13 +25,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void AmmunitionGeneratorGeneratesAmmunition()
+        public void StressedAmmunitionGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var ammunition = AmmunitionGenerator.Generate();
 
-                Assert.That(ammunition, Is.Not.Null);
                 Assert.That(ammunition.Abilities, Is.Empty);
                 Assert.That(ammunition.MagicalBonus, Is.EqualTo(0));
                 Assert.That(ammunition.Name, Is.Not.Empty);

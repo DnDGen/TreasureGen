@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -24,14 +23,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void TreasureGeneratorReturnsTreasure()
+        public void StressedTreasureGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var level = GetNewLevel();
                 var treasure = TreasureGenerator.GenerateAtLevel(level);
 
-                Assert.That(treasure, Is.Not.Null, "treasure");
                 Assert.That(treasure.Coin, Is.Not.Null, "coin");
                 Assert.That(treasure.Goods, Is.Not.Null, "goods");
                 Assert.That(treasure.Items, Is.Not.Null, "items");

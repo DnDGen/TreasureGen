@@ -22,7 +22,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void Setup()
         {
             result = new TypeAndAmountPercentileResult();
-            result.RollToDetermineAmount = "9266";
+            result.Type = "armor type";
+            result.Amount = 9266;
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
@@ -52,8 +53,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void PowerArmorGeneratorGetsNameFromPercentileResultProvider()
         {
-            result.Type = "armor type";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("armor typeType")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "Type")).Returns("armor name");
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("armor name"));
@@ -62,8 +62,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void PowerArmorGeneratorGetsGearTypesFromProvider()
         {
-            result.Type = "armor type";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("armor typeType")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "Type")).Returns("armor name");
 
             var types = new[] { "type 1", "type 2" };
             mockGearTypesProvider.Setup(p => p.GetGearTypesFor("armor name")).Returns(types);
@@ -75,13 +74,41 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void PowerArmorGeneratorGetsSpecificItems()
         {
-            result.Type = "armor type";
-            result.RollToDetermineAmount = "Specific";
-
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerSpecificarmor type")).Returns("specific armor name");
+            result.Type = "Specific armor type";
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerSpecific" + result.Type)).Returns("specific armor name");
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("specific armor name"));
+        }
+
+        [Test]
+        public void PowerArmorGeneratorGetsAbilities()
+        {
+            var abilityResult = new TypeAndAmountPercentileResult();
+            abilityResult.Type = "SpecialAbility";
+            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetTypeAndAmountPercentileResult("powerArmor"))
+                .Returns(abilityResult).Returns(result);
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "SpecialAbilities")).Returns("ability");
+
+            var armor = powerArmorGenerator.GenerateAtPower("power");
+            Assert.That(armor.Abilities[0], Is.EqualTo("ability"));
+            Assert.That(armor.Abilities.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void PowerArmorGeneratorGetsNumberOfAbilitiesAsRolled()
+        {
+            var abilityResult = new TypeAndAmountPercentileResult();
+            abilityResult.Type = "SpecialAbility";
+            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetTypeAndAmountPercentileResult("powerArmor"))
+                .Returns(abilityResult).Returns(abilityResult).Returns(result);
+            mockPercentileResultProvider.SetupSequence(p => p.GetPercentileResult(result.Type + "SpecialAbilities"))
+                .Returns("ability 1").Returns("ability 2");
+
+            var armor = powerArmorGenerator.GenerateAtPower("power");
+            Assert.That(armor.Abilities[0], Is.EqualTo("ability 1"));
+            Assert.That(armor.Abilities[0], Is.EqualTo("ability 2"));
+            Assert.That(armor.Abilities.Count, Is.EqualTo(2));
         }
     }
 }

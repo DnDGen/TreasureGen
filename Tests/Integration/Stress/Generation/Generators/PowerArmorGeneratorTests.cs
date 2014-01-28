@@ -28,14 +28,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void PowerArmorGeneratorReturnsArmor()
+        public void StressedPowerArmorGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var power = GetNewPower();
                 var armor = powerArmorGenerator.GenerateAtPower(power);
 
-                Assert.That(armor, Is.Not.Null);
                 Assert.That(armor.Name, Is.Not.Empty);
                 Assert.That(armor.MagicalBonus, Is.GreaterThan(0));
                 Assert.That(armor.Abilities, Is.Not.Null);

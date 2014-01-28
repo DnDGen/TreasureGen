@@ -23,12 +23,19 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             var tableName = String.Format("{0}Armor", power);
             var result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
-
             var armor = new Gear();
-            tableName = String.Format("{0}Type", result.Type);
+
+            if (result.Type.StartsWith("Specific"))
+            {
+                tableName = String.Format("{0}Specific{1}", power, result.Type);
+            }
+            else
+            {
+                tableName = String.Format("{0}Type", result.Type);
+                armor.MagicalBonus = result.Amount;
+            }
 
             armor.Name = percentileResultProvider.GetPercentileResult(tableName);
-            armor.MagicalBonus = Convert.ToInt32(result.RollToDetermineAmount);
             armor.Types = gearTypesProvider.GetGearTypesFor(armor.Name);
 
             return armor;

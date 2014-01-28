@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Data.Goods;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 
@@ -32,9 +31,9 @@ namespace EquipmentGen.Core.Generation.Generators
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
-
-            var amount = dice.Roll(typeAndAmountResult.RollToDetermineAmount);
+            var amount = typeAndAmountResult.Amount;
             tableName = String.Format("{0}Value", typeAndAmountResult.Type);
+
             while (amount-- > 0)
             {
                 var valueResult = goodPercentileResultProvider.GetGoodValuePercentileResult(tableName);

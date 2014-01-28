@@ -31,13 +31,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void MundaneArmorGeneratorReturnsArmor()
+        public void StressedMundaneArmorGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var armor = mundaneArmorGenerator.Generate();
 
-                Assert.That(armor, Is.Not.Null);
                 Assert.That(armor.Name, Is.Not.Empty);
                 Assert.That(armor.Traits, Is.Not.Null);
                 Assert.That(armor.Abilities, Is.Empty);

@@ -23,13 +23,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void MundaneItemGeneratorReturnsItem()
+        public void StressedMundaneItemGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var item = MundaneItemGenerator.Generate();
-
-                Assert.That(item, Is.Not.Null);
                 Assert.That(item.Name, Is.Not.Empty);
             }
 

@@ -1,5 +1,4 @@
-﻿using D20Dice;
-using EquipmentGen.Core.Data.Items;
+﻿using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 
@@ -8,13 +7,10 @@ namespace EquipmentGen.Core.Generation.Generators
     public class AlchemicalItemGenerator : IAlchemicalItemGenerator
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
-        private IDice dice;
 
-        public AlchemicalItemGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider,
-            IDice dice)
+        public AlchemicalItemGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
-            this.dice = dice;
         }
 
         public AlchemicalItem Generate()
@@ -23,7 +19,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             var item = new AlchemicalItem();
             item.Name = result.Type;
-            item.Quantity = dice.Roll(result.RollToDetermineAmount);
+            item.Quantity = result.Amount;
 
             return item;
         }

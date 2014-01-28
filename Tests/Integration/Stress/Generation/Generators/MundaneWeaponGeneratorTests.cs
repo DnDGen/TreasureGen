@@ -37,13 +37,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void MundaneWeaponGeneratorGeneratesWeapon()
+        public void StressedMundaneWeaponGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var weapon = mundaneWeaponGenerator.Generate();
 
-                Assert.That(weapon, Is.Not.Null);
                 Assert.That(weapon.Name, Is.Not.Empty);
                 Assert.That(weapon.Traits, Contains.Item(ItemsConstants.Gear.Traits.Masterwork));
                 Assert.That(weapon.Abilities, Is.Empty);

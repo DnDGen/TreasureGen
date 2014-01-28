@@ -1,7 +1,6 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Core.Data.Coins;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 
@@ -29,7 +28,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 return coin;
 
             coin.Currency = result.Type;
-            coin.Quantity = dice.Roll(result.RollToDetermineAmount);
+            coin.Quantity = result.Amount;
 
             return coin;
         }

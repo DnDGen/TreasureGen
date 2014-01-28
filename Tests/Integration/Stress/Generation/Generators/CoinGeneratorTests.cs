@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -24,15 +23,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void CoinGeneratorReturnsCoin()
+        public void StressedCoinGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var level = GetNewLevel();
                 var coin = CoinGenerator.GenerateAtLevel(level);
 
-                Assert.That(coin, Is.Not.Null, "coin");
-                Assert.That(coin.Currency, Is.Not.Null, "currency");
+                Assert.That(coin.Currency, Is.Not.Null);
                 Assert.That(coin.Quantity, Is.GreaterThanOrEqualTo(0));
             }
 

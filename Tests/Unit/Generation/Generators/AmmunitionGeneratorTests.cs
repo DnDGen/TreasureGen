@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "ammunition name";
-            result.RollToDetermineAmount = "roll";
+            result.Amount = 9266;
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("Ammunition")).Returns(result);
@@ -36,18 +36,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void AmmunitionGeneratorGetsNameFromTypeAndAmountPercentileResultProvider()
+        public void AmmunitionGeneratorGetsNameAndQuantityFromTypeAndAmountPercentileResultProvider()
         {
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Name, Is.EqualTo(result.Type));
-        }
-
-        [Test]
-        public void AmmunitionGeneratorRollsAmount()
-        {
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(9266);
-
-            var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Quantity, Is.EqualTo(9266));
         }
 

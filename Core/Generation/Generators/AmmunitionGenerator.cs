@@ -25,7 +25,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             var ammunition = new Ammunition();
             ammunition.Name = result.Type;
-            ammunition.Quantity = dice.Roll(result.RollToDetermineAmount);
+            ammunition.Quantity = result.Amount;
             ammunition.Types = gearTypesProvider.GetGearTypesFor(ammunition.Name);
 
             return ammunition;

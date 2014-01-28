@@ -54,16 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var coin = generator.GenerateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(result.Type));
-        }
-
-        [Test]
-        public void ParsesRollOutOfPercentileResults()
-        {
-            result.RollToDetermineAmount = "1d2*100";
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(9266);
-
-            var coin = generator.GenerateAtLevel(1);
-            Assert.That(coin.Quantity, Is.EqualTo(9266));
+            Assert.That(coin.Quantity, Is.EqualTo(result.Amount));
         }
     }
 }

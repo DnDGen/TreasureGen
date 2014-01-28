@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -15,7 +14,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     public class ItemsGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
-        private Mock<IDice> mockDice;
         private Mock<IPowerItemGenerator> mockPowerItemGenerator;
         private IItemsGenerator generator;
 
@@ -26,15 +24,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "power";
-            result.RollToDetermineAmount = "amount";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
 
-            mockDice = new Mock<IDice>();
-
             mockPowerItemGenerator = new Mock<IPowerItemGenerator>();
 
-            generator = new ItemsGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object, mockPowerItemGenerator.Object);
+            generator = new ItemsGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockPowerItemGenerator.Object);
         }
 
         [Test]
@@ -54,8 +50,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemsGeneratorGetsAmountFromRoll()
         {
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(9266);
-
             var items = generator.GenerateAtLevel(1);
             Assert.That(items.Count(), Is.EqualTo(9266));
         }
@@ -63,7 +57,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemsGeneratorReturnsItemsFromPowerItemGenerator()
         {
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(2);
+            result.Amount = 2;
             var firstItem = new AlchemicalItem();
             var secondItem = new BasicItem();
             mockPowerItemGenerator.SetupSequence(f => f.GenerateAtPower("power")).Returns(firstItem).Returns(secondItem);
@@ -78,9 +72,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void IfTypeAndAmountProviderReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
         {
             result.Type = String.Empty;
-            result.RollToDetermineAmount = String.Empty;
+            result.Amount = 0;
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("Level1Items")).Returns(result);
-            mockDice.Setup(d => d.Roll(String.Empty)).Throws(new FormatException());
 
             var items = generator.GenerateAtLevel(1);
             Assert.That(items, Is.Empty);

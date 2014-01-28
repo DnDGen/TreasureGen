@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -24,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void GoodsGeneratorReturnsGoods()
+        public void StressedGoodsGenerator()
         {
             while (TestShouldKeepRunning())
             {

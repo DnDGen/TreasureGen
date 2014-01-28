@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void AlchemicalItemGeneratorReturnsAlchemicalItem()
+        public void StressedAlchemicalItemGenerator()
         {
             while (TestShouldKeepRunning())
             {

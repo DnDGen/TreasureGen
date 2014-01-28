@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             typeAndAmountResult = new TypeAndAmountPercentileResult();
             typeAndAmountResult.Type = "type";
-            typeAndAmountResult.RollToDetermineAmount = "roll";
+            typeAndAmountResult.Amount = 2;
 
             valueResult = new GoodValuePercentileResult();
             valueResult.ValueRoll = "92d66";
@@ -39,7 +39,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockGoodPercentileResultProvider.Setup(p => p.GetGoodValuePercentileResult(It.IsAny<String>())).Returns(valueResult);
 
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Roll(typeAndAmountResult.RollToDetermineAmount)).Returns(2);
 
             generator = new GoodsGenerator(mockGoodPercentileResultProvider.Object, mockDice.Object, mockTypeAndAmountPercentileResultProvider.Object);
         }

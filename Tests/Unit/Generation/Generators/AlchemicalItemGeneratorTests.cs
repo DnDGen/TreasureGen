@@ -1,5 +1,4 @@
-﻿using D20Dice;
-using EquipmentGen.Core.Generation.Generators;
+﻿using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Objects;
@@ -13,7 +12,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     {
         private IAlchemicalItemGenerator generator;
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileProvider;
-        private Mock<IDice> mockDice;
 
         private TypeAndAmountPercentileResult result;
 
@@ -22,33 +20,18 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "alchemical item";
-            result.RollToDetermineAmount = "roll";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileProvider.Setup(p => p.GetTypeAndAmountPercentileResult("AlchemicalItems")).Returns(result);
-            mockDice = new Mock<IDice>();
 
-            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object, mockDice.Object);
+            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object);
         }
 
         [Test]
-        public void AlchemicalItemGeneratorReturnsAlchemicalItem()
-        {
-            var item = generator.Generate();
-            Assert.That(item, Is.Not.Null);
-        }
-
-        [Test]
-        public void AlchemicalItemGeneratorGetsItemFromTypeAndAmountPercentileResultProvider()
+        public void AlchemicalItemGeneratorGetsItemAndQuantityFromTypeAndAmountPercentileResultProvider()
         {
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));
-        }
-
-        [Test]
-        public void AlchemicalItemGeneratorGetsAmountFromTypeAndAmountPercentileResultProvider()
-        {
-            mockDice.Setup(d => d.Roll(result.RollToDetermineAmount)).Returns(9266);
-            var item = generator.Generate();
             Assert.That(item.Quantity, Is.EqualTo(9266));
         }
     }

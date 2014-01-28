@@ -23,13 +23,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void ToolGeneratorReturnsTool()
+        public void StressedToolGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var tool = ToolGenerator.Generate();
 
-                Assert.That(tool, Is.Not.Null);
                 Assert.That(tool.Name, Is.Not.Empty);
             }
 

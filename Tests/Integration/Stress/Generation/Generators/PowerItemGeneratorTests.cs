@@ -23,14 +23,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void PowerItemGeneratorReturnsItem()
+        public void StressedPowerItemGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var power = GetNewPower();
                 var item = PowerItemGenerator.GenerateAtPower(power);
 
-                Assert.That(item, Is.Not.Null);
                 Assert.That(item.Name, Is.Not.Empty);
             }
 
