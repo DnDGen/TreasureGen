@@ -149,6 +149,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<ITypesXmlParser>();
         }
 
+        [Test]
+        public void GearSpecialAbilitiesGeneratorNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IGearSpecialAbilitiesGenerator>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();

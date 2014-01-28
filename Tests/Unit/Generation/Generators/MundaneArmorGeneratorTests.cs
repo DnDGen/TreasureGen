@@ -131,6 +131,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
+        public void NoEmptyStringAddedToTraitsForSpecialMaterials()
+        {
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
+            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns(String.Empty);
+
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Traits, Is.Not.Contains(String.Empty));
+        }
+
+        [Test]
         public void DragonhideIsNotMetal()
         {
             var types = new[] { ItemsConstants.Gear.Types.Metal };

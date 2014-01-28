@@ -10,13 +10,18 @@ namespace EquipmentGen.Core.Generation.Generators
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
         private IGearTypesProvider gearTypesProvider;
+        private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
+        private IMaterialsProvider materialsProvider;
 
         public PowerArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider)
+            IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
+            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, IMaterialsProvider materialsProvider)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
             this.gearTypesProvider = gearTypesProvider;
+            this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
+            this.materialsProvider = materialsProvider;
         }
 
         public Gear GenerateAtPower(String power)
@@ -24,8 +29,16 @@ namespace EquipmentGen.Core.Generation.Generators
             var tableName = String.Format("{0}Armor", power);
             var result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
             var armor = new Gear();
+            var abilities = 0;
 
-            if (result.Type.StartsWith("Specific"))
+            while (result.Type == "SpecialAbility")
+            {
+                abilities += result.Amount;
+                result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
+            }
+
+            var specific = result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase);
+            if (specific)
             {
                 tableName = String.Format("{0}Specific{1}", power, result.Type);
             }
@@ -37,6 +50,18 @@ namespace EquipmentGen.Core.Generation.Generators
 
             armor.Name = percentileResultProvider.GetPercentileResult(tableName);
             armor.Types = gearTypesProvider.GetGearTypesFor(armor.Name);
+
+            if (!specific)
+            {
+                armor.Abilities = gearSpecialAbilitiesProvider.GenerateFor(armor.Types, power, armor.MagicalBonus, abilities);
+
+                if (materialsProvider.HasSpecialMaterial())
+                {
+                    var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
+                    if (!String.IsNullOrEmpty(specialMaterial))
+                        armor.Traits.Add(specialMaterial);
+                }
+            }
 
             return armor;
         }

@@ -19,6 +19,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
+            Bind<IGearSpecialAbilitiesGenerator>().To<GearSpecialAbilitiesGenerator>();
             Bind<IGearTypesProvider>().To<GearTypesProvider>().InSingletonScope();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();

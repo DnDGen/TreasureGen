@@ -31,7 +31,10 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void GearWithOneAbility()
         {
-            gear.Abilities.Add("ability");
+            gear.Abilities = new[] 
+            {
+                new GearSpecialAbility() { Name = "ability" }
+            };
 
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability"));
         }
@@ -39,8 +42,11 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void GearWithTwoAbilities()
         {
-            gear.Abilities.Add("ability");
-            gear.Abilities.Add("second ability");
+            gear.Abilities = new[] 
+            {
+                new GearSpecialAbility() { Name = "ability" },
+                new GearSpecialAbility() { Name = "second ability" }
+            };
 
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability and second ability"));
         }
@@ -48,9 +54,12 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void GearWithThreeAbilities()
         {
-            gear.Abilities.Add("ability");
-            gear.Abilities.Add("second ability");
-            gear.Abilities.Add("third ability");
+            gear.Abilities = new[] 
+            {
+                new GearSpecialAbility() { Name = "ability" },
+                new GearSpecialAbility() { Name = "second ability" },
+                new GearSpecialAbility() { Name = "third ability" }
+            };
 
             Assert.That(gear.ToString(), Is.EqualTo("shiny gear of ability, second ability, and third ability"));
         }
@@ -59,12 +68,15 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         public void GearWithMagicalBonusAndAbilitiesAndTraits()
         {
             gear.MagicalBonus = 2;
-            gear.Abilities.Add("ability");
-            gear.Abilities.Add("second ability");
-            gear.Abilities.Add("third ability");
             gear.Traits.Add("trait");
             gear.Traits.Add("other trait");
             gear.Traits.Add("third trait");
+            gear.Abilities = new[] 
+            {
+                new GearSpecialAbility() { Name = "ability" },
+                new GearSpecialAbility() { Name = "second ability" },
+                new GearSpecialAbility() { Name = "third ability" }
+            };
 
             Assert.That(gear.ToString(), Is.EqualTo("+2 shiny gear of ability, second ability, and third ability (trait, other trait, third trait)"));
         }

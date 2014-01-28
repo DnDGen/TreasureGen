@@ -50,6 +50,7 @@
     <Compile Include="Data\Items\AlchemicalItem.cs" />
     <Compile Include="Data\Items\Ammunition.cs" />
     <Compile Include="Data\Items\BasicItem.cs" />
+    <Compile Include="Data\Items\GearSpecialAbility.cs" />
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\ItemsConstants.cs" />
     <Compile Include="Data\Items\Gear.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\AmmunitionGenerator.cs" />
+    <Compile Include="Generation\Generators\GearSpecialAbilitiesGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IAmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMagicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMundaneGearGenerator.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Generation\Generators\PowerWeaponGenerator.cs" />
     <Compile Include="Generation\Providers\GearTypesProvider.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IGearSpecialAbilitiesGenerator.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGearTypesProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IGoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Providers\Interfaces\IMaterialProvider.cs" />

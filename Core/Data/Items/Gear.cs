@@ -7,13 +7,13 @@ namespace EquipmentGen.Core.Data.Items
     public class Gear : TraitItem
     {
         public Int32 MagicalBonus { get; set; }
-        public List<String> Abilities { get; set; }
+        public IEnumerable<GearSpecialAbility> Abilities { get; set; }
         public IEnumerable<String> Types { get; set; }
 
         public Gear()
         {
-            Abilities = new List<String>();
-            Types = new List<String>();
+            Abilities = Enumerable.Empty<GearSpecialAbility>();
+            Types = Enumerable.Empty<String>();
         }
 
         public override String ToString()
@@ -38,11 +38,13 @@ namespace EquipmentGen.Core.Data.Items
 
         private String GetAbilitiesString()
         {
-            if (Abilities.Count < 3)
-                return String.Join(" and ", Abilities);
+            var abilityStrings = Abilities.Select<GearSpecialAbility, String>(a => a.ToString());
 
-            var abilitiesString = String.Join(", ", Abilities);
-            var last = Abilities.Last();
+            if (Abilities.Count() < 3)
+                return String.Join(" and ", abilityStrings);
+
+            var abilitiesString = String.Join(", ", abilityStrings);
+            var last = abilityStrings.Last();
             var indexOfLast = abilitiesString.LastIndexOf(last);
             abilitiesString = abilitiesString.Insert(indexOfLast, "and ");
 

@@ -47,12 +47,12 @@ namespace EquipmentGen.Core.Generation.Generators
             if (!armor.Traits.Contains(ItemsConstants.Gear.Traits.Darkwood) && materialsProvider.HasSpecialMaterial())
             {
                 var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
-                armor.Traits.Add(specialMaterial);
-
-                if (specialMaterial == ItemsConstants.Gear.Traits.Dragonhide
-                    && (armor.Types.Contains(ItemsConstants.Gear.Types.Metal) || armor.Types.Contains(ItemsConstants.Gear.Types.Wood)))
+                if (!String.IsNullOrEmpty(specialMaterial))
                 {
-                    armor.Types = armor.Types.Where(t => t != ItemsConstants.Gear.Types.Metal && t != ItemsConstants.Gear.Types.Wood);
+                    armor.Traits.Add(specialMaterial);
+
+                    if (specialMaterial == ItemsConstants.Gear.Traits.Dragonhide)
+                        armor.Types = armor.Types.Where(t => t != ItemsConstants.Gear.Types.Metal && t != ItemsConstants.Gear.Types.Wood);
                 }
             }
 

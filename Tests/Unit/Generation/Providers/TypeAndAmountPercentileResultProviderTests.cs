@@ -42,7 +42,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
 
             var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
             Assert.That(result.Type, Is.Empty);
-            Assert.That(result.Amount, Is.Empty);
+            Assert.That(result.Amount, Is.EqualTo(0));
         }
 
         [Test]

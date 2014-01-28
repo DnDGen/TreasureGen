@@ -54,6 +54,7 @@
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
     <Compile Include="Data\Items\AlchemicalItemTests.cs" />
     <Compile Include="Data\Items\AmmunitionTests.cs" />
+    <Compile Include="Data\Items\GearSpecialAbilityTests.cs" />
     <Compile Include="Data\Items\GearTests.cs" />
     <Compile Include="Data\Items\ItemsConstantsTests.cs" />
     <Compile Include="Data\Items\ItemTests.cs" />
