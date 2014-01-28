@@ -3,6 +3,8 @@ using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
+using EquipmentGen.Core.Generation.Providers.Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Factories
@@ -15,7 +17,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         [SetUp]
         public void Setup()
         {
-            factory = new PowerGearGeneratorFactory();
+            var mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
+            var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
+            var mockGearTypesProvider = new Mock<IGearTypesProvider>();
+
+            factory = new PowerGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
+                mockPercentileResultProvider.Object, mockGearTypesProvider.Object);
         }
 
         [Test]

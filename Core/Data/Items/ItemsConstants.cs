@@ -138,6 +138,7 @@ namespace EquipmentGen.Core.Data.Items
                 public const String Melee = "Melee";
                 public const String Ranged = "Ranged";
                 public const String Ammunition = "Ammunition";
+                public const String Shield = "Shield";
             }
 
             public static class Traits

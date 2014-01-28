@@ -743,5 +743,11 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(ItemsConstants.Gear.Types.Ammunition, Is.EqualTo("Ammunition"));
         }
+
+        [Test]
+        public void ShieldGearTypeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Shield, Is.EqualTo("Shield"));
+        }
     }
 }
