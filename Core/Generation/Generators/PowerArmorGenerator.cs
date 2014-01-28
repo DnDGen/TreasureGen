@@ -8,7 +8,9 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         public Gear GenerateAtPower(String power)
         {
-            throw new NotImplementedException();
+            var armor = new Gear();
+
+            return armor;
         }
     }
 }
