@@ -6,7 +6,7 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class RingGenerator : IMagicalItemGenerator
     {
-        public Item GenerateAtPower(String power)
+        public TraitItem GenerateAtPower(String power)
         {
             throw new NotImplementedException();
         }

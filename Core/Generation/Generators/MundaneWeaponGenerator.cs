@@ -10,11 +10,11 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
-        private IMaterialsProvider materialsProvider;
+        private ISpecialMaterialGenerator materialsProvider;
         private IGearTypesProvider gearTypesProvider;
 
         public MundaneWeaponGenerator(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            IMaterialsProvider materialsProvider, IGearTypesProvider gearTypesProvider)
+            ISpecialMaterialGenerator materialsProvider, IGearTypesProvider gearTypesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;
@@ -43,13 +43,13 @@ namespace EquipmentGen.Core.Generation.Generators
 
             if (materialsProvider.HasSpecialMaterial())
             {
-                var specialMaterial = materialsProvider.GetSpecialMaterialFor(weapon.Types);
+                var specialMaterial = materialsProvider.GenerateSpecialMaterialFor(weapon.Types);
                 if (!String.IsNullOrEmpty(specialMaterial))
                     weapon.Traits.Add(specialMaterial);
 
                 if (weapon.Types.Contains(ItemsConstants.Gear.Types.DoubleWeapon) && materialsProvider.HasSpecialMaterial())
                 {
-                    var secondSpecialMaterial = materialsProvider.GetSpecialMaterialFor(weapon.Types);
+                    var secondSpecialMaterial = materialsProvider.GenerateSpecialMaterialFor(weapon.Types);
 
                     if (specialMaterial != secondSpecialMaterial && !String.IsNullOrEmpty(secondSpecialMaterial))
                         weapon.Traits.Add(secondSpecialMaterial);

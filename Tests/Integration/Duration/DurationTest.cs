@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Tests.Integration.Common;
@@ -45,6 +46,26 @@ namespace EquipmentGen.Tests.Integration.Duration
                 case 3: return ItemsConstants.Power.Major;
                 default: throw new ArgumentOutOfRangeException();
             }
+        }
+
+        protected IEnumerable<String> GetNewTypes()
+        {
+            var types = new List<String>();
+
+            switch (Random.Next(2))
+            {
+                case 0: types.Add(ItemsConstants.ItemTypes.Armor); break;
+                case 1: types.Add(ItemsConstants.ItemTypes.Weapon); break;
+            }
+
+            switch (Random.Next(3))
+            {
+                case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
+                case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
+                default: break;
+            }
+
+            return types;
         }
     }
 }

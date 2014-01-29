@@ -11,11 +11,11 @@ namespace EquipmentGen.Core.Generation.Generators
         private IPercentileResultProvider percentileResultProvider;
         private IGearTypesProvider gearTypesProvider;
         private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
-        private IMaterialsProvider materialsProvider;
+        private ISpecialMaterialGenerator materialsProvider;
 
         public PowerArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
-            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, IMaterialsProvider materialsProvider)
+            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
@@ -57,7 +57,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
                 if (materialsProvider.HasSpecialMaterial())
                 {
-                    var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
+                    var specialMaterial = materialsProvider.GenerateSpecialMaterialFor(armor.Types);
                     if (!String.IsNullOrEmpty(specialMaterial))
                         armor.Traits.Add(specialMaterial);
                 }

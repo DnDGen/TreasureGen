@@ -12,14 +12,17 @@ namespace EquipmentGen.Core.Generation.Generators
         private IPercentileResultProvider percentileResultProvider;
         private IPowerGearGeneratorFactory powerGearGeneratorFactory;
         private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
+        private ICurseGenerator curseGenerator;
 
         public PowerItemGenerator(IMundaneItemGenerator mundaneItemGenerator, IPercentileResultProvider percentileResultProvider,
-            IPowerGearGeneratorFactory powerGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory)
+            IPowerGearGeneratorFactory powerGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory,
+            ICurseGenerator curseGenerator)
         {
             this.mundaneItemGenerator = mundaneItemGenerator;
             this.percentileResultProvider = percentileResultProvider;
             this.powerGearGeneratorFactory = powerGearGeneratorFactory;
             this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
+            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -35,19 +38,31 @@ namespace EquipmentGen.Core.Generation.Generators
             var tableName = String.Format("{0}Items", power);
             var type = percentileResultProvider.GetPercentileResult(tableName);
 
+            TraitItem item;
             if (type == ItemsConstants.ItemTypes.Armor || type == ItemsConstants.ItemTypes.Weapon)
-                return GeneratePowerGearAtPower(type, power);
+                item = GeneratePowerGearAtPower(type, power);
+            else
+                item = GenerateMagicalItemAtPower(type, power);
 
-            return GenerateMagicalItemAtPower(type, power);
+            if (curseGenerator.HasCurse())
+            {
+                var curse = curseGenerator.GenerateCurseTrait();
+                if (curse == "SpecificCursedItem")
+                    return curseGenerator.GenerateSpecificCursedItem();
+
+                item.Traits.Add(curse);
+            }
+
+            return item;
         }
 
-        private Item GeneratePowerGearAtPower(String type, String power)
+        private TraitItem GeneratePowerGearAtPower(String type, String power)
         {
             var powerGearGenerator = powerGearGeneratorFactory.CreateWith(type);
             return powerGearGenerator.GenerateAtPower(power);
         }
 
-        private Item GenerateMagicalItemAtPower(String type, String power)
+        private TraitItem GenerateMagicalItemAtPower(String type, String power)
         {
             var magicalItemGenerator = magicalItemGeneratorFactory.CreateWith(type);
             return magicalItemGenerator.GenerateAtPower(power);

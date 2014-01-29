@@ -19,6 +19,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IPowerGearGenerator> mockPowerGearGenerator;
         private Mock<IMagicalItemGenerator> mockMagicalItemGenerator;
         private Mock<IMagicalItemGeneratorFactory> mockMagicalItemGeneratorFactory;
+        private Mock<ICurseGenerator> mockCurseGenerator;
 
         [SetUp]
         public void Setup()
@@ -26,6 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockMundaneItemGenerator = new Mock<IMundaneItemGenerator>();
             mockPowerGearGenerator = new Mock<IPowerGearGenerator>();
             mockPowerGearGeneratorFactory = new Mock<IPowerGearGeneratorFactory>();
+            mockCurseGenerator = new Mock<ICurseGenerator>();
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns(ItemsConstants.ItemTypes.WondrousItem);
@@ -33,12 +35,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockMagicalItemGenerator = new Mock<IMagicalItemGenerator>();
             mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
             var dummyMock = new Mock<IMagicalItemGenerator>();
-            var item = new BasicItem();
+            var item = new TraitItem();
             dummyMock.Setup(m => m.GenerateAtPower(It.IsAny<String>())).Returns(item);
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith(It.IsAny<String>())).Returns(dummyMock.Object);
 
             powerItemGenerator = new PowerItemGenerator(mockMundaneItemGenerator.Object, mockPercentileResultProvider.Object,
-                mockPowerGearGeneratorFactory.Object, mockMagicalItemGeneratorFactory.Object);
+                mockPowerGearGeneratorFactory.Object, mockMagicalItemGeneratorFactory.Object, mockCurseGenerator.Object);
         }
 
         [Test]
@@ -92,13 +94,57 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void PowerItemGeneratorGetsMagicalItemsFromMagicalItemGenerator()
         {
-            var magicalItem = new BasicItem();
+            var magicalItem = new TraitItem();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
 
             var item = powerItemGenerator.GenerateAtPower("power");
             Assert.That(item, Is.EqualTo(magicalItem));
+        }
+
+        [Test]
+        public void PowerItemGeneratorDoesNotGetCurseTraits()
+        {
+            var magicalItem = new TraitItem();
+            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
+            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
+
+            mockCurseGenerator.Setup(g => g.HasCurse()).Returns(false);
+            mockCurseGenerator.Setup(g => g.GenerateCurseTrait()).Returns("cursed");
+
+            var item = powerItemGenerator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(magicalItem));
+            Assert.That(magicalItem.Traits, Is.Not.Contains("cursed"));
+        }
+
+        [Test]
+        public void PowerItemGeneratorGetsCurseTraits()
+        {
+            var magicalItem = new TraitItem();
+            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
+            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
+
+            mockCurseGenerator.Setup(g => g.HasCurse()).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurseTrait()).Returns("cursed");
+
+            var item = powerItemGenerator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(magicalItem));
+            Assert.That(magicalItem.Traits, Contains.Item("cursed"));
+        }
+
+        [Test]
+        public void PowerItemGeneratorGetsSpecificCursedItems()
+        {
+            var cursedItem = new BasicItem();
+            mockCurseGenerator.Setup(g => g.HasCurse()).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurseTrait()).Returns("SpecificCursedItem");
+            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
+
+            var item = powerItemGenerator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(cursedItem));
         }
     }
 }

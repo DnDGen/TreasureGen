@@ -9,10 +9,10 @@ namespace EquipmentGen.Core.Generation.Generators
     public class MundaneArmorGenerator : IMundaneGearGenerator
     {
         private IPercentileResultProvider percentileResultProvider;
-        private IMaterialsProvider materialsProvider;
+        private ISpecialMaterialGenerator materialsProvider;
         private IGearTypesProvider gearTypesProvider;
 
-        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, IMaterialsProvider materialsProvider,
+        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, ISpecialMaterialGenerator materialsProvider,
             IGearTypesProvider gearTypesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
@@ -46,7 +46,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             if (!armor.Traits.Contains(ItemsConstants.Gear.Traits.Darkwood) && materialsProvider.HasSpecialMaterial())
             {
-                var specialMaterial = materialsProvider.GetSpecialMaterialFor(armor.Types);
+                var specialMaterial = materialsProvider.GenerateSpecialMaterialFor(armor.Types);
                 if (!String.IsNullOrEmpty(specialMaterial))
                 {
                     armor.Traits.Add(specialMaterial);

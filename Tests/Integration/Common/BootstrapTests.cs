@@ -134,7 +134,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void MaterialsProviderNotGeneratedAsSingletons()
         {
-            AssertNotSingleton<IMaterialsProvider>();
+            AssertNotSingleton<ISpecialMaterialGenerator>();
         }
 
         [Test]
@@ -153,6 +153,12 @@ namespace EquipmentGen.Tests.Integration.Common
         public void GearSpecialAbilitiesGeneratorNotGeneratedAsSingletons()
         {
             AssertNotSingleton<IGearSpecialAbilitiesGenerator>();
+        }
+
+        [Test]
+        public void CurseGeneratorNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<ICurseGenerator>();
         }
 
         private void AssertSingleton<T>()

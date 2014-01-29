@@ -13,11 +13,11 @@ namespace EquipmentGen.Core.Generation.Factories
         private IPercentileResultProvider percentileResultProvider;
         private IGearTypesProvider gearTypesProvider;
         private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
-        private IMaterialsProvider materialsProvider;
+        private ISpecialMaterialGenerator materialsProvider;
 
         public PowerGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
-            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, IMaterialsProvider materialsProvider)
+            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;

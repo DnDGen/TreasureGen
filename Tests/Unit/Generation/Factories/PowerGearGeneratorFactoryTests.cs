@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockGearTypesProvider = new Mock<IGearTypesProvider>();
             var mockGearSpecialAbilitiesProvider = new Mock<IGearSpecialAbilitiesGenerator>();
-            var mockMaterialsProvider = new Mock<IMaterialsProvider>();
+            var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
 
             factory = new PowerGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,

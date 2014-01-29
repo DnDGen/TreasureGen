@@ -18,6 +18,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
             Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
+            Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGearSpecialAbilitiesGenerator>().To<GearSpecialAbilitiesGenerator>();
             Bind<IGearTypesProvider>().To<GearTypesProvider>().InSingletonScope();
@@ -25,7 +26,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
             Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
-            Bind<IMaterialsProvider>().To<MaterialsProvider>();
+            Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<IMundaneGearGeneratorFactory>().To<MundaneGearGeneratorFactory>();
             Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();

@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
         private Mock<IGearTypesProvider> mockGearTypesProvider;
         private Mock<IGearSpecialAbilitiesGenerator> mockGearSpecialAbilitiesGenerator;
-        private Mock<IMaterialsProvider> mockMaterialsProvider;
+        private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
 
         private TypeAndAmountPercentileResult result;
 
@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockGearTypesProvider = new Mock<IGearTypesProvider>();
             mockGearSpecialAbilitiesGenerator = new Mock<IGearSpecialAbilitiesGenerator>();
-            mockMaterialsProvider = new Mock<IMaterialsProvider>();
+            mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
 
             powerArmorGenerator = new PowerArmorGenerator(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesGenerator.Object,
@@ -118,7 +118,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "SpecialAbilities")).Returns("ability");
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("specific armor name"));
@@ -131,7 +131,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void PowerArmorGeneratorDoesNotGetSpecialMaterialIfArmorDoesNotHaveSpecialMaterial()
         {
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(false);
-            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Traits, Is.Not.Contains("special material"));
@@ -141,7 +141,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void PowerArmorGeneratorGetsSpecialMaterialFromMaterialProvider()
         {
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Traits, Contains.Item("special material"));
@@ -151,7 +151,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void NoEmptyStringAddedToTraitsForSpecialMaterials()
         {
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GetSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns(String.Empty);
+            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<IEnumerable<String>>())).Returns(String.Empty);
 
             var armor = powerArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Traits, Is.Not.Contains(String.Empty));
@@ -159,12 +159,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
         [Test]
         public void PowerArmorGeneratorGetsTraits()
-        {
-            Assert.Fail();
-        }
-
-        [Test]
-        public void PowerArmorGeneratorGetsCurses()
         {
             Assert.Fail();
         }

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Providers
+namespace EquipmentGen.Core.Generation.Generators
 {
-    public class MaterialsProvider : IMaterialsProvider
+    public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private IDice dice;
         private ITypesXmlParser typesXmlParser;
 
-        public MaterialsProvider(IDice dice, ITypesXmlParser typesXmlParser)
+        public SpecialMaterialGenerator(IDice dice, ITypesXmlParser typesXmlParser)
         {
             this.dice = dice;
             this.typesXmlParser = typesXmlParser;
@@ -23,7 +23,7 @@ namespace EquipmentGen.Core.Generation.Providers
             return dice.Percentile() > 95;
         }
 
-        public String GetSpecialMaterialFor(IEnumerable<String> types)
+        public String GenerateSpecialMaterialFor(IEnumerable<String> types)
         {
             var specialMaterials = typesXmlParser.Parse("SpecialMaterials.xml");
             var filteredSpecialMaterials = specialMaterials.Where(kvp => kvp.Value.All(v => types.Contains(v)));

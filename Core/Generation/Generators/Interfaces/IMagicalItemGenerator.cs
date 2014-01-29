@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
     public interface IMagicalItemGenerator
     {
-        Item GenerateAtPower(String power);
+        TraitItem GenerateAtPower(String power);
     }
 }

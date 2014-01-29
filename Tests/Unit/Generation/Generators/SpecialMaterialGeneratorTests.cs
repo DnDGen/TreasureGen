@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Generation.Providers;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Core.Generation.Generators;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Providers
+namespace EquipmentGen.Tests.Unit.Generation.Generators
 {
     [TestFixture]
-    public class MaterialsProviderTests
+    public class SpecialMaterialGeneratorTests
     {
-        private IMaterialsProvider materialsProvider;
+        private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<IDice> mockDice;
         private Mock<ITypesXmlParser> mockTypesXmlParser;
 
@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             mockTypesXmlParser = new Mock<ITypesXmlParser>();
             mockTypesXmlParser.Setup(p => p.Parse("SpecialMaterials.xml")).Returns(materials);
 
-            materialsProvider = new MaterialsProvider(mockDice.Object, mockTypesXmlParser.Object);
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockTypesXmlParser.Object);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             for (var roll = 1; roll < 96; roll++)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var hasSpecialMaterial = materialsProvider.HasSpecialMaterial();
+                var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial();
                 Assert.That(hasSpecialMaterial, Is.False);
             }
         }
@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             for (var roll = 96; roll <= 100; roll++)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var hasSpecialMaterial = materialsProvider.HasSpecialMaterial();
+                var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial();
                 Assert.That(hasSpecialMaterial, Is.True);
             }
         }
@@ -56,7 +56,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void GetMaterialsFromXmlParser()
         {
-            materialsProvider.GetSpecialMaterialFor(Enumerable.Empty<String>());
+            specialMaterialsGenerator.GenerateSpecialMaterialFor(Enumerable.Empty<String>());
             mockTypesXmlParser.Verify(p => p.Parse("SpecialMaterials.xml"), Times.Once);
         }
 
@@ -65,10 +65,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         {
             materials.Add("special material", new[] { "type 1", "type 2" });
 
-            var material = materialsProvider.GetSpecialMaterialFor(new[] { "type 1", "type 2" });
+            var material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 1", "type 2" });
             Assert.That(material, Is.EqualTo("special material"));
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type 1", "type 2", "other type" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 1", "type 2", "other type" });
             Assert.That(material, Is.EqualTo("special material"));
         }
 
@@ -77,19 +77,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         {
             materials.Add("special material", new[] { "type 1", "type 2" });
 
-            var material = materialsProvider.GetSpecialMaterialFor(Enumerable.Empty<String>());
+            var material = specialMaterialsGenerator.GenerateSpecialMaterialFor(Enumerable.Empty<String>());
             Assert.That(material, Is.EqualTo(String.Empty));
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type 1" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 1" });
             Assert.That(material, Is.EqualTo(String.Empty));
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type 2" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 2" });
             Assert.That(material, Is.EqualTo(String.Empty));
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type 1", "other type" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 1", "other type" });
             Assert.That(material, Is.EqualTo(String.Empty));
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type 2", "other type" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type 2", "other type" });
             Assert.That(material, Is.EqualTo(String.Empty));
         }
 
@@ -100,19 +100,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             materials.Add("special material 2", new[] { "type" });
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(0);
 
-            var material = materialsProvider.GetSpecialMaterialFor(new[] { "type" });
+            var material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type" });
             Assert.That(material, Is.EqualTo("special material 1"));
 
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
 
-            material = materialsProvider.GetSpecialMaterialFor(new[] { "type" });
+            material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type" });
             Assert.That(material, Is.EqualTo("special material 2"));
         }
 
         [Test]
         public void IfNoAllowedMaterial_ReturnEmptyString()
         {
-            var material = materialsProvider.GetSpecialMaterialFor(new[] { "type" });
+            var material = specialMaterialsGenerator.GenerateSpecialMaterialFor(new[] { "type" });
             Assert.That(material, Is.Empty);
         }
     }
