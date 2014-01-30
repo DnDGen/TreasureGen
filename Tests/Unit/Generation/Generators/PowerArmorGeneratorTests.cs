@@ -20,6 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IGearTypesProvider> mockGearTypesProvider;
         private Mock<IGearSpecialAbilitiesGenerator> mockGearSpecialAbilitiesGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
+        private Mock<IMagicItemTraitsGenerator> mockMagicItemTraitsGenerator;
 
         private TypeAndAmountPercentileResult result;
 
@@ -37,6 +38,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockGearTypesProvider = new Mock<IGearTypesProvider>();
             mockGearSpecialAbilitiesGenerator = new Mock<IGearSpecialAbilitiesGenerator>();
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
+            mockMagicItemTraitsGenerator = new Mock<IMagicItemTraitsGenerator>();
 
             powerArmorGenerator = new PowerArmorGenerator(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesGenerator.Object,
@@ -160,7 +162,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void PowerArmorGeneratorGetsTraits()
         {
-            Assert.Fail();
+            var traits = new[] { "trait 1", "trait 2" };
+            mockMagicItemTraitsGenerator.Setup(g => g.GenerateTraitsFor(ItemsConstants.ItemTypes.Armor)).Returns(traits);
+
+            var armor = powerArmorGenerator.GenerateAtPower("power");
+            foreach (var trait in traits)
+                Assert.That(armor.Traits, Contains.Item(trait));
         }
     }
 }
