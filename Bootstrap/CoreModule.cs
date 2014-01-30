@@ -26,6 +26,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
             Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
+            Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<IMundaneGearGeneratorFactory>().To<MundaneGearGeneratorFactory>();
             Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();

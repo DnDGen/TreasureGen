@@ -46,19 +46,28 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void TypeAndAmountPercentileResultReturnsType()
+        public void TypeAndAmountPercentileResultProviderReturnsType()
         {
             var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
             Assert.That(result.Type, Is.EqualTo("type"));
         }
 
         [Test]
-        public void TypeAndAmountPercentileResultReturnsAmount()
+        public void TypeAndAmountPercentileResultProviderReturnsAmount()
         {
             mockDice.Setup(d => d.Roll("roll")).Returns(9266);
 
             var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
             Assert.That(result.Amount, Is.EqualTo(9266));
+        }
+
+        [Test, ExpectedException(typeof(FormatException))]
+        public void TypeAndAmountPercentileResultProviderThrowsExceptionIfNoComma()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
+                .Returns("no comma in this result");
+
+            typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
         }
     }
 }

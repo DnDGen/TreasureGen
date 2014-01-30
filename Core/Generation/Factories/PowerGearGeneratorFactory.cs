@@ -14,16 +14,19 @@ namespace EquipmentGen.Core.Generation.Factories
         private IGearTypesProvider gearTypesProvider;
         private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
+        private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
 
         public PowerGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
-            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider)
+            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+            IMagicalItemTraitsGenerator magicItemTraitsGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
             this.gearTypesProvider = gearTypesProvider;
             this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
+            this.magicItemTraitsGenerator = magicItemTraitsGenerator;
         }
 
         public IPowerGearGenerator CreateWith(String type)
@@ -31,7 +34,8 @@ namespace EquipmentGen.Core.Generation.Factories
             switch (type)
             {
                 case ItemsConstants.ItemTypes.Armor: return new PowerArmorGenerator(typeAndAmountPercentileProvider,
-                    percentileResultProvider, gearTypesProvider, gearSpecialAbilitiesProvider, materialsProvider);
+                    percentileResultProvider, gearTypesProvider, gearSpecialAbilitiesProvider, materialsProvider,
+                    magicItemTraitsGenerator);
                 case ItemsConstants.ItemTypes.Weapon: return new PowerWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }

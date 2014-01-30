@@ -23,10 +23,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockGearTypesProvider = new Mock<IGearTypesProvider>();
             var mockGearSpecialAbilitiesProvider = new Mock<IGearSpecialAbilitiesGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
+            var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
 
             factory = new PowerGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,
-                mockMaterialsProvider.Object);
+                mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object);
         }
 
         [Test]

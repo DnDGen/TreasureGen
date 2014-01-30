@@ -161,6 +161,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<ICurseGenerator>();
         }
 
+        [Test]
+        public void MagicalItemTraitsGeneratorNotGeneratedAsSingletons()
+        {
+            AssertNotSingleton<IMagicalItemTraitsGenerator>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();

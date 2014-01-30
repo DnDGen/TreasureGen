@@ -1,16 +1,11 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Goods.Art
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("ArtValue")]
     public class ArtValueTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "ArtValue";
-        }
-
         [Test]
         public void ArtValue1d10x10Percentile()
         {

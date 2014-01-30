@@ -68,9 +68,10 @@
     <Compile Include="Generation\Generators\Interfaces\IAmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ICurseGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMagicalItemGenerator.cs" />
-    <Compile Include="Generation\Generators\Interfaces\IMagicItemTraitsGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IMagicalItemTraitsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMundaneGearGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IMundaneItemGenerator.cs" />
+    <Compile Include="Generation\Generators\MagicalItemTraitsGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGenerator.cs" />
     <Compile Include="Generation\Generators\CoinGenerator.cs" />
     <Compile Include="Generation\Factories\PowerGearGeneratorFactory.cs" />

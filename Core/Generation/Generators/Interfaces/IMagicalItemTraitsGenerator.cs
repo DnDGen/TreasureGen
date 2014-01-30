@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
-    public interface IMagicItemTraitsGenerator
+    public interface IMagicalItemTraitsGenerator
     {
-        IEnumerable<String> GenerateTraitsFor(String itemType);
+        IEnumerable<String> GenerateFor(String itemType);
     }
 }

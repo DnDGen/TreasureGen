@@ -1,17 +1,12 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture]
+    [TestFixture, TypesFilename("GearTypes.xml")]
     public class GearTypesTests : TypesTest
     {
-        [SetUp]
-        public void Setup()
-        {
-            filename = "GearTypes.xml";
-        }
-
         [Test]
         public void BucklerGearTypes()
         {

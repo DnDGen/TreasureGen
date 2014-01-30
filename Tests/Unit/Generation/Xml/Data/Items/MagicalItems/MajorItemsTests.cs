@@ -1,17 +1,12 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("MajorItems")]
     public class MajorItemsTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "MajorItems";
-        }
-
         [Test]
         public void MajorArmorPercentile()
         {

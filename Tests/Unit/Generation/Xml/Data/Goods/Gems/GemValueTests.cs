@@ -1,16 +1,11 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Goods.Gems
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("GemValue")]
     public class GemValueTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "GemValue";
-        }
-
         [Test]
         public void GemValue4d4Percentile()
         {

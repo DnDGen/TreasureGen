@@ -1,16 +1,11 @@
-﻿using NUnit.Framework;
+﻿using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("AlchemicalItems")]
     public class AlchemicalItemsTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "AlchemicalItems";
-        }
-
         [Test]
         public void AlchemistsFirePercentile()
         {

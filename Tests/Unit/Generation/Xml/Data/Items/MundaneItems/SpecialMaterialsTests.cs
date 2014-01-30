@@ -1,17 +1,12 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture]
+    [TestFixture, TypesFilename("SpecialMaterials.xml")]
     public class SpecialMaterialsTests : TypesTest
     {
-        [SetUp]
-        public void Setup()
-        {
-            filename = "SpecialMaterials.xml";
-        }
-
         [Test]
         public void AdamantineTypes()
         {

@@ -24,6 +24,9 @@ namespace EquipmentGen.Core.Generation.Providers
             if (String.IsNullOrEmpty(percentileResult))
                 return result;
 
+            if (!percentileResult.Contains(","))
+                throw new FormatException("The table was not formatted for type and amount parsing");
+
             var parsedResult = percentileResult.Split(',');
 
             result.Type = parsedResult[0];

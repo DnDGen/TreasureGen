@@ -1,18 +1,13 @@
 ﻿using System;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("Level2Items")]
     public class Level2ItemsTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "Level2Items";
-        }
-
         [Test]
         public void Level2ItemsEmptyPercentile()
         {

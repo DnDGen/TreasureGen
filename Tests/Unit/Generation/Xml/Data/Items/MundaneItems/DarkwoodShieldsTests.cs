@@ -1,17 +1,12 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("DarkwoodShields")]
     public class DarkwoodShieldsTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "DarkwoodShields";
-        }
-
         [Test]
         public void DarkwoodBucklerPercentile()
         {

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using Moq;
 using NUnit.Framework;
 
@@ -11,10 +13,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
     [TestFixture]
     public abstract class PercentileTests
     {
-        protected String tableName;
-
         private Mock<IDice> mockDice;
         private IPercentileResultProvider percentileResultProvider;
+        private String tableName;
 
         [SetUp]
         public void Setup()
@@ -23,6 +24,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
             var streamLoader = new EmbeddedResourceStreamLoader();
             var percentileXmlParser = new PercentileXmlParser(streamLoader);
             percentileResultProvider = new PercentileResultProvider(percentileXmlParser, mockDice.Object);
+
+            var type = GetType();
+            var attributes = type.GetCustomAttributes(true);
+
+            if (!attributes.Any(a => a is PercentileTableAttribute))
+                throw new ArgumentException("This test class does not have the needed PercentileTableAttribute");
+
+            var percentileTableAttribute = attributes.First(a => a is PercentileTableAttribute) as PercentileTableAttribute;
+            tableName = percentileTableAttribute.Table;
         }
 
         protected void AssertEmpty(Int32 roll)

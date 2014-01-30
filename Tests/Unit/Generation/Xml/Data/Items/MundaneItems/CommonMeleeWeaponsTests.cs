@@ -1,17 +1,12 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("CommonMeleeWeapons")]
     public class CommonMeleeWeaponsTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "CommonMeleeWeapons";
-        }
-
         [Test]
         public void DaggerPercentile()
         {

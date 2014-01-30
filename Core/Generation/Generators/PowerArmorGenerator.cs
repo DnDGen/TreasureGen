@@ -12,16 +12,19 @@ namespace EquipmentGen.Core.Generation.Generators
         private IGearTypesProvider gearTypesProvider;
         private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
+        private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
 
         public PowerArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
-            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider)
+            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+            IMagicalItemTraitsGenerator magicItemTraitsGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
             this.gearTypesProvider = gearTypesProvider;
             this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
+            this.magicItemTraitsGenerator = magicItemTraitsGenerator;
         }
 
         public Gear GenerateAtPower(String power)
@@ -62,6 +65,9 @@ namespace EquipmentGen.Core.Generation.Generators
                         armor.Traits.Add(specialMaterial);
                 }
             }
+
+            var traits = magicItemTraitsGenerator.GenerateFor(ItemsConstants.ItemTypes.Armor);
+            armor.Traits.AddRange(traits);
 
             return armor;
         }

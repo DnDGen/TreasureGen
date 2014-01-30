@@ -1,18 +1,13 @@
 ﻿using System;
 using EquipmentGen.Core.Data.Coins;
+using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Coins
 {
-    [TestFixture]
+    [TestFixture, PercentileTable("Level8Coins")]
     public class Level8CoinTests : PercentileTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            tableName = "Level8Coins";
-        }
-
         [Test]
         public void Level8EmptyPercentile()
         {
