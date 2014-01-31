@@ -5,7 +5,7 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Generators
 {
-    public class PowerArmorGenerator : IPowerGearGenerator
+    public class MagicalArmorGenerator : IMagicalGearGenerator
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
@@ -14,7 +14,7 @@ namespace EquipmentGen.Core.Generation.Generators
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
 
-        public PowerArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
+        public MagicalArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
             IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator)
@@ -29,6 +29,9 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Gear GenerateAtPower(String power)
         {
+            if (power == ItemsConstants.Power.Mundane)
+                throw new ArgumentException();
+
             var tableName = String.Format("{0}Armor", power);
             var result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
             var armor = new Gear();
@@ -43,7 +46,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var specific = result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase);
             if (specific)
             {
-                tableName = String.Format("{0}Specific{1}", power, result.Type);
+                tableName = power + result.Type;
             }
             else
             {

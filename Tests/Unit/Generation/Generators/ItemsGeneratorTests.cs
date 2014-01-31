@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     public class ItemsGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
-        private Mock<IPowerItemGenerator> mockPowerItemGenerator;
+        private Mock<IItemGenerator> mockPowerItemGenerator;
         private IItemsGenerator generator;
 
         private TypeAndAmountPercentileResult result;
@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
 
-            mockPowerItemGenerator = new Mock<IPowerItemGenerator>();
+            mockPowerItemGenerator = new Mock<IItemGenerator>();
 
             generator = new ItemsGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockPowerItemGenerator.Object);
         }

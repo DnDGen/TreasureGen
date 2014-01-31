@@ -8,7 +8,7 @@ namespace EquipmentGen.Core.Data.Items
 
         public override String ToString()
         {
-            return String.Format("{0} ({1})", base.ToString(), Quantity);
+            return String.Format("{0} (x{1})", base.ToString(), Quantity);
         }
     }
 }

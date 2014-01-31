@@ -7,7 +7,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor
 {
     [TestFixture, PercentileTable("MinorArmor")]
     public class MinorArmorTests : PercentileTests
-    {[Test]
+    {
+        [Test]
         public void Plus1ShieldPercentile()
         {
             var content = String.Format("{0},1", ItemsConstants.Gear.Types.Shield);
@@ -36,23 +37,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor
         }
 
         [Test]
-        public void SpecificShieldPercentile()
+        public void SpecificArmorPercentile()
         {
-            var content = String.Format("Specific{0},0", ItemsConstants.Gear.Types.Shield);
+            var content = String.Format("Specific{0},0", ItemsConstants.ItemTypes.Armor);
             AssertContent(content, 88, 89);
         }
 
         [Test]
-        public void SpecificArmorPercentile()
+        public void SpecificShieldPercentile()
         {
-            var content = String.Format("Specific{0},0", ItemsConstants.ItemTypes.Armor);
+            var content = String.Format("Specific{0},0", ItemsConstants.Gear.Types.Shield);
             AssertContent(content, 90, 91);
         }
 
         [Test]
         public void SpecialAbilityPercentile()
         {
-            AssertContent("SpecialAbility,0", 92, 100);
+            AssertContent("SpecialAbility,1", 92, 100);
         }
     }
 }

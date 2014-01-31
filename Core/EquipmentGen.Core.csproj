@@ -74,15 +74,15 @@
     <Compile Include="Generation\Generators\MagicalItemTraitsGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGenerator.cs" />
     <Compile Include="Generation\Generators\CoinGenerator.cs" />
-    <Compile Include="Generation\Factories\PowerGearGeneratorFactory.cs" />
+    <Compile Include="Generation\Factories\MagicalGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\GoodsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IAlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ICoinGenerator.cs" />
-    <Compile Include="Generation\Generators\Interfaces\IPowerGearGenerator.cs" />
-    <Compile Include="Generation\Factories\Interfaces\IPowerGearGeneratorFactory.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IMagicalGearGenerator.cs" />
+    <Compile Include="Generation\Factories\Interfaces\IMagicalGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\Interfaces\IGoodsGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IItemsGenerator.cs" />
-    <Compile Include="Generation\Generators\Interfaces\IPowerItemGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IItemGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IToolGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
     <Compile Include="Generation\Generators\RodGenerator.cs" />
@@ -92,14 +92,14 @@
     <Compile Include="Generation\Generators\WondrousItemGenerator.cs" />
     <Compile Include="Generation\Generators\RingGenerator.cs" />
     <Compile Include="Generation\Generators\PotionGenerator.cs" />
-    <Compile Include="Generation\Generators\PowerItemGenerator.cs" />
+    <Compile Include="Generation\Generators\ItemGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneItemGenerator.cs" />
     <Compile Include="Generation\Generators\ItemsGenerator.cs" />
     <Compile Include="Generation\Generators\MundaneWeaponGenerator.cs" />
-    <Compile Include="Generation\Generators\PowerArmorGenerator.cs" />
+    <Compile Include="Generation\Generators\MagicalArmorGenerator.cs" />
     <Compile Include="Generation\Generators\ToolGenerator.cs" />
     <Compile Include="Generation\Generators\TreasureGenerator.cs" />
-    <Compile Include="Generation\Generators\PowerWeaponGenerator.cs" />
+    <Compile Include="Generation\Generators\MagicalWeaponGenerator.cs" />
     <Compile Include="Generation\Providers\GearTypesProvider.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProvider.cs" />
     <Compile Include="Generation\Generators\Interfaces\IGearSpecialAbilitiesGenerator.cs" />
@@ -361,6 +361,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\SpecialMaterials.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MinorArmor.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorArmor.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumArmor.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

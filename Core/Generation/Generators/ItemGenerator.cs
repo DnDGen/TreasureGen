@@ -6,16 +6,16 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Generators
 {
-    public class PowerItemGenerator : IPowerItemGenerator
+    public class ItemGenerator : IItemGenerator
     {
         private IMundaneItemGenerator mundaneItemGenerator;
         private IPercentileResultProvider percentileResultProvider;
-        private IPowerGearGeneratorFactory powerGearGeneratorFactory;
+        private IMagicalGearGeneratorFactory powerGearGeneratorFactory;
         private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
         private ICurseGenerator curseGenerator;
 
-        public PowerItemGenerator(IMundaneItemGenerator mundaneItemGenerator, IPercentileResultProvider percentileResultProvider,
-            IPowerGearGeneratorFactory powerGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory,
+        public ItemGenerator(IMundaneItemGenerator mundaneItemGenerator, IPercentileResultProvider percentileResultProvider,
+            IMagicalGearGeneratorFactory powerGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory,
             ICurseGenerator curseGenerator)
         {
             this.mundaneItemGenerator = mundaneItemGenerator;

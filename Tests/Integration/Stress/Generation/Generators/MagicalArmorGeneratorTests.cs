@@ -7,17 +7,17 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class PowerArmorGeneratorTests : StressTest
+    public class MagicalArmorGeneratorTests : StressTest
     {
         [Inject]
-        public IPowerGearGeneratorFactory PowerGearGeneratorFactory { get; set; }
+        public IMagicalGearGeneratorFactory MagicalGearGeneratorFactory { get; set; }
 
-        private IPowerGearGenerator powerArmorGenerator;
+        private IMagicalGearGenerator magicalArmorGenerator;
 
         [SetUp]
         public void Setup()
         {
-            powerArmorGenerator = PowerGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            magicalArmorGenerator = MagicalGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
             StartTest();
         }
 
@@ -28,12 +28,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedPowerArmorGenerator()
+        public void StressedMagicalArmorGenerator()
         {
             while (TestShouldKeepRunning())
             {
-                var power = GetNewPower();
-                var armor = powerArmorGenerator.GenerateAtPower(power);
+                var power = GetNewPower(false);
+                var armor = magicalArmorGenerator.GenerateAtPower(power);
 
                 Assert.That(armor.Name, Is.Not.Empty);
                 Assert.That(armor.MagicalBonus, Is.GreaterThan(0));

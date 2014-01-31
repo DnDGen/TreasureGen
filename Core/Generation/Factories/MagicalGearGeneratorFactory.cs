@@ -7,7 +7,7 @@ using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Factories
 {
-    public class PowerGearGeneratorFactory : IPowerGearGeneratorFactory
+    public class MagicalGearGeneratorFactory : IMagicalGearGeneratorFactory
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
@@ -16,7 +16,7 @@ namespace EquipmentGen.Core.Generation.Factories
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
 
-        public PowerGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
+        public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
             IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator)
@@ -29,14 +29,14 @@ namespace EquipmentGen.Core.Generation.Factories
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
         }
 
-        public IPowerGearGenerator CreateWith(String type)
+        public IMagicalGearGenerator CreateWith(String type)
         {
             switch (type)
             {
-                case ItemsConstants.ItemTypes.Armor: return new PowerArmorGenerator(typeAndAmountPercentileProvider,
+                case ItemsConstants.ItemTypes.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
                     percentileResultProvider, gearTypesProvider, gearSpecialAbilitiesProvider, materialsProvider,
                     magicItemTraitsGenerator);
-                case ItemsConstants.ItemTypes.Weapon: return new PowerWeaponGenerator();
+                case ItemsConstants.ItemTypes.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }
         }

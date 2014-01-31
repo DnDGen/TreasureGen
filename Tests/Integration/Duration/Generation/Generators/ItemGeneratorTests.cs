@@ -6,17 +6,17 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class PowerItemGeneratorTests : DurationTest
+    public class ItemGeneratorTests : DurationTest
     {
         [Inject]
-        public IPowerItemGenerator PowerItemGenerator { get; set; }
+        public IItemGenerator ItemGenerator { get; set; }
 
         private String power;
 
         [SetUp]
         public void Setup()
         {
-            power = GetNewPower();
+            power = GetNewPower(true);
             StartTest();
         }
 
@@ -27,9 +27,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void PowerItemGeneratorDuration()
+        public void ItemGeneratorDuration()
         {
-            PowerItemGenerator.GenerateAtPower(power);
+            ItemGenerator.GenerateAtPower(power);
             AssertDuration();
         }
     }

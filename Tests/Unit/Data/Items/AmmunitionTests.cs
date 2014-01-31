@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Unit.Data.Items
             ammo.Name = "ammo";
             ammo.Quantity = 9266;
 
-            Assert.That(ammo.ToString(), Is.EqualTo("ammo (9266)"));
+            Assert.That(ammo.ToString(), Is.EqualTo("ammo (x9266)"));
         }
     }
 }

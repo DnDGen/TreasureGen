@@ -90,9 +90,9 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void PowerGearGeneratorFactoryNotGeneratedAsSingletons()
+        public void MagicalGearGeneratorFactoryNotGeneratedAsSingletons()
         {
-            AssertNotSingleton<IPowerGearGeneratorFactory>();
+            AssertNotSingleton<IMagicalGearGeneratorFactory>();
         }
 
         [Test]
@@ -102,9 +102,9 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void PowerItemGeneratorNotGeneratedAsSingletons()
+        public void ItemGeneratorNotGeneratedAsSingletons()
         {
-            AssertNotSingleton<IPowerItemGenerator>();
+            AssertNotSingleton<IItemGenerator>();
         }
 
         [Test]

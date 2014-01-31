@@ -32,8 +32,8 @@ namespace EquipmentGen.Bootstrap
             Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
-            Bind<IPowerItemGenerator>().To<PowerItemGenerator>();
-            Bind<IPowerGearGeneratorFactory>().To<PowerGearGeneratorFactory>();
+            Bind<IItemGenerator>().To<ItemGenerator>();
+            Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();

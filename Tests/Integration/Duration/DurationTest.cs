@@ -36,14 +36,16 @@ namespace EquipmentGen.Tests.Integration.Duration
             return Random.Next(1, 21);
         }
 
-        protected String GetNewPower()
+        protected String GetNewPower(Boolean allowMundane)
         {
-            switch (Random.Next(4))
+            var limit = allowMundane ? 4 : 3;
+
+            switch (Random.Next(limit))
             {
-                case 0: return ItemsConstants.Power.Mundane;
-                case 1: return ItemsConstants.Power.Minor;
-                case 2: return ItemsConstants.Power.Medium;
-                case 3: return ItemsConstants.Power.Major;
+                case 0: return ItemsConstants.Power.Minor;
+                case 1: return ItemsConstants.Power.Medium;
+                case 2: return ItemsConstants.Power.Major;
+                case 3: return ItemsConstants.Power.Mundane;
                 default: throw new ArgumentOutOfRangeException();
             }
         }

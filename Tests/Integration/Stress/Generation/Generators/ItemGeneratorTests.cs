@@ -5,10 +5,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class PowerItemGeneratorTests : StressTest
+    public class ItemGeneratorTests : StressTest
     {
         [Inject]
-        public IPowerItemGenerator PowerItemGenerator { get; set; }
+        public IItemGenerator ItemGenerator { get; set; }
 
         [SetUp]
         public void Setup()
@@ -23,12 +23,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedPowerItemGenerator()
+        public void StressedItemGenerator()
         {
             while (TestShouldKeepRunning())
             {
-                var power = GetNewPower();
-                var item = PowerItemGenerator.GenerateAtPower(power);
+                var power = GetNewPower(true);
+                var item = ItemGenerator.GenerateAtPower(power);
 
                 Assert.That(item.Name, Is.Not.Empty);
             }

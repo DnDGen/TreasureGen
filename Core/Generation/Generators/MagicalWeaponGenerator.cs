@@ -4,7 +4,7 @@ using EquipmentGen.Core.Generation.Generators.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Generators
 {
-    public class PowerWeaponGenerator : IPowerGearGenerator
+    public class MagicalWeaponGenerator : IMagicalGearGenerator
     {
         public Gear GenerateAtPower(String power)
         {

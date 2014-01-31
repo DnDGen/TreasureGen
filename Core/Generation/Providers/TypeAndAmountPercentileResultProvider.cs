@@ -25,7 +25,10 @@ namespace EquipmentGen.Core.Generation.Providers
                 return result;
 
             if (!percentileResult.Contains(","))
-                throw new FormatException("The table was not formatted for type and amount parsing");
+            {
+                var message = String.Format("Table {0} was not formatted for type and amount parsing", tableName);
+                throw new FormatException(message);
+            }
 
             var parsedResult = percentileResult.Split(',');
 

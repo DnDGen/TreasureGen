@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Shield,1</content>
+        <upper>60</upper>
+    </object>
+  <object>
+    <lower>61</lower>
+    <content>Armor,1</content>
+    <upper>80</upper>
+  </object>
+    <object>
+        <lower>81</lower>
+        <content>Shield,2</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>Armor,2</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>SpecificArmor,0</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>SpecificShield,0</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>SpecialAbility,1</content>
+        <upper>100</upper>
+    </object>
+</percentile>

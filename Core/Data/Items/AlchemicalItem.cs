@@ -6,9 +6,9 @@ namespace EquipmentGen.Core.Data.Items
     {
         public Int32 Quantity { get; set; }
 
-        public override string ToString()
+        public override String ToString()
         {
-            return String.Format("{0} (x{1})", Name, Quantity);
+            return String.Format("{0} (x{1})", base.ToString(), Quantity);
         }
     }
 }

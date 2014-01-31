@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generation.Factories
 {
     [TestFixture]
-    public class PowerGearGeneratorFactoryTests
+    public class MagicalGearGeneratorFactoryTests
     {
-        private IPowerGearGeneratorFactory factory;
+        private IMagicalGearGeneratorFactory factory;
 
         [SetUp]
         public void Setup()
@@ -25,23 +25,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
 
-            factory = new PowerGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
+            factory = new MagicalGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,
                 mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object);
         }
 
         [Test]
-        public void PowerGearGeneratorFactoryProducesArmorGenerator()
+        public void MagicalGearGeneratorFactoryProducesArmorGenerator()
         {
             var generator = factory.CreateWith(ItemsConstants.ItemTypes.Armor);
-            Assert.That(generator, Is.TypeOf<PowerArmorGenerator>());
+            Assert.That(generator, Is.TypeOf<MagicalArmorGenerator>());
         }
 
         [Test]
-        public void PowerGearGeneratorFactoryProducesWeaponGenerator()
+        public void MagicalGearGeneratorFactoryProducesWeaponGenerator()
         {
             var generator = factory.CreateWith(ItemsConstants.ItemTypes.Weapon);
-            Assert.That(generator, Is.TypeOf<PowerWeaponGenerator>());
+            Assert.That(generator, Is.TypeOf<MagicalWeaponGenerator>());
         }
 
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]

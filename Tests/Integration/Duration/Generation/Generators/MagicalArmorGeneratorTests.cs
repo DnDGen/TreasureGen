@@ -8,19 +8,19 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class PowerArmorGeneratorTests : DurationTest
+    public class MagicalArmorGeneratorTests : DurationTest
     {
         [Inject]
-        public IPowerGearGeneratorFactory GearGeneratorFactory { get; set; }
+        public IMagicalGearGeneratorFactory GearGeneratorFactory { get; set; }
 
-        private IPowerGearGenerator powerArmorGenerator;
+        private IMagicalGearGenerator magicalArmorGenerator;
         private String power;
 
         [SetUp]
         public void Setup()
         {
-            powerArmorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
-            power = GetNewPower();
+            magicalArmorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            power = GetNewPower(false);
 
             StartTest();
         }
@@ -32,9 +32,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void PowerArmorGeneratorDuration()
+        public void MagicalArmorGeneratorDuration()
         {
-            powerArmorGenerator.GenerateAtPower(power);
+            magicalArmorGenerator.GenerateAtPower(power);
             AssertDuration();
         }
     }
