@@ -371,6 +371,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumArmor.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumSpecificShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldType.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\ArmorType.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorSpecificArmors.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

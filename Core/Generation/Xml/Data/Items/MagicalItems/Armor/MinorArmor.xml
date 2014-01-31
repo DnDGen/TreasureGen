@@ -23,12 +23,12 @@
     </object>
     <object>
         <lower>88</lower>
-        <content>SpecificArmor,0</content>
+        <content>SpecificArmors,0</content>
         <upper>89</upper>
     </object>
     <object>
         <lower>90</lower>
-        <content>SpecificShield,0</content>
+        <content>SpecificShields,0</content>
         <upper>91</upper>
     </object>
     <object>

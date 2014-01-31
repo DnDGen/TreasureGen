@@ -67,13 +67,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor
         [Test]
         public void SpecificArmorPercentile()
         {
-            AssertContent("SpecificArmor,0", 58, 60);
+            AssertContent("SpecificArmors,0", 58, 60);
         }
 
         [Test]
         public void SpecificShieldPercentile()
         {
-            AssertContent("SpecificShield,0", 61, 63);
+            AssertContent("SpecificShields,0", 61, 63);
         }
 
         [Test]

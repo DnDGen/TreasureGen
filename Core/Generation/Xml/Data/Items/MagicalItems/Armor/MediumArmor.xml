@@ -43,12 +43,12 @@
     </object>
     <object>
         <lower>58</lower>
-        <content>SpecificArmor,0</content>
+        <content>SpecificArmors,0</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>SpecificShield,0</content>
+        <content>SpecificShields,0</content>
         <upper>63</upper>
     </object>
     <object>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Padded armor</content>
+        <upper>1</upper>
+    </object>
+  <object>
+    <lower>2</lower>
+    <content>Leather armor</content>
+    <upper>2</upper>
+  </object>
+    <object>
+        <lower>3</lower>
+        <content>Studded leather armor</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Chain shirt</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Hide armor</content>
+        <upper>42</upper>
+    </object>
+  <object>
+    <lower>43</lower>
+    <content>Scale mail</content>
+    <upper>43</upper>
+  </object>
+    <object>
+        <lower>44</lower>
+        <content>Chainmail</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Breastplate</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Splint mail</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>Banded mail</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Half-plate</content>
+        <upper>60</upper>
+    </object>
+  <object>
+    <lower>61</lower>
+    <content>Full plate</content>
+    <upper>100</upper>
+  </object>
+</percentile>

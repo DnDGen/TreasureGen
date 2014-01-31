@@ -30,17 +30,17 @@ namespace EquipmentGen.Core.Generation.Generators
             if (power == ItemsConstants.Power.Mundane)
                 return mundaneItemGenerator.Generate();
 
-            return GeneratePowerItemAtPower(power);
+            return GenerateMagicalItemAtPower(power);
         }
 
-        private Item GeneratePowerItemAtPower(String power)
+        private Item GenerateMagicalItemAtPower(String power)
         {
             var tableName = String.Format("{0}Items", power);
             var type = percentileResultProvider.GetPercentileResult(tableName);
 
             TraitItem item;
             if (type == ItemsConstants.ItemTypes.Armor || type == ItemsConstants.ItemTypes.Weapon)
-                item = GeneratePowerGearAtPower(type, power);
+                item = GenerateMagicalGearAtPower(type, power);
             else
                 item = GenerateMagicalItemAtPower(type, power);
 
@@ -56,7 +56,7 @@ namespace EquipmentGen.Core.Generation.Generators
             return item;
         }
 
-        private TraitItem GeneratePowerGearAtPower(String type, String power)
+        private TraitItem GenerateMagicalGearAtPower(String type, String power)
         {
             var powerGearGenerator = powerGearGeneratorFactory.CreateWith(type);
             return powerGearGenerator.GenerateAtPower(power);

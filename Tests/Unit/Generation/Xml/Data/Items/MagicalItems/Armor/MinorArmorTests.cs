@@ -39,15 +39,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor
         [Test]
         public void SpecificArmorPercentile()
         {
-            var content = String.Format("Specific{0},0", ItemsConstants.ItemTypes.Armor);
-            AssertContent(content, 88, 89);
+            AssertContent("SpecificArmors,0", 88, 89);
         }
 
         [Test]
         public void SpecificShieldPercentile()
         {
-            var content = String.Format("Specific{0},0", ItemsConstants.Gear.Types.Shield);
-            AssertContent(content, 90, 91);
+            AssertContent("SpecificShields,0", 90, 91);
         }
 
         [Test]
