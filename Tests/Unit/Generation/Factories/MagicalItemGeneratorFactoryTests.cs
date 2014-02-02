@@ -67,10 +67,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             Assert.That(generator, Is.TypeOf<WondrousItemGenerator>());
         }
 
-        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
         public void InvalidTypeThrowsException()
         {
-            factory.CreateWith("invalid type");
+            Assert.That(() => factory.CreateWith("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

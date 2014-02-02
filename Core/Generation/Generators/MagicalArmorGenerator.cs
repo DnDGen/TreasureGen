@@ -9,19 +9,19 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
-        private IGearTypesProvider gearTypesProvider;
-        private IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
+        private ITypesProvider typesProvider;
+        private ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
 
         public MagicalArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, IGearTypesProvider gearTypesProvider,
-            IGearSpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+            IPercentileResultProvider percentileResultProvider, ITypesProvider typesProvider,
+            ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
-            this.gearTypesProvider = gearTypesProvider;
+            this.typesProvider = typesProvider;
             this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
@@ -55,22 +55,21 @@ namespace EquipmentGen.Core.Generation.Generators
             }
 
             armor.Name = percentileResultProvider.GetPercentileResult(tableName);
-            armor.Types = gearTypesProvider.GetGearTypesFor(armor.Name);
+            armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
 
             if (!specific)
             {
                 armor.Abilities = gearSpecialAbilitiesProvider.GenerateFor(armor.Types, power, armor.MagicalBonus, abilities);
 
-                if (materialsProvider.HasSpecialMaterial())
+                if (materialsProvider.HasSpecialMaterial(armor.Types))
                 {
-                    var specialMaterial = materialsProvider.GenerateSpecialMaterialFor(armor.Types);
-                    if (!String.IsNullOrEmpty(specialMaterial))
-                        armor.Traits.Add(specialMaterial);
+                    var specialMaterial = materialsProvider.GenerateFor(armor.Types);
+                    armor.Traits.Add(specialMaterial);
                 }
-            }
 
-            var traits = magicItemTraitsGenerator.GenerateFor(ItemsConstants.ItemTypes.Armor);
-            armor.Traits.AddRange(traits);
+                var traits = magicItemTraitsGenerator.GenerateFor(ItemsConstants.ItemTypes.Armor);
+                armor.Traits.AddRange(traits);
+            }
 
             return armor;
         }

@@ -61,13 +61,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             Assert.That(result.Amount, Is.EqualTo(9266));
         }
 
-        [Test, ExpectedException(typeof(FormatException))]
-        public void TypeAndAmountPercentileResultProviderThrowsExceptionIfNoComma()
+        [Test]
+        public void TypeAndAmountPercentileResultProviderThrowsFormatExceptionIfNoComma()
         {
             mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
                 .Returns("no comma in this result");
 
-            typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
+            Assert.That(() => typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name"), Throws.InstanceOf<FormatException>());
         }
     }
 }

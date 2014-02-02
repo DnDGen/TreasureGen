@@ -21,9 +21,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
-            var mockGearTypeProvider = new Mock<IGearTypesProvider>();
+            var mockTypeProvider = new Mock<ITypesProvider>();
             factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object,
-                mockMaterialsProvider.Object, mockGearTypeProvider.Object);
+                mockMaterialsProvider.Object, mockTypeProvider.Object);
         }
 
         [Test]
@@ -40,10 +40,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
         }
 
-        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
         public void InvalidTypeThrowsError()
         {
-            factory.CreateWith("invalid type");
+            Assert.That(() => factory.CreateWith("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

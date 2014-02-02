@@ -5,14 +5,14 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Data.Items
 {
     [TestFixture]
-    public class GearSpecialAbilityTests
+    public class SpecialAbilityTests
     {
-        private GearSpecialAbility ability;
+        private SpecialAbility ability;
 
         [SetUp]
         public void Setup()
         {
-            ability = new GearSpecialAbility();
+            ability = new SpecialAbility();
             ability.Name = "ability name";
         }
 
@@ -75,12 +75,12 @@ namespace EquipmentGen.Tests.Unit.Data.Items
             Assert.That(toString, Is.EqualTo("Heavy fortification"));
         }
 
-        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
         public void FortificationWithStrengthGreaterThan2()
         {
             ability.Strength = 9266;
             ability.Name = "fortification";
-            ability.ToString();
+            Assert.That(() => ability.ToString(), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

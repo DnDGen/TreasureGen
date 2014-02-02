@@ -24,91 +24,85 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void CoinGeneratorNotGeneratedAsSingletons()
+        public void CoinGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ICoinGenerator>();
         }
 
         [Test]
-        public void CoinPercentileResultProviderNotGeneratedAsSingletons()
+        public void CoinPercentileResultProviderNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ITypeAndAmountPercentileResultProvider>();
         }
 
         [Test]
-        public void DiceGeneratedAsSingletons()
+        public void DiceGeneratedAsSingleton()
         {
             AssertSingleton<IDice>();
         }
 
         [Test]
-        public void GoodPercentileResultProviderNotGeneratedAsSingletons()
+        public void GoodPercentileResultProviderNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IGoodPercentileResultProvider>();
         }
 
         [Test]
-        public void GoodsGeneratorNotGeneratedAsSingletons()
+        public void GoodsGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IGoodsGenerator>();
         }
 
         [Test]
-        public void PercentileResultProviderGeneratedAsSingletons()
+        public void PercentileResultProviderGeneratedAsSingleton()
         {
             AssertSingleton<IPercentileResultProvider>();
         }
 
         [Test]
-        public void PercentileXmlParserNotGeneratedAsSingletons()
+        public void PercentileXmlParserNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IPercentileXmlParser>();
         }
 
         [Test]
-        public void EmbeddedResourceStreamLoaderNotGeneratedAsSingletons()
+        public void EmbeddedResourceStreamLoaderNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IStreamLoader>();
         }
 
         [Test]
-        public void TreasureGeneratorNotGeneratedAsSingletons()
+        public void TreasureGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ITreasureGenerator>();
         }
 
         [Test]
-        public void ItemsGeneratorNotGeneratedAsSingletons()
+        public void ItemsGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IItemsGenerator>();
         }
 
         [Test]
-        public void AlchemicalItemGeneratorNotGeneratedAsSingletons()
+        public void AlchemicalItemGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IAlchemicalItemGenerator>();
         }
 
         [Test]
-        public void MagicalGearGeneratorFactoryNotGeneratedAsSingletons()
+        public void MagicalGearGeneratorFactoryNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IMagicalGearGeneratorFactory>();
         }
 
         [Test]
-        public void ToolGeneratorNotGeneratedAsSingletons()
+        public void ToolGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IToolGenerator>();
         }
 
         [Test]
-        public void ItemGeneratorNotGeneratedAsSingletons()
-        {
-            AssertNotSingleton<IItemGenerator>();
-        }
-
-        [Test]
-        public void MundaneGearGeneratorFactoryNotGeneratedAsSingletons()
+        public void MundaneGearGeneratorFactoryNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IMundaneGearGeneratorFactory>();
         }
@@ -120,51 +114,57 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void MagicalItemGeneratorFactoryNotGeneratedAsSingletons()
+        public void MagicalItemGeneratorFactoryNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGeneratorFactory>();
         }
 
         [Test]
-        public void AmmunitionGeneratorNotGeneratedAsSingletons()
+        public void AmmunitionGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IAmmunitionGenerator>();
         }
 
         [Test]
-        public void MaterialsProviderNotGeneratedAsSingletons()
+        public void MaterialsProviderNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ISpecialMaterialGenerator>();
         }
 
         [Test]
-        public void GearTypesProviderGeneratedAsSingletons()
+        public void TypesProviderGeneratedAsSingleton()
         {
-            AssertSingleton<IGearTypesProvider>();
+            AssertSingleton<ITypesProvider>();
         }
 
         [Test]
-        public void TypesXmlParserNotGeneratedAsSingletons()
+        public void TypesXmlParserNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ITypesXmlParser>();
         }
 
         [Test]
-        public void GearSpecialAbilitiesGeneratorNotGeneratedAsSingletons()
+        public void SpecialAbilitiesGeneratorNotGeneratedAsSingleton()
         {
-            AssertNotSingleton<IGearSpecialAbilitiesGenerator>();
+            AssertNotSingleton<ISpecialAbilitiesGenerator>();
         }
 
         [Test]
-        public void CurseGeneratorNotGeneratedAsSingletons()
+        public void CurseGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<ICurseGenerator>();
         }
 
         [Test]
-        public void MagicalItemTraitsGeneratorNotGeneratedAsSingletons()
+        public void MagicalItemTraitsGeneratorNotGeneratedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemTraitsGenerator>();
+        }
+
+        [Test]
+        public void SpecialAbilityPercentileResultProviderNotGeneratedAsSingleton()
+        {
+            AssertNotSingleton<ISpecialAbilityPercentileResultProvider>();
         }
 
         private void AssertSingleton<T>()

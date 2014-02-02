@@ -20,13 +20,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         {
             var mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            var mockGearTypesProvider = new Mock<IGearTypesProvider>();
-            var mockGearSpecialAbilitiesProvider = new Mock<IGearSpecialAbilitiesGenerator>();
+            var mockTypesProvider = new Mock<ITypesProvider>();
+            var mockGearSpecialAbilitiesProvider = new Mock<ISpecialAbilitiesGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
 
             factory = new MagicalGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
-                mockPercentileResultProvider.Object, mockGearTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,
+                mockPercentileResultProvider.Object, mockTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,
                 mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object);
         }
 
@@ -44,10 +44,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             Assert.That(generator, Is.TypeOf<MagicalWeaponGenerator>());
         }
 
-        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
         public void InvalidTypeThrowsError()
         {
-            factory.CreateWith("invalid type");
+            Assert.That(() => factory.CreateWith("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

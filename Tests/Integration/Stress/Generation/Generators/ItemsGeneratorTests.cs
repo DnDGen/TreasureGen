@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedItemsGenerator()
+        public void StressedItemsGeneratorAtLevel()
         {
             while (TestShouldKeepRunning())
             {
@@ -31,9 +31,22 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var items = ItemsGenerator.GenerateAtLevel(level);
 
                 Assert.That(items, Is.Not.Null);
-
                 foreach (var item in items)
                     Assert.That(item.Name, Is.Not.Empty);
+            }
+
+            AssertIterations();
+        }
+
+        [Test]
+        public void StressedItemsGeneratorAtPower()
+        {
+            while (TestShouldKeepRunning())
+            {
+                var power = GetNewPower(true);
+                var item = ItemsGenerator.GenerateAtPower(power);
+
+                Assert.That(item.Name, Is.Not.Empty);
             }
 
             AssertIterations();

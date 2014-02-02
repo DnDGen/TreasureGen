@@ -11,15 +11,15 @@ namespace EquipmentGen.Core.Generation.Generators
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsProvider;
-        private IGearTypesProvider gearTypesProvider;
+        private ITypesProvider typesProvider;
 
         public MundaneWeaponGenerator(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsProvider, IGearTypesProvider gearTypesProvider)
+            ISpecialMaterialGenerator materialsProvider, ITypesProvider typesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;
             this.materialsProvider = materialsProvider;
-            this.gearTypesProvider = gearTypesProvider;
+            this.typesProvider = typesProvider;
         }
 
         public Gear Generate()
@@ -36,22 +36,22 @@ namespace EquipmentGen.Core.Generation.Generators
             else
             {
                 weapon.Name = weaponName;
-                weapon.Types = gearTypesProvider.GetGearTypesFor(weapon.Name);
+                weapon.Types = typesProvider.GetTypesFor(weapon.Name, "WeaponTypes");
             }
 
             weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
 
-            if (materialsProvider.HasSpecialMaterial())
+            if (materialsProvider.HasSpecialMaterial(weapon.Types))
             {
-                var specialMaterial = materialsProvider.GenerateSpecialMaterialFor(weapon.Types);
+                var specialMaterial = materialsProvider.GenerateFor(weapon.Types);
                 if (!String.IsNullOrEmpty(specialMaterial))
                     weapon.Traits.Add(specialMaterial);
 
-                if (weapon.Types.Contains(ItemsConstants.Gear.Types.DoubleWeapon) && materialsProvider.HasSpecialMaterial())
+                if (weapon.Types.Contains(ItemsConstants.Gear.Types.DoubleWeapon) && materialsProvider.HasSpecialMaterial(weapon.Types))
                 {
-                    var secondSpecialMaterial = materialsProvider.GenerateSpecialMaterialFor(weapon.Types);
+                    var secondSpecialMaterial = materialsProvider.GenerateFor(weapon.Types);
 
-                    if (specialMaterial != secondSpecialMaterial && !String.IsNullOrEmpty(secondSpecialMaterial))
+                    if (specialMaterial != secondSpecialMaterial)
                         weapon.Traits.Add(secondSpecialMaterial);
                 }
             }

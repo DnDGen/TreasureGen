@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace EquipmentGen.Core.Data.Items
 {
-    public class GearSpecialAbility
+    public class SpecialAbility
     {
         public String Name { get; set; }
         public Int32 Strength { get; set; }
         public IEnumerable<String> TypeRequirements { get; set; }
-        public Int32 Bonus { get; set; }
+        public Int32 BonusEquivalent { get; set; }
 
         public override String ToString()
         {
-            if (Name == "fortification")
+            if (Name.Equals("fortification", StringComparison.InvariantCultureIgnoreCase))
                 return GetFortificationStrength();
 
             return GetAbilityStrength();

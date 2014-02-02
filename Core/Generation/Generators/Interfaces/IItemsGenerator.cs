@@ -7,5 +7,6 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
     public interface IItemsGenerator
     {
         IEnumerable<Item> GenerateAtLevel(Int32 level);
+        Item GenerateAtPower(String power);
     }
 }

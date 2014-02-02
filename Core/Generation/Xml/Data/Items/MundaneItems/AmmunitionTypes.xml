@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<types>
+    <object>
+        <key>Arrow</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Wood</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Crossbow bolt</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Metal</type>
+    </object>
+    <object>
+        <key>Sling bullet</key>
+        <type>Weapon</type>
+        <type>Common</type>
+        <type>Ranged</type>
+        <type>Ammunition</type>
+        <type>Metal</type>
+    </object>
+</types>

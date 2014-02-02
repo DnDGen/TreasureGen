@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture, TypesFilename("SpecialMaterials.xml")]
+    [TestFixture, TypesTableName("SpecialMaterials")]
     public class SpecialMaterialsTests : TypesTest
     {
         [Test]
@@ -47,6 +47,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] { ItemsConstants.Gear.Types.Wood };
             AssertContent(ItemsConstants.Gear.Traits.Darkwood, types);
+        }
+
+        [Test]
+        public void SpecialMaterialTypes()
+        {
+            var types = new[]
+            {
+                ItemsConstants.Gear.Traits.Mithral,
+                ItemsConstants.Gear.Traits.Adamantine,
+                ItemsConstants.Gear.Traits.AlchemicalSilver,
+                ItemsConstants.Gear.Traits.Darkwood,
+                ItemsConstants.Gear.Traits.ColdIron,
+                ItemsConstants.Gear.Traits.Dragonhide
+                
+            };
+
+            AssertContent("SpecialMaterials", types);
         }
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace EquipmentGen.Core.Generation.Providers.Interfaces
 {
-    public interface IGearTypesProvider
+    public interface ITypesProvider
     {
-        IEnumerable<String> GetGearTypesFor(String gearName);
+        IEnumerable<String> GetTypesFor(String name, String table);
     }
 }

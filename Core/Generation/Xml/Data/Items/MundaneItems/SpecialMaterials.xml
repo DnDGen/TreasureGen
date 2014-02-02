@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <types>
+    <object>
+        <key>SpecialMaterials</key>
+        <type>Adamantine</type>
+        <type>Alchemical silver</type>
+        <type>Cold iron</type>
+        <type>Darkwood</type>
+        <type>Mithral</type>
+        <type>Dragonhide</type>
+    </object>
   <object>
     <key>Adamantine</key>
       <type>Metal</type>

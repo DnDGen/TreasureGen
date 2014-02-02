@@ -7,10 +7,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class GearSpecialAbilitiesGeneratorTests : DurationTest
+    public class SpecialAbilitiesGeneratorTests : DurationTest
     {
         [Inject]
-        public IGearSpecialAbilitiesGenerator SpecialAbilitiesGenerator { get; set; }
+        public ISpecialAbilitiesGenerator SpecialAbilitiesGenerator { get; set; }
 
         private IEnumerable<String> types;
         private String power;
@@ -35,9 +35,16 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void GearSpecialAbilitiesGeneratorDuration()
+        public void SpecialAbilitiesGeneratorMultipleDuration()
         {
             SpecialAbilitiesGenerator.GenerateFor(types, power, bonus, quantity);
+            AssertDuration();
+        }
+
+        [Test]
+        public void SpecialAbilitiesGeneratorSingleDuration()
+        {
+            SpecialAbilitiesGenerator.GenerateFor(types, power);
             AssertDuration();
         }
     }

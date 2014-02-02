@@ -12,15 +12,15 @@ namespace EquipmentGen.Core.Generation.Factories
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsProvider;
-        private IGearTypesProvider gearTypesProvider;
+        private ITypesProvider typesProvider;
 
         public MundaneGearGeneratorFactory(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsProvider, IGearTypesProvider gearTypesProvider)
+            ISpecialMaterialGenerator materialsProvider, ITypesProvider typesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;
             this.materialsProvider = materialsProvider;
-            this.gearTypesProvider = gearTypesProvider;
+            this.typesProvider = typesProvider;
         }
 
         public IMundaneGearGenerator CreateWith(String type)
@@ -28,9 +28,9 @@ namespace EquipmentGen.Core.Generation.Factories
             switch (type)
             {
                 case ItemsConstants.ItemTypes.Armor: return new MundaneArmorGenerator(percentileResultProvider, materialsProvider,
-                    gearTypesProvider);
+                    typesProvider);
                 case ItemsConstants.ItemTypes.Weapon: return new MundaneWeaponGenerator(percentileResultProvider, ammunitionGenerator, 
-                    materialsProvider, gearTypesProvider);
+                    materialsProvider, typesProvider);
                 default: throw new ArgumentOutOfRangeException();
             }
         }

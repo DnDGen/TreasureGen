@@ -20,24 +20,24 @@ namespace EquipmentGen.Bootstrap
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGearSpecialAbilitiesGenerator>().To<GearSpecialAbilitiesGenerator>();
-            Bind<IGearTypesProvider>().To<GearTypesProvider>().InSingletonScope();
             Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
+            Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
             Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
-            Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<IMundaneGearGeneratorFactory>().To<MundaneGearGeneratorFactory>();
             Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
-            Bind<IItemGenerator>().To<ItemGenerator>();
-            Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
+            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
+            Bind<ISpecialAbilityPercentileResultProvider>().To<SpecialAbilityPercentileResultProvider>();
+            Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
             Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
+            Bind<ITypesProvider>().To<TypesProvider>().InSingletonScope();
             Bind<ITypesXmlParser>().To<TypesXmlParser>();
         }
     }

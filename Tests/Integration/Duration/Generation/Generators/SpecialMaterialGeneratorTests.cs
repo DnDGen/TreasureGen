@@ -30,7 +30,7 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         [Test]
         public void SpecialMaterialGeneratorDuration()
         {
-            SpecialMaterialGenerator.GenerateSpecialMaterialFor(types);
+            SpecialMaterialGenerator.GenerateFor(types);
             AssertDuration();
         }
     }

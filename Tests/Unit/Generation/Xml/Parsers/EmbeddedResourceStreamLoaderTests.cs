@@ -26,13 +26,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
             }
         }
 
-        [Test, ExpectedException(typeof(FileNotFoundException))]
+        [Test]
         public void ThrowErrorIfFileIsNotEmbeddedResource()
         {
-            using (var stream = streamLoader.LoadStream("NotAnActualFile.xml"))
-            {
-                //Shouldn't get here, should throw error
-            }
+            Assert.That(() => streamLoader.LoadStream("invalid filename"), Throws.InstanceOf<FileNotFoundException>());
         }
     }
 }

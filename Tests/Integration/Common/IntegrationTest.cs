@@ -54,6 +54,24 @@ namespace EquipmentGen.Tests.Integration.Common
                 case 1: types.Add(ItemsConstants.ItemTypes.Weapon); break;
             }
 
+            if (types.Contains(ItemsConstants.ItemTypes.Weapon))
+            {
+                switch (Random.Next(2))
+                {
+                    case 0: types.Add(ItemsConstants.Gear.Types.Melee); break;
+                    default: types.Add(ItemsConstants.Gear.Types.Ranged); break;
+                }
+            }
+
+            if (types.Contains(ItemsConstants.ItemTypes.Armor))
+            {
+                switch (Random.Next(2))
+                {
+                    case 0: types.Add(ItemsConstants.Gear.Types.Shield); break;
+                    default: break;
+                }
+            }
+
             switch (Random.Next(3))
             {
                 case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;

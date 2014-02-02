@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EquipmentGen.Core.Generation.Providers;
+using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
@@ -11,42 +12,37 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
     [TestFixture]
     public abstract class TypesTest
     {
-        private ITypesXmlParser typesXmlParser;
-        private Dictionary<String, IEnumerable<String>> table;
-        private String filename;
+        private ITypesProvider typesProvider;
+        private String tableName;
 
         [SetUp]
         public void Setup()
         {
             var streamLoader = new EmbeddedResourceStreamLoader();
-            typesXmlParser = new TypesXmlParser(streamLoader);
+            var typesXmlParser = new TypesXmlParser(streamLoader);
+            typesProvider = new TypesProvider(typesXmlParser);
 
             var type = GetType();
             var attributes = type.GetCustomAttributes(true);
 
-            if (!attributes.Any(a => a is TypesFilenameAttribute))
-                throw new ArgumentException("This test class does not have the needed TypesFilenameAttribute");
+            if (!attributes.Any(a => a is TypesTableNameAttribute))
+                throw new ArgumentException("This test class does not have the needed TypesTableNameAttribute");
 
-            var typesFilenameAttribute = attributes.First(a => a is TypesFilenameAttribute) as TypesFilenameAttribute;
-            filename = typesFilenameAttribute.Filename;
+            var typesFilenameAttribute = attributes.First(a => a is TypesTableNameAttribute) as TypesTableNameAttribute;
+            tableName = typesFilenameAttribute.TableName;
         }
 
-        protected void AssertContent(String gearName, IEnumerable<String> expectedTypes)
+        protected void AssertContent(String name, IEnumerable<String> expectedTypes)
         {
-            CacheTable();
-
-            var actualTypes = table[gearName];
+            var actualTypes = typesProvider.GetTypesFor(name, tableName);
 
             foreach (var expectedType in expectedTypes)
                 Assert.That(actualTypes, Contains.Item(expectedType));
 
-            Assert.That(actualTypes.Count(), Is.EqualTo(expectedTypes.Count()));
-        }
-
-        private void CacheTable()
-        {
-            if (table == null)
-                table = typesXmlParser.Parse(filename);
+            var tooMany = actualTypes.Except(expectedTypes);
+            var tooManyString = String.Join(", ", tooMany);
+            var message = String.Format("Should not be in results: {0}", tooManyString);
+            Assert.That(actualTypes.Count(), Is.EqualTo(expectedTypes.Count()), message);
         }
     }
 }

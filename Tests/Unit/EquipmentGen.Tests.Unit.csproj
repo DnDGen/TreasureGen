@@ -54,7 +54,7 @@
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
     <Compile Include="Data\Items\AlchemicalItemTests.cs" />
     <Compile Include="Data\Items\AmmunitionTests.cs" />
-    <Compile Include="Data\Items\GearSpecialAbilityTests.cs" />
+    <Compile Include="Data\Items\SpecialAbilityTests.cs" />
     <Compile Include="Data\Items\GearTests.cs" />
     <Compile Include="Data\Items\ItemsConstantsTests.cs" />
     <Compile Include="Data\Items\ItemTests.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="Generation\Factories\MagicalGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\GearSpecialAbilitiesGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\SpecialAbilitiesGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
@@ -72,16 +72,15 @@
     <Compile Include="Generation\Generators\MundaneItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneWeaponGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MagicalArmorGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\ItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
-    <Compile Include="Generation\Providers\GearTypesProviderTests.cs" />
+    <Compile Include="Generation\Providers\TypesProviderTests.cs" />
     <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\GoodPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
     <Compile Include="Generation\Xml\Data\Attributes\PercentileTableAttribute.cs" />
-    <Compile Include="Generation\Xml\Data\Attributes\TypesFilenameAttribute.cs" />
+    <Compile Include="Generation\Xml\Data\Attributes\TypesTableNameAttribute.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level7CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level8CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level9CoinsTests.cs" />
@@ -160,7 +159,9 @@
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\CommonRangedWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\DarkwoodShieldsTests.cs" />
-    <Compile Include="Generation\Xml\Data\Items\MundaneItems\GearTypesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTypesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\WeaponTypesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MundaneItems\ArmorTypesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShieldsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneWeaponsTests.cs" />

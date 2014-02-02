@@ -6,10 +6,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class GearSpecialAbilitiesGeneratorTests : StressTest
+    public class SpecialAbilitiesGeneratorTests : StressTest
     {
         [Inject]
-        public IGearSpecialAbilitiesGenerator SpecialAbilitiesGenerator { get; set; }
+        public ISpecialAbilitiesGenerator SpecialAbilitiesGenerator { get; set; }
 
         [SetUp]
         public void Setup()
@@ -24,7 +24,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedGearSpecialAbilitiesGenerator()
+        public void StressedSpecialAbilitiesGeneratorMultiple()
         {
             while (TestShouldKeepRunning())
             {
@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(abilities.Count(), Is.AtLeast(1));
 
-                var sum = abilities.Sum(a => a.Bonus);
+                var sum = abilities.Sum(a => a.BonusEquivalent);
                 Assert.That(sum + bonus, Is.AtMost(10));
 
                 var distinct = abilities.Select(a => a.Name).Distinct();
@@ -45,10 +45,28 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 foreach (var ability in abilities)
                 {
                     Assert.That(ability.Name, Is.Not.Empty);
-                    Assert.That(ability.Bonus, Is.AtLeast(1));
+                    Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
                     Assert.That(ability.Strength, Is.Not.Negative);
                     Assert.That(ability.TypeRequirements, Is.Not.Null);
                 }
+            }
+
+            AssertIterations();
+        }
+
+        [Test]
+        public void StressedSpecialAbilitiesGeneratorSingular()
+        {
+            while (TestShouldKeepRunning())
+            {
+                var types = GetNewTypes();
+                var power = GetNewPower(false);
+                var ability = SpecialAbilitiesGenerator.GenerateFor(types, power);
+
+                Assert.That(ability.Name, Is.Not.Empty);
+                Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
+                Assert.That(ability.Strength, Is.Not.Negative);
+                Assert.That(ability.TypeRequirements, Is.Not.Null);
             }
 
             AssertIterations();

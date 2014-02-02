@@ -55,7 +55,7 @@
     <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\GearSpecialAbilitiesGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\SpecialAbilitiesGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneWeaponGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MagicalArmorGeneratorTests.cs" />
@@ -63,7 +63,6 @@
     <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneItemGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\ItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />

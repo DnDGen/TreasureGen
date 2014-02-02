@@ -7,12 +7,12 @@ namespace EquipmentGen.Core.Data.Items
     public class Gear : TraitItem
     {
         public Int32 MagicalBonus { get; set; }
-        public IEnumerable<GearSpecialAbility> Abilities { get; set; }
+        public IEnumerable<SpecialAbility> Abilities { get; set; }
         public IEnumerable<String> Types { get; set; }
 
         public Gear()
         {
-            Abilities = Enumerable.Empty<GearSpecialAbility>();
+            Abilities = Enumerable.Empty<SpecialAbility>();
             Types = Enumerable.Empty<String>();
         }
 
@@ -38,7 +38,7 @@ namespace EquipmentGen.Core.Data.Items
 
         private String GetAbilitiesString()
         {
-            var abilityStrings = Abilities.Select<GearSpecialAbility, String>(a => a.ToString());
+            var abilityStrings = Abilities.Select<SpecialAbility, String>(a => a.ToString());
 
             if (Abilities.Count() < 3)
                 return String.Join(" and ", abilityStrings);

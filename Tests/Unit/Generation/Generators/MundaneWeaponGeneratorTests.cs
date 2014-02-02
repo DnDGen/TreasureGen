@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -17,7 +16,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
-        private Mock<IGearTypesProvider> mockGearTypesProvider;
+        private Mock<ITypesProvider> mockTypesProvider;
 
         [SetUp]
         public void Setup()
@@ -28,9 +27,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
-            mockGearTypesProvider = new Mock<IGearTypesProvider>();
+            mockTypesProvider = new Mock<ITypesProvider>();
             mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object,
-                mockMaterialsProvider.Object, mockGearTypesProvider.Object);
+                mockMaterialsProvider.Object, mockTypesProvider.Object);
         }
 
         [Test]
@@ -76,7 +75,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MundaneWeaponGeneratorGetsGearTypesFromProvider()
         {
             var types = new[] { "type 1", "type 2" };
-            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("weapon name")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
             var armor = mundaneWeaponGenerator.Generate();
             Assert.That(armor.Types, Is.EqualTo(types));
@@ -85,8 +84,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneWeaponGeneratorDoesNotGetSpecialMaterialIfWeaponDoesNotHaveSpecialMaterial()
         {
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(false);
-            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<List<String>>())).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(false);
+            mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = mundaneWeaponGenerator.Generate();
             Assert.That(armor.Traits, Is.Not.Contains("special material"));
@@ -95,8 +94,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneWeaponGeneratorGetsSpecialMaterialFromMaterialProvider()
         {
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<List<String>>())).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
+            mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item("special material"));
@@ -106,10 +105,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void DoubleWeaponsCanHaveMultipleSpecialMaterials()
         {
             var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
-            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("weapon name")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.SetupSequence(p => p.GenerateSpecialMaterialFor(types)).Returns("special material 1").Returns("special material 2");
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
+            mockMaterialsProvider.SetupSequence(p => p.GenerateFor(types)).Returns("special material 1").Returns("special material 2");
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item("special material 1"));
@@ -120,24 +119,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void CannotAddDuplicateSpecialMaterials()
         {
             var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
-            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("weapon name")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(types)).Returns("special material");
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
+            mockMaterialsProvider.Setup(p => p.GenerateFor(types)).Returns("special material");
 
             var weapon = mundaneWeaponGenerator.Generate();
-            var specialMaterials = weapon.Traits.Where(t => t == "special material");
-            Assert.That(specialMaterials.Count(), Is.EqualTo(1));
+            Assert.That(weapon.Traits, Is.Unique);
         }
 
         [Test]
         public void IfSecondHeadDoesNotHaveSpecialMaterial_WholeWeaponOneSpecialMaterial()
         {
             var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
-            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("weapon name")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
-            mockMaterialsProvider.SetupSequence(p => p.HasSpecialMaterial()).Returns(true).Returns(false);
-            mockMaterialsProvider.SetupSequence(p => p.GenerateSpecialMaterialFor(types)).Returns("special material 1").Returns("special material 2");
+            mockMaterialsProvider.SetupSequence(p => p.HasSpecialMaterial(types)).Returns(true).Returns(false);
+            mockMaterialsProvider.SetupSequence(p => p.GenerateFor(types)).Returns("special material 1").Returns("special material 2");
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item("special material 1"));
@@ -145,27 +143,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void CannotAddEmptySpecialMaterialToTraits()
+        public void NonDoubleWeaponsCannotHaveMultipleSpecialMaterials()
         {
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GenerateSpecialMaterialFor(It.IsAny<List<String>>())).Returns(String.Empty);
+            var types = new[] { "not double weapon" };
+            mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
+
+            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
+            mockMaterialsProvider.SetupSequence(p => p.GenerateFor(types)).Returns("special material 1").Returns("special material 2");
 
             var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Is.Not.Contains(String.Empty));
-        }
-
-        [Test]
-        public void CannotAddEmptySecondSpecialMaterialToTraits()
-        {
-            var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
-            mockGearTypesProvider.Setup(p => p.GetGearTypesFor("weapon name")).Returns(types);
-
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial()).Returns(true);
-            mockMaterialsProvider.SetupSequence(p => p.GenerateSpecialMaterialFor(types)).Returns("special material").Returns(String.Empty);
-
-            var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item("special material"));
-            Assert.That(weapon.Traits, Is.Not.Contains(String.Empty));
+            Assert.That(weapon.Traits, Contains.Item("special material 1"));
+            Assert.That(weapon.Traits, Is.Not.Contains("special material 2"));
         }
     }
 }
