@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
         private String GetResult(Int32 roll)
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-            return percentileResultProvider.GetPercentileResult(tableName);
+            return percentileResultProvider.GetResultFrom(tableName);
         }
     }
 }

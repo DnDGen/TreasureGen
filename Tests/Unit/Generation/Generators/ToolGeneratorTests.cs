@@ -29,7 +29,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ToolGeneratorSetsToolNameByPercentileResult()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("Tools")).Returns("tool");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("Tools")).Returns("tool");
             var tool = generator.Generate();
             Assert.That(tool.Name, Is.EqualTo("tool"));
         }

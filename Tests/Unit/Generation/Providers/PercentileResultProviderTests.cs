@@ -42,8 +42,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void GetPercentileResultCachesTable()
         {
-            percentileResultProvider.GetPercentileResult(tableName);
-            percentileResultProvider.GetPercentileResult(tableName);
+            percentileResultProvider.GetResultFrom(tableName);
+            percentileResultProvider.GetResultFrom(tableName);
 
             mockPercentileXmlParser.Verify(p => p.Parse(tableName + ".xml"), Times.Once());
         }
@@ -52,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void GetPercentileResultReturnsEmptyStringForEmptyTable()
         {
             table.Clear();
-            var result = percentileResultProvider.GetPercentileResult(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
@@ -60,7 +60,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void GetPercentileResultReturnsEmptyStringIfBelowRange()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(min - 1);
-            var result = percentileResultProvider.GetPercentileResult(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
@@ -68,7 +68,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void GetPercentileResultReturnsEmptyStringIfAboveRange()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(max + 1);
-            var result = percentileResultProvider.GetPercentileResult(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
@@ -79,7 +79,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
 
-                var result = percentileResultProvider.GetPercentileResult(tableName);
+                var result = percentileResultProvider.GetResultFrom(tableName);
                 Assert.That(result, Is.EqualTo("content"));
             }
         }

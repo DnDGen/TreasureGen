@@ -20,7 +20,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public Coin GenerateAtLevel(Int32 level)
         {
             var tableName = String.Format("Level{0}Coins", level);
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom(tableName);
 
             var coin = new Coin() { Currency = String.Empty };
 

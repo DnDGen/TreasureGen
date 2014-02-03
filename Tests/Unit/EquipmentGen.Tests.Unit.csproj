@@ -74,6 +74,7 @@
     <Compile Include="Generation\Generators\MagicalArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
+    <Compile Include="Generation\Providers\SpecialAbilityPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\TypesProviderTests.cs" />
     <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumSpecificShieldsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MinorArmorTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MinorShieldSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldTypeTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MajorItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MediumItemsTests.cs" />

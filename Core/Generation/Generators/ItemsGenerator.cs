@@ -32,7 +32,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public IEnumerable<Item> GenerateAtLevel(Int32 level)
         {
             var tableName = String.Format("Level{0}Items", level);
-            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
+            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetResultFrom(tableName);
             var items = new List<Item>();
             var amount = typeAndAmountResult.Amount;
 
@@ -56,7 +56,7 @@ namespace EquipmentGen.Core.Generation.Generators
         private Item GenerateMagicalItemAtPower(String power)
         {
             var tableName = String.Format("{0}Items", power);
-            var type = percentileResultProvider.GetPercentileResult(tableName);
+            var type = percentileResultProvider.GetResultFrom(tableName);
 
             TraitItem item;
             if (type == ItemsConstants.ItemTypes.Armor || type == ItemsConstants.ItemTypes.Weapon)

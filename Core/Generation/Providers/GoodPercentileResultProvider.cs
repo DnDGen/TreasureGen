@@ -7,16 +7,16 @@ namespace EquipmentGen.Core.Generation.Providers
 {
     public class GoodPercentileResultProvider : IGoodPercentileResultProvider
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileResultProvider innerProvider;
 
-        public GoodPercentileResultProvider(IPercentileResultProvider percentileResultProvider)
+        public GoodPercentileResultProvider(IPercentileResultProvider innerProvider)
         {
-            this.percentileResultProvider = percentileResultProvider;
+            this.innerProvider = innerProvider;
         }
 
-        public GoodValuePercentileResult GetGoodValuePercentileResult(String tableName)
+        public GoodValuePercentileResult GetResultFrom(String tableName)
         {
-            var result = percentileResultProvider.GetPercentileResult(tableName);
+            var result = innerProvider.GetResultFrom(tableName);
             var parsedResults = result.Split(',');
 
             var descriptions = new List<String>();

@@ -25,7 +25,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public IEnumerable<Good> GenerateAtLevel(Int32 level)
         {
             var tableName = String.Format("Level{0}Goods", level);
-            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult(tableName);
+            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetResultFrom(tableName);
 
             if (String.IsNullOrEmpty(typeAndAmountResult.Type))
                 return Enumerable.Empty<Good>();
@@ -36,7 +36,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             while (amount-- > 0)
             {
-                var valueResult = goodPercentileResultProvider.GetGoodValuePercentileResult(tableName);
+                var valueResult = goodPercentileResultProvider.GetResultFrom(tableName);
                 var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
                 var index = dice.Roll(roll);
 

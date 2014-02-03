@@ -22,13 +22,13 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Gear Generate()
         {
-            var result = percentileResultProvider.GetPercentileResult("MundaneArmor");
+            var result = percentileResultProvider.GetResultFrom("MundaneArmor");
             var armor = new Gear();
 
             if (result == ItemsConstants.Gear.Traits.Darkwood || result == ItemsConstants.Gear.Traits.Masterwork)
             {
                 var tableName = String.Format("{0}Shields", result);
-                armor.Name = percentileResultProvider.GetPercentileResult(tableName);
+                armor.Name = percentileResultProvider.GetResultFrom(tableName);
                 armor.Traits.Add(result);
             }
             else
@@ -41,7 +41,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
 
-            var size = percentileResultProvider.GetPercentileResult("ArmorSizes");
+            var size = percentileResultProvider.GetResultFrom("ArmorSizes");
             armor.Traits.Add(size);
 
             if (!armor.Traits.Contains(ItemsConstants.Gear.Traits.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Types))

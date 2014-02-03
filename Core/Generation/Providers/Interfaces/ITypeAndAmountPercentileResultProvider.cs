@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Providers.Interfaces
 {
     public interface ITypeAndAmountPercentileResultProvider
     {
-        TypeAndAmountPercentileResult GetTypeAndAmountPercentileResult(String tableName);
+        TypeAndAmountPercentileResult GetResultFrom(String tableName);
     }
 }

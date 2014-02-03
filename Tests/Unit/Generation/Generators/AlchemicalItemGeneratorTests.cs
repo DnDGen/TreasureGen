@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = "alchemical item";
             result.Amount = 9266;
             mockTypeAndAmountPercentileProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileProvider.Setup(p => p.GetTypeAndAmountPercentileResult("AlchemicalItems")).Returns(result);
+            mockTypeAndAmountPercentileProvider.Setup(p => p.GetResultFrom("AlchemicalItems")).Returns(result);
 
             generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object);
         }

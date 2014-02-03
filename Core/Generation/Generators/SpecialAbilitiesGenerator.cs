@@ -10,10 +10,13 @@ namespace EquipmentGen.Core.Generation.Generators
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
         private ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider;
+        private ITypesProvider typesProvider;
 
-        public SpecialAbilitiesGenerator(ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider)
+        public SpecialAbilitiesGenerator(ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider,
+            ITypesProvider typesProvider)
         {
             this.specialAbilityPercentileResultProvider = specialAbilityPercentileResultProvider;
+            this.typesProvider = typesProvider;
         }
 
         public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<String> types, String power, Int32 magicalBonus, Int32 quantity)
@@ -27,6 +30,11 @@ namespace EquipmentGen.Core.Generation.Generators
             while (quantity > 0 && bonusSum < 10)
             {
                 var ability = GenerateFor(types, power);
+                if (ability.Name == "BonusSpecialAbility")
+                {
+                    quantity++;
+                    continue;
+                }
 
                 if (bonusSum + ability.BonusEquivalent > 10)
                     continue;
@@ -57,11 +65,19 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             var tableName = GetTableName(types, power);
             var result = specialAbilityPercentileResultProvider.GetResultFrom(tableName);
+            var requirements = typesProvider.GetTypesFor(result.Name, "SpecialAbilityTypes");
+
+            while (!AllTypeRequirementsMet(requirements, types))
+            {
+                result = specialAbilityPercentileResultProvider.GetResultFrom(tableName);
+                requirements = typesProvider.GetTypesFor(result.Name, "SpecialAbilityTypes");
+            }
 
             var ability = new SpecialAbility();
             ability.Name = result.Name;
             ability.Strength = result.Strength;
             ability.BonusEquivalent = result.Bonus;
+            ability.TypeRequirements = requirements;
 
             return ability;
         }
@@ -81,6 +97,11 @@ namespace EquipmentGen.Core.Generation.Generators
                 return String.Format("{0}ArmorSpecialAbilities", power);
 
             throw new ArgumentException("invalid types for special abilities");
+        }
+
+        private Boolean AllTypeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> types)
+        {
+            return requirements.All(r => types.Contains(r));
         }
     }
 }

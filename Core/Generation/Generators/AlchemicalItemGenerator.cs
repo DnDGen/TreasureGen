@@ -15,7 +15,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public AlchemicalItem Generate()
         {
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("AlchemicalItems");
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("AlchemicalItems");
 
             var item = new AlchemicalItem();
             item.Name = result.Type;

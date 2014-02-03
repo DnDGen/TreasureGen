@@ -33,10 +33,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             valueResult.Descriptions = new[] { "description 1", "description 2" };
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(typeAndAmountResult);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
 
             mockGoodPercentileResultProvider = new Mock<IGoodPercentileResultProvider>();
-            mockGoodPercentileResultProvider.Setup(p => p.GetGoodValuePercentileResult(It.IsAny<String>())).Returns(valueResult);
+            mockGoodPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(valueResult);
 
             mockDice = new Mock<IDice>();
 
@@ -54,7 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void GetResultFromGoodsPercentileResultProvider()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level1Goods"), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Goods"), Times.Once);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void GetValueOfGoodFromProvider()
         {
             generator.GenerateAtLevel(1);
-            mockGoodPercentileResultProvider.Verify(p => p.GetGoodValuePercentileResult("typeValue"), Times.Exactly(2));
+            mockGoodPercentileResultProvider.Verify(p => p.GetResultFrom("typeValue"), Times.Exactly(2));
         }
 
         [Test]

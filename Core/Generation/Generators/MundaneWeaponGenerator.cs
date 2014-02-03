@@ -24,9 +24,9 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Gear Generate()
         {
-            var type = percentileResultProvider.GetPercentileResult("MundaneWeapons");
+            var type = percentileResultProvider.GetResultFrom("MundaneWeapons");
             var tableName = String.Format("{0}Weapons", type);
-            var weaponName = percentileResultProvider.GetPercentileResult(tableName);
+            var weaponName = percentileResultProvider.GetResultFrom(tableName);
             var weapon = new Gear();
 
             if (weaponName == "Ammunition")

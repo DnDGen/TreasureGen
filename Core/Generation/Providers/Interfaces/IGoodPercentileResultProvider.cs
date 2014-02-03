@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Providers.Interfaces
 {
     public interface IGoodPercentileResultProvider
     {
-        GoodValuePercentileResult GetGoodValuePercentileResult(String tableName);
+        GoodValuePercentileResult GetResultFrom(String tableName);
     }
 }

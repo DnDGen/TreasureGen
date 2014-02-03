@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void Setup()
         {
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneArmor")).Returns("armor type");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns("armor type");
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             mockTypesProvider = new Mock<ITypesProvider>();
 
@@ -47,7 +47,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneArmorGeneratorSetsMasterworkTraitIfTypeIsStuddedLeatherArmor()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneArmor")).Returns(ItemsConstants.Gear.Armor.StuddedLeatherArmor);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns(ItemsConstants.Gear.Armor.StuddedLeatherArmor);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo(ItemsConstants.Gear.Armor.StuddedLeatherArmor));
@@ -57,8 +57,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneArmorGeneratorGetsShieldTypeIfResultIsDarkwood()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Darkwood);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("DarkwoodShields")).Returns("big shield");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Darkwood);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("DarkwoodShields")).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -68,8 +68,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void DarkwoodShieldsCannotGetOtherSpecialMaterials()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Darkwood);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("DarkwoodShields")).Returns("big shield");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Darkwood);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("DarkwoodShields")).Returns("big shield");
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
             mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
@@ -82,8 +82,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneArmorGeneratorGetsShieldTypeIfResultIsMasterworkShield()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Masterwork);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MasterworkShields")).Returns("big shield");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns(ItemsConstants.Gear.Traits.Masterwork);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MasterworkShields")).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -103,7 +103,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneArmorGeneratorGeneratesSizeFromPercentileResultProvider()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("ArmorSizes")).Returns("small");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("ArmorSizes")).Returns("small");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item("small"));

@@ -18,7 +18,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void Setup()
         {
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>()))
                 .Returns("type,roll");
 
             mockDice = new Mock<IDice>();
@@ -30,17 +30,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void AccessesPercentileResultProviderWithTableName()
         {
-            typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
-            mockPercentileResultProvider.Verify(p => p.GetPercentileResult("table name"), Times.Once);
+            typeAndAmountPercentileResultProvider.GetResultFrom("table name");
+            mockPercentileResultProvider.Verify(p => p.GetResultFrom("table name"), Times.Once);
         }
 
         [Test]
         public void TypeAndAmountPercentileResultIsEmptyIfPercentileResultIsEmpty()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>()))
                 .Returns(String.Empty);
 
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name");
             Assert.That(result.Type, Is.Empty);
             Assert.That(result.Amount, Is.EqualTo(0));
         }
@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void TypeAndAmountPercentileResultProviderReturnsType()
         {
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name");
             Assert.That(result.Type, Is.EqualTo("type"));
         }
 
@@ -57,17 +57,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         {
             mockDice.Setup(d => d.Roll("roll")).Returns(9266);
 
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name");
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name");
             Assert.That(result.Amount, Is.EqualTo(9266));
         }
 
         [Test]
         public void TypeAndAmountPercentileResultProviderThrowsFormatExceptionIfNoComma()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>()))
-                .Returns("no comma in this result");
-
-            Assert.That(() => typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("table name"), Throws.InstanceOf<FormatException>());
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns("no comma in this result");
+            Assert.That(() => typeAndAmountPercentileResultProvider.GetResultFrom("table name"), Throws.InstanceOf<FormatException>());
         }
     }
 }

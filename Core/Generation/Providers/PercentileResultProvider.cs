@@ -21,7 +21,7 @@ namespace EquipmentGen.Core.Generation.Providers
             cachedTables = new Dictionary<String, IEnumerable<PercentileObject>>();
         }
 
-        public String GetPercentileResult(String tableName)
+        public String GetResultFrom(String tableName)
         {
             if (!cachedTables.ContainsKey(tableName))
                 CacheTable(tableName);

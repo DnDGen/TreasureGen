@@ -33,14 +33,14 @@ namespace EquipmentGen.Core.Generation.Generators
                 throw new ArgumentException();
 
             var tableName = String.Format("{0}Armor", power);
-            var result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
+            var result = typeAndAmountPercentileProvider.GetResultFrom(tableName);
             var armor = new Gear();
             var abilities = 0;
 
             while (result.Type == "SpecialAbility")
             {
                 abilities += result.Amount;
-                result = typeAndAmountPercentileProvider.GetTypeAndAmountPercentileResult(tableName);
+                result = typeAndAmountPercentileProvider.GetResultFrom(tableName);
             }
 
             var specific = result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase);
@@ -54,7 +54,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 armor.MagicalBonus = result.Amount;
             }
 
-            armor.Name = percentileResultProvider.GetPercentileResult(tableName);
+            armor.Name = percentileResultProvider.GetResultFrom(tableName);
             armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
 
             if (!specific)

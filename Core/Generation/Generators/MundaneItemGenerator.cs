@@ -24,7 +24,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Item Generate()
         {
-            var type = percentileResultProvider.GetPercentileResult("MundaneItems");
+            var type = percentileResultProvider.GetResultFrom("MundaneItems");
             return GetItem(type);
         }
 

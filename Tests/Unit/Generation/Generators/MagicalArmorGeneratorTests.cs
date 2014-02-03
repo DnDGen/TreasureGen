@@ -32,7 +32,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Amount = 9266;
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("powerArmor")).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmor")).Returns(result);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockTypesProvider = new Mock<ITypesProvider>();
@@ -61,7 +61,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MagicalArmorGeneratorGetsNameFromPercentileResultProvider()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "Type")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Type")).Returns("armor name");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("armor name"));
@@ -70,7 +70,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MagicalArmorGeneratorGetsGearTypesFromProvider()
         {
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "Type")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Type")).Returns("armor name");
 
             var types = new[] { "type 1", "type 2" };
             mockTypesProvider.Setup(p => p.GetTypesFor("armor name", "ArmorTypes")).Returns(types);
@@ -83,7 +83,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MagicalArmorGeneratorGetsSpecificItems()
         {
             result.Type = "Specific armor type";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("power" + result.Type)).Returns("specific armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("power" + result.Type)).Returns("specific armor name");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("specific armor name"));
@@ -95,7 +95,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
             abilityResult.Amount = 1;
-            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetTypeAndAmountPercentileResult("powerArmor"))
+            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmor"))
                 .Returns(abilityResult).Returns(result);
 
             var ability = new SpecialAbility();
@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecificItemsDoNotHaveAbilitiesNorMagicBonusesNorTraits()
         {
             result.Type = "Specific armor type";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("power" + result.Type)).Returns("specific armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("power" + result.Type)).Returns("specific armor name");
 
             var ability = new SpecialAbility();
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>(), "power", result.Amount, 1))
@@ -120,9 +120,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
             abilityResult.Amount = 1;
-            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetTypeAndAmountPercentileResult("powerArmor"))
+            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmor"))
                 .Returns(abilityResult).Returns(result);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(result.Type + "SpecialAbilities")).Returns("ability");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "SpecialAbilities")).Returns("ability");
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
             mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");

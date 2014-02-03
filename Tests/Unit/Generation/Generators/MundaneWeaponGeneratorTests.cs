@@ -22,8 +22,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void Setup()
         {
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("MundaneWeapons")).Returns("weapon type");
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("weapon typeWeapons")).Returns("weapon name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneWeapons")).Returns("weapon type");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("weapon typeWeapons")).Returns("weapon name");
 
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
@@ -50,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MundaneWeaponGeneratorGetsWeaponTypeFromPercentileResultProvider()
         {
             mundaneWeaponGenerator.Generate();
-            mockPercentileResultProvider.Verify(p => p.GetPercentileResult("MundaneWeapons"), Times.Once);
+            mockPercentileResultProvider.Verify(p => p.GetResultFrom("MundaneWeapons"), Times.Once);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var ammo = new Ammunition();
             mockAmmunitionGenerator.Setup(p => p.Generate()).Returns(ammo);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("weapon typeWeapons")).Returns("Ammunition");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("weapon typeWeapons")).Returns("Ammunition");
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon, Is.EqualTo(ammo));

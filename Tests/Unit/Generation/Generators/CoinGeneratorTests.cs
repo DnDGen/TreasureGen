@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = "coin type";
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>()))
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>()))
                 .Returns(result);
 
             mockDice = new Mock<IDice>();
@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void CoinGeneratorReturnsCoinFromCoinPercentileResultProvider()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level1Coins"), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Coins"), Times.Once);
         }
 
         [Test]

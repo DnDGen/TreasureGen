@@ -23,9 +23,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void GoodValuePercentileComesFromProvider()
         {
             var tableName = "goodTypeValue";
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(tableName)).Returns("value roll,description 1,description 2");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(tableName)).Returns("value roll,description 1,description 2");
 
-            var result = provider.GetGoodValuePercentileResult(tableName);
+            var result = provider.GetResultFrom(tableName);
             Assert.That(result.ValueRoll, Is.EqualTo("value roll"));
             Assert.That(result.Descriptions, Contains.Item("description 1"));
             Assert.That(result.Descriptions, Contains.Item("description 2"));

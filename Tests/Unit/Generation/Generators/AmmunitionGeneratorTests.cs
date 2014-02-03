@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Amount = 9266;
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("Ammunition")).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Ammunition")).Returns(result);
 
             mockDice = new Mock<IDice>();
             mockTypesProvider = new Mock<ITypesProvider>();

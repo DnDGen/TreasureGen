@@ -7,18 +7,18 @@ namespace EquipmentGen.Core.Generation.Providers
 {
     public class TypeAndAmountPercentileResultProvider : ITypeAndAmountPercentileResultProvider
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileResultProvider innerProvider;
         private IDice dice;
 
-        public TypeAndAmountPercentileResultProvider(IPercentileResultProvider percentileResultProvider, IDice dice)
+        public TypeAndAmountPercentileResultProvider(IPercentileResultProvider innerProvider, IDice dice)
         {
-            this.percentileResultProvider = percentileResultProvider;
+            this.innerProvider = innerProvider;
             this.dice = dice;
         }
 
-        public TypeAndAmountPercentileResult GetTypeAndAmountPercentileResult(String tableName)
+        public TypeAndAmountPercentileResult GetResultFrom(String tableName)
         {
-            var percentileResult = percentileResultProvider.GetPercentileResult(tableName);
+            var percentileResult = innerProvider.GetResultFrom(tableName);
 
             var result = new TypeAndAmountPercentileResult();
             if (String.IsNullOrEmpty(percentileResult))

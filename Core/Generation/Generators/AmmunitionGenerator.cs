@@ -21,7 +21,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Ammunition Generate()
         {
-            var result = typeAndAmountPercentileResultProvider.GetTypeAndAmountPercentileResult("Ammunition");
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("Ammunition");
 
             var ammunition = new Ammunition();
             ammunition.Name = result.Type;

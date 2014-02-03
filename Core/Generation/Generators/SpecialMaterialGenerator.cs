@@ -52,7 +52,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public String GenerateFor(IEnumerable<String> types)
         {
             if (!ItemTypesAllowForSpecialMaterials(types))
-                throw new ArgumentException();
+                throw new ArgumentException(String.Join(",", types));
 
             var filteredSpecialMaterials = specialMaterialTypes.Where(kvp => kvp.Value.All(v => types.Contains(v)));
             var allowedSpecialMaterials = filteredSpecialMaterials.Select<KeyValuePair<String, IEnumerable<String>>, String>(kvp => kvp.Key);

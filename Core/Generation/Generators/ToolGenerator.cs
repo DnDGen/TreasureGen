@@ -15,7 +15,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public BasicItem Generate()
         {
-            var result = percentileResultProvider.GetPercentileResult("Tools");
+            var result = percentileResultProvider.GetResultFrom("Tools");
 
             var tool = new BasicItem();
             tool.Name = result;

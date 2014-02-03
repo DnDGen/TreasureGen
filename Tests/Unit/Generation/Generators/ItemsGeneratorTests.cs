@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = "power";
             result.Amount = 9266;
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult(It.IsAny<String>())).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(result);
 
             mockMundaneItemGenerator = new Mock<IMundaneItemGenerator>();
             mockMagicalGearGenerator = new Mock<IMagicalGearGenerator>();
@@ -41,7 +41,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockCurseGenerator = new Mock<ICurseGenerator>();
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult(It.IsAny<String>())).Returns(ItemsConstants.ItemTypes.WondrousItem);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(ItemsConstants.ItemTypes.WondrousItem);
 
             mockMagicalItemGenerator = new Mock<IMagicalItemGenerator>();
             mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
@@ -65,7 +65,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void ItemsGeneratorGetsItemTypeFromTypeAndAmountPercentileResultProvider()
         {
             itemsGenerator.GenerateAtLevel(9266);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetTypeAndAmountPercentileResult("Level9266Items"), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level9266Items"), Times.Once);
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result.Type = String.Empty;
             result.Amount = 0;
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetTypeAndAmountPercentileResult("Level1Items")).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Level1Items")).Returns(result);
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items, Is.Empty);
@@ -123,7 +123,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void ItemGeneratorGetsTypeFromPercentileResultProvider()
         {
             itemsGenerator.GenerateAtPower("power");
-            mockPercentileResultProvider.Verify(p => p.GetPercentileResult("powerItems"), Times.Once);
+            mockPercentileResultProvider.Verify(p => p.GetResultFrom("powerItems"), Times.Once);
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var gear = new Gear();
             mockMagicalGearGenerator.Setup(g => g.GenerateAtPower("power")).Returns(gear);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns(ItemsConstants.ItemTypes.Armor);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns(ItemsConstants.ItemTypes.Armor);
             mockMagicalGearGeneratorFactory.Setup(p => p.CreateWith(ItemsConstants.ItemTypes.Armor)).Returns(mockMagicalGearGenerator.Object);
 
             var item = itemsGenerator.GenerateAtPower("power");
@@ -143,7 +143,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var gear = new Gear();
             mockMagicalGearGenerator.Setup(g => g.GenerateAtPower("power")).Returns(gear);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns(ItemsConstants.ItemTypes.Weapon);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns(ItemsConstants.ItemTypes.Weapon);
             mockMagicalGearGeneratorFactory.Setup(f => f.CreateWith(ItemsConstants.ItemTypes.Weapon)).Returns(mockMagicalGearGenerator.Object);
 
             var item = itemsGenerator.GenerateAtPower("power");
@@ -155,7 +155,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var magicalItem = new TraitItem();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
 
             var item = itemsGenerator.GenerateAtPower("power");
@@ -167,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var magicalItem = new TraitItem();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
 
             mockCurseGenerator.Setup(g => g.HasCurse()).Returns(false);
@@ -183,7 +183,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var magicalItem = new TraitItem();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileResultProvider.Setup(p => p.GetPercentileResult("powerItems")).Returns("magic item");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
 
             mockCurseGenerator.Setup(g => g.HasCurse()).Returns(true);
