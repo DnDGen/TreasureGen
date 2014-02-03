@@ -152,10 +152,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecialAbilitiesGeneratorUsesMostPowerfulVersionOfAbility()
         {
             var strongAbility = new SpecialAbilityPercentileResult();
-            strongAbility.Name = "ability";
+            strongAbility.Name = "strong ability";
+            strongAbility.CoreName = "ability";
             strongAbility.Strength = 2;
             var weakAbility = new SpecialAbilityPercentileResult();
-            weakAbility.Name = "ability";
+            weakAbility.Name = "weak ability";
+            weakAbility.CoreName = "ability";
             weakAbility.Strength = 1;
             var otherAbility = new SpecialAbilityPercentileResult();
             otherAbility.Name = "other ability";
@@ -164,10 +166,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
                 .Returns(strongAbility).Returns(weakAbility).Returns(otherAbility);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 2);
-            var strong = abilities.Where(a => a.Name == strongAbility.Name);
-            Assert.That(strong.Count(), Is.EqualTo(1));
-            var first = strong.First();
+            var first = abilities.First();
             Assert.That(first.Strength, Is.EqualTo(strongAbility.Strength));
+            Assert.That(abilities.Count(), Is.EqualTo(1));
 
             mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
                 .Returns(weakAbility).Returns(strongAbility);
@@ -211,7 +212,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void DuplicateAbilitiesCannotBeAdded()
         {
             var ability = new SpecialAbilityPercentileResult();
-            ability.Name = "ability with bonus 1";
+            ability.Name = "ability";
             ability.Bonus = 1;
             var otherAbility = new SpecialAbilityPercentileResult();
             otherAbility.Name = "other ability";

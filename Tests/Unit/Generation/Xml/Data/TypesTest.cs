@@ -25,10 +25,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
             var type = GetType();
             var attributes = type.GetCustomAttributes(true);
 
-            if (!attributes.Any(a => a is TypesTableNameAttribute))
+            if (!attributes.Any(a => a is TypesTableAttribute))
                 throw new ArgumentException("This test class does not have the needed TypesTableNameAttribute");
 
-            var typesFilenameAttribute = attributes.First(a => a is TypesTableNameAttribute) as TypesTableNameAttribute;
+            var typesFilenameAttribute = attributes.First(a => a is TypesTableAttribute) as TypesTableAttribute;
             tableName = typesFilenameAttribute.TableName;
         }
 

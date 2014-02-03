@@ -749,5 +749,29 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(ItemsConstants.Gear.Types.Shield, Is.EqualTo("Shield"));
         }
+
+        [Test]
+        public void PiercingOrSlashingGearTypeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.PiercingOrSlashing, Is.EqualTo("Piercing or slashing"));
+        }
+
+        [Test]
+        public void BludgeoningGearTypeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Bludgeoning, Is.EqualTo("Bludgeoning"));
+        }
+
+        [Test]
+        public void ThrownGearTypeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Thrown, Is.EqualTo("Thrown"));
+        }
+
+        [Test]
+        public void SlashingGearTypeConstant()
+        {
+            Assert.That(ItemsConstants.Gear.Types.Slashing, Is.EqualTo("Slashing"));
+        }
     }
 }

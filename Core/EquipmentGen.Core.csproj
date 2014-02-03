@@ -364,16 +364,16 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\SpecialMaterials.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MinorArmor.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorArmor.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorArmor.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmor.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumArmor.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Medium\MediumArmor.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumSpecificShields.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Medium\MediumSpecificShields.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldType.xml" />
@@ -382,7 +382,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\ArmorType.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorSpecificArmors.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTypes.xml" />
@@ -391,10 +391,10 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\ArmorTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MinorShieldSpecialAbilities.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorArmorSpecialAbilities.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmorSpecialAbilities.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -139,6 +139,10 @@ namespace EquipmentGen.Core.Data.Items
                 public const String Ranged = "Ranged";
                 public const String Ammunition = "Ammunition";
                 public const String Shield = "Shield";
+                public const String PiercingOrSlashing = "Piercing or slashing";
+                public const String Bludgeoning = "Bludgeoning";
+                public const String Thrown = "Thrown";
+                public const String Slashing = "Slashing";
             }
 
             public static class Traits

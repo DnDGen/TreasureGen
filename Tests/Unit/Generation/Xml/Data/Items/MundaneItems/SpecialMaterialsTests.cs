@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
 {
-    [TestFixture, TypesTableName("SpecialMaterials")]
+    [TestFixture, TypesTable("SpecialMaterials")]
     public class SpecialMaterialsTests : TypesTest
     {
         [Test]

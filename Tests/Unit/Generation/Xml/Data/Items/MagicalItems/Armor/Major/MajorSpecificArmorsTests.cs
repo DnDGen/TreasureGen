@@ -1,7 +1,7 @@
 ﻿using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.Major
 {
     [TestFixture, PercentileTable("MajorSpecificArmors")]
     public class MajorSpecificArmorsTests : PercentileTests

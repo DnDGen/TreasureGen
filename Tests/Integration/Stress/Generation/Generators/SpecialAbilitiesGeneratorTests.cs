@@ -48,6 +48,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                     Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
                     Assert.That(ability.Strength, Is.Not.Negative);
                     Assert.That(ability.TypeRequirements, Is.Not.Null);
+                    Assert.That(ability.CoreName, Is.Not.Empty);
                 }
             }
 
@@ -67,6 +68,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
                 Assert.That(ability.Strength, Is.Not.Negative);
                 Assert.That(ability.TypeRequirements, Is.Not.Null);
+                Assert.That(ability.CoreName, Is.Not.Empty);
             }
 
             AssertIterations();
