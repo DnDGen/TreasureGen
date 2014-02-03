@@ -145,6 +145,7 @@
     <Compile Include="Generation\Xml\Data\Items\Level2ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level1ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ArmorTypeTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorArmorSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MajorSpecificArmorsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\MediumArmorTests.cs" />
