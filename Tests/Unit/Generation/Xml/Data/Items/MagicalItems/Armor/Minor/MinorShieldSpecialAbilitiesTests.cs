@@ -27,7 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent("Fortification,1,0", 51, 75);
+            AssertContent("Fortification,1,1,Light fortification", 51, 75);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void SpellResistance13Percentile()
         {
-            AssertContent("Spell resistance,2,13", 98, 99);
+            AssertContent("Spell resistance,2,13,Spell resistance (13)", 98, 99);
         }
 
         [Test]

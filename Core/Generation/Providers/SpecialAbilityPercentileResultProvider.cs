@@ -30,7 +30,7 @@ namespace EquipmentGen.Core.Generation.Providers
             result.Bonus = Convert.ToInt32(parsedResult[1]);
             result.Strength = Convert.ToInt32(parsedResult[2]);
 
-            if (result.Strength > 0)
+            if (parsedResult.Length > 3)
                 result.CoreName = parsedResult[3];
             else
                 result.CoreName = result.Name;

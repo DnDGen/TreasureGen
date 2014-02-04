@@ -33,6 +33,7 @@ namespace EquipmentGen.Bootstrap
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<ISpecialAbilityPercentileResultProvider>().To<SpecialAbilityPercentileResultProvider>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
+            Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();

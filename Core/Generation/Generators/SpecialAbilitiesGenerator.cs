@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -11,12 +12,19 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider;
         private ITypesProvider typesProvider;
+        private IPercentileResultProvider percentileResultProvider;
+        private IDice dice;
+        private ISpellGenerator spellGenerator;
 
         public SpecialAbilitiesGenerator(ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider,
-            ITypesProvider typesProvider)
+            ITypesProvider typesProvider, IPercentileResultProvider percentileResultProvider,
+            IDice dice, ISpellGenerator spellGenerator)
         {
             this.specialAbilityPercentileResultProvider = specialAbilityPercentileResultProvider;
             this.typesProvider = typesProvider;
+            this.percentileResultProvider = percentileResultProvider;
+            this.dice = dice;
+            this.spellGenerator = spellGenerator;
         }
 
         public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<String> types, String power, Int32 magicalBonus, Int32 quantity)
@@ -39,9 +47,9 @@ namespace EquipmentGen.Core.Generation.Generators
                 if (bonusSum + ability.BonusEquivalent > 10)
                     continue;
 
-                if (abilities.Any(a => a.Name == ability.Name))
+                if (abilities.Any(a => a.CoreName == ability.CoreName))
                 {
-                    var previousAbility = abilities.First(a => a.Name == ability.Name);
+                    var previousAbility = abilities.First(a => a.CoreName == ability.CoreName);
                     if (previousAbility.Strength < ability.Strength)
                     {
                         bonusSum -= previousAbility.BonusEquivalent;
@@ -78,6 +86,20 @@ namespace EquipmentGen.Core.Generation.Generators
             ability.Strength = result.Strength;
             ability.BonusEquivalent = result.Bonus;
             ability.TypeRequirements = requirements;
+            ability.CoreName = result.CoreName;
+
+            if (result.CoreName == "Bane")
+            {
+                var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes");
+                ability.Name = String.Format("Bane ({0})", designatedFoe);
+            }
+            else if (result.CoreName == "Spell storing" && dice.Percentile() > 50)
+            {
+                var level = dice.d3();
+                var spellType = spellGenerator.GenerateType();
+                var spell = spellGenerator.GenerateOfTypeAtLevel(spellType, level);
+                ability.Name = String.Format("Spell storing ({0})", spell);
+            }
 
             return ability;
         }

@@ -751,9 +751,9 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         }
 
         [Test]
-        public void PiercingOrSlashingGearTypeConstant()
+        public void NotBludgeoningGearTypeConstant()
         {
-            Assert.That(ItemsConstants.Gear.Types.PiercingOrSlashing, Is.EqualTo("Piercing or slashing"));
+            Assert.That(ItemsConstants.Gear.Types.NotBludgeoning, Is.EqualTo("Not bludgeoning"));
         }
 
         [Test]

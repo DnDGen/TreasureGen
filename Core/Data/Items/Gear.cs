@@ -38,13 +38,13 @@ namespace EquipmentGen.Core.Data.Items
 
         private String GetAbilitiesString()
         {
-            var abilityStrings = Abilities.Select<SpecialAbility, String>(a => a.ToString());
+            var abilityNames = Abilities.Select(a => a.Name);
 
-            if (Abilities.Count() < 3)
-                return String.Join(" and ", abilityStrings);
+            if (abilityNames.Count() < 3)
+                return String.Join(" and ", abilityNames);
 
-            var abilitiesString = String.Join(", ", abilityStrings);
-            var last = abilityStrings.Last();
+            var abilitiesString = String.Join(", ", abilityNames);
+            var last = abilityNames.Last();
             var indexOfLast = abilitiesString.LastIndexOf(last);
             abilitiesString = abilitiesString.Insert(indexOfLast, "and ");
 

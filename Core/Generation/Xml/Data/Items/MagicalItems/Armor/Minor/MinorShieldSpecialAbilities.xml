@@ -18,7 +18,7 @@
     </object>
     <object>
         <lower>51</lower>
-        <content>Fortification,1,0</content>
+        <content>Fortification,1,1,Light fortification</content>
         <upper>75</upper>
     </object>
     <object>
@@ -33,7 +33,7 @@
     </object>
     <object>
         <lower>98</lower>
-        <content>Spell resistance,2,13</content>
+        <content>Spell resistance,2,13,Spell resistance (13)</content>
         <upper>99</upper>
     </object>
     <object>

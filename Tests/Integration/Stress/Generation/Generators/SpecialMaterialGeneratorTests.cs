@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -27,7 +28,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var types = GetNewTypes();
+                var types = GetNewTypes(false);
                 var material = SpecialMaterialGenerator.GenerateFor(types);
 
                 Assert.That(material, Is.Not.Null);

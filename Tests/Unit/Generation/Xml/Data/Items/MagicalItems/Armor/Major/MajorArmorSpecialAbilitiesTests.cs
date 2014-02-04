@@ -15,55 +15,55 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent("Fortification,1,0", 4);
+            AssertContent("Fortification,1,1,Light fortification", 4);
         }
 
         [Test]
         public void ImprovedSlickPercentile()
         {
-            AssertContent("Slick,0,1", 5, 7);
+            AssertContent("Slick,0,2,Improved slick", 5, 7);
         }
 
         [Test]
         public void ImprovedShadowPercentile()
         {
-            AssertContent("Shadow,0,1", 8, 10);
+            AssertContent("Shadow,0,2,Improved shadow", 8, 10);
         }
 
         [Test]
         public void ImprovedSilentMovesPercentile()
         {
-            AssertContent("Silent moves,0,1", 11, 13);
+            AssertContent("Silent moves,0,2,Improved silent moves", 11, 13);
         }
 
         [Test]
         public void AcidResistancePercentile()
         {
-            AssertContent("Acid resistance,0,0", 14, 16);
+            AssertContent("Acid resistance,0,1", 14, 16);
         }
 
         [Test]
         public void ColdResistancePercentile()
         {
-            AssertContent("Cold resistance,0,0", 17, 19);
+            AssertContent("Cold resistance,0,1", 17, 19);
         }
 
         [Test]
         public void ElectricityResistancePercentile()
         {
-            AssertContent("Electricity resistance,0,0", 20, 22);
+            AssertContent("Electricity resistance,0,1", 20, 22);
         }
 
         [Test]
         public void FireResistancePercentile()
         {
-            AssertContent("Fire resistance,0,0", 23, 25);
+            AssertContent("Fire resistance,0,1", 23, 25);
         }
 
         [Test]
         public void SonicResistancePercentile()
         {
-            AssertContent("Sonic resistance,0,0", 26, 28);
+            AssertContent("Sonic resistance,0,1", 26, 28);
         }
 
         [Test]
@@ -81,13 +81,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void ModerateFortificationPercentile()
         {
-            AssertContent("Fortification,3,1", 36, 40);
+            AssertContent("Fortification,3,2,Moderate fortification", 36, 40);
         }
 
         [Test]
         public void SpellResistance15Percentile()
         {
-            AssertContent("Spell resistance,3,15", 41, 42);
+            AssertContent("Spell resistance,3,15,Spell resistance (15)", 41, 42);
         }
 
         [Test]
@@ -99,55 +99,55 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void GreaterSlickPercentile()
         {
-            AssertContent("Slick,0,2", 44, 48);
+            AssertContent("Slick,0,3,Greater slick", 44, 48);
         }
 
         [Test]
         public void GreaterShadowPercentile()
         {
-            AssertContent("Shadow,0,2", 49, 53);
+            AssertContent("Shadow,0,3,Greater shadow", 49, 53);
         }
 
         [Test]
         public void GreaterSilentMovesPercentile()
         {
-            AssertContent("Silent moves,0,2", 54, 58);
+            AssertContent("Silent moves,0,3,Greater silent moves", 54, 58);
         }
 
         [Test]
         public void ImprovedAcidResistancePercentile()
         {
-            AssertContent("Acid resistance,0,1", 59, 63);
+            AssertContent("Acid resistance,0,2,Improved acid resistance", 59, 63);
         }
 
         [Test]
         public void ImprovedColdResistancePercentile()
         {
-            AssertContent("Cold resistance,0,1", 64, 68);
+            AssertContent("Cold resistance,0,2,Improved cold resistance", 64, 68);
         }
 
         [Test]
         public void ImprovedElectricityResistancePercentile()
         {
-            AssertContent("Electricity resistance,0,1", 69, 73);
+            AssertContent("Electricity resistance,0,2,Improved electricity resistance", 69, 73);
         }
 
         [Test]
         public void ImprovedFireResistancePercentile()
         {
-            AssertContent("Fire resistance,0,1", 74, 78);
+            AssertContent("Fire resistance,0,2,Improved fire resistance", 74, 78);
         }
 
         [Test]
         public void ImprovedSonicResistancePercentile()
         {
-            AssertContent("Sonic resistance,0,1", 79, 83);
+            AssertContent("Sonic resistance,0,2,Improved sonic resistance", 79, 83);
         }
 
         [Test]
         public void SpellResistance17Percentile()
         {
-            AssertContent("Spell resistance,4,17", 84, 88);
+            AssertContent("Spell resistance,4,17,Spell resistance (17)", 84, 88);
         }
 
         [Test]
@@ -165,43 +165,43 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void HeavyFortificationPercentile()
         {
-            AssertContent("Fortification,5,2", 91, 92);
+            AssertContent("Fortification,5,3,Heavy fortification", 91, 92);
         }
 
         [Test]
         public void SpellResistance19Percentile()
         {
-            AssertContent("Spell resistance,5,19", 93, 94);
+            AssertContent("Spell resistance,5,19,Spell resistance (19)", 93, 94);
         }
 
         [Test]
         public void GreaterAcidResistancePercentile()
         {
-            AssertContent("Acid resistance,0,2", 95);
+            AssertContent("Acid resistance,0,3,Greater acid resistance", 95);
         }
 
         [Test]
         public void GreaterColdResistancePercentile()
         {
-            AssertContent("Cold resistance,0,2", 96);
+            AssertContent("Cold resistance,0,3,Greater cold resistance", 96);
         }
 
         [Test]
         public void GreaterElectricityResistancePercentile()
         {
-            AssertContent("Electricity resistance,0,2", 97);
+            AssertContent("Electricity resistance,0,3,Greater electricity resistance", 97);
         }
 
         [Test]
         public void GreaterFireResistancePercentile()
         {
-            AssertContent("Fire resistance,0,2", 98);
+            AssertContent("Fire resistance,0,3,Greater fire resistance", 98);
         }
 
         [Test]
         public void GreaterSonicResistancePercentile()
         {
-            AssertContent("Sonic resistance,0,2", 99);
+            AssertContent("Sonic resistance,0,3,Greater sonic resistance", 99);
         }
 
         [Test]

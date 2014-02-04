@@ -64,6 +64,7 @@
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\AmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\CurseGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\ISpellGenerator.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IAmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ICurseGenerator.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
     <Compile Include="Generation\Generators\RodGenerator.cs" />
     <Compile Include="Generation\Generators\ScrollGenerator.cs" />
+    <Compile Include="Generation\Generators\SpellGenerator.cs" />
     <Compile Include="Generation\Generators\StaffGenerator.cs" />
     <Compile Include="Generation\Generators\WandGenerator.cs" />
     <Compile Include="Generation\Generators\WondrousItemGenerator.cs" />
@@ -395,6 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityTypes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

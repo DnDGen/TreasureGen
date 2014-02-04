@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Integration.Common
             }
         }
 
-        protected IEnumerable<String> GetNewTypes()
+        protected IEnumerable<String> GetNewTypes(Boolean allowNoMaterial)
         {
             var types = new List<String>();
 
@@ -56,10 +56,29 @@ namespace EquipmentGen.Tests.Integration.Common
 
             if (types.Contains(ItemsConstants.ItemTypes.Weapon))
             {
-                switch (Random.Next(2))
+                switch (Random.Next(3))
                 {
                     case 0: types.Add(ItemsConstants.Gear.Types.Melee); break;
-                    default: types.Add(ItemsConstants.Gear.Types.Ranged); break;
+                    case 1: types.Add(ItemsConstants.Gear.Types.Ranged); break;
+                    case 2:
+                        types.Add(ItemsConstants.Gear.Types.Melee);
+                        types.Add(ItemsConstants.Gear.Types.Ranged);
+                        break;
+                }
+
+                switch (Random.Next(4))
+                {
+                    case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
+                    case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
+                    case 2:
+                        types.Add(ItemsConstants.Gear.Types.Metal);
+                        types.Add(ItemsConstants.Gear.Types.Wood);
+                        break;
+                    case 3:
+                        if (allowNoMaterial)
+                            break;
+                        types.Add(ItemsConstants.Gear.Types.Metal);
+                        break;
                 }
             }
 
@@ -68,15 +87,15 @@ namespace EquipmentGen.Tests.Integration.Common
                 switch (Random.Next(2))
                 {
                     case 0: types.Add(ItemsConstants.Gear.Types.Shield); break;
-                    default: break;
+                    case 1: break;
                 }
-            }
 
-            switch (Random.Next(3))
-            {
-                case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
-                case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
-                default: break;
+                switch (Random.Next(3))
+                {
+                    case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
+                    case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
+                    case 2: break;
+                }
             }
 
             return types;

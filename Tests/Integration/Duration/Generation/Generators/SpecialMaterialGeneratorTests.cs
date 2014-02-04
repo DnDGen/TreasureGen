@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            types = GetNewTypes();
+            types = GetNewTypes(false);
             StartTest();
         }
 

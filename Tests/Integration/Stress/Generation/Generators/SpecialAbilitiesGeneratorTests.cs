@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var types = GetNewTypes();
+                var types = GetNewTypes(true);
                 var power = GetNewPower(false);
                 var bonus = Random.Next(5) + 1;
                 var quantity = Random.Next(10) + 1;
@@ -60,7 +60,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var types = GetNewTypes();
+                var types = GetNewTypes(true);
                 var power = GetNewPower(false);
                 var ability = SpecialAbilitiesGenerator.GenerateFor(types, power);
 

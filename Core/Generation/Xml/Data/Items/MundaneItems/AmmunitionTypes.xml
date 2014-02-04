@@ -9,6 +9,7 @@
         <type>Ammunition</type>
         <type>Wood</type>
         <type>Metal</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Crossbow bolt</key>
@@ -17,6 +18,7 @@
         <type>Ranged</type>
         <type>Ammunition</type>
         <type>Metal</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Sling bullet</key>
@@ -25,5 +27,6 @@
         <type>Ranged</type>
         <type>Ammunition</type>
         <type>Metal</type>
+        <type>Bludgeoning</type>
     </object>
 </types>

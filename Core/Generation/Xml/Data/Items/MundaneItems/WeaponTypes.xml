@@ -7,6 +7,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Battleaxe</key>
@@ -14,6 +16,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Club</key>
@@ -21,6 +25,9 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
+        <type>Ranged</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Dagger</key>
@@ -28,6 +35,10 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Ranged</type>
+        <type>Thrown</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Dire flail</key>
@@ -36,6 +47,7 @@
         <type>Uncommon</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Dwarven urgrosh</key>
@@ -44,6 +56,8 @@
         <type>Uncommon</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Dwarven waraxe</key>
@@ -51,6 +65,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Falchion</key>
@@ -58,6 +74,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Gauntlet</key>
@@ -65,6 +83,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Glaive</key>
@@ -72,6 +91,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Gnome hooked hammer</key>
@@ -80,6 +101,8 @@
         <type>Uncommon</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Not bludgeoning</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Greataxe</key>
@@ -87,6 +110,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Greatclub</key>
@@ -94,6 +119,7 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Greatsword</key>
@@ -101,6 +127,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Guisarme</key>
@@ -108,6 +136,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Halberd</key>
@@ -115,6 +145,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Halfspear</key>
@@ -123,6 +155,7 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Handaxe</key>
@@ -130,6 +163,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Hand crossbow</key>
@@ -137,6 +172,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Ranged</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Heavy flail</key>
@@ -144,6 +180,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Heavy mace</key>
@@ -151,6 +188,7 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Heavy pick</key>
@@ -158,6 +196,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Kama</key>
@@ -166,6 +205,8 @@
         <type>Wood</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Kukri</key>
@@ -173,6 +214,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Lance</key>
@@ -181,6 +224,7 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Light flail</key>
@@ -188,6 +232,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Light hammer</key>
@@ -195,6 +240,9 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
+        <type>Ranged</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Light mace</key>
@@ -202,6 +250,7 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Light pick</key>
@@ -209,6 +258,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Longspear</key>
@@ -217,6 +267,7 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Longsword</key>
@@ -224,6 +275,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Morningstar</key>
@@ -231,12 +284,15 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Net</key>
         <type>Weapon</type>
         <type>Uncommon</type>
         <type>Ranged</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Nunchaku</key>
@@ -244,6 +300,7 @@
         <type>Wood</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Orc double axe</key>
@@ -252,6 +309,8 @@
         <type>Uncommon</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Punching dagger</key>
@@ -259,6 +318,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Quarterstaff</key>
@@ -267,6 +327,7 @@
         <type>Common</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Ranseur</key>
@@ -275,6 +336,7 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Rapier</key>
@@ -282,6 +344,7 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Repeating crossbow</key>
@@ -289,12 +352,14 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Ranged</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Sap</key>
         <type>Weapon</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Scimitar</key>
@@ -302,6 +367,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Scythe</key>
@@ -310,6 +377,8 @@
         <type>Wood</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Shortspear</key>
@@ -318,6 +387,9 @@
         <type>Wood</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Ranged</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Short sword</key>
@@ -325,6 +397,8 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Shuriken</key>
@@ -332,6 +406,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Ranged</type>
+        <type>Not bludgeoning</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Siangham</key>
@@ -339,6 +415,7 @@
         <type>Metal</type>
         <type>Common</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Sickle</key>
@@ -346,6 +423,8 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Spiked chain</key>
@@ -353,6 +432,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Spiked gauntlet</key>
@@ -360,6 +440,7 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Splint mail</key>
@@ -372,6 +453,9 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Not bludgeoning</type>
+        <type>Ranged</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Two-bladed sword</key>
@@ -380,6 +464,8 @@
         <type>Uncommon</type>
         <type>Melee</type>
         <type>Double weapon</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Warhammer</key>
@@ -387,37 +473,15 @@
         <type>Metal</type>
         <type>Uncommon</type>
         <type>Melee</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Whip</key>
         <type>Weapon</type>
         <type>Uncommon</type>
         <type>Melee</type>
-    </object>
-    <object>
-        <key>Arrow</key>
-        <type>Weapon</type>
-        <type>Common</type>
-        <type>Ranged</type>
-        <type>Ammunition</type>
-        <type>Wood</type>
-        <type>Metal</type>
-    </object>
-    <object>
-        <key>Crossbow bolt</key>
-        <type>Weapon</type>
-        <type>Common</type>
-        <type>Ranged</type>
-        <type>Ammunition</type>
-        <type>Metal</type>
-    </object>
-    <object>
-        <key>Sling bullet</key>
-        <type>Weapon</type>
-        <type>Common</type>
-        <type>Ranged</type>
-        <type>Ammunition</type>
-        <type>Metal</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
     </object>
     <object>
         <key>Composite (+0) longbow</key>
@@ -425,6 +489,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+1) longbow</key>
@@ -432,6 +497,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+2) longbow</key>
@@ -439,6 +505,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+3) longbow</key>
@@ -446,6 +513,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+4) longbow</key>
@@ -453,6 +521,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+0) shortbow</key>
@@ -460,6 +529,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+1) shortbow</key>
@@ -467,6 +537,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Composite (+2) shortbow</key>
@@ -474,6 +545,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Longbow</key>
@@ -481,6 +553,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Shortbow</key>
@@ -488,6 +561,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Dart</key>
@@ -495,6 +569,8 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Metal</type>
+        <type>Not bludgeoning</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Heavy crossbow</key>
@@ -502,6 +578,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Light crossbow</key>
@@ -509,6 +586,7 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Wood</type>
+        <type>Not bludgeoning</type>
     </object>
     <object>
         <key>Javelin</key>
@@ -517,12 +595,15 @@
         <type>Ranged</type>
         <type>Wood</type>
         <type>Metal</type>
+        <type>Not bludgeoning</type>
+        <type>Thrown</type>
     </object>
     <object>
         <key>Sling</key>
         <type>Weapon</type>
         <type>Common</type>
         <type>Ranged</type>
+        <type>Bludgeoning</type>
     </object>
     <object>
         <key>Throwing axe</key>
@@ -530,5 +611,8 @@
         <type>Common</type>
         <type>Ranged</type>
         <type>Metal</type>
+        <type>Not bludgeoning</type>
+        <type>Slashing</type>
+        <type>Thrown</type>
     </object>
 </types>
