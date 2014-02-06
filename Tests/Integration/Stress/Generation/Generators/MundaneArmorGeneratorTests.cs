@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using EquipmentGen.Core.Data.Items;
+﻿using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -15,7 +13,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         public IMundaneGearGeneratorFactory MundaneGearGeneratorFactory { get; set; }
 
         private IMundaneGearGenerator mundaneArmorGenerator;
-        private IEnumerable<String> gearMaterialTypes;
 
         [SetUp]
         public void Setup()

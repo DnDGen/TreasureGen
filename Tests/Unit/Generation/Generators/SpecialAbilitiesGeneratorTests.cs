@@ -6,7 +6,6 @@ using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -16,7 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     public class SpecialAbilitiesGeneratorTests
     {
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private Mock<ISpecialAbilityPercentileResultProvider> mockSpecialAbilityPercentileResultProvider;
+        private Mock<ISpecialAbilityDataProvider> mockSpecialAbilityDataProvider;
         private Mock<ITypesProvider> mockTypesProvider;
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
         private Mock<IDice> mockDice;
@@ -30,13 +29,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             types = new List<String>();
             types.Add(ItemsConstants.ItemTypes.Armor);
 
-            mockSpecialAbilityPercentileResultProvider = new Mock<ISpecialAbilityPercentileResultProvider>();
+            mockSpecialAbilityDataProvider = new Mock<ISpecialAbilityDataProvider>();
             mockTypesProvider = new Mock<ITypesProvider>();
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockDice = new Mock<IDice>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
 
-            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockSpecialAbilityPercentileResultProvider.Object,
+            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockSpecialAbilityDataProvider.Object,
                 mockTypesProvider.Object, mockPercentileResultProvider.Object, mockDice.Object, mockSpellGenerator.Object);
         }
 
@@ -51,64 +50,55 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecialAbilitiesGeneratorGetsShieldAbilityIfShield()
         {
             types.Add(ItemsConstants.Gear.Types.Shield);
-            var shieldAbility = new SpecialAbilityPercentileResult();
+            var shieldAbility = new SpecialAbility();
             shieldAbility.Name = "shield ability";
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerShieldSpecialAbilities")).Returns(shieldAbility);
+
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerShieldSpecialAbilities")).Returns(shieldAbility.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(shieldAbility.Name)).Returns(shieldAbility);
 
             var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
-            Assert.That(ability.Name, Is.EqualTo(shieldAbility.Name));
+            Assert.That(ability, Is.EqualTo(shieldAbility));
         }
 
         [Test]
         public void SpecialAbilitiesGeneratorGetsMeleeWeaponAbilityIfMeleeWeapon()
         {
             types.Add(ItemsConstants.Gear.Types.Melee);
-            var meleeWeaponAbility = new SpecialAbilityPercentileResult();
+            var meleeWeaponAbility = new SpecialAbility();
             meleeWeaponAbility.Name = "melee weapon ability";
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerMeleeWeaponSpecialAbilities")).Returns(meleeWeaponAbility);
+
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerMeleeWeaponSpecialAbilities")).Returns(meleeWeaponAbility.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(meleeWeaponAbility.Name)).Returns(meleeWeaponAbility);
 
             var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
-            Assert.That(ability.Name, Is.EqualTo(meleeWeaponAbility.Name));
+            Assert.That(ability, Is.EqualTo(meleeWeaponAbility));
         }
 
         [Test]
         public void SpecialAbilitiesGeneratorGetsRangedWeaponAbilityIfRangedWeapon()
         {
             types.Add(ItemsConstants.Gear.Types.Ranged);
-            var rangedWeaponAbility = new SpecialAbilityPercentileResult();
+            var rangedWeaponAbility = new SpecialAbility();
             rangedWeaponAbility.Name = "ranged weapon ability";
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerRangedWeaponSpecialAbilities")).Returns(rangedWeaponAbility);
+
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerRangedWeaponSpecialAbilities")).Returns(rangedWeaponAbility.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(rangedWeaponAbility.Name)).Returns(rangedWeaponAbility);
 
             var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
-            Assert.That(ability.Name, Is.EqualTo(rangedWeaponAbility.Name));
+            Assert.That(ability, Is.EqualTo(rangedWeaponAbility));
         }
 
         [Test]
         public void SpecialAbilitiesGeneratorGetsArmorAbilityIfArmor()
         {
-            var armorAbility = new SpecialAbilityPercentileResult();
+            var armorAbility = new SpecialAbility();
             armorAbility.Name = "armor ability";
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(armorAbility);
+
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(armorAbility.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(armorAbility.Name)).Returns(armorAbility);
 
             var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
             Assert.That(ability.Name, Is.EqualTo(armorAbility.Name));
-        }
-
-        [Test]
-        public void SpecialAbilitiesGeneratorSetsAbilityByResult()
-        {
-            var abilityResult = new SpecialAbilityPercentileResult();
-            abilityResult.Bonus = 92;
-            abilityResult.CoreName = "core name";
-            abilityResult.Name = "name";
-            abilityResult.Strength = 66;
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(abilityResult);
-
-            var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
-            Assert.That(ability.Name, Is.EqualTo(abilityResult.Name));
-            Assert.That(ability.BonusEquivalent, Is.EqualTo(abilityResult.Bonus));
-            Assert.That(ability.CoreName, Is.EqualTo(abilityResult.CoreName));
-            Assert.That(ability.Strength, Is.EqualTo(abilityResult.Strength));
         }
 
         [Test]
@@ -118,29 +108,44 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsAbilities()
+        public void SpecialAbilitiesGeneratorSetsAbilityByResult()
         {
-            var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
-            ability1.Bonus = 1;
-            var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
-            ability2.Bonus = 2;
-            var ability3 = CreateSpecialAbilityPercentileResult("ability 3");
-            ability3.Bonus = 3;
+            var abilityResult = new SpecialAbility();
+            abilityResult.BonusEquivalent = 92;
+            abilityResult.CoreName = "core name";
+            abilityResult.Name = "name";
+            abilityResult.Strength = 66;
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability1).Returns(ability2).Returns(ability3);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(abilityResult.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(abilityResult.Name)).Returns(abilityResult);
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 3);
-            var names = abilities.Select(a => a.Name);
-            Assert.That(names, Contains.Item(ability1.Name));
-            Assert.That(names, Contains.Item(ability2.Name));
-            Assert.That(names, Contains.Item(ability3.Name));
-            Assert.That(names.Count(), Is.EqualTo(3));
+            var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
+            Assert.That(ability, Is.EqualTo(abilityResult));
         }
 
-        private SpecialAbilityPercentileResult CreateSpecialAbilityPercentileResult(String name)
+        [Test]
+        public void SpecialAbilitiesGeneratorGetsAbilities()
         {
-            var ability = new SpecialAbilityPercentileResult();
+            var ability1 = CreateSpecialAbility("ability 1");
+            ability1.BonusEquivalent = 1;
+            var ability2 = CreateSpecialAbility("ability 2");
+            ability2.BonusEquivalent = 2;
+            var ability3 = CreateSpecialAbility("ability 3");
+            ability3.BonusEquivalent = 3;
+
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
+                .Returns(ability2).Returns(ability3);
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 3);
+            Assert.That(abilities, Contains.Item(ability1));
+            Assert.That(abilities, Contains.Item(ability2));
+            Assert.That(abilities, Contains.Item(ability3));
+            Assert.That(abilities.Count(), Is.EqualTo(3));
+        }
+
+        private SpecialAbility CreateSpecialAbility(String name)
+        {
+            var ability = new SpecialAbility();
             ability.Name = name;
             ability.CoreName = name;
             return ability;
@@ -149,85 +154,92 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpecialAbilitiesGeneratorWillNotAllowAbilitiesAndMagicBonusToBeGreaterThan10()
         {
-            var bigAbility = CreateSpecialAbilityPercentileResult("big ability");
-            bigAbility.Bonus = 2;
-            var smallAbility = CreateSpecialAbilityPercentileResult("small ability");
-            smallAbility.Bonus = 1;
+            var bigAbility = CreateSpecialAbility("big ability");
+            bigAbility.BonusEquivalent = 2;
+            var smallAbility = CreateSpecialAbility("small ability");
+            smallAbility.BonusEquivalent = 1;
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(bigAbility).Returns(smallAbility);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(bigAbility)
+                .Returns(smallAbility);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 9, 1);
-            Assert.That(abilities.First().Name, Is.EqualTo(smallAbility.Name));
+            Assert.That(abilities, Contains.Item(smallAbility));
             Assert.That(abilities.Count(), Is.EqualTo(1));
         }
 
         [Test]
         public void SpecialAbilitiesGeneratorAccumulatesAbilities()
         {
-            var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
-            ability1.Bonus = 1;
-            var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
-            ability2.Bonus = 2;
-            var ability3 = CreateSpecialAbilityPercentileResult("ability 3");
-            ability3.Bonus = 3;
-            var ability4 = CreateSpecialAbilityPercentileResult("ability 4");
-            ability4.Bonus = 0;
+            var ability1 = CreateSpecialAbility("ability 1");
+            ability1.BonusEquivalent = 1;
+            var ability2 = CreateSpecialAbility("ability 2");
+            ability2.BonusEquivalent = 2;
+            var ability3 = CreateSpecialAbility("ability 3");
+            ability3.BonusEquivalent = 3;
+            var ability4 = CreateSpecialAbility("ability 4");
+            ability4.BonusEquivalent = 0;
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability1).Returns(ability2).Returns(ability3).Returns(ability4);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
+                .Returns(ability2).Returns(ability3).Returns(ability4);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 5, 3);
-            var names = abilities.Select(a => a.Name);
-            Assert.That(names, Contains.Item(ability1.Name));
-            Assert.That(names, Contains.Item(ability2.Name));
-            Assert.That(names, Contains.Item(ability4.Name));
-            Assert.That(names.Count(), Is.EqualTo(3));
+            Assert.That(abilities, Contains.Item(ability1));
+            Assert.That(abilities, Contains.Item(ability2));
+            Assert.That(abilities, Contains.Item(ability4));
+            Assert.That(abilities.Count(), Is.EqualTo(3));
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorUsesMostPowerfulVersionOfAbility()
+        public void SpecialAbilitiesGeneratorReplacesWeakWithStrong()
         {
-            var strongAbility = CreateSpecialAbilityPercentileResult("strong ability");
+            var strongAbility = CreateSpecialAbility("strong ability");
             strongAbility.CoreName = "ability";
             strongAbility.Strength = 2;
-            var weakAbility = CreateSpecialAbilityPercentileResult("weak ability");
+            var weakAbility = CreateSpecialAbility("weak ability");
             weakAbility.CoreName = "ability";
             weakAbility.Strength = 1;
-            var otherAbility = CreateSpecialAbilityPercentileResult("other ability");
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(strongAbility).Returns(weakAbility).Returns(otherAbility);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(weakAbility)
+                .Returns(strongAbility);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 2);
-            Assert.That(abilities.First().Strength, Is.EqualTo(strongAbility.Strength));
-            Assert.That(abilities.Count(a => a.CoreName == strongAbility.CoreName), Is.EqualTo(1));
-
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(weakAbility).Returns(strongAbility);
-
-            abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 2);
+            Assert.That(abilities, Contains.Item(strongAbility));
             Assert.That(abilities.Count(), Is.EqualTo(1));
+        }
 
-            var first = abilities.First();
-            Assert.That(first.Name, Is.EqualTo(strongAbility.Name));
-            Assert.That(first.Strength, Is.EqualTo(strongAbility.Strength));
+        [Test]
+        public void SpecialAbilitiesGeneratordoesNotReplaceStrongWithWeak()
+        {
+            var strongAbility = CreateSpecialAbility("strong ability");
+            strongAbility.CoreName = "ability";
+            strongAbility.Strength = 2;
+            var weakAbility = CreateSpecialAbility("weak ability");
+            weakAbility.CoreName = "ability";
+            weakAbility.Strength = 1;
+            var otherAbility = CreateSpecialAbility("other ability");
+
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(strongAbility)
+                .Returns(weakAbility).Returns(otherAbility);
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 2);
+            Assert.That(abilities, Contains.Item(strongAbility));
+            Assert.That(abilities, Is.Not.Contains(weakAbility));
         }
 
         [Test]
         public void AbilitiesMaxOutAtBonusOf10()
         {
-            var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
-            ability1.Bonus = 3;
-            var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
-            ability2.Bonus = 3;
-            var ability3 = CreateSpecialAbilityPercentileResult("ability 3");
-            ability3.Bonus = 3;
-            var ability4 = CreateSpecialAbilityPercentileResult("ability 4");
-            ability4.Bonus = 1;
+            var ability1 = CreateSpecialAbility("ability 1");
+            ability1.BonusEquivalent = 3;
+            var ability2 = CreateSpecialAbility("ability 2");
+            ability2.BonusEquivalent = 3;
+            var ability3 = CreateSpecialAbility("ability 3");
+            ability3.BonusEquivalent = 3;
+            var ability4 = CreateSpecialAbility("ability 4");
+            ability4.BonusEquivalent = 1;
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability1).Returns(ability2).Returns(ability3).Returns(ability4);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
+                .Returns(ability2).Returns(ability3).Returns(ability4);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 4);
             var names = abilities.Select(a => a.Name);
@@ -240,11 +252,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void DuplicateAbilitiesCannotBeAdded()
         {
-            var ability = CreateSpecialAbilityPercentileResult("ability");
-            var otherAbility = CreateSpecialAbilityPercentileResult("other ability");
+            var ability = CreateSpecialAbility("ability");
+            var otherAbility = CreateSpecialAbility("other ability");
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability).Returns(ability).Returns(otherAbility);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability)
+                .Returns(ability).Returns(otherAbility);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 2);
             var names = abilities.Select(a => a.Name);
@@ -256,36 +268,35 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void AbilitiesFilteredByTypeRequirementsFromCoreName()
         {
-            var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
+            var ability1 = CreateSpecialAbility("ability 1");
             ability1.CoreName = "core ability 1";
-            var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
+            var ability2 = CreateSpecialAbility("ability 2");
             ability2.CoreName = "core ability 2";
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability1).Returns(ability2);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
+                .Returns(ability2);
 
             types.Add("type 1");
             types.Add("type 2");
-            mockTypesProvider.Setup(p => p.GetTypesFor(ability1.CoreName, "SpecialAbilityTypes")).Returns(new[] { "other type", "type 1" });
+            mockTypesProvider.Setup(p => p.GetTypesFor(ability1.CoreName, "SpecialAbilityTypes"))
+                .Returns(new[] { "other type", "type 1" });
             mockTypesProvider.Setup(p => p.GetTypesFor(ability2.CoreName, "SpecialAbilityTypes")).Returns(types);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 1);
-            Assert.That(abilities.First().Name, Is.EqualTo(ability2.Name));
+            Assert.That(abilities, Contains.Item(ability2));
             Assert.That(abilities.Count(), Is.EqualTo(1));
         }
 
         [Test]
         public void ExtraTypesDoNotMatter()
         {
-            var ability = CreateSpecialAbilityPercentileResult("ability");
-
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(ability);
+            var ability = CreateSpecialAbility("ability");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(ability);
 
             types.Add("type 1");
             mockTypesProvider.Setup(p => p.GetTypesFor(ability.Name, "SpecialAbilityTypes")).Returns(types);
-
             var inputTypes = types.Union(new[] { "other type" });
+
             var abilities = specialAbilitiesGenerator.GenerateFor(inputTypes, "power", 1, 1);
             Assert.That(abilities.First().Name, Is.EqualTo(ability.Name));
             Assert.That(abilities.Count(), Is.EqualTo(1));
@@ -294,25 +305,24 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void BonusSpecialAbilitiesAdded()
         {
-            var bonusAbility = CreateSpecialAbilityPercentileResult("BonusSpecialAbility");
-            var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
-            var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
+            var bonusAbility = CreateSpecialAbility("BonusSpecialAbility");
+            var ability1 = CreateSpecialAbility("ability 1");
+            var ability2 = CreateSpecialAbility("ability 2");
 
-            mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
-                .Returns(bonusAbility).Returns(ability1).Returns(ability2);
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(bonusAbility)
+                .Returns(ability1).Returns(ability2);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 1);
-            var names = abilities.Select(a => a.Name);
-            Assert.That(names, Contains.Item(ability2.Name));
-            Assert.That(names, Contains.Item(ability1.Name));
-            Assert.That(names.Count(), Is.EqualTo(2));
+            Assert.That(abilities, Contains.Item(ability2));
+            Assert.That(abilities, Contains.Item(ability1));
+            Assert.That(abilities.Count(), Is.EqualTo(2));
         }
 
         [Test]
         public void BaneAbilityGetsDesignatedFoe()
         {
-            var bane = CreateSpecialAbilityPercentileResult("Bane");
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(bane);
+            var bane = CreateSpecialAbility("Bane");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(bane);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("DesignatedFoes")).Returns("designated foe");
 
             var result = specialAbilitiesGenerator.GenerateFor(types, "power");
@@ -323,14 +333,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpellStoringAbilityDoesNotHaveSpellIfBelow51()
         {
-            var spellStoring = CreateSpecialAbilityPercentileResult("Spell storing");
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(spellStoring);
+            var spellStoring = CreateSpecialAbility("Spell storing");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(spellStoring);
             mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
 
             for (var roll = 1; roll < 51; roll++)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
                 var result = specialAbilitiesGenerator.GenerateFor(types, "power");
+                Assert.That(result, Is.EqualTo(spellStoring));
                 Assert.That(result.Name, Is.EqualTo("Spell storing"));
             }
         }
@@ -338,14 +349,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpellStoringAbilityHasSpellIfAbove50()
         {
-            var spellStoring = CreateSpecialAbilityPercentileResult("Spell storing");
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(spellStoring);
+            var spellStoring = CreateSpecialAbility("Spell storing");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(spellStoring);
             mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
 
             for (var roll = 51; roll <= 100; roll++)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
                 var result = specialAbilitiesGenerator.GenerateFor(types, "power");
+                Assert.That(result, Is.EqualTo(spellStoring));
                 Assert.That(result.Name, Is.EqualTo("Spell storing (spell)"));
             }
         }
@@ -353,8 +365,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpellStoringAbilityGetsTypeAndLevelOfSpell()
         {
-            var spellStoring = CreateSpecialAbilityPercentileResult("Spell storing");
-            mockSpecialAbilityPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(spellStoring);
+            var spellStoring = CreateSpecialAbility("Spell storing");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(spellStoring);
             mockDice.Setup(d => d.Percentile(1)).Returns(100);
 
             mockDice.Setup(d => d.d3(1)).Returns(9266);
@@ -362,6 +374,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel("spell type", 9266)).Returns("spell");
 
             var result = specialAbilitiesGenerator.GenerateFor(types, "power");
+            Assert.That(result, Is.EqualTo(spellStoring));
             Assert.That(result.Name, Is.EqualTo("Spell storing (spell)"));
         }
     }

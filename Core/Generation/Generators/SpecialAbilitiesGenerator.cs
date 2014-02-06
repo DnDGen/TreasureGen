@@ -10,17 +10,16 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
-        private ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider;
+        private ISpecialAbilityDataProvider specialAbilityDataProvider;
         private ITypesProvider typesProvider;
         private IPercentileResultProvider percentileResultProvider;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
-        public SpecialAbilitiesGenerator(ISpecialAbilityPercentileResultProvider specialAbilityPercentileResultProvider,
-            ITypesProvider typesProvider, IPercentileResultProvider percentileResultProvider,
-            IDice dice, ISpellGenerator spellGenerator)
+        public SpecialAbilitiesGenerator(ISpecialAbilityDataProvider specialAbilityDataProvider, ITypesProvider typesProvider,
+            IPercentileResultProvider percentileResultProvider, IDice dice, ISpellGenerator spellGenerator)
         {
-            this.specialAbilityPercentileResultProvider = specialAbilityPercentileResultProvider;
+            this.specialAbilityDataProvider = specialAbilityDataProvider;
             this.typesProvider = typesProvider;
             this.percentileResultProvider = percentileResultProvider;
             this.dice = dice;
@@ -72,28 +71,21 @@ namespace EquipmentGen.Core.Generation.Generators
         public SpecialAbility GenerateFor(IEnumerable<String> types, String power)
         {
             var tableName = GetTableName(types, power);
-            var result = specialAbilityPercentileResultProvider.GetResultFrom(tableName);
-            var requirements = typesProvider.GetTypesFor(result.Name, "SpecialAbilityTypes");
+            var abilityName = percentileResultProvider.GetResultFrom(tableName);
+            var ability = specialAbilityDataProvider.GetDataFor(abilityName);
 
-            while (!AllTypeRequirementsMet(requirements, types))
+            while (!AllTypeRequirementsMet(ability.TypeRequirements, types))
             {
-                result = specialAbilityPercentileResultProvider.GetResultFrom(tableName);
-                requirements = typesProvider.GetTypesFor(result.Name, "SpecialAbilityTypes");
+                abilityName = percentileResultProvider.GetResultFrom(tableName);
+                ability = specialAbilityDataProvider.GetDataFor(abilityName);
             }
 
-            var ability = new SpecialAbility();
-            ability.Name = result.Name;
-            ability.Strength = result.Strength;
-            ability.BonusEquivalent = result.Bonus;
-            ability.TypeRequirements = requirements;
-            ability.CoreName = result.CoreName;
-
-            if (result.CoreName == "Bane")
+            if (ability.CoreName == "Bane")
             {
                 var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes");
                 ability.Name = String.Format("Bane ({0})", designatedFoe);
             }
-            else if (result.CoreName == "Spell storing" && dice.Percentile() > 50)
+            else if (ability.CoreName == "Spell storing" && dice.Percentile() > 50)
             {
                 var level = dice.d3();
                 var spellType = spellGenerator.GenerateType();

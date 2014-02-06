@@ -73,11 +73,10 @@
     <Compile Include="Generation\Generators\MagicalArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
-    <Compile Include="Generation\Providers\SpecialAbilityPercentileResultProviderTests.cs" />
+    <Compile Include="Generation\Providers\SpecialAbilityDataProviderTests.cs" />
     <Compile Include="Generation\Providers\TypesProviderTests.cs" />
     <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
-    <Compile Include="Generation\Providers\GoodPercentileResultProviderTests.cs" />
     <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
     <Compile Include="Generation\Xml\Data\Attributes\PercentileTableAttribute.cs" />
     <Compile Include="Generation\Xml\Data\Attributes\TypesTableAttribute.cs" />

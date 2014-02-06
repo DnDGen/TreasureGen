@@ -20,7 +20,6 @@ namespace EquipmentGen.Bootstrap
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
-            Bind<IGoodPercentileResultProvider>().To<GoodPercentileResultProvider>();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
             Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
@@ -31,7 +30,7 @@ namespace EquipmentGen.Bootstrap
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
-            Bind<ISpecialAbilityPercentileResultProvider>().To<SpecialAbilityPercentileResultProvider>();
+            Bind<ISpecialAbilityDataProvider>().To<SpecialAbilityDataProvider>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();

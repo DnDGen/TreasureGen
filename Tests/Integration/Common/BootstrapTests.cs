@@ -42,12 +42,6 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void GoodPercentileResultProviderNotConstructedAsSingleton()
-        {
-            AssertNotSingleton<IGoodPercentileResultProvider>();
-        }
-
-        [Test]
         public void GoodsGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<IGoodsGenerator>();
@@ -164,7 +158,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void SpecialAbilityPercentileResultProviderNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityPercentileResultProvider>();
+            AssertNotSingleton<ISpecialAbilityDataProvider>();
         }
 
         [Test]

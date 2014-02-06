@@ -11,13 +11,10 @@ namespace EquipmentGen.Core.Generation.Generators
     public class GoodsGenerator : IGoodsGenerator
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
-        private IGoodPercentileResultProvider goodPercentileResultProvider;
         private IDice dice;
 
-        public GoodsGenerator(IGoodPercentileResultProvider goodPercentileResultProvider, IDice dice,
-            ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
+        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
         {
-            this.goodPercentileResultProvider = goodPercentileResultProvider;
             this.dice = dice;
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
         }
@@ -36,15 +33,15 @@ namespace EquipmentGen.Core.Generation.Generators
 
             while (amount-- > 0)
             {
-                var valueResult = goodPercentileResultProvider.GetResultFrom(tableName);
-                var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
-                var index = dice.Roll(roll);
+                //var valueResult = goodPercentileResultProvider.GetResultFrom(tableName);
+                //var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
+                //var index = dice.Roll(roll);
 
-                var good = new Good();
-                good.Description = valueResult.Descriptions.ElementAt(index);
-                good.ValueInGold = dice.Roll(valueResult.ValueRoll);
+                //var good = new Good();
+                //good.Description = valueResult.Descriptions.ElementAt(index);
+                //good.ValueInGold = dice.Roll(valueResult.ValueRoll);
 
-                goods.Add(good);
+                //goods.Add(good);
             }
 
             return goods;
