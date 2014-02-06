@@ -254,18 +254,20 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void AbilitiesFilteredByTypeRequirements()
+        public void AbilitiesFilteredByTypeRequirementsFromCoreName()
         {
             var ability1 = CreateSpecialAbilityPercentileResult("ability 1");
+            ability1.CoreName = "core ability 1";
             var ability2 = CreateSpecialAbilityPercentileResult("ability 2");
+            ability2.CoreName = "core ability 2";
 
             mockSpecialAbilityPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmorSpecialAbilities"))
                 .Returns(ability1).Returns(ability2);
 
             types.Add("type 1");
             types.Add("type 2");
-            mockTypesProvider.Setup(p => p.GetTypesFor(ability1.Name, "SpecialAbilityTypes")).Returns(new[] { "other type", "type 1" });
-            mockTypesProvider.Setup(p => p.GetTypesFor(ability2.Name, "SpecialAbilityTypes")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor(ability1.CoreName, "SpecialAbilityTypes")).Returns(new[] { "other type", "type 1" });
+            mockTypesProvider.Setup(p => p.GetTypesFor(ability2.CoreName, "SpecialAbilityTypes")).Returns(types);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 1);
             Assert.That(abilities.First().Name, Is.EqualTo(ability2.Name));
