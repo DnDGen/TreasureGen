@@ -5,10 +5,5 @@ namespace EquipmentGen.Core.Data.Items
     public abstract class Item
     {
         public String Name { get; set; }
-
-        public override String ToString()
-        {
-            return Name;
-        }
     }
 }

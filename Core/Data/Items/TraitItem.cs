@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace EquipmentGen.Core.Data.Items
 {
@@ -11,15 +10,6 @@ namespace EquipmentGen.Core.Data.Items
         public TraitItem()
         {
             Traits = new List<String>();
-        }
-
-        public override String ToString()
-        {
-            if (!Traits.Any())
-                return base.ToString();
-
-            var traits = String.Join(", ", Traits);
-            return String.Format("{0} ({1})", base.ToString(), traits);
         }
     }
 }

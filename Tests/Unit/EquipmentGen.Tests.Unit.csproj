@@ -52,12 +52,13 @@
     <Compile Include="Data\Coins\CoinConstantsTests.cs" />
     <Compile Include="Data\Coins\CoinTests.cs" />
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
-    <Compile Include="Data\Items\AlchemicalItemTests.cs" />
-    <Compile Include="Data\Items\AmmunitionTests.cs" />
-    <Compile Include="Data\Items\GearTests.cs" />
-    <Compile Include="Data\Items\ItemsConstantsTests.cs" />
-    <Compile Include="Data\Items\ItemTests.cs" />
-    <Compile Include="Data\Items\TraitItemTests.cs" />
+    <Compile Include="Data\Items\ArmorConstantsTests.cs" />
+    <Compile Include="Data\Items\ItemTypeConstantsTests.cs" />
+    <Compile Include="Data\Items\PowerConstantsTests.cs" />
+    <Compile Include="Data\Items\SpecialAbilityConstantsTests.cs" />
+    <Compile Include="Data\Items\TraitConstantsTests.cs" />
+    <Compile Include="Data\Items\TypeConstantsTests.cs" />
+    <Compile Include="Data\Items\WeaponConstantsTests.cs" />
     <Compile Include="Generation\Factories\MagicalItemGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\MagicalGearGeneratorFactoryTests.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldTypeTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityDataTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityTypesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MajorItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MediumItemsTests.cs" />
