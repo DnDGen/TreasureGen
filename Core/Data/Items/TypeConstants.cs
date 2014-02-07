@@ -17,5 +17,6 @@ namespace EquipmentGen.Core.Data.Items
         public const String Bludgeoning = "Bludgeoning";
         public const String Thrown = "Thrown";
         public const String Slashing = "Slashing";
+        public const String NotTower = "Not tower";
     }
 }

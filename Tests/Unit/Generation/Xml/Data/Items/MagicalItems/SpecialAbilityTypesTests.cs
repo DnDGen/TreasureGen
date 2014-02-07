@@ -198,7 +198,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                TypeConstants.Shield,
+                TypeConstants.NotTower
             };
 
             AssertContent("Bashing", types);

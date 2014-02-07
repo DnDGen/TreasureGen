@@ -7,80 +7,86 @@ namespace EquipmentGen.Tests.Unit.Data.Items
     public class TypeConstantsTests
     {
         [Test]
-        public void CommonMeleeWeaponTypeGearConstant()
+        public void CommonConstant()
         {
             Assert.That(TypeConstants.Common, Is.EqualTo("Common"));
         }
 
         [Test]
-        public void UncommonWeaponTypeGearConstant()
+        public void UncommonConstant()
         {
             Assert.That(TypeConstants.Uncommon, Is.EqualTo("Uncommon"));
         }
 
         [Test]
-        public void WoodTypeGearConstant()
+        public void WoodConstant()
         {
             Assert.That(TypeConstants.Wood, Is.EqualTo("Wood"));
         }
 
         [Test]
-        public void MetalTypeGearConstant()
+        public void MetalConstant()
         {
             Assert.That(TypeConstants.Metal, Is.EqualTo("Metal"));
         }
 
         [Test]
-        public void DoubleWeaponTypeGearConstant()
+        public void DoubleWeaponConstant()
         {
             Assert.That(TypeConstants.DoubleWeapon, Is.EqualTo("Double weapon"));
         }
 
         [Test]
-        public void MeleeTypeGearConstant()
+        public void MeleeConstant()
         {
             Assert.That(TypeConstants.Melee, Is.EqualTo("Melee"));
         }
 
         [Test]
-        public void RangedTypeGearConstant()
+        public void RangedConstant()
         {
             Assert.That(TypeConstants.Ranged, Is.EqualTo("Ranged"));
         }
         [Test]
-        public void AmmunitionGearTypeConstant()
+        public void AmmunitionConstant()
         {
             Assert.That(TypeConstants.Ammunition, Is.EqualTo("Ammunition"));
         }
 
         [Test]
-        public void ShieldGearTypeConstant()
+        public void ShieldConstant()
         {
             Assert.That(TypeConstants.Shield, Is.EqualTo("Shield"));
         }
 
         [Test]
-        public void NotBludgeoningGearTypeConstant()
+        public void NotBludgeoningConstant()
         {
             Assert.That(TypeConstants.NotBludgeoning, Is.EqualTo("Not bludgeoning"));
         }
 
         [Test]
-        public void BludgeoningGearTypeConstant()
+        public void BludgeoningConstant()
         {
             Assert.That(TypeConstants.Bludgeoning, Is.EqualTo("Bludgeoning"));
         }
 
         [Test]
-        public void ThrownGearTypeConstant()
+        public void ThrownConstant()
         {
             Assert.That(TypeConstants.Thrown, Is.EqualTo("Thrown"));
         }
 
         [Test]
-        public void SlashingGearTypeConstant()
+        public void SlashingConstant()
         {
             Assert.That(TypeConstants.Slashing, Is.EqualTo("Slashing"));
+        }
+
+        [Test]
+        public void NotTowerConstant()
+        {
+            Assert.That(TypeConstants.NotTower, Is.EqualTo("Not tower"));
         }
     }
 }
