@@ -98,16 +98,16 @@ namespace EquipmentGen.Core.Generation.Generators
 
         private String GetTableName(IEnumerable<String> types, String power)
         {
-            if (types.Contains(ItemsConstants.Gear.Types.Shield))
+            if (types.Contains(TypeConstants.Shield))
                 return String.Format("{0}ShieldSpecialAbilities", power);
 
-            if (types.Contains(ItemsConstants.Gear.Types.Melee))
+            if (types.Contains(TypeConstants.Melee))
                 return String.Format("{0}MeleeWeaponSpecialAbilities", power);
 
-            if (types.Contains(ItemsConstants.Gear.Types.Ranged))
+            if (types.Contains(TypeConstants.Ranged))
                 return String.Format("{0}RangedWeaponSpecialAbilities", power);
 
-            if (types.Contains(ItemsConstants.ItemTypes.Armor))
+            if (types.Contains(ItemTypeConstants.Armor))
                 return String.Format("{0}ArmorSpecialAbilities", power);
 
             throw new ArgumentException("invalid types for special abilities");

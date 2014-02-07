@@ -33,10 +33,10 @@ namespace EquipmentGen.Core.Generation.Factories
         {
             switch (type)
             {
-                case ItemsConstants.ItemTypes.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
+                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
                     percentileResultProvider, typesProvider, gearSpecialAbilitiesProvider, materialsProvider,
                     magicItemTraitsGenerator);
-                case ItemsConstants.ItemTypes.Weapon: return new MagicalWeaponGenerator();
+                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }
         }

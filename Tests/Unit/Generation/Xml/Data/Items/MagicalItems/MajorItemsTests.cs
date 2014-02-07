@@ -10,55 +10,55 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
         [Test]
         public void MajorArmorPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Armor, 1, 10);
+            AssertContent(ItemTypeConstants.Armor, 1, 10);
         }
 
         [Test]
         public void MajorWeaponPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Weapon, 11, 20);
+            AssertContent(ItemTypeConstants.Weapon, 11, 20);
         }
 
         [Test]
         public void MajorPotionPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Potion, 21, 25);
+            AssertContent(ItemTypeConstants.Potion, 21, 25);
         }
 
         [Test]
         public void MajorRingPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Ring, 26, 35);
+            AssertContent(ItemTypeConstants.Ring, 26, 35);
         }
 
         [Test]
         public void MajorRodPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Rod, 36, 45);
+            AssertContent(ItemTypeConstants.Rod, 36, 45);
         }
 
         [Test]
         public void MajorScrollPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Scroll, 46, 55);
+            AssertContent(ItemTypeConstants.Scroll, 46, 55);
         }
 
         [Test]
         public void MajorStaffPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Staff, 56, 75);
+            AssertContent(ItemTypeConstants.Staff, 56, 75);
         }
 
         [Test]
         public void MajorWandPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Wand, 76, 80);
+            AssertContent(ItemTypeConstants.Wand, 76, 80);
         }
 
         [Test]
         public void MajorWondrousItemPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.WondrousItem, 81, 100);
+            AssertContent(ItemTypeConstants.WondrousItem, 81, 100);
         }
     }
 }

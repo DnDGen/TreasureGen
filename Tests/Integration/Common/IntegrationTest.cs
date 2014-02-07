@@ -36,10 +36,10 @@ namespace EquipmentGen.Tests.Integration.Common
 
             switch (Random.Next(limit))
             {
-                case 0: return ItemsConstants.Power.Minor;
-                case 1: return ItemsConstants.Power.Medium;
-                case 2: return ItemsConstants.Power.Major;
-                case 3: return ItemsConstants.Power.Mundane;
+                case 0: return PowerConstants.Minor;
+                case 1: return PowerConstants.Medium;
+                case 2: return PowerConstants.Major;
+                case 3: return PowerConstants.Mundane;
                 default: throw new ArgumentOutOfRangeException();
             }
         }
@@ -50,50 +50,50 @@ namespace EquipmentGen.Tests.Integration.Common
 
             switch (Random.Next(2))
             {
-                case 0: types.Add(ItemsConstants.ItemTypes.Armor); break;
-                case 1: types.Add(ItemsConstants.ItemTypes.Weapon); break;
+                case 0: types.Add(ItemTypeConstants.Armor); break;
+                case 1: types.Add(ItemTypeConstants.Weapon); break;
             }
 
-            if (types.Contains(ItemsConstants.ItemTypes.Weapon))
+            if (types.Contains(ItemTypeConstants.Weapon))
             {
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(ItemsConstants.Gear.Types.Melee); break;
-                    case 1: types.Add(ItemsConstants.Gear.Types.Ranged); break;
+                    case 0: types.Add(TypeConstants.Melee); break;
+                    case 1: types.Add(TypeConstants.Ranged); break;
                     case 2:
-                        types.Add(ItemsConstants.Gear.Types.Melee);
-                        types.Add(ItemsConstants.Gear.Types.Ranged);
+                        types.Add(TypeConstants.Melee);
+                        types.Add(TypeConstants.Ranged);
                         break;
                 }
 
                 switch (Random.Next(4))
                 {
-                    case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
-                    case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
+                    case 0: types.Add(TypeConstants.Metal); break;
+                    case 1: types.Add(TypeConstants.Wood); break;
                     case 2:
-                        types.Add(ItemsConstants.Gear.Types.Metal);
-                        types.Add(ItemsConstants.Gear.Types.Wood);
+                        types.Add(TypeConstants.Metal);
+                        types.Add(TypeConstants.Wood);
                         break;
                     case 3:
                         if (allowNoMaterial)
                             break;
-                        types.Add(ItemsConstants.Gear.Types.Metal);
+                        types.Add(TypeConstants.Metal);
                         break;
                 }
             }
 
-            if (types.Contains(ItemsConstants.ItemTypes.Armor))
+            if (types.Contains(ItemTypeConstants.Armor))
             {
                 switch (Random.Next(2))
                 {
-                    case 0: types.Add(ItemsConstants.Gear.Types.Shield); break;
+                    case 0: types.Add(TypeConstants.Shield); break;
                     case 1: break;
                 }
 
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(ItemsConstants.Gear.Types.Metal); break;
-                    case 1: types.Add(ItemsConstants.Gear.Types.Wood); break;
+                    case 0: types.Add(TypeConstants.Metal); break;
+                    case 1: types.Add(TypeConstants.Wood); break;
                     case 2: break;
                 }
             }

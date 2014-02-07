@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            mundaneArmorGenerator = MundaneGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            mundaneArmorGenerator = MundaneGearGeneratorFactory.CreateWith(ItemTypeConstants.Armor);
             StartTest();
         }
 
@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(armor.Traits, Is.Not.Null);
                 Assert.That(armor.Abilities, Is.Empty);
                 Assert.That(armor.MagicalBonus, Is.EqualTo(0));
-                Assert.That(armor.Types, Contains.Item(ItemsConstants.ItemTypes.Armor));
+                Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
             }
 
             AssertIterations();

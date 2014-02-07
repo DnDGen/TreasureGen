@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            magicalArmorGenerator = MagicalGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            magicalArmorGenerator = MagicalGearGeneratorFactory.CreateWith(ItemTypeConstants.Armor);
             StartTest();
         }
 
@@ -39,7 +39,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(armor.MagicalBonus, Is.GreaterThan(0));
                 Assert.That(armor.Abilities, Is.Not.Null);
                 Assert.That(armor.Traits, Is.Not.Null);
-                Assert.That(armor.Types, Contains.Item(ItemsConstants.ItemTypes.Armor));
+                Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
             }
 
             AssertIterations();

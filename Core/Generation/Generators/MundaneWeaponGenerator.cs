@@ -39,7 +39,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 weapon.Types = typesProvider.GetTypesFor(weapon.Name, "WeaponTypes");
             }
 
-            weapon.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+            weapon.Traits.Add(TraitConstants.Masterwork);
 
             if (materialsProvider.HasSpecialMaterial(weapon.Types))
             {
@@ -47,7 +47,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 if (!String.IsNullOrEmpty(specialMaterial))
                     weapon.Traits.Add(specialMaterial);
 
-                if (weapon.Types.Contains(ItemsConstants.Gear.Types.DoubleWeapon) && materialsProvider.HasSpecialMaterial(weapon.Types))
+                if (weapon.Types.Contains(TypeConstants.DoubleWeapon) && materialsProvider.HasSpecialMaterial(weapon.Types))
                 {
                     var secondSpecialMaterial = materialsProvider.GenerateFor(weapon.Types);
 

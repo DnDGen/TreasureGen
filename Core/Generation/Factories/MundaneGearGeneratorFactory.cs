@@ -27,9 +27,9 @@ namespace EquipmentGen.Core.Generation.Factories
         {
             switch (type)
             {
-                case ItemsConstants.ItemTypes.Armor: return new MundaneArmorGenerator(percentileResultProvider, materialsProvider,
+                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileResultProvider, materialsProvider,
                     typesProvider);
-                case ItemsConstants.ItemTypes.Weapon: return new MundaneWeaponGenerator(percentileResultProvider, ammunitionGenerator, 
+                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileResultProvider, ammunitionGenerator,
                     materialsProvider, typesProvider);
                 default: throw new ArgumentOutOfRangeException();
             }

@@ -36,9 +36,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(ammunition.Name, Is.Not.Empty);
                 Assert.That(ammunition.Quantity, Is.InRange<Int32>(1, 50));
                 Assert.That(ammunition.Traits, Is.Not.Null);
-                Assert.That(ammunition.Types, Contains.Item(ItemsConstants.ItemTypes.Weapon));
-                Assert.That(ammunition.Types, Contains.Item(ItemsConstants.Gear.Types.Ammunition));
-                Assert.That(ammunition.Types, Contains.Item(ItemsConstants.Gear.Types.Ranged));
+                Assert.That(ammunition.Types, Contains.Item(ItemTypeConstants.Weapon));
+                Assert.That(ammunition.Types, Contains.Item(TypeConstants.Ammunition));
+                Assert.That(ammunition.Types, Contains.Item(TypeConstants.Ranged));
             }
 
             AssertIterations();

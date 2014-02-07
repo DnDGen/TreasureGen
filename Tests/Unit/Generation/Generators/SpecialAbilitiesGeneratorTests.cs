@@ -27,7 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void Setup()
         {
             types = new List<String>();
-            types.Add(ItemsConstants.ItemTypes.Armor);
+            types.Add(ItemTypeConstants.Armor);
 
             mockSpecialAbilityDataProvider = new Mock<ISpecialAbilityDataProvider>();
             mockTypesProvider = new Mock<ITypesProvider>();
@@ -49,7 +49,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpecialAbilitiesGeneratorGetsShieldAbilityIfShield()
         {
-            types.Add(ItemsConstants.Gear.Types.Shield);
+            types.Add(TypeConstants.Shield);
             var shieldAbility = new SpecialAbility();
             shieldAbility.Name = "shield ability";
 
@@ -63,7 +63,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpecialAbilitiesGeneratorGetsMeleeWeaponAbilityIfMeleeWeapon()
         {
-            types.Add(ItemsConstants.Gear.Types.Melee);
+            types.Add(TypeConstants.Melee);
             var meleeWeaponAbility = new SpecialAbility();
             meleeWeaponAbility.Name = "melee weapon ability";
 
@@ -77,7 +77,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpecialAbilitiesGeneratorGetsRangedWeaponAbilityIfRangedWeapon()
         {
-            types.Add(ItemsConstants.Gear.Types.Ranged);
+            types.Add(TypeConstants.Ranged);
             var rangedWeaponAbility = new SpecialAbility();
             rangedWeaponAbility.Name = "ranged weapon ability";
 

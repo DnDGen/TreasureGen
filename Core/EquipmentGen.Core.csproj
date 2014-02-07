@@ -121,6 +121,7 @@
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\ISpecialAbilityDataXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Objects\SpecialAbilityDataObject.cs" />
+    <Compile Include="Generation\Xml\Parsers\SpecialAbilityDataXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\TypesXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\ITypesXmlParser.cs" />
     <Compile Include="Generation\Xml\Parsers\Interfaces\IPercentileXmlParser.cs" />

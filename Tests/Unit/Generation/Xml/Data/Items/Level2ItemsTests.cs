@@ -17,14 +17,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
         [Test]
         public void Level2ItemsMundanePercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Power.Mundane);
+            var content = String.Format("{0},1", PowerConstants.Mundane);
             AssertContent(content, 50, 85);
         }
 
         [Test]
         public void Level2ItemsMinorPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Power.Minor);
+            var content = String.Format("{0},1", PowerConstants.Minor);
             AssertContent(content, 86, 100);
         }
     }

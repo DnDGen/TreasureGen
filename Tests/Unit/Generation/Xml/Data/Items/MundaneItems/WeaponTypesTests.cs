@@ -12,17 +12,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing,
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Dagger, types);
+            AssertContent(WeaponConstants.Dagger, types);
         }
 
         [Test]
@@ -30,15 +30,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Greataxe, types);
+            AssertContent(WeaponConstants.Greataxe, types);
         }
 
         [Test]
@@ -46,15 +46,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Greatsword, types);
+            AssertContent(WeaponConstants.Greatsword, types);
         }
 
         [Test]
@@ -62,16 +62,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Kama, types);
+            AssertContent(WeaponConstants.Kama, types);
         }
 
         [Test]
@@ -79,15 +79,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Longsword, types);
+            AssertContent(WeaponConstants.Longsword, types);
         }
 
         [Test]
@@ -95,14 +95,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.LightMace, types);
+            AssertContent(WeaponConstants.LightMace, types);
         }
 
         [Test]
@@ -110,14 +110,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal,
+                TypeConstants.Common, 
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.HeavyMace, types);
+            AssertContent(WeaponConstants.HeavyMace, types);
         }
 
         [Test]
@@ -125,14 +125,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Nunchaku, types);
+            AssertContent(WeaponConstants.Nunchaku, types);
         }
 
         [Test]
@@ -140,15 +140,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.DoubleWeapon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Common,
+                TypeConstants.DoubleWeapon, 
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Quarterstaff, types);
+            AssertContent(WeaponConstants.Quarterstaff, types);
         }
 
         [Test]
@@ -156,14 +156,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Rapier, types);
+            AssertContent(WeaponConstants.Rapier, types);
         }
 
         [Test]
@@ -171,15 +171,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Scimitar, types);
+            AssertContent(WeaponConstants.Scimitar, types);
         }
 
         [Test]
@@ -187,17 +187,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Shortspear, types);
+            AssertContent(WeaponConstants.Shortspear, types);
         }
 
         [Test]
@@ -205,14 +205,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Siangham, types);
+            AssertContent(WeaponConstants.Siangham, types);
         }
 
         [Test]
@@ -220,15 +220,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.BastardSword, types);
+            AssertContent(WeaponConstants.BastardSword, types);
         }
 
         [Test]
@@ -236,15 +236,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.ShortSword, types);
+            AssertContent(WeaponConstants.ShortSword, types);
         }
 
         [Test]
@@ -252,15 +252,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Common,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.DwarvenWaraxe, types);
+            AssertContent(WeaponConstants.DwarvenWaraxe, types);
         }
 
         [Test]
@@ -268,16 +268,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.DoubleWeapon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.DoubleWeapon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.OrcDoubleAxe, types);
+            AssertContent(WeaponConstants.OrcDoubleAxe, types);
         }
 
         [Test]
@@ -285,15 +285,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Battleaxe, types);
+            AssertContent(WeaponConstants.Battleaxe, types);
         }
 
         [Test]
@@ -301,14 +301,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.SpikedChain, types);
+            AssertContent(WeaponConstants.SpikedChain, types);
         }
 
         [Test]
@@ -316,16 +316,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood, 
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood, 
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning,
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Club, types);
+            AssertContent(WeaponConstants.Club, types);
         }
 
         [Test]
@@ -333,14 +333,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon, 
+                TypeConstants.Ranged,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.HandCrossbow, types);
+            AssertContent(WeaponConstants.HandCrossbow, types);
         }
 
         [Test]
@@ -348,14 +348,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon, 
+                TypeConstants.Ranged,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.RepeatingCrossbow, types);
+            AssertContent(WeaponConstants.RepeatingCrossbow, types);
         }
 
         [Test]
@@ -363,14 +363,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.PunchingDagger, types);
+            AssertContent(WeaponConstants.PunchingDagger, types);
         }
 
         [Test]
@@ -378,15 +378,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Falchion, types);
+            AssertContent(WeaponConstants.Falchion, types);
         }
 
         [Test]
@@ -394,15 +394,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.DoubleWeapon,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.DoubleWeapon,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.DireFlail, types);
+            AssertContent(WeaponConstants.DireFlail, types);
         }
 
         [Test]
@@ -410,14 +410,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.HeavyFlail, types);
+            AssertContent(WeaponConstants.HeavyFlail, types);
         }
 
         [Test]
@@ -425,14 +425,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.LightFlail, types);
+            AssertContent(WeaponConstants.LightFlail, types);
         }
 
         [Test]
@@ -440,14 +440,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Gauntlet, types);
+            AssertContent(WeaponConstants.Gauntlet, types);
         }
 
         [Test]
@@ -455,14 +455,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.SpikedGauntlet, types);
+            AssertContent(WeaponConstants.SpikedGauntlet, types);
         }
 
         [Test]
@@ -470,15 +470,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Glaive, types);
+            AssertContent(WeaponConstants.Glaive, types);
         }
 
         [Test]
@@ -486,14 +486,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Wood, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Wood, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Greatclub, types);
+            AssertContent(WeaponConstants.Greatclub, types);
         }
 
         [Test]
@@ -501,15 +501,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Guisarme, types);
+            AssertContent(WeaponConstants.Guisarme, types);
         }
 
         [Test]
@@ -517,15 +517,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Halberd, types);
+            AssertContent(WeaponConstants.Halberd, types);
         }
 
         [Test]
@@ -533,15 +533,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Wood, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal, 
+                TypeConstants.Wood, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Halfspear, types);
+            AssertContent(WeaponConstants.Halfspear, types);
         }
 
         [Test]
@@ -549,16 +549,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.DoubleWeapon,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.DoubleWeapon,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.GnomeHookedHammer, types);
+            AssertContent(WeaponConstants.GnomeHookedHammer, types);
         }
 
         [Test]
@@ -566,16 +566,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning,
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.LightHammer, types);
+            AssertContent(WeaponConstants.LightHammer, types);
         }
 
         [Test]
@@ -583,15 +583,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Handaxe, types);
+            AssertContent(WeaponConstants.Handaxe, types);
         }
 
         [Test]
@@ -599,15 +599,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Kukri, types);
+            AssertContent(WeaponConstants.Kukri, types);
         }
 
         [Test]
@@ -615,15 +615,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Wood,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Lance, types);
+            AssertContent(WeaponConstants.Lance, types);
         }
 
         [Test]
@@ -631,15 +631,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Wood,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Longspear, types);
+            AssertContent(WeaponConstants.Longspear, types);
         }
 
         [Test]
@@ -647,15 +647,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Morningstar, types);
+            AssertContent(WeaponConstants.Morningstar, types);
         }
 
         [Test]
@@ -663,13 +663,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Uncommon, 
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Net, types);
+            AssertContent(WeaponConstants.Net, types);
         }
 
         [Test]
@@ -677,14 +677,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.HeavyPick, types);
+            AssertContent(WeaponConstants.HeavyPick, types);
         }
 
         [Test]
@@ -692,14 +692,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.LightPick, types);
+            AssertContent(WeaponConstants.LightPick, types);
         }
 
         [Test]
@@ -707,15 +707,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Ranseur, types);
+            AssertContent(WeaponConstants.Ranseur, types);
         }
 
         [Test]
@@ -723,13 +723,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Sap, types);
+            AssertContent(WeaponConstants.Sap, types);
         }
 
         [Test]
@@ -737,16 +737,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Wood,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Scythe, types);
+            AssertContent(WeaponConstants.Scythe, types);
         }
 
         [Test]
@@ -754,15 +754,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Ranged,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Shuriken, types);
+            AssertContent(WeaponConstants.Shuriken, types);
         }
 
         [Test]
@@ -770,15 +770,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Sickle, types);
+            AssertContent(WeaponConstants.Sickle, types);
         }
 
         [Test]
@@ -786,16 +786,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee, 
-                ItemsConstants.Gear.Types.DoubleWeapon,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee, 
+                TypeConstants.DoubleWeapon,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.TwoBladedSword, types);
+            AssertContent(WeaponConstants.TwoBladedSword, types);
         }
 
         [Test]
@@ -803,16 +803,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal,
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Ranged,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Trident, types);
+            AssertContent(WeaponConstants.Trident, types);
         }
 
         [Test]
@@ -820,16 +820,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee, 
-                ItemsConstants.Gear.Types.DoubleWeapon,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee, 
+                TypeConstants.DoubleWeapon,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.DwarvenUrgrosh, types);
+            AssertContent(WeaponConstants.DwarvenUrgrosh, types);
         }
 
         [Test]
@@ -837,14 +837,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Uncommon,
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Metal, 
+                TypeConstants.Uncommon,
+                TypeConstants.Melee,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Warhammer, types);
+            AssertContent(WeaponConstants.Warhammer, types);
         }
 
         [Test]
@@ -852,14 +852,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Uncommon, 
-                ItemsConstants.Gear.Types.Melee,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing
+                ItemTypeConstants.Weapon,
+                TypeConstants.Uncommon, 
+                TypeConstants.Melee,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Whip, types);
+            AssertContent(WeaponConstants.Whip, types);
         }
 
         [Test]
@@ -867,16 +867,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Slashing,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Metal,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Slashing,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.ThrowingAxe, types);
+            AssertContent(WeaponConstants.ThrowingAxe, types);
         }
 
         [Test]
@@ -884,14 +884,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged,
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.HeavyCrossbow, types);
+            AssertContent(WeaponConstants.HeavyCrossbow, types);
         }
 
         [Test]
@@ -899,14 +899,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon,
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon,
+                TypeConstants.Common,
+                TypeConstants.Ranged,
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.LightCrossbow, types);
+            AssertContent(WeaponConstants.LightCrossbow, types);
         }
 
         [Test]
@@ -914,15 +914,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Metal,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Dart, types);
+            AssertContent(WeaponConstants.Dart, types);
         }
 
         [Test]
@@ -930,16 +930,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning,
-                ItemsConstants.Gear.Types.Thrown
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Metal,
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning,
+                TypeConstants.Thrown
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Javelin, types);
+            AssertContent(WeaponConstants.Javelin, types);
         }
 
         [Test]
@@ -947,14 +947,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Shortbow, types);
+            AssertContent(WeaponConstants.Shortbow, types);
         }
 
         [Test]
@@ -962,14 +962,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus0Shortbow, types);
+            AssertContent(WeaponConstants.CompositePlus0Shortbow, types);
         }
 
         [Test]
@@ -977,14 +977,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus1Shortbow, types);
+            AssertContent(WeaponConstants.CompositePlus1Shortbow, types);
         }
 
         [Test]
@@ -992,14 +992,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus2Shortbow, types);
+            AssertContent(WeaponConstants.CompositePlus2Shortbow, types);
         }
 
         [Test]
@@ -1007,13 +1007,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Sling, types);
+            AssertContent(WeaponConstants.Sling, types);
         }
 
         [Test]
@@ -1021,14 +1021,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Longbow, types);
+            AssertContent(WeaponConstants.Longbow, types);
         }
 
         [Test]
@@ -1036,14 +1036,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus0Longbow, types);
+            AssertContent(WeaponConstants.CompositePlus0Longbow, types);
         }
 
         [Test]
@@ -1051,14 +1051,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus1Longbow, types);
+            AssertContent(WeaponConstants.CompositePlus1Longbow, types);
         }
 
         [Test]
@@ -1066,14 +1066,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus2Longbow, types);
+            AssertContent(WeaponConstants.CompositePlus2Longbow, types);
         }
 
         [Test]
@@ -1081,14 +1081,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus3Longbow, types);
+            AssertContent(WeaponConstants.CompositePlus3Longbow, types);
         }
 
         [Test]
@@ -1096,14 +1096,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CompositePlus4Longbow, types);
+            AssertContent(WeaponConstants.CompositePlus4Longbow, types);
         }
     }
 }

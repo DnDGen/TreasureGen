@@ -11,5 +11,11 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         {
             Assert.That(SpecialAbilityConstants.Glamered, Is.EqualTo("Glamered"));
         }
+
+        [Test]
+        public void AbilityConstant()
+        {
+            Assert.Fail();
+        }
     }
 }

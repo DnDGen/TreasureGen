@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            mundaneArmorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            mundaneArmorGenerator = GearGeneratorFactory.CreateWith(ItemTypeConstants.Armor);
             StartTest();
         }
 

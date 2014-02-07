@@ -10,13 +10,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DarkwoodBucklerPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Armor.Buckler, 1, 50);
+            AssertContent(ArmorConstants.Buckler, 1, 50);
         }
 
         [Test]
         public void DarkwoodShieldPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Armor.HeavyWoodenShield, 51, 100);
+            AssertContent(ArmorConstants.HeavyWoodenShield, 51, 100);
         }
     }
 }

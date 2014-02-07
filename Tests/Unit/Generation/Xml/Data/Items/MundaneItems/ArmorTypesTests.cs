@@ -12,11 +12,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             { 
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Wood
+                ItemTypeConstants.Armor, 
+                TypeConstants.Wood
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.Buckler, types);
+            AssertContent(ArmorConstants.Buckler, types);
         }
 
         [Test]
@@ -24,11 +24,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Wood
+                ItemTypeConstants.Armor,
+                TypeConstants.Wood
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.LightWoodenShield, types);
+            AssertContent(ArmorConstants.LightWoodenShield, types);
         }
 
         [Test]
@@ -36,11 +36,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Metal 
+                ItemTypeConstants.Armor, 
+                TypeConstants.Metal 
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.LightSteelShield, types);
+            AssertContent(ArmorConstants.LightSteelShield, types);
         }
 
         [Test]
@@ -48,11 +48,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Wood
+                ItemTypeConstants.Armor,
+                TypeConstants.Wood
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.HeavyWoodenShield, types);
+            AssertContent(ArmorConstants.HeavyWoodenShield, types);
         }
 
         [Test]
@@ -60,11 +60,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             { 
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.HeavySteelShield, types);
+            AssertContent(ArmorConstants.HeavySteelShield, types);
         }
 
         [Test]
@@ -72,11 +72,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Wood
+                ItemTypeConstants.Armor, 
+                TypeConstants.Wood
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.TowerShield, types);
+            AssertContent(ArmorConstants.TowerShield, types);
         }
 
         [Test]
@@ -84,10 +84,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             { 
-                ItemsConstants.ItemTypes.Armor
+                ItemTypeConstants.Armor
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.PaddedArmor, types);
+            AssertContent(ArmorConstants.PaddedArmor, types);
         }
 
         [Test]
@@ -95,10 +95,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Armor
+                ItemTypeConstants.Armor
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.LeatherArmor, types);
+            AssertContent(ArmorConstants.LeatherArmor, types);
         }
 
         [Test]
@@ -106,11 +106,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor, 
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.StuddedLeatherArmor, types);
+            AssertContent(ArmorConstants.StuddedLeatherArmor, types);
         }
 
         [Test]
@@ -118,11 +118,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.ChainShirt, types);
+            AssertContent(ArmorConstants.ChainShirt, types);
         }
 
         [Test]
@@ -130,10 +130,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor
+                ItemTypeConstants.Armor
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.HideArmor, types);
+            AssertContent(ArmorConstants.HideArmor, types);
         }
 
         [Test]
@@ -141,11 +141,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             { 
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.ScaleMail, types);
+            AssertContent(ArmorConstants.ScaleMail, types);
         }
 
         [Test]
@@ -153,11 +153,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             { 
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.Chainmail, types);
+            AssertContent(ArmorConstants.Chainmail, types);
         }
 
         [Test]
@@ -165,11 +165,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor, 
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.Breastplate, types);
+            AssertContent(ArmorConstants.Breastplate, types);
         }
 
         [Test]
@@ -177,11 +177,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal 
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal 
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.SplintMail, types);
+            AssertContent(ArmorConstants.SplintMail, types);
         }
 
         [Test]
@@ -189,11 +189,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.BandedMail, types);
+            AssertContent(ArmorConstants.BandedMail, types);
         }
 
         [Test]
@@ -201,11 +201,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Armor,
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.HalfPlate, types);
+            AssertContent(ArmorConstants.HalfPlate, types);
         }
 
         [Test]
@@ -213,11 +213,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             { 
-                ItemsConstants.ItemTypes.Armor, 
-                ItemsConstants.Gear.Types.Metal
+                ItemTypeConstants.Armor, 
+                TypeConstants.Metal
             };
 
-            AssertContent(ItemsConstants.Gear.Armor.FullPlate, types);
+            AssertContent(ArmorConstants.FullPlate, types);
         }
     }
 }

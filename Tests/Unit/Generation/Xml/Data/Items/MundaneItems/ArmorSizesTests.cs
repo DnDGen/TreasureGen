@@ -10,13 +10,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void SmallPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Small, 1, 10);
+            AssertContent(TraitConstants.Small, 1, 10);
         }
 
         [Test]
         public void MediumPercentile()
         {
-            AssertContent(ItemsConstants.Gear.Traits.Medium, 11, 100);
+            AssertContent(TraitConstants.Medium, 11, 100);
         }
     }
 }

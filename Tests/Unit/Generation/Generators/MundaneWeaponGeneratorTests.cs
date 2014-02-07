@@ -43,7 +43,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MundaneWeaponGeneratorGeneratesMasterworkWeapons()
         {
             var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item(ItemsConstants.Gear.Traits.Masterwork));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void DoubleWeaponsCanHaveMultipleSpecialMaterials()
         {
-            var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
+            var types = new[] { TypeConstants.DoubleWeapon };
             mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
@@ -118,7 +118,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void CannotAddDuplicateSpecialMaterials()
         {
-            var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
+            var types = new[] { TypeConstants.DoubleWeapon };
             mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
@@ -131,7 +131,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void IfSecondHeadDoesNotHaveSpecialMaterial_WholeWeaponOneSpecialMaterial()
         {
-            var types = new[] { ItemsConstants.Gear.Types.DoubleWeapon };
+            var types = new[] { TypeConstants.DoubleWeapon };
             mockTypesProvider.Setup(p => p.GetTypesFor("weapon name", "WeaponTypes")).Returns(types);
 
             mockMaterialsProvider.SetupSequence(p => p.HasSpecialMaterial(types)).Returns(true).Returns(false);

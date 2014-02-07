@@ -12,13 +12,13 @@ namespace EquipmentGen.Core.Generation.Factories
         {
             switch (type)
             {
-                case ItemsConstants.ItemTypes.Potion: return new PotionGenerator();
-                case ItemsConstants.ItemTypes.Ring: return new RingGenerator();
-                case ItemsConstants.ItemTypes.Rod: return new RodGenerator();
-                case ItemsConstants.ItemTypes.Scroll: return new ScrollGenerator();
-                case ItemsConstants.ItemTypes.Staff: return new StaffGenerator();
-                case ItemsConstants.ItemTypes.Wand: return new WandGenerator();
-                case ItemsConstants.ItemTypes.WondrousItem: return new WondrousItemGenerator();
+                case ItemTypeConstants.Potion: return new PotionGenerator();
+                case ItemTypeConstants.Ring: return new RingGenerator();
+                case ItemTypeConstants.Rod: return new RodGenerator();
+                case ItemTypeConstants.Scroll: return new ScrollGenerator();
+                case ItemTypeConstants.Staff: return new StaffGenerator();
+                case ItemTypeConstants.Wand: return new WandGenerator();
+                case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }
         }

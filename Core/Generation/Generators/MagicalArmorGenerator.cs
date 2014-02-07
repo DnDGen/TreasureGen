@@ -29,7 +29,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Gear GenerateAtPower(String power)
         {
-            if (power == ItemsConstants.Power.Mundane)
+            if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
 
             var tableName = String.Format("{0}Armor", power);
@@ -67,7 +67,7 @@ namespace EquipmentGen.Core.Generation.Generators
                     armor.Traits.Add(specialMaterial);
                 }
 
-                var traits = magicItemTraitsGenerator.GenerateFor(ItemsConstants.ItemTypes.Armor);
+                var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
                 armor.Traits.AddRange(traits);
             }
 

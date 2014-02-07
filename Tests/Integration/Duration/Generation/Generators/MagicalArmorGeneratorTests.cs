@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            magicalArmorGenerator = GearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            magicalArmorGenerator = GearGeneratorFactory.CreateWith(ItemTypeConstants.Armor);
             power = GetNewPower(false);
 
             StartTest();

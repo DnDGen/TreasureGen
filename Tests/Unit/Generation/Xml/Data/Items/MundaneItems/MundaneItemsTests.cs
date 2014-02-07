@@ -10,25 +10,25 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void AlchemicalItemPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.AlchemicalItem, 1, 17);
+            AssertContent(ItemTypeConstants.AlchemicalItem, 1, 17);
         }
 
         [Test]
         public void ArmorPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Armor, 18, 50);
+            AssertContent(ItemTypeConstants.Armor, 18, 50);
         }
 
         [Test]
         public void WeaponPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Weapon, 51, 83);
+            AssertContent(ItemTypeConstants.Weapon, 51, 83);
         }
 
         [Test]
         public void ToolPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Tool, 84, 100);
+            AssertContent(ItemTypeConstants.Tool, 84, 100);
         }
     }
 }

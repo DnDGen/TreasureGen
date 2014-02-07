@@ -12,16 +12,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common,
-                ItemsConstants.Gear.Types.Ranged,
-                ItemsConstants.Gear.Types.Ammunition,
-                ItemsConstants.Gear.Types.Metal, 
-                ItemsConstants.Gear.Types.Wood,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common,
+                TypeConstants.Ranged,
+                TypeConstants.Ammunition,
+                TypeConstants.Metal, 
+                TypeConstants.Wood,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.Arrow, types);
+            AssertContent(WeaponConstants.Arrow, types);
         }
 
         [Test]
@@ -29,15 +29,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Ammunition, 
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.NotBludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Ammunition, 
+                TypeConstants.Metal,
+                TypeConstants.NotBludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.CrossbowBolt, types);
+            AssertContent(WeaponConstants.CrossbowBolt, types);
         }
 
         [Test]
@@ -45,15 +45,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[] 
             {
-                ItemsConstants.ItemTypes.Weapon, 
-                ItemsConstants.Gear.Types.Common, 
-                ItemsConstants.Gear.Types.Ranged, 
-                ItemsConstants.Gear.Types.Ammunition,
-                ItemsConstants.Gear.Types.Metal,
-                ItemsConstants.Gear.Types.Bludgeoning
+                ItemTypeConstants.Weapon, 
+                TypeConstants.Common, 
+                TypeConstants.Ranged, 
+                TypeConstants.Ammunition,
+                TypeConstants.Metal,
+                TypeConstants.Bludgeoning
             };
 
-            AssertContent(ItemsConstants.Gear.Weapons.SlingBullet, types);
+            AssertContent(WeaponConstants.SlingBullet, types);
         }
     }
 }

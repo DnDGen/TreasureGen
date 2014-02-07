@@ -11,28 +11,28 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void Plus1ShieldPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Gear.Types.Shield);
+            var content = String.Format("{0},1", TypeConstants.Shield);
             AssertContent(content, 1, 60);
         }
 
         [Test]
         public void Plus1ArmorPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.ItemTypes.Armor);
+            var content = String.Format("{0},1", ItemTypeConstants.Armor);
             AssertContent(content, 61, 80);
         }
 
         [Test]
         public void Plus2ShieldPercentile()
         {
-            var content = String.Format("{0},2", ItemsConstants.Gear.Types.Shield);
+            var content = String.Format("{0},2", TypeConstants.Shield);
             AssertContent(content, 81, 85);
         }
 
         [Test]
         public void Plus2ArmorPercentile()
         {
-            var content = String.Format("{0},2", ItemsConstants.ItemTypes.Armor);
+            var content = String.Format("{0},2", ItemTypeConstants.Armor);
             AssertContent(content, 86, 87);
         }
 

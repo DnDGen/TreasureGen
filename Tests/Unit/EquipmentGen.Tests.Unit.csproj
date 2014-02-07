@@ -176,6 +176,7 @@
     <Compile Include="Generation\Xml\Data\PercentileTests.cs" />
     <Compile Include="Generation\Xml\Data\TypesTest.cs" />
     <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
+    <Compile Include="Generation\Xml\Parsers\SpecialAbilityDataXmlParserTests.cs" />
     <Compile Include="Generation\Xml\Parsers\TypesXmlParserTests.cs" />
     <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,43 +10,43 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
         [Test]
         public void MinorArmorPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Armor, 1, 4);
+            AssertContent(ItemTypeConstants.Armor, 1, 4);
         }
 
         [Test]
         public void MinorWeaponPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Weapon, 5, 9);
+            AssertContent(ItemTypeConstants.Weapon, 5, 9);
         }
 
         [Test]
         public void MinorPotionPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Potion, 10, 44);
+            AssertContent(ItemTypeConstants.Potion, 10, 44);
         }
 
         [Test]
         public void MinorRingPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Ring, 45, 46);
+            AssertContent(ItemTypeConstants.Ring, 45, 46);
         }
 
         [Test]
         public void MinorScrollPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Scroll, 47, 81);
+            AssertContent(ItemTypeConstants.Scroll, 47, 81);
         }
 
         [Test]
         public void MinorWandPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.Wand, 82, 91);
+            AssertContent(ItemTypeConstants.Wand, 82, 91);
         }
 
         [Test]
         public void MinorWondrousItemPercentile()
         {
-            AssertContent(ItemsConstants.ItemTypes.WondrousItem, 92, 100);
+            AssertContent(ItemTypeConstants.WondrousItem, 92, 100);
         }
     }
 }

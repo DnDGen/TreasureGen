@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         [SetUp]
         public void Setup()
         {
-            mundaneWeaponGenerator = MundaneGearGeneratorFactory.CreateWith(ItemsConstants.ItemTypes.Weapon);
+            mundaneWeaponGenerator = MundaneGearGeneratorFactory.CreateWith(ItemTypeConstants.Weapon);
             StartTest();
         }
 

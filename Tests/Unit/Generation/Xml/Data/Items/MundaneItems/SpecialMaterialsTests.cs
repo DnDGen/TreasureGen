@@ -10,43 +10,43 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void AdamantineTypes()
         {
-            var types = new[] { ItemsConstants.Gear.Types.Metal };
-            AssertContent(ItemsConstants.Gear.Traits.Adamantine, types);
+            var types = new[] { TypeConstants.Metal };
+            AssertContent(TraitConstants.Adamantine, types);
         }
 
         [Test]
         public void DragonhideTypes()
         {
-            var types = new[] { ItemsConstants.ItemTypes.Armor };
-            AssertContent(ItemsConstants.Gear.Traits.Dragonhide, types);
+            var types = new[] { ItemTypeConstants.Armor };
+            AssertContent(TraitConstants.Dragonhide, types);
         }
 
         [Test]
         public void ColdIronTypes()
         {
-            var types = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon };
-            AssertContent(ItemsConstants.Gear.Traits.ColdIron, types);
+            var types = new[] { TypeConstants.Metal, ItemTypeConstants.Weapon };
+            AssertContent(TraitConstants.ColdIron, types);
         }
 
         [Test]
         public void MithralTypes()
         {
-            var types = new[] { ItemsConstants.Gear.Types.Metal };
-            AssertContent(ItemsConstants.Gear.Traits.Mithral, types);
+            var types = new[] { TypeConstants.Metal };
+            AssertContent(TraitConstants.Mithral, types);
         }
 
         [Test]
         public void AlchemicalSilverTypes()
         {
-            var types = new[] { ItemsConstants.Gear.Types.Metal, ItemsConstants.ItemTypes.Weapon };
-            AssertContent(ItemsConstants.Gear.Traits.AlchemicalSilver, types);
+            var types = new[] { TypeConstants.Metal, ItemTypeConstants.Weapon };
+            AssertContent(TraitConstants.AlchemicalSilver, types);
         }
 
         [Test]
         public void DarkwoodTypes()
         {
-            var types = new[] { ItemsConstants.Gear.Types.Wood };
-            AssertContent(ItemsConstants.Gear.Traits.Darkwood, types);
+            var types = new[] { TypeConstants.Wood };
+            AssertContent(TraitConstants.Darkwood, types);
         }
 
         [Test]
@@ -54,12 +54,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         {
             var types = new[]
             {
-                ItemsConstants.Gear.Traits.Mithral,
-                ItemsConstants.Gear.Traits.Adamantine,
-                ItemsConstants.Gear.Traits.AlchemicalSilver,
-                ItemsConstants.Gear.Traits.Darkwood,
-                ItemsConstants.Gear.Traits.ColdIron,
-                ItemsConstants.Gear.Traits.Dragonhide
+                TraitConstants.Mithral,
+                TraitConstants.Adamantine,
+                TraitConstants.AlchemicalSilver,
+                TraitConstants.Darkwood,
+                TraitConstants.ColdIron,
+                TraitConstants.Dragonhide
                 
             };
 

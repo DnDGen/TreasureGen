@@ -21,49 +21,49 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         [Test]
         public void MagicalItemGeneratorFactoryCreatesPotionGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Potion);
+            var generator = factory.CreateWith(ItemTypeConstants.Potion);
             Assert.That(generator, Is.TypeOf<PotionGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesRingGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Ring);
+            var generator = factory.CreateWith(ItemTypeConstants.Ring);
             Assert.That(generator, Is.TypeOf<RingGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesRodGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Rod);
+            var generator = factory.CreateWith(ItemTypeConstants.Rod);
             Assert.That(generator, Is.TypeOf<RodGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesScrollGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Scroll);
+            var generator = factory.CreateWith(ItemTypeConstants.Scroll);
             Assert.That(generator, Is.TypeOf<ScrollGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesStaffGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Staff);
+            var generator = factory.CreateWith(ItemTypeConstants.Staff);
             Assert.That(generator, Is.TypeOf<StaffGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesWandGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Wand);
+            var generator = factory.CreateWith(ItemTypeConstants.Wand);
             Assert.That(generator, Is.TypeOf<WandGenerator>());
         }
 
         [Test]
         public void MagicalItemGeneratorFactoryCreatesWondrousItemGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.WondrousItem);
+            var generator = factory.CreateWith(ItemTypeConstants.WondrousItem);
             Assert.That(generator, Is.TypeOf<WondrousItemGenerator>());
         }
 

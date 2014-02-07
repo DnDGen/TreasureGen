@@ -17,21 +17,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
         [Test]
         public void Level6ItemsMundanePercentile()
         {
-            var content = String.Format("{0},1d4", ItemsConstants.Power.Mundane);
+            var content = String.Format("{0},1d4", PowerConstants.Mundane);
             AssertContent(content, 55, 59);
         }
 
         [Test]
         public void Level6ItemsMinorPercentile()
         {
-            var content = String.Format("{0},1d3", ItemsConstants.Power.Minor);
+            var content = String.Format("{0},1d3", PowerConstants.Minor);
             AssertContent(content, 60, 99);
         }
 
         [Test]
         public void Level6ItemsMediumPercentile()
         {
-            var content = String.Format("{0},1", ItemsConstants.Power.Medium);
+            var content = String.Format("{0},1", PowerConstants.Medium);
             AssertContent(content, 100);
         }
     }

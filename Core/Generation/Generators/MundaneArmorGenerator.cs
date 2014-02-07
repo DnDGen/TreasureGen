@@ -25,7 +25,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var result = percentileResultProvider.GetResultFrom("MundaneArmor");
             var armor = new Gear();
 
-            if (result == ItemsConstants.Gear.Traits.Darkwood || result == ItemsConstants.Gear.Traits.Masterwork)
+            if (result == TraitConstants.Darkwood || result == TraitConstants.Masterwork)
             {
                 var tableName = String.Format("{0}Shields", result);
                 armor.Name = percentileResultProvider.GetResultFrom(tableName);
@@ -36,21 +36,21 @@ namespace EquipmentGen.Core.Generation.Generators
                 armor.Name = result;
             }
 
-            if (armor.Name == ItemsConstants.Gear.Armor.StuddedLeatherArmor)
-                armor.Traits.Add(ItemsConstants.Gear.Traits.Masterwork);
+            if (armor.Name == ArmorConstants.StuddedLeatherArmor)
+                armor.Traits.Add(TraitConstants.Masterwork);
 
             armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
 
             var size = percentileResultProvider.GetResultFrom("ArmorSizes");
             armor.Traits.Add(size);
 
-            if (!armor.Traits.Contains(ItemsConstants.Gear.Traits.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Types))
+            if (!armor.Traits.Contains(TraitConstants.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Types))
             {
                 var specialMaterial = materialsProvider.GenerateFor(armor.Types);
                 armor.Traits.Add(specialMaterial);
 
-                if (specialMaterial == ItemsConstants.Gear.Traits.Dragonhide)
-                    armor.Types = armor.Types.Where(t => t != ItemsConstants.Gear.Types.Metal && t != ItemsConstants.Gear.Types.Wood);
+                if (specialMaterial == TraitConstants.Dragonhide)
+                    armor.Types = armor.Types.Except(new[] { TypeConstants.Metal, TypeConstants.Wood });
             }
 
             return armor;

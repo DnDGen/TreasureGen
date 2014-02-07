@@ -33,14 +33,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         [Test]
         public void MagicalGearGeneratorFactoryProducesArmorGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Armor);
+            var generator = factory.CreateWith(ItemTypeConstants.Armor);
             Assert.That(generator, Is.TypeOf<MagicalArmorGenerator>());
         }
 
         [Test]
         public void MagicalGearGeneratorFactoryProducesWeaponGenerator()
         {
-            var generator = factory.CreateWith(ItemsConstants.ItemTypes.Weapon);
+            var generator = factory.CreateWith(ItemTypeConstants.Weapon);
             Assert.That(generator, Is.TypeOf<MagicalWeaponGenerator>());
         }
 

@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MagicalArmorGeneratorThrowsErrorIfMundane()
         {
-            Assert.That(() => magicalArmorGenerator.GenerateAtPower(ItemsConstants.Power.Mundane), Throws.ArgumentException);
+            Assert.That(() => magicalArmorGenerator.GenerateAtPower(PowerConstants.Mundane), Throws.ArgumentException);
         }
 
         [Test]
@@ -160,7 +160,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MagicalArmorGeneratorGetsTraits()
         {
             var traits = new[] { "trait 1", "trait 2" };
-            mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(ItemsConstants.ItemTypes.Armor)).Returns(traits);
+            mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Armor)).Returns(traits);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             foreach (var trait in traits)

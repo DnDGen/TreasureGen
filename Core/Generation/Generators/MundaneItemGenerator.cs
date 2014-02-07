@@ -32,10 +32,10 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             switch (type)
             {
-                case ItemsConstants.ItemTypes.AlchemicalItem: return alchemicalItemFactory.Generate();
-                case ItemsConstants.ItemTypes.Armor:
-                case ItemsConstants.ItemTypes.Weapon: return GenerateGear(type);
-                case ItemsConstants.ItemTypes.Tool: return toolGenerator.Generate();
+                case ItemTypeConstants.AlchemicalItem: return alchemicalItemFactory.Generate();
+                case ItemTypeConstants.Armor:
+                case ItemTypeConstants.Weapon: return GenerateGear(type);
+                case ItemTypeConstants.Tool: return toolGenerator.Generate();
                 default: throw new ArgumentOutOfRangeException();
             }
         }
