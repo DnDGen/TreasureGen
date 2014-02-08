@@ -337,9 +337,129 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         }
 
         [Test]
-        public void BaneConstant()
+        public void AxiomaticConstant()
         {
-            Assert.That(SpecialAbilityConstants.Bane, Is.EqualTo("Bane"));
+            Assert.That(SpecialAbilityConstants.Axiomatic, Is.EqualTo("Axiomatic"));
+        }
+
+        [Test]
+        public void DisruptionConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Disruption, Is.EqualTo("Disruption"));
+        }
+
+        [Test]
+        public void FlamingBurstConstant()
+        {
+            Assert.That(SpecialAbilityConstants.FlamingBurst, Is.EqualTo("Flaming burst"));
+        }
+
+        [Test]
+        public void IcyBurstConstant()
+        {
+            Assert.That(SpecialAbilityConstants.IcyBurst, Is.EqualTo("Icy burst"));
+        }
+
+        [Test]
+        public void HolyConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Holy, Is.EqualTo("Holy"));
+        }
+
+        [Test]
+        public void ShockingBurstConstant()
+        {
+            Assert.That(SpecialAbilityConstants.ShockingBurst, Is.EqualTo("Shocking burst"));
+        }
+
+        [Test]
+        public void UnholyConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Unholy, Is.EqualTo("Unholy"));
+        }
+
+        [Test]
+        public void WoundingConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Wounding, Is.EqualTo("Wounding"));
+        }
+
+        [Test]
+        public void SpeedConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Speed, Is.EqualTo("Speed"));
+        }
+
+        [Test]
+        public void DancingConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Dancing, Is.EqualTo("Dancing"));
+        }
+
+        [Test]
+        public void VorpalConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Vorpal, Is.EqualTo("Vorpal"));
+        }
+
+        [Test]
+        public void BrilliantEnergyConstant()
+        {
+            Assert.That(SpecialAbilityConstants.BrilliantEnergy, Is.EqualTo("Brilliant energy"));
+        }
+
+        [Test]
+        public void DefendingConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Defending, Is.EqualTo("Defending"));
+        }
+
+        [Test]
+        public void KeenConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Keen, Is.EqualTo("Keen"));
+        }
+
+        [Test]
+        public void KiFocusConstant()
+        {
+            Assert.That(SpecialAbilityConstants.KiFocus, Is.EqualTo("Ki focus"));
+        }
+
+        [Test]
+        public void ThrowingConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Throwing, Is.EqualTo("Throwing"));
+        }
+
+        [Test]
+        public void MightyCleavingConstant()
+        {
+            Assert.That(SpecialAbilityConstants.MightyCleaving, Is.EqualTo("Mighty cleaving"));
+        }
+
+        [Test]
+        public void SpellStoringConstant()
+        {
+            Assert.That(SpecialAbilityConstants.SpellStoring, Is.EqualTo("Spell storing"));
+        }
+
+        [Test]
+        public void ViciousConstant()
+        {
+            Assert.That(SpecialAbilityConstants.Vicious, Is.EqualTo("Vicious"));
+        }
+
+        [Test]
+        public void GhostTouchWeaponConstant()
+        {
+            Assert.That(SpecialAbilityConstants.GhostTouchWeapon, Is.EqualTo("Ghost touch (weapon)"));
+        }
+
+        [Test]
+        public void GhostTouchArmorConstant()
+        {
+            Assert.That(SpecialAbilityConstants.GhostTouchArmor, Is.EqualTo("Ghost touch (armor)"));
         }
     }
 }

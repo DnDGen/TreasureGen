@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Glamered", types);
+            AssertContent(SpecialAbilityConstants.Glamered, types);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Fortification", types);
+            AssertContent(SpecialAbilityConstants.Fortification, types);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Slick", types);
+            AssertContent(SpecialAbilityConstants.Slick, types);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Shadow", types);
+            AssertContent(SpecialAbilityConstants.Shadow, types);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Silent moves", types);
+            AssertContent(SpecialAbilityConstants.SilentMoves, types);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Spell resistance", types);
+            AssertContent(SpecialAbilityConstants.SpellResistance, types);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Acid resistance", types);
+            AssertContent(SpecialAbilityConstants.AcidResistance, types);
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Cold resistance", types);
+            AssertContent(SpecialAbilityConstants.ColdResistance, types);
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Electricity resistance", types);
+            AssertContent(SpecialAbilityConstants.ElectricityResistance, types);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Fire resistance", types);
+            AssertContent(SpecialAbilityConstants.FireResistance, types);
         }
 
         [Test]
@@ -127,13 +127,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Sonic resistance", types);
+            AssertContent(SpecialAbilityConstants.SonicResistance, types);
         }
 
         [Test]
         public void GhostTouchTypes()
         {
-            AssertContent("Ghost touch", Enumerable.Empty<String>());
+            AssertContent(SpecialAbilityConstants.GhostTouch, Enumerable.Empty<String>());
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Invulnerability", types);
+            AssertContent(SpecialAbilityConstants.Invulnerability, types);
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Wild", types);
+            AssertContent(SpecialAbilityConstants.Wild, types);
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Etherealness", types);
+            AssertContent(SpecialAbilityConstants.Etherealness, types);
         }
 
         [Test]
@@ -177,7 +177,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Armor
             };
 
-            AssertContent("Undead controlling", types);
+            AssertContent(SpecialAbilityConstants.UndeadControlling, types);
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Shield
             };
 
-            AssertContent("Arrow catching", types);
+            AssertContent(SpecialAbilityConstants.ArrowCatching, types);
         }
 
         [Test]
@@ -202,7 +202,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.NotTower
             };
 
-            AssertContent("Bashing", types);
+            AssertContent(SpecialAbilityConstants.Bashing, types);
         }
 
         [Test]
@@ -214,7 +214,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Shield
             };
 
-            AssertContent("Blinding", types);
+            AssertContent(SpecialAbilityConstants.Blinding, types);
         }
 
         [Test]
@@ -226,7 +226,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Shield
             };
 
-            AssertContent("Arrow deflection", types);
+            AssertContent(SpecialAbilityConstants.ArrowDeflection, types);
         }
 
         [Test]
@@ -238,7 +238,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Shield
             };
 
-            AssertContent("Animated", types);
+            AssertContent(SpecialAbilityConstants.Animated, types);
         }
 
         [Test]
@@ -250,7 +250,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Shield
             };
 
-            AssertContent("Reflecting", types);
+            AssertContent(SpecialAbilityConstants.Reflecting, types);
         }
 
         [Test]
@@ -261,7 +261,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Bane", types);
+            AssertContent(SpecialAbilityConstants.Bane, types);
         }
 
         [Test]
@@ -273,7 +273,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Ranged
             };
 
-            AssertContent("Distance", types);
+            AssertContent(SpecialAbilityConstants.Distance, types);
         }
 
         [Test]
@@ -286,7 +286,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Bludgeoning
             };
 
-            AssertContent("Disruption", types);
+            AssertContent(SpecialAbilityConstants.Disruption, types);
         }
 
         [Test]
@@ -297,7 +297,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Flaming", types);
+            AssertContent(SpecialAbilityConstants.Flaming, types);
         }
 
         [Test]
@@ -308,7 +308,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Frost", types);
+            AssertContent(SpecialAbilityConstants.Frost, types);
         }
 
         [Test]
@@ -319,7 +319,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Merciful", types);
+            AssertContent(SpecialAbilityConstants.Merciful, types);
         }
 
         [Test]
@@ -332,7 +332,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Thrown
             };
 
-            AssertContent("Returning", types);
+            AssertContent(SpecialAbilityConstants.Returning, types);
         }
 
         [Test]
@@ -343,7 +343,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Shock", types);
+            AssertContent(SpecialAbilityConstants.Shock, types);
         }
 
         [Test]
@@ -355,7 +355,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Ranged
             };
 
-            AssertContent("Seeking", types);
+            AssertContent(SpecialAbilityConstants.Seeking, types);
         }
 
         [Test]
@@ -366,7 +366,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Thundering", types);
+            AssertContent(SpecialAbilityConstants.Thundering, types);
         }
 
         [Test]
@@ -377,7 +377,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Anarchic", types);
+            AssertContent(SpecialAbilityConstants.Anarchic, types);
         }
 
         [Test]
@@ -388,7 +388,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Axiomatic", types);
+            AssertContent(SpecialAbilityConstants.Axiomatic, types);
         }
 
         [Test]
@@ -399,7 +399,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Holy", types);
+            AssertContent(SpecialAbilityConstants.Holy, types);
         }
 
         [Test]
@@ -410,7 +410,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Unholy", types);
+            AssertContent(SpecialAbilityConstants.Unholy, types);
         }
 
         [Test]
@@ -421,7 +421,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Speed", types);
+            AssertContent(SpecialAbilityConstants.Speed, types);
         }
 
         [Test]
@@ -432,7 +432,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent("Brilliant energy", types);
+            AssertContent(SpecialAbilityConstants.BrilliantEnergy, types);
         }
 
         [Test]
@@ -445,7 +445,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.NotBludgeoning
             };
 
-            AssertContent("Keen", types);
+            AssertContent(SpecialAbilityConstants.Keen, types);
         }
 
         [Test]
@@ -457,7 +457,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Ki focus", types);
+            AssertContent(SpecialAbilityConstants.KiFocus, types);
         }
 
         [Test]
@@ -469,7 +469,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Mighty cleaving", types);
+            AssertContent(SpecialAbilityConstants.MightyCleaving, types);
         }
 
         [Test]
@@ -481,7 +481,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Spell storing", types);
+            AssertContent(SpecialAbilityConstants.SpellStoring, types);
         }
 
         [Test]
@@ -493,7 +493,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Throwing", types);
+            AssertContent(SpecialAbilityConstants.Throwing, types);
         }
 
         [Test]
@@ -505,7 +505,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Vicious", types);
+            AssertContent(SpecialAbilityConstants.Vicious, types);
         }
 
         [Test]
@@ -517,7 +517,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Defending", types);
+            AssertContent(SpecialAbilityConstants.Defending, types);
         }
 
         [Test]
@@ -529,7 +529,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Wounding", types);
+            AssertContent(SpecialAbilityConstants.Wounding, types);
         }
 
         [Test]
@@ -541,7 +541,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Melee
             };
 
-            AssertContent("Dancing", types);
+            AssertContent(SpecialAbilityConstants.Dancing, types);
         }
 
         [Test]
@@ -555,7 +555,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 TypeConstants.Slashing
             };
 
-            AssertContent("Vorpal", types);
+            AssertContent(SpecialAbilityConstants.Vorpal, types);
         }
     }
 }
