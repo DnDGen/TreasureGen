@@ -101,8 +101,10 @@
     <Compile Include="Generation\Xml\Data\Coins\Level4CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level5CoinsTests.cs" />
     <Compile Include="Generation\Xml\Data\Coins\Level6CoinsTests.cs" />
-    <Compile Include="Generation\Xml\Data\Goods\Art\ArtValueTests.cs" />
-    <Compile Include="Generation\Xml\Data\Goods\Gems\GemValueTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Art\ArtDescriptionsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Art\ArtValuesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Gems\GemDescriptionsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Goods\Gems\GemValuesTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level1GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level2GoodsTests.cs" />
     <Compile Include="Generation\Xml\Data\Goods\Level3GoodsTests.cs" />

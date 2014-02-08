@@ -454,14 +454,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
         [Test]
         public void ReflectingData()
         {
-            AssertData(SpecialAbilityConstants.Reflecting, 5, SpecialAbilityConstants.Animated, 0);
+            AssertData(SpecialAbilityConstants.Reflecting, 5, SpecialAbilityConstants.Reflecting, 0);
         }
 
         private void AssertData(String name, Int32 bonus, String coreName, Int32 strength)
         {
-            Assert.That(data[name].BonusEquivalent, Is.EqualTo(bonus));
+            Assert.That(data[name].BonusEquivalent, Is.EqualTo(bonus), "bonus");
             Assert.That(data[name].CoreName, Is.EqualTo(coreName));
-            Assert.That(data[name].Strength, Is.EqualTo(strength));
+            Assert.That(data[name].Strength, Is.EqualTo(strength), "strength");
         }
     }
 }

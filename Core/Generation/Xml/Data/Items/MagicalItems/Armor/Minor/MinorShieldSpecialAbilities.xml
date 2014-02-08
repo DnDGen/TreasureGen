@@ -3,42 +3,42 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Arrow catching,1,0</content>
+        <content>Arrow catching</content>
         <upper>20</upper>
     </object>
     <object>
         <lower>21</lower>
-        <content>Bashing,1,0</content>
+        <content>Bashing</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Blinding,1,0</content>
+        <content>Blinding</content>
         <upper>50</upper>
     </object>
     <object>
         <lower>51</lower>
-        <content>Fortification,1,1,Light fortification</content>
+        <content>Light fortification</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Arrow deflection,2,0</content>
+        <content>Arrow deflection</content>
         <upper>92</upper>
     </object>
     <object>
         <lower>93</lower>
-        <content>Animated,2,0</content>
+        <content>Animated</content>
         <upper>97</upper>
     </object>
     <object>
         <lower>98</lower>
-        <content>Spell resistance,2,13,Spell resistance (13)</content>
+        <content>Spell resistance (13)</content>
         <upper>99</upper>
     </object>
     <object>
         <lower>100</lower>
-        <content>BonusSpecialAbility,0,0</content>
+        <content>BonusSpecialAbility</content>
         <upper>100</upper>
     </object>
 </percentile>

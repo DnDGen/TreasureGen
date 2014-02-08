@@ -52,6 +52,7 @@
         <key>Bashing</key>
         <type>Armor</type>
         <type>Shield</type>
+        <type>Not tower</type>
     </object>
     <object>
         <key>Blinding</key>

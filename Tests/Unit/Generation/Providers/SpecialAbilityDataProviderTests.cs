@@ -17,6 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         private Mock<ISpecialAbilityDataXmlParser> mockParser;
 
         private Dictionary<String, SpecialAbilityDataObject> data;
+        private SpecialAbilityDataObject specialAbilityData;
 
         [SetUp]
         public void Setup()
@@ -24,28 +25,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             mockTypesProvider = new Mock<ITypesProvider>();
 
             data = new Dictionary<String, SpecialAbilityDataObject>();
-            mockParser = new Mock<ISpecialAbilityDataXmlParser>();
-            mockParser.Setup(p => p.Parse("SpecialAbilityData")).Returns(data);
-
-            provider = new SpecialAbilityDataProvider();
-        }
-
-        [Test]
-        public void SpecialAbilityDataProviderReturnsAbility()
-        {
-            var result = provider.GetDataFor("ability name");
-            Assert.That(result, Is.Not.Null);
-        }
-
-        [Test]
-        public void SpecialAbilityDataProviderGetsDataFromXmlParser()
-        {
-            var specialAbilityData = new SpecialAbilityDataObject();
+            specialAbilityData = new SpecialAbilityDataObject();
             specialAbilityData.CoreName = "core name";
             specialAbilityData.BonusEquivalent = 92;
             specialAbilityData.Strength = 66;
             data.Add("ability name", specialAbilityData);
 
+            mockParser = new Mock<ISpecialAbilityDataXmlParser>();
+            mockParser.Setup(p => p.Parse("SpecialAbilityData.xml")).Returns(data);
+
+            provider = new SpecialAbilityDataProvider(mockParser.Object, mockTypesProvider.Object);
+        }
+
+        [Test]
+        public void SpecialAbilityDataProviderGetsDataFromXmlParser()
+        {
             var result = provider.GetDataFor("ability name");
             Assert.That(result.Name, Is.EqualTo("ability name"));
             Assert.That(result.CoreName, Is.EqualTo(specialAbilityData.CoreName));

@@ -50,8 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecialAbilitiesGeneratorGetsShieldAbilityIfShield()
         {
             types.Add(TypeConstants.Shield);
-            var shieldAbility = new SpecialAbility();
-            shieldAbility.Name = "shield ability";
+            var shieldAbility = CreateSpecialAbility("shield ability");
 
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerShieldSpecialAbilities")).Returns(shieldAbility.Name);
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(shieldAbility.Name)).Returns(shieldAbility);
@@ -64,8 +63,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecialAbilitiesGeneratorGetsMeleeWeaponAbilityIfMeleeWeapon()
         {
             types.Add(TypeConstants.Melee);
-            var meleeWeaponAbility = new SpecialAbility();
-            meleeWeaponAbility.Name = "melee weapon ability";
+            var meleeWeaponAbility = CreateSpecialAbility("melee weapon ability");
 
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerMeleeWeaponSpecialAbilities")).Returns(meleeWeaponAbility.Name);
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(meleeWeaponAbility.Name)).Returns(meleeWeaponAbility);
@@ -78,8 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void SpecialAbilitiesGeneratorGetsRangedWeaponAbilityIfRangedWeapon()
         {
             types.Add(TypeConstants.Ranged);
-            var rangedWeaponAbility = new SpecialAbility();
-            rangedWeaponAbility.Name = "ranged weapon ability";
+            var rangedWeaponAbility = CreateSpecialAbility("ranged weapon ability");
 
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerRangedWeaponSpecialAbilities")).Returns(rangedWeaponAbility.Name);
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(rangedWeaponAbility.Name)).Returns(rangedWeaponAbility);
@@ -91,8 +88,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SpecialAbilitiesGeneratorGetsArmorAbilityIfArmor()
         {
-            var armorAbility = new SpecialAbility();
-            armorAbility.Name = "armor ability";
+            var armorAbility = CreateSpecialAbility("armor ability");
 
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(armorAbility.Name);
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(armorAbility.Name)).Returns(armorAbility);
@@ -115,6 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             abilityResult.CoreName = "core name";
             abilityResult.Name = "name";
             abilityResult.Strength = 66;
+            abilityResult.TypeRequirements = types;
 
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(abilityResult.Name);
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(abilityResult.Name)).Returns(abilityResult);
@@ -148,6 +145,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var ability = new SpecialAbility();
             ability.Name = name;
             ability.CoreName = name;
+            ability.TypeRequirements = types;
             return ability;
         }
 
@@ -270,17 +268,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var ability1 = CreateSpecialAbility("ability 1");
             ability1.CoreName = "core ability 1";
-            var ability2 = CreateSpecialAbility("ability 2");
-            ability2.CoreName = "core ability 2";
-
-            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
-                .Returns(ability2);
+            ability1.TypeRequirements = new[] { "other type", "type 1" };
 
             types.Add("type 1");
             types.Add("type 2");
-            mockTypesProvider.Setup(p => p.GetTypesFor(ability1.CoreName, "SpecialAbilityTypes"))
-                .Returns(new[] { "other type", "type 1" });
-            mockTypesProvider.Setup(p => p.GetTypesFor(ability2.CoreName, "SpecialAbilityTypes")).Returns(types);
+            var ability2 = CreateSpecialAbility("ability 2");
+            ability2.CoreName = "core ability 2";
+            ability2.TypeRequirements = types;
+
+            mockSpecialAbilityDataProvider.SetupSequence(p => p.GetDataFor(It.IsAny<String>())).Returns(ability1)
+                .Returns(ability2);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 1, 1);
             Assert.That(abilities, Contains.Item(ability2));

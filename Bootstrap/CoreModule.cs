@@ -30,7 +30,8 @@ namespace EquipmentGen.Bootstrap
             Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
-            Bind<ISpecialAbilityDataProvider>().To<SpecialAbilityDataProvider>();
+            Bind<ISpecialAbilityDataProvider>().To<SpecialAbilityDataProvider>().InSingletonScope();
+            Bind<ISpecialAbilityDataXmlParser>().To<SpecialAbilityDataXmlParser>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();

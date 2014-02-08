@@ -156,15 +156,21 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityPercentileResultProviderNotConstructedAsSingleton()
+        public void SpecialAbilityDataProviderConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityDataProvider>();
+            AssertSingleton<ISpecialAbilityDataProvider>();
         }
 
         [Test]
         public void SpellGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpellGenerator>();
+        }
+
+        [Test]
+        public void SpecialAbilityDataXmlParserNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<ISpecialAbilityDataXmlParser>();
         }
 
         private void AssertSingleton<T>()

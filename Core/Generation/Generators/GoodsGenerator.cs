@@ -12,11 +12,16 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IDice dice;
+        private IPercentileResultProvider percentileResultProvider;
+        private ITypesProvider typesProvider;
 
-        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider)
+        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider,
+            IPercentileResultProvider percentileResultProvider, ITypesProvider typesProvider)
         {
             this.dice = dice;
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
+            this.percentileResultProvider = percentileResultProvider;
+            this.typesProvider = typesProvider;
         }
 
         public IEnumerable<Good> GenerateAtLevel(Int32 level)
@@ -28,20 +33,21 @@ namespace EquipmentGen.Core.Generation.Generators
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
-            var amount = typeAndAmountResult.Amount;
-            tableName = String.Format("{0}Value", typeAndAmountResult.Type);
+            var valueTableName = String.Format("{0}Values", typeAndAmountResult.Type);
+            var descriptionTableName = String.Format("{0}Descriptions", typeAndAmountResult.Type);
 
-            while (amount-- > 0)
+            while (typeAndAmountResult.Amount-- > 0)
             {
-                //var valueResult = goodPercentileResultProvider.GetResultFrom(tableName);
-                //var roll = String.Format("1d{0}-1", valueResult.Descriptions.Count());
-                //var index = dice.Roll(roll);
+                var valueRoll = percentileResultProvider.GetResultFrom(valueTableName);
+                var descriptions = typesProvider.GetTypesFor(valueRoll, descriptionTableName);
+                var descriptionIndexRoll = String.Format("1d{0}-1", descriptions.Count());
+                var descriptionIndex = dice.Roll(descriptionIndexRoll);
 
-                //var good = new Good();
-                //good.Description = valueResult.Descriptions.ElementAt(index);
-                //good.ValueInGold = dice.Roll(valueResult.ValueRoll);
+                var good = new Good();
+                good.Description = descriptions.ElementAt(descriptionIndex);
+                good.ValueInGold = dice.Roll(valueRoll);
 
-                //goods.Add(good);
+                goods.Add(good);
             }
 
             return goods;

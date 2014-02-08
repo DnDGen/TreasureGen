@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<types>
+  <object>
+    <key>1d10*10</key>
+    <type>silver ewer</type>
+    <type>carved bone statuette</type>
+    <type>carved ivory statuette</type>
+    <type>finely wrought small gold bracelet</type>
+  </object>
+  <object>
+      <key>3d6*10</key>
+      <type>cloth of gold vestments</type>
+      <type>black velvet mask with numerous citrines</type>
+      <type>silver chalice with lapis lazuli gems</type>
+  </object>
+  <object>
+      <key>1d6*100</key>
+      <type>large well-done wool tapestry</type>
+      <type>brass mug with jade inlays</type>
+  </object>
+  <object>
+      <key>1d10*100</key>
+      <type>silver comb with moonstones</type>
+      <type>silver-plated steel longsword with jet jewel in hilt</type>
+  </object>
+  <object>
+      <key>2d6*100</key>
+      <type>carved harp of exotic wood with ivory inlay and zircon gems</type>
+      <type>10 lb. solid gold idol</type>
+  </object>
+  <object>
+    <key>3d6*100</key>
+    <type>gold dragon comb with red garnet eye</type>
+    <type>gold and topaz bottle stopper cork</type>
+    <type>ceremonial electrum dagger with a star ruby in the pommel</type>
+  </object>
+  <object>
+      <key>4d6*100</key>
+      <type>eyepatch with mock eye of sapphire and moonstone</type>
+      <type>fire opal pendant on a fine gold chain</type>
+      <type>old masterpiece painting</type>
+  </object>
+  <object>
+      <key>5d6*100</key>
+      <type>embroidered silk and velvet mantle with numerous moonstones</type>
+      <type>sapphire pendant on gold chain</type>
+  </object>
+  <object>
+    <key>1d4*1000</key>
+    <type>embroidered and bejeweled glove</type>
+    <type>jeweled anklet</type>
+    <type>gold music box</type>
+  </object>
+  <object>
+      <key>1d6*1000</key>
+      <type>golden circlet with four aquamarines</type>
+      <type>a necklace of small pink pearls</type>
+  </object>
+  <object>
+      <key>2d4*1000</key>
+      <type>jeweled gold crown</type>
+      <type>jeweled electrum ring</type>
+  </object>
+  <object>
+      <key>2d6*1000</key>
+      <type>gold and ruby ring</type>
+      <type>gold cup set with emeralds</type>
+  </object>
+</types>

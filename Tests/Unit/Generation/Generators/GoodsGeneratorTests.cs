@@ -32,15 +32,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Value")).Returns("92d66");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
 
             var types = new[] { "description 1", "description 2" };
             mockTypesProvider = new Mock<ITypesProvider>();
-            mockTypesProvider.Setup(p => p.GetTypesFor("92d66", "GoodsDescriptions")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor(It.IsAny<String>(), typeAndAmountResult.Type + "Descriptions")).Returns(types);
 
             mockDice = new Mock<IDice>();
 
-            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileResultProvider.Object);
+            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileResultProvider.Object,
+                mockPercentileResultProvider.Object, mockTypesProvider.Object);
         }
 
         [Test]
@@ -74,23 +75,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void GetValueOfGoodFromProviderPerGood()
-        {
-            generator.GenerateAtLevel(1);
-            mockPercentileResultProvider.Verify(p => p.GetResultFrom("typeValue"), Times.Exactly(2));
-        }
-
-        [Test]
         public void ValueDeterminedByValueResult()
         {
-            mockDice.SetupSequence(d => d.Roll("92d66")).Returns(92).Returns(66);
+            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom(typeAndAmountResult.Type + "Values"))
+                .Returns("92d66").Returns("other roll");
+            mockDice.Setup(d => d.Roll("92d66")).Returns(9266);
+            mockDice.Setup(d => d.Roll("other roll")).Returns(42);
 
             var good = generator.GenerateAtLevel(1);
             var firstGood = good.First();
             var secondGood = good.Last();
 
-            Assert.That(firstGood.ValueInGold, Is.EqualTo(92));
-            Assert.That(secondGood.ValueInGold, Is.EqualTo(66));
+            Assert.That(firstGood.ValueInGold, Is.EqualTo(9266));
+            Assert.That(secondGood.ValueInGold, Is.EqualTo(42));
         }
 
         [Test]
