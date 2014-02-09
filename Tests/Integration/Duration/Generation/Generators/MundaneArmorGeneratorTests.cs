@@ -1,4 +1,5 @@
 ﻿using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;

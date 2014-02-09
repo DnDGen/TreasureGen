@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Bootstrap;
-using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using Ninject;
 using NUnit.Framework;
 

@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Data.Items;
+﻿using System;
+using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -8,17 +9,20 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
 {
     [TestFixture]
-    public class MundaneWeaponGeneratorTests : DurationTest
+    public class WondrousItemGeneratorTests : DurationTest
     {
         [Inject]
-        public IMundaneGearGeneratorFactory MundaneGearGeneratorFactory { get; set; }
+        public IMagicalItemGeneratorFactory MagicalItemGeneratorFactory { get; set; }
 
-        private IMundaneGearGenerator mundaneWeaponGenerator;
+        private IMagicalItemGenerator wondrousItemGenerator;
+        private String power;
 
         [SetUp]
         public void Setup()
         {
-            mundaneWeaponGenerator = MundaneGearGeneratorFactory.CreateWith(ItemTypeConstants.Weapon);
+            wondrousItemGenerator = MagicalItemGeneratorFactory.CreateWith(ItemTypeConstants.WondrousItem);
+            power = GetNewPower(false);
+
             StartTest();
         }
 
@@ -29,9 +33,9 @@ namespace EquipmentGen.Tests.Integration.Duration.Generation.Generators
         }
 
         [Test]
-        public void MundaneWeaponGeneratorDuration()
+        public void WondrousItemGeneratorDuration()
         {
-            mundaneWeaponGenerator.Generate();
+            wondrousItemGenerator.GenerateAtPower(power);
             AssertDuration();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 
@@ -83,14 +84,14 @@ namespace EquipmentGen.Core.Generation.Generators
             if (ability.CoreName == "Bane")
             {
                 var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes");
-                ability.Name = String.Format("Bane ({0})", designatedFoe);
+                ability.Name = String.Format("{0}bane", designatedFoe);
             }
             else if (ability.CoreName == "Spell storing" && dice.Percentile() > 50)
             {
                 var level = dice.d3();
                 var spellType = spellGenerator.GenerateType();
                 var spell = spellGenerator.GenerateOfTypeAtLevel(spellType, level);
-                ability.Name = String.Format("Spell storing ({0})", spell);
+                ability.Name = String.Format("Spell storing (contains {0})", spell);
             }
 
             return ability;

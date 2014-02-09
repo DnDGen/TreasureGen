@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Xml.Parsers;
 using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
 using NUnit.Framework;

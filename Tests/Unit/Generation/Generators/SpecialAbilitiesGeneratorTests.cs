@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -324,7 +325,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             var result = specialAbilitiesGenerator.GenerateFor(types, "power");
             Assert.That(result.CoreName, Is.EqualTo(bane.CoreName));
-            Assert.That(result.Name, Is.EqualTo("Bane (designated foe)"));
+            Assert.That(result.Name, Is.EqualTo("designated foebane"));
         }
 
         [Test]
@@ -355,7 +356,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
                 var result = specialAbilitiesGenerator.GenerateFor(types, "power");
                 Assert.That(result, Is.EqualTo(spellStoring));
-                Assert.That(result.Name, Is.EqualTo("Spell storing (spell)"));
+                Assert.That(result.Name, Is.EqualTo("Spell storing (contains spell)"));
             }
         }
 
@@ -372,7 +373,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             var result = specialAbilitiesGenerator.GenerateFor(types, "power");
             Assert.That(result, Is.EqualTo(spellStoring));
-            Assert.That(result.Name, Is.EqualTo("Spell storing (spell)"));
+            Assert.That(result.Name, Is.EqualTo("Spell storing (contains spell)"));
         }
     }
 }

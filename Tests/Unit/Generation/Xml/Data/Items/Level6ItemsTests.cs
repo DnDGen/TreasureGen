@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 

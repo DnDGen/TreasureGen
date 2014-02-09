@@ -1,5 +1,5 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -15,11 +15,12 @@ namespace EquipmentGen.Core.Generation.Factories
         private ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
+        private IIntelligenceGenerator intelligenceGenerator;
 
         public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, ITypesProvider typesProvider,
             ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
-            IMagicalItemTraitsGenerator magicItemTraitsGenerator)
+            IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
@@ -27,6 +28,7 @@ namespace EquipmentGen.Core.Generation.Factories
             this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
+            this.intelligenceGenerator = intelligenceGenerator;
         }
 
         public IMagicalGearGenerator CreateWith(String type)
@@ -35,7 +37,7 @@ namespace EquipmentGen.Core.Generation.Factories
             {
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
                     percentileResultProvider, typesProvider, gearSpecialAbilitiesProvider, materialsProvider,
-                    magicItemTraitsGenerator);
+                    magicItemTraitsGenerator, intelligenceGenerator);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }

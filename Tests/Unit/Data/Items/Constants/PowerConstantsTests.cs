@@ -1,7 +1,7 @@
-﻿using EquipmentGen.Core.Data.Items;
+﻿using EquipmentGen.Core.Data.Items.Constants;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Data.Items
+namespace EquipmentGen.Tests.Unit.Data.Items.Constants
 {
     [TestFixture]
     public class PowerConstantsTests

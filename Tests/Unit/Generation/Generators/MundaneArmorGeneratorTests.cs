@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;

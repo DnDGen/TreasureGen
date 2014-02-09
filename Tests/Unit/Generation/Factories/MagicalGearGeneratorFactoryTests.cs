@@ -1,5 +1,5 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
@@ -24,10 +24,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockGearSpecialAbilitiesProvider = new Mock<ISpecialAbilitiesGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
+            var mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
 
             factory = new MagicalGearGeneratorFactory(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockTypesProvider.Object, mockGearSpecialAbilitiesProvider.Object,
-                mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object);
+                mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object, mockIntelligenceGenerator.Object);
         }
 
         [Test]

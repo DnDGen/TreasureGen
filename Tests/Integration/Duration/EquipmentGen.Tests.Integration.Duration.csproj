@@ -66,6 +66,7 @@
     <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
     <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\WondrousItemGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellGeneratorTests.cs" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Core.Data.Items
+namespace EquipmentGen.Core.Data.Items.Constants
 {
     public static class SpecialAbilityConstants
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -21,6 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
         private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
+        private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
 
         private TypeAndAmountPercentileResult result;
 
@@ -39,10 +41,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
+            mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
 
             magicalArmorGenerator = new MagicalArmorGenerator(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockTypesProvider.Object, mockSpecialAbilitiesGenerator.Object,
-                mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object);
+                mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object, mockIntelligenceGenerator.Object);
         }
 
         [Test]
@@ -165,6 +168,16 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             foreach (var trait in traits)
                 Assert.That(armor.Traits, Contains.Item(trait));
+        }
+
+        [Test]
+        public void GetIntelligenceFromGenerator()
+        {
+            var intelligence = new Intelligence();
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Armor)).Returns(intelligence);
+
+            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            Assert.That(armor.Intelligence, Is.EqualTo(intelligence));
         }
     }
 }
