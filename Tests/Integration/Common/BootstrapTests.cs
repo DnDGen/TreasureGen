@@ -173,6 +173,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<ISpecialAbilityDataXmlParser>();
         }
 
+        [Test]
+        public void IntelligenceGeneratorNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IIntelligenceGenerator>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();

@@ -88,5 +88,11 @@ namespace EquipmentGen.Tests.Unit.Data.Items.Constants
         {
             Assert.That(TypeConstants.NotTower, Is.EqualTo("Not tower"));
         }
+
+        [Test]
+        public void OneTimeUseConstant()
+        {
+            Assert.That(TypeConstants.OneTimeUse, Is.EqualTo("One-time use"));
+        }
     }
 }

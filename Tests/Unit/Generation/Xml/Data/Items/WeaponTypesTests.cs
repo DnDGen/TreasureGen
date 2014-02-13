@@ -2,7 +2,7 @@
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
 {
     [TestFixture, TypesTable("WeaponTypes")]
     public class WeaponTypesTests : TypesTest

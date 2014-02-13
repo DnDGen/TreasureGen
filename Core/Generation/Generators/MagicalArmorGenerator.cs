@@ -58,10 +58,10 @@ namespace EquipmentGen.Core.Generation.Generators
             }
 
             armor.Name = percentileResultProvider.GetResultFrom(tableName);
-            armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
 
             if (!specific)
             {
+                armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
                 armor.Abilities = gearSpecialAbilitiesProvider.GenerateFor(armor.Types, power, armor.MagicalBonus, abilities);
 
                 if (materialsProvider.HasSpecialMaterial(armor.Types))

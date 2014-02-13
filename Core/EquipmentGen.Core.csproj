@@ -71,6 +71,7 @@
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\AmmunitionGenerator.cs" />
     <Compile Include="Generation\Generators\CurseGenerator.cs" />
+    <Compile Include="Generation\Generators\IntelligenceGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IIntelligenceGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ISpellGenerator.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGenerator.cs" />
@@ -367,7 +368,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\Ammunition.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\WeaponTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\WeaponTypes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\SpecialMaterials.xml" />
@@ -397,7 +398,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\ArmorTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\ArmorTypes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilities.xml" />

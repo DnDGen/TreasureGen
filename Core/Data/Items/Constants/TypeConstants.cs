@@ -18,5 +18,7 @@ namespace EquipmentGen.Core.Data.Items.Constants
         public const String Thrown = "Thrown";
         public const String Slashing = "Slashing";
         public const String NotTower = "Not tower";
+        public const String Specific = "Specific";
+        public const String OneTimeUse = "One-time use";
     }
 }

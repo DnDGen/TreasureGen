@@ -51,7 +51,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void SpecialAbilityDataProviderGetsTypeRequirements()
         {
             var types = new[] { "type 1" };
-            mockTypesProvider.Setup(p => p.GetTypesFor("ability name", "SpecialAbilityTypes")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetTypesFor("core name", "SpecialAbilityTypes")).Returns(types);
 
             var result = provider.GetDataFor("ability name");
             Assert.That(result.TypeRequirements, Is.EqualTo(types));

@@ -21,6 +21,7 @@ namespace EquipmentGen.Bootstrap
             Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
+            Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
             Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
             Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();

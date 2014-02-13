@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecificItemsDoNotHaveAbilitiesNorMagicBonusesNorTraits()
+        public void SpecificItemsDoNotHaveAbilitiesNorMagicBonusesNorTraitsNorTypes()
         {
             result.Type = "Specific armor type";
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("power" + result.Type)).Returns("specific armor name");
@@ -132,11 +132,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(It.IsAny<String>())).Returns(new[] { "trait" });
 
+            var types = new[] { "type 1" };
+            mockTypesProvider.Setup(p => p.GetTypesFor(It.IsAny<String>(), It.IsAny<String>())).Returns(types);
+
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("specific armor name"));
             Assert.That(armor.Abilities, Is.Empty);
             Assert.That(armor.MagicalBonus, Is.EqualTo(0));
             Assert.That(armor.Traits, Is.Empty);
+            Assert.That(armor.Types, Is.Empty);
         }
 
         [Test]

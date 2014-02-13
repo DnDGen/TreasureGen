@@ -15,6 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
+        private Mock<ITypesProvider> mockTypesProvider;
 
         [SetUp]
         public void Setup()
@@ -22,6 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
+            mockTypesProvider = new Mock<ITypesProvider>();
 
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileResultProvider.Object,
                 mockTraitsGenerator.Object, mockIntelligenceGenerator.Object);
@@ -48,13 +50,40 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void GetIntelligenceFromGeneratorIf()
+        public void GetTypesFromProvider()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("wondrous item");
+
+            var types = new[] { "type 1", "type 2" };
+            mockTypesProvider.Setup(p => p.GetTypesFor("wondrous item", "WondrousItemTypes")).Returns(types);
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Types, Is.EqualTo(types));
+        }
+
+        [Test]
+        public void GetIntelligenceFromGeneratorIfNotOneTimeUse()
         {
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem)).Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Intelligence, Is.EqualTo(intelligence));
+        }
+
+        [Test]
+        public void DoNotGetIntelligenceFromGeneratorIfOneTimeUse()
+        {
+            var intelligence = new Intelligence();
+            intelligence.IsIntelligent = true;
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem)).Returns(intelligence);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("wondrous item");
+
+            var types = new[] { TypeConstants.OneTimeUse };
+            mockTypesProvider.Setup(p => p.GetTypesFor("wondrous item", "WondrousItemTypes")).Returns(types);
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Intelligence.IsIntelligent, Is.False);
         }
     }
 }

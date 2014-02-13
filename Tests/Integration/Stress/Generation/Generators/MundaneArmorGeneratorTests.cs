@@ -40,18 +40,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(armor.MagicalBonus, Is.EqualTo(0));
                 Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
                 Assert.That(armor.Charges, Is.EqualTo(0));
-                Assert.That(armor.ChargesRenewable, Is.False);
                 Assert.That(armor.Intelligence.IsIntelligent, Is.False);
-                Assert.That(armor.Intelligence.Alignment, Is.Empty);
-                Assert.That(armor.Intelligence.CharismaStat, Is.EqualTo(0));
-                Assert.That(armor.Intelligence.Communication, Is.Empty);
-                Assert.That(armor.Intelligence.Ego, Is.EqualTo(0));
-                Assert.That(armor.Intelligence.IntelligenceStat, Is.EqualTo(0));
-                Assert.That(armor.Intelligence.Powers, Is.Empty);
-                Assert.That(armor.Intelligence.DedicatedPower, Is.Empty);
-                Assert.That(armor.Intelligence.Senses, Is.Empty);
-                Assert.That(armor.Intelligence.SpecialPurpose, Is.Empty);
-                Assert.That(armor.Intelligence.WisdomStat, Is.EqualTo(0));
             }
 
             AssertIterations();

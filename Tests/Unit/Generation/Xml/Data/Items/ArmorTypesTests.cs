@@ -2,7 +2,7 @@
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
+namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items
 {
     [TestFixture, TypesTable("ArmorTypes")]
     public class ArmorTypesTests : TypesTest
@@ -218,6 +218,18 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
             };
 
             AssertContent(ArmorConstants.FullPlate, types);
+        }
+
+        [Test]
+        public void MithralShirtTypes()
+        {
+            var types = new[]
+            {
+                ItemTypeConstants.Armor,
+                TypeConstants.Metal
+            };
+
+            AssertContent(ArmorConstants.MithralShirt, types);
         }
     }
 }

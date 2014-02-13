@@ -99,6 +99,9 @@ namespace EquipmentGen.Core.Generation.Generators
 
         private String GetTableName(IEnumerable<String> types, String power)
         {
+            if (!types.Any())
+                throw new ArgumentException("no types when getting table name for special abilities");
+
             if (types.Contains(TypeConstants.Shield))
                 return String.Format("{0}ShieldSpecialAbilities", power);
 
@@ -111,7 +114,8 @@ namespace EquipmentGen.Core.Generation.Generators
             if (types.Contains(ItemTypeConstants.Armor))
                 return String.Format("{0}ArmorSpecialAbilities", power);
 
-            throw new ArgumentException("invalid types for special abilities");
+            var typesString = String.Join(",", types);
+            throw new ArgumentException("invalid types for special abilities: {0}", typesString);
         }
 
         private Boolean AllTypeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> types)

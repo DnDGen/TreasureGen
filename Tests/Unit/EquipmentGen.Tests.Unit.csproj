@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Coins\CoinConstantsTests.cs" />
-    <Compile Include="Data\Coins\CoinTests.cs" />
     <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
     <Compile Include="Data\Items\Constants\ArmorConstantsTests.cs" />
     <Compile Include="Data\Items\Constants\ItemTypeConstantsTests.cs" />
@@ -59,6 +58,10 @@
     <Compile Include="Data\Items\Constants\TraitConstantsTests.cs" />
     <Compile Include="Data\Items\Constants\TypeConstantsTests.cs" />
     <Compile Include="Data\Items\Constants\WeaponConstantsTests.cs" />
+    <Compile Include="Data\Items\GearTests.cs" />
+    <Compile Include="Data\Items\IntelligenceTests.cs" />
+    <Compile Include="Data\Items\SpecialAbilityTests.cs" />
+    <Compile Include="Data\Items\TraitItemTests.cs" />
     <Compile Include="Generation\Factories\MagicalItemGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Factories\MagicalGearGeneratorFactoryTests.cs" />
@@ -167,8 +170,8 @@
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\CommonRangedWeaponsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\DarkwoodShieldsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTypesTests.cs" />
-    <Compile Include="Generation\Xml\Data\Items\MundaneItems\WeaponTypesTests.cs" />
-    <Compile Include="Generation\Xml\Data\Items\MundaneItems\ArmorTypesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\WeaponTypesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\ArmorTypesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MasterworkShieldsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\MundaneWeaponsTests.cs" />
