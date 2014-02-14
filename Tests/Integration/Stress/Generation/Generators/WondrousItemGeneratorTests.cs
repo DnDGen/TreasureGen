@@ -39,6 +39,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(item.Name, Is.Not.Empty);
                 Assert.That(item.Traits, Is.Not.Null);
                 Assert.That(item.Charges, Is.Not.Negative);
+                Assert.That(item.Types, Is.Not.Null);
 
                 if (item.Intelligence.IsIntelligent)
                 {
@@ -52,19 +53,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                     Assert.That(item.Intelligence.Senses, Is.Not.Empty);
                     Assert.That(item.Intelligence.SpecialPurpose, Is.Not.Null);
                     Assert.That(item.Intelligence.WisdomStat, Is.AtLeast(10));
-                }
-                else
-                {
-                    Assert.That(item.Intelligence.Alignment, Is.Empty);
-                    Assert.That(item.Intelligence.CharismaStat, Is.EqualTo(0));
-                    Assert.That(item.Intelligence.Communication, Is.Empty);
-                    Assert.That(item.Intelligence.Ego, Is.EqualTo(0));
-                    Assert.That(item.Intelligence.IntelligenceStat, Is.EqualTo(0));
-                    Assert.That(item.Intelligence.Powers, Is.Empty);
-                    Assert.That(item.Intelligence.DedicatedPower, Is.Empty);
-                    Assert.That(item.Intelligence.Senses, Is.Empty);
-                    Assert.That(item.Intelligence.SpecialPurpose, Is.Empty);
-                    Assert.That(item.Intelligence.WisdomStat, Is.EqualTo(0));
+
+                    Assert.That(item.Types, Is.Not.Contains(TypeConstants.OneTimeUse));
                 }
             }
 

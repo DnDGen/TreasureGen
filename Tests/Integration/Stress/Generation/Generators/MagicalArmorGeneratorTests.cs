@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Data.Items.Constants;
+﻿using System.Linq;
+using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -39,9 +40,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(armor.Abilities, Is.Not.Null);
                 Assert.That(armor.Traits, Is.Not.Null);
                 Assert.That(armor.Charges, Is.Not.Negative);
+                Assert.That(armor.MagicalBonus, Is.Not.Negative);
+                Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
 
-                if (armor.MagicalBonus > 0)
-                    Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
+                if (!armor.Types.Any(t => t == TypeConstants.Specific))
+                    Assert.That(armor.MagicalBonus, Is.GreaterThan(0));
 
                 if (armor.Intelligence.IsIntelligent)
                 {
