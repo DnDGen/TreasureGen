@@ -38,24 +38,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(item.Name, Is.Not.Empty);
                 Assert.That(item.Traits, Is.Not.Null);
-                Assert.That(item.Charges, Is.Not.Negative);
-                Assert.That(item.Types, Is.Not.Null);
-
-                if (item.Intelligence.IsIntelligent)
-                {
-                    Assert.That(item.Intelligence.Alignment, Is.Not.Empty);
-                    Assert.That(item.Intelligence.CharismaStat, Is.AtLeast(10));
-                    Assert.That(item.Intelligence.Communication, Is.Not.Empty);
-                    Assert.That(item.Intelligence.Ego, Is.AtLeast(3));
-                    Assert.That(item.Intelligence.IntelligenceStat, Is.AtLeast(10));
-                    Assert.That(item.Intelligence.Powers, Is.Not.Empty);
-                    Assert.That(item.Intelligence.DedicatedPower, Is.Not.Null);
-                    Assert.That(item.Intelligence.Senses, Is.Not.Empty);
-                    Assert.That(item.Intelligence.SpecialPurpose, Is.Not.Null);
-                    Assert.That(item.Intelligence.WisdomStat, Is.AtLeast(10));
-
-                    Assert.That(item.Types, Is.Not.Contains(TypeConstants.OneTimeUse));
-                }
+                Assert.That(item.Attributes, Is.Not.Null);
+                Assert.That(item.Quantity, Is.EqualTo(1));
+                Assert.That(item.Magic, Is.Not.Null);
             }
 
             AssertIterations();

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace EquipmentGen.Core.Generation.Providers.Interfaces
 {
-    public interface ITypesProvider
+    public interface IAttributesProvider
     {
-        IEnumerable<String> GetTypesFor(String name, String table);
+        IEnumerable<String> GetAttributesFor(String name, String table);
     }
 }

@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Unit.Data.Items
         [Test]
         public void TypeRequirementsInitialized()
         {
-            Assert.That(ability.TypeRequirements, Is.Not.Null);
+            Assert.That(ability.AttributeRequirements, Is.Not.Null);
         }
     }
 }

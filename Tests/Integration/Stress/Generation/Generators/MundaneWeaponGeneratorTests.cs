@@ -24,8 +24,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         public void Setup()
         {
             mundaneWeaponGenerator = mundaneGearGeneratorFactory.CreateWith(ItemTypeConstants.Weapon);
-            commonality = new[] { TypeConstants.Common, TypeConstants.Uncommon };
-            range = new[] { TypeConstants.Melee, TypeConstants.Ranged };
+            commonality = new[] { AttributeConstants.Common, AttributeConstants.Uncommon };
+            range = new[] { AttributeConstants.Melee, AttributeConstants.Ranged };
 
             StartTest();
         }
@@ -45,16 +45,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(weapon.Name, Is.Not.Empty);
                 Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
-                Assert.That(weapon.Abilities, Is.Empty);
-                Assert.That(weapon.MagicalBonus, Is.EqualTo(0));
-                Assert.That(weapon.Types, Contains.Item(ItemTypeConstants.Weapon));
-                Assert.That(weapon.Charges, Is.EqualTo(0));
-                Assert.That(weapon.Intelligence.IsIntelligent, Is.False);
+                Assert.That(weapon.Attributes, Contains.Item(ItemTypeConstants.Weapon));
+                Assert.That(weapon.Quantity, Is.GreaterThan(0));
+                Assert.That(weapon.Magic, Is.Empty);
 
-                var intersection = commonality.Intersect(weapon.Types);
+                var intersection = commonality.Intersect(weapon.Attributes);
                 Assert.That(intersection, Is.Not.Empty, "Commonality");
 
-                intersection = range.Intersect(weapon.Types);
+                intersection = range.Intersect(weapon.Attributes);
                 Assert.That(intersection, Is.Not.Empty, "Range");
             }
 

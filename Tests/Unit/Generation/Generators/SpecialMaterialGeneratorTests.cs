@@ -15,7 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<IDice> mockDice;
-        private Mock<ITypesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockTypesProvider;
 
         private List<String> materials;
         private List<String> material1Types;
@@ -30,10 +30,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             material1Types = new List<String>() { "type 1", "type 2" };
             material2Types = new List<String>() { "type 3", "type 2" };
 
-            mockTypesProvider = new Mock<ITypesProvider>();
-            mockTypesProvider.Setup(p => p.GetTypesFor("SpecialMaterials", "SpecialMaterials")).Returns(materials);
-            mockTypesProvider.Setup(p => p.GetTypesFor(materials[0], "SpecialMaterials")).Returns(material1Types);
-            mockTypesProvider.Setup(p => p.GetTypesFor(materials[1], "SpecialMaterials")).Returns(material2Types);
+            mockTypesProvider = new Mock<IAttributesProvider>();
+            mockTypesProvider.Setup(p => p.GetAttributesFor("SpecialMaterials", "SpecialMaterials")).Returns(materials);
+            mockTypesProvider.Setup(p => p.GetAttributesFor(materials[0], "SpecialMaterials")).Returns(material1Types);
+            mockTypesProvider.Setup(p => p.GetAttributesFor(materials[1], "SpecialMaterials")).Returns(material2Types);
 
             specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockTypesProvider.Object);
         }
@@ -41,9 +41,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void CacheMaterialsAndTypesOnConstruction()
         {
-            mockTypesProvider.Verify(p => p.GetTypesFor("SpecialMaterials", "SpecialMaterials"), Times.Once);
+            mockTypesProvider.Verify(p => p.GetAttributesFor("SpecialMaterials", "SpecialMaterials"), Times.Once);
             foreach (var material in materials)
-                mockTypesProvider.Verify(p => p.GetTypesFor(material, "SpecialMaterials"), Times.Once);
+                mockTypesProvider.Verify(p => p.GetAttributesFor(material, "SpecialMaterials"), Times.Once);
         }
 
         [Test]

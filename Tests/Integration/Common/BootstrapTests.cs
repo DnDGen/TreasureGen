@@ -128,13 +128,13 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void TypesProviderConstructedAsSingleton()
         {
-            AssertSingleton<ITypesProvider>();
+            AssertSingleton<IAttributesProvider>();
         }
 
         [Test]
         public void TypesXmlParserNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ITypesXmlParser>();
+            AssertNotSingleton<IAttributesXmlParser>();
         }
 
         [Test]

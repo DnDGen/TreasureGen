@@ -7,6 +7,6 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
     {
         Boolean HasCurse();
         String GenerateCurseTrait();
-        BasicItem GenerateSpecificCursedItem();
+        Item GenerateSpecificCursedItem();
     }
 }

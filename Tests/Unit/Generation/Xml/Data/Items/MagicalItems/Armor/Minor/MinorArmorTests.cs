@@ -12,7 +12,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void Plus1ShieldPercentile()
         {
-            var content = String.Format("{0},1", TypeConstants.Shield);
+            var content = String.Format("{0},1", AttributeConstants.Shield);
             AssertContent(content, 1, 60);
         }
 
@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Armor.M
         [Test]
         public void Plus2ShieldPercentile()
         {
-            var content = String.Format("{0},2", TypeConstants.Shield);
+            var content = String.Format("{0},2", AttributeConstants.Shield);
             AssertContent(content, 81, 85);
         }
 

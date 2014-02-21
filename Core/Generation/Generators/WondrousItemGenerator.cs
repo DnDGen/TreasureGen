@@ -20,14 +20,14 @@ namespace EquipmentGen.Core.Generation.Generators
             this.intelligenceGenerator = intelligenceGenerator;
         }
 
-        public TraitItem GenerateAtPower(String power)
+        public Item GenerateAtPower(String power)
         {
             var tablename = String.Format("{0}WondrousItems", power);
             var result = percentileResultProvider.GetResultFrom(tablename);
 
-            var item = new TraitItem();
+            var item = new Item();
             item.Name = result;
-            item.Intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
+            item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);

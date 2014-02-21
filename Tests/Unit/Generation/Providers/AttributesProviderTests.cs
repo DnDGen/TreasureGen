@@ -10,10 +10,10 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generation.Providers
 {
     [TestFixture]
-    public class TypesProviderTests
+    public class AttributesProviderTests
     {
-        private ITypesProvider typesProvider;
-        private Mock<ITypesXmlParser> mockTypesXmlParser;
+        private IAttributesProvider typesProvider;
+        private Mock<IAttributesXmlParser> mockTypesXmlParser;
 
         private IEnumerable<String> expected;
 
@@ -25,36 +25,36 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             table.Add("name", expected);
             table.Add("other name", expected);
 
-            mockTypesXmlParser = new Mock<ITypesXmlParser>();
+            mockTypesXmlParser = new Mock<IAttributesXmlParser>();
             mockTypesXmlParser.Setup(p => p.Parse("table name.xml")).Returns(table);
             mockTypesXmlParser.Setup(p => p.Parse("other table name.xml")).Returns(table);
 
-            typesProvider = new TypesProvider(mockTypesXmlParser.Object);
+            typesProvider = new AttributesProvider(mockTypesXmlParser.Object);
         }
 
         [Test]
         public void TypesProviderGetsTypesFromXmlParser()
         {
-            var actual = typesProvider.GetTypesFor("name", "table name");
+            var actual = typesProvider.GetAttributesFor("name", "table name");
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
         public void TypesProviderCachesTable()
         {
-            typesProvider.GetTypesFor("name", "table name");
-            typesProvider.GetTypesFor("other name", "table name");
+            typesProvider.GetAttributesFor("name", "table name");
+            typesProvider.GetAttributesFor("other name", "table name");
             mockTypesXmlParser.Verify(p => p.Parse(It.IsAny<String>()), Times.Once);
         }
 
         [Test]
         public void TypesProviderCachesAllTables()
         {
-            typesProvider.GetTypesFor("name", "table name");
-            typesProvider.GetTypesFor("other name", "table name");
+            typesProvider.GetAttributesFor("name", "table name");
+            typesProvider.GetAttributesFor("other name", "table name");
 
-            typesProvider.GetTypesFor("name", "other table name");
-            typesProvider.GetTypesFor("other name", "other table name");
+            typesProvider.GetAttributesFor("name", "other table name");
+            typesProvider.GetAttributesFor("other name", "other table name");
 
             mockTypesXmlParser.Verify(p => p.Parse(It.IsAny<String>()), Times.Exactly(2));
             mockTypesXmlParser.Verify(p => p.Parse("table name.xml"), Times.Once);
@@ -64,7 +64,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void TypesProviderThrowsErrorIfNameNotFound()
         {
-            Assert.That(() => typesProvider.GetTypesFor("unknown gear name", "table name"), Throws.InstanceOf<ItemNotFoundException>());
+            Assert.That(() => typesProvider.GetAttributesFor("unknown gear name", "table name"), Throws.InstanceOf<ItemNotFoundException>());
         }
     }
 }

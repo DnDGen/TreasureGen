@@ -39,8 +39,8 @@ namespace EquipmentGen.Bootstrap
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
             Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
-            Bind<ITypesProvider>().To<TypesProvider>().InSingletonScope();
-            Bind<ITypesXmlParser>().To<TypesXmlParser>();
+            Bind<IAttributesProvider>().To<AttributesProvider>().InSingletonScope();
+            Bind<IAttributesXmlParser>().To<AttributesXmlParser>();
         }
     }
 }

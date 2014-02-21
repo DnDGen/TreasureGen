@@ -2,11 +2,11 @@
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes
 {
-    public class TypesTableAttribute : Attribute
+    public class AttributesTableAttribute : Attribute
     {
         public readonly String TableName;
 
-        public TypesTableAttribute(String tableName)
+        public AttributesTableAttribute(String tableName)
         {
             TableName = tableName;
         }

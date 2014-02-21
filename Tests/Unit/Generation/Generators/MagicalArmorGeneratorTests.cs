@@ -18,7 +18,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private IMagicalGearGenerator magicalArmorGenerator;
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
-        private Mock<ITypesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockAttributesProvider;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
         private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
@@ -37,14 +37,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmor")).Returns(result);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockTypesProvider = new Mock<ITypesProvider>();
+            mockAttributesProvider = new Mock<IAttributesProvider>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
 
             magicalArmorGenerator = new MagicalArmorGenerator(mockTypeAndAmountPercentileResultProvider.Object,
-                mockPercentileResultProvider.Object, mockTypesProvider.Object, mockSpecialAbilitiesGenerator.Object,
+                mockPercentileResultProvider.Object, mockAttributesProvider.Object, mockSpecialAbilitiesGenerator.Object,
                 mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object, mockIntelligenceGenerator.Object);
         }
 
@@ -58,7 +58,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MagicalArmorGeneratorGetsBonusFromProvider()
         {
             var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.MagicalBonus, Is.EqualTo(9266));
+            var bonus = Convert.ToInt32(armor.Magic[Magic.Bonus]);
+            Assert.That(bonus, Is.EqualTo(9266));
         }
 
         [Test]
@@ -71,25 +72,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void MagicalArmorGeneratorGetsGearTypesFromProvider()
+        public void MagicalArmorGeneratorGetsAttributesFromProvider()
         {
             mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Type")).Returns("armor name");
 
-            var types = new[] { "type 1", "type 2" };
-            mockTypesProvider.Setup(p => p.GetTypesFor("armor name", "ArmorTypes")).Returns(types);
+            var attributes = new[] { "type 1", "type 2" };
+            mockAttributesProvider.Setup(p => p.GetAttributesFor("armor name", "ArmorTypes")).Returns(attributes);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Types, Is.EqualTo(types));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
         }
 
         [Test]
-        public void MagicalArmorGeneratorGetsSpecificItems()
+        public void MagicalArmorGeneratorGetsSpecificItemsFromGenerator()
         {
-            result.Type = "Specific armor type";
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("power" + result.Type)).Returns("specific armor name");
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Name, Is.EqualTo("specific armor name"));
+            Assert.Fail();
         }
 
         [Test]
@@ -106,41 +103,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
                 .Returns(new[] { ability });
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Abilities.Count(), Is.EqualTo(1));
-            Assert.That(armor.Abilities, Contains.Item(ability));
-        }
-
-        [Test]
-        public void SpecificItemsDoNotHaveAbilitiesNorMagicBonusesNorTraitsNorTypes()
-        {
-            result.Type = "Specific armor type";
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("power" + result.Type)).Returns("specific armor name");
-
-            var ability = new SpecialAbility();
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>(), "power", result.Amount, 1))
-                .Returns(new[] { ability });
-
-            var abilityResult = new TypeAndAmountPercentileResult();
-            abilityResult.Type = "SpecialAbility";
-            abilityResult.Amount = 1;
-            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmor"))
-                .Returns(abilityResult).Returns(result);
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "SpecialAbilities")).Returns("ability");
-
-            mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
-
-            mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(It.IsAny<String>())).Returns(new[] { "trait" });
-
-            var types = new[] { "type 1" };
-            mockTypesProvider.Setup(p => p.GetTypesFor(It.IsAny<String>(), It.IsAny<String>())).Returns(types);
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Name, Is.EqualTo("specific armor name"));
-            Assert.That(armor.Abilities, Is.Empty);
-            Assert.That(armor.MagicalBonus, Is.EqualTo(0));
-            Assert.That(armor.Traits, Is.Empty);
-            Assert.That(armor.Types, Is.Empty);
+            var abilities = armor.Magic[Magic.Abilities] as IEnumerable<SpecialAbility>;
+            Assert.That(abilities.Count(), Is.EqualTo(1));
+            Assert.That(abilities, Contains.Item(ability));
         }
 
         [Test]
@@ -181,7 +146,20 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Armor)).Returns(intelligence);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Intelligence, Is.EqualTo(intelligence));
+            var armorIntelligence = armor.Magic[Magic.Intelligence] as Intelligence;
+            Assert.That(armorIntelligence, Is.EqualTo(intelligence));
+        }
+
+        [Test]
+        public void CastersShieldHasSpell()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void CastersShieldDoesNotHavespell()
+        {
+            Assert.Fail();
         }
     }
 }

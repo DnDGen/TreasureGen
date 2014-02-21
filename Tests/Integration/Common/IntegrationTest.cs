@@ -58,26 +58,26 @@ namespace EquipmentGen.Tests.Integration.Common
             {
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(TypeConstants.Melee); break;
-                    case 1: types.Add(TypeConstants.Ranged); break;
+                    case 0: types.Add(AttributeConstants.Melee); break;
+                    case 1: types.Add(AttributeConstants.Ranged); break;
                     case 2:
-                        types.Add(TypeConstants.Melee);
-                        types.Add(TypeConstants.Ranged);
+                        types.Add(AttributeConstants.Melee);
+                        types.Add(AttributeConstants.Ranged);
                         break;
                 }
 
                 switch (Random.Next(4))
                 {
-                    case 0: types.Add(TypeConstants.Metal); break;
-                    case 1: types.Add(TypeConstants.Wood); break;
+                    case 0: types.Add(AttributeConstants.Metal); break;
+                    case 1: types.Add(AttributeConstants.Wood); break;
                     case 2:
-                        types.Add(TypeConstants.Metal);
-                        types.Add(TypeConstants.Wood);
+                        types.Add(AttributeConstants.Metal);
+                        types.Add(AttributeConstants.Wood);
                         break;
                     case 3:
                         if (allowNoMaterial)
                             break;
-                        types.Add(TypeConstants.Metal);
+                        types.Add(AttributeConstants.Metal);
                         break;
                 }
             }
@@ -86,14 +86,14 @@ namespace EquipmentGen.Tests.Integration.Common
             {
                 switch (Random.Next(2))
                 {
-                    case 0: types.Add(TypeConstants.Shield); break;
+                    case 0: types.Add(AttributeConstants.Shield); break;
                     case 1: break;
                 }
 
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(TypeConstants.Metal); break;
-                    case 1: types.Add(TypeConstants.Wood); break;
+                    case 0: types.Add(AttributeConstants.Metal); break;
+                    case 1: types.Add(AttributeConstants.Wood); break;
                     case 2: break;
                 }
             }

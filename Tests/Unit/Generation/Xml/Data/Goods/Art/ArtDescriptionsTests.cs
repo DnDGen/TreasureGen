@@ -3,8 +3,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Goods.Art
 {
-    [TestFixture, TypesTable("ArtDescriptions")]
-    public class ArtDescriptionsTests : TypesTest
+    [TestFixture, AttributesTable("ArtDescriptions")]
+    public class ArtDescriptionsTests : AttributesTests
     {
         [Test]
         public void ArtValue1d10x10Descriptions()

@@ -16,7 +16,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IDice> mockDice;
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
-        private Mock<ITypesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockTypesProvider;
         private IGoodsGenerator generator;
 
         private TypeAndAmountPercentileResult typeAndAmountResult;
@@ -35,8 +35,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
 
             var types = new[] { "description 1", "description 2" };
-            mockTypesProvider = new Mock<ITypesProvider>();
-            mockTypesProvider.Setup(p => p.GetTypesFor(It.IsAny<String>(), typeAndAmountResult.Type + "Descriptions")).Returns(types);
+            mockTypesProvider = new Mock<IAttributesProvider>();
+            mockTypesProvider.Setup(p => p.GetAttributesFor(It.IsAny<String>(), typeAndAmountResult.Type + "Descriptions")).Returns(types);
 
             mockDice = new Mock<IDice>();
 

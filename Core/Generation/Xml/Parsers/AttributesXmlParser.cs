@@ -5,11 +5,11 @@ using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Xml.Parsers
 {
-    public class TypesXmlParser : ITypesXmlParser
+    public class AttributesXmlParser : IAttributesXmlParser
     {
         private IStreamLoader streamLoader;
 
-        public TypesXmlParser(IStreamLoader streamLoader)
+        public AttributesXmlParser(IStreamLoader streamLoader)
         {
             this.streamLoader = streamLoader;
         }
@@ -26,10 +26,10 @@ namespace EquipmentGen.Core.Generation.Xml.Parsers
                 var objects = xmlDocument.DocumentElement.ChildNodes;
                 foreach (XmlNode node in objects)
                 {
-                    var name = node.SelectSingleNode("key").InnerText;
-                    var types = GetTypesFrom(node);
+                    var name = node.SelectSingleNode("name").InnerText;
+                    var attributes = GetTypesFrom(node);
 
-                    results.Add(name, types);
+                    results.Add(name, attributes);
                 }
             }
 
@@ -38,13 +38,13 @@ namespace EquipmentGen.Core.Generation.Xml.Parsers
 
         private IEnumerable<String> GetTypesFrom(XmlNode node)
         {
-            var types = new List<String>();
-            var typesFromNode = node.SelectNodes("type");
+            var attributes = new List<String>();
+            var attributesFromNode = node.SelectNodes("attribute");
 
-            foreach (XmlNode typeNode in typesFromNode)
-                types.Add(typeNode.InnerText);
+            foreach (XmlNode attributeNode in attributesFromNode)
+                attributes.Add(attributeNode.InnerText);
 
-            return types;
+            return attributes;
         }
     }
 }

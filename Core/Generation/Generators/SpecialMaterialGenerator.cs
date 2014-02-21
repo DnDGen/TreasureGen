@@ -10,10 +10,10 @@ namespace EquipmentGen.Core.Generation.Generators
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private IDice dice;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
         private Dictionary<String, IEnumerable<String>> specialMaterialTypes;
 
-        public SpecialMaterialGenerator(IDice dice, ITypesProvider typesProvider)
+        public SpecialMaterialGenerator(IDice dice, IAttributesProvider typesProvider)
         {
             this.dice = dice;
             this.typesProvider = typesProvider;
@@ -25,17 +25,17 @@ namespace EquipmentGen.Core.Generation.Generators
 
         private void CacheSpecialMaterialTypes()
         {
-            var materials = typesProvider.GetTypesFor("SpecialMaterials", "SpecialMaterials");
+            var materials = typesProvider.GetAttributesFor("SpecialMaterials", "SpecialMaterials");
             foreach (var material in materials)
             {
-                var materialTypeRequirements = typesProvider.GetTypesFor(material, "SpecialMaterials");
+                var materialTypeRequirements = typesProvider.GetAttributesFor(material, "SpecialMaterials");
                 specialMaterialTypes.Add(material, materialTypeRequirements);
             }
         }
 
         private void AddTypes(String specialMaterial)
         {
-            var types = typesProvider.GetTypesFor(specialMaterial, "SpecialMaterials");
+            var types = typesProvider.GetAttributesFor(specialMaterial, "SpecialMaterials");
             specialMaterialTypes.Add(specialMaterial, types);
         }
 

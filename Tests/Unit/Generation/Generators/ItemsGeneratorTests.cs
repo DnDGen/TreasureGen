@@ -47,7 +47,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockMagicalItemGenerator = new Mock<IMagicalItemGenerator>();
             mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
             var dummyMock = new Mock<IMagicalItemGenerator>();
-            var item = new TraitItem();
+            var item = new Item();
             dummyMock.Setup(m => m.GenerateAtPower(It.IsAny<String>())).Returns(item);
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith(It.IsAny<String>())).Returns(dummyMock.Object);
 
@@ -82,8 +82,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = PowerConstants.Mundane;
             result.Amount = 2;
 
-            var firstItem = new AlchemicalItem();
-            var secondItem = new BasicItem();
+            var firstItem = new Item();
+            var secondItem = new Item();
             mockMundaneItemGenerator.SetupSequence(f => f.Generate()).Returns(firstItem).Returns(secondItem);
 
             var items = itemsGenerator.GenerateAtLevel(1);
@@ -113,7 +113,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGeneratesMundaneItem()
         {
-            var tool = new BasicItem();
+            var tool = new Item();
             mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(tool);
 
             var item = itemsGenerator.GenerateAtPower(PowerConstants.Mundane);
@@ -130,7 +130,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGetsArmorFromMagicalArmorGenerator()
         {
-            var gear = new Gear();
+            var gear = new Item();
             mockMagicalGearGenerator.Setup(g => g.GenerateAtPower("power")).Returns(gear);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns(ItemTypeConstants.Armor);
             mockMagicalGearGeneratorFactory.Setup(p => p.CreateWith(ItemTypeConstants.Armor)).Returns(mockMagicalGearGenerator.Object);
@@ -142,7 +142,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGetsWeaponFromMagicalWeaponGenerator()
         {
-            var gear = new Gear();
+            var gear = new Item();
             mockMagicalGearGenerator.Setup(g => g.GenerateAtPower("power")).Returns(gear);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns(ItemTypeConstants.Weapon);
             mockMagicalGearGeneratorFactory.Setup(f => f.CreateWith(ItemTypeConstants.Weapon)).Returns(mockMagicalGearGenerator.Object);
@@ -154,7 +154,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGetsMagicalItemsFromMagicalItemGenerator()
         {
-            var magicalItem = new TraitItem();
+            var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
@@ -166,7 +166,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorDoesNotGetCurseTraits()
         {
-            var magicalItem = new TraitItem();
+            var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
@@ -182,7 +182,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGetsCurseTraits()
         {
-            var magicalItem = new TraitItem();
+            var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerItems")).Returns("magic item");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
@@ -198,7 +198,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ItemGeneratorGetsSpecificCursedItems()
         {
-            var cursedItem = new BasicItem();
+            var cursedItem = new Item();
             mockCurseGenerator.Setup(g => g.HasCurse()).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurseTrait()).Returns("SpecificCursedItem");
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
@@ -210,12 +210,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void MundaneItemsCannotBeCursed()
         {
-            var cursedItem = new BasicItem();
+            var cursedItem = new Item();
             mockCurseGenerator.Setup(g => g.HasCurse()).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurseTrait()).Returns("SpecificCursedItem");
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
 
-            var tool = new BasicItem();
+            var tool = new Item();
             mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(tool);
 
             var item = itemsGenerator.GenerateAtPower(PowerConstants.Mundane);

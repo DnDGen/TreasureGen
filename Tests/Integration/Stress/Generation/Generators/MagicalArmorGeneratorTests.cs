@@ -37,28 +37,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var armor = magicalArmorGenerator.GenerateAtPower(power);
 
                 Assert.That(armor.Name, Is.Not.Empty);
-                Assert.That(armor.Abilities, Is.Not.Null);
                 Assert.That(armor.Traits, Is.Not.Null);
-                Assert.That(armor.Charges, Is.Not.Negative);
-                Assert.That(armor.MagicalBonus, Is.Not.Negative);
-                Assert.That(armor.Types, Contains.Item(ItemTypeConstants.Armor));
-
-                if (!armor.Types.Any(t => t == TypeConstants.Specific))
-                    Assert.That(armor.MagicalBonus, Is.GreaterThan(0));
-
-                if (armor.Intelligence.IsIntelligent)
-                {
-                    Assert.That(armor.Intelligence.Alignment, Is.Not.Empty);
-                    Assert.That(armor.Intelligence.CharismaStat, Is.AtLeast(10));
-                    Assert.That(armor.Intelligence.Communication, Is.Not.Empty);
-                    Assert.That(armor.Intelligence.Ego, Is.AtLeast(3));
-                    Assert.That(armor.Intelligence.IntelligenceStat, Is.AtLeast(10));
-                    Assert.That(armor.Intelligence.Powers, Is.Not.Empty);
-                    Assert.That(armor.Intelligence.DedicatedPower, Is.Not.Null);
-                    Assert.That(armor.Intelligence.Senses, Is.Not.Empty);
-                    Assert.That(armor.Intelligence.SpecialPurpose, Is.Not.Null);
-                    Assert.That(armor.Intelligence.WisdomStat, Is.AtLeast(10));
-                }
+                Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
+                Assert.That(armor.Quantity, Is.EqualTo(1));
+                Assert.That(armor.Magic, Is.Not.Empty);
             }
 
             AssertIterations();

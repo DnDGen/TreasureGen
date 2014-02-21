@@ -13,11 +13,11 @@ namespace EquipmentGen.Core.Generation.Generators
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
         }
 
-        public AlchemicalItem Generate()
+        public Item Generate()
         {
             var result = typeAndAmountPercentileResultProvider.GetResultFrom("AlchemicalItems");
 
-            var item = new AlchemicalItem();
+            var item = new Item();
             item.Name = result.Type;
             item.Quantity = result.Amount;
 

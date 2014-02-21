@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private IMundaneGearGenerator mundaneArmorGenerator;
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
         private Mock<ISpecialMaterialGenerator> mockMaterialsProvider;
-        private Mock<ITypesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockTypesProvider;
 
         [SetUp]
         public void Setup()
@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor")).Returns("armor type");
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
-            mockTypesProvider = new Mock<ITypesProvider>();
+            mockTypesProvider = new Mock<IAttributesProvider>();
 
             mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileResultProvider.Object, mockMaterialsProvider.Object,
                 mockTypesProvider.Object);
@@ -95,10 +95,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void MundaneArmorGeneratorGetsGearTypesFromProvider()
         {
             var types = new[] { "type 1", "type 2" };
-            mockTypesProvider.Setup(p => p.GetTypesFor("armor type", "ArmorTypes")).Returns(types);
+            mockTypesProvider.Setup(p => p.GetAttributesFor("armor type", "ArmorTypes")).Returns(types);
 
             var armor = mundaneArmorGenerator.Generate();
-            Assert.That(armor.Types, Is.EqualTo(types));
+            Assert.That(armor.Attributes, Is.EqualTo(types));
         }
 
         [Test]
@@ -134,27 +134,27 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void DragonhideIsNotMetal()
         {
-            var types = new[] { TypeConstants.Metal };
-            mockTypesProvider.Setup(p => p.GetTypesFor("armor type", "ArmorTypes")).Returns(types);
+            var types = new[] { AttributeConstants.Metal };
+            mockTypesProvider.Setup(p => p.GetAttributesFor("armor type", "ArmorTypes")).Returns(types);
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
             mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
 
             var armor = mundaneArmorGenerator.Generate();
-            Assert.That(armor.Types, Is.Not.Contains(TypeConstants.Metal));
+            Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Metal));
         }
 
         [Test]
         public void DragonhideIsNotWood()
         {
-            var types = new[] { TypeConstants.Wood };
-            mockTypesProvider.Setup(p => p.GetTypesFor("armor type", "ArmorTypes")).Returns(types);
+            var types = new[] { AttributeConstants.Wood };
+            mockTypesProvider.Setup(p => p.GetAttributesFor("armor type", "ArmorTypes")).Returns(types);
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
             mockMaterialsProvider.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
 
             var armor = mundaneArmorGenerator.Generate();
-            Assert.That(armor.Types, Is.Not.Contains(TypeConstants.Wood));
+            Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Wood));
         }
     }
 }

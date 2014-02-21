@@ -10,12 +10,12 @@ namespace EquipmentGen.Core.Generation.Providers
     public class SpecialAbilityDataProvider : ISpecialAbilityDataProvider
     {
         private ISpecialAbilityDataXmlParser specialAbilityDataXmlParser;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
 
         private Dictionary<String, SpecialAbilityDataObject> data;
 
         public SpecialAbilityDataProvider(ISpecialAbilityDataXmlParser specialAbilityDataXmlParser,
-            ITypesProvider typesProvider)
+            IAttributesProvider typesProvider)
         {
             this.specialAbilityDataXmlParser = specialAbilityDataXmlParser;
             this.typesProvider = typesProvider;
@@ -31,7 +31,7 @@ namespace EquipmentGen.Core.Generation.Providers
             ability.CoreName = data[specialAbilityName].CoreName;
             ability.Name = specialAbilityName;
             ability.Strength = data[specialAbilityName].Strength;
-            ability.TypeRequirements = typesProvider.GetTypesFor(ability.CoreName, "SpecialAbilityTypes");
+            ability.AttributeRequirements = typesProvider.GetAttributesFor(ability.CoreName, "SpecialAbilityTypes");
 
             return ability;
         }

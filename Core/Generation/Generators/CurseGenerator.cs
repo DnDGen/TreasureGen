@@ -16,7 +16,7 @@ namespace EquipmentGen.Core.Generation.Generators
             throw new NotImplementedException();
         }
 
-        public BasicItem GenerateSpecificCursedItem()
+        public Item GenerateSpecificCursedItem()
         {
             throw new NotImplementedException();
         }

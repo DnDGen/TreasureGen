@@ -32,7 +32,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
                 Assert.That(items, Is.Not.Null);
                 foreach (var item in items)
+                {
                     Assert.That(item.Name, Is.Not.Empty);
+                    Assert.That(item.Attributes, Is.Not.Null);
+                    Assert.That(item.Magic, Is.Not.Null);
+                    Assert.That(item.Quantity, Is.GreaterThan(0));
+                    Assert.That(item.Traits, Is.Not.Null);
+                }
             }
 
             AssertIterations();
@@ -47,6 +53,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var item = ItemsGenerator.GenerateAtPower(power);
 
                 Assert.That(item.Name, Is.Not.Empty);
+                Assert.That(item.Attributes, Is.Not.Null);
+                Assert.That(item.Magic, Is.Not.Null);
+                Assert.That(item.Quantity, Is.GreaterThan(0));
+                Assert.That(item.Traits, Is.Not.Null);
             }
 
             AssertIterations();

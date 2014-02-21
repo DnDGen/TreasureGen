@@ -11,14 +11,14 @@ namespace EquipmentGen.Core.Generation.Factories
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
         private ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
 
         public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, ITypesProvider typesProvider,
+            IPercentileResultProvider percentileResultProvider, IAttributesProvider typesProvider,
             ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator)
         {

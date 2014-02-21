@@ -3,8 +3,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Goods.Gems
 {
-    [TestFixture, TypesTable("GemDescriptions")]
-    public class GemDescriptionsTests : TypesTest
+    [TestFixture, AttributesTable("GemDescriptions")]
+    public class GemDescriptionsTests : AttributesTests
     {
         [Test]
         public void GemValue4d4Descriptions()

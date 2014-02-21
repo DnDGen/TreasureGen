@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Data.Items.Constants;
+﻿using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
@@ -11,13 +10,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void DarkwoodBucklerPercentile()
         {
-            AssertContent(ArmorConstants.Buckler, 1, 50);
+            AssertContent(ArmorConstants.DarkwoodBuckler, 1, 50);
         }
 
         [Test]
         public void DarkwoodShieldPercentile()
         {
-            AssertContent(ArmorConstants.HeavyWoodenShield, 51, 100);
+            AssertContent(ArmorConstants.DarkwoodShield, 51, 100);
         }
     }
 }

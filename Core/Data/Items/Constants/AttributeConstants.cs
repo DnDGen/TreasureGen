@@ -2,7 +2,7 @@
 
 namespace EquipmentGen.Core.Data.Items.Constants
 {
-    public static class TypeConstants
+    public static class AttributeConstants
     {
         public const String Common = "Common";
         public const String Uncommon = "Uncommon";
@@ -20,5 +20,6 @@ namespace EquipmentGen.Core.Data.Items.Constants
         public const String NotTower = "Not tower";
         public const String Specific = "Specific";
         public const String OneTimeUse = "One-time use";
+        public const String Charged = "Charged";
     }
 }

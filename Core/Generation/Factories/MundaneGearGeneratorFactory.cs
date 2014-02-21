@@ -13,10 +13,10 @@ namespace EquipmentGen.Core.Generation.Factories
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsProvider;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
 
         public MundaneGearGeneratorFactory(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsProvider, ITypesProvider typesProvider)
+            ISpecialMaterialGenerator materialsProvider, IAttributesProvider typesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;

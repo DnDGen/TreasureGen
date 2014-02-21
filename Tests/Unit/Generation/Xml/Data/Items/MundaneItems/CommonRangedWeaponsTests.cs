@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
         [Test]
         public void AmmunitionPercentile()
         {
-            AssertContent(TypeConstants.Ammunition, 1, 10);
+            AssertContent(AttributeConstants.Ammunition, 1, 10);
         }
 
         [Test]

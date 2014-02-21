@@ -7,8 +7,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
 {
-    [TestFixture, TypesTable("SpecialAbilityTypes")]
-    public class SpecialAbilityTypesTests : TypesTest
+    [TestFixture, AttributesTable("SpecialAbilityAttributes")]
+    public class SpecialAbilityAttributesTests : AttributesTests
     {
         [Test]
         public void GlameredTypes()
@@ -187,7 +187,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                AttributeConstants.Shield
             };
 
             AssertContent(SpecialAbilityConstants.ArrowCatching, types);
@@ -199,8 +199,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield,
-                TypeConstants.NotTower
+                AttributeConstants.Shield,
+                AttributeConstants.NotTower
             };
 
             AssertContent(SpecialAbilityConstants.Bashing, types);
@@ -212,7 +212,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                AttributeConstants.Shield
             };
 
             AssertContent(SpecialAbilityConstants.Blinding, types);
@@ -224,7 +224,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                AttributeConstants.Shield
             };
 
             AssertContent(SpecialAbilityConstants.ArrowDeflection, types);
@@ -236,7 +236,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                AttributeConstants.Shield
             };
 
             AssertContent(SpecialAbilityConstants.Animated, types);
@@ -248,7 +248,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Armor,
-                TypeConstants.Shield
+                AttributeConstants.Shield
             };
 
             AssertContent(SpecialAbilityConstants.Reflecting, types);
@@ -271,7 +271,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Ranged
+                AttributeConstants.Ranged
             };
 
             AssertContent(SpecialAbilityConstants.Distance, types);
@@ -283,8 +283,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee,
-                TypeConstants.Bludgeoning
+                AttributeConstants.Melee,
+                AttributeConstants.Bludgeoning
             };
 
             AssertContent(SpecialAbilityConstants.Disruption, types);
@@ -329,8 +329,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Ranged,
-                TypeConstants.Thrown
+                AttributeConstants.Ranged,
+                AttributeConstants.Thrown
             };
 
             AssertContent(SpecialAbilityConstants.Returning, types);
@@ -353,7 +353,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Ranged
+                AttributeConstants.Ranged
             };
 
             AssertContent(SpecialAbilityConstants.Seeking, types);
@@ -442,8 +442,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee,
-                TypeConstants.NotBludgeoning
+                AttributeConstants.Melee,
+                AttributeConstants.NotBludgeoning
             };
 
             AssertContent(SpecialAbilityConstants.Keen, types);
@@ -455,7 +455,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.KiFocus, types);
@@ -467,7 +467,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.MightyCleaving, types);
@@ -479,7 +479,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.SpellStoring, types);
@@ -491,7 +491,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.Throwing, types);
@@ -503,7 +503,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.Vicious, types);
@@ -515,7 +515,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.Defending, types);
@@ -527,7 +527,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.Wounding, types);
@@ -539,7 +539,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee
+                AttributeConstants.Melee
             };
 
             AssertContent(SpecialAbilityConstants.Dancing, types);
@@ -551,9 +551,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
             var types = new[]
             {
                 ItemTypeConstants.Weapon,
-                TypeConstants.Melee,
-                TypeConstants.NotBludgeoning,
-                TypeConstants.Slashing
+                AttributeConstants.Melee,
+                AttributeConstants.NotBludgeoning,
+                AttributeConstants.Slashing
             };
 
             AssertContent(SpecialAbilityConstants.Vorpal, types);

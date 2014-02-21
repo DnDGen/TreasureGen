@@ -4,6 +4,6 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
     public interface IToolGenerator
     {
-        BasicItem Generate();
+        Item Generate();
     }
 }

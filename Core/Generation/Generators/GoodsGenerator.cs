@@ -13,10 +13,10 @@ namespace EquipmentGen.Core.Generation.Generators
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IDice dice;
         private IPercentileResultProvider percentileResultProvider;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
 
         public GoodsGenerator(IDice dice, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider,
-            IPercentileResultProvider percentileResultProvider, ITypesProvider typesProvider)
+            IPercentileResultProvider percentileResultProvider, IAttributesProvider typesProvider)
         {
             this.dice = dice;
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
@@ -39,7 +39,7 @@ namespace EquipmentGen.Core.Generation.Generators
             while (typeAndAmountResult.Amount-- > 0)
             {
                 var valueRoll = percentileResultProvider.GetResultFrom(valueTableName);
-                var descriptions = typesProvider.GetTypesFor(valueRoll, descriptionTableName);
+                var descriptions = typesProvider.GetAttributesFor(valueRoll, descriptionTableName);
                 var descriptionIndexRoll = String.Format("1d{0}-1", descriptions.Count());
                 var descriptionIndex = dice.Roll(descriptionIndexRoll);
 

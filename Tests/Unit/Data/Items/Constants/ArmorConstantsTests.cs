@@ -113,5 +113,125 @@ namespace EquipmentGen.Tests.Unit.Data.Items.Constants
         {
             Assert.That(ArmorConstants.TowerShield, Is.EqualTo("Tower shield"));
         }
+
+        [Test]
+        public void MithralShirtConstant()
+        {
+            Assert.That(ArmorConstants.MithralShirt, Is.EqualTo("Mithral shirt"));
+        }
+
+        [Test]
+        public void DragonhidePlateConstant()
+        {
+            Assert.That(ArmorConstants.DragonhidePlate, Is.EqualTo("Dragonhide plate"));
+        }
+
+        [Test]
+        public void ElvenChainConstant()
+        {
+            Assert.That(ArmorConstants.ElvenChain, Is.EqualTo("Elven chain"));
+        }
+
+        [Test]
+        public void RhinoHideConstant()
+        {
+            Assert.That(ArmorConstants.RhinoHide, Is.EqualTo("Rhino hide"));
+        }
+
+        [Test]
+        public void AdamantineBreastplateConstant()
+        {
+            Assert.That(ArmorConstants.AdamantineBreastplate, Is.EqualTo("Adamantine breastplate"));
+        }
+
+        [Test]
+        public void DwarvenPlateConstant()
+        {
+            Assert.That(ArmorConstants.DwarvenPlate, Is.EqualTo("Dwarven plate"));
+        }
+
+        [Test]
+        public void BandedMailOfLuckConstant()
+        {
+            Assert.That(ArmorConstants.BandedMailOfLuck, Is.EqualTo("Banded mail of luck"));
+        }
+
+        [Test]
+        public void CelestialArmorConstant()
+        {
+            Assert.That(ArmorConstants.CelestialArmor, Is.EqualTo("Celestial armor"));
+        }
+
+        [Test]
+        public void PlateArmorOfTheDeepConstant()
+        {
+            Assert.That(ArmorConstants.PlateArmorOfTheDeep, Is.EqualTo("Plate armor of the deep"));
+        }
+
+        [Test]
+        public void BreastplateOfCommandConstant()
+        {
+            Assert.That(ArmorConstants.BreastplateOfCommand, Is.EqualTo("Breastplate of command"));
+        }
+
+        [Test]
+        public void MithralFullPlateOfSpeedConstant()
+        {
+            Assert.That(ArmorConstants.MithralFullPlateOfSpeed, Is.EqualTo("Mithral full plate of speed"));
+        }
+
+        [Test]
+        public void DemonArmorConstant()
+        {
+            Assert.That(ArmorConstants.DemonArmor, Is.EqualTo("Demon armor"));
+        }
+
+        [Test]
+        public void DarkwoodBucklerConstant()
+        {
+            Assert.That(ArmorConstants.DarkwoodBuckler, Is.EqualTo("Darkwood buckler"));
+        }
+
+        [Test]
+        public void DarkwoodShieldConstant()
+        {
+            Assert.That(ArmorConstants.DarkwoodShield, Is.EqualTo("Darkwood shield"));
+        }
+
+        [Test]
+        public void MithralHeavyShieldConstant()
+        {
+            Assert.That(ArmorConstants.MithralHeavyShield, Is.EqualTo("Mithral heavy shield"));
+        }
+
+        [Test]
+        public void CastersShieldConstant()
+        {
+            Assert.That(ArmorConstants.CastersShield, Is.EqualTo("Caster's shield"));
+        }
+
+        [Test]
+        public void SpinedShieldConstant()
+        {
+            Assert.That(ArmorConstants.SpinedShield, Is.EqualTo("Spined shield"));
+        }
+
+        [Test]
+        public void LionsShieldConstant()
+        {
+            Assert.That(ArmorConstants.LionsShield, Is.EqualTo("Lion's Shield"));
+        }
+
+        [Test]
+        public void WingedShieldConstant()
+        {
+            Assert.That(ArmorConstants.WingedShield, Is.EqualTo("Winged shield"));
+        }
+
+        [Test]
+        public void AbsorbingShieldConstant()
+        {
+            Assert.That(ArmorConstants.AbsorbingShield, Is.EqualTo("Absorbing shield"));
+        }
     }
 }

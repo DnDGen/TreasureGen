@@ -12,12 +12,12 @@ namespace EquipmentGen.Core.Generation.Generators
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
         private ISpecialAbilityDataProvider specialAbilityDataProvider;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
         private IPercentileResultProvider percentileResultProvider;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
-        public SpecialAbilitiesGenerator(ISpecialAbilityDataProvider specialAbilityDataProvider, ITypesProvider typesProvider,
+        public SpecialAbilitiesGenerator(ISpecialAbilityDataProvider specialAbilityDataProvider, IAttributesProvider typesProvider,
             IPercentileResultProvider percentileResultProvider, IDice dice, ISpellGenerator spellGenerator)
         {
             this.specialAbilityDataProvider = specialAbilityDataProvider;
@@ -75,7 +75,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var abilityName = percentileResultProvider.GetResultFrom(tableName);
             var ability = specialAbilityDataProvider.GetDataFor(abilityName);
 
-            while (!AllTypeRequirementsMet(ability.TypeRequirements, types))
+            while (!AllTypeRequirementsMet(ability.AttributeRequirements, types))
             {
                 abilityName = percentileResultProvider.GetResultFrom(tableName);
                 ability = specialAbilityDataProvider.GetDataFor(abilityName);
@@ -102,13 +102,13 @@ namespace EquipmentGen.Core.Generation.Generators
             if (!types.Any())
                 throw new ArgumentException("no types when getting table name for special abilities");
 
-            if (types.Contains(TypeConstants.Shield))
+            if (types.Contains(AttributeConstants.Shield))
                 return String.Format("{0}ShieldSpecialAbilities", power);
 
-            if (types.Contains(TypeConstants.Melee))
+            if (types.Contains(AttributeConstants.Melee))
                 return String.Format("{0}MeleeWeaponSpecialAbilities", power);
 
-            if (types.Contains(TypeConstants.Ranged))
+            if (types.Contains(AttributeConstants.Ranged))
                 return String.Format("{0}RangedWeaponSpecialAbilities", power);
 
             if (types.Contains(ItemTypeConstants.Armor))

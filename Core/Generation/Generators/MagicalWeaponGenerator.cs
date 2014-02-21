@@ -6,7 +6,7 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class MagicalWeaponGenerator : IMagicalGearGenerator
     {
-        public Gear GenerateAtPower(String power)
+        public Item GenerateAtPower(String power)
         {
             throw new NotImplementedException();
         }

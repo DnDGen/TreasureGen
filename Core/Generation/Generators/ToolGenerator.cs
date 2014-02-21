@@ -13,11 +13,11 @@ namespace EquipmentGen.Core.Generation.Generators
             this.percentileResultProvider = percentileResultProvider;
         }
 
-        public BasicItem Generate()
+        public Item Generate()
         {
             var result = percentileResultProvider.GetResultFrom("Tools");
 
-            var tool = new BasicItem();
+            var tool = new Item();
             tool.Name = result;
 
             return tool;

@@ -6,18 +6,18 @@ using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Providers
 {
-    public class TypesProvider : ITypesProvider
+    public class AttributesProvider : IAttributesProvider
     {
-        private ITypesXmlParser typesXmlParser;
+        private IAttributesXmlParser attributesXmlParser;
         private Dictionary<String, Dictionary<String, IEnumerable<String>>> tables;
 
-        public TypesProvider(ITypesXmlParser typesXmlParser)
+        public AttributesProvider(IAttributesXmlParser attributesXmlParser)
         {
-            this.typesXmlParser = typesXmlParser;
+            this.attributesXmlParser = attributesXmlParser;
             tables = new Dictionary<String, Dictionary<String, IEnumerable<String>>>();
         }
 
-        public IEnumerable<String> GetTypesFor(String name, String table)
+        public IEnumerable<String> GetAttributesFor(String name, String table)
         {
             if (!tables.ContainsKey(table))
                 CacheTable(table);
@@ -31,7 +31,7 @@ namespace EquipmentGen.Core.Generation.Providers
         private void CacheTable(String tableName)
         {
             var filename = String.Format("{0}.xml", tableName);
-            var table = typesXmlParser.Parse(filename);
+            var table = attributesXmlParser.Parse(filename);
             tables.Add(tableName, table);
         }
     }

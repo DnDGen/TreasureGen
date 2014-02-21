@@ -5,7 +5,6 @@ namespace EquipmentGen.Core.Data.Items
 {
     public class Intelligence
     {
-        public Boolean IsIntelligent { get; set; }
         public Int32 IntelligenceStat { get; set; }
         public Int32 WisdomStat { get; set; }
         public Int32 CharismaStat { get; set; }

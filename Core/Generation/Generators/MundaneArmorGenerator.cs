@@ -11,20 +11,20 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private ISpecialMaterialGenerator materialsProvider;
-        private ITypesProvider typesProvider;
+        private IAttributesProvider typesProvider;
 
         public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, ISpecialMaterialGenerator materialsProvider,
-            ITypesProvider typesProvider)
+            IAttributesProvider typesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.materialsProvider = materialsProvider;
             this.typesProvider = typesProvider;
         }
 
-        public Gear Generate()
+        public Item Generate()
         {
             var result = percentileResultProvider.GetResultFrom("MundaneArmor");
-            var armor = new Gear();
+            var armor = new Item();
 
             if (result == TraitConstants.Darkwood || result == TraitConstants.Masterwork)
             {
@@ -40,18 +40,18 @@ namespace EquipmentGen.Core.Generation.Generators
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            armor.Types = typesProvider.GetTypesFor(armor.Name, "ArmorTypes");
+            armor.Attributes = typesProvider.GetAttributesFor(armor.Name, "ArmorTypes");
 
             var size = percentileResultProvider.GetResultFrom("ArmorSizes");
             armor.Traits.Add(size);
 
-            if (!armor.Traits.Contains(TraitConstants.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Types))
+            if (!armor.Traits.Contains(TraitConstants.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Attributes))
             {
-                var specialMaterial = materialsProvider.GenerateFor(armor.Types);
+                var specialMaterial = materialsProvider.GenerateFor(armor.Attributes);
                 armor.Traits.Add(specialMaterial);
 
                 if (specialMaterial == TraitConstants.Dragonhide)
-                    armor.Types = armor.Types.Except(new[] { TypeConstants.Metal, TypeConstants.Wood });
+                    armor.Attributes = armor.Attributes.Except(new[] { AttributeConstants.Metal, AttributeConstants.Wood });
             }
 
             return armor;

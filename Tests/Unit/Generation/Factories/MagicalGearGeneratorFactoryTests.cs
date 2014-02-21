@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
         {
             var mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            var mockTypesProvider = new Mock<ITypesProvider>();
+            var mockTypesProvider = new Mock<IAttributesProvider>();
             var mockGearSpecialAbilitiesProvider = new Mock<ISpecialAbilitiesGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
