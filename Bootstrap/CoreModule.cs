@@ -35,6 +35,7 @@ namespace EquipmentGen.Bootstrap
             Bind<ISpecialAbilityDataProvider>().To<SpecialAbilityDataProvider>().InSingletonScope();
             Bind<ISpecialAbilityDataXmlParser>().To<SpecialAbilityDataXmlParser>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
+            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
             Bind<IToolGenerator>().To<ToolGenerator>();

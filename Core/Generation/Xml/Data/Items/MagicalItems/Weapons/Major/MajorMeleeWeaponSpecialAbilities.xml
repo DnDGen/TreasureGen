@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Bane</content>
+        <upper>3</upper>
+    </object>
+    <object>
+        <lower>4</lower>
+        <content>Flaming</content>
+        <upper>6</upper>
+    </object>
+    <object>
+        <lower>7</lower>
+        <content>Frost</content>
+        <upper>9</upper>
+    </object>
+    <object>
+        <lower>10</lower>
+        <content>Shock</content>
+        <upper>12</upper>
+    </object>
+    <object>
+        <lower>13</lower>
+        <content>Ghost touch (weapon)</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Ki focus</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Mighty cleaving</content>
+        <upper>21</upper>
+    </object>
+    <object>
+        <lower>22</lower>
+        <content>Spell storing</content>
+        <upper>24</upper>
+    </object>
+    <object>
+        <lower>25</lower>
+        <content>Throwing</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Thundering</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Vicious</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>37</lower>
+        <content>Anarchic</content>
+        <upper>41</upper>
+    </object>
+    <object>
+        <lower>42</lower>
+        <content>Axiomatic</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Disruption</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Flaming burst</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Icy burst</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Holy</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Shocking burst</content>
+        <upper>69</upper>
+    </object>
+    <object>
+        <lower>70</lower>
+        <content>Unholy</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Wounding</content>
+        <upper>78</upper>
+    </object>
+    <object>
+        <lower>79</lower>
+        <content>Speed</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Brilliant energy</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Dancing</content>
+        <upper>88</upper>
+    </object>
+    <object>
+        <lower>89</lower>
+        <content>Vorpal</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>BonusSpecialAbility</content>
+        <upper>100</upper>
+    </object>
+</percentile>

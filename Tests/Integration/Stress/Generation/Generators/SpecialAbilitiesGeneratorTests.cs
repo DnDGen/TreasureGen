@@ -66,7 +66,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var ability = SpecialAbilitiesGenerator.GenerateFor(types, power);
 
                 Assert.That(ability.Name, Is.Not.Empty);
-                Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
+                Assert.That(ability.BonusEquivalent, Is.Not.Negative);
                 Assert.That(ability.Strength, Is.Not.Negative);
                 Assert.That(ability.AttributeRequirements, Is.Not.Null);
                 Assert.That(ability.CoreName, Is.Not.Empty);

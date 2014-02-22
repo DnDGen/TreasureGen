@@ -71,6 +71,7 @@
     <Compile Include="Generation\Generators\IntelligenceGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IChargesGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IIntelligenceGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\ISpecificGearGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ISpellGenerator.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IAmmunitionGenerator.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Generation\Generators\Interfaces\ITreasureGenerator.cs" />
     <Compile Include="Generation\Generators\RodGenerator.cs" />
     <Compile Include="Generation\Generators\ScrollGenerator.cs" />
+    <Compile Include="Generation\Generators\SpecificGearGenerator.cs" />
     <Compile Include="Generation\Generators\SpellGenerator.cs" />
     <Compile Include="Generation\Generators\StaffGenerator.cs" />
     <Compile Include="Generation\Generators\WandGenerator.cs" />
@@ -415,6 +417,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Goods\Gems\GemDescriptions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Medium\MediumShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorMeleeWeaponSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Major\MajorMeleeWeaponSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorArmorSpecialAbilities.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

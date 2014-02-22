@@ -16,11 +16,13 @@ namespace EquipmentGen.Core.Generation.Factories
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
+        private ISpecificGearGenerator specificGearGenerator;
 
         public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IAttributesProvider typesProvider,
             ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
-            IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator)
+            IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
+            ISpecificGearGenerator specificGearGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
@@ -29,6 +31,7 @@ namespace EquipmentGen.Core.Generation.Factories
             this.materialsProvider = materialsProvider;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
+            this.specificGearGenerator = specificGearGenerator;
         }
 
         public IMagicalGearGenerator CreateWith(String type)
@@ -37,7 +40,7 @@ namespace EquipmentGen.Core.Generation.Factories
             {
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
                     percentileResultProvider, typesProvider, gearSpecialAbilitiesProvider, materialsProvider,
-                    magicItemTraitsGenerator, intelligenceGenerator);
+                    magicItemTraitsGenerator, intelligenceGenerator, specificGearGenerator);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }

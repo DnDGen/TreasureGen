@@ -11,23 +11,26 @@ namespace EquipmentGen.Core.Generation.Generators
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
         private IAttributesProvider attributesProvider;
-        private ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
+        private ISpecialAbilitiesGenerator specialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
+        private ISpecificGearGenerator specificGearGenerator;
 
         public MagicalArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
             IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
-            ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
-            IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator)
+            ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+            IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
+            ISpecificGearGenerator specificGearGenerator)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
             this.attributesProvider = attributesProvider;
-            this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
+            this.specialAbilitiesProvider = specialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
+            this.specificGearGenerator = specificGearGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -46,39 +49,31 @@ namespace EquipmentGen.Core.Generation.Generators
                 result = typeAndAmountPercentileProvider.GetResultFrom(tableName);
             }
 
-            var specific = result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase);
-            if (specific)
-            {
-                tableName = power + result.Type;
-            }
-            else
-            {
-                tableName = String.Format("{0}Type", result.Type);
-                armor.Magic[Magic.Bonus] = result.Amount;
-            }
+            if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
+                return specificGearGenerator.GenerateFrom(power + result.Type);
 
+            tableName = String.Format("{0}Type", result.Type);
+
+            armor.Magic[Magic.Bonus] = result.Amount;
             armor.Name = percentileResultProvider.GetResultFrom(tableName);
+            armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
 
-            if (!specific)
+            var abilities = specialAbilitiesProvider.GenerateFor(armor.Attributes, power, result.Amount, abilityCount);
+            armor.Magic[Magic.Abilities] = abilities;
+
+            if (materialsProvider.HasSpecialMaterial(armor.Attributes))
             {
-                armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
-                var abilities = gearSpecialAbilitiesProvider.GenerateFor(armor.Attributes, power, result.Amount, abilityCount);
-                armor.Magic.Add(Magic.Abilities, abilities);
+                var specialMaterial = materialsProvider.GenerateFor(armor.Attributes);
+                armor.Traits.Add(specialMaterial);
+            }
 
-                if (materialsProvider.HasSpecialMaterial(armor.Attributes))
-                {
-                    var specialMaterial = materialsProvider.GenerateFor(armor.Attributes);
-                    armor.Traits.Add(specialMaterial);
-                }
+            var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
+            armor.Traits.AddRange(traits);
 
-                var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
-                armor.Traits.AddRange(traits);
-
-                if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes))
-                {
-                    var intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.Armor);
-                    armor.Magic.Add(Magic.Intelligence, intelligence);
-                }
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes))
+            {
+                var intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.Armor);
+                armor.Magic.Add(Magic.Intelligence, intelligence);
             }
 
             return armor;

@@ -45,6 +45,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
             AssertContent(String.Empty, minInclusive, maxInclusive);
         }
 
+        protected void AssertContent(String content, Int32 roll)
+        {
+            AssertContent(content, roll, roll);
+        }
+
         protected void AssertContent(String content, Int32 minInclusive, Int32 maxInclusive)
         {
             for (var roll = 1; roll <= 100; roll++)
@@ -54,11 +59,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
                 else
                     AssertRollDoesNotGrantContent(roll, content);
             }
-        }
-
-        protected void AssertContent(String content, Int32 roll)
-        {
-            AssertContent(content, roll, roll);
         }
 
         private void AssertRollGrantsContent(Int32 roll, String content)

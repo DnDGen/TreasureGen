@@ -179,9 +179,16 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<IIntelligenceGenerator>();
         }
 
+        [Test]
         public void ChargesGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<IChargesGenerator>();
+        }
+
+        [Test]
+        public void SpecificGearGeneratorNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<ISpecificGearGenerator>();
         }
 
         private void AssertSingleton<T>()
