@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
@@ -11,544 +10,544 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
     public class SpecialAbilityAttributesTests : AttributesTests
     {
         [Test]
-        public void GlameredTypes()
+        public void GlameredAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Glamered, types);
+            AssertContent(SpecialAbilityConstants.Glamered, attributes);
         }
 
         [Test]
-        public void FortificationTypes()
+        public void FortificationAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Fortification, types);
+            AssertContent(SpecialAbilityConstants.Fortification, attributes);
         }
 
         [Test]
-        public void SlickTypes()
+        public void SlickAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Slick, types);
+            AssertContent(SpecialAbilityConstants.Slick, attributes);
         }
 
         [Test]
-        public void ShadowTypes()
+        public void ShadowAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Shadow, types);
+            AssertContent(SpecialAbilityConstants.Shadow, attributes);
         }
 
         [Test]
-        public void SilentMovesTypes()
+        public void SilentMovesAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.SilentMoves, types);
+            AssertContent(SpecialAbilityConstants.SilentMoves, attributes);
         }
 
         [Test]
-        public void SpellResistanceTypes()
+        public void SpellResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.SpellResistance, types);
+            AssertContent(SpecialAbilityConstants.SpellResistance, attributes);
         }
 
         [Test]
-        public void AcidResistanceTypes()
+        public void AcidResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.AcidResistance, types);
+            AssertContent(SpecialAbilityConstants.AcidResistance, attributes);
         }
 
         [Test]
-        public void ColdResistanceTypes()
+        public void ColdResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.ColdResistance, types);
+            AssertContent(SpecialAbilityConstants.ColdResistance, attributes);
         }
 
         [Test]
-        public void ElectricityResistanceTypes()
+        public void ElectricityResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.ElectricityResistance, types);
+            AssertContent(SpecialAbilityConstants.ElectricityResistance, attributes);
         }
 
         [Test]
-        public void FireResistanceTypes()
+        public void FireResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.FireResistance, types);
+            AssertContent(SpecialAbilityConstants.FireResistance, attributes);
         }
 
         [Test]
-        public void SonicResistanceTypes()
+        public void SonicResistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.SonicResistance, types);
+            AssertContent(SpecialAbilityConstants.SonicResistance, attributes);
         }
 
         [Test]
-        public void GhostTouchTypes()
+        public void GhostTouchAttributes()
         {
             AssertContent(SpecialAbilityConstants.GhostTouch, Enumerable.Empty<String>());
         }
 
         [Test]
-        public void InvulnerabilityTypes()
+        public void InvulnerabilityAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Invulnerability, types);
+            AssertContent(SpecialAbilityConstants.Invulnerability, attributes);
         }
 
         [Test]
-        public void WildTypes()
+        public void WildAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Wild, types);
+            AssertContent(SpecialAbilityConstants.Wild, attributes);
         }
 
         [Test]
-        public void EtherealnessTypes()
+        public void EtherealnessAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.Etherealness, types);
+            AssertContent(SpecialAbilityConstants.Etherealness, attributes);
         }
 
         [Test]
-        public void UndeadControllingTypes()
+        public void UndeadControllingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor
             };
 
-            AssertContent(SpecialAbilityConstants.UndeadControlling, types);
+            AssertContent(SpecialAbilityConstants.UndeadControlling, attributes);
         }
 
         [Test]
-        public void ArrowCatchingTypes()
+        public void ArrowCatchingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield
             };
 
-            AssertContent(SpecialAbilityConstants.ArrowCatching, types);
+            AssertContent(SpecialAbilityConstants.ArrowCatching, attributes);
         }
 
         [Test]
-        public void BashingTypes()
+        public void BashingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield,
                 AttributeConstants.NotTower
             };
 
-            AssertContent(SpecialAbilityConstants.Bashing, types);
+            AssertContent(SpecialAbilityConstants.Bashing, attributes);
         }
 
         [Test]
-        public void BlindingTypes()
+        public void BlindingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield
             };
 
-            AssertContent(SpecialAbilityConstants.Blinding, types);
+            AssertContent(SpecialAbilityConstants.Blinding, attributes);
         }
 
         [Test]
-        public void ArrowDeflectionTypes()
+        public void ArrowDeflectionAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield
             };
 
-            AssertContent(SpecialAbilityConstants.ArrowDeflection, types);
+            AssertContent(SpecialAbilityConstants.ArrowDeflection, attributes);
         }
 
         [Test]
-        public void AnimatedTypes()
+        public void AnimatedAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield
             };
 
-            AssertContent(SpecialAbilityConstants.Animated, types);
+            AssertContent(SpecialAbilityConstants.Animated, attributes);
         }
 
         [Test]
-        public void ReflectingTypes()
+        public void ReflectingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Armor,
                 AttributeConstants.Shield
             };
 
-            AssertContent(SpecialAbilityConstants.Reflecting, types);
+            AssertContent(SpecialAbilityConstants.Reflecting, attributes);
         }
 
         [Test]
-        public void BaneTypes()
+        public void BaneAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Bane, types);
+            AssertContent(SpecialAbilityConstants.Bane, attributes);
         }
 
         [Test]
-        public void DistanceTypes()
+        public void DistanceAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Ranged
             };
 
-            AssertContent(SpecialAbilityConstants.Distance, types);
+            AssertContent(SpecialAbilityConstants.Distance, attributes);
         }
 
         [Test]
-        public void DisruptionTypes()
+        public void DisruptionAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee,
                 AttributeConstants.Bludgeoning
             };
 
-            AssertContent(SpecialAbilityConstants.Disruption, types);
+            AssertContent(SpecialAbilityConstants.Disruption, attributes);
         }
 
         [Test]
-        public void FlamingTypes()
+        public void FlamingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Flaming, types);
+            AssertContent(SpecialAbilityConstants.Flaming, attributes);
         }
 
         [Test]
-        public void FrostTypes()
+        public void FrostAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Frost, types);
+            AssertContent(SpecialAbilityConstants.Frost, attributes);
         }
 
         [Test]
-        public void MercifulTypes()
+        public void MercifulAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Merciful, types);
+            AssertContent(SpecialAbilityConstants.Merciful, attributes);
         }
 
         [Test]
-        public void ReturningTypes()
+        public void ReturningAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Ranged,
                 AttributeConstants.Thrown
             };
 
-            AssertContent(SpecialAbilityConstants.Returning, types);
+            AssertContent(SpecialAbilityConstants.Returning, attributes);
         }
 
         [Test]
-        public void ShockTypes()
+        public void ShockAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Shock, types);
+            AssertContent(SpecialAbilityConstants.Shock, attributes);
         }
 
         [Test]
-        public void SeekingTypes()
+        public void SeekingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Ranged
             };
 
-            AssertContent(SpecialAbilityConstants.Seeking, types);
+            AssertContent(SpecialAbilityConstants.Seeking, attributes);
         }
 
         [Test]
-        public void ThunderingTypes()
+        public void ThunderingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Thundering, types);
+            AssertContent(SpecialAbilityConstants.Thundering, attributes);
         }
 
         [Test]
-        public void AnarchicTypes()
+        public void AnarchicAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Anarchic, types);
+            AssertContent(SpecialAbilityConstants.Anarchic, attributes);
         }
 
         [Test]
-        public void AxiomaticTypes()
+        public void AxiomaticAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Axiomatic, types);
+            AssertContent(SpecialAbilityConstants.Axiomatic, attributes);
         }
 
         [Test]
-        public void HolyTypes()
+        public void HolyAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Holy, types);
+            AssertContent(SpecialAbilityConstants.Holy, attributes);
         }
 
         [Test]
-        public void UnholyTypes()
+        public void UnholyAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Unholy, types);
+            AssertContent(SpecialAbilityConstants.Unholy, attributes);
         }
 
         [Test]
-        public void SpeedTypes()
+        public void SpeedAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.Speed, types);
+            AssertContent(SpecialAbilityConstants.Speed, attributes);
         }
 
         [Test]
-        public void BrilliantEnergyTypes()
+        public void BrilliantEnergyAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon
             };
 
-            AssertContent(SpecialAbilityConstants.BrilliantEnergy, types);
+            AssertContent(SpecialAbilityConstants.BrilliantEnergy, attributes);
         }
 
         [Test]
-        public void KeenTypes()
+        public void KeenAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee,
                 AttributeConstants.NotBludgeoning
             };
 
-            AssertContent(SpecialAbilityConstants.Keen, types);
+            AssertContent(SpecialAbilityConstants.Keen, attributes);
         }
 
         [Test]
-        public void KiFocusTypes()
+        public void KiFocusAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.KiFocus, types);
+            AssertContent(SpecialAbilityConstants.KiFocus, attributes);
         }
 
         [Test]
-        public void MightyCleavingTypes()
+        public void MightyCleavingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.MightyCleaving, types);
+            AssertContent(SpecialAbilityConstants.MightyCleaving, attributes);
         }
 
         [Test]
-        public void SpellStoringTypes()
+        public void SpellStoringAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.SpellStoring, types);
+            AssertContent(SpecialAbilityConstants.SpellStoring, attributes);
         }
 
         [Test]
-        public void ThrowingTypes()
+        public void ThrowingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.Throwing, types);
+            AssertContent(SpecialAbilityConstants.Throwing, attributes);
         }
 
         [Test]
-        public void ViciousTypes()
+        public void ViciousAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.Vicious, types);
+            AssertContent(SpecialAbilityConstants.Vicious, attributes);
         }
 
         [Test]
-        public void DefendingTypes()
+        public void DefendingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.Defending, types);
+            AssertContent(SpecialAbilityConstants.Defending, attributes);
         }
 
         [Test]
-        public void WoundingTypes()
+        public void WoundingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.Wounding, types);
+            AssertContent(SpecialAbilityConstants.Wounding, attributes);
         }
 
         [Test]
-        public void DancingTypes()
+        public void DancingAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee
             };
 
-            AssertContent(SpecialAbilityConstants.Dancing, types);
+            AssertContent(SpecialAbilityConstants.Dancing, attributes);
         }
 
         [Test]
-        public void VorpalTypes()
+        public void VorpalAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 ItemTypeConstants.Weapon,
                 AttributeConstants.Melee,
@@ -556,7 +555,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems
                 AttributeConstants.Slashing
             };
 
-            AssertContent(SpecialAbilityConstants.Vorpal, types);
+            AssertContent(SpecialAbilityConstants.Vorpal, attributes);
         }
     }
 }

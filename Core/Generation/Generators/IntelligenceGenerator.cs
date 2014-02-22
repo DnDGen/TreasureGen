@@ -7,12 +7,13 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class IntelligenceGenerator : IIntelligenceGenerator
     {
-        public Intelligence GenerateFor(String itemType)
+
+        public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes)
         {
             throw new NotImplementedException();
         }
 
-        public Boolean IsIntelligent(IEnumerable<String> attributes)
+        public Intelligence GenerateFor(String itemType)
         {
             throw new NotImplementedException();
         }

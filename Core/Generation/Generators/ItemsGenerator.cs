@@ -71,7 +71,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                item.Traits.Add(curse);
+                item.Magic.Add(Magic.Curse, curse);
             }
 
             return item;

@@ -6,7 +6,7 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
     public interface IIntelligenceGenerator
     {
-        Boolean IsIntelligent(IEnumerable<String> attributes);
+        Boolean IsIntelligent(String itemType, IEnumerable<String> attributes);
         Intelligence GenerateFor(String itemType);
     }
 }

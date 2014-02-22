@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Data.Items.Constants;
+﻿using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
 using NUnit.Framework;
 
@@ -9,51 +8,51 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
     public class SpecialMaterialsTests : AttributesTests
     {
         [Test]
-        public void AdamantineTypes()
+        public void AdamantineAttributes()
         {
-            var types = new[] { AttributeConstants.Metal };
-            AssertContent(TraitConstants.Adamantine, types);
+            var attributes = new[] { AttributeConstants.Metal };
+            AssertContent(TraitConstants.Adamantine, attributes);
         }
 
         [Test]
-        public void DragonhideTypes()
+        public void DragonhideAttributes()
         {
-            var types = new[] { ItemTypeConstants.Armor };
-            AssertContent(TraitConstants.Dragonhide, types);
+            var attributes = new[] { ItemTypeConstants.Armor };
+            AssertContent(TraitConstants.Dragonhide, attributes);
         }
 
         [Test]
-        public void ColdIronTypes()
+        public void ColdIronAttributes()
         {
-            var types = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
-            AssertContent(TraitConstants.ColdIron, types);
+            var attributes = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
+            AssertContent(TraitConstants.ColdIron, attributes);
         }
 
         [Test]
-        public void MithralTypes()
+        public void MithralAttributes()
         {
-            var types = new[] { AttributeConstants.Metal };
-            AssertContent(TraitConstants.Mithral, types);
+            var attributes = new[] { AttributeConstants.Metal };
+            AssertContent(TraitConstants.Mithral, attributes);
         }
 
         [Test]
-        public void AlchemicalSilverTypes()
+        public void AlchemicalSilverAttributes()
         {
-            var types = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
-            AssertContent(TraitConstants.AlchemicalSilver, types);
+            var attributes = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
+            AssertContent(TraitConstants.AlchemicalSilver, attributes);
         }
 
         [Test]
-        public void DarkwoodTypes()
+        public void DarkwoodAttributes()
         {
-            var types = new[] { AttributeConstants.Wood };
-            AssertContent(TraitConstants.Darkwood, types);
+            var attributes = new[] { AttributeConstants.Wood };
+            AssertContent(TraitConstants.Darkwood, attributes);
         }
 
         [Test]
-        public void SpecialMaterialTypes()
+        public void SpecialMaterialAttributes()
         {
-            var types = new[]
+            var attributes = new[]
             {
                 TraitConstants.Mithral,
                 TraitConstants.Adamantine,
@@ -61,10 +60,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MundaneItems
                 TraitConstants.Darkwood,
                 TraitConstants.ColdIron,
                 TraitConstants.Dragonhide
-                
             };
 
-            AssertContent("SpecialMaterials", types);
+            AssertContent("SpecialMaterials", attributes);
         }
     }
 }

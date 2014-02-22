@@ -219,7 +219,7 @@ namespace EquipmentGen.Tests.Unit.Data.Items.Constants
         [Test]
         public void LionsShieldConstant()
         {
-            Assert.That(ArmorConstants.LionsShield, Is.EqualTo("Lion's Shield"));
+            Assert.That(ArmorConstants.LionsShield, Is.EqualTo("Lion's shield"));
         }
 
         [Test]

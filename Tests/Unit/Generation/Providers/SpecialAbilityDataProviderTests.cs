@@ -13,7 +13,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
     public class SpecialAbilityDataProviderTests
     {
         private ISpecialAbilityDataProvider provider;
-        private Mock<IAttributesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockAttributesProvider;
         private Mock<ISpecialAbilityDataXmlParser> mockParser;
 
         private Dictionary<String, SpecialAbilityDataObject> data;
@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [SetUp]
         public void Setup()
         {
-            mockTypesProvider = new Mock<IAttributesProvider>();
+            mockAttributesProvider = new Mock<IAttributesProvider>();
 
             data = new Dictionary<String, SpecialAbilityDataObject>();
             specialAbilityData = new SpecialAbilityDataObject();
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             mockParser = new Mock<ISpecialAbilityDataXmlParser>();
             mockParser.Setup(p => p.Parse("SpecialAbilityData.xml")).Returns(data);
 
-            provider = new SpecialAbilityDataProvider(mockParser.Object, mockTypesProvider.Object);
+            provider = new SpecialAbilityDataProvider(mockParser.Object, mockAttributesProvider.Object);
         }
 
         [Test]
@@ -50,11 +50,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         [Test]
         public void SpecialAbilityDataProviderGetsTypeRequirements()
         {
-            var types = new[] { "type 1" };
-            mockTypesProvider.Setup(p => p.GetAttributesFor("core name", "SpecialAbilityTypes")).Returns(types);
+            var attributes = new[] { "type 1" };
+            mockAttributesProvider.Setup(p => p.GetAttributesFor("core name", "SpecialAbilityAttributes")).Returns(attributes);
 
             var result = provider.GetDataFor("ability name");
-            Assert.That(result.AttributeRequirements, Is.EqualTo(types));
+            Assert.That(result.AttributeRequirements, Is.EqualTo(attributes));
         }
 
         [Test]

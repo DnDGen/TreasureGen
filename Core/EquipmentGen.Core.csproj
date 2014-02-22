@@ -66,8 +66,10 @@
     <Compile Include="Generation\Factories\MundaneGearGeneratorFactory.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGenerator.cs" />
     <Compile Include="Generation\Generators\AmmunitionGenerator.cs" />
+    <Compile Include="Generation\Generators\ChargesGenerator.cs" />
     <Compile Include="Generation\Generators\CurseGenerator.cs" />
     <Compile Include="Generation\Generators\IntelligenceGenerator.cs" />
+    <Compile Include="Generation\Generators\Interfaces\IChargesGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\IIntelligenceGenerator.cs" />
     <Compile Include="Generation\Generators\Interfaces\ISpellGenerator.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGenerator.cs" />
@@ -364,7 +366,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\Ammunition.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\WeaponTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\WeaponAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\SpecialMaterials.xml" />
@@ -391,10 +393,10 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\ArmorTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\ArmorAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilities.xml" />
@@ -403,7 +405,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmorSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityTypes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityData.xml" />

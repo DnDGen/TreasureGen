@@ -21,9 +21,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             var mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
+            var mockAttributesProvider = new Mock<IAttributesProvider>();
+            var mockChargesGenerator = new Mock<IChargesGenerator>();
 
             factory = new MagicalItemGeneratorFactory(mockPercentileResultProvider.Object, mockTraitsGenerator.Object,
-                mockIntelligenceGenerator.Object);
+                mockIntelligenceGenerator.Object, mockAttributesProvider.Object, mockChargesGenerator.Object);
         }
 
         [Test]

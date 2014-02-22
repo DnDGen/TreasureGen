@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Bastard sword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Battleaxe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Club</name>
+        <attribute>Weapon</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Dagger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Dire flail</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Dwarven urgrosh</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Dwarven waraxe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Falchion</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Gauntlet</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Glaive</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Gnome hooked hammer</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Greataxe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Greatclub</name>
+        <attribute>Weapon</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Greatsword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Guisarme</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Halberd</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Halfspear</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Handaxe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Hand crossbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Heavy flail</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Heavy mace</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Heavy pick</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Kama</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Kukri</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Lance</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Light flail</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Light hammer</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Light mace</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Light pick</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Longspear</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Longsword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Morningstar</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Net</name>
+        <attribute>Weapon</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Nunchaku</name>
+        <attribute>Weapon</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Orc double axe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Punching dagger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Quarterstaff</name>
+        <attribute>Weapon</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Ranseur</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Rapier</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Repeating crossbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Sap</name>
+        <attribute>Weapon</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Scimitar</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Scythe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Shortspear</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Short sword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Shuriken</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Siangham</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Common</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Sickle</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Spiked chain</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Spiked gauntlet</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Splint mail</name>
+        <attribute>Armor</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Trident</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Two-bladed sword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Warhammer</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Whip</name>
+        <attribute>Weapon</attribute>
+        <attribute>Uncommon</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Composite (+0) longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+1) longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+2) longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+3) longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+4) longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+0) shortbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+1) shortbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Composite (+2) shortbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Longbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Shortbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Dart</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Heavy crossbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Light crossbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Javelin</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Sling</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Throwing axe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+</attributes>

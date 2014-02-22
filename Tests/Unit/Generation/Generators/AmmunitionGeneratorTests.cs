@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private IAmmunitionGenerator ammunitionGenerator;
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileResultProvider;
         private Mock<IDice> mockDice;
-        private Mock<IAttributesProvider> mockTypesProvider;
+        private Mock<IAttributesProvider> mockAttributesProvider;
 
         private TypeAndAmountPercentileResult result;
 
@@ -29,10 +29,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Ammunition")).Returns(result);
 
             mockDice = new Mock<IDice>();
-            mockTypesProvider = new Mock<IAttributesProvider>();
+            mockAttributesProvider = new Mock<IAttributesProvider>();
 
             ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object,
-                mockTypesProvider.Object);
+                mockAttributesProvider.Object);
         }
 
         [Test]
@@ -44,13 +44,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void AmmunitionGeneratorGetsTypesFromProvider()
+        public void AmmunitionGeneratorGetsAttributesFromProvider()
         {
-            var types = new[] { "type 1", "type 2" };
-            mockTypesProvider.Setup(p => p.GetAttributesFor(result.Type, "AmmunitionTypes")).Returns(types);
+            var attributes = new[] { "type 1", "type 2" };
+            mockAttributesProvider.Setup(p => p.GetAttributesFor(result.Type, "AmmunitionAttributes")).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
-            Assert.That(ammunition.Attributes, Is.EqualTo(types));
+            Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
         }
     }
 }

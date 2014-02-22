@@ -11,14 +11,14 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private IPercentileResultProvider percentileResultProvider;
         private ISpecialMaterialGenerator materialsProvider;
-        private IAttributesProvider typesProvider;
+        private IAttributesProvider attributesProvider;
 
         public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, ISpecialMaterialGenerator materialsProvider,
             IAttributesProvider typesProvider)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.materialsProvider = materialsProvider;
-            this.typesProvider = typesProvider;
+            this.attributesProvider = typesProvider;
         }
 
         public Item Generate()
@@ -26,7 +26,16 @@ namespace EquipmentGen.Core.Generation.Generators
             var result = percentileResultProvider.GetResultFrom("MundaneArmor");
             var armor = new Item();
 
-            if (result == TraitConstants.Darkwood || result == TraitConstants.Masterwork)
+            if (result == TraitConstants.Darkwood)
+            {
+                var tableName = String.Format("{0}Shields", result);
+                armor.Name = percentileResultProvider.GetResultFrom(tableName);
+                armor.Attributes = attributesProvider.GetAttributesFor(ArmorConstants.Buckler, "ArmorAttributes");
+                armor.Traits.Add(result);
+
+                return armor;
+            }
+            else if (result == TraitConstants.Masterwork)
             {
                 var tableName = String.Format("{0}Shields", result);
                 armor.Name = percentileResultProvider.GetResultFrom(tableName);
@@ -40,12 +49,12 @@ namespace EquipmentGen.Core.Generation.Generators
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            armor.Attributes = typesProvider.GetAttributesFor(armor.Name, "ArmorTypes");
+            armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
 
             var size = percentileResultProvider.GetResultFrom("ArmorSizes");
             armor.Traits.Add(size);
 
-            if (!armor.Traits.Contains(TraitConstants.Darkwood) && materialsProvider.HasSpecialMaterial(armor.Attributes))
+            if (materialsProvider.HasSpecialMaterial(armor.Attributes))
             {
                 var specialMaterial = materialsProvider.GenerateFor(armor.Attributes);
                 armor.Traits.Add(specialMaterial);

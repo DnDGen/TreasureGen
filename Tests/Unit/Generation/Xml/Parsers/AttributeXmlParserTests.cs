@@ -52,7 +52,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
 
         private void MakeXmlFile()
         {
-            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><attributes><object><name>armor</key><attribute>attribute 1</attribute><attribute>attribute 2</attribute></object><object><name>weapon</name><attribute>attribute 1</attribute><attribute>attribute 2</attribute><attribute>attribute 3</attribute></object></attributes>";
+            var content = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+                        <attributes>
+                            <object>
+                                <name>armor</name>
+                                <attribute>attribute 1</attribute>
+                                <attribute>attribute 2</attribute>
+                            </object>
+                            <object>
+                                <name>weapon</name>
+                                <attribute>attribute 1</attribute>
+                                <attribute>attribute 2</attribute>
+                                <attribute>attribute 3</attribute>
+                            </object>
+                        </attributes>";
+
             File.WriteAllText(filename, content);
         }
     }

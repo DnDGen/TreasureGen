@@ -17,6 +17,7 @@ namespace EquipmentGen.Bootstrap
         {
             Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
             Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
+            Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();

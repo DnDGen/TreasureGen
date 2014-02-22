@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<types>
+<attributes>
     <object>
-        <key>SpecialMaterials</key>
-        <type>Adamantine</type>
-        <type>Alchemical silver</type>
-        <type>Cold iron</type>
-        <type>Darkwood</type>
-        <type>Mithral</type>
-        <type>Dragonhide</type>
+        <name>SpecialMaterials</name>
+        <attribute>Adamantine</attribute>
+        <attribute>Alchemical silver</attribute>
+        <attribute>Cold iron</attribute>
+        <attribute>Darkwood</attribute>
+        <attribute>Mithral</attribute>
+        <attribute>Dragonhide</attribute>
     </object>
   <object>
-    <key>Adamantine</key>
-      <type>Metal</type>
+    <name>Adamantine</name>
+      <attribute>Metal</attribute>
   </object>
     <object>
-        <key>Dragonhide</key>
-        <type>Armor</type>
+        <name>Dragonhide</name>
+        <attribute>Armor</attribute>
     </object>
     <object>
-        <key>Cold iron</key>
-        <type>Weapon</type>
-        <type>Metal</type>
+        <name>Cold iron</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
     </object>
     <object>
-        <key>Mithral</key>
-        <type>Metal</type>
+        <name>Mithral</name>
+        <attribute>Metal</attribute>
     </object>
     <object>
-        <key>Alchemical silver</key>
-        <type>Weapon</type>
-        <type>Metal</type>
+        <name>Alchemical silver</name>
+        <attribute>Weapon</attribute>
+        <attribute>Metal</attribute>
     </object>
     <object>
-        <key>Darkwood</key>
-        <type>Wood</type>
+        <name>Darkwood</name>
+        <attribute>Wood</attribute>
     </object>
-</types>
+</attributes>

@@ -1,70 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<types>
+<attributes>
   <object>
-    <key>1d10*10</key>
-    <type>silver ewer</type>
-    <type>carved bone statuette</type>
-    <type>carved ivory statuette</type>
-    <type>finely wrought small gold bracelet</type>
+    <name>1d10*10</name>
+    <attribute>silver ewer</attribute>
+    <attribute>carved bone statuette</attribute>
+    <attribute>carved ivory statuette</attribute>
+    <attribute>finely wrought small gold bracelet</attribute>
   </object>
   <object>
-      <key>3d6*10</key>
-      <type>cloth of gold vestments</type>
-      <type>black velvet mask with numerous citrines</type>
-      <type>silver chalice with lapis lazuli gems</type>
+      <name>3d6*10</name>
+      <attribute>cloth of gold vestments</attribute>
+      <attribute>black velvet mask with numerous citrines</attribute>
+      <attribute>silver chalice with lapis lazuli gems</attribute>
   </object>
   <object>
-      <key>1d6*100</key>
-      <type>large well-done wool tapestry</type>
-      <type>brass mug with jade inlays</type>
+      <name>1d6*100</name>
+      <attribute>large well-done wool tapestry</attribute>
+      <attribute>brass mug with jade inlays</attribute>
   </object>
   <object>
-      <key>1d10*100</key>
-      <type>silver comb with moonstones</type>
-      <type>silver-plated steel longsword with jet jewel in hilt</type>
+      <name>1d10*100</name>
+      <attribute>silver comb with moonstones</attribute>
+      <attribute>silver-plated steel longsword with jet jewel in hilt</attribute>
   </object>
   <object>
-      <key>2d6*100</key>
-      <type>carved harp of exotic wood with ivory inlay and zircon gems</type>
-      <type>10 lb. solid gold idol</type>
+      <name>2d6*100</name>
+      <attribute>carved harp of exotic wood with ivory inlay and zircon gems</attribute>
+      <attribute>10 lb. solid gold idol</attribute>
   </object>
   <object>
-    <key>3d6*100</key>
-    <type>gold dragon comb with red garnet eye</type>
-    <type>gold and topaz bottle stopper cork</type>
-    <type>ceremonial electrum dagger with a star ruby in the pommel</type>
+    <name>3d6*100</name>
+    <attribute>gold dragon comb with red garnet eye</attribute>
+    <attribute>gold and topaz bottle stopper cork</attribute>
+    <attribute>ceremonial electrum dagger with a star ruby in the pommel</attribute>
   </object>
   <object>
-      <key>4d6*100</key>
-      <type>eyepatch with mock eye of sapphire and moonstone</type>
-      <type>fire opal pendant on a fine gold chain</type>
-      <type>old masterpiece painting</type>
+      <name>4d6*100</name>
+      <attribute>eyepatch with mock eye of sapphire and moonstone</attribute>
+      <attribute>fire opal pendant on a fine gold chain</attribute>
+      <attribute>old masterpiece painting</attribute>
   </object>
   <object>
-      <key>5d6*100</key>
-      <type>embroidered silk and velvet mantle with numerous moonstones</type>
-      <type>sapphire pendant on gold chain</type>
+      <name>5d6*100</name>
+      <attribute>embroidered silk and velvet mantle with numerous moonstones</attribute>
+      <attribute>sapphire pendant on gold chain</attribute>
   </object>
   <object>
-    <key>1d4*1000</key>
-    <type>embroidered and bejeweled glove</type>
-    <type>jeweled anklet</type>
-    <type>gold music box</type>
+    <name>1d4*1000</name>
+    <attribute>embroidered and bejeweled glove</attribute>
+    <attribute>jeweled anklet</attribute>
+    <attribute>gold music box</attribute>
   </object>
   <object>
-      <key>1d6*1000</key>
-      <type>golden circlet with four aquamarines</type>
-      <type>a necklace of small pink pearls</type>
+      <name>1d6*1000</name>
+      <attribute>golden circlet with four aquamarines</attribute>
+      <attribute>a necklace of small pink pearls</attribute>
   </object>
   <object>
-      <key>2d4*1000</key>
-      <type>jeweled gold crown</type>
-      <type>jeweled electrum ring</type>
+      <name>2d4*1000</name>
+      <attribute>jeweled gold crown</attribute>
+      <attribute>jeweled electrum ring</attribute>
   </object>
   <object>
-      <key>2d6*1000</key>
-      <type>gold and ruby ring</type>
-      <type>gold cup set with emeralds</type>
+      <name>2d6*1000</name>
+      <attribute>gold and ruby ring</attribute>
+      <attribute>gold cup set with emeralds</attribute>
   </object>
-</types>
+</attributes>

@@ -3,12 +3,12 @@
 <percentile>
   <object>
     <lower>1</lower>
-    <content>Buckler</content>
+    <content>Darkwood buckler</content>
     <upper>50</upper>
   </object>
     <object>
         <lower>51</lower>
-        <content>Heavy wooden shield</content>
+        <content>Darkwood shield</content>
         <upper>100</upper>
     </object>
 </percentile>

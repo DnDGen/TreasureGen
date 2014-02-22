@@ -31,7 +31,7 @@ namespace EquipmentGen.Core.Generation.Providers
             ability.CoreName = data[specialAbilityName].CoreName;
             ability.Name = specialAbilityName;
             ability.Strength = data[specialAbilityName].Strength;
-            ability.AttributeRequirements = typesProvider.GetAttributesFor(ability.CoreName, "SpecialAbilityTypes");
+            ability.AttributeRequirements = typesProvider.GetAttributesFor(ability.CoreName, "SpecialAbilityAttributes");
 
             return ability;
         }

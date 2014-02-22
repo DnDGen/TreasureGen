@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
@@ -45,7 +46,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 foreach (var ability in abilities)
                 {
                     Assert.That(ability.Name, Is.Not.Empty);
-                    Assert.That(ability.BonusEquivalent, Is.AtLeast(1));
+                    Assert.That(ability.BonusEquivalent, Is.InRange<Int32>(0, 5));
                     Assert.That(ability.Strength, Is.Not.Negative);
                     Assert.That(ability.AttributeRequirements, Is.Not.Null);
                     Assert.That(ability.CoreName, Is.Not.Empty);

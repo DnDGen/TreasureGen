@@ -1,90 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<types>
+<attributes>
     <object>
-        <key>4d4</key>
-        <type>banded agate</type>
-        <type>eye agate</type>
-        <type>moss agate</type>
-        <type>azurite</type>
-        <type>blue quartz</type>
-        <type>hematite</type>
-        <type>lapis lazuli</type>
-        <type>malachite</type>
-        <type>obsidian</type>
-        <type>rhodochrosite</type>
-        <type>tiger eye turquoise</type>
-        <type>irregular freshwater pearl</type>
+        <name>4d4</name>
+        <attribute>banded agate</attribute>
+        <attribute>eye agate</attribute>
+        <attribute>moss agate</attribute>
+        <attribute>azurite</attribute>
+        <attribute>blue quartz</attribute>
+        <attribute>hematite</attribute>
+        <attribute>lapis lazuli</attribute>
+        <attribute>malachite</attribute>
+        <attribute>obsidian</attribute>
+        <attribute>rhodochrosite</attribute>
+        <attribute>tiger eye turquoise</attribute>
+        <attribute>irregular freshwater pearl</attribute>
     </object>
     <object>
-        <key>2d4*10</key>
-        <type>bloodstone</type>
-        <type>carnelian</type>
-        <type>chalcedony</type>
-        <type>chrysoprase</type>
-        <type>citrine</type>
-        <type>iolite</type>
-        <type>jasper</type>
-        <type>moonstone</type>
-        <type>onyx</type>
-        <type>peridot</type>
-        <type>clear quartz rock crystal</type>
-        <type>sard</type>
-        <type>sardonyx</type>
-        <type>rose quartz</type>
-        <type>smoky rose quartz</type>
-        <type>star rose quartz</type>
-        <type>zircon</type>
+        <name>2d4*10</name>
+        <attribute>bloodstone</attribute>
+        <attribute>carnelian</attribute>
+        <attribute>chalcedony</attribute>
+        <attribute>chrysoprase</attribute>
+        <attribute>citrine</attribute>
+        <attribute>iolite</attribute>
+        <attribute>jasper</attribute>
+        <attribute>moonstone</attribute>
+        <attribute>onyx</attribute>
+        <attribute>peridot</attribute>
+        <attribute>clear quartz rock crystal</attribute>
+        <attribute>sard</attribute>
+        <attribute>sardonyx</attribute>
+        <attribute>rose quartz</attribute>
+        <attribute>smoky rose quartz</attribute>
+        <attribute>star rose quartz</attribute>
+        <attribute>zircon</attribute>
     </object>
     <object>
-        <key>4d4*10</key>
-        <type>amber</type>
-        <type>amethyst</type>
-        <type>chrysoberyl</type>
-        <type>coral</type>
-        <type>red garnet</type>
-        <type>brown-green garnet</type>
-        <type>jade</type>
-        <type>jet</type>
-        <type>white pearl</type>
-        <type>golden pearl</type>
-        <type>pink pearl</type>
-        <type>silver pearl</type>
-        <type>red spinel</type>
-        <type>red-brown spinel</type>
-        <type>deep green spinel</type>
-        <type>tourmaline</type>
+        <name>4d4*10</name>
+        <attribute>amber</attribute>
+        <attribute>amethyst</attribute>
+        <attribute>chrysoberyl</attribute>
+        <attribute>coral</attribute>
+        <attribute>red garnet</attribute>
+        <attribute>brown-green garnet</attribute>
+        <attribute>jade</attribute>
+        <attribute>jet</attribute>
+        <attribute>white pearl</attribute>
+        <attribute>golden pearl</attribute>
+        <attribute>pink pearl</attribute>
+        <attribute>silver pearl</attribute>
+        <attribute>red spinel</attribute>
+        <attribute>red-brown spinel</attribute>
+        <attribute>deep green spinel</attribute>
+        <attribute>tourmaline</attribute>
     </object>
     <object>
-        <key>2d4*100</key>
-        <type>alexandrite</type>
-        <type>aquamarine</type>
-        <type>violet garnet</type>
-        <type>black pearl</type>
-        <type>deep blue spinel</type>
-        <type>golden yellow topaz</type>
+        <name>2d4*100</name>
+        <attribute>alexandrite</attribute>
+        <attribute>aquamarine</attribute>
+        <attribute>violet garnet</attribute>
+        <attribute>black pearl</attribute>
+        <attribute>deep blue spinel</attribute>
+        <attribute>golden yellow topaz</attribute>
     </object>
     <object>
-        <key>4d4*100</key>
-        <type>emerald</type>
-        <type>white opal</type>
-        <type>black opal</type>
-        <type>fire opal</type>
-        <type>blue sapphire</type>
-        <type>fiery yellow corundum</type>
-        <type>rich purple corundum</type>
-        <type>blue star sapphire</type>
-        <type>black star sapphire</type>
-        <type>star ruby</type>
+        <name>4d4*100</name>
+        <attribute>emerald</attribute>
+        <attribute>white opal</attribute>
+        <attribute>black opal</attribute>
+        <attribute>fire opal</attribute>
+        <attribute>blue sapphire</attribute>
+        <attribute>fiery yellow corundum</attribute>
+        <attribute>rich purple corundum</attribute>
+        <attribute>blue star sapphire</attribute>
+        <attribute>black star sapphire</attribute>
+        <attribute>star ruby</attribute>
     </object>
     <object>
-        <key>2d4*1000</key>
-        <type>clearest bright green emerald</type>
-        <type>blue-white diamond</type>
-        <type>canary diamond</type>
-        <type>pink diamond</type>
-        <type>brown diamond</type>
-        <type>blue diamond</type>
-        <type>jacinth</type>
+        <name>2d4*1000</name>
+        <attribute>clearest bright green emerald</attribute>
+        <attribute>blue-white diamond</attribute>
+        <attribute>canary diamond</attribute>
+        <attribute>pink diamond</attribute>
+        <attribute>brown diamond</attribute>
+        <attribute>blue diamond</attribute>
+        <attribute>jacinth</attribute>
     </object>
-</types>
+</attributes>

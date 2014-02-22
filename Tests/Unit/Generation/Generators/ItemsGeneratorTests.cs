@@ -164,7 +164,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void ItemGeneratorDoesNotGetCurseTraits()
+        public void ItemGeneratorDoesNotGetCurseIfNotCursed()
         {
             var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
@@ -176,11 +176,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             var item = itemsGenerator.GenerateAtPower("power");
             Assert.That(item, Is.EqualTo(magicalItem));
-            Assert.That(magicalItem.Traits, Is.Not.Contains("cursed"));
+            Assert.That(magicalItem.Magic, Is.Empty);
         }
 
         [Test]
-        public void ItemGeneratorGetsCurseTraits()
+        public void ItemGeneratorGetsCurseIfCursed()
         {
             var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
@@ -192,7 +192,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             var item = itemsGenerator.GenerateAtPower("power");
             Assert.That(item, Is.EqualTo(magicalItem));
-            Assert.That(magicalItem.Traits, Contains.Item("cursed"));
+            Assert.That(magicalItem.Magic[Magic.Curse], Is.EqualTo("cursed"));
         }
 
         [Test]

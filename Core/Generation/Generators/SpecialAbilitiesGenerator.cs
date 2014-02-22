@@ -27,7 +27,7 @@ namespace EquipmentGen.Core.Generation.Generators
             this.spellGenerator = spellGenerator;
         }
 
-        public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<String> types, String power, Int32 magicalBonus, Int32 quantity)
+        public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
         {
             if (magicalBonus <= 0)
                 return Enumerable.Empty<SpecialAbility>();
@@ -37,7 +37,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             while (quantity > 0 && bonusSum < 10)
             {
-                var ability = GenerateFor(types, power);
+                var ability = GenerateFor(attributes, power);
                 if (ability.Name == "BonusSpecialAbility")
                 {
                     quantity++;
@@ -69,13 +69,13 @@ namespace EquipmentGen.Core.Generation.Generators
             return abilities;
         }
 
-        public SpecialAbility GenerateFor(IEnumerable<String> types, String power)
+        public SpecialAbility GenerateFor(IEnumerable<String> attributes, String power)
         {
-            var tableName = GetTableName(types, power);
+            var tableName = GetTableName(attributes, power);
             var abilityName = percentileResultProvider.GetResultFrom(tableName);
             var ability = specialAbilityDataProvider.GetDataFor(abilityName);
 
-            while (!AllTypeRequirementsMet(ability.AttributeRequirements, types))
+            while (!AllTypeRequirementsMet(ability.AttributeRequirements, attributes))
             {
                 abilityName = percentileResultProvider.GetResultFrom(tableName);
                 ability = specialAbilityDataProvider.GetDataFor(abilityName);
@@ -97,25 +97,25 @@ namespace EquipmentGen.Core.Generation.Generators
             return ability;
         }
 
-        private String GetTableName(IEnumerable<String> types, String power)
+        private String GetTableName(IEnumerable<String> attributes, String power)
         {
-            if (!types.Any())
-                throw new ArgumentException("no types when getting table name for special abilities");
+            if (!attributes.Any())
+                throw new ArgumentException("no attributes when getting table name for special abilities");
 
-            if (types.Contains(AttributeConstants.Shield))
+            if (attributes.Contains(AttributeConstants.Shield))
                 return String.Format("{0}ShieldSpecialAbilities", power);
 
-            if (types.Contains(AttributeConstants.Melee))
+            if (attributes.Contains(AttributeConstants.Melee))
                 return String.Format("{0}MeleeWeaponSpecialAbilities", power);
 
-            if (types.Contains(AttributeConstants.Ranged))
+            if (attributes.Contains(AttributeConstants.Ranged))
                 return String.Format("{0}RangedWeaponSpecialAbilities", power);
 
-            if (types.Contains(ItemTypeConstants.Armor))
+            if (attributes.Contains(ItemTypeConstants.Armor))
                 return String.Format("{0}ArmorSpecialAbilities", power);
 
-            var typesString = String.Join(",", types);
-            throw new ArgumentException("invalid types for special abilities: {0}", typesString);
+            var attributesString = String.Join(",", attributes);
+            throw new ArgumentException("invalid attributes for special abilities: {0}", attributesString);
         }
 
         private Boolean AllTypeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> types)

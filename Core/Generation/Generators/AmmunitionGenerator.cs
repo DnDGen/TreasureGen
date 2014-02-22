@@ -9,14 +9,14 @@ namespace EquipmentGen.Core.Generation.Generators
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
         private IDice dice;
-        private IAttributesProvider typesProvider;
+        private IAttributesProvider attributesProvider;
 
         public AmmunitionGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice,
             IAttributesProvider typesProvider)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
-            this.typesProvider = typesProvider;
+            this.attributesProvider = typesProvider;
         }
 
         public Item Generate()
@@ -26,7 +26,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var ammunition = new Item();
             ammunition.Name = result.Type;
             ammunition.Quantity = result.Amount;
-            ammunition.Attributes = typesProvider.GetAttributesFor(ammunition.Name, "AmmunitionTypes");
+            ammunition.Attributes = attributesProvider.GetAttributesFor(ammunition.Name, "AmmunitionAttributes");
 
             return ammunition;
         }

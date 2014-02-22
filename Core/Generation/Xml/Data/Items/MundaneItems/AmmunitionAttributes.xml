@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Arrow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Crossbow bolt</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Sling bullet</name>
+        <attribute>Weapon</attribute>
+        <attribute>Common</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+</attributes>
