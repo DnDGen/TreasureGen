@@ -65,9 +65,9 @@ namespace EquipmentGen.Core.Generation.Generators
             else
                 item = GenerateMagicalItemAtPower(type, power);
 
-            if (curseGenerator.HasCurse())
+            if (curseGenerator.HasCurse(item.Magic))
             {
-                var curse = curseGenerator.GenerateCurseTrait();
+                var curse = curseGenerator.GenerateCurse();
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 

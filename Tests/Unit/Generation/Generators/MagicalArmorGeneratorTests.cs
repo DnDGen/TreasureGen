@@ -94,7 +94,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmor")).Returns(specificResult);
 
             var specificArmor = new Item();
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("powerSpecificArmor")).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", specificResult.Type)).Returns(specificArmor);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor, Is.EqualTo(specificArmor));
