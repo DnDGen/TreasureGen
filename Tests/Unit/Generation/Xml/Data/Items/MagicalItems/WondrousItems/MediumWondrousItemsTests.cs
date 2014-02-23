@@ -127,7 +127,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Wondrou
         }
 
         [Test]
-        public void SerpentineOwlFogurineOfWondrousPowerPercentile()
+        public void SerpentineOwlFigurineOfWondrousPowerPercentile()
         {
             AssertContent("Serpentine owl figurine of wondrous power", 21);
         }
@@ -297,7 +297,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Wondrou
         [Test]
         public void AmuletOfHealthPlus4Percentile()
         {
-            AssertContent("Amylet of health +4", 49);
+            AssertContent("Amulet of health +4", 49);
         }
 
         [Test]
@@ -307,7 +307,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Wondrou
         }
 
         [Test]
-        public void WingedBootsgPercentile()
+        public void WingedBootsPercentile()
         {
             AssertContent("Winged boots", 51);
         }
