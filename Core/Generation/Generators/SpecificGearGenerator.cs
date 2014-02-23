@@ -6,7 +6,7 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class SpecificGearGenerator : ISpecificGearGenerator
     {
-        public Item GenerateFrom(String specificGearType)
+        public Item GenerateFrom(String power, String specificGearType)
         {
             throw new NotImplementedException();
         }

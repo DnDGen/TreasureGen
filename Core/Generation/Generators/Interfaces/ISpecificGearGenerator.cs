@@ -5,6 +5,6 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
 {
     public interface ISpecificGearGenerator
     {
-        Item GenerateFrom(String specificGearType);
+        Item GenerateFrom(String power, String specificGearType);
     }
 }

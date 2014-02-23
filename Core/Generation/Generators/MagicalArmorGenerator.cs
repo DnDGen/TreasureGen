@@ -50,7 +50,7 @@ namespace EquipmentGen.Core.Generation.Generators
             }
 
             if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
-                return specificGearGenerator.GenerateFrom(power + result.Type);
+                return specificGearGenerator.GenerateFrom(power, result.Type);
 
             tableName = String.Format("{0}Type", result.Type);
 

@@ -64,7 +64,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Weapons
         [Test]
         public void AxiomaticPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Distance, 35, 39);
+            AssertContent(SpecialAbilityConstants.Axiomatic, 35, 39);
         }
 
         [Test]
@@ -88,13 +88,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Weapons
         [Test]
         public void ShockingBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Distance, 65, 74);
+            AssertContent(SpecialAbilityConstants.ShockingBurst, 65, 74);
         }
 
         [Test]
         public void UnholyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Distance, 75, 79);
+            AssertContent(SpecialAbilityConstants.Unholy, 75, 79);
         }
 
         [Test]
