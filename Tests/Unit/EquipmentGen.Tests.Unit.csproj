@@ -169,7 +169,9 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Major\MajorRangedWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorMeleeWeaponSpecialAbilitiesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorRangedWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MediumWondrousItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MinorWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\AlchemicalItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\AmmunitionTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MundaneItems\ArmorSizesTests.cs" />
