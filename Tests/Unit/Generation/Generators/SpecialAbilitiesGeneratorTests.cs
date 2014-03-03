@@ -41,14 +41,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorReturnsEmptyIfBonusLessThanOne()
+        public void ReturnEmptyIfBonusLessThanOne()
         {
             var abilities = specialAbilitiesGenerator.GenerateFor(types, "power", 0, 1);
             Assert.That(abilities, Is.Empty);
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsShieldAbilityIfShield()
+        public void GetShieldAbilityIfShield()
         {
             types.Add(AttributeConstants.Shield);
             var shieldAbility = CreateSpecialAbility("shield ability");
@@ -61,7 +61,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsMeleeWeaponAbilityIfMeleeWeapon()
+        public void GetMeleeWeaponAbilityIfMeleeWeapon()
         {
             types.Add(AttributeConstants.Melee);
             var meleeWeaponAbility = CreateSpecialAbility("melee weapon ability");
@@ -74,7 +74,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsRangedWeaponAbilityIfRangedWeapon()
+        public void GetRangedWeaponAbilityIfRangedWeapon()
         {
             types.Add(AttributeConstants.Ranged);
             var rangedWeaponAbility = CreateSpecialAbility("ranged weapon ability");
@@ -87,7 +87,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsArmorAbilityIfArmor()
+        public void GetArmorAbilityIfArmor()
         {
             var armorAbility = CreateSpecialAbility("armor ability");
 
@@ -99,13 +99,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorSingularThrowsErrorIfNotValidTypes()
+        public void ThrowErrorIfNotValidTypes()
         {
             Assert.That(() => specialAbilitiesGenerator.GenerateFor(new[] { "invalid type" }, "power"), Throws.ArgumentException);
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorSetsAbilityByResult()
+        public void SetAbilityByResult()
         {
             var abilityResult = new SpecialAbility();
             abilityResult.BonusEquivalent = 92;
@@ -122,7 +122,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorGetsAbilities()
+        public void GetAbilities()
         {
             var ability1 = CreateSpecialAbility("ability 1");
             ability1.BonusEquivalent = 1;
@@ -151,7 +151,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorWillNotAllowAbilitiesAndMagicBonusToBeGreaterThan10()
+        public void DoNotAllowAbilitiesAndMagicBonusToBeGreaterThan10()
         {
             var bigAbility = CreateSpecialAbility("big ability");
             bigAbility.BonusEquivalent = 2;
@@ -167,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorAccumulatesAbilities()
+        public void AccumulateAbilities()
         {
             var ability1 = CreateSpecialAbility("ability 1");
             ability1.BonusEquivalent = 1;
@@ -189,7 +189,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratorReplacesWeakWithStrong()
+        public void ReplaceWeakWithStrong()
         {
             var strongAbility = CreateSpecialAbility("strong ability");
             strongAbility.CoreName = "ability";
@@ -207,7 +207,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void SpecialAbilitiesGeneratordoesNotReplaceStrongWithWeak()
+        public void DoNotReplaceStrongWithWeak()
         {
             var strongAbility = CreateSpecialAbility("strong ability");
             strongAbility.CoreName = "ability";
@@ -314,6 +314,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             Assert.That(abilities, Contains.Item(ability2));
             Assert.That(abilities, Contains.Item(ability1));
             Assert.That(abilities.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void BonusSpecialAbilityAbilityIsEmptyExceptForName()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns("BonusSpecialAbility");
+
+            var ability = specialAbilitiesGenerator.GenerateFor(types, "power");
+            Assert.That(ability.Name, Is.EqualTo("BonusSpecialAbility"));
+            Assert.That(ability.AttributeRequirements, Is.Empty);
+            Assert.That(ability.BonusEquivalent, Is.EqualTo(0));
+            Assert.That(ability.CoreName, Is.Null.Or.Empty);
+            Assert.That(ability.Strength, Is.EqualTo(0));
         }
 
         [Test]

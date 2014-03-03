@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Core", "Core\EquipmentGen.Core.csproj", "{5D5B7132-A3B7-4330-8235-10CAAD07382C}"
 EndProject
@@ -21,8 +21,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{CE6C1C33-CE08-46F3-B586-E78A1A7A7866}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Common", "Tests\Integration\Common\EquipmentGen.Tests.Integration.Common.csproj", "{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Duration", "Tests\Integration\Duration\EquipmentGen.Tests.Integration.Duration.csproj", "{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Stress", "Tests\Integration\Stress\EquipmentGen.Tests.Integration.Stress.csproj", "{A90C77F8-6122-4C74-8E19-635C4A8D0B21}"
 EndProject
@@ -52,10 +50,6 @@ Global
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A90C77F8-6122-4C74-8E19-635C4A8D0B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A90C77F8-6122-4C74-8E19-635C4A8D0B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A90C77F8-6122-4C74-8E19-635C4A8D0B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,7 +62,6 @@ Global
 		{8482E490-6350-4DBF-A4D7-3B346FE1F0D3} = {33B78BC4-C544-499F-B628-961BA4D097D4}
 		{CE6C1C33-CE08-46F3-B586-E78A1A7A7866} = {33B78BC4-C544-499F-B628-961BA4D097D4}
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612} = {CE6C1C33-CE08-46F3-B586-E78A1A7A7866}
-		{BA9511A3-CE4A-4FA9-9E5C-153154DAD71D} = {CE6C1C33-CE08-46F3-B586-E78A1A7A7866}
 		{A90C77F8-6122-4C74-8E19-635C4A8D0B21} = {CE6C1C33-CE08-46F3-B586-E78A1A7A7866}
 	EndGlobalSection
 EndGlobal

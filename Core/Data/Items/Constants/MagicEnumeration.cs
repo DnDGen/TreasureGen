@@ -6,6 +6,7 @@
         Abilities,
         Charges,
         Intelligence,
-        Curse
+        Curse,
+        IsMagical
     }
 }

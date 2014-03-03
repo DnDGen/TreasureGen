@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void SpecialAbilityDataProviderGetsDataFromXmlParser()
+        public void GetDataFromXmlParser()
         {
             var result = provider.GetDataFor("ability name");
             Assert.That(result.Name, Is.EqualTo("ability name"));
@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void SpecialAbilityDataProviderGetsTypeRequirements()
+        public void GetTypeRequirements()
         {
             var attributes = new[] { "type 1" };
             mockAttributesProvider.Setup(p => p.GetAttributesFor("core name", "SpecialAbilityAttributes")).Returns(attributes);
@@ -58,11 +58,18 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void SpecialAbilityDataProviderCachesTable()
+        public void CacheTable()
         {
             provider.GetDataFor("ability name");
             provider.GetDataFor("ability name");
             mockParser.Verify(p => p.Parse(It.IsAny<String>()), Times.Once);
+        }
+
+        [Test]
+        public void ThrowExceptionIfSpecialAbilityNotFound()
+        {
+            Assert.That(() => provider.GetDataFor("Ability not in collection"), Throws.ArgumentException.With.Message.EqualTo(
+                "The ability Ability not in collection was not present in the special ability data collection."));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators;
@@ -19,6 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
         private Mock<IAttributesProvider> mockAttributesProvider;
         private Mock<IChargesGenerator> mockChargesGenerator;
+        private Mock<IDice> mockDice;
 
         private String name;
 
@@ -33,6 +35,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockAttributesProvider = new Mock<IAttributesProvider>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
+            mockDice = new Mock<IDice>();
 
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileResultProvider.Object,
                 mockTraitsGenerator.Object, mockIntelligenceGenerator.Object, mockAttributesProvider.Object,
@@ -71,19 +74,23 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void DoNotGetIntelligenceIfNotIntelligent()
         {
             var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem)).Returns(intelligence);
+            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
+                It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, It.IsAny<Dictionary<Magic, Object>>()))
+                .Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Intelligence));
         }
 
         [Test]
         public void GetIntelligenceIfIntelligent()
         {
             var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem)).Returns(intelligence);
+            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
+                It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, It.IsAny<Dictionary<Magic, Object>>()))
+                .Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Magic[Magic.Intelligence], Is.EqualTo(intelligence));
@@ -98,7 +105,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockChargesGenerator.Setup(g => g.GenerateChargesFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Charges));
         }
 
         [Test]
@@ -118,7 +125,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void DoNotGetBonusIfNoBonus()
         {
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Bonus));
         }
 
         [Test]
@@ -129,6 +136,72 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var item = wondrousItemGenerator.GenerateAtPower("power");
             var bonus = Convert.ToInt32(item.Magic[Magic.Bonus]);
             Assert.That(bonus, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void WondrousItemsAreMagical()
+        {
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Magic[Magic.IsMagical], Is.True);
+        }
+
+        [Test]
+        public void HornOfValhallaGetsType()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Horn of Valhalla");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("HornOfValhallaTypes")).Returns("iron horn of valhalla");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("iron horn of valhalla"));
+        }
+
+        [Test]
+        public void IronFlaskContentsGenerated()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Iron flask");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("IronFlaskContents")).Returns("contents");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Iron flask (contents)"));
+        }
+
+        [Test]
+        public void RemoveBonusBeforeGettingAttributes()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("wondrous item +9266");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            mockAttributesProvider.Verify(p => p.GetAttributesFor("wondrous item", "WondrousItemAttributes"), Times.Once);
+        }
+
+        [Test]
+        public void RemoveTypesBeforeGettingAttributes()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("wondrous item type IXCCLXVI");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            mockAttributesProvider.Verify(p => p.GetAttributesFor("wondrous item", "WondrousItemAttributes"), Times.Once);
+        }
+
+        [Test]
+        public void CommaTypesRemovedBeforeGettingAttributes()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("wondrous item, type");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            mockAttributesProvider.Verify(p => p.GetAttributesFor("wondrous item", "WondrousItemAttributes"), Times.Once);
+        }
+
+        [Test]
+        public void RobeOfUsefulItemsExtraItemsDetermined()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Robe of useful items");
+            mockDice.Setup(d => d.d4(4)).Returns(2);
+            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom("RobeOfUsefulItemsExtraItems")).Returns("item 1")
+                .Returns("item 2");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: item 1, item 2)"));
         }
     }
 }

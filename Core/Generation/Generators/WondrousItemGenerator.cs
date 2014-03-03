@@ -34,6 +34,7 @@ namespace EquipmentGen.Core.Generation.Generators
             var item = new Item();
             item.Name = result;
             item.Attributes = attributesProvider.GetAttributesFor(item.Name, "WondrousItemAttributes");
+            item.Magic[Magic.IsMagical] = true;
 
             if (item.Name.Contains("+"))
                 item.Magic[Magic.Bonus] = GetBonus(item.Name);
@@ -41,8 +42,8 @@ namespace EquipmentGen.Core.Generation.Generators
             if (item.Attributes.Any(a => a == AttributeConstants.Charged))
                 item.Magic[Magic.Charges] = chargesGenerator.GenerateChargesFor(ItemTypeConstants.WondrousItem, item.Name);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes))
-                item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.Magic))
+                item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Magic);
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);

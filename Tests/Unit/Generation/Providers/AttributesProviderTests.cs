@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Generation.Exceptions;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
@@ -33,14 +32,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void TypesProviderGetsTypesFromXmlParser()
+        public void GetTypesFromXmlParser()
         {
             var actual = typesProvider.GetAttributesFor("name", "table name");
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
-        public void TypesProviderCachesTable()
+        public void CacheTable()
         {
             typesProvider.GetAttributesFor("name", "table name");
             typesProvider.GetAttributesFor("other name", "table name");
@@ -48,7 +47,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void TypesProviderCachesAllTables()
+        public void CacheAllTables()
         {
             typesProvider.GetAttributesFor("name", "table name");
             typesProvider.GetAttributesFor("other name", "table name");
@@ -62,9 +61,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void TypesProviderThrowsErrorIfNameNotFound()
+        public void ReturnEmptyIfNameNotFound()
         {
-            Assert.That(() => typesProvider.GetAttributesFor("unknown gear name", "table name"), Throws.InstanceOf<ItemNotFoundException>());
+            var attributes = typesProvider.GetAttributesFor("unknown name", "table name");
+            Assert.That(attributes, Is.Empty);
         }
     }
 }

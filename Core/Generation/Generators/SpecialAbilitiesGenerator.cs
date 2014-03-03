@@ -73,6 +73,10 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             var tableName = GetTableName(attributes, power);
             var abilityName = percentileResultProvider.GetResultFrom(tableName);
+
+            if (abilityName == "BonusSpecialAbility")
+                return new SpecialAbility { Name = abilityName };
+
             var ability = specialAbilityDataProvider.GetDataFor(abilityName);
 
             while (!AllTypeRequirementsMet(ability.AttributeRequirements, attributes))

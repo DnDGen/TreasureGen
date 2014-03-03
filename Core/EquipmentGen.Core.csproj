@@ -437,10 +437,28 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MediumWondrousItems.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Medium\MediumMeleeWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumMeleeWeaponSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorRangedWeaponSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MinorWondrousItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Medium\MediumArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumRangedWeaponSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\DesignatedFoes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\WondrousItemAttributes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

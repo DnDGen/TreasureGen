@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Generation.Exceptions;
+using System.Linq;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 
@@ -23,7 +23,7 @@ namespace EquipmentGen.Core.Generation.Providers
                 CacheTable(table);
 
             if (!tables[table].ContainsKey(name))
-                throw new ItemNotFoundException(name);
+                return Enumerable.Empty<String>();
 
             return tables[table][name];
         }

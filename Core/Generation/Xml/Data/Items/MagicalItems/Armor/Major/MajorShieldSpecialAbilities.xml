@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Arrow catching</content>
+        <upper>5</upper>
+    </object>
+    <object>
+        <lower>6</lower>
+        <content>Bashing</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Blinding</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Light fortification</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Arrow deflection</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Animated</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Acid resistance</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Cold resistance</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Electricity resistance</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Fire resistance</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Sonic resistance</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Ghost touch (armor)</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Moderate fortification</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Spell resistance (15)</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>Wild</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Improved acid resistance</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Improved cold resistance</content>
+        <upper>69</upper>
+    </object>
+    <object>
+        <lower>70</lower>
+        <content>Improved electricity resistance</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Improved fire resistance</content>
+        <upper>79</upper>
+    </object>
+    <object>
+        <lower>80</lower>
+        <content>Improved sonic resistance</content>
+        <upper>84</upper>
+    </object>
+    <object>
+        <lower>85</lower>
+        <content>Spell resistance (17)</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Undead controlling</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Heavy fortification</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Reflecting</content>
+        <upper>93</upper>
+    </object>
+    <object>
+        <lower>94</lower>
+        <content>Spell resistance (19)</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Greater acid resistance</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Greater cold resistance</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Greater electricity resistance</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Greater fire resistance</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Greater sonic resistance</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>BonusSpecialAbility</content>
+        <upper>100</upper>
+    </object>
+</percentile>

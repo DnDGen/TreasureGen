@@ -26,6 +26,12 @@ namespace EquipmentGen.Core.Generation.Providers
             if (data == null)
                 CacheTable();
 
+            if (!data.ContainsKey(specialAbilityName))
+            {
+                var message = String.Format("The ability {0} was not present in the special ability data collection.", specialAbilityName);
+                throw new ArgumentException(message);
+            }
+
             var ability = new SpecialAbility();
             ability.BonusEquivalent = data[specialAbilityName].BonusEquivalent;
             ability.CoreName = data[specialAbilityName].CoreName;

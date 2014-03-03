@@ -19,30 +19,30 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
         public void Setup()
         {
             var streamLoader = new EmbeddedResourceStreamLoader();
-            var typesXmlParser = new AttributesXmlParser(streamLoader);
-            attributesProvider = new AttributesProvider(typesXmlParser);
+            var attributesXmlParser = new AttributesXmlParser(streamLoader);
+            attributesProvider = new AttributesProvider(attributesXmlParser);
 
             var type = GetType();
             var attributes = type.GetCustomAttributes(true);
 
             if (!attributes.Any(a => a is AttributesTableAttribute))
-                throw new ArgumentException("This test class does not have the needed TypesTableNameAttribute");
+                throw new ArgumentException("This test class does not have the needed AttributesTableNameAttribute");
 
-            var typesFilenameAttribute = attributes.First(a => a is AttributesTableAttribute) as AttributesTableAttribute;
-            tableName = typesFilenameAttribute.TableName;
+            var attributesFilenameAttribute = attributes.First(a => a is AttributesTableAttribute) as AttributesTableAttribute;
+            tableName = attributesFilenameAttribute.TableName;
         }
 
-        protected void AssertContent(String name, IEnumerable<String> expectedTypes)
+        protected void AssertContent(String name, IEnumerable<String> expectedAttributes)
         {
-            var actualTypes = attributesProvider.GetAttributesFor(name, tableName);
+            var actualAttributes = attributesProvider.GetAttributesFor(name, tableName);
 
-            foreach (var expectedType in expectedTypes)
-                Assert.That(actualTypes, Contains.Item(expectedType));
+            foreach (var expectedAttribute in expectedAttributes)
+                Assert.That(actualAttributes, Contains.Item(expectedAttribute));
 
-            var tooMany = actualTypes.Except(expectedTypes);
+            var tooMany = actualAttributes.Except(expectedAttributes);
             var tooManyString = String.Join(", ", tooMany);
             var message = String.Format("Should not be in results: {0}", tooManyString);
-            Assert.That(actualTypes.Count(), Is.EqualTo(expectedTypes.Count()), message);
+            Assert.That(actualAttributes.Count(), Is.EqualTo(expectedAttributes.Count()), message);
         }
     }
 }

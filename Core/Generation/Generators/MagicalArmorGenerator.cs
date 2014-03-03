@@ -70,9 +70,9 @@ namespace EquipmentGen.Core.Generation.Generators
             var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
             armor.Traits.AddRange(traits);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes))
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes, armor.Magic))
             {
-                var intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.Armor);
+                var intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.Armor, armor.Magic);
                 armor.Magic.Add(Magic.Intelligence, intelligence);
             }
 
