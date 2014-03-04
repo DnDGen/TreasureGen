@@ -388,5 +388,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             Assert.That(result, Is.EqualTo(spellStoring));
             Assert.That(result.Name, Is.EqualTo("Spell storing (contains spell)"));
         }
+
+        [Test]
+        public void StopIfAllPossibleAbilitiesAcquired()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void ReturnEmptyIfNoCompatibleAbilities()
+        {
+            Assert.Fail();
+        }
     }
 }
