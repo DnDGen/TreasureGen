@@ -110,7 +110,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
                 .Returns(abilityResult).Returns(result);
 
             var abilities = new[] { new SpecialAbility() };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>(), "power", result.Amount, 1))
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateWith(It.IsAny<IEnumerable<String>>(), "power", result.Amount, 1))
                 .Returns(abilities);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");

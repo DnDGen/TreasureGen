@@ -51,5 +51,13 @@ namespace EquipmentGen.Core.Generation.Providers
         {
             return percentileObject.LowerLimit <= roll && roll <= percentileObject.UpperLimit;
         }
+
+        public IEnumerable<String> GetAllResultsFrom(String tableName)
+        {
+            if (!cachedTables.ContainsKey(tableName))
+                CacheTable(tableName);
+
+            return cachedTables[tableName].Select(o => o.Content);
+        }
     }
 }

@@ -58,7 +58,7 @@ namespace EquipmentGen.Core.Generation.Generators
             armor.Name = percentileResultProvider.GetResultFrom(tableName);
             armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
 
-            var abilities = specialAbilitiesProvider.GenerateFor(armor.Attributes, power, result.Amount, abilityCount);
+            var abilities = specialAbilitiesProvider.GenerateWith(armor.Attributes, power, result.Amount, abilityCount);
             armor.Magic[Magic.Abilities] = abilities;
 
             if (materialsProvider.HasSpecialMaterial(armor.Attributes))

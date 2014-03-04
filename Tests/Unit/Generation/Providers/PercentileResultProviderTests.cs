@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
@@ -40,7 +41,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GetPercentileResultCachesTable()
+        public void GetResultCachesTable()
         {
             percentileResultProvider.GetResultFrom(tableName);
             percentileResultProvider.GetResultFrom(tableName);
@@ -49,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GetPercentileResultReturnsEmptyStringForEmptyTable()
+        public void GetResultReturnsEmptyStringForEmptyTable()
         {
             table.Clear();
             var result = percentileResultProvider.GetResultFrom(tableName);
@@ -57,7 +58,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GetPercentileResultReturnsEmptyStringIfBelowRange()
+        public void GetResultReturnsEmptyStringIfBelowRange()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(min - 1);
             var result = percentileResultProvider.GetResultFrom(tableName);
@@ -65,7 +66,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GetPercentileResultReturnsEmptyStringIfAboveRange()
+        public void GetResultReturnsEmptyStringIfAboveRange()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(max + 1);
             var result = percentileResultProvider.GetResultFrom(tableName);
@@ -73,15 +74,31 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         }
 
         [Test]
-        public void GetPercentileResultReturnContentIfInInclusiveRange()
+        public void GetResultReturnContentIfInInclusiveRange()
         {
             for (var roll = min; roll <= max; roll++)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-
                 var result = percentileResultProvider.GetResultFrom(tableName);
                 Assert.That(result, Is.EqualTo("content"));
             }
+        }
+
+        [Test]
+        public void GetAllResultsReturnsWholeTable()
+        {
+            var results = percentileResultProvider.GetAllResultsFrom(tableName);
+            var tableContents = table.Select(o => o.Content);
+            Assert.That(results, Is.EqualTo(tableContents));
+        }
+
+        [Test]
+        public void GetAllResultsCachesTable()
+        {
+            percentileResultProvider.GetAllResultsFrom(tableName);
+            percentileResultProvider.GetAllResultsFrom(tableName);
+
+            mockPercentileXmlParser.Verify(p => p.Parse(tableName + ".xml"), Times.Once());
         }
     }
 }

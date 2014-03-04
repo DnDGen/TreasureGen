@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedSpecialAbilitiesGeneratorMultiple()
+        public void StressedSpecialAbilitiesGenerator()
         {
             while (TestShouldKeepRunning())
             {
@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var power = GetNewPower(false);
                 var bonus = Random.Next(5) + 1;
                 var quantity = Random.Next(10) + 1;
-                var abilities = SpecialAbilitiesGenerator.GenerateFor(types, power, bonus, quantity);
+                var abilities = SpecialAbilitiesGenerator.GenerateWith(types, power, bonus, quantity);
 
                 Assert.That(abilities.Count(), Is.AtLeast(1));
 
@@ -47,29 +47,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 {
                     Assert.That(ability.Name, Is.Not.Empty);
                     Assert.That(ability.BonusEquivalent, Is.InRange<Int32>(0, 5));
-                    Assert.That(ability.Strength, Is.Not.Negative);
-                    Assert.That(ability.AttributeRequirements, Is.Not.Null);
-                    Assert.That(ability.CoreName, Is.Not.Empty);
-                }
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void StressedSpecialAbilitiesGeneratorSingular()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var types = GetNewTypes(true);
-                var power = GetNewPower(false);
-                var ability = SpecialAbilitiesGenerator.GenerateFor(types, power);
-
-                Assert.That(ability.Name, Is.Not.Empty);
-
-                if (ability.Name != "BonusSpecialAbility")
-                {
-                    Assert.That(ability.BonusEquivalent, Is.Not.Negative);
                     Assert.That(ability.Strength, Is.Not.Negative);
                     Assert.That(ability.AttributeRequirements, Is.Not.Null);
                     Assert.That(ability.CoreName, Is.Not.Empty);
