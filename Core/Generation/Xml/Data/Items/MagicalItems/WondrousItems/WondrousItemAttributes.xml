@@ -2,217 +2,190 @@
 
 <attributes>
     <object>
-        <name>Acid resistance</name>
-        <attribute>Armor</attribute>
+        <name>Bead of force</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Cold resistance</name>
-        <attribute>Armor</attribute>
+        <name>Bracelet of friends</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Electricity resistance</name>
-        <attribute>Armor</attribute>
+        <name>Brooch of shielding</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Fire resistance</name>
-        <attribute>Armor</attribute>
+        <name>Candle of invocation</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Sonic resistance</name>
-        <attribute>Armor</attribute>
+        <name>Candle of truth</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Anarchic</name>
-        <attribute>Weapon</attribute>
+        <name>Chime of opening</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Animated</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <name>Clay golem manual</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Arrow catching</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <name>Deck of illusions</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Arrow deflection</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <name>Dust of tracelessness</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Axiomatic</name>
-        <attribute>Weapon</attribute>
+        <name>Dust of appearance</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Bane</name>
-        <attribute>Weapon</attribute>
+        <name>Dust of disappearance</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Bashing</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
+        <name>Dust of illusion</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Blinding</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <name>Elemental gem</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Brilliant energy</name>
-        <attribute>Weapon</attribute>
+        <name>Elixer of fire breath</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Dancing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Elixer of hiding</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Defending</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Elixer of love</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Disruption</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Bludgeoning</attribute>
+        <name>Elixer of sneaking</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Distance</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
+        <name>Elixer of swimming</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Etherealness</name>
-        <attribute>Armor</attribute>
+        <name>Elixer of truth</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Flaming</name>
-        <attribute>Weapon</attribute>
+        <name>Elixer of vision</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Fortification</name>
-        <attribute>Armor</attribute>
+        <name>Flesh golem manual</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Frost</name>
-        <attribute>Weapon</attribute>
+        <name>Gem of brightness</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Glamered</name>
-        <attribute>Armor</attribute>
+        <name>Greater stone golem manual</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Holy</name>
-        <attribute>Weapon</attribute>
+        <name>Incense of meditation</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Invulnerability</name>
-        <attribute>Armor</attribute>
+        <name>Iron golem manual</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Keen</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
+        <name>Keoghtom's ointment</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Ki focus</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Manual of bodily health</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Merciful</name>
-        <attribute>Weapon</attribute>
+        <name>Manual of gainful exercise</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Mighty cleaving</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Manual of quickness in action</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Reflecting</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <name>Tome of understanding</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Returning</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
-        <attribute>Thrown</attribute>
+        <name>Tome of leadership and influence</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Seeking</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
+        <name>Tome of clear thought</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Shadow</name>
-        <attribute>Armor</attribute>
+        <name>Quaal's feather token</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Shock</name>
-        <attribute>Weapon</attribute>
+        <name>Robe of bones</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Silent moves</name>
-        <attribute>Armor</attribute>
+        <name>Robe of useful items</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Slick</name>
-        <attribute>Armor</attribute>
+        <name>Salve of slipperiness</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Speed</name>
-        <attribute>Weapon</attribute>
+        <name>Scarab of protection</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
-        <name>Spell resistance</name>
-        <attribute>Armor</attribute>
+        <name>Shrouds of disintegration</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Spell storing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Silversheen</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Throwing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Sovereign glue</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Thundering</name>
-        <attribute>Weapon</attribute>
+        <name>Stone golem manual</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Undead controlling</name>
-        <attribute>Armor</attribute>
+        <name>Stone salve</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Unholy</name>
-        <attribute>Weapon</attribute>
+        <name>Unguent of timelessness</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Wounding</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <name>Nolzur's marvelous pigments</name>
+        <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Vicious</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-    </object>
-    <object>
-        <name>Vorpal</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
-        <attribute>Slashing</attribute>
-    </object>
-    <object>
-        <name>Wild</name>
-        <attribute>Armor</attribute>
+        <name>Universal solvent</name>
+        <attribute>One-time use</attribute>
     </object>
 </attributes>

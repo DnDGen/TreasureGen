@@ -1,4 +1,5 @@
 ﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators;
@@ -14,16 +15,18 @@ namespace EquipmentGen.Core.Generation.Factories
         private IIntelligenceGenerator intelligenceGenerator;
         private IAttributesProvider attributesProvider;
         private IChargesGenerator chargesGenerator;
+        private IDice dice;
 
         public MagicalItemGeneratorFactory(IPercentileResultProvider percentileResultProvider,
             IMagicalItemTraitsGenerator magicalItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator)
+            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
             this.attributesProvider = attributesProvider;
             this.chargesGenerator = chargesGenerator;
+            this.dice = dice;
         }
 
         public IMagicalItemGenerator CreateWith(String type)
@@ -37,7 +40,7 @@ namespace EquipmentGen.Core.Generation.Factories
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator();
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileResultProvider,
-                    magicalItemTraitsGenerator, intelligenceGenerator, attributesProvider, chargesGenerator);
+                    magicalItemTraitsGenerator, intelligenceGenerator, attributesProvider, chargesGenerator, dice);
                 default: throw new ArgumentOutOfRangeException(type);
             }
         }

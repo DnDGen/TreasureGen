@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -14,16 +16,18 @@ namespace EquipmentGen.Core.Generation.Generators
         private IIntelligenceGenerator intelligenceGenerator;
         private IAttributesProvider attributesProvider;
         private IChargesGenerator chargesGenerator;
+        private IDice dice;
 
         public WondrousItemGenerator(IPercentileResultProvider percentileResultProvider,
             IMagicalItemTraitsGenerator traitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator)
+            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.traitsGenerator = traitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
             this.attributesProvider = attributesProvider;
             this.chargesGenerator = chargesGenerator;
+            this.dice = dice;
         }
 
         public Item GenerateAtPower(String power)
@@ -50,6 +54,21 @@ namespace EquipmentGen.Core.Generation.Generators
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);
 
+            if (item.Name == "Horn of Valhalla")
+            {
+                var hornType = percentileResultProvider.GetResultFrom("HornOfValhallaTypes");
+                item.Name = String.Format("{0} ({1})", item.Name, hornType);
+            }
+            else if (item.Name == "Iron flask")
+            {
+                var contents = percentileResultProvider.GetResultFrom("IronFlaskContents");
+                item.Name = String.Format("{0} ({1})", item.Name, contents);
+            }
+            else if (item.Name == "Robe of useful items")
+            {
+                item.Name = GenerateExtraItemsInRobeOfUsefulItems();
+            }
+
             return item;
         }
 
@@ -72,6 +91,21 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             var bonus = name.Split('+').Last();
             return Convert.ToInt32(bonus);
+        }
+
+        private String GenerateExtraItemsInRobeOfUsefulItems()
+        {
+            var extraItems = new List<String>();
+            var quantity = dice.d4(4);
+
+            while (quantity-- > 0)
+            {
+                var item = percentileResultProvider.GetResultFrom("RobeOfUsefulItemsExtraItems");
+                extraItems.Add(item);
+            }
+
+            var extraItemsString = String.Join(", ", extraItems);
+            return String.Format("Robe of useful items (extra items: {0})", extraItemsString);
         }
     }
 }

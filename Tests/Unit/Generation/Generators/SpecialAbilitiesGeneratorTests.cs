@@ -115,18 +115,19 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SetAbilityByResult()
         {
-            var abilityResult = new SpecialAbility();
-            abilityResult.BonusEquivalent = 9;
-            abilityResult.CoreName = "core name";
-            abilityResult.Name = "name";
-            abilityResult.Strength = 266;
-            abilityResult.AttributeRequirements = attributes;
+            var ability = new SpecialAbility();
+            ability.BonusEquivalent = 9;
+            ability.CoreName = "core name";
+            ability.Name = "name";
+            ability.Strength = 266;
+            ability.AttributeRequirements = attributes;
 
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(abilityResult.Name);
-            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(abilityResult.Name)).Returns(abilityResult);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmorSpecialAbilities")).Returns(ability.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(ability.Name)).Returns(ability);
 
-            var ability = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
-            Assert.That(ability, Is.EqualTo(abilityResult));
+            var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
+            Assert.That(abilities.First(), Is.EqualTo(ability));
+            Assert.That(abilities.Count(), Is.EqualTo(1));
         }
 
         [Test]

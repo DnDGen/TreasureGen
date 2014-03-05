@@ -1,4 +1,5 @@
 ﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
@@ -23,9 +24,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             var mockAttributesProvider = new Mock<IAttributesProvider>();
             var mockChargesGenerator = new Mock<IChargesGenerator>();
+            var mockDice = new Mock<IDice>();
 
             factory = new MagicalItemGeneratorFactory(mockPercentileResultProvider.Object, mockTraitsGenerator.Object,
-                mockIntelligenceGenerator.Object, mockAttributesProvider.Object, mockChargesGenerator.Object);
+                mockIntelligenceGenerator.Object, mockAttributesProvider.Object, mockChargesGenerator.Object,
+                mockDice.Object);
         }
 
         [Test]

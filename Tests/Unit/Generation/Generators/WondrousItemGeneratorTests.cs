@@ -39,7 +39,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileResultProvider.Object,
                 mockTraitsGenerator.Object, mockIntelligenceGenerator.Object, mockAttributesProvider.Object,
-                mockChargesGenerator.Object);
+                mockChargesGenerator.Object, mockDice.Object);
         }
 
         [Test]
@@ -149,10 +149,10 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void HornOfValhallaGetsType()
         {
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Horn of Valhalla");
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("HornOfValhallaTypes")).Returns("iron horn of valhalla");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("HornOfValhallaTypes")).Returns("metallic");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("iron horn of valhalla"));
+            Assert.That(item.Name, Is.EqualTo("Horn of Valhalla (metallic)"));
         }
 
         [Test]
