@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class MundaneItemGeneratorTests : StressTest
+    public class MundaneItemGeneratorTests : StressTests
     {
         [Inject]
         public IMundaneItemGenerator MundaneItemGenerator { get; set; }

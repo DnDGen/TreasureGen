@@ -7,17 +7,17 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class WondrousItemGeneratorTests : StressTests
+    public class RingGeneratorTests : StressTests
     {
         [Inject]
         public IMagicalItemGeneratorFactory MagicalItemGeneratorFactory { get; set; }
 
-        private IMagicalItemGenerator wondrousItemGenerator;
+        private IMagicalItemGenerator ringGenerator;
 
         [SetUp]
         public void Setup()
         {
-            wondrousItemGenerator = MagicalItemGeneratorFactory.CreateWith(ItemTypeConstants.WondrousItem);
+            ringGenerator = MagicalItemGeneratorFactory.CreateWith(ItemTypeConstants.Ring);
 
             StartTest();
         }
@@ -29,12 +29,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedWondrousItemGenerator()
+        public void StressedRingGenerator()
         {
             while (TestShouldKeepRunning())
             {
                 var power = GetNewPower(false);
-                var item = wondrousItemGenerator.GenerateAtPower(power);
+                var item = ringGenerator.GenerateAtPower(power);
 
                 Assert.That(item.Name, Is.Not.Empty);
                 Assert.That(item.Traits, Is.Not.Null);

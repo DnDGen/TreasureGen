@@ -55,6 +55,7 @@
     <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\RingGeneratorTests.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneWeaponGeneratorTests.cs" />

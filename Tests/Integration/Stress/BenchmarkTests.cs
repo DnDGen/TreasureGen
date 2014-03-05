@@ -3,7 +3,7 @@
 namespace EquipmentGen.Tests.Integration.Stress
 {
     [TestFixture]
-    public class BenchmarkTests : StressTest
+    public class BenchmarkTests : StressTests
     {
         [SetUp]
         public void Setup()

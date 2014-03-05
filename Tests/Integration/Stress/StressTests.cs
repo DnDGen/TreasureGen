@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress
 {
     [TestFixture]
-    public abstract class StressTest : IntegrationTest
+    public abstract class StressTests : IntegrationTest
     {
         [Inject]
         public Stopwatch Stopwatch { get; set; }

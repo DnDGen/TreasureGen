@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class MundaneWeaponGeneratorTests : StressTest
+    public class MundaneWeaponGeneratorTests : StressTests
     {
         [Inject]
         public IMundaneGearGeneratorFactory mundaneGearGeneratorFactory { get; set; }

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class MagicalArmorGeneratorTests : StressTest
+    public class MagicalArmorGeneratorTests : StressTests
     {
         [Inject]
         public IMagicalGearGeneratorFactory MagicalGearGeneratorFactory { get; set; }

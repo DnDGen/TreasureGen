@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 {
     [TestFixture]
-    public class SpellGeneratorTests : StressTest
+    public class SpellGeneratorTests : StressTests
     {
         [Inject]
         public ISpellGenerator SpellGenerator { get; set; }
