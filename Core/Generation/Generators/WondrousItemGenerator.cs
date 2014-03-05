@@ -33,8 +33,10 @@ namespace EquipmentGen.Core.Generation.Generators
 
             var item = new Item();
             item.Name = result;
-            item.Attributes = attributesProvider.GetAttributesFor(item.Name, "WondrousItemAttributes");
             item.Magic[Magic.IsMagical] = true;
+
+            var attributeName = GetNameForAttributes(item.Name);
+            item.Attributes = attributesProvider.GetAttributesFor(attributeName, "WondrousItemAttributes");
 
             if (item.Name.Contains("+"))
                 item.Magic[Magic.Bonus] = GetBonus(item.Name);
@@ -49,6 +51,21 @@ namespace EquipmentGen.Core.Generation.Generators
             item.Traits.AddRange(traits);
 
             return item;
+        }
+
+        private String GetNameForAttributes(String itemName)
+        {
+            var attributeName = itemName.Split(',').First();
+
+            var typeIndex = attributeName.IndexOf(" type ");
+            if (typeIndex > 0)
+                attributeName = attributeName.Remove(typeIndex);
+
+            var bonusIndex = attributeName.IndexOf(" +");
+            if (bonusIndex > 0)
+                attributeName = attributeName.Remove(bonusIndex);
+
+            return attributeName;
         }
 
         private Int32 GetBonus(String name)
