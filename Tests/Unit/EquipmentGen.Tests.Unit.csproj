@@ -163,6 +163,8 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorArmorTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldTypeTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MajorRingsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MediumRingsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityDataTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityAttributesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MajorItemsTests.cs" />

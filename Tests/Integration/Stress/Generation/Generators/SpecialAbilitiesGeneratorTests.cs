@@ -29,10 +29,16 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var types = GetNewTypes(true);
+                var types = GetNewAttributes(true);
                 var power = GetNewPower(false);
                 var bonus = Random.Next(5) + 1;
                 var quantity = Random.Next(10) + 1;
+
+                Console.WriteLine("Attributes: {0}", String.Join(",", types));
+                Console.WriteLine("Power: {0}", power);
+                Console.WriteLine("Bonus: {0}", bonus);
+                Console.WriteLine("Quantity: {0}", quantity);
+
                 var abilities = SpecialAbilitiesGenerator.GenerateWith(types, power, bonus, quantity);
 
                 Assert.That(abilities.Count(), Is.AtLeast(1));

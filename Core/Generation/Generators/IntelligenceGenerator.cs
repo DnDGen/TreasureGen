@@ -14,7 +14,7 @@ namespace EquipmentGen.Core.Generation.Generators
             throw new NotImplementedException();
         }
 
-        public Intelligence GenerateFor(String itemType, Dictionary<Magic, Object> magic)
+        public Intelligence GenerateFor(Dictionary<Magic, Object> magic)
         {
             throw new NotImplementedException();
         }

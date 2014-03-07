@@ -5,7 +5,7 @@ namespace EquipmentGen.Core.Generation.Generators
 {
     public class ChargesGenerator : IChargesGenerator
     {
-        public Int32 GenerateChargesFor(String itemType, String name)
+        public Int32 GenerateFor(String itemType, String name)
         {
             throw new NotImplementedException();
         }

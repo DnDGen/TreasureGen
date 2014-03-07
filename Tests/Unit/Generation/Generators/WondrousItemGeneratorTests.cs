@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
                 It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, It.IsAny<Dictionary<Magic, Object>>()))
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
                 .Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
@@ -89,7 +89,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
                 It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, It.IsAny<Dictionary<Magic, Object>>()))
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
                 .Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
@@ -102,7 +102,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var attributes = new[] { "type 1", "type 2" };
             mockAttributesProvider.Setup(p => p.GetAttributesFor(name, "WondrousItemAttributes")).Returns(attributes);
 
-            mockChargesGenerator.Setup(g => g.GenerateChargesFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Charges));
@@ -114,7 +114,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var attributes = new[] { AttributeConstants.Charged };
             mockAttributesProvider.Setup(p => p.GetAttributesFor(name, "WondrousItemAttributes")).Returns(attributes);
 
-            mockChargesGenerator.Setup(g => g.GenerateChargesFor(ItemTypeConstants.WondrousItem, name)).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, name)).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             var charges = Convert.ToInt32(item.Magic[Magic.Charges]);
@@ -202,6 +202,28 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: item 1, item 2)"));
+        }
+
+        [Test]
+        public void CubicGateGetsPlanes()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Cubic gate");
+            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom("Planes")).Returns("plane 1").Returns("plane 2")
+                .Returns("plane 3").Returns("plane 4").Returns("plane 5");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Cubic gate (Material plane, plane 1, plane 2, plane 3, plane 4, plane 5)"));
+        }
+
+        [Test]
+        public void CubicGateGetsDistinctPlanes()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerWondrousItems")).Returns("Cubic gate");
+            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom("Planes")).Returns("plane 1").Returns("plane 2")
+                .Returns("plane 3").Returns("plane 4").Returns("plane 4").Returns("plane 5");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Cubic gate (Material plane, plane 1, plane 2, plane 3, plane 4, plane 5)"));
         }
     }
 }

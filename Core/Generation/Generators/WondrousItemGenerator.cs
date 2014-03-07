@@ -46,10 +46,10 @@ namespace EquipmentGen.Core.Generation.Generators
                 item.Magic[Magic.Bonus] = GetBonus(item.Name);
 
             if (item.Attributes.Any(a => a == AttributeConstants.Charged))
-                item.Magic[Magic.Charges] = chargesGenerator.GenerateChargesFor(ItemTypeConstants.WondrousItem, item.Name);
+                item.Magic[Magic.Charges] = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Name);
 
             if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.Magic))
-                item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Magic);
+                item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(item.Magic);
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);
@@ -66,7 +66,15 @@ namespace EquipmentGen.Core.Generation.Generators
             }
             else if (item.Name == "Robe of useful items")
             {
-                item.Name = GenerateExtraItemsInRobeOfUsefulItems();
+                var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
+                var extraItemsString = String.Join(", ", extraItems);
+                item.Name = String.Format("{0} (extra items: {1})", item.Name, extraItemsString);
+            }
+            else if (item.Name == "Cubic gate")
+            {
+                var planes = GeneratePlanesForCubicGate();
+                var planesString = String.Join(", ", planes);
+                item.Name = String.Format("{0} ({1})", item.Name, planesString);
             }
 
             return item;
@@ -93,7 +101,7 @@ namespace EquipmentGen.Core.Generation.Generators
             return Convert.ToInt32(bonus);
         }
 
-        private String GenerateExtraItemsInRobeOfUsefulItems()
+        private IEnumerable<String> GenerateExtraItemsInRobeOfUsefulItems()
         {
             var extraItems = new List<String>();
             var quantity = dice.d4(4);
@@ -104,8 +112,22 @@ namespace EquipmentGen.Core.Generation.Generators
                 extraItems.Add(item);
             }
 
-            var extraItemsString = String.Join(", ", extraItems);
-            return String.Format("Robe of useful items (extra items: {0})", extraItemsString);
+            return extraItems;
+        }
+
+        private IEnumerable<String> GeneratePlanesForCubicGate()
+        {
+            var planes = new List<String>();
+            planes.Add("Material plane");
+
+            while (planes.Count < 6)
+            {
+                var plane = percentileResultProvider.GetResultFrom("Planes");
+                if (!planes.Contains(plane))
+                    planes.Add(plane);
+            }
+
+            return planes;
         }
     }
 }

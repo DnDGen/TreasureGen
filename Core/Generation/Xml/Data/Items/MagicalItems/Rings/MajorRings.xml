@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Minor energy resistance</content>
+    <upper>2</upper>
+  </object>
+  <object>
+    <lower>3</lower>
+    <content>Protection +3</content>
+    <upper>7</upper>
+  </object>
+  <object>
+    <lower>8</lower>
+    <content>Minor spell storing</content>
+    <upper>10</upper>
+  </object>
+  <object>
+    <lower>11</lower>
+    <content>Invisibility</content>
+    <upper>15</upper>
+  </object>
+  <object>
+    <lower>16</lower>
+    <content>Wizardry (I)</content>
+    <upper>19</upper>
+  </object>
+  <object>
+    <lower>20</lower>
+    <content>Evasion</content>
+    <upper>25</upper>
+  </object>
+  <object>
+    <lower>26</lower>
+    <content>X-ray vision</content>
+    <upper>28</upper>
+  </object>
+  <object>
+    <lower>29</lower>
+    <content>Blinking</content>
+    <upper>32</upper>
+  </object>
+  <object>
+    <lower>33</lower>
+    <content>Major energy resistance</content>
+    <upper>39</upper>
+  </object>
+  <object>
+    <lower>40</lower>
+    <content>Protection +4</content>
+    <upper>49</upper>
+  </object>
+  <object>
+    <lower>50</lower>
+    <content>Wizardry (II)</content>
+    <upper>55</upper>
+  </object>
+  <object>
+    <lower>56</lower>
+    <content>Freedom of movement</content>
+    <upper>60</upper>
+  </object>
+  <object>
+    <lower>61</lower>
+    <content>Greater energy resistance</content>
+    <upper>63</upper>
+  </object>
+  <object>
+    <lower>64</lower>
+    <content>Friend shield (pair)</content>
+    <upper>65</upper>
+  </object>
+  <object>
+    <lower>66</lower>
+    <content>Protection +5</content>
+    <upper>70</upper>
+  </object>
+  <object>
+    <lower>71</lower>
+    <content>Shooting stars</content>
+    <upper>74</upper>
+  </object>
+  <object>
+    <lower>75</lower>
+    <content>Spell storing</content>
+    <upper>79</upper>
+  </object>
+  <object>
+    <lower>80</lower>
+    <content>Wizardry (III)</content>
+    <upper>83</upper>
+  </object>
+  <object>
+    <lower>84</lower>
+    <content>Telekinesis</content>
+    <upper>86</upper>
+  </object>
+  <object>
+    <lower>87</lower>
+    <content>Regeneration</content>
+    <upper>88</upper>
+  </object>
+  <object>
+    <lower>89</lower>
+    <content>Three wishes</content>
+    <upper>89</upper>
+  </object>
+  <object>
+    <lower>90</lower>
+    <content>Spell turning</content>
+    <upper>92</upper>
+  </object>
+  <object>
+    <lower>93</lower>
+    <content>Wizardry (IV)</content>
+    <upper>94</upper>
+  </object>
+    <object>
+        <lower>95</lower>
+        <content>Djinni calling</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Elemental command (air)</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Elemental command (earth)</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Elemental command (fire)</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Elemental command (water)</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>Major spell storing</content>
+        <upper>100</upper>
+    </object>
+</percentile>

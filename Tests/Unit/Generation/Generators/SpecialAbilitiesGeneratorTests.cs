@@ -366,7 +366,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var spellStoring = CreateSpecialAbility("Spell storing");
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(spellStoring);
-            mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
+            mockSpellGenerator.Setup(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
 
             for (var roll = 1; roll < 51; roll++)
             {
@@ -383,7 +383,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var spellStoring = CreateSpecialAbility("Spell storing");
             mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(It.IsAny<String>())).Returns(spellStoring);
-            mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
+            mockSpellGenerator.Setup(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
 
             for (var roll = 51; roll <= 100; roll++)
             {
@@ -404,7 +404,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
 
             mockDice.Setup(d => d.d3(1)).Returns(9266);
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockSpellGenerator.Setup(g => g.GenerateOfTypeAtLevel("spell type", 9266)).Returns("spell");
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
             var ability = abilities.First();
@@ -445,6 +445,40 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockPercentileResultProvider.Setup(p => p.GetAllResultsFrom(It.IsAny<String>())).Returns(Enumerable.Empty<String>());
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
             Assert.That(abilities, Is.Empty);
+        }
+
+        [Test]
+        public void StopAfterThreeRepeatAbilities()
+        {
+            var ability = CreateSpecialAbility("ability");
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(ability.Name)).Returns(ability);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(ability.Name);
+
+            var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
+            Assert.That(abilities.First(), Is.EqualTo(ability));
+            Assert.That(abilities.Count(), Is.EqualTo(1));
+            mockPercentileResultProvider.Verify(p => p.GetResultFrom(It.IsAny<String>()), Times.Exactly(4));
+        }
+
+        [Test]
+        public void StopAfterThreeWeakerAbilities()
+        {
+            var strongAbility = CreateSpecialAbility("strong ability");
+            strongAbility.CoreName = "ability";
+            strongAbility.Strength = 2;
+            var weakAbility = CreateSpecialAbility("weak ability");
+            weakAbility.CoreName = "ability";
+            weakAbility.Strength = 1;
+
+            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom(It.IsAny<String>())).Returns(strongAbility.Name)
+                .Returns(weakAbility.Name).Returns(weakAbility.Name).Returns(weakAbility.Name);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(strongAbility.Name)).Returns(strongAbility);
+            mockSpecialAbilityDataProvider.Setup(p => p.GetDataFor(weakAbility.Name)).Returns(weakAbility);
+
+            var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
+            Assert.That(abilities, Contains.Item(strongAbility));
+            Assert.That(abilities.Count(), Is.EqualTo(1));
+            mockPercentileResultProvider.Verify(p => p.GetResultFrom(It.IsAny<String>()), Times.Exactly(4));
         }
     }
 }

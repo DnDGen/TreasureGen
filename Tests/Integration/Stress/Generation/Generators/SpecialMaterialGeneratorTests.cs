@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         {
             while (TestShouldKeepRunning())
             {
-                var types = GetNewTypes(false);
+                var types = GetNewAttributes(false);
                 var material = SpecialMaterialGenerator.GenerateFor(types);
 
                 Assert.That(material, Is.Not.Null);

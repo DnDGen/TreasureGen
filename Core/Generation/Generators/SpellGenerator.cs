@@ -10,7 +10,12 @@ namespace EquipmentGen.Core.Generation.Generators
             throw new NotImplementedException();
         }
 
-        public String GenerateOfTypeAtLevel(String spellType, Int32 level)
+        public Int32 GenerateLevel(String power)
+        {
+            throw new NotImplementedException();
+        }
+
+        public String Generate(String spellType, Int32 level)
         {
             throw new NotImplementedException();
         }

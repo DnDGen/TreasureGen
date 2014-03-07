@@ -155,7 +155,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(),
                 It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Armor, It.IsAny<Dictionary<Magic, Object>>()))
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
                 .Returns(intelligence);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");

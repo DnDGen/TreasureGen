@@ -44,61 +44,65 @@ namespace EquipmentGen.Tests.Integration.Common
             }
         }
 
-        protected IEnumerable<String> GetNewTypes(Boolean allowNoMaterial)
+        protected IEnumerable<String> GetNewAttributes(Boolean allowNoMaterial)
         {
-            var types = new List<String>();
+            var attributes = new List<String>();
 
             switch (Random.Next(2))
             {
-                case 0: types.Add(ItemTypeConstants.Armor); break;
-                case 1: types.Add(ItemTypeConstants.Weapon); break;
+                case 0: attributes.Add(ItemTypeConstants.Armor); break;
+                case 1: attributes.Add(ItemTypeConstants.Weapon); break;
             }
 
-            if (types.Contains(ItemTypeConstants.Weapon))
+            if (attributes.Contains(ItemTypeConstants.Weapon))
             {
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(AttributeConstants.Melee); break;
-                    case 1: types.Add(AttributeConstants.Ranged); break;
+                    case 0: attributes.Add(AttributeConstants.Melee); break;
+                    case 1: attributes.Add(AttributeConstants.Ranged); break;
                     case 2:
-                        types.Add(AttributeConstants.Melee);
-                        types.Add(AttributeConstants.Ranged);
+                        attributes.Add(AttributeConstants.Melee);
+                        attributes.Add(AttributeConstants.Ranged);
                         break;
                 }
 
                 switch (Random.Next(4))
                 {
-                    case 0: types.Add(AttributeConstants.Metal); break;
-                    case 1: types.Add(AttributeConstants.Wood); break;
+                    case 0: attributes.Add(AttributeConstants.Metal); break;
+                    case 1: attributes.Add(AttributeConstants.Wood); break;
                     case 2:
-                        types.Add(AttributeConstants.Metal);
-                        types.Add(AttributeConstants.Wood);
+                        attributes.Add(AttributeConstants.Metal);
+                        attributes.Add(AttributeConstants.Wood);
                         break;
                     case 3:
                         if (allowNoMaterial)
                             break;
-                        types.Add(AttributeConstants.Metal);
+                        attributes.Add(AttributeConstants.Metal);
                         break;
                 }
             }
 
-            if (types.Contains(ItemTypeConstants.Armor))
+            if (attributes.Contains(ItemTypeConstants.Armor))
             {
-                switch (Random.Next(2))
+                switch (Random.Next(3))
                 {
-                    case 0: types.Add(AttributeConstants.Shield); break;
+                    case 0: attributes.Add(AttributeConstants.Shield); break;
                     case 1: break;
+                    case 2:
+                        attributes.Add(AttributeConstants.Shield);
+                        attributes.Add(AttributeConstants.NotTower);
+                        break;
                 }
 
                 switch (Random.Next(3))
                 {
-                    case 0: types.Add(AttributeConstants.Metal); break;
-                    case 1: types.Add(AttributeConstants.Wood); break;
+                    case 0: attributes.Add(AttributeConstants.Metal); break;
+                    case 1: attributes.Add(AttributeConstants.Wood); break;
                     case 2: break;
                 }
             }
 
-            return types;
+            return attributes;
         }
     }
 }

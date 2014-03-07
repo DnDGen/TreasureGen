@@ -72,7 +72,7 @@ namespace EquipmentGen.Core.Generation.Generators
 
             if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes, armor.Magic))
             {
-                var intelligence = intelligenceGenerator.GenerateFor(ItemTypeConstants.Armor, armor.Magic);
+                var intelligence = intelligenceGenerator.GenerateFor(armor.Magic);
                 armor.Magic.Add(Magic.Intelligence, intelligence);
             }
 

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using EquipmentGen.Core.Data.Items.Constants;
+﻿using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -40,7 +39,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(armor.Traits, Is.Not.Null);
                 Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
                 Assert.That(armor.Quantity, Is.EqualTo(1));
-                Assert.That(armor.Magic, Is.Not.Empty);
+                Assert.That(armor.Magic, Is.Not.Null);
             }
 
             AssertIterations();

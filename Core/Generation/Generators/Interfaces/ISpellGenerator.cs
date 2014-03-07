@@ -5,6 +5,7 @@ namespace EquipmentGen.Core.Generation.Generators.Interfaces
     public interface ISpellGenerator
     {
         String GenerateType();
-        String GenerateOfTypeAtLevel(String spellType, Int32 level);
+        Int32 GenerateLevel(String power);
+        String Generate(String spellType, Int32 level);
     }
 }

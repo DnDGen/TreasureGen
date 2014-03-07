@@ -33,12 +33,13 @@ namespace EquipmentGen.Core.Generation.Generators
                 return Enumerable.Empty<SpecialAbility>();
 
             var tableName = GetTableName(attributes, power);
-            var potentialAbilitiesCount = GetPotentialAbilitiesFor(attributes, tableName);
+            var potentialAbilitiesCount = GetPotentialAbilityCountFor(attributes, tableName);
 
             var abilities = new List<SpecialAbility>();
             var bonusSum = magicalBonus;
+            var invalidCount = 0;
 
-            while (quantity > 0 && bonusSum < 10 && abilities.Count < potentialAbilitiesCount)
+            while (quantity > 0 && bonusSum < 10 && abilities.Count < potentialAbilitiesCount && invalidCount < 3)
             {
                 var ability = GenerateAbilityWith(attributes, tableName);
                 if (ability.Name == "BonusSpecialAbility")
@@ -48,13 +49,19 @@ namespace EquipmentGen.Core.Generation.Generators
                 }
 
                 if (bonusSum + ability.BonusEquivalent > 10)
+                {
+                    invalidCount++;
                     continue;
+                }
 
                 if (abilities.Any(a => a.CoreName == ability.CoreName))
                 {
                     var previousAbility = abilities.First(a => a.CoreName == ability.CoreName);
                     if (previousAbility.Strength >= ability.Strength)
+                    {
+                        invalidCount++;
                         continue;
+                    }
 
                     bonusSum -= previousAbility.BonusEquivalent;
                     abilities.Remove(previousAbility);
@@ -89,10 +96,9 @@ namespace EquipmentGen.Core.Generation.Generators
             throw new ArgumentException("invalid attributes for special abilities: {0}", attributesString);
         }
 
-        private Int32 GetPotentialAbilitiesFor(IEnumerable<String> attributes, String tableName)
+        private Int32 GetPotentialAbilityCountFor(IEnumerable<String> attributes, String tableName)
         {
             var abilityNames = percentileResultProvider.GetAllResultsFrom(tableName);
-            var potentialAbilitiesCount = 0;
             var usedNames = new List<String>();
 
             foreach (var abilityName in abilityNames)
@@ -103,13 +109,10 @@ namespace EquipmentGen.Core.Generation.Generators
                 var ability = specialAbilityDataProvider.GetDataFor(abilityName);
 
                 if (!usedNames.Contains(ability.CoreName) && AllAttributeRequirementsMet(ability.AttributeRequirements, attributes))
-                {
                     usedNames.Add(ability.CoreName);
-                    potentialAbilitiesCount++;
-                }
             }
 
-            return potentialAbilitiesCount;
+            return usedNames.Count;
         }
 
         private Boolean AllAttributeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> attributes)
@@ -119,18 +122,17 @@ namespace EquipmentGen.Core.Generation.Generators
 
         private SpecialAbility GenerateAbilityWith(IEnumerable<String> attributes, String tableName)
         {
-            var abilityName = percentileResultProvider.GetResultFrom(tableName);
+            SpecialAbility ability;
 
-            if (abilityName == "BonusSpecialAbility")
-                return new SpecialAbility { Name = abilityName };
-
-            var ability = specialAbilityDataProvider.GetDataFor(abilityName);
-
-            while (!AllAttributeRequirementsMet(ability.AttributeRequirements, attributes))
+            do
             {
-                abilityName = percentileResultProvider.GetResultFrom(tableName);
+                var abilityName = percentileResultProvider.GetResultFrom(tableName);
+
+                if (abilityName == "BonusSpecialAbility")
+                    return new SpecialAbility { Name = abilityName };
+
                 ability = specialAbilityDataProvider.GetDataFor(abilityName);
-            }
+            } while (!AllAttributeRequirementsMet(ability.AttributeRequirements, attributes));
 
             if (ability.CoreName == "Bane")
             {
@@ -141,7 +143,7 @@ namespace EquipmentGen.Core.Generation.Generators
             {
                 var level = dice.d3();
                 var spellType = spellGenerator.GenerateType();
-                var spell = spellGenerator.GenerateOfTypeAtLevel(spellType, level);
+                var spell = spellGenerator.Generate(spellType, level);
                 ability.Name = String.Format("Spell storing (contains {0})", spell);
             }
 

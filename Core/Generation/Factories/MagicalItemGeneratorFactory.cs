@@ -16,10 +16,11 @@ namespace EquipmentGen.Core.Generation.Factories
         private IAttributesProvider attributesProvider;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
+        private ISpellGenerator spellGenerator;
 
         public MagicalItemGeneratorFactory(IPercentileResultProvider percentileResultProvider,
             IMagicalItemTraitsGenerator magicalItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice)
+            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
@@ -27,6 +28,7 @@ namespace EquipmentGen.Core.Generation.Factories
             this.attributesProvider = attributesProvider;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
+            this.spellGenerator = spellGenerator;
         }
 
         public IMagicalItemGenerator CreateWith(String type)
@@ -34,7 +36,8 @@ namespace EquipmentGen.Core.Generation.Factories
             switch (type)
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator();
-                case ItemTypeConstants.Ring: return new RingGenerator();
+                case ItemTypeConstants.Ring: return new RingGenerator(percentileResultProvider, attributesProvider,
+                    magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator();
                 case ItemTypeConstants.Staff: return new StaffGenerator();

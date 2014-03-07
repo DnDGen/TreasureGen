@@ -36,13 +36,27 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
+        public void StressedSpellGeneratorSpellLevel()
+        {
+            while (TestShouldKeepRunning())
+            {
+                var power = GetNewPower(false);
+                var level = SpellGenerator.GenerateLevel(power);
+                Assert.That(level, Is.InRange<Int32>(0, 9));
+            }
+
+            AssertIterations();
+        }
+
+        [Test]
         public void StressedSpellGeneratorSpell()
         {
             while (TestShouldKeepRunning())
             {
                 var spellType = SpellGenerator.GenerateType();
-                var level = Random.Next(9) + 1;
-                var spell = SpellGenerator.GenerateOfTypeAtLevel(spellType, level);
+                var power = GetNewPower(false);
+                var level = SpellGenerator.GenerateLevel(power);
+                var spell = SpellGenerator.Generate(spellType, level);
 
                 Assert.That(spell, Is.Not.Empty);
             }

@@ -30,6 +30,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var tool = ToolGenerator.Generate();
 
                 Assert.That(tool.Name, Is.Not.Empty);
+                Assert.That(tool.Attributes, Is.Empty);
+                Assert.That(tool.Magic, Is.Empty);
+                Assert.That(tool.Quantity, Is.EqualTo(1));
+                Assert.That(tool.Traits, Is.Empty);
             }
 
             AssertIterations();
