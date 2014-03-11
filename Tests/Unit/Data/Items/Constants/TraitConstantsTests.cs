@@ -59,5 +59,17 @@ namespace EquipmentGen.Tests.Unit.Data.Items.Constants
         {
             Assert.That(TraitConstants.AlchemicalSilver, Is.EqualTo("Alchemical silver"));
         }
+
+        [Test]
+        public void MarkingsConstant()
+        {
+            Assert.That(TraitConstants.Markings, Is.EqualTo("Markings provide a clue to its function"));
+        }
+
+        [Test]
+        public void ShedsLightConstant()
+        {
+            Assert.That(TraitConstants.ShedsLight, Is.EqualTo("Sheds light"));
+        }
     }
 }

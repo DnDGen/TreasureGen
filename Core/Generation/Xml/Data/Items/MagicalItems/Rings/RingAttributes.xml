@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+  <object>
+    <name>Ram</name>
+    <attribute>Charged</attribute>
+      <attribute>One-time use</attribute>
+  </object>
+    <object>
+        <name>Three wishes</name>
+        <attribute>Charged</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+</attributes>

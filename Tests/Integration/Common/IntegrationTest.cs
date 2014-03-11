@@ -104,5 +104,20 @@ namespace EquipmentGen.Tests.Integration.Common
 
             return attributes;
         }
+
+        protected String GetNewMagicalItemType()
+        {
+            switch (Random.Next(7))
+            {
+                case 0: return ItemTypeConstants.Armor;
+                case 1: return ItemTypeConstants.Ring;
+                case 2: return ItemTypeConstants.Rod;
+                case 3: return ItemTypeConstants.Staff;
+                case 4: return ItemTypeConstants.Wand;
+                case 5: return ItemTypeConstants.Weapon;
+                case 6: return ItemTypeConstants.WondrousItem;
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

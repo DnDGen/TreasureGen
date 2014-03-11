@@ -67,6 +67,7 @@
     <Compile Include="Generation\Factories\MagicalGearGeneratorFactoryTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
+    <Compile Include="Generation\Generators\MagicalItemTraitsGeneratorTests.cs" />
     <Compile Include="Generation\Generators\RingGeneratorTests.cs" />
     <Compile Include="Generation\Generators\SpecialAbilitiesGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Generation\Xml\Data\Items\Level3ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level2ItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\Level1ItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ArmorTraitsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ArmorTypeTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmorSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorArmorTests.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldTypeTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MajorRingsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MediumRingsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\RingAttributesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityDataTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityAttributesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MajorItemsTests.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumRangedWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorRangedWeaponSpecialAbilitiesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MajorWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MediumWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MinorWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\WondrousItemAttributesTests.cs" />

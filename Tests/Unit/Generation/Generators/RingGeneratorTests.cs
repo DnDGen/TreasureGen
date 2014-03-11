@@ -253,30 +253,41 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         }
 
         [Test]
-        public void CounterspellsHasAtMost6SpellLevels()
+        public void CounterspellsHasAtMost1Spell()
         {
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerRings")).Returns("Counterspells");
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
-            mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2")
-                .Returns("spell 3").Returns("spell 4").Returns("spell 5").Returns("spell 6").Returns("spell 7");
+            mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell 1, spell 2, spell 3, spell 4, spell 5, spell 6)"));
-            mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(6));
-            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(6));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell 1)"));
+            mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(1));
+            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(1));
         }
 
         [Test]
-        public void CounterspellsAllowsDuplicateSpells()
+        public void CounterspellsHasSpellOfAtMostSixthLevel()
         {
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerRings")).Returns("Counterspells");
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
+            mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(6);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell lvl. 6");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell, spell, spell, spell, spell, spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell lvl. 6)"));
+        }
+
+        [Test]
+        public void CounterspellsDoesNotHaveSpellHigherThanSixthLevel()
+        {
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerRings")).Returns("Counterspells");
+            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(7);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 7)).Returns("spell lvl. 7");
+
+            var ring = ringGenerator.GenerateAtPower("power");
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
         }
 
         [Test]

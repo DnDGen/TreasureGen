@@ -13,5 +13,7 @@ namespace EquipmentGen.Core.Data.Items.Constants
         public const String ColdIron = "Cold iron";
         public const String Mithral = "Mithral";
         public const String AlchemicalSilver = "Alchemical silver";
+        public const String Markings = "Markings provide a clue to its function";
+        public const String ShedsLight = "Sheds light";
     }
 }

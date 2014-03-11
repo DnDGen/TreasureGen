@@ -52,7 +52,13 @@ namespace EquipmentGen.Core.Generation.Generators
 
             if (ability.Contains("Counterspells"))
             {
-                ring.Name = GetNewRingNameWithSpells(ring.Name, power, 6);
+                var level = spellGenerator.GenerateLevel(power);
+                if (level <= 6)
+                {
+                    var type = spellGenerator.GenerateType();
+                    var spell = spellGenerator.Generate(type, level);
+                    ring.Name = String.Format("{0} ({1})", ring.Name, spell);
+                }
             }
             else if (ability.Contains("Minor spell storing"))
             {
