@@ -423,7 +423,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Wondrou
         [Test]
         public void MantleOfSpellResistancePercentile()
         {
-            AssertContent("Mentle of spell resistance", 70);
+            AssertContent("Mantle of spell resistance", 70);
         }
 
         [Test]

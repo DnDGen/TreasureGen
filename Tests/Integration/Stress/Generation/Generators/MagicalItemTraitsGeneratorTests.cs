@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
         }
 
         [Test]
-        public void StressedMagicalItemTraitsGeenrator()
+        public void StressedMagicalItemTraitsGenerator()
         {
             while (TestShouldKeepRunning())
             {
