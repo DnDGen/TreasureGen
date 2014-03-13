@@ -180,6 +180,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumRangedWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Minor\MinorRangedWeaponSpecialAbilitiesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\MeleeTraitsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MajorWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MediumWondrousItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MinorWondrousItemsTests.cs" />
