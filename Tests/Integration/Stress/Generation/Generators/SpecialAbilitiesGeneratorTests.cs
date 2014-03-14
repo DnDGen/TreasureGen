@@ -46,8 +46,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var sum = abilities.Sum(a => a.BonusEquivalent);
                 Assert.That(sum + bonus, Is.AtMost(10));
 
-                var distinct = abilities.Select(a => a.CoreName).Distinct();
-                Assert.That(abilities.Count(), Is.EqualTo(distinct.Count()));
+                var names = abilities.Select(a => a.CoreName);
+                var distinct = names.Distinct();
+                var abilitiesString = String.Join(", ", names);
+                Assert.That(abilities.Count(), Is.EqualTo(distinct.Count()), abilitiesString);
 
                 foreach (var ability in abilities)
                 {

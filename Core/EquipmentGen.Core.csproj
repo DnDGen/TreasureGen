@@ -452,7 +452,7 @@
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Medium\MediumRangedWeaponSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\DesignatedFoes.xml" />
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\MeleeTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Armor\Major\MajorShieldSpecialAbilities.xml" />
@@ -474,6 +474,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\WondrousItems\MajorWondrousItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Generation\Xml\Data\Items\MagicalItems\Weapons\DesignatedFoes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
