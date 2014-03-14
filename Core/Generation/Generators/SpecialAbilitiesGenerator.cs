@@ -66,9 +66,6 @@ namespace EquipmentGen.Core.Generation.Generators
                 if (abilities.Any(a => a.CoreName == ability.CoreName))
                 {
                     var previousAbility = abilities.First(a => a.CoreName == ability.CoreName);
-                    if (previousAbility.Strength >= ability.Strength)
-                        continue;
-
                     bonusSum -= previousAbility.BonusEquivalent;
                     abilities.Remove(previousAbility);
                 }

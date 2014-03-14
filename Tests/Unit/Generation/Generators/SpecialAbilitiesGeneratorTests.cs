@@ -580,5 +580,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             Assert.That(abilities.Count(), Is.EqualTo(3));
             mockPercentileResultProvider.Verify(p => p.GetResultFrom(It.IsAny<String>()), Times.Exactly(2));
         }
+
+        [Test]
+        public void NoAttributesThrowsError()
+        {
+            Assert.That(() => specialAbilitiesGenerator.GenerateWith(Enumerable.Empty<String>(), "power", 1, 1), Throws.Exception);
+        }
     }
 }
