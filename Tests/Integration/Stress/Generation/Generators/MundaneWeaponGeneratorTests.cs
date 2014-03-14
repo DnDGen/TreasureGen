@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using EquipmentGen.Core.Data.Items.Constants;
+﻿using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
@@ -17,16 +14,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
 
         private IMundaneGearGenerator mundaneWeaponGenerator;
 
-        private IEnumerable<String> commonality;
-        private IEnumerable<String> range;
-
         [SetUp]
         public void Setup()
         {
             mundaneWeaponGenerator = mundaneGearGeneratorFactory.CreateWith(ItemTypeConstants.Weapon);
-            commonality = new[] { AttributeConstants.Common, AttributeConstants.Uncommon };
-            range = new[] { AttributeConstants.Melee, AttributeConstants.Ranged };
-
             StartTest();
         }
 
@@ -48,12 +39,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 Assert.That(weapon.Attributes, Contains.Item(ItemTypeConstants.Weapon));
                 Assert.That(weapon.Quantity, Is.GreaterThan(0));
                 Assert.That(weapon.Magic, Is.Empty);
-
-                var intersection = commonality.Intersect(weapon.Attributes);
-                Assert.That(intersection, Is.Not.Empty, "Commonality");
-
-                intersection = range.Intersect(weapon.Attributes);
-                Assert.That(intersection, Is.Not.Empty, "Range");
+                Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon));
+                Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
             }
 
             AssertIterations();

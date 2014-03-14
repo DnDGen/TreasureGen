@@ -29,7 +29,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
             while (TestShouldKeepRunning())
             {
                 var spellType = SpellGenerator.GenerateType();
-                Assert.That(spellType, Is.Not.Empty);
+                Assert.That(spellType, Is.EqualTo("Arcane").Or.EqualTo("Divine"));
             }
 
             AssertIterations();
@@ -54,8 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
             while (TestShouldKeepRunning())
             {
                 var spellType = SpellGenerator.GenerateType();
-                var power = GetNewPower(false);
-                var level = SpellGenerator.GenerateLevel(power);
+                var level = Random.Next(10);
                 var spell = SpellGenerator.Generate(spellType, level);
 
                 Assert.That(spell, Is.Not.Empty);

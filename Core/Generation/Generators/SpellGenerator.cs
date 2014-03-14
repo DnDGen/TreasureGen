@@ -1,23 +1,34 @@
 ﻿using System;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Core.Generation.Providers.Interfaces;
 
 namespace EquipmentGen.Core.Generation.Generators
 {
     public class SpellGenerator : ISpellGenerator
     {
+        private IPercentileResultProvider percentileResultProvider;
+
+        public SpellGenerator(IPercentileResultProvider percentileResultProvider)
+        {
+            this.percentileResultProvider = percentileResultProvider;
+        }
+
         public String GenerateType()
         {
-            throw new NotImplementedException();
+            return percentileResultProvider.GetResultFrom("SpellType");
         }
 
         public Int32 GenerateLevel(String power)
         {
-            throw new NotImplementedException();
+            var tableName = String.Format("{0}SpellLevel", power);
+            var result = percentileResultProvider.GetResultFrom(tableName);
+            return Convert.ToInt32(result);
         }
 
         public String Generate(String spellType, Int32 level)
         {
-            throw new NotImplementedException();
+            var tableName = String.Format("Level{0}{1}Spells", level, spellType);
+            return percentileResultProvider.GetResultFrom(tableName);
         }
     }
 }

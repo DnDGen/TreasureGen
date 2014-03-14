@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
                 var power = GetNewPower(false);
                 var item = ringGenerator.GenerateAtPower(power);
 
-                Assert.That(item.Name, Is.Not.Empty);
+                Assert.That(item.Name, Is.StringStarting("Ring of "));
                 Assert.That(item.Traits, Is.Not.Null);
                 Assert.That(item.Attributes, Is.Not.Null);
                 Assert.That(item.Quantity, Is.EqualTo(1));

@@ -48,6 +48,9 @@ namespace EquipmentGen.Core.Generation.Generators
                     foreach (var strongAbility in strongestAbilities)
                         strongAbility.Name = GetModifiedName(strongAbility);
 
+                    var duplicates = abilities.Where(a => strongestAbilities.Any(sA => sA.CoreName == a.CoreName));
+                    abilities = abilities.Except(duplicates).ToList();
+
                     abilities.AddRange(strongestAbilities);
                     availableAbilities.Clear();
                     continue;
