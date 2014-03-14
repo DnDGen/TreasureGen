@@ -167,12 +167,15 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Armor\ShieldTypeTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MajorRingsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MediumRingsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\MinorRingsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\RingAttributesTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Rings\RingTraitsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityDataTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\SpecialAbilityAttributesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MajorItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MediumItemsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\MinorItemsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Wands\WandTraitsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\DesignatedFoesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Major\MajorMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Weapons\Major\MajorRangedWeaponSpecialAbilitiesTests.cs" />
