@@ -175,6 +175,7 @@
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\Arcane\Level1ArcaneSpellsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\Arcane\Level3ArcaneSpellsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\Divine\Level2DivineSpellsTests.cs" />
+    <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\Divine\Level3DivineSpellsTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\MajorSpellLevelTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\MediumSpellLevelTests.cs" />
     <Compile Include="Generation\Xml\Data\Items\MagicalItems\Scrolls\MinorSpellLevelTests.cs" />

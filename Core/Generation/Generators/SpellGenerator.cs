@@ -28,7 +28,8 @@ namespace EquipmentGen.Core.Generation.Generators
         public String Generate(String spellType, Int32 level)
         {
             var tableName = String.Format("Level{0}{1}Spells", level, spellType);
-            return percentileResultProvider.GetResultFrom(tableName);
+            var spell = percentileResultProvider.GetResultFrom(tableName);
+            return String.Format("{0} ({1})", spell, spellType);
         }
     }
 }

@@ -52,7 +52,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
     <Compile Include="Generation\Generators\MagicalItemTraitsGeneratorTests.cs" />

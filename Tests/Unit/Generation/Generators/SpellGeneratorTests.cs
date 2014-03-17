@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("Level9266spell typeSpells")).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
-            Assert.That(spell, Is.EqualTo("this is my spell"));
+            Assert.That(spell, Is.EqualTo("this is my spell (spell type)"));
         }
     }
 }

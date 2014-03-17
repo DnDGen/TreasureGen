@@ -159,7 +159,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data.Items.MagicalItems.Scrolls
         [Test]
         public void MagicCircleAgainstChaosEvilGoodLawPercentile()
         {
-            AssertContent("Magic circle agaisnt chaos/evil/good/law", 52, 59);
+            AssertContent("Magic circle against chaos/evil/good/law", 52, 59);
         }
 
         [Test]
