@@ -77,7 +77,7 @@ namespace EquipmentGen.Core.Generation.Generators
                 var weakerAbilities = availableAbilities.Where(a => a.CoreName == ability.CoreName && a.Strength <= ability.Strength);
                 availableAbilities = availableAbilities.Except(weakerAbilities).ToList();
 
-                var tooStrongAbilities = availableAbilities.Where(a => a.BonusEquivalent > 10 - bonusSum);
+                var tooStrongAbilities = availableAbilities.Where(a => a.BonusEquivalent + bonusSum > 10);
                 availableAbilities = availableAbilities.Except(tooStrongAbilities).ToList();
             }
 
@@ -90,18 +90,10 @@ namespace EquipmentGen.Core.Generation.Generators
 
             foreach (var ability in availableAbilities)
             {
-                var perCoreName = availableAbilities.Where(a => a.CoreName == ability.CoreName);
+                var max = availableAbilities.Where(a => a.CoreName == ability.CoreName).Max(a => a.Strength);
 
-                if (perCoreName.Count() == 1)
-                {
+                if (ability.Strength == max)
                     abilities.Add(ability);
-                }
-                else
-                {
-                    var max = perCoreName.Max(a => a.Strength);
-                    if (ability.Strength == max)
-                        abilities.Add(ability);
-                }
             }
 
             return abilities;
