@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Animal messenger</content>
+        <upper>1</upper>
+    </object>
+    <object>
+        <lower>2</lower>
+        <content>Animal trance</content>
+        <upper>2</upper>
+    </object>
+    <object>
+        <lower>3</lower>
+        <content>Arcane lock</content>
+        <upper>3</upper>
+    </object>
+    <object>
+        <lower>4</lower>
+        <content>Bear's endurance</content>
+        <upper>6</upper>
+    </object>
+    <object>
+        <lower>7</lower>
+        <content>Blindness/deafness</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Blur</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Bull's strength</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Calm emotions</content>
+        <upper>14</upper>
+    </object>
+    <object>
+        <lower>15</lower>
+        <content>Cat's grace</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Command undead</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Continual flame</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Cure moderate wounds</content>
+        <upper>21</upper>
+    </object>
+    <object>
+        <lower>22</lower>
+        <content>Darkness</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Darkvision</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Daze monster</content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Delay poison</content>
+        <upper>27</upper>
+    </object>
+    <object>
+        <lower>28</lower>
+        <content>Detect thoughts</content>
+        <upper>29</upper>
+    </object>
+    <object>
+        <lower>30</lower>
+        <content>Disguise self</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Eagle's splendor</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Enthrall</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>False life</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Flaming sphere</content>
+        <upper>39</upper>
+    </object>
+    <object>
+        <lower>40</lower>
+        <content>Fog cloud</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Fox's cunning</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Ghoul touch</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Glitterdust</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Gust of wind</content>
+        <upper>47</upper>
+    </object>
+    <object>
+        <lower>48</lower>
+        <content>Hypnotic pattern</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Invisibility</content>
+        <upper>52</upper>
+    </object>
+    <object>
+        <lower>53</lower>
+        <content>Knock</content>
+        <upper>55</upper>
+    </object>
+    <object>
+        <lower>56</lower>
+        <content>Leomund's trap</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Levitate</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>Locate object</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Magic mouth</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Melf's acid arrow</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Minor image</content>
+        <upper>63</upper>
+    </object>
+    <object>
+        <lower>64</lower>
+        <content>Mirror image</content>
+        <upper>65</upper>
+    </object>
+    <object>
+        <lower>66</lower>
+        <content>Misdirection</content>
+        <upper>66</upper>
+    </object>
+    <object>
+        <lower>67</lower>
+        <content>Obscure object</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Owl's wisdom</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Protection from arrows</content>
+        <upper>73</upper>
+    </object>
+    <object>
+        <lower>74</lower>
+        <content>Pyrotechnics</content>
+        <upper>75</upper>
+    </object>
+    <object>
+        <lower>76</lower>
+        <content>Resist energy</content>
+        <upper>78</upper>
+    </object>
+    <object>
+        <lower>79</lower>
+        <content>Rope trick</content>
+        <upper>79</upper>
+    </object>
+    <object>
+        <lower>80</lower>
+        <content>Scare</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Scorching ray</content>
+        <upper>82</upper>
+    </object>
+    <object>
+        <lower>83</lower>
+        <content>See invisibility</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>Shatter</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Silence</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Sound burst</content>
+        <upper>88</upper>
+    </object>
+    <object>
+        <lower>89</lower>
+        <content>Spectral hand</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Spider climb</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Summon monster II</content>
+        <upper>93</upper>
+    </object>
+    <object>
+        <lower>94</lower>
+        <content>Summon swarm</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Tasha's hideous laughter</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Touch of idiocy</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Web</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>Whispering wind</content>
+        <upper>100</upper>
+    </object>
+</percentile>

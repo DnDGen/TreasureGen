@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
-using EquipmentGen.Core.Generation.Providers;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers;
+using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
 using EquipmentGen.Tests.Unit.Generation.Xml.Data.Attributes;
-using Moq;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
@@ -13,17 +11,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
     [TestFixture]
     public abstract class PercentileTests
     {
-        private Mock<IDice> mockDice;
-        private IPercentileResultProvider percentileResultProvider;
-        private String tableName;
+        private IEnumerable<PercentileObject> table;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
             var streamLoader = new EmbeddedResourceStreamLoader();
             var percentileXmlParser = new PercentileXmlParser(streamLoader);
-            percentileResultProvider = new PercentileResultProvider(percentileXmlParser, mockDice.Object);
 
             var type = GetType();
             var attributes = type.GetCustomAttributes(true);
@@ -32,17 +26,18 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
                 throw new ArgumentException("This test class does not have the needed PercentileTableAttribute");
 
             var percentileTableAttribute = attributes.First(a => a is PercentileTableAttribute) as PercentileTableAttribute;
-            tableName = percentileTableAttribute.Table;
+            var file = String.Format("{0}.xml", percentileTableAttribute.Table);
+            table = percentileXmlParser.Parse(file);
         }
 
         protected void AssertEmpty(Int32 roll)
         {
-            AssertContent(String.Empty, roll);
+            AssertEmpty(roll, roll);
         }
 
         protected void AssertEmpty(Int32 minInclusive, Int32 maxInclusive)
         {
-            AssertContent(String.Empty, minInclusive, maxInclusive);
+            Assert.That(table.Any(o => o.LowerLimit >= minInclusive && o.UpperLimit <= maxInclusive), Is.False);
         }
 
         protected void AssertContent(String content, Int32 roll)
@@ -52,31 +47,12 @@ namespace EquipmentGen.Tests.Unit.Generation.Xml.Data
 
         protected void AssertContent(String content, Int32 minInclusive, Int32 maxInclusive)
         {
-            for (var roll = 1; roll <= 100; roll++)
-            {
-                if (roll >= minInclusive && roll <= maxInclusive)
-                    AssertRollGrantsContent(roll, content);
-                else
-                    AssertRollDoesNotGrantContent(roll, content);
-            }
-        }
+            Assert.That(table.Select(o => o.Content), Contains.Item(content), "Content not in table");
+            Assert.That(table.Where(o => o.Content == content).Count(), Is.EqualTo(1), "Uniqueness of content");
 
-        private void AssertRollGrantsContent(Int32 roll, String content)
-        {
-            var result = GetResult(roll);
-            Assert.That(result, Is.EqualTo(content), String.Format("Roll: {0}", roll));
-        }
-
-        private void AssertRollDoesNotGrantContent(Int32 roll, String content)
-        {
-            var result = GetResult(roll);
-            Assert.That(result, Is.Not.EqualTo(content), String.Format("Roll: {0}", roll));
-        }
-
-        private String GetResult(Int32 roll)
-        {
-            mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-            return percentileResultProvider.GetResultFrom(tableName);
+            var result = table.Single(o => o.Content == content);
+            Assert.That(result.LowerLimit, Is.EqualTo(minInclusive), "Lower limit");
+            Assert.That(result.UpperLimit, Is.EqualTo(maxInclusive), "Upper limit");
         }
     }
 }

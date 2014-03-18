@@ -3,78 +3,78 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Arcane sight</content>
+        <content>Animate dead</content>
         <upper>2</upper>
     </object>
     <object>
         <lower>3</lower>
-        <content>Blink</content>
+        <content>Bestow curse</content>
         <upper>4</upper>
     </object>
     <object>
         <lower>5</lower>
-        <content>Clairaudience/clairvoyance</content>
+        <content>Blindness/deafness</content>
         <upper>6</upper>
     </object>
     <object>
         <lower>7</lower>
-        <content>Cure serious wounds</content>
-        <upper>7</upper>
+        <content>Call lightning</content>
+        <upper>8</upper>
     </object>
     <object>
-        <lower>8</lower>
-        <content>Daylight</content>
+        <lower>9</lower>
+        <content>Contagion</content>
         <upper>10</upper>
     </object>
     <object>
         <lower>11</lower>
-        <content>Deep slumber</content>
+        <content>Continual flame</content>
         <upper>12</upper>
     </object>
     <object>
         <lower>13</lower>
-        <content>Dispel magic</content>
-        <upper>15</upper>
+        <content>Create food and water</content>
+        <upper>14</upper>
     </object>
     <object>
-        <lower>16</lower>
-        <content>Displacement</content>
-        <upper>17</upper>
-    </object>
-    <object>
-        <lower>18</lower>
-        <content>Explosive runes</content>
+        <lower>15</lower>
+        <content>Cure serious wounds</content>
         <upper>18</upper>
     </object>
     <object>
         <lower>19</lower>
-        <content>Fireball</content>
-        <upper>20</upper>
+        <content>Darkvision</content>
+        <upper>19</upper>
     </object>
     <object>
-        <lower>21</lower>
-        <content>Flame arrow</content>
-        <upper>22</upper>
+        <lower>20</lower>
+        <content>Daylight</content>
+        <upper>21</upper>
     </object>
     <object>
-        <lower>23</lower>
-        <content>Fly</content>
+        <lower>22</lower>
+        <content>Deeper darkness</content>
+        <upper>23</upper>
+    </object>
+    <object>
+        <lower>24</lower>
+        <content>Diminish plants</content>
         <upper>25</upper>
     </object>
     <object>
         <lower>26</lower>
-        <content>Gaseous form</content>
+        <content>Dispel magic</content>
         <upper>27</upper>
     </object>
     <object>
         <lower>28</lower>
-        <content>Gentle repose</content>
+        <content>Dominate animal</content>
         <upper>29</upper>
     </object>
     <object>
         <lower>30</lower>
-        <content>Glibness</content>
-        <upper>30</upper>
+        <content>Glyph of warding</content>
+        <upper>31</upper>
     </object>
     <object>
         <lower>31</lower>
@@ -83,152 +83,147 @@
     </object>
     <object>
         <lower>32</lower>
-        <content>Halt undead</content>
-        <upper>33</upper>
+        <content>Heal mount</content>
+        <upper>32</upper>
     </object>
     <object>
-        <lower>34</lower>
-        <content>Haste</content>
+        <lower>33</lower>
+        <content>Helping hand</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Inflict serious wounds</content>
         <upper>36</upper>
     </object>
     <object>
         <lower>37</lower>
-        <content>Heroism</content>
+        <content>Invisibility purge</content>
         <upper>38</upper>
     </object>
     <object>
         <lower>39</lower>
-        <content>Hold person</content>
+        <content>Locate object</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Illusory script</content>
-        <upper>41</upper>
-    </object>
-    <object>
-        <lower>42</lower>
-        <content>Invisibility sphere</content>
-        <upper>44</upper>
-    </object>
-    <object>
-        <lower>45</lower>
-        <content>Keen edge</content>
-        <upper>47</upper>
-    </object>
-    <object>
-        <lower>48</lower>
-        <content>Leomund's tiny hut</content>
-        <upper>49</upper>
-    </object>
-    <object>
-        <lower>50</lower>
-        <content>Lightning bolt</content>
-        <upper>51</upper>
-    </object>
-    <object>
-        <lower>52</lower>
         <content>Magic circle against chaos/evil/good/law</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Greater magic fang</content>
+        <upper>48</upper>
+    </object>
+    <object>
+        <lower>49</lower>
+        <content>Magic vestment</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Meld into stone</content>
+        <upper>52</upper>
+    </object>
+    <object>
+        <lower>53</lower>
+        <content>Neutralize poison</content>
+        <upper>55</upper>
+    </object>
+    <object>
+        <lower>56</lower>
+        <content>Obscure object</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Plant growth</content>
         <upper>59</upper>
     </object>
     <object>
         <lower>60</lower>
-        <content>Greater magic weapon</content>
+        <content>Prayer</content>
         <upper>62</upper>
     </object>
     <object>
         <lower>63</lower>
-        <content>Major image</content>
+        <content>Protection from energy</content>
         <upper>64</upper>
     </object>
     <object>
         <lower>65</lower>
-        <content>Nondetection</content>
+        <content>Quench</content>
         <upper>66</upper>
     </object>
     <object>
         <lower>67</lower>
-        <content>Phantom steed</content>
-        <upper>68</upper>
+        <content>Remove blindness/deafness</content>
+        <upper>69</upper>
     </object>
     <object>
-        <lower>69</lower>
-        <content>Protection from energy</content>
+        <lower>70</lower>
+        <content>Remove curse</content>
         <upper>71</upper>
     </object>
     <object>
         <lower>72</lower>
-        <content>Rage</content>
+        <content>Remove disease</content>
         <upper>73</upper>
     </object>
     <object>
         <lower>74</lower>
-        <content>Ray of exhaustion</content>
-        <upper>75</upper>
-    </object>
-    <object>
-        <lower>76</lower>
-        <content>Sculpt sound</content>
+        <content>Searing light</content>
         <upper>76</upper>
     </object>
     <object>
         <lower>77</lower>
-        <content>Secret page</content>
-        <upper>77</upper>
-    </object>
-    <object>
-        <lower>78</lower>
-        <content>Sepia snake sigil</content>
+        <content>Sleet storm</content>
         <upper>78</upper>
     </object>
     <object>
         <lower>79</lower>
-        <content>Shrink item</content>
-        <upper>79</upper>
+        <content>Snare</content>
+        <upper>80</upper>
     </object>
     <object>
-        <lower>80</lower>
-        <content>Sleet storm</content>
-        <upper>81</upper>
-    </object>
-    <object>
-        <lower>82</lower>
-        <content>Slow</content>
+        <lower>81</lower>
+        <content>Speak with dead</content>
         <upper>83</upper>
     </object>
     <object>
         <lower>84</lower>
-        <content>Speak with animals</content>
-        <upper>84</upper>
+        <content>Speak with plants</content>
+        <upper>85</upper>
     </object>
     <object>
-        <lower>85</lower>
-        <content>Stinking cloud</content>
-        <upper>86</upper>
+        <lower>86</lower>
+        <content>Spike growth</content>
+        <upper>87</upper>
     </object>
     <object>
-        <lower>87</lower>
-        <content>Suggestion</content>
-        <upper>88</upper>
+        <lower>88</lower>
+        <content>Stone shape</content>
+        <upper>89</upper>
     </object>
     <object>
-        <lower>89</lower>
+        <lower>90</lower>
         <content>Summon monster III</content>
-        <upper>90</upper>
+        <upper>91</upper>
     </object>
     <object>
-        <lower>91</lower>
-        <content>Tongues</content>
+        <lower>92</lower>
+        <content>Summon nature's ally III</content>
         <upper>93</upper>
     </object>
     <object>
         <lower>94</lower>
-        <content>Vampiric touch</content>
-        <upper>95</upper>
+        <content>Water breathing</content>
+        <upper>96</upper>
     </object>
     <object>
-        <lower>96</lower>
-        <content>Water breathing</content>
+        <lower>97</lower>
+        <content>Water walk</content>
         <upper>98</upper>
     </object>
     <object>
