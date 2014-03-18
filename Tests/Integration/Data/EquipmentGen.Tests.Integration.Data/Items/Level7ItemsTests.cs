@@ -1,0 +1,31 @@
+﻿using System;
+using EquipmentGen.Core.Data.Items.Constants;
+using EquipmentGen.Tests.Integration.Data.Attributes;
+using NUnit.Framework;
+
+namespace EquipmentGen.Tests.Integration.Data.Items
+{
+    [TestFixture, PercentileTable("Level7Items")]
+    public class Level7ItemsTests : PercentileTests
+    {
+        [Test]
+        public void Level7ItemsEmptyPercentile()
+        {
+            AssertEmpty(1, 51);
+        }
+
+        [Test]
+        public void Level7ItemsMinorPercentile()
+        {
+            var content = String.Format("{0},1d3", PowerConstants.Minor);
+            AssertContent(content, 52, 97);
+        }
+
+        [Test]
+        public void Level7ItemsMediumPercentile()
+        {
+            var content = String.Format("{0},1", PowerConstants.Medium);
+            AssertContent(content, 98, 100);
+        }
+    }
+}

@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BootstrapTests.cs" />
-    <Compile Include="IntegrationTest.cs" />
+    <Compile Include="IntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
