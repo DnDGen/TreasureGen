@@ -73,9 +73,17 @@
     <Compile Include="StressTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\EquipmentGen.Core.csproj">
-      <Project>{5d5b7132-a3b7-4330-8235-10caad07382c}</Project>
-      <Name>EquipmentGen.Core</Name>
+    <ProjectReference Include="..\..\..\EquipmentGen\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Generators\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
+      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
+      <Name>EquipmentGen.Generators.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Generators\EquipmentGen.Generators\EquipmentGen.Generators.csproj">
+      <Project>{187f1421-35eb-4050-879a-4aa77e89615b}</Project>
+      <Name>EquipmentGen.Generators</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\EquipmentGen.Tests.Integration.Common.csproj">
       <Project>{4386b84e-fcca-4fc2-84d7-bd4161ca4612}</Project>

@@ -49,62 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Coins\CoinConstantsTests.cs" />
-    <Compile Include="Data\Goods\GoodsConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\ArmorConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\ItemTypeConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\MagicEnumerationTests.cs" />
-    <Compile Include="Data\Items\Constants\PowerConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\SpecialAbilityConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\TraitConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\AttributeConstantsTests.cs" />
-    <Compile Include="Data\Items\Constants\WeaponConstantsTests.cs" />
-    <Compile Include="Data\Items\ItemTests.cs" />
-    <Compile Include="Data\Items\IntelligenceTests.cs" />
-    <Compile Include="Data\Items\SpecialAbilityTests.cs" />
-    <Compile Include="Generation\Factories\MagicalItemGeneratorFactoryTests.cs" />
-    <Compile Include="Generation\Factories\MundaneGearGeneratorFactoryTests.cs" />
-    <Compile Include="Generation\Factories\MagicalGearGeneratorFactoryTests.cs" />
-    <Compile Include="Generation\Generators\AlchemicalItemGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\AmmunitionGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\MagicalItemTraitsGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\RingGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\SpecialAbilitiesGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\MundaneArmorGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\CoinGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\GoodsGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\ItemsGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\MundaneItemGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\MundaneWeaponGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\MagicalArmorGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\SpellGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\ToolGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\TreasureGeneratorTests.cs" />
-    <Compile Include="Generation\Generators\WondrousItemGeneratorTests.cs" />
-    <Compile Include="Generation\Providers\SpecialAbilityDataProviderTests.cs" />
-    <Compile Include="Generation\Providers\AttributesProviderTests.cs" />
-    <Compile Include="Generation\Generators\SpecialMaterialGeneratorTests.cs" />
-    <Compile Include="Generation\Providers\TypeAndAmountPercentileResultProviderTests.cs" />
-    <Compile Include="Generation\Providers\PercentileResultProviderTests.cs" />
-    <Compile Include="Generation\Xml\Parsers\EmbeddedResourceStreamLoaderTests.cs" />
-    <Compile Include="Generation\Xml\Parsers\SpecialAbilityDataXmlParserTests.cs" />
-    <Compile Include="Generation\Xml\Parsers\AttributeXmlParserTests.cs" />
-    <Compile Include="Generation\Xml\Parsers\PercentileXmlParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\EquipmentGen.Core.csproj">
-      <Project>{5d5b7132-a3b7-4330-8235-10caad07382c}</Project>
-      <Name>EquipmentGen.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Generation\Xml\Parsers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

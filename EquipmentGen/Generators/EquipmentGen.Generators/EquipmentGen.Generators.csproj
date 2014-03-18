@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{187F1421-35EB-4050-879A-4AA77E89615B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EquipmentGen.Generators</RootNamespace>
+    <AssemblyName>EquipmentGen.Generators</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="D20Dice">
+      <HintPath>..\..\..\packages\D20Dice.3.1\lib\D20Dice.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RuntimeFactories\Interfaces\IMagicalGearGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\Interfaces\IMagicalItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\Interfaces\IMundaneGearGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\MagicalGearGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\MagicalItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\MundaneGearGeneratorFactory.cs" />
+    <Compile Include="Items\Mundane\AlchemicalItemGenerator.cs" />
+    <Compile Include="Items\Mundane\AmmunitionGenerator.cs" />
+    <Compile Include="Items\Magical\ChargesGenerator.cs" />
+    <Compile Include="Coins\CoinGenerator.cs" />
+    <Compile Include="Items\Magical\CurseGenerator.cs" />
+    <Compile Include="Goods\GoodsGenerator.cs" />
+    <Compile Include="Items\Magical\IntelligenceGenerator.cs" />
+    <Compile Include="Items\ItemsGenerator.cs" />
+    <Compile Include="Items\Magical\MagicalArmorGenerator.cs" />
+    <Compile Include="Items\Magical\MagicalItemTraitsGenerator.cs" />
+    <Compile Include="Items\Magical\MagicalWeaponGenerator.cs" />
+    <Compile Include="Items\Mundane\MundaneArmorGenerator.cs" />
+    <Compile Include="Items\Mundane\MundaneItemGenerator.cs" />
+    <Compile Include="Items\Mundane\MundaneWeaponGenerator.cs" />
+    <Compile Include="Items\Magical\PotionGenerator.cs" />
+    <Compile Include="Items\Magical\RingGenerator.cs" />
+    <Compile Include="Items\Magical\RodGenerator.cs" />
+    <Compile Include="Items\Magical\ScrollGenerator.cs" />
+    <Compile Include="Items\Magical\SpecialAbilitiesGenerator.cs" />
+    <Compile Include="Items\Mundane\SpecialMaterialGenerator.cs" />
+    <Compile Include="Items\Magical\SpecificGearGenerator.cs" />
+    <Compile Include="Items\Magical\SpellGenerator.cs" />
+    <Compile Include="Items\Magical\StaffGenerator.cs" />
+    <Compile Include="Items\Mundane\ToolGenerator.cs" />
+    <Compile Include="TreasureGenerator.cs" />
+    <Compile Include="Items\Magical\WandGenerator.cs" />
+    <Compile Include="Items\Magical\WondrousItemGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Selectors\EquipmentGen.Selectors.Interfaces\EquipmentGen.Selectors.Interfaces.csproj">
+      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
+      <Name>EquipmentGen.Selectors.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
+      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
+      <Name>EquipmentGen.Generators.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

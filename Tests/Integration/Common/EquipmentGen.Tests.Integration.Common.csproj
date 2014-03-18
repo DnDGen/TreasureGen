@@ -61,13 +61,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\EquipmentGen.Core.csproj">
-      <Project>{5d5b7132-a3b7-4330-8235-10caad07382c}</Project>
-      <Name>EquipmentGen.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Bootstrap\EquipmentGen.Bootstrap.csproj">
       <Project>{ee68faeb-1d40-447f-9bcd-93d1ffdfe858}</Project>
       <Name>EquipmentGen.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Generators\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
+      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
+      <Name>EquipmentGen.Generators.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Generators\EquipmentGen.Generators\EquipmentGen.Generators.csproj">
+      <Project>{187f1421-35eb-4050-879a-4aa77e89615b}</Project>
+      <Name>EquipmentGen.Generators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
+      <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
+      <Name>EquipmentGen.Mappers.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Selectors\EquipmentGen.Selectors.Interfaces\EquipmentGen.Selectors.Interfaces.csproj">
+      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
+      <Name>EquipmentGen.Selectors.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
