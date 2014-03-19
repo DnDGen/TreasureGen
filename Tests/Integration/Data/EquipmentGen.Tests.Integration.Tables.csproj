@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ninject">
-      <HintPath>..\..\..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -200,9 +200,9 @@
       <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
       <Name>EquipmentGen.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EquipmentGen\Selectors\EquipmentGen.Selectors.Interfaces\EquipmentGen.Selectors.Interfaces.csproj">
-      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
-      <Name>EquipmentGen.Selectors.Interfaces</Name>
+    <ProjectReference Include="..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
+      <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
+      <Name>EquipmentGen.Mappers.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EquipmentGen\Tables\EquipmentGen.Tables\EquipmentGen.Tables.csproj">
       <Project>{b404a5bf-02de-400e-9dad-5cafbc72a926}</Project>

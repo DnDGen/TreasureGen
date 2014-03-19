@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Generation.Generators;
+﻿using D20Dice;
+using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Objects;
@@ -12,6 +13,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     {
         private IAlchemicalItemGenerator generator;
         private Mock<ITypeAndAmountPercentileResultProvider> mockTypeAndAmountPercentileProvider;
+        private Mock<IDice> mockDice;
 
         private TypeAndAmountPercentileResult result;
 
@@ -20,11 +22,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "alchemical item";
-            result.Amount = 9266;
+            result.AmountToRoll = "9266";
             mockTypeAndAmountPercentileProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileProvider.Setup(p => p.GetResultFrom("AlchemicalItems")).Returns(result);
+            mockTypeAndAmountPercentileProvider.Setup(p => p.GetResultFrom("AlchemicalItems", 92)).Returns(result);
 
-            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object);
+            mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Percentile(1)).Returns(92);
+            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(66);
+
+            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object, mockDice.Object);
         }
 
         [Test]

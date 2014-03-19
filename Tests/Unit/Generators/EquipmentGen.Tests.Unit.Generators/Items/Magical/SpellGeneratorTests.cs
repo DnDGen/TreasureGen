@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Generation.Generators;
+﻿using D20Dice;
+using EquipmentGen.Core.Generation.Generators;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using Moq;
@@ -11,18 +12,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
     {
         private ISpellGenerator generator;
         private Mock<IPercentileResultProvider> mockPercentileResultProvider;
+        private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            generator = new SpellGenerator(mockPercentileResultProvider.Object);
+            mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Percentile(1)).Returns(42);
+            generator = new SpellGenerator(mockPercentileResultProvider.Object, mockDice.Object);
         }
 
         [Test]
         public void ReturnSpellLevel()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerSpellLevel")).Returns("9266");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerSpellLevel", 42)).Returns("9266");
             var level = generator.GenerateLevel("power");
             Assert.That(level, Is.EqualTo(9266));
         }
@@ -30,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ReturnSpellType()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("SpellType")).Returns("spell type");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("SpellType", 42)).Returns("spell type");
             var type = generator.GenerateType();
             Assert.That(type, Is.EqualTo("spell type"));
         }
@@ -38,7 +42,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ReturnSpell()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("Level9266spell typeSpells")).Returns("this is my spell");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("Level9266spell typeSpells", 42)).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
             Assert.That(spell, Is.EqualTo("this is my spell (spell type)"));
         }

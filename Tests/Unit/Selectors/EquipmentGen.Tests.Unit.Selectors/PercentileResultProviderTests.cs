@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
 using EquipmentGen.Core.Generation.Providers;
 using EquipmentGen.Core.Generation.Providers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
@@ -16,7 +15,6 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
     {
         private IPercentileResultProvider percentileResultProvider;
         private List<PercentileObject> table;
-        private Mock<IDice> mockDice;
         private Mock<IPercentileXmlParser> mockPercentileXmlParser;
         private const String tableName = "table";
         private const Int32 min = 1;
@@ -36,15 +34,14 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
             mockPercentileXmlParser = new Mock<IPercentileXmlParser>();
             mockPercentileXmlParser.Setup(p => p.Parse(tableName + ".xml")).Returns(table);
 
-            mockDice = new Mock<IDice>();
-            percentileResultProvider = new PercentileResultProvider(mockPercentileXmlParser.Object, mockDice.Object);
+            percentileResultProvider = new PercentileResultProvider(mockPercentileXmlParser.Object);
         }
 
         [Test]
         public void GetResultCachesTable()
         {
-            percentileResultProvider.GetResultFrom(tableName);
-            percentileResultProvider.GetResultFrom(tableName);
+            percentileResultProvider.GetResultFrom(tableName, 1);
+            percentileResultProvider.GetResultFrom(tableName, 1);
 
             mockPercentileXmlParser.Verify(p => p.Parse(tableName + ".xml"), Times.Once());
         }
@@ -53,23 +50,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         public void GetResultReturnsEmptyStringForEmptyTable()
         {
             table.Clear();
-            var result = percentileResultProvider.GetResultFrom(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName, 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public void GetResultReturnsEmptyStringIfBelowRange()
         {
-            mockDice.Setup(d => d.Percentile(1)).Returns(min - 1);
-            var result = percentileResultProvider.GetResultFrom(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName, min - 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public void GetResultReturnsEmptyStringIfAboveRange()
         {
-            mockDice.Setup(d => d.Percentile(1)).Returns(max + 1);
-            var result = percentileResultProvider.GetResultFrom(tableName);
+            var result = percentileResultProvider.GetResultFrom(tableName, max + 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
@@ -78,8 +73,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
         {
             for (var roll = min; roll <= max; roll++)
             {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var result = percentileResultProvider.GetResultFrom(tableName);
+                var result = percentileResultProvider.GetResultFrom(tableName, roll);
                 Assert.That(result, Is.EqualTo("content"));
             }
         }

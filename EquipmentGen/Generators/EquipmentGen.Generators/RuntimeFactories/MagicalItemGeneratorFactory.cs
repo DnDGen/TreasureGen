@@ -37,7 +37,7 @@ namespace EquipmentGen.Core.Generation.Factories
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator();
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileResultProvider, attributesProvider,
-                    magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator);
+                    magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator();
                 case ItemTypeConstants.Staff: return new StaffGenerator();

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Xml.Parsers;
+using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using Ninject;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
@@ -10,13 +11,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
     [TestFixture]
     public class SpecialAbilityDataTests
     {
+        [Inject]
+        public ISpecialAbilityDataXmlParser SpecialAbilityDataXmlParser { get; set; }
+
         private Dictionary<String, SpecialAbilityDataObject> data;
 
         public SpecialAbilityDataTests()
         {
-            var streamLoader = new EmbeddedResourceStreamLoader();
-            var parser = new SpecialAbilityDataXmlParser(streamLoader);
-            data = parser.Parse("SpecialAbilityData.xml");
+            data = SpecialAbilityDataXmlParser.Parse("SpecialAbilityData.xml");
         }
 
         [Test]

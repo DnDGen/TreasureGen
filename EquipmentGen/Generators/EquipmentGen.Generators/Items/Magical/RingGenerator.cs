@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators.Interfaces;
@@ -16,10 +17,11 @@ namespace EquipmentGen.Core.Generation.Generators
         private ISpellGenerator spellGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
         private IChargesGenerator chargesGenerator;
+        private IDice dice;
 
         public RingGenerator(IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
             IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IChargesGenerator chargesGenerator)
+            IChargesGenerator chargesGenerator, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.attributesProvider = attributesProvider;
@@ -27,14 +29,16 @@ namespace EquipmentGen.Core.Generation.Generators
             this.spellGenerator = spellGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
             this.chargesGenerator = chargesGenerator;
+            this.dice = dice;
         }
 
         public Item GenerateAtPower(String power)
         {
-            var ring = new Item();
+            var roll = dice.Percentile();
             var tableName = String.Format("{0}Rings", power);
-            var ability = percentileResultProvider.GetResultFrom(tableName);
+            var ability = percentileResultProvider.GetResultFrom(tableName, roll);
 
+            var ring = new Item();
             ring.Name = String.Format("Ring of {0}", ability);
             ring.Magic[Magic.IsMagical] = true;
             ring.Attributes = attributesProvider.GetAttributesFor(ability, "RingAttributes");
@@ -74,7 +78,8 @@ namespace EquipmentGen.Core.Generation.Generators
             }
             else if (ability.Contains("nergy resistance"))
             {
-                var energy = percentileResultProvider.GetResultFrom("Elements");
+                roll = dice.Percentile();
+                var energy = percentileResultProvider.GetResultFrom("Elements", roll);
                 ring.Name = String.Format("{0} ({1})", ring.Name, energy);
             }
 

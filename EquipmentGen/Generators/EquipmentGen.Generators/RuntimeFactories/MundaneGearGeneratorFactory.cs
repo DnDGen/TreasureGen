@@ -1,4 +1,5 @@
 ﻿using System;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
@@ -13,15 +14,17 @@ namespace EquipmentGen.Core.Generation.Factories
         private IPercentileResultProvider percentileResultProvider;
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsProvider;
-        private IAttributesProvider typesProvider;
+        private IAttributesProvider attributesProvider;
+        private IDice dice;
 
         public MundaneGearGeneratorFactory(IPercentileResultProvider percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsProvider, IAttributesProvider typesProvider)
+            ISpecialMaterialGenerator materialsProvider, IAttributesProvider attributesProvider, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.ammunitionGenerator = ammunitionGenerator;
             this.materialsProvider = materialsProvider;
-            this.typesProvider = typesProvider;
+            this.attributesProvider = attributesProvider;
+            this.dice = dice;
         }
 
         public IMundaneGearGenerator CreateWith(String type)
@@ -29,9 +32,9 @@ namespace EquipmentGen.Core.Generation.Factories
             switch (type)
             {
                 case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileResultProvider, materialsProvider,
-                    typesProvider);
+                    attributesProvider, dice);
                 case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileResultProvider, ammunitionGenerator,
-                    materialsProvider, typesProvider);
+                    materialsProvider, attributesProvider, dice);
                 default: throw new ArgumentOutOfRangeException();
             }
         }

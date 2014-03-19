@@ -32,8 +32,9 @@ namespace EquipmentGen.Core.Generation.Generators
 
         public Item GenerateAtPower(String power)
         {
+            var roll = dice.Percentile();
             var tablename = String.Format("{0}WondrousItems", power);
-            var result = percentileResultProvider.GetResultFrom(tablename);
+            var result = percentileResultProvider.GetResultFrom(tablename, roll);
 
             var item = new Item();
             item.Name = result;
@@ -56,12 +57,14 @@ namespace EquipmentGen.Core.Generation.Generators
 
             if (item.Name == "Horn of Valhalla")
             {
-                var hornType = percentileResultProvider.GetResultFrom("HornOfValhallaTypes");
+                roll = dice.Percentile();
+                var hornType = percentileResultProvider.GetResultFrom("HornOfValhallaTypes", roll);
                 item.Name = String.Format("{0} ({1})", item.Name, hornType);
             }
             else if (item.Name == "Iron flask")
             {
-                var contents = percentileResultProvider.GetResultFrom("IronFlaskContents");
+                roll = dice.Percentile();
+                var contents = percentileResultProvider.GetResultFrom("IronFlaskContents", roll);
                 item.Name = String.Format("{0} ({1})", item.Name, contents);
             }
             else if (item.Name == "Robe of useful items")
@@ -108,7 +111,8 @@ namespace EquipmentGen.Core.Generation.Generators
 
             while (quantity-- > 0)
             {
-                var item = percentileResultProvider.GetResultFrom("RobeOfUsefulItemsExtraItems");
+                var roll = dice.Percentile();
+                var item = percentileResultProvider.GetResultFrom("RobeOfUsefulItemsExtraItems", roll);
                 extraItems.Add(item);
             }
 
@@ -122,7 +126,8 @@ namespace EquipmentGen.Core.Generation.Generators
 
             while (planes.Count < 6)
             {
-                var plane = percentileResultProvider.GetResultFrom("Planes");
+                var roll = dice.Percentile();
+                var plane = percentileResultProvider.GetResultFrom("Planes", roll);
                 if (!planes.Contains(plane))
                     planes.Add(plane);
             }

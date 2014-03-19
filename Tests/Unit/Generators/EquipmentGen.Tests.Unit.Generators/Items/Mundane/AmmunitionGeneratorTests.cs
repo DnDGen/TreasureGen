@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "ammunition name";
-            result.Amount = 9266;
+            result.AmountToRoll = "9266";
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
             mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Ammunition")).Returns(result);

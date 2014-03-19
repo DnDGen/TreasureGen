@@ -46,6 +46,10 @@
     <Compile Include="TypeAndAmountPercentileResultProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
       <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
       <Name>EquipmentGen.Mappers.Interfaces</Name>

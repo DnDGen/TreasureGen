@@ -46,13 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coins\CoinConstantsTests.cs" />
+    <Compile Include="Coins\CoinTests.cs" />
     <Compile Include="Goods\GoodsConstantsTests.cs" />
+    <Compile Include="Goods\GoodTests.cs" />
     <Compile Include="Items\ArmorConstantsTests.cs" />
     <Compile Include="Items\AttributeConstantsTests.cs" />
+    <Compile Include="Items\IntelligenceTests.cs" />
+    <Compile Include="Items\ItemTests.cs" />
     <Compile Include="Items\ItemTypeConstantsTests.cs" />
     <Compile Include="Items\MagicEnumerationTests.cs" />
     <Compile Include="Items\PowerConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityConstantsTests.cs" />
+    <Compile Include="Items\SpecialAbilityTests.cs" />
     <Compile Include="Items\TraitConstantsTests.cs" />
     <Compile Include="Items\WeaponConstantsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

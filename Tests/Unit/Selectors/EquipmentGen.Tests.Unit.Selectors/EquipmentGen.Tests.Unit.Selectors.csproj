@@ -55,6 +55,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
+      <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
+      <Name>EquipmentGen.Mappers.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\EquipmentGen\Selectors\EquipmentGen.Selectors.Interfaces\EquipmentGen.Selectors.Interfaces.csproj">
       <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
       <Name>EquipmentGen.Selectors.Interfaces</Name>
@@ -63,6 +71,9 @@
       <Project>{a40b2852-673a-46bf-b4d5-8ce52efedf35}</Project>
       <Name>EquipmentGen.Selectors</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

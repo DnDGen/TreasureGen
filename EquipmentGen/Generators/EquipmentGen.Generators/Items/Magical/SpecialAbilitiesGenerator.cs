@@ -150,7 +150,8 @@ namespace EquipmentGen.Core.Generation.Generators
 
             do
             {
-                abilityName = percentileResultProvider.GetResultFrom(tableName);
+                var roll = dice.Percentile();
+                abilityName = percentileResultProvider.GetResultFrom(tableName, roll);
 
                 if (abilityName == "BonusSpecialAbility")
                     return new SpecialAbility { Name = abilityName };
@@ -166,7 +167,8 @@ namespace EquipmentGen.Core.Generation.Generators
         {
             if (ability.CoreName == "Bane")
             {
-                var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes");
+                var roll = dice.Percentile();
+                var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes", roll);
                 return String.Format("{0}bane", designatedFoe);
             }
 
