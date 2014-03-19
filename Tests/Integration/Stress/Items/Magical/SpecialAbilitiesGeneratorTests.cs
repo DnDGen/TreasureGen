@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;

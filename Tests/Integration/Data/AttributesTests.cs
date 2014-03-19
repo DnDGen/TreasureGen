@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Mappers;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Tests.Integration.Common;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
@@ -22,7 +21,7 @@ namespace EquipmentGen.Tests.Integration.Tables
         public void Setup()
         {
             var file = GetTableNameFromAttribute();
-            table = AttributesXmlParser.Parse(file);
+            table = AttributesXmlParser.Map(file);
         }
 
         private String GetTableNameFromAttribute()

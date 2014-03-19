@@ -1,17 +1,16 @@
 ﻿using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class AlchemicalItemGenerator : IAlchemicalItemGenerator
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
         private IDice dice;
 
-        public AlchemicalItemGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice)
+        public AlchemicalItemGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
@@ -20,7 +19,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.GetResultFrom("AlchemicalItems", roll);
+            var result = typeAndAmountPercentileResultProvider.SelectFrom("AlchemicalItems", roll);
 
             var item = new Item();
             item.Name = result.Type;

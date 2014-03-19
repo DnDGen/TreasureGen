@@ -1,6 +1,4 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
+﻿using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
 

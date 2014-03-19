@@ -39,15 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IPercentileResultProvider.cs" />
-    <Compile Include="Interfaces\ISpecialAbilityDataProvider.cs" />
-    <Compile Include="Interfaces\ITypeAndAmountPercentileResultProvider.cs" />
-    <Compile Include="Interfaces\ITypesProvider.cs" />
+    <Compile Include="Interfaces\IPercentileSelector.cs" />
+    <Compile Include="Interfaces\ISpecialAbilityDataSelector.cs" />
+    <Compile Include="Interfaces\ITypeAndAmountPercentileSelector.cs" />
+    <Compile Include="Interfaces\IAttributesSelector.cs" />
     <Compile Include="Objects\TypeAndAmountPercentileResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+    <ProjectReference Include="..\..\Common\EquipmentGen.Common.csproj">
       <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
       <Name>EquipmentGen.Common</Name>
     </ProjectReference>

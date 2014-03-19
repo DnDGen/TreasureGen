@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using D20Dice;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
     public class MagicalItemTraitsGenerator : IMagicalItemTraitsGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private IDice dice;
 
-        public MagicalItemTraitsGenerator(IPercentileResultProvider percentileResultProvider, IDice dice)
+        public MagicalItemTraitsGenerator(IPercentileSelector percentileResultProvider, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.dice = dice;
@@ -23,7 +22,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var traits = new List<String>();
             var tableName = String.Format("{0}Traits", itemType);
             var roll = dice.Percentile();
-            var result = percentileResultProvider.GetResultFrom(tableName, roll);
+            var result = percentileResultProvider.SelectFrom(tableName, roll);
 
             if (String.IsNullOrEmpty(result))
                 return traits;

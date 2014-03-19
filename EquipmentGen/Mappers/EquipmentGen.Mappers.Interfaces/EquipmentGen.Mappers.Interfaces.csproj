@@ -40,8 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAttributesMapper.cs" />
-    <Compile Include="Interfaces\IPercentileXmlParser.cs" />
-    <Compile Include="Interfaces\ISpecialAbilityDataXmlParser.cs" />
+    <Compile Include="Interfaces\IPercentileMapper.cs" />
+    <Compile Include="Interfaces\ISpecialAbilityDataMapper.cs" />
     <Compile Include="Objects\PercentileObject.cs" />
     <Compile Include="Objects\SpecialAbilityDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributesXmlParser.cs" />
-    <Compile Include="PercentileXmlParser.cs" />
-    <Compile Include="SpecialAbilityDataXmlParser.cs" />
+    <Compile Include="AttributesXmlMapper.cs" />
+    <Compile Include="PercentileXmlMapper.cs" />
+    <Compile Include="SpecialAbilityDataXmlMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

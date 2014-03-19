@@ -1,17 +1,17 @@
 ﻿using D20Dice;
 using EquipmentGen.Bootstrap;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Mappers.Interfaces;
-using Ninject;
-using NUnit.Framework;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Generators.Interfaces.Items;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Tables.Interfaces;
+using Ninject;
+using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Common
 {
@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void CoinPercentileResultProviderNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ITypeAndAmountPercentileResultProvider>();
+            AssertNotSingleton<ITypeAndAmountPercentileSelector>();
         }
 
         [Test]
@@ -56,13 +56,13 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void PercentileResultProviderConstructedAsSingleton()
         {
-            AssertSingleton<IPercentileResultProvider>();
+            AssertSingleton<IPercentileSelector>();
         }
 
         [Test]
         public void PercentileXmlParserNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IPercentileXmlParser>();
+            AssertNotSingleton<IPercentileMapper>();
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void TypesProviderConstructedAsSingleton()
         {
-            AssertSingleton<IAttributesProvider>();
+            AssertSingleton<IAttributesSelector>();
         }
 
         [Test]
@@ -164,7 +164,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void SpecialAbilityDataProviderConstructedAsSingleton()
         {
-            AssertSingleton<ISpecialAbilityDataProvider>();
+            AssertSingleton<ISpecialAbilityDataSelector>();
         }
 
         [Test]
@@ -176,7 +176,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void SpecialAbilityDataXmlParserNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityDataXmlParser>();
+            AssertNotSingleton<ISpecialAbilityDataMapper>();
         }
 
         [Test]

@@ -1,19 +1,17 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
     public class MagicalArmorGenerator : IMagicalGearGenerator
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
-        private IPercentileResultProvider percentileResultProvider;
-        private IAttributesProvider attributesProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider;
+        private IPercentileSelector percentileResultProvider;
+        private IAttributesSelector attributesProvider;
         private ISpecialAbilitiesGenerator specialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
@@ -21,8 +19,8 @@ namespace EquipmentGen.Generators.Items.Magical
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
 
-        public MagicalArmorGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
+        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider,
+            IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
             ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             ISpecificGearGenerator specificGearGenerator, IDice dice)
@@ -45,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var tableName = String.Format("{0}Armors", power);
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileProvider.GetResultFrom(tableName, roll);
+            var result = typeAndAmountPercentileProvider.SelectFrom(tableName, roll);
             var armor = new Item();
             var abilityCount = 0;
 
@@ -53,7 +51,7 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 abilityCount += dice.Roll(result.AmountToRoll);
                 roll = dice.Percentile();
-                result = typeAndAmountPercentileProvider.GetResultFrom(tableName, roll);
+                result = typeAndAmountPercentileProvider.SelectFrom(tableName, roll);
             }
 
             if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
@@ -63,8 +61,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
             armor.Magic[Magic.Bonus] = result.AmountToRoll;
             roll = dice.Percentile();
-            armor.Name = percentileResultProvider.GetResultFrom(tableName, roll);
-            armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
+            armor.Name = percentileResultProvider.SelectFrom(tableName, roll);
+            armor.Attributes = attributesProvider.SelectFrom(armor.Name, "ArmorAttributes");
 
             var quantity = dice.Roll(result.AmountToRoll);
             var abilities = specialAbilitiesProvider.GenerateWith(armor.Attributes, power, quantity, abilityCount);

@@ -8,10 +8,10 @@ namespace EquipmentGen.Bootstrap.Modules
     {
         public override void Load()
         {
-            Bind<IPercentileResultProvider>().To<PercentileResultProvider>().InSingletonScope();
-            Bind<ISpecialAbilityDataProvider>().To<SpecialAbilityDataProvider>().InSingletonScope();
-            Bind<ITypeAndAmountPercentileResultProvider>().To<TypeAndAmountPercentileResultProvider>();
-            Bind<IAttributesProvider>().To<AttributesProvider>().InSingletonScope();
+            Bind<IPercentileSelector>().To<PercentileSelector>().InSingletonScope();
+            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>().InSingletonScope();
+            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
+            Bind<IAttributesSelector>().To<AttributesSelector>().InSingletonScope();
         }
     }
 }

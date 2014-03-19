@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private IDice dice;
-        private IAttributesProvider typesProvider;
+        private IAttributesSelector typesProvider;
         private Dictionary<String, IEnumerable<String>> specialMaterialTypes;
 
-        public SpecialMaterialGenerator(IDice dice, IAttributesProvider typesProvider)
+        public SpecialMaterialGenerator(IDice dice, IAttributesSelector typesProvider)
         {
             this.dice = dice;
             this.typesProvider = typesProvider;
@@ -26,17 +25,17 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         private void CacheSpecialMaterialTypes()
         {
-            var materials = typesProvider.GetAttributesFor("SpecialMaterials", "SpecialMaterials");
+            var materials = typesProvider.SelectFrom("SpecialMaterials", "SpecialMaterials");
             foreach (var material in materials)
             {
-                var materialTypeRequirements = typesProvider.GetAttributesFor(material, "SpecialMaterials");
+                var materialTypeRequirements = typesProvider.SelectFrom(material, "SpecialMaterials");
                 specialMaterialTypes.Add(material, materialTypeRequirements);
             }
         }
 
         private void AddTypes(String specialMaterial)
         {
-            var types = typesProvider.GetAttributesFor(specialMaterial, "SpecialMaterials");
+            var types = typesProvider.SelectFrom(specialMaterial, "SpecialMaterials");
             specialMaterialTypes.Add(specialMaterial, types);
         }
 

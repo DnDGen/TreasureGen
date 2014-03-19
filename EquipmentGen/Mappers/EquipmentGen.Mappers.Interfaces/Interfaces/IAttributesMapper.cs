@@ -5,6 +5,6 @@ namespace EquipmentGen.Mappers.Interfaces
 {
     public interface IAttributesMapper
     {
-        Dictionary<String, IEnumerable<String>> Parse(String fileName);
+        Dictionary<String, IEnumerable<String>> Map(String fileName);
     }
 }

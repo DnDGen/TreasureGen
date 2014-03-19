@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Mappers;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tests.Integration.Common;
@@ -15,7 +14,7 @@ namespace EquipmentGen.Tests.Integration.Tables
     public abstract class PercentileTests : IntegrationTests
     {
         [Inject]
-        public IPercentileXmlParser PercentileXmlParser { get; set; }
+        public IPercentileMapper PercentileXmlParser { get; set; }
 
         private IEnumerable<PercentileObject> table;
 
@@ -23,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Tables
         public void Setup()
         {
             var file = GetTableNameFromAttribute();
-            table = PercentileXmlParser.Parse(file);
+            table = PercentileXmlParser.Map(file);
         }
 
         private String GetTableNameFromAttribute()

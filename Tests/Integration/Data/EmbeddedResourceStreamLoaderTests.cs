@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Tables.Interfaces;
 using EquipmentGen.Tests.Integration.Common;
 using Ninject;
@@ -16,14 +15,14 @@ namespace EquipmentGen.Tests.Unit.Mappers
         [Test]
         public void GetsFileIfItIsAnEmbeddedResource()
         {
-            using (var stream = StreamLoader.LoadStream("Level1Coins.xml"))
+            using (var stream = StreamLoader.LoadFor("Level1Coins.xml"))
                 Assert.Pass(); //no error was thrown, so the stream was successfully loaded
         }
 
         [Test]
         public void ThrowErrorIfFileIsNotEmbeddedResource()
         {
-            Assert.That(() => StreamLoader.LoadStream("invalid filename"), Throws.InstanceOf<FileNotFoundException>());
+            Assert.That(() => StreamLoader.LoadFor("invalid filename"), Throws.InstanceOf<FileNotFoundException>());
         }
     }
 }

@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
     public class RingGenerator : IMagicalItemGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
-        private IAttributesProvider attributesProvider;
+        private IPercentileSelector percentileResultProvider;
+        private IAttributesSelector attributesProvider;
         private IMagicalItemTraitsGenerator traitsGenerator;
         private ISpellGenerator spellGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
 
-        public RingGenerator(IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
+        public RingGenerator(IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
             IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IIntelligenceGenerator intelligenceGenerator,
             IChargesGenerator chargesGenerator, IDice dice)
         {
@@ -37,12 +35,12 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var roll = dice.Percentile();
             var tableName = String.Format("{0}Rings", power);
-            var ability = percentileResultProvider.GetResultFrom(tableName, roll);
+            var ability = percentileResultProvider.SelectFrom(tableName, roll);
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", ability);
             ring.Magic[Magic.IsMagical] = true;
-            ring.Attributes = attributesProvider.GetAttributesFor(ability, "RingAttributes");
+            ring.Attributes = attributesProvider.SelectFrom(ability, "RingAttributes");
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
             ring.Traits.AddRange(traits);
 
@@ -80,7 +78,7 @@ namespace EquipmentGen.Generators.Items.Magical
             else if (ability.Contains("nergy resistance"))
             {
                 roll = dice.Percentile();
-                var energy = percentileResultProvider.GetResultFrom("Elements", roll);
+                var energy = percentileResultProvider.SelectFrom("Elements", roll);
                 ring.Name = String.Format("{0} ({1})", ring.Name, energy);
             }
 

@@ -8,9 +8,9 @@ namespace EquipmentGen.Bootstrap.Modules
     {
         public override void Load()
         {
-            Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
-            Bind<ISpecialAbilityDataXmlParser>().To<SpecialAbilityDataXmlParser>();
-            Bind<IAttributesMapper>().To<AttributesXmlParser>();
+            Bind<IPercentileMapper>().To<PercentileXmlMapper>();
+            Bind<ISpecialAbilityDataMapper>().To<SpecialAbilityDataXmlMapper>();
+            Bind<IAttributesMapper>().To<AttributesXmlMapper>();
         }
     }
 }

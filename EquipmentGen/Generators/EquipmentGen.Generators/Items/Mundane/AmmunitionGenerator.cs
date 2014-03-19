@@ -1,19 +1,18 @@
 ﻿using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class AmmunitionGenerator : IAmmunitionGenerator
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
         private IDice dice;
-        private IAttributesProvider attributesProvider;
+        private IAttributesSelector attributesProvider;
 
-        public AmmunitionGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice,
-            IAttributesProvider typesProvider)
+        public AmmunitionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice,
+            IAttributesSelector typesProvider)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
@@ -23,12 +22,12 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.GetResultFrom("Ammunitions", roll);
+            var result = typeAndAmountPercentileResultProvider.SelectFrom("Ammunitions", roll);
 
             var ammunition = new Item();
             ammunition.Name = result.Type;
             ammunition.Quantity = dice.Roll(result.AmountToRoll);
-            ammunition.Attributes = attributesProvider.GetAttributesFor(ammunition.Name, "AmmunitionAttributes");
+            ammunition.Attributes = attributesProvider.SelectFrom(ammunition.Name, "AmmunitionAttributes");
 
             return ammunition;
         }

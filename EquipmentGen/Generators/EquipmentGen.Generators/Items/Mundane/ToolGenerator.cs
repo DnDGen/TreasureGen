@@ -1,17 +1,16 @@
 ﻿using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class ToolGenerator : IToolGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private IDice dice;
 
-        public ToolGenerator(IPercentileResultProvider percentileResultProvider, IDice dice)
+        public ToolGenerator(IPercentileSelector percentileResultProvider, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.dice = dice;
@@ -20,7 +19,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = percentileResultProvider.GetResultFrom("Tools", roll);
+            var result = percentileResultProvider.SelectFrom("Tools", roll);
 
             var tool = new Item();
             tool.Name = result;

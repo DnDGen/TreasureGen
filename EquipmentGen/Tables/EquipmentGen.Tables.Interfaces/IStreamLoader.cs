@@ -5,6 +5,6 @@ namespace EquipmentGen.Tables.Interfaces
 {
     public interface IStreamLoader
     {
-        Stream LoadStream(String filename);
+        Stream LoadFor(String filename);
     }
 }

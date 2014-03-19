@@ -1,6 +1,5 @@
 ﻿using System;
 using EquipmentGen.Common;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Generators.Interfaces.Goods;

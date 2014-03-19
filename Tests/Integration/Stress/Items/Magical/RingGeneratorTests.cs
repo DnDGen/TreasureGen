@@ -1,9 +1,8 @@
 ﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using EquipmentGen.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
 
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {

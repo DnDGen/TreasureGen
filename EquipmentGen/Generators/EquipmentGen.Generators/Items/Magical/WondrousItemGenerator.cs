@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
     public class WondrousItemGenerator : IMagicalItemGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private IMagicalItemTraitsGenerator traitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
-        private IAttributesProvider attributesProvider;
+        private IAttributesSelector attributesProvider;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
 
-        public WondrousItemGenerator(IPercentileResultProvider percentileResultProvider,
+        public WondrousItemGenerator(IPercentileSelector percentileResultProvider,
             IMagicalItemTraitsGenerator traitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice)
+            IAttributesSelector attributesProvider, IChargesGenerator chargesGenerator, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.traitsGenerator = traitsGenerator;
@@ -35,14 +33,14 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var roll = dice.Percentile();
             var tablename = String.Format("{0}WondrousItems", power);
-            var result = percentileResultProvider.GetResultFrom(tablename, roll);
+            var result = percentileResultProvider.SelectFrom(tablename, roll);
 
             var item = new Item();
             item.Name = result;
             item.Magic[Magic.IsMagical] = true;
 
             var attributeName = GetNameForAttributes(item.Name);
-            item.Attributes = attributesProvider.GetAttributesFor(attributeName, "WondrousItemAttributes");
+            item.Attributes = attributesProvider.SelectFrom(attributeName, "WondrousItemAttributes");
 
             if (item.Name.Contains("+"))
                 item.Magic[Magic.Bonus] = GetBonus(item.Name);
@@ -59,13 +57,13 @@ namespace EquipmentGen.Generators.Items.Magical
             if (item.Name == "Horn of Valhalla")
             {
                 roll = dice.Percentile();
-                var hornType = percentileResultProvider.GetResultFrom("HornOfValhallaTypes", roll);
+                var hornType = percentileResultProvider.SelectFrom("HornOfValhallaTypes", roll);
                 item.Name = String.Format("{0} ({1})", item.Name, hornType);
             }
             else if (item.Name == "Iron flask")
             {
                 roll = dice.Percentile();
-                var contents = percentileResultProvider.GetResultFrom("IronFlaskContents", roll);
+                var contents = percentileResultProvider.SelectFrom("IronFlaskContents", roll);
                 item.Name = String.Format("{0} ({1})", item.Name, contents);
             }
             else if (item.Name == "Robe of useful items")
@@ -113,7 +111,7 @@ namespace EquipmentGen.Generators.Items.Magical
             while (quantity-- > 0)
             {
                 var roll = dice.Percentile();
-                var item = percentileResultProvider.GetResultFrom("RobeOfUsefulItemsExtraItems", roll);
+                var item = percentileResultProvider.SelectFrom("RobeOfUsefulItemsExtraItems", roll);
                 extraItems.Add(item);
             }
 
@@ -128,7 +126,7 @@ namespace EquipmentGen.Generators.Items.Magical
             while (planes.Count < 6)
             {
                 var roll = dice.Percentile();
-                var plane = percentileResultProvider.GetResultFrom("Planes", roll);
+                var plane = percentileResultProvider.SelectFrom("Planes", roll);
                 if (!planes.Contains(plane))
                     planes.Add(plane);
             }

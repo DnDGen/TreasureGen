@@ -8,7 +8,7 @@ namespace EquipmentGen.Tables
 {
     public class EmbeddedResourceStreamLoader : IStreamLoader
     {
-        public Stream LoadStream(String filename)
+        public Stream LoadFor(String filename)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resources = assembly.GetManifestResourceNames();

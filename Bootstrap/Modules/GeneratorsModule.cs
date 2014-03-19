@@ -1,19 +1,19 @@
 ﻿using D20Dice;
-using EquipmentGen.Generators.RuntimeFactories;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Generators;
-using EquipmentGen.Generators.Interfaces;
-using Ninject.Modules;
-using EquipmentGen.Generators.Items.Mundane;
-using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.Coins;
 using EquipmentGen.Generators.Goods;
-using EquipmentGen.Generators.Items;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Generators.Interfaces.Items;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.Items;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.Items.Mundane;
+using EquipmentGen.Generators.RuntimeFactories;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using Ninject.Modules;
 
 namespace EquipmentGen.Bootstrap.Modules
 {

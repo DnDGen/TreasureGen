@@ -1,23 +1,21 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class MundaneItemGenerator : IMundaneItemGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private IAlchemicalItemGenerator alchemicalItemFactory;
         private IMundaneGearGeneratorFactory gearGeneratorFactory;
         private IToolGenerator toolGenerator;
         private IDice dice;
 
-        public MundaneItemGenerator(IPercentileResultProvider percentileResultProvider, IAlchemicalItemGenerator alchemicalItemFactory,
+        public MundaneItemGenerator(IPercentileSelector percentileResultProvider, IAlchemicalItemGenerator alchemicalItemFactory,
             IMundaneGearGeneratorFactory gearGeneratorFactory, IToolGenerator toolGenerator, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
@@ -30,7 +28,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var type = percentileResultProvider.GetResultFrom("MundaneItems", roll);
+            var type = percentileResultProvider.SelectFrom("MundaneItems", roll);
             return GetItem(type);
         }
 

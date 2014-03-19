@@ -1,20 +1,19 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MagicalGearGeneratorFactory : IMagicalGearGeneratorFactory
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
-        private IPercentileResultProvider percentileResultProvider;
-        private IAttributesProvider attributesProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider;
+        private IPercentileSelector percentileResultProvider;
+        private IAttributesSelector attributesProvider;
         private ISpecialAbilitiesGenerator specialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
@@ -22,8 +21,8 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
 
-        public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
+        public MagicalGearGeneratorFactory(ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider,
+            IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
             ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             ISpecificGearGenerator specificGearGenerator, IDice dice)

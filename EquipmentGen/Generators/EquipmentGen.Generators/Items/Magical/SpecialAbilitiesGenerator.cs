@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
-        private ISpecialAbilityDataProvider specialAbilityDataProvider;
-        private IAttributesProvider typesProvider;
-        private IPercentileResultProvider percentileResultProvider;
+        private ISpecialAbilityDataSelector specialAbilityDataProvider;
+        private IAttributesSelector typesProvider;
+        private IPercentileSelector percentileResultProvider;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
         private const Int32 MaxBonus = 10;
 
-        public SpecialAbilitiesGenerator(ISpecialAbilityDataProvider specialAbilityDataProvider, IAttributesProvider typesProvider,
-            IPercentileResultProvider percentileResultProvider, IDice dice, ISpellGenerator spellGenerator)
+        public SpecialAbilitiesGenerator(ISpecialAbilityDataSelector specialAbilityDataProvider, IAttributesSelector typesProvider,
+            IPercentileSelector percentileResultProvider, IDice dice, ISpellGenerator spellGenerator)
         {
             this.specialAbilityDataProvider = specialAbilityDataProvider;
             this.typesProvider = typesProvider;
@@ -123,7 +121,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private List<SpecialAbility> GetAvailableAbilities(String tableName, Int32 bonus, IEnumerable<String> attributes)
         {
-            var abilityNames = percentileResultProvider.GetAllResultsFrom(tableName);
+            var abilityNames = percentileResultProvider.SelectAllFrom(tableName);
             var availableAbilities = new List<SpecialAbility>();
 
             foreach (var abilityName in abilityNames)
@@ -131,7 +129,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (abilityName == "BonusSpecialAbility")
                     continue;
 
-                var ability = specialAbilityDataProvider.GetDataFor(abilityName);
+                var ability = specialAbilityDataProvider.SelectFor(abilityName);
 
                 if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
                     availableAbilities.Add(ability);
@@ -152,7 +150,7 @@ namespace EquipmentGen.Generators.Items.Magical
             do
             {
                 var roll = dice.Percentile();
-                abilityName = percentileResultProvider.GetResultFrom(tableName, roll);
+                abilityName = percentileResultProvider.SelectFrom(tableName, roll);
 
                 if (abilityName == "BonusSpecialAbility")
                     return new SpecialAbility { Name = abilityName };
@@ -169,7 +167,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (ability.CoreName == "Bane")
             {
                 var roll = dice.Percentile();
-                var designatedFoe = percentileResultProvider.GetResultFrom("DesignatedFoes", roll);
+                var designatedFoe = percentileResultProvider.SelectFrom("DesignatedFoes", roll);
                 return String.Format("{0}bane", designatedFoe);
             }
 

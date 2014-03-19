@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Goods;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Goods;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Goods
 {
     public class GoodsGenerator : IGoodsGenerator
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
         private IDice dice;
-        private IPercentileResultProvider percentileResultProvider;
-        private IAttributesProvider attributesProvider;
+        private IPercentileSelector percentileResultProvider;
+        private IAttributesSelector attributesProvider;
 
-        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider,
-            IPercentileResultProvider percentileResultProvider, IAttributesProvider typesProvider)
+        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider,
+            IPercentileSelector percentileResultProvider, IAttributesSelector typesProvider)
         {
             this.dice = dice;
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
@@ -29,7 +28,7 @@ namespace EquipmentGen.Generators.Goods
         {
             var roll = dice.Percentile();
             var tableName = String.Format("Level{0}Goods", level);
-            var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetResultFrom(tableName, roll);
+            var typeAndAmountResult = typeAndAmountPercentileResultProvider.SelectFrom(tableName, roll);
 
             if (String.IsNullOrEmpty(typeAndAmountResult.Type))
                 return Enumerable.Empty<Good>();
@@ -42,8 +41,8 @@ namespace EquipmentGen.Generators.Goods
             while (quantity-- > 0)
             {
                 roll = dice.Percentile();
-                var valueRoll = percentileResultProvider.GetResultFrom(valueTableName, roll);
-                var descriptions = attributesProvider.GetAttributesFor(valueRoll, descriptionTableName);
+                var valueRoll = percentileResultProvider.SelectFrom(valueTableName, roll);
+                var descriptions = attributesProvider.SelectFrom(valueRoll, descriptionTableName);
                 var descriptionIndexRoll = String.Format("1d{0}-1", descriptions.Count());
                 var descriptionIndex = dice.Roll(descriptionIndexRoll);
 

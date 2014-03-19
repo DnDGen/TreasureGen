@@ -197,7 +197,7 @@
       <Project>{ee68faeb-1d40-447f-9bcd-93d1ffdfe858}</Project>
       <Name>EquipmentGen.Bootstrap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EquipmentGen\Common\EquipmentGen.Common\EquipmentGen.Common.csproj">
+    <ProjectReference Include="..\..\..\EquipmentGen\Common\EquipmentGen.Common.csproj">
       <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
       <Name>EquipmentGen.Common</Name>
     </ProjectReference>

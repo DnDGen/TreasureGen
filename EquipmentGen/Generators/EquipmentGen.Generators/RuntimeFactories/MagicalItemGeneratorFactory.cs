@@ -1,28 +1,26 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using EquipmentGen.Generators;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MagicalItemGeneratorFactory : IMagicalItemGeneratorFactory
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private IMagicalItemTraitsGenerator magicalItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
-        private IAttributesProvider attributesProvider;
+        private IAttributesSelector attributesProvider;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
-        public MagicalItemGeneratorFactory(IPercentileResultProvider percentileResultProvider,
+        public MagicalItemGeneratorFactory(IPercentileSelector percentileResultProvider,
             IMagicalItemTraitsGenerator magicalItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesProvider attributesProvider, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
+            IAttributesSelector attributesProvider, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;

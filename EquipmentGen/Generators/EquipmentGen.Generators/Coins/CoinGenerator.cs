@@ -1,18 +1,17 @@
 ﻿using System;
 using D20Dice;
 using EquipmentGen.Common.Coins;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Coins
 {
     public class CoinGenerator : ICoinGenerator
     {
-        private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
         private IDice dice;
 
-        public CoinGenerator(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileResultProvider, IDice dice)
+        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice)
         {
             this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
             this.dice = dice;
@@ -22,7 +21,7 @@ namespace EquipmentGen.Generators.Coins
         {
             var tableName = String.Format("Level{0}Coins", level);
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.GetResultFrom(tableName, roll);
+            var result = typeAndAmountPercentileResultProvider.SelectFrom(tableName, roll);
 
             var coin = new Coin();
 

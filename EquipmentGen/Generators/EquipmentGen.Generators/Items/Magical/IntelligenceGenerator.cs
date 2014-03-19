@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 
 namespace EquipmentGen.Generators.Items.Magical

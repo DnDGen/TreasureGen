@@ -2,22 +2,20 @@
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
     public class MundaneArmorGenerator : IMundaneGearGenerator
     {
-        private IPercentileResultProvider percentileResultProvider;
+        private IPercentileSelector percentileResultProvider;
         private ISpecialMaterialGenerator materialsProvider;
-        private IAttributesProvider attributesProvider;
+        private IAttributesSelector attributesProvider;
         private IDice dice;
 
-        public MundaneArmorGenerator(IPercentileResultProvider percentileResultProvider, ISpecialMaterialGenerator materialsProvider,
-            IAttributesProvider attributesProvider, IDice dice)
+        public MundaneArmorGenerator(IPercentileSelector percentileResultProvider, ISpecialMaterialGenerator materialsProvider,
+            IAttributesSelector attributesProvider, IDice dice)
         {
             this.percentileResultProvider = percentileResultProvider;
             this.materialsProvider = materialsProvider;
@@ -28,15 +26,15 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = percentileResultProvider.GetResultFrom("MundaneArmors", roll);
+            var result = percentileResultProvider.SelectFrom("MundaneArmors", roll);
             var armor = new Item();
 
             if (result == TraitConstants.Darkwood)
             {
                 var tableName = String.Format("{0}Shields", result);
                 roll = dice.Percentile();
-                armor.Name = percentileResultProvider.GetResultFrom(tableName, roll);
-                armor.Attributes = attributesProvider.GetAttributesFor(ArmorConstants.Buckler, "ArmorAttributes");
+                armor.Name = percentileResultProvider.SelectFrom(tableName, roll);
+                armor.Attributes = attributesProvider.SelectFrom(ArmorConstants.Buckler, "ArmorAttributes");
                 armor.Traits.Add(result);
 
                 return armor;
@@ -45,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             {
                 var tableName = String.Format("{0}Shields", result);
                 roll = dice.Percentile();
-                armor.Name = percentileResultProvider.GetResultFrom(tableName, roll);
+                armor.Name = percentileResultProvider.SelectFrom(tableName, roll);
                 armor.Traits.Add(result);
             }
             else
@@ -56,10 +54,10 @@ namespace EquipmentGen.Generators.Items.Mundane
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            armor.Attributes = attributesProvider.GetAttributesFor(armor.Name, "ArmorAttributes");
+            armor.Attributes = attributesProvider.SelectFrom(armor.Name, "ArmorAttributes");
 
             roll = dice.Percentile();
-            var size = percentileResultProvider.GetResultFrom("ArmorSizes", roll);
+            var size = percentileResultProvider.SelectFrom("ArmorSizes", roll);
             armor.Traits.Add(size);
 
             if (materialsProvider.HasSpecialMaterial(armor.Attributes))

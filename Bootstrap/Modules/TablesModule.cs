@@ -1,6 +1,4 @@
-﻿using EquipmentGen.Mappers;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Tables;
+﻿using EquipmentGen.Tables;
 using EquipmentGen.Tables.Interfaces;
 using Ninject.Modules;
 

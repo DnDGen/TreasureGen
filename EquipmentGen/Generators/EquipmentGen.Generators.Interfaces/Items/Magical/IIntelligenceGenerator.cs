@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Common.Items;
 
 namespace EquipmentGen.Generators.Interfaces.Items.Magical
 {
