@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Objects;
+using EquipmentGen.Generators;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Objects;
 using Moq;
 using NUnit.Framework;
+using EquipmentGen.Generators.Goods;
+using EquipmentGen.Generators.Interfaces.Goods;
 
-namespace EquipmentGen.Tests.Unit.Generation.Generators
+namespace EquipmentGen.Tests.Unit.Generators.Goods
 {
     [TestFixture]
     public class GoodsGeneratorTests

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Core.Generation.Providers.Objects
+namespace EquipmentGen.Selectors.Objects
 {
     public class TypeAndAmountPercentileResult
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Objects;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Objects;
 
-namespace EquipmentGen.Core.Generation.Providers
+namespace EquipmentGen.Selectors
 {
     public class TypeAndAmountPercentileResultProvider : ITypeAndAmountPercentileResultProvider
     {

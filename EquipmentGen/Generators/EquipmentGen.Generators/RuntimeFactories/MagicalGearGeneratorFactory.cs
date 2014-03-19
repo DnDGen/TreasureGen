@@ -1,19 +1,21 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Factories
+namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MagicalGearGeneratorFactory : IMagicalGearGeneratorFactory
     {
         private ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider;
         private IPercentileResultProvider percentileResultProvider;
-        private IAttributesProvider typesProvider;
-        private ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider;
+        private IAttributesProvider attributesProvider;
+        private ISpecialAbilitiesGenerator specialAbilitiesProvider;
         private ISpecialMaterialGenerator materialsProvider;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
@@ -21,15 +23,15 @@ namespace EquipmentGen.Core.Generation.Factories
         private IDice dice;
 
         public MagicalGearGeneratorFactory(ITypeAndAmountPercentileResultProvider typeAndAmountPercentileProvider,
-            IPercentileResultProvider percentileResultProvider, IAttributesProvider typesProvider,
-            ISpecialAbilitiesGenerator gearSpecialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+            IPercentileResultProvider percentileResultProvider, IAttributesProvider attributesProvider,
+            ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             ISpecificGearGenerator specificGearGenerator, IDice dice)
         {
             this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
             this.percentileResultProvider = percentileResultProvider;
-            this.typesProvider = typesProvider;
-            this.gearSpecialAbilitiesProvider = gearSpecialAbilitiesProvider;
+            this.attributesProvider = attributesProvider;
+            this.specialAbilitiesProvider = specialAbilitiesProvider;
             this.materialsProvider = materialsProvider;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
@@ -42,7 +44,7 @@ namespace EquipmentGen.Core.Generation.Factories
             switch (type)
             {
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
-                    percentileResultProvider, typesProvider, gearSpecialAbilitiesProvider, materialsProvider,
+                    percentileResultProvider, attributesProvider, specialAbilitiesProvider, materialsProvider,
                     magicItemTraitsGenerator, intelligenceGenerator, specificGearGenerator, dice);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();

@@ -1,15 +1,17 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Factories;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.RuntimeFactories;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Generators;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 using Moq;
 using NUnit.Framework;
+using EquipmentGen.Generators.Items.Mundane;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 
-namespace EquipmentGen.Tests.Unit.Generation.Factories
+namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
 {
     [TestFixture]
     public class MundaneGearGeneratorFactoryTests

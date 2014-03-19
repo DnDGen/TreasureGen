@@ -1,7 +1,7 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Common.Items;
 
-namespace EquipmentGen.Core.Generation.Providers.Interfaces
+namespace EquipmentGen.Selectors.Interfaces
 {
     public interface ISpecialAbilityDataProvider
     {

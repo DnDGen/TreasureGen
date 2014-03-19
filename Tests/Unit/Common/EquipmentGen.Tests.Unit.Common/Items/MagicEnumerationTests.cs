@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items.Constants;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Data.Items.Constants
+namespace EquipmentGen.Tests.Unit.Common.Items
 {
     [TestFixture]
     public class MagicEnumerationTests

@@ -1,7 +1,7 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Coins;
+using EquipmentGen.Common.Coins;
 
-namespace EquipmentGen.Core.Generation.Generators.Interfaces
+namespace EquipmentGen.Generators.Interfaces.Coins
 {
     public interface ICoinGenerator
     {

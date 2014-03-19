@@ -1,9 +1,10 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Items.Magical
 {
     public class SpellGenerator : ISpellGenerator
     {

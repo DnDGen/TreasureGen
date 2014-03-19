@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Data.Goods;
+using EquipmentGen.Common.Goods;
 
-namespace EquipmentGen.Core.Generation.Generators.Interfaces
+namespace EquipmentGen.Generators.Interfaces.Goods
 {
     public interface IGoodsGenerator
     {

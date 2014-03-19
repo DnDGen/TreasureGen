@@ -1,9 +1,12 @@
 ﻿using System;
-using EquipmentGen.Core.Data;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Common;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Coins;
+using EquipmentGen.Generators.Interfaces.Goods;
+using EquipmentGen.Generators.Interfaces.Items;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators
 {
     public class TreasureGenerator : ITreasureGenerator
     {

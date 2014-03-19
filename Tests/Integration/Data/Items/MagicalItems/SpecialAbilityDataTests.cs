@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EquipmentGen.Core.Data.Items
+namespace EquipmentGen.Common.Items
 {
     public class Intelligence
     {

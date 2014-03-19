@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Items.Mundane
 {
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {

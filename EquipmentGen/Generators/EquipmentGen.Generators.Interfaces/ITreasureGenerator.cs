@@ -1,7 +1,7 @@
 ﻿using System;
-using EquipmentGen.Core.Data;
+using EquipmentGen.Common;
 
-namespace EquipmentGen.Core.Generation.Generators.Interfaces
+namespace EquipmentGen.Generators.Interfaces
 {
     public interface ITreasureGenerator
     {

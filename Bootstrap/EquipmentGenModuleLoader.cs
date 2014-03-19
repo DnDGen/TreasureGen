@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using EquipmentGen.Bootstrap.Modules;
+using Ninject;
 
 namespace EquipmentGen.Bootstrap
 {

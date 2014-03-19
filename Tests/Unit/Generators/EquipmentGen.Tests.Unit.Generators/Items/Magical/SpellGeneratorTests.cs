@@ -1,11 +1,13 @@
 ﻿using D20Dice;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Generators;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
 using Moq;
 using NUnit.Framework;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Tests.Unit.Generation.Generators
+namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 {
     [TestFixture]
     public class SpellGeneratorTests

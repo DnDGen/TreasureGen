@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Core.Data.Goods
+namespace EquipmentGen.Common.Goods
 {
     public static class GoodsConstants
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
+namespace EquipmentGen.Tests.Integration.Stress.Items
 {
     [TestFixture]
     public class ItemsGeneratorTests : StressTests

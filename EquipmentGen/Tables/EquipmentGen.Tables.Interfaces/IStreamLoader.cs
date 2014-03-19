@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers.Interfaces
+namespace EquipmentGen.Tables.Interfaces
 {
     public interface IStreamLoader
     {

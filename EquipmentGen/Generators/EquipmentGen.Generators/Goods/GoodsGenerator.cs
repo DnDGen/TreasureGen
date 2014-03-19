@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Core.Data.Goods;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Common.Goods;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Interfaces.Goods;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Goods
 {
     public class GoodsGenerator : IGoodsGenerator
     {

@@ -1,13 +1,15 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Objects;
+using EquipmentGen.Generators;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Objects;
 using Moq;
 using NUnit.Framework;
+using EquipmentGen.Generators.Coins;
+using EquipmentGen.Generators.Interfaces.Coins;
 
-namespace EquipmentGen.Tests.Unit.Generation.Generators
+namespace EquipmentGen.Tests.Unit.Generators.Coins
 {
     [TestFixture]
     public class CoinGeneratorTests

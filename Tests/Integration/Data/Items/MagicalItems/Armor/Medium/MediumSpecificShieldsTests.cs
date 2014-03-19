@@ -1,4 +1,4 @@
-﻿using EquipmentGen.Tests.Integration.Tables.Attributes;
+﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium

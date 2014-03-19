@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EquipmentGen.Core.Data.Coins;
-using EquipmentGen.Core.Data.Goods;
-using EquipmentGen.Core.Data.Items;
+using EquipmentGen.Common.Coins;
+using EquipmentGen.Common.Goods;
+using EquipmentGen.Common.Items;
 
-namespace EquipmentGen.Core.Data
+namespace EquipmentGen.Common
 {
     public class Treasure
     {

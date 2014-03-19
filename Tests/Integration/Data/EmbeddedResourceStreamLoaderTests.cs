@@ -1,10 +1,11 @@
 ﻿using System.IO;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
+namespace EquipmentGen.Tests.Unit.Mappers
 {
     [TestFixture]
     public class EmbeddedResourceStreamLoaderTests : IntegrationTests

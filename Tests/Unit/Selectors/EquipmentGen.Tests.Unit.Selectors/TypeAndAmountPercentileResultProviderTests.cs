@@ -1,10 +1,10 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Providers;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Selectors;
+using EquipmentGen.Selectors.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Providers
+namespace EquipmentGen.Tests.Unit.Selectors
 {
     [TestFixture]
     public class TypeAndAmountPercentileResultProviderTests

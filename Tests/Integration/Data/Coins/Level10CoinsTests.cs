@@ -1,6 +1,6 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Coins;
-using EquipmentGen.Tests.Integration.Tables.Attributes;
+using EquipmentGen.Common.Coins;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Coins

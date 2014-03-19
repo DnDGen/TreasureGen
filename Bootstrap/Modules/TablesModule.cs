@@ -1,8 +1,10 @@
-﻿using EquipmentGen.Core.Generation.Xml.Parsers;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+﻿using EquipmentGen.Mappers;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Tables;
+using EquipmentGen.Tables.Interfaces;
 using Ninject.Modules;
 
-namespace EquipmentGen.Bootstrap
+namespace EquipmentGen.Bootstrap.Modules
 {
     public class TablesModule : NinjectModule
     {

@@ -1,9 +1,10 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
+namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public class SpellGeneratorTests : StressTests

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Mappers.Objects;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers.Interfaces
+namespace EquipmentGen.Mappers.Interfaces
 {
     public interface ISpecialAbilityDataXmlParser
     {

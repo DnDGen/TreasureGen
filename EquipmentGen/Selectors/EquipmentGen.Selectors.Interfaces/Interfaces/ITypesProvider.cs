@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EquipmentGen.Core.Generation.Providers.Interfaces
+namespace EquipmentGen.Selectors.Interfaces
 {
     public interface IAttributesProvider
     {

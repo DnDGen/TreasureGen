@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Objects;
+using EquipmentGen.Tables.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers
+namespace EquipmentGen.Mappers
 {
     public class SpecialAbilityDataXmlParser : ISpecialAbilityDataXmlParser
     {

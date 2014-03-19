@@ -1,4 +1,4 @@
-﻿using EquipmentGen.Core.Data.Coins;
+﻿using EquipmentGen.Common.Coins;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Coins

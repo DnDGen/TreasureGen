@@ -1,7 +1,7 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Items.Magical
 {
     public class ChargesGenerator : IChargesGenerator
     {

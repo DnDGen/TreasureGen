@@ -1,10 +1,11 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Data.Coins;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Common.Coins;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Interfaces.Coins;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Coins
 {
     public class CoinGenerator : ICoinGenerator
     {

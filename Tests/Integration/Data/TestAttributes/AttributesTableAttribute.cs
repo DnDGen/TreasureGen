@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Tests.Integration.Tables.Attributes
+namespace EquipmentGen.Tests.Integration.Tables.TestAttributes
 {
     public class AttributesTableAttribute : Attribute
     {

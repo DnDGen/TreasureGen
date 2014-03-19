@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Providers
+namespace EquipmentGen.Selectors
 {
     public class AttributesProvider : IAttributesProvider
     {
-        private IAttributesXmlParser attributesXmlParser;
+        private IAttributesMapper attributesXmlParser;
         private Dictionary<String, Dictionary<String, IEnumerable<String>>> tables;
 
-        public AttributesProvider(IAttributesXmlParser attributesXmlParser)
+        public AttributesProvider(IAttributesMapper attributesXmlParser)
         {
             this.attributesXmlParser = attributesXmlParser;
             tables = new Dictionary<String, Dictionary<String, IEnumerable<String>>>();

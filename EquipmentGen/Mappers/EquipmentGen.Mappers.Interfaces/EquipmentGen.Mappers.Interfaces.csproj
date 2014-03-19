@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAttributesXmlParser.cs" />
+    <Compile Include="Interfaces\IAttributesMapper.cs" />
     <Compile Include="Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Interfaces\ISpecialAbilityDataXmlParser.cs" />
     <Compile Include="Objects\PercentileObject.cs" />

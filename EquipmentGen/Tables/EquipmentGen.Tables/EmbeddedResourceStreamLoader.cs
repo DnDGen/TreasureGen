@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers
+namespace EquipmentGen.Tables
 {
     public class EmbeddedResourceStreamLoader : IStreamLoader
     {

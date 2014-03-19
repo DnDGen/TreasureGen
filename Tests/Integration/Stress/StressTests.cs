@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using EquipmentGen.Core.Data.Items.Constants;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;

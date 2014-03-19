@@ -1,7 +1,8 @@
 ﻿using System;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Core.Generation.Factories.Interfaces
+namespace EquipmentGen.Generators.RuntimeFactories.Interfaces
 {
     public interface IMagicalGearGeneratorFactory
     {

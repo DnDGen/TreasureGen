@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Core.Generation.Xml.Parsers;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Mappers;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tests.Integration.Common;
-using EquipmentGen.Tests.Integration.Tables.Attributes;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using Ninject;
 using NUnit.Framework;
 

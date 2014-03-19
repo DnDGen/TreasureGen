@@ -1,8 +1,8 @@
-﻿using EquipmentGen.Core.Generation.Xml.Parsers;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+﻿using EquipmentGen.Mappers;
+using EquipmentGen.Mappers.Interfaces;
 using Ninject.Modules;
 
-namespace EquipmentGen.Bootstrap
+namespace EquipmentGen.Bootstrap.Modules
 {
     public class MappersModule : NinjectModule
     {
@@ -10,7 +10,7 @@ namespace EquipmentGen.Bootstrap
         {
             Bind<IPercentileXmlParser>().To<PercentileXmlParser>();
             Bind<ISpecialAbilityDataXmlParser>().To<SpecialAbilityDataXmlParser>();
-            Bind<IAttributesXmlParser>().To<AttributesXmlParser>();
+            Bind<IAttributesMapper>().To<AttributesXmlParser>();
         }
     }
 }

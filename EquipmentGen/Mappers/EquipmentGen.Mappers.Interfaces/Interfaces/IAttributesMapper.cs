@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers.Interfaces
+namespace EquipmentGen.Mappers.Interfaces
 {
-    public interface IAttributesXmlParser
+    public interface IAttributesMapper
     {
         Dictionary<String, IEnumerable<String>> Parse(String fileName);
     }

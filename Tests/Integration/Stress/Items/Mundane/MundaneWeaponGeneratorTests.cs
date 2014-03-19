@@ -1,10 +1,11 @@
-﻿using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 
-namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
+namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
     public class MundaneWeaponGeneratorTests : StressTests

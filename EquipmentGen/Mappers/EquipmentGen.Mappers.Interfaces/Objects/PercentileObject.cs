@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers.Objects
+namespace EquipmentGen.Mappers.Objects
 {
     public class PercentileObject
     {

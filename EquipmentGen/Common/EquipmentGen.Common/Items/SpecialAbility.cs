@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EquipmentGen.Core.Data.Items
+namespace EquipmentGen.Common.Items
 {
     public class SpecialAbility
     {

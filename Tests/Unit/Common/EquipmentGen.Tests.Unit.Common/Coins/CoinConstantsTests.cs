@@ -1,7 +1,7 @@
-﻿using EquipmentGen.Core.Data.Coins;
+﻿using EquipmentGen.Common.Coins;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Data.Coins
+namespace EquipmentGen.Tests.Unit.Common.Coins
 {
     [TestFixture]
     public class CoinConstantsTests

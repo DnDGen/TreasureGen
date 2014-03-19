@@ -1,17 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using EquipmentGen.Core.Generation.Xml.Parsers;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Mappers;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generation.Xml.Parsers
+namespace EquipmentGen.Tests.Unit.Mappers
 {
     [TestFixture]
     public class AttributeXmlParserTests
     {
-        private IAttributesXmlParser attributeXmlParser;
+        private IAttributesMapper attributeXmlParser;
         private Mock<IStreamLoader> mockStreamLoader;
         private const String filename = "AttributeXmlParserTests.xml";
 

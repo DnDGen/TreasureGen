@@ -1,4 +1,4 @@
-﻿using EquipmentGen.Core.Data.Goods;
+﻿using EquipmentGen.Common.Goods;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Goods

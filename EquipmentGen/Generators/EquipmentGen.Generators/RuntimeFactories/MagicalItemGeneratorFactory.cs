@@ -1,12 +1,14 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Generators;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Core.Generation.Factories
+namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MagicalItemGeneratorFactory : IMagicalItemGeneratorFactory
     {

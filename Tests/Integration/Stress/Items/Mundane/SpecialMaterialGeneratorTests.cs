@@ -1,9 +1,10 @@
-﻿using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
+namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
     public class SpecialMaterialGeneratorTests : StressTests

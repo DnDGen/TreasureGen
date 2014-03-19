@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EquipmentGen.Core.Generation.Generators.Interfaces
+namespace EquipmentGen.Generators.Interfaces.Items.Mundane
 {
     public interface ISpecialMaterialGenerator
     {

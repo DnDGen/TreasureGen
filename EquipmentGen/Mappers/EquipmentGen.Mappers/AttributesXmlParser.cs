@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
-namespace EquipmentGen.Core.Generation.Xml.Parsers
+namespace EquipmentGen.Mappers
 {
-    public class AttributesXmlParser : IAttributesXmlParser
+    public class AttributesXmlParser : IAttributesMapper
     {
         private IStreamLoader streamLoader;
 

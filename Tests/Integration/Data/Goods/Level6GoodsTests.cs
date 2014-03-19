@@ -1,6 +1,6 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Goods;
-using EquipmentGen.Tests.Integration.Tables.Attributes;
+using EquipmentGen.Common.Goods;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods

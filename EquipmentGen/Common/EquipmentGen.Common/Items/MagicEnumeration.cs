@@ -1,4 +1,4 @@
-﻿namespace EquipmentGen.Core.Data.Items.Constants
+﻿namespace EquipmentGen.Common.Items
 {
     public enum Magic
     {

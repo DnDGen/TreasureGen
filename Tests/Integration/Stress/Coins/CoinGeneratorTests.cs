@@ -1,8 +1,8 @@
-﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using EquipmentGen.Generators.Interfaces.Coins;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
+namespace EquipmentGen.Tests.Integration.Stress.Coins
 {
     [TestFixture]
     public class CoinGeneratorTests : StressTests

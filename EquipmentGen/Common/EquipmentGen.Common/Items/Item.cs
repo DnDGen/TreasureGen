@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Core.Data.Items.Constants;
+using EquipmentGen.Common.Items;
 
-namespace EquipmentGen.Core.Data.Items
+namespace EquipmentGen.Common.Items
 {
     public class Item
     {

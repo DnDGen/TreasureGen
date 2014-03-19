@@ -57,8 +57,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
-    <Compile Include="Attributes\AttributesTableAttribute.cs" />
-    <Compile Include="Attributes\PercentileTableAttribute.cs" />
+    <Compile Include="TestAttributes\AttributesTableAttribute.cs" />
+    <Compile Include="TestAttributes\PercentileTableAttribute.cs" />
     <Compile Include="Coins\Level10CoinsTests.cs" />
     <Compile Include="Coins\Level11CoinsTests.cs" />
     <Compile Include="Coins\Level12CoinsTests.cs" />

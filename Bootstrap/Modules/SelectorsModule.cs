@@ -1,8 +1,8 @@
-﻿using EquipmentGen.Core.Generation.Providers;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
+﻿using EquipmentGen.Selectors;
+using EquipmentGen.Selectors.Interfaces;
 using Ninject.Modules;
 
-namespace EquipmentGen.Bootstrap
+namespace EquipmentGen.Bootstrap.Modules
 {
     public class SelectorsModule : NinjectModule
     {

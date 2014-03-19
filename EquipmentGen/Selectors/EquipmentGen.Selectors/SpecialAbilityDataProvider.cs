@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Objects;
 
-namespace EquipmentGen.Core.Generation.Providers
+namespace EquipmentGen.Selectors
 {
     public class SpecialAbilityDataProvider : ISpecialAbilityDataProvider
     {

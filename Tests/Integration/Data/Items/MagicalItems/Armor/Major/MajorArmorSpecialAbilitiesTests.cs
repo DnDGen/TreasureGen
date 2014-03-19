@@ -1,5 +1,5 @@
-﻿using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Tests.Integration.Tables.Attributes;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major

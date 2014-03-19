@@ -1,11 +1,17 @@
 ﻿using D20Dice;
 using EquipmentGen.Bootstrap;
-using EquipmentGen.Core.Generation.Factories.Interfaces;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
-using EquipmentGen.Core.Generation.Providers.Interfaces;
-using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
+using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Mappers.Interfaces;
 using Ninject;
 using NUnit.Framework;
+using EquipmentGen.Generators.Interfaces.Coins;
+using EquipmentGen.Generators.Interfaces.Goods;
+using EquipmentGen.Generators.Interfaces.Items;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Tests.Integration.Common
 {
@@ -134,7 +140,7 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void TypesXmlParserNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IAttributesXmlParser>();
+            AssertNotSingleton<IAttributesMapper>();
         }
 
         [Test]

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Core.Data.Coins
+namespace EquipmentGen.Common.Coins
 {
     public class Coin
     {

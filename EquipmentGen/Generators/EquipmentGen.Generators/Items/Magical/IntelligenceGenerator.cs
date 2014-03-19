@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Core.Data.Items;
-using EquipmentGen.Core.Data.Items.Constants;
-using EquipmentGen.Core.Generation.Generators.Interfaces;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 
-namespace EquipmentGen.Core.Generation.Generators
+namespace EquipmentGen.Generators.Items.Magical
 {
     public class IntelligenceGenerator : IIntelligenceGenerator
     {
