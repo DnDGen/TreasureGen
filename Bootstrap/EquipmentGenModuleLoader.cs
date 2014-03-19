@@ -6,9 +6,10 @@ namespace EquipmentGen.Bootstrap
     {
         public void LoadModules(IKernel kernel)
         {
-            kernel.Load<MapperModule>();
-            kernel.Load<GeneratorModule>();
-            kernel.Load<SelectorModule>();
+            kernel.Load<MappersModule>();
+            kernel.Load<GeneratorsModule>();
+            kernel.Load<SelectorsModule>();
+            kernel.Load<TablesModule>();
         }
     }
 }

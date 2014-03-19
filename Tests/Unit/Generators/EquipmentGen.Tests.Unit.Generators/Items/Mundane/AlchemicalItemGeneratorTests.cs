@@ -24,17 +24,17 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = "alchemical item";
             result.AmountToRoll = "9266";
             mockTypeAndAmountPercentileProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileProvider.Setup(p => p.GetResultFrom("AlchemicalItems", 92)).Returns(result);
+            mockTypeAndAmountPercentileProvider.Setup(p => p.GetResultFrom("AlchemicalItems", 42)).Returns(result);
 
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(92);
-            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(66);
+            mockDice.Setup(d => d.Percentile(1)).Returns(42);
+            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(9266);
 
             generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileProvider.Object, mockDice.Object);
         }
 
         [Test]
-        public void AlchemicalItemGeneratorGetsItemAndQuantityFromTypeAndAmountPercentileResultProvider()
+        public void GetItemAndQuantityFromTypeAndAmountPercentileResultProvider()
         {
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));

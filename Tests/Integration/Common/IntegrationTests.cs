@@ -1,5 +1,4 @@
-﻿using System;
-using EquipmentGen.Bootstrap;
+﻿using EquipmentGen.Bootstrap;
 using Ninject;
 using NUnit.Framework;
 
@@ -8,9 +7,6 @@ namespace EquipmentGen.Tests.Integration.Common
     [TestFixture]
     public abstract class IntegrationTests
     {
-        [Inject]
-        public Random Random { get; set; }
-
         private IKernel kernel;
 
         public IntegrationTests()

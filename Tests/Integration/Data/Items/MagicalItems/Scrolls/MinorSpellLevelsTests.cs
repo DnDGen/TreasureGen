@@ -3,8 +3,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
 {
-    [TestFixture, PercentileTable("MinorSpellLevel")]
-    public class MinorSpellLevelTests : PercentileTests
+    [TestFixture, PercentileTable("MinorSpellLevels")]
+    public class MinorSpellLevelsTests : PercentileTests
     {
         [Test]
         public void Level0Percentile()

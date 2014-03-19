@@ -10,15 +10,15 @@ namespace EquipmentGen.Core.Generation.Xml.Parsers
     {
         public Stream LoadStream(String filename)
         {
-            var executingAssembly = Assembly.GetExecutingAssembly();
-            var resources = executingAssembly.GetManifestResourceNames();
+            var assembly = Assembly.GetExecutingAssembly();
+            var resources = assembly.GetManifestResourceNames();
 
             if (!resources.Any(r => r.EndsWith(filename)))
                 throw new FileNotFoundException(filename);
 
-            var streamSource = resources.First(r => r.EndsWith(filename));
+            var streamSource = resources.Single(r => r.EndsWith(filename));
 
-            return executingAssembly.GetManifestResourceStream(streamSource);
+            return assembly.GetManifestResourceStream(streamSource);
         }
     }
 }

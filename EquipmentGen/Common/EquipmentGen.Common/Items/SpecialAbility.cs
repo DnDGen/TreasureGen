@@ -15,6 +15,8 @@ namespace EquipmentGen.Core.Data.Items
         public SpecialAbility()
         {
             AttributeRequirements = Enumerable.Empty<String>();
+            Name = String.Empty;
+            CoreName = String.Empty;
         }
     }
 }

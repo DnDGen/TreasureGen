@@ -26,19 +26,21 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             typeAndAmountResult = new TypeAndAmountPercentileResult();
             typeAndAmountResult.Type = "type";
-            typeAndAmountResult.Amount = 2;
+            typeAndAmountResult.AmountToRoll = "2";
+
+            mockDice = new Mock<IDice>();
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(123);
+            mockDice.Setup(d => d.Roll(typeAndAmountResult.AmountToRoll)).Returns(2);
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>(), 92)).Returns(typeAndAmountResult);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
 
             var types = new[] { "description 1", "description 2" };
             mockTypesProvider = new Mock<IAttributesProvider>();
             mockTypesProvider.Setup(p => p.GetAttributesFor(It.IsAny<String>(), typeAndAmountResult.Type + "Descriptions")).Returns(types);
-
-            mockDice = new Mock<IDice>();
 
             generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockTypesProvider.Object);
@@ -55,7 +57,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void GetTypeAndAmountFromProvider()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Goods"), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Goods", 92), Times.Once);
         }
 
         [Test]
@@ -69,7 +71,9 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ReturnsNumberOfGoodsDeterminedByDice()
         {
-            typeAndAmountResult.Amount = 9266;
+            typeAndAmountResult.AmountToRoll = "9266";
+            mockDice.Setup(d => d.Roll(typeAndAmountResult.AmountToRoll)).Returns(9266);
+
             var goods = generator.GenerateAtLevel(1);
             Assert.That(goods.Count(), Is.EqualTo(9266));
         }
@@ -77,8 +81,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ValueDeterminedByValueResult()
         {
-            mockPercentileResultProvider.SetupSequence(p => p.GetResultFrom(typeAndAmountResult.Type + "Values"))
-                .Returns("92d66").Returns("other roll");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(typeAndAmountResult.Type + "Values", 123)).Returns("other roll");
             mockDice.Setup(d => d.Roll("92d66")).Returns(9266);
             mockDice.Setup(d => d.Roll("other roll")).Returns(42);
 

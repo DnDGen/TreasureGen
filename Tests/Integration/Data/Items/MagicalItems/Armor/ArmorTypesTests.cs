@@ -4,8 +4,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor
 {
-    [TestFixture, PercentileTable("ArmorType")]
-    public class ArmorTypeTests : PercentileTests
+    [TestFixture, PercentileTable("ArmorTypes")]
+    public class ArmorTypesTests : PercentileTests
     {
         [Test]
         public void PaddedArmorPercentile()

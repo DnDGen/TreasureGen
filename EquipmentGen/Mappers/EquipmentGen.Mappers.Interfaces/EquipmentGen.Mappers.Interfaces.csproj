@@ -42,7 +42,6 @@
     <Compile Include="Interfaces\IAttributesXmlParser.cs" />
     <Compile Include="Interfaces\IPercentileXmlParser.cs" />
     <Compile Include="Interfaces\ISpecialAbilityDataXmlParser.cs" />
-    <Compile Include="Interfaces\IStreamLoader.cs" />
     <Compile Include="Objects\PercentileObject.cs" />
     <Compile Include="Objects\SpecialAbilityDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

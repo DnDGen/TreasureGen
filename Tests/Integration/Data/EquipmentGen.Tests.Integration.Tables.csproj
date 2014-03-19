@@ -79,6 +79,7 @@
     <Compile Include="Coins\Level7CoinsTests.cs" />
     <Compile Include="Coins\Level8CoinsTests.cs" />
     <Compile Include="Coins\Level9CoinsTests.cs" />
+    <Compile Include="EmbeddedResourceStreamLoaderTests.cs" />
     <Compile Include="Goods\Art\ArtDescriptionsTests.cs" />
     <Compile Include="Goods\Art\ArtValuesTests.cs" />
     <Compile Include="Goods\Gems\GemDescriptionsTests.cs" />
@@ -125,19 +126,19 @@
     <Compile Include="Items\Level8ItemsTests.cs" />
     <Compile Include="Items\Level9ItemsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\ArmorTraitsTests.cs" />
-    <Compile Include="Items\MagicalItems\Armor\ArmorTypeTests.cs" />
+    <Compile Include="Items\MagicalItems\Armor\ArmorTypesTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Major\MajorArmorSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\MagicalItems\Armor\Major\MajorArmorTests.cs" />
+    <Compile Include="Items\MagicalItems\Armor\Major\MajorArmorsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Major\MajorShieldSpecialAbilitiesTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Major\MajorSpecificArmorsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Medium\MediumArmorSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\MagicalItems\Armor\Medium\MediumArmorTests.cs" />
+    <Compile Include="Items\MagicalItems\Armor\Medium\MediumArmorsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Medium\MediumShieldSpecialAbilitiesTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Medium\MediumSpecificShieldsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Minor\MinorArmorSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\MagicalItems\Armor\Minor\MinorArmorTests.cs" />
+    <Compile Include="Items\MagicalItems\Armor\Minor\MinorArmorsTests.cs" />
     <Compile Include="Items\MagicalItems\Armor\Minor\MinorShieldSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\MagicalItems\Armor\ShieldTypeTests.cs" />
+    <Compile Include="Items\MagicalItems\Armor\ShieldTypesTests.cs" />
     <Compile Include="Items\MagicalItems\MajorItemsTests.cs" />
     <Compile Include="Items\MagicalItems\MediumItemsTests.cs" />
     <Compile Include="Items\MagicalItems\MinorItemsTests.cs" />
@@ -152,10 +153,10 @@
     <Compile Include="Items\MagicalItems\Scrolls\Arcane\Level3ArcaneSpellsTests.cs" />
     <Compile Include="Items\MagicalItems\Scrolls\Divine\Level2DivineSpellsTests.cs" />
     <Compile Include="Items\MagicalItems\Scrolls\Divine\Level3DivineSpellsTests.cs" />
-    <Compile Include="Items\MagicalItems\Scrolls\MajorSpellLevelTests.cs" />
-    <Compile Include="Items\MagicalItems\Scrolls\MediumSpellLevelTests.cs" />
-    <Compile Include="Items\MagicalItems\Scrolls\MinorSpellLevelTests.cs" />
-    <Compile Include="Items\MagicalItems\Scrolls\SpellTypeTests.cs" />
+    <Compile Include="Items\MagicalItems\Scrolls\MajorSpellLevelsTests.cs" />
+    <Compile Include="Items\MagicalItems\Scrolls\MediumSpellLevelsTests.cs" />
+    <Compile Include="Items\MagicalItems\Scrolls\MinorSpellLevelsTests.cs" />
+    <Compile Include="Items\MagicalItems\Scrolls\SpellTypesTests.cs" />
     <Compile Include="Items\MagicalItems\SpecialAbilityAttributesTests.cs" />
     <Compile Include="Items\MagicalItems\SpecialAbilityDataTests.cs" />
     <Compile Include="Items\MagicalItems\Staves\StaffTraitsTests.cs" />
@@ -175,13 +176,13 @@
     <Compile Include="Items\MagicalItems\WondrousItems\WondrousItemAttributesTests.cs" />
     <Compile Include="Items\MundaneItems\AlchemicalItemsTests.cs" />
     <Compile Include="Items\MundaneItems\AmmunitionAttributesTests.cs" />
-    <Compile Include="Items\MundaneItems\AmmunitionTests.cs" />
+    <Compile Include="Items\MundaneItems\AmmunitionsTests.cs" />
     <Compile Include="Items\MundaneItems\ArmorSizesTests.cs" />
     <Compile Include="Items\MundaneItems\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Items\MundaneItems\CommonRangedWeaponsTests.cs" />
     <Compile Include="Items\MundaneItems\DarkwoodShieldsTests.cs" />
     <Compile Include="Items\MundaneItems\MasterworkShieldsTests.cs" />
-    <Compile Include="Items\MundaneItems\MundaneArmorTests.cs" />
+    <Compile Include="Items\MundaneItems\MundaneArmorsTests.cs" />
     <Compile Include="Items\MundaneItems\MundaneItemsTests.cs" />
     <Compile Include="Items\MundaneItems\MundaneWeaponsTests.cs" />
     <Compile Include="Items\MundaneItems\SpecialMaterialsTests.cs" />
@@ -203,6 +204,10 @@
     <ProjectReference Include="..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
       <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
       <Name>EquipmentGen.Mappers.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Tables\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EquipmentGen\Tables\EquipmentGen.Tables\EquipmentGen.Tables.csproj">
       <Project>{b404a5bf-02de-400e-9dad-5cafbc72a926}</Project>

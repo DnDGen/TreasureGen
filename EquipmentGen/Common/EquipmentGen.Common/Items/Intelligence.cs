@@ -19,6 +19,11 @@ namespace EquipmentGen.Core.Data.Items
         public Intelligence()
         {
             Powers = new List<String>();
+            SpecialPurpose = String.Empty;
+            DedicatedPower = String.Empty;
+            Communication = String.Empty;
+            Senses = String.Empty;
+            Alignment = String.Empty;
         }
     }
 }

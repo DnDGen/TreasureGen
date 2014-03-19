@@ -27,7 +27,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = percentileResultProvider.GetResultFrom("MundaneArmor", roll);
+            var result = percentileResultProvider.GetResultFrom("MundaneArmors", roll);
             var armor = new Item();
 
             if (result == TraitConstants.Darkwood)

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +428,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Mundane\Weapons\WeaponAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

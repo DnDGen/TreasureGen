@@ -19,6 +19,7 @@ namespace EquipmentGen.Core.Data.Items
             Attributes = Enumerable.Empty<String>();
             Magic = new Dictionary<Magic, Object>();
             Quantity = 1;
+            Name = String.Empty;
         }
     }
 }

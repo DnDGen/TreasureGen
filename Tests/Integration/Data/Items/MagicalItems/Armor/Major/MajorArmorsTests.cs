@@ -5,8 +5,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major
 {
-    [TestFixture, PercentileTable("MajorArmor")]
-    public class MajorArmorTests : PercentileTests
+    [TestFixture, PercentileTable("MajorArmors")]
+    public class MajorArmorsTests : PercentileTests
     {
         [Test]
         public void Plus3ShieldPercentile()

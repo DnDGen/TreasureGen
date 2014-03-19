@@ -6,5 +6,10 @@ namespace EquipmentGen.Core.Data.Goods
     {
         public String Description { get; set; }
         public Int32 ValueInGold { get; set; }
+
+        public Good()
+        {
+            Description = String.Empty;
+        }
     }
 }

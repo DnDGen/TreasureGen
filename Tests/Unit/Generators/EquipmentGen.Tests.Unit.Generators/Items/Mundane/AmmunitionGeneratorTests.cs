@@ -25,10 +25,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             result.Type = "ammunition name";
             result.AmountToRoll = "9266";
 
-            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Ammunition")).Returns(result);
-
             mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Percentile(1)).Returns(42);
+            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(9266);
+
+            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("Ammunitions", 42)).Returns(result);
+
             mockAttributesProvider = new Mock<IAttributesProvider>();
 
             ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object,

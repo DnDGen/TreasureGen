@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ReturnSpellLevel()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerSpellLevel", 42)).Returns("9266");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("powerSpellLevels", 42)).Returns("9266");
             var level = generator.GenerateLevel("power");
             Assert.That(level, Is.EqualTo(9266));
         }
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ReturnSpellType()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("SpellType", 42)).Returns("spell type");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("SpellTypes", 42)).Returns("spell type");
             var type = generator.GenerateType();
             Assert.That(type, Is.EqualTo("spell type"));
         }

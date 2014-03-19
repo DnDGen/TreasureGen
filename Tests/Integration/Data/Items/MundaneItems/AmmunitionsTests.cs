@@ -5,8 +5,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
 {
-    [TestFixture, PercentileTable("Ammunition")]
-    public class AmmunitionTests : PercentileTests
+    [TestFixture, PercentileTable("Ammunitions")]
+    public class AmmunitionsTests : PercentileTests
     {
         [Test]
         public void ArrowPercentile()

@@ -19,12 +19,12 @@ namespace EquipmentGen.Core.Generation.Generators
         public String GenerateType()
         {
             var roll = dice.Percentile();
-            return percentileResultProvider.GetResultFrom("SpellType", roll);
+            return percentileResultProvider.GetResultFrom("SpellTypes", roll);
         }
 
         public Int32 GenerateLevel(String power)
         {
-            var tableName = String.Format("{0}SpellLevel", power);
+            var tableName = String.Format("{0}SpellLevels", power);
             var roll = dice.Percentile();
             var result = percentileResultProvider.GetResultFrom(tableName, roll);
             return Convert.ToInt32(result);

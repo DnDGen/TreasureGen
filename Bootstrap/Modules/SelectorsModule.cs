@@ -4,7 +4,7 @@ using Ninject.Modules;
 
 namespace EquipmentGen.Bootstrap
 {
-    public class SelectorModule : NinjectModule
+    public class SelectorsModule : NinjectModule
     {
         public override void Load()
         {

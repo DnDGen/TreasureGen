@@ -55,7 +55,7 @@
     <Compile Include="Items\Mundane\AmmunitionGeneratorTests.cs" />
     <Compile Include="Coins\CoinGeneratorTests.cs" />
     <Compile Include="Goods\GoodsGeneratorTests.cs" />
-    <Compile Include="Items\Magical\ItemsGeneratorTests.cs" />
+    <Compile Include="Items\ItemsGeneratorTests.cs" />
     <Compile Include="Items\Magical\MagicalArmorGeneratorTests.cs" />
     <Compile Include="Items\Magical\MagicalItemTraitsGeneratorTests.cs" />
     <Compile Include="Items\Mundane\MundaneArmorGeneratorTests.cs" />
@@ -90,6 +90,9 @@
       <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
       <Name>EquipmentGen.Selectors.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

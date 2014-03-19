@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using D20Dice;
 using EquipmentGen.Core.Data.Items;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Generators;
@@ -23,6 +24,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
+        private Mock<IDice> mockDice;
 
         private TypeAndAmountPercentileResult result;
 
@@ -31,10 +33,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "armor type";
-            result.Amount = 9266;
+            result.AmountToRoll = "9266";
+
+            mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Percentile(1)).Returns(42);
 
             mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmor")).Returns(result);
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmors", 42)).Returns(result);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             mockAttributesProvider = new Mock<IAttributesProvider>();
@@ -47,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             magicalArmorGenerator = new MagicalArmorGenerator(mockTypeAndAmountPercentileResultProvider.Object,
                 mockPercentileResultProvider.Object, mockAttributesProvider.Object, mockSpecialAbilitiesGenerator.Object,
                 mockMaterialsProvider.Object, mockMagicItemTraitsGenerator.Object, mockIntelligenceGenerator.Object,
-                mockSpecificGearGenerator.Object);
+                mockSpecificGearGenerator.Object, mockDice.Object);
         }
 
         [Test]
@@ -67,7 +72,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void GetNameFromPercentileResultProvider()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Type")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Types", 42)).Returns("armor name");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("armor name"));
@@ -76,7 +81,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void GetAttributesFromProvider()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Type")).Returns("armor name");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom(result.Type + "Types", 42)).Returns("armor name");
 
             var attributes = new[] { "type 1", "type 2" };
             mockAttributesProvider.Setup(p => p.GetAttributesFor("armor name", "ArmorAttributes")).Returns(attributes);
@@ -90,8 +95,8 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var specificResult = new TypeAndAmountPercentileResult();
             specificResult.Type = "SpecificArmor";
-            specificResult.Amount = 0;
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmor")).Returns(specificResult);
+            specificResult.AmountToRoll = "0";
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom("powerArmors", 42)).Returns(specificResult);
 
             var specificArmor = new Item();
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", specificResult.Type)).Returns(specificArmor);
@@ -105,12 +110,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
-            abilityResult.Amount = 1;
-            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmor"))
+            abilityResult.AmountToRoll = "1";
+            mockTypeAndAmountPercentileResultProvider.SetupSequence(p => p.GetResultFrom("powerArmors", 42))
                 .Returns(abilityResult).Returns(result);
+            mockDice.Setup(d => d.Roll(abilityResult.AmountToRoll)).Returns(90210);
 
             var abilities = new[] { new SpecialAbility() };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateWith(It.IsAny<IEnumerable<String>>(), "power", result.Amount, 1))
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateWith(It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(), 90210))
                 .Returns(abilities);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");

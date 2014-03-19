@@ -27,7 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(9266).Returns(42);
 
             mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor", 9266)).Returns("armor type");
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmors", 9266)).Returns("armor type");
             mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
             mockAttributesProvider = new Mock<IAttributesProvider>();
 
@@ -52,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void SetMasterworkTraitIfTypeIsStuddedLeatherArmor()
         {
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor", 9266)).Returns(ArmorConstants.StuddedLeatherArmor);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmors", 9266)).Returns(ArmorConstants.StuddedLeatherArmor);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo(ArmorConstants.StuddedLeatherArmor));
@@ -63,7 +63,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void GetShieldTypeIfResultIsDarkwood()
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(42);
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor", 92)).Returns(TraitConstants.Darkwood);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmors", 92)).Returns(TraitConstants.Darkwood);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("DarkwoodShields", 66)).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();
@@ -75,7 +75,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void DarkwoodShieldsCannotGetOtherSpecialMaterials()
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(42);
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor", 92)).Returns(TraitConstants.Darkwood);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmors", 92)).Returns(TraitConstants.Darkwood);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("DarkwoodShields", 66)).Returns("big shield");
 
             mockMaterialsProvider.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
@@ -90,7 +90,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void GetShieldTypeIfResultIsMasterworkShield()
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(42);
-            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmor", 92)).Returns(TraitConstants.Masterwork);
+            mockPercentileResultProvider.Setup(p => p.GetResultFrom("MundaneArmors", 92)).Returns(TraitConstants.Masterwork);
             mockPercentileResultProvider.Setup(p => p.GetResultFrom("MasterworkShields", 66)).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();

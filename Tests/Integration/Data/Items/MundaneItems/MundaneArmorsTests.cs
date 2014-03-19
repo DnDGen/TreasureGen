@@ -4,8 +4,8 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
 {
-    [TestFixture, PercentileTable("MundaneArmor")]
-    public class MundaneArmorTests : PercentileTests
+    [TestFixture, PercentileTable("MundaneArmors")]
+    public class MundaneArmorsTests : PercentileTests
     {
         [Test]
         public void ChainShirtPercentile()

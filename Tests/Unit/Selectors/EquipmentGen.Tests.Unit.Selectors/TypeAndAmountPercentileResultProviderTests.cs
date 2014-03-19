@@ -37,13 +37,13 @@ namespace EquipmentGen.Tests.Unit.Generation.Providers
 
             var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name", 1);
             Assert.That(result.Type, Is.Empty);
-            Assert.That(result.AmountToRoll, Is.EqualTo(0));
+            Assert.That(result.AmountToRoll, Is.Empty);
         }
 
         [Test]
         public void TypeAndAmountPercentileResultProviderReturnsCorrectObject()
         {
-            var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name", 1);
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("table name", 9266);
             Assert.That(result.Type, Is.EqualTo("type"));
             Assert.That(result.AmountToRoll, Is.EqualTo("roll"));
         }

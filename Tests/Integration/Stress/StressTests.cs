@@ -12,6 +12,8 @@ namespace EquipmentGen.Tests.Integration.Stress
     public abstract class StressTests : IntegrationTests
     {
         [Inject]
+        public Random Random { get; set; }
+        [Inject]
         public Stopwatch Stopwatch { get; set; }
 
         private const Int32 ConfidentIterations = 1000000;

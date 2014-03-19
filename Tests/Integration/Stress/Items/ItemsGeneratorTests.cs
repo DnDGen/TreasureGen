@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Core.Generation.Generators.Interfaces;
+﻿using System;
+using EquipmentGen.Core.Generation.Generators.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -28,6 +29,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Generation.Generators
             while (TestShouldKeepRunning())
             {
                 var level = GetNewLevel();
+                Console.WriteLine("Level: {0}", level);
                 var items = ItemsGenerator.GenerateAtLevel(level);
 
                 Assert.That(items, Is.Not.Null);

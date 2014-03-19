@@ -7,7 +7,7 @@ using Ninject.Modules;
 
 namespace EquipmentGen.Bootstrap
 {
-    public class GeneratorModule : NinjectModule
+    public class GeneratorsModule : NinjectModule
     {
         public override void Load()
         {

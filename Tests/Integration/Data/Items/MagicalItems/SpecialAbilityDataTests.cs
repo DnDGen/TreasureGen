@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Xml.Parsers.Interfaces;
 using EquipmentGen.Core.Generation.Xml.Parsers.Objects;
+using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
 {
     [TestFixture]
-    public class SpecialAbilityDataTests
+    public class SpecialAbilityDataTests : IntegrationTests
     {
         [Inject]
         public ISpecialAbilityDataXmlParser SpecialAbilityDataXmlParser { get; set; }

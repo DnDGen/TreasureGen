@@ -22,7 +22,7 @@ namespace EquipmentGen.Core.Generation.Generators
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.GetResultFrom("Ammunition", roll);
+            var result = typeAndAmountPercentileResultProvider.GetResultFrom("Ammunitions", roll);
 
             var ammunition = new Item();
             ammunition.Name = result.Type;

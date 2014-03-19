@@ -23,12 +23,15 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "coin type";
-
-            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>()))
-                .Returns(result);
+            result.AmountToRoll = "92d66";
 
             mockDice = new Mock<IDice>();
+            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
+
+            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileResultProvider>();
+            mockTypeAndAmountPercentileResultProvider.Setup(p => p.GetResultFrom(It.IsAny<String>(), 9266))
+                .Returns(result);
+
             generator = new CoinGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object);
         }
 
@@ -36,7 +39,7 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         public void CoinGeneratorReturnsCoinFromCoinPercentileResultProvider()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Coins"), Times.Once);
+            mockTypeAndAmountPercentileResultProvider.Verify(p => p.GetResultFrom("Level1Coins", 9266), Times.Once);
         }
 
         [Test]
@@ -52,9 +55,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Generators
         [Test]
         public void ParsesCurrencyOutOfPercentileResult()
         {
+            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(42);
+
             var coin = generator.GenerateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(result.Type));
-            Assert.That(coin.Quantity, Is.EqualTo(result.Amount));
+            Assert.That(coin.Quantity, Is.EqualTo(42));
         }
     }
 }

@@ -40,15 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributesXmlParser.cs" />
-    <Compile Include="EmbeddedResourceStreamLoader.cs" />
     <Compile Include="PercentileXmlParser.cs" />
     <Compile Include="SpecialAbilityDataXmlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Tables\EquipmentGen.Tables\EquipmentGen.Tables.csproj">
-      <Project>{b404a5bf-02de-400e-9dad-5cafbc72a926}</Project>
-      <Name>EquipmentGen.Tables</Name>
+    <ProjectReference Include="..\..\Tables\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
       <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>

@@ -41,7 +41,7 @@ namespace EquipmentGen.Core.Generation.Generators
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
 
-            var tableName = String.Format("{0}Armor", power);
+            var tableName = String.Format("{0}Armors", power);
             var roll = dice.Percentile();
             var result = typeAndAmountPercentileProvider.GetResultFrom(tableName, roll);
             var armor = new Item();
@@ -57,7 +57,7 @@ namespace EquipmentGen.Core.Generation.Generators
             if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
                 return specificGearGenerator.GenerateFrom(power, result.Type);
 
-            tableName = String.Format("{0}Type", result.Type);
+            tableName = String.Format("{0}Types", result.Type);
 
             armor.Magic[Magic.Bonus] = result.AmountToRoll;
             roll = dice.Percentile();

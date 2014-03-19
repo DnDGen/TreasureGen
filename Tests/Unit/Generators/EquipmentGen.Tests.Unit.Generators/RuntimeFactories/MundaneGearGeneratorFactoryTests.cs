@@ -1,5 +1,5 @@
 ﻿using System;
-using EquipmentGen.Core.Data.Items;
+using D20Dice;
 using EquipmentGen.Core.Data.Items.Constants;
 using EquipmentGen.Core.Generation.Factories;
 using EquipmentGen.Core.Generation.Factories.Interfaces;
@@ -22,9 +22,11 @@ namespace EquipmentGen.Tests.Unit.Generation.Factories
             var mockPercentileResultProvider = new Mock<IPercentileResultProvider>();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             var mockMaterialsProvider = new Mock<ISpecialMaterialGenerator>();
-            var mockTypeProvider = new Mock<IAttributesProvider>();
+            var mockAttributesProvider = new Mock<IAttributesProvider>();
+            var mockDice = new Mock<IDice>();
+
             factory = new MundaneGearGeneratorFactory(mockPercentileResultProvider.Object, mockAmmunitionGenerator.Object,
-                mockMaterialsProvider.Object, mockTypeProvider.Object);
+                mockMaterialsProvider.Object, mockAttributesProvider.Object, mockDice.Object);
         }
 
         [Test]

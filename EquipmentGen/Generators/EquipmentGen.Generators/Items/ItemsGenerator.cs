@@ -39,6 +39,10 @@ namespace EquipmentGen.Core.Generation.Generators
             var tableName = String.Format("Level{0}Items", level);
             var typeAndAmountResult = typeAndAmountPercentileResultProvider.GetResultFrom(tableName, roll);
             var items = new List<Item>();
+
+            if (String.IsNullOrEmpty(typeAndAmountResult.Type))
+                return items;
+
             var amount = dice.Roll(typeAndAmountResult.AmountToRoll);
 
             while (amount-- > 0)
