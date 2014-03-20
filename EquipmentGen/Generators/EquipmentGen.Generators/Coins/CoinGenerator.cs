@@ -8,12 +8,12 @@ namespace EquipmentGen.Generators.Coins
 {
     public class CoinGenerator : ICoinGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IDice dice;
 
-        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice)
+        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice)
         {
-            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.dice = dice;
         }
 
@@ -21,7 +21,7 @@ namespace EquipmentGen.Generators.Coins
         {
             var tableName = String.Format("Level{0}Coins", level);
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
 
             var coin = new Coin();
 

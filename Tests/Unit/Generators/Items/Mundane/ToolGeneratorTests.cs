@@ -11,15 +11,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     public class ToolGeneratorTests
     {
         private IToolGenerator generator;
-        private Mock<IPercentileSelector> mockPercentileResultProvider;
+        private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
         {
-            mockPercentileResultProvider = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
-            generator = new ToolGenerator(mockPercentileResultProvider.Object, mockDice.Object);
+            generator = new ToolGenerator(mockPercentileSelector.Object, mockDice.Object);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void ToolGeneratorSetsToolNameByPercentileResult()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-            mockPercentileResultProvider.Setup(p => p.SelectFrom("Tools", 9266)).Returns("tool");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Tools", 9266)).Returns("tool");
             var tool = generator.Generate();
             Assert.That(tool.Name, Is.EqualTo("tool"));
         }

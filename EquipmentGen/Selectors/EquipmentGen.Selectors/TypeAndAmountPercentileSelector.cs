@@ -6,16 +6,16 @@ namespace EquipmentGen.Selectors
 {
     public class TypeAndAmountPercentileSelector : ITypeAndAmountPercentileSelector
     {
-        private IPercentileSelector innerProvider;
+        private IPercentileSelector percentileSelector;
 
-        public TypeAndAmountPercentileSelector(IPercentileSelector innerProvider)
+        public TypeAndAmountPercentileSelector(IPercentileSelector percentileSelector)
         {
-            this.innerProvider = innerProvider;
+            this.percentileSelector = percentileSelector;
         }
 
         public TypeAndAmountPercentileResult SelectFrom(String tableName, Int32 roll)
         {
-            var percentileResult = innerProvider.SelectFrom(tableName, roll);
+            var percentileResult = percentileSelector.SelectFrom(tableName, roll);
 
             var result = new TypeAndAmountPercentileResult();
             if (String.IsNullOrEmpty(percentileResult))

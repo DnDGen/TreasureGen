@@ -11,27 +11,27 @@ namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MagicalGearGeneratorFactory : IMagicalGearGeneratorFactory
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider;
-        private IPercentileSelector percentileResultProvider;
-        private IAttributesSelector attributesProvider;
-        private ISpecialAbilitiesGenerator specialAbilitiesProvider;
-        private ISpecialMaterialGenerator materialsProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private IPercentileSelector percentileSelector;
+        private IAttributesSelector attributesSelector;
+        private ISpecialAbilitiesGenerator specialAbilitiesSelector;
+        private ISpecialMaterialGenerator materialsSelector;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
 
-        public MagicalGearGeneratorFactory(ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider,
-            IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
-            ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+        public MagicalGearGeneratorFactory(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
+            ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecialMaterialGenerator materialsSelector,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             ISpecificGearGenerator specificGearGenerator, IDice dice)
         {
-            this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
-            this.percentileResultProvider = percentileResultProvider;
-            this.attributesProvider = attributesProvider;
-            this.specialAbilitiesProvider = specialAbilitiesProvider;
-            this.materialsProvider = materialsProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
+            this.percentileSelector = percentileSelector;
+            this.attributesSelector = attributesSelector;
+            this.specialAbilitiesSelector = specialAbilitiesSelector;
+            this.materialsSelector = materialsSelector;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
             this.specificGearGenerator = specificGearGenerator;
@@ -42,8 +42,8 @@ namespace EquipmentGen.Generators.RuntimeFactories
         {
             switch (type)
             {
-                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileProvider,
-                    percentileResultProvider, attributesProvider, specialAbilitiesProvider, materialsProvider,
+                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector,
+                    percentileSelector, attributesSelector, specialAbilitiesSelector, materialsSelector,
                     magicItemTraitsGenerator, intelligenceGenerator, specificGearGenerator, dice);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();

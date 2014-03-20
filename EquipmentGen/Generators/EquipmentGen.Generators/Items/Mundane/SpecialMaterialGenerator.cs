@@ -10,51 +10,49 @@ namespace EquipmentGen.Generators.Items.Mundane
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private IDice dice;
-        private IAttributesSelector typesProvider;
-        private Dictionary<String, IEnumerable<String>> specialMaterialTypes;
+        private IAttributesSelector attributesSelector;
+        private Dictionary<String, IEnumerable<String>> specialMaterialAttributes;
 
-        public SpecialMaterialGenerator(IDice dice, IAttributesSelector typesProvider)
+        public SpecialMaterialGenerator(IDice dice, IAttributesSelector attributesSelector)
         {
             this.dice = dice;
-            this.typesProvider = typesProvider;
+            this.attributesSelector = attributesSelector;
 
-            specialMaterialTypes = new Dictionary<String, IEnumerable<String>>();
+            specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
 
             CacheSpecialMaterialTypes();
         }
 
         private void CacheSpecialMaterialTypes()
         {
-            var materials = typesProvider.SelectFrom("SpecialMaterials", "SpecialMaterials");
+            var materials = attributesSelector.SelectFrom("SpecialMaterials", "SpecialMaterials");
+
             foreach (var material in materials)
-            {
-                var materialTypeRequirements = typesProvider.SelectFrom(material, "SpecialMaterials");
-                specialMaterialTypes.Add(material, materialTypeRequirements);
-            }
+                AddTypes(material);
         }
 
         private void AddTypes(String specialMaterial)
         {
-            var types = typesProvider.SelectFrom(specialMaterial, "SpecialMaterials");
-            specialMaterialTypes.Add(specialMaterial, types);
+            var attributeRequirements = attributesSelector.SelectFrom(specialMaterial, "SpecialMaterials");
+            specialMaterialAttributes.Add(specialMaterial, attributeRequirements);
         }
 
-        public Boolean HasSpecialMaterial(IEnumerable<String> types)
+        public Boolean HasSpecialMaterial(IEnumerable<String> attributes)
         {
-            return dice.Percentile() > 95 && ItemTypesAllowForSpecialMaterials(types);
+            return dice.Percentile() > 95 && AttributesAllowForSpecialMaterials(attributes);
         }
 
-        private Boolean ItemTypesAllowForSpecialMaterials(IEnumerable<String> types)
+        private Boolean AttributesAllowForSpecialMaterials(IEnumerable<String> attributes)
         {
-            return specialMaterialTypes.Any(kvp => kvp.Value.All(v => types.Contains(v)));
+            return specialMaterialAttributes.Any(kvp => kvp.Value.All(v => attributes.Contains(v)));
         }
 
-        public String GenerateFor(IEnumerable<String> types)
+        public String GenerateFor(IEnumerable<String> attributes)
         {
-            if (!ItemTypesAllowForSpecialMaterials(types))
-                throw new ArgumentException(String.Join(",", types));
+            if (!AttributesAllowForSpecialMaterials(attributes))
+                throw new ArgumentException(String.Join(",", attributes));
 
-            var filteredSpecialMaterials = specialMaterialTypes.Where(kvp => kvp.Value.All(v => types.Contains(v)));
+            var filteredSpecialMaterials = specialMaterialAttributes.Where(kvp => kvp.Value.All(v => attributes.Contains(v)));
             var allowedSpecialMaterials = filteredSpecialMaterials.Select<KeyValuePair<String, IEnumerable<String>>, String>(kvp => kvp.Key);
 
             if (allowedSpecialMaterials.Count() == 1)

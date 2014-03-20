@@ -13,13 +13,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
     public class SpecialAbilityDataTests : IntegrationTests
     {
         [Inject]
-        public ISpecialAbilityDataMapper SpecialAbilityDataXmlParser { get; set; }
+        public ISpecialAbilityDataMapper SpecialAbilityDataMapper { get; set; }
 
         private Dictionary<String, SpecialAbilityDataObject> data;
 
         public SpecialAbilityDataTests()
         {
-            data = SpecialAbilityDataXmlParser.Map("SpecialAbilityData.xml");
+            data = SpecialAbilityDataMapper.Map("SpecialAbilityData.xml");
         }
 
         [Test]

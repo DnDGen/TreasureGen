@@ -11,22 +11,22 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
     public class SpellGeneratorTests
     {
         private ISpellGenerator generator;
-        private Mock<IPercentileSelector> mockPercentileResultProvider;
+        private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
         {
-            mockPercentileResultProvider = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
-            generator = new SpellGenerator(mockPercentileResultProvider.Object, mockDice.Object);
+            generator = new SpellGenerator(mockPercentileSelector.Object, mockDice.Object);
         }
 
         [Test]
         public void ReturnSpellLevel()
         {
-            mockPercentileResultProvider.Setup(p => p.SelectFrom("powerSpellLevels", 42)).Returns("9266");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerSpellLevels", 42)).Returns("9266");
             var level = generator.GenerateLevel("power");
             Assert.That(level, Is.EqualTo(9266));
         }
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpellType()
         {
-            mockPercentileResultProvider.Setup(p => p.SelectFrom("SpellTypes", 42)).Returns("spell type");
+            mockPercentileSelector.Setup(p => p.SelectFrom("SpellTypes", 42)).Returns("spell type");
             var type = generator.GenerateType();
             Assert.That(type, Is.EqualTo("spell type"));
         }
@@ -42,7 +42,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpell()
         {
-            mockPercentileResultProvider.Setup(p => p.SelectFrom("Level9266spell typeSpells", 42)).Returns("this is my spell");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Level9266spell typeSpells", 42)).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
             Assert.That(spell, Is.EqualTo("this is my spell (spell type)"));
         }

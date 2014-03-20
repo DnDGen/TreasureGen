@@ -9,12 +9,12 @@ namespace EquipmentGen.Selectors
 {
     public class PercentileSelector : IPercentileSelector
     {
-        private IPercentileMapper percentileXmlParser;
+        private IPercentileMapper percentileMapper;
         private Dictionary<String, IEnumerable<PercentileObject>> cachedTables;
 
-        public PercentileSelector(IPercentileMapper percentileXmlParser)
+        public PercentileSelector(IPercentileMapper percentileMapper)
         {
-            this.percentileXmlParser = percentileXmlParser;
+            this.percentileMapper = percentileMapper;
             cachedTables = new Dictionary<String, IEnumerable<PercentileObject>>();
         }
 
@@ -34,7 +34,7 @@ namespace EquipmentGen.Selectors
         private void CacheTable(String tableName)
         {
             var filename = tableName + ".xml";
-            var table = percentileXmlParser.Map(filename);
+            var table = percentileMapper.Map(filename);
             cachedTables.Add(tableName, table);
         }
 

@@ -15,7 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<IDice> mockDice;
-        private Mock<IAttributesSelector> mockTypesProvider;
+        private Mock<IAttributesSelector> mockAttributesSelector;
 
         private List<String> materials;
         private List<String> material1Types;
@@ -30,20 +30,20 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             material1Types = new List<String>() { "type 1", "type 2" };
             material2Types = new List<String>() { "type 3", "type 2" };
 
-            mockTypesProvider = new Mock<IAttributesSelector>();
-            mockTypesProvider.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
-            mockTypesProvider.Setup(p => p.SelectFrom(materials[0], "SpecialMaterials")).Returns(material1Types);
-            mockTypesProvider.Setup(p => p.SelectFrom(materials[1], "SpecialMaterials")).Returns(material2Types);
+            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
+            mockAttributesSelector.Setup(p => p.SelectFrom(materials[0], "SpecialMaterials")).Returns(material1Types);
+            mockAttributesSelector.Setup(p => p.SelectFrom(materials[1], "SpecialMaterials")).Returns(material2Types);
 
-            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockTypesProvider.Object);
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object);
         }
 
         [Test]
         public void CacheMaterialsAndTypesOnConstruction()
         {
-            mockTypesProvider.Verify(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials"), Times.Once);
+            mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials"), Times.Once);
             foreach (var material in materials)
-                mockTypesProvider.Verify(p => p.SelectFrom(material, "SpecialMaterials"), Times.Once);
+                mockAttributesSelector.Verify(p => p.SelectFrom(material, "SpecialMaterials"), Times.Once);
         }
 
         [Test]

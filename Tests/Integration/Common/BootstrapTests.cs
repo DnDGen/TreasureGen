@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void CoinPercentileResultProviderNotConstructedAsSingleton()
+        public void TypeAndAmountPercentileSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ITypeAndAmountPercentileSelector>();
         }
@@ -54,13 +54,13 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void PercentileResultProviderConstructedAsSingleton()
+        public void PercentileSelectorConstructedAsSingleton()
         {
             AssertSingleton<IPercentileSelector>();
         }
 
         [Test]
-        public void PercentileXmlParserNotConstructedAsSingleton()
+        public void PercentileMapperNotConstructedAsSingleton()
         {
             AssertNotSingleton<IPercentileMapper>();
         }
@@ -126,19 +126,19 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void MaterialsProviderNotConstructedAsSingleton()
+        public void SpecialAmterialsGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpecialMaterialGenerator>();
         }
 
         [Test]
-        public void TypesProviderConstructedAsSingleton()
+        public void AttributesSelectorConstructedAsSingleton()
         {
             AssertSingleton<IAttributesSelector>();
         }
 
         [Test]
-        public void TypesXmlParserNotConstructedAsSingleton()
+        public void AttributesMapperNotConstructedAsSingleton()
         {
             AssertNotSingleton<IAttributesMapper>();
         }
@@ -162,7 +162,7 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityDataProviderConstructedAsSingleton()
+        public void SpecialAbilityDataSelectorConstructedAsSingleton()
         {
             AssertSingleton<ISpecialAbilityDataSelector>();
         }
@@ -174,7 +174,7 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityDataXmlParserNotConstructedAsSingleton()
+        public void SpecialAbilityDataMapperNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpecialAbilityDataMapper>();
         }

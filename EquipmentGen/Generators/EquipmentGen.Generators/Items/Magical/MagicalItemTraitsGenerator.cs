@@ -8,12 +8,12 @@ namespace EquipmentGen.Generators.Items.Magical
 {
     public class MagicalItemTraitsGenerator : IMagicalItemTraitsGenerator
     {
-        private IPercentileSelector percentileResultProvider;
+        private IPercentileSelector percentileSelector;
         private IDice dice;
 
-        public MagicalItemTraitsGenerator(IPercentileSelector percentileResultProvider, IDice dice)
+        public MagicalItemTraitsGenerator(IPercentileSelector percentileSelector, IDice dice)
         {
-            this.percentileResultProvider = percentileResultProvider;
+            this.percentileSelector = percentileSelector;
             this.dice = dice;
         }
 
@@ -22,7 +22,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var traits = new List<String>();
             var tableName = String.Format("{0}Traits", itemType);
             var roll = dice.Percentile();
-            var result = percentileResultProvider.SelectFrom(tableName, roll);
+            var result = percentileSelector.SelectFrom(tableName, roll);
 
             if (String.IsNullOrEmpty(result))
                 return traits;

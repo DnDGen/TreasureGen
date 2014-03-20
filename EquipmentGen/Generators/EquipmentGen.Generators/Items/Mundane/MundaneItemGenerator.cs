@@ -9,18 +9,18 @@ namespace EquipmentGen.Generators.Items.Mundane
 {
     public class MundaneItemGenerator : IMundaneItemGenerator
     {
-        private IPercentileSelector percentileResultProvider;
-        private IAlchemicalItemGenerator alchemicalItemFactory;
-        private IMundaneGearGeneratorFactory gearGeneratorFactory;
+        private IPercentileSelector percentileSelector;
+        private IAlchemicalItemGenerator alchemicalItemGenerator;
+        private IMundaneGearGeneratorFactory mundaneGearGeneratorFactory;
         private IToolGenerator toolGenerator;
         private IDice dice;
 
-        public MundaneItemGenerator(IPercentileSelector percentileResultProvider, IAlchemicalItemGenerator alchemicalItemFactory,
-            IMundaneGearGeneratorFactory gearGeneratorFactory, IToolGenerator toolGenerator, IDice dice)
+        public MundaneItemGenerator(IPercentileSelector percentileSelector, IAlchemicalItemGenerator alchemicalItemGenerator,
+            IMundaneGearGeneratorFactory mundaneGearGeneratorFactory, IToolGenerator toolGenerator, IDice dice)
         {
-            this.percentileResultProvider = percentileResultProvider;
-            this.alchemicalItemFactory = alchemicalItemFactory;
-            this.gearGeneratorFactory = gearGeneratorFactory;
+            this.percentileSelector = percentileSelector;
+            this.alchemicalItemGenerator = alchemicalItemGenerator;
+            this.mundaneGearGeneratorFactory = mundaneGearGeneratorFactory;
             this.toolGenerator = toolGenerator;
             this.dice = dice;
         }
@@ -28,7 +28,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var type = percentileResultProvider.SelectFrom("MundaneItems", roll);
+            var type = percentileSelector.SelectFrom("MundaneItems", roll);
             return GetItem(type);
         }
 
@@ -36,7 +36,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         {
             switch (type)
             {
-                case ItemTypeConstants.AlchemicalItem: return alchemicalItemFactory.Generate();
+                case ItemTypeConstants.AlchemicalItem: return alchemicalItemGenerator.Generate();
                 case ItemTypeConstants.Armor:
                 case ItemTypeConstants.Weapon: return GenerateGear(type);
                 case ItemTypeConstants.Tool: return toolGenerator.Generate();
@@ -46,7 +46,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         private Item GenerateGear(String type)
         {
-            var generator = gearGeneratorFactory.CreateWith(type);
+            var generator = mundaneGearGeneratorFactory.CreateWith(type);
             return generator.Generate();
         }
     }

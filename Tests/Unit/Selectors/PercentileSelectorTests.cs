@@ -13,9 +13,9 @@ namespace EquipmentGen.Tests.Unit.Selectors
     [TestFixture]
     public class PercentileSelectorTests
     {
-        private IPercentileSelector percentileResultProvider;
+        private IPercentileSelector percentileSelector;
         private List<PercentileObject> table;
-        private Mock<IPercentileMapper> mockPercentileXmlParser;
+        private Mock<IPercentileMapper> mockPercentileMapper;
         private const String tableName = "table";
         private const Int32 min = 1;
         private const Int32 max = 50;
@@ -31,40 +31,40 @@ namespace EquipmentGen.Tests.Unit.Selectors
             table = new List<PercentileObject>();
             table.Add(percentileObject);
 
-            mockPercentileXmlParser = new Mock<IPercentileMapper>();
-            mockPercentileXmlParser.Setup(p => p.Map(tableName + ".xml")).Returns(table);
+            mockPercentileMapper = new Mock<IPercentileMapper>();
+            mockPercentileMapper.Setup(p => p.Map(tableName + ".xml")).Returns(table);
 
-            percentileResultProvider = new PercentileSelector(mockPercentileXmlParser.Object);
+            percentileSelector = new PercentileSelector(mockPercentileMapper.Object);
         }
 
         [Test]
         public void GetResultCachesTable()
         {
-            percentileResultProvider.SelectFrom(tableName, 1);
-            percentileResultProvider.SelectFrom(tableName, 1);
+            percentileSelector.SelectFrom(tableName, 1);
+            percentileSelector.SelectFrom(tableName, 1);
 
-            mockPercentileXmlParser.Verify(p => p.Map(tableName + ".xml"), Times.Once());
+            mockPercentileMapper.Verify(p => p.Map(tableName + ".xml"), Times.Once());
         }
 
         [Test]
         public void GetResultReturnsEmptyStringForEmptyTable()
         {
             table.Clear();
-            var result = percentileResultProvider.SelectFrom(tableName, 1);
+            var result = percentileSelector.SelectFrom(tableName, 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public void GetResultReturnsEmptyStringIfBelowRange()
         {
-            var result = percentileResultProvider.SelectFrom(tableName, min - 1);
+            var result = percentileSelector.SelectFrom(tableName, min - 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
         [Test]
         public void GetResultReturnsEmptyStringIfAboveRange()
         {
-            var result = percentileResultProvider.SelectFrom(tableName, max + 1);
+            var result = percentileSelector.SelectFrom(tableName, max + 1);
             Assert.That(result, Is.EqualTo(String.Empty));
         }
 
@@ -73,7 +73,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         {
             for (var roll = min; roll <= max; roll++)
             {
-                var result = percentileResultProvider.SelectFrom(tableName, roll);
+                var result = percentileSelector.SelectFrom(tableName, roll);
                 Assert.That(result, Is.EqualTo("content"));
             }
         }
@@ -81,7 +81,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void GetAllResultsReturnsWholeTable()
         {
-            var results = percentileResultProvider.SelectAllFrom(tableName);
+            var results = percentileSelector.SelectAllFrom(tableName);
             var tableContents = table.Select(o => o.Content);
             Assert.That(results, Is.EqualTo(tableContents));
         }
@@ -89,10 +89,10 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void GetAllResultsCachesTable()
         {
-            percentileResultProvider.SelectAllFrom(tableName);
-            percentileResultProvider.SelectAllFrom(tableName);
+            percentileSelector.SelectAllFrom(tableName);
+            percentileSelector.SelectAllFrom(tableName);
 
-            mockPercentileXmlParser.Verify(p => p.Map(tableName + ".xml"), Times.Once());
+            mockPercentileMapper.Verify(p => p.Map(tableName + ".xml"), Times.Once());
         }
     }
 }

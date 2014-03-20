@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\MagicalItems\Scrolls\Divine\Level1DivineSpellsTests.cs" />
     <Compile Include="TestAttributes\AttributesTableAttribute.cs" />
     <Compile Include="TestAttributes\PercentileTableAttribute.cs" />
     <Compile Include="Coins\Level10CoinsTests.cs" />

@@ -13,7 +13,7 @@ namespace EquipmentGen.Tests.Integration.Tables
     public abstract class AttributesTests : IntegrationTests
     {
         [Inject]
-        public IAttributesMapper AttributesXmlParser { get; set; }
+        public IAttributesMapper AttributesMapper { get; set; }
 
         private Dictionary<String, IEnumerable<String>> table;
 
@@ -21,7 +21,7 @@ namespace EquipmentGen.Tests.Integration.Tables
         public void Setup()
         {
             var file = GetTableNameFromAttribute();
-            table = AttributesXmlParser.Map(file);
+            table = AttributesMapper.Map(file);
         }
 
         private String GetTableNameFromAttribute()

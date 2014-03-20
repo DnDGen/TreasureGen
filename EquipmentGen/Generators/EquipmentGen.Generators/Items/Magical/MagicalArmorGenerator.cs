@@ -9,27 +9,27 @@ namespace EquipmentGen.Generators.Items.Magical
 {
     public class MagicalArmorGenerator : IMagicalGearGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider;
-        private IPercentileSelector percentileResultProvider;
-        private IAttributesSelector attributesProvider;
-        private ISpecialAbilitiesGenerator specialAbilitiesProvider;
-        private ISpecialMaterialGenerator materialsProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private IPercentileSelector percentileSelector;
+        private IAttributesSelector attributesSelector;
+        private ISpecialAbilitiesGenerator specialAbilitiesSelector;
+        private ISpecialMaterialGenerator materialsSelector;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
 
-        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileProvider,
-            IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
-            ISpecialAbilitiesGenerator specialAbilitiesProvider, ISpecialMaterialGenerator materialsProvider,
+        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
+            ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecialMaterialGenerator materialsSelector,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             ISpecificGearGenerator specificGearGenerator, IDice dice)
         {
-            this.typeAndAmountPercentileProvider = typeAndAmountPercentileProvider;
-            this.percentileResultProvider = percentileResultProvider;
-            this.attributesProvider = attributesProvider;
-            this.specialAbilitiesProvider = specialAbilitiesProvider;
-            this.materialsProvider = materialsProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
+            this.percentileSelector = percentileSelector;
+            this.attributesSelector = attributesSelector;
+            this.specialAbilitiesSelector = specialAbilitiesSelector;
+            this.materialsSelector = materialsSelector;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
             this.specificGearGenerator = specificGearGenerator;
@@ -43,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var tableName = String.Format("{0}Armors", power);
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileProvider.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
             var armor = new Item();
             var abilityCount = 0;
 
@@ -51,7 +51,7 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 abilityCount += dice.Roll(result.AmountToRoll);
                 roll = dice.Percentile();
-                result = typeAndAmountPercentileProvider.SelectFrom(tableName, roll);
+                result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
             }
 
             if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
@@ -61,16 +61,16 @@ namespace EquipmentGen.Generators.Items.Magical
 
             armor.Magic[Magic.Bonus] = result.AmountToRoll;
             roll = dice.Percentile();
-            armor.Name = percentileResultProvider.SelectFrom(tableName, roll);
-            armor.Attributes = attributesProvider.SelectFrom(armor.Name, "ArmorAttributes");
+            armor.Name = percentileSelector.SelectFrom(tableName, roll);
+            armor.Attributes = attributesSelector.SelectFrom(armor.Name, "ArmorAttributes");
 
             var quantity = dice.Roll(result.AmountToRoll);
-            var abilities = specialAbilitiesProvider.GenerateWith(armor.Attributes, power, quantity, abilityCount);
+            var abilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, quantity, abilityCount);
             armor.Magic[Magic.Abilities] = abilities;
 
-            if (materialsProvider.HasSpecialMaterial(armor.Attributes))
+            if (materialsSelector.HasSpecialMaterial(armor.Attributes))
             {
-                var specialMaterial = materialsProvider.GenerateFor(armor.Attributes);
+                var specialMaterial = materialsSelector.GenerateFor(armor.Attributes);
                 armor.Traits.Add(specialMaterial);
             }
 

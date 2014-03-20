@@ -12,7 +12,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
     [TestFixture]
     public class CoinGeneratorTests
     {
-        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileResultProvider;
+        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
         private ICoinGenerator generator;
 
@@ -28,18 +28,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
 
-            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.SelectFrom(It.IsAny<String>(), 9266))
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 9266))
                 .Returns(result);
 
-            generator = new CoinGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object);
+            generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
         }
 
         [Test]
-        public void CoinGeneratorReturnsCoinFromCoinPercentileResultProvider()
+        public void ReturnCoinFromSelector()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileResultProvider.Verify(p => p.SelectFrom("Level1Coins", 9266), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Coins", 9266), Times.Once);
         }
 
         [Test]

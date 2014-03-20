@@ -10,19 +10,19 @@ namespace EquipmentGen.Generators.RuntimeFactories
 {
     public class MundaneGearGeneratorFactory : IMundaneGearGeneratorFactory
     {
-        private IPercentileSelector percentileResultProvider;
+        private IPercentileSelector percentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
-        private ISpecialMaterialGenerator materialsProvider;
-        private IAttributesSelector attributesProvider;
+        private ISpecialMaterialGenerator materialsSelector;
+        private IAttributesSelector attributesSelector;
         private IDice dice;
 
-        public MundaneGearGeneratorFactory(IPercentileSelector percentileResultProvider, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsProvider, IAttributesSelector attributesProvider, IDice dice)
+        public MundaneGearGeneratorFactory(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator,
+            ISpecialMaterialGenerator materialsSelector, IAttributesSelector attributesSelector, IDice dice)
         {
-            this.percentileResultProvider = percentileResultProvider;
+            this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
-            this.materialsProvider = materialsProvider;
-            this.attributesProvider = attributesProvider;
+            this.materialsSelector = materialsSelector;
+            this.attributesSelector = attributesSelector;
             this.dice = dice;
         }
 
@@ -30,10 +30,10 @@ namespace EquipmentGen.Generators.RuntimeFactories
         {
             switch (type)
             {
-                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileResultProvider, materialsProvider,
-                    attributesProvider, dice);
-                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileResultProvider, ammunitionGenerator,
-                    materialsProvider, attributesProvider, dice);
+                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, materialsSelector,
+                    attributesSelector, dice);
+                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator,
+                    materialsSelector, attributesSelector, dice);
                 default: throw new ArgumentOutOfRangeException();
             }
         }

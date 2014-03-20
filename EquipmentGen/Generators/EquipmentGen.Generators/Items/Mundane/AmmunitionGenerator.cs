@@ -7,27 +7,27 @@ namespace EquipmentGen.Generators.Items.Mundane
 {
     public class AmmunitionGenerator : IAmmunitionGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IDice dice;
-        private IAttributesSelector attributesProvider;
+        private IAttributesSelector attributesSelector;
 
-        public AmmunitionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice,
-            IAttributesSelector typesProvider)
+        public AmmunitionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice,
+            IAttributesSelector attributesSelector)
         {
-            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.dice = dice;
-            this.attributesProvider = typesProvider;
+            this.attributesSelector = attributesSelector;
         }
 
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.SelectFrom("Ammunitions", roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom("Ammunitions", roll);
 
             var ammunition = new Item();
             ammunition.Name = result.Type;
             ammunition.Quantity = dice.Roll(result.AmountToRoll);
-            ammunition.Attributes = attributesProvider.SelectFrom(ammunition.Name, "AmmunitionAttributes");
+            ammunition.Attributes = attributesSelector.SelectFrom(ammunition.Name, "AmmunitionAttributes");
 
             return ammunition;
         }

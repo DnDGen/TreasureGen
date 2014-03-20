@@ -10,20 +10,20 @@ namespace EquipmentGen.Generators.Items.Magical
 {
     public class RingGenerator : IMagicalItemGenerator
     {
-        private IPercentileSelector percentileResultProvider;
-        private IAttributesSelector attributesProvider;
+        private IPercentileSelector percentileSelector;
+        private IAttributesSelector attributesSelector;
         private IMagicalItemTraitsGenerator traitsGenerator;
         private ISpellGenerator spellGenerator;
         private IIntelligenceGenerator intelligenceGenerator;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
 
-        public RingGenerator(IPercentileSelector percentileResultProvider, IAttributesSelector attributesProvider,
+        public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
             IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IIntelligenceGenerator intelligenceGenerator,
             IChargesGenerator chargesGenerator, IDice dice)
         {
-            this.percentileResultProvider = percentileResultProvider;
-            this.attributesProvider = attributesProvider;
+            this.percentileSelector = percentileSelector;
+            this.attributesSelector = attributesSelector;
             this.traitsGenerator = traitsGenerator;
             this.spellGenerator = spellGenerator;
             this.intelligenceGenerator = intelligenceGenerator;
@@ -35,12 +35,12 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var roll = dice.Percentile();
             var tableName = String.Format("{0}Rings", power);
-            var ability = percentileResultProvider.SelectFrom(tableName, roll);
+            var ability = percentileSelector.SelectFrom(tableName, roll);
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", ability);
             ring.Magic[Magic.IsMagical] = true;
-            ring.Attributes = attributesProvider.SelectFrom(ability, "RingAttributes");
+            ring.Attributes = attributesSelector.SelectFrom(ability, "RingAttributes");
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
             ring.Traits.AddRange(traits);
 
@@ -78,7 +78,7 @@ namespace EquipmentGen.Generators.Items.Magical
             else if (ability.Contains("nergy resistance"))
             {
                 roll = dice.Percentile();
-                var energy = percentileResultProvider.SelectFrom("Elements", roll);
+                var energy = percentileSelector.SelectFrom("Elements", roll);
                 ring.Name = String.Format("{0} ({1})", ring.Name, energy);
             }
 

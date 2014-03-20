@@ -12,22 +12,22 @@ namespace EquipmentGen.Generators.Items
 {
     public class ItemsGenerator : IItemsGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IMundaneItemGenerator mundaneItemGenerator;
-        private IPercentileSelector percentileResultProvider;
+        private IPercentileSelector percentileSelector;
         private IMagicalGearGeneratorFactory magicalGearGeneratorFactory;
         private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
         private ICurseGenerator curseGenerator;
         private IDice dice;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider,
-            IMundaneItemGenerator mundaneItemGenerator, IPercentileSelector percentileResultProvider,
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            IMundaneItemGenerator mundaneItemGenerator, IPercentileSelector percentileSelector,
             IMagicalGearGeneratorFactory magicalGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory,
             ICurseGenerator curseGenerator, IDice dice)
         {
-            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.mundaneItemGenerator = mundaneItemGenerator;
-            this.percentileResultProvider = percentileResultProvider;
+            this.percentileSelector = percentileSelector;
             this.magicalGearGeneratorFactory = magicalGearGeneratorFactory;
             this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
             this.curseGenerator = curseGenerator;
@@ -38,7 +38,7 @@ namespace EquipmentGen.Generators.Items
         {
             var roll = dice.Percentile();
             var tableName = String.Format("Level{0}Items", level);
-            var typeAndAmountResult = typeAndAmountPercentileResultProvider.SelectFrom(tableName, roll);
+            var typeAndAmountResult = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
             var items = new List<Item>();
 
             if (String.IsNullOrEmpty(typeAndAmountResult.Type))
@@ -67,7 +67,7 @@ namespace EquipmentGen.Generators.Items
         {
             var roll = dice.Percentile();
             var tableName = String.Format("{0}Items", power);
-            var type = percentileResultProvider.SelectFrom(tableName, roll);
+            var type = percentileSelector.SelectFrom(tableName, roll);
 
             Item item;
             if (type == ItemTypeConstants.Armor || type == ItemTypeConstants.Weapon)

@@ -12,9 +12,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     public class AmmunitionGeneratorTests
     {
         private IAmmunitionGenerator ammunitionGenerator;
-        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileResultProvider;
+        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
-        private Mock<IAttributesSelector> mockAttributesProvider;
+        private Mock<IAttributesSelector> mockAttributesSelector;
 
         private TypeAndAmountPercentileResult result;
 
@@ -29,17 +29,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
             mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(9266);
 
-            mockTypeAndAmountPercentileResultProvider = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileResultProvider.Setup(p => p.SelectFrom("Ammunitions", 42)).Returns(result);
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("Ammunitions", 42)).Returns(result);
 
-            mockAttributesProvider = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<IAttributesSelector>();
 
-            ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileResultProvider.Object, mockDice.Object,
-                mockAttributesProvider.Object);
+            ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
+                mockAttributesSelector.Object);
         }
 
         [Test]
-        public void AmmunitionGeneratorGetsNameAndQuantityFromTypeAndAmountPercentileResultProvider()
+        public void AmmunitionGeneratorGetsNameAndQuantityFromSelector()
         {
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Name, Is.EqualTo(result.Type));
@@ -47,10 +47,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void AmmunitionGeneratorGetsAttributesFromProvider()
+        public void AmmunitionGeneratorGetsAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesProvider.Setup(p => p.SelectFrom(result.Type, "AmmunitionAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(result.Type, "AmmunitionAttributes")).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));

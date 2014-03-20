@@ -9,16 +9,16 @@ namespace EquipmentGen.Selectors
 {
     public class SpecialAbilityDataSelector : ISpecialAbilityDataSelector
     {
-        private ISpecialAbilityDataMapper specialAbilityDataXmlParser;
-        private IAttributesSelector attributesProvider;
+        private ISpecialAbilityDataMapper specialAbilityDataMapper;
+        private IAttributesSelector attributesSelector;
 
         private Dictionary<String, SpecialAbilityDataObject> data;
 
-        public SpecialAbilityDataSelector(ISpecialAbilityDataMapper specialAbilityDataXmlParser,
-            IAttributesSelector attributesProvider)
+        public SpecialAbilityDataSelector(ISpecialAbilityDataMapper specialAbilityDataMapper,
+            IAttributesSelector attributesSelector)
         {
-            this.specialAbilityDataXmlParser = specialAbilityDataXmlParser;
-            this.attributesProvider = attributesProvider;
+            this.specialAbilityDataMapper = specialAbilityDataMapper;
+            this.attributesSelector = attributesSelector;
         }
 
         public SpecialAbility SelectFor(String specialAbilityName)
@@ -37,14 +37,14 @@ namespace EquipmentGen.Selectors
             ability.CoreName = data[specialAbilityName].CoreName;
             ability.Name = specialAbilityName;
             ability.Strength = data[specialAbilityName].Strength;
-            ability.AttributeRequirements = attributesProvider.SelectFrom(ability.CoreName, "SpecialAbilityAttributes");
+            ability.AttributeRequirements = attributesSelector.SelectFrom(ability.CoreName, "SpecialAbilityAttributes");
 
             return ability;
         }
 
         private void CacheTable()
         {
-            data = specialAbilityDataXmlParser.Map("SpecialAbilityData.xml");
+            data = specialAbilityDataMapper.Map("SpecialAbilityData.xml");
         }
     }
 }

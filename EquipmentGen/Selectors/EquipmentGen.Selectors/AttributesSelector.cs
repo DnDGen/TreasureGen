@@ -8,12 +8,12 @@ namespace EquipmentGen.Selectors
 {
     public class AttributesSelector : IAttributesSelector
     {
-        private IAttributesMapper attributesXmlParser;
+        private IAttributesMapper attributesMapper;
         private Dictionary<String, Dictionary<String, IEnumerable<String>>> tables;
 
-        public AttributesSelector(IAttributesMapper attributesXmlParser)
+        public AttributesSelector(IAttributesMapper attributesMapper)
         {
-            this.attributesXmlParser = attributesXmlParser;
+            this.attributesMapper = attributesMapper;
             tables = new Dictionary<String, Dictionary<String, IEnumerable<String>>>();
         }
 
@@ -31,7 +31,7 @@ namespace EquipmentGen.Selectors
         private void CacheTable(String tableName)
         {
             var filename = String.Format("{0}.xml", tableName);
-            var table = attributesXmlParser.Map(filename);
+            var table = attributesMapper.Map(filename);
             tables.Add(tableName, table);
         }
     }

@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Integration.Tables
     public abstract class PercentileTests : IntegrationTests
     {
         [Inject]
-        public IPercentileMapper PercentileXmlParser { get; set; }
+        public IPercentileMapper PercentileMapper { get; set; }
 
         private IEnumerable<PercentileObject> table;
 
@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Tables
         public void Setup()
         {
             var file = GetTableNameFromAttribute();
-            table = PercentileXmlParser.Map(file);
+            table = PercentileMapper.Map(file);
         }
 
         private String GetTableNameFromAttribute()

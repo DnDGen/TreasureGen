@@ -7,19 +7,19 @@ namespace EquipmentGen.Generators.Items.Mundane
 {
     public class AlchemicalItemGenerator : IAlchemicalItemGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IDice dice;
 
-        public AlchemicalItemGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileResultProvider, IDice dice)
+        public AlchemicalItemGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice)
         {
-            this.typeAndAmountPercentileResultProvider = typeAndAmountPercentileResultProvider;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.dice = dice;
         }
 
         public Item Generate()
         {
             var roll = dice.Percentile();
-            var result = typeAndAmountPercentileResultProvider.SelectFrom("AlchemicalItems", roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom("AlchemicalItems", roll);
 
             var item = new Item();
             item.Name = result.Type;
