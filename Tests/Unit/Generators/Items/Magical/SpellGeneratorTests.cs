@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(p => p.SelectFrom("Level9266spell typeSpells", 42)).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
-            Assert.That(spell, Is.EqualTo("this is my spell (spell type)"));
+            Assert.That(spell, Is.EqualTo("this is my spell"));
         }
     }
 }

@@ -26,16 +26,15 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var tableName = String.Format("{0}SpellLevels", power);
             var roll = dice.Percentile();
-            var result = percentileSelector.SelectFrom(tableName, roll);
-            return Convert.ToInt32(result);
+            var level = percentileSelector.SelectFrom(tableName, roll);
+            return Convert.ToInt32(level);
         }
 
         public String Generate(String spellType, Int32 level)
         {
             var tableName = String.Format("Level{0}{1}Spells", level, spellType);
             var roll = dice.Percentile();
-            var spell = percentileSelector.SelectFrom(tableName, roll);
-            return String.Format("{0} ({1})", spell, spellType);
+            return percentileSelector.SelectFrom(tableName, roll);
         }
     }
 }
