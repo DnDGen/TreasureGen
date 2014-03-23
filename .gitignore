@@ -215,3 +215,8 @@ pip-log.txt
 .mr.developer.cfg
 *.txt
 packages/NUnit.2.6.3/license.txt
+packages/NUnit.2.6.3/license.txt
+*.txt
+*.conf
+*.config
+*.bat
