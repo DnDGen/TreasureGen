@@ -444,6 +444,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpells.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Scrolls\Divine\Level0DivineSpells.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
