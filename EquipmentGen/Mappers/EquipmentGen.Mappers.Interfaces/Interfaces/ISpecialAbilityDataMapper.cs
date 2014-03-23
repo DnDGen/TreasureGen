@@ -6,6 +6,6 @@ namespace EquipmentGen.Mappers.Interfaces
 {
     public interface ISpecialAbilityDataMapper
     {
-        Dictionary<String, SpecialAbilityDataObject> Map(String fileName);
+        Dictionary<String, SpecialAbilityDataObject> Map(String tableName);
     }
 }

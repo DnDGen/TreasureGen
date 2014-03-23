@@ -16,11 +16,12 @@ namespace EquipmentGen.Mappers
             this.streamLoader = streamLoader;
         }
 
-        public Dictionary<String, SpecialAbilityDataObject> Map(String fileName)
+        public Dictionary<String, SpecialAbilityDataObject> Map(String tableName)
         {
             var results = new Dictionary<String, SpecialAbilityDataObject>();
+            var filename = String.Format("{0}.xml", tableName);
 
-            using (var stream = streamLoader.LoadFor(fileName))
+            using (var stream = streamLoader.LoadFor(filename))
             {
                 var xmlDocument = new XmlDocument();
                 xmlDocument.Load(stream);

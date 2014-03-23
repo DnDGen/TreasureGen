@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Acid splash</content>
+        <upper>4</upper>
+    </object>
+    <object>
+        <lower>5</lower>
+        <content>Arcane mark</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Dancing lights</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Daze</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Detect magic</content>
+        <upper>24</upper>
+    </object>
+    <object>
+        <lower>25</lower>
+        <content>Detect poison</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Disrupt undead</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Flare</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Ghost sound</content>
+        <upper>42</upper>
+    </object>
+    <object>
+        <lower>43</lower>
+        <content>Know direction</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Light</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Lullaby</content>
+        <upper>52</upper>
+    </object>
+    <object>
+        <lower>53</lower>
+        <content>Mage hand</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Mending</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Message</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Open/close</content>
+        <upper>72</upper>
+    </object>
+    <object>
+        <lower>73</lower>
+        <content>Prestidigitation</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Ray of frost</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Read magic</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Resistance</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Summon instrument</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Touch of fatigue</content>
+        <upper>100</upper>
+    </object>
+</percentile>

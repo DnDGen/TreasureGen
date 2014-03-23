@@ -32,7 +32,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
             table.Add(percentileObject);
 
             mockPercentileMapper = new Mock<IPercentileMapper>();
-            mockPercentileMapper.Setup(p => p.Map(tableName + ".xml")).Returns(table);
+            mockPercentileMapper.Setup(p => p.Map(tableName)).Returns(table);
 
             percentileSelector = new PercentileSelector(mockPercentileMapper.Object);
         }
@@ -43,7 +43,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
             percentileSelector.SelectFrom(tableName, 1);
             percentileSelector.SelectFrom(tableName, 1);
 
-            mockPercentileMapper.Verify(p => p.Map(tableName + ".xml"), Times.Once());
+            mockPercentileMapper.Verify(p => p.Map(tableName), Times.Once());
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
             percentileSelector.SelectAllFrom(tableName);
             percentileSelector.SelectAllFrom(tableName);
 
-            mockPercentileMapper.Verify(p => p.Map(tableName + ".xml"), Times.Once());
+            mockPercentileMapper.Verify(p => p.Map(tableName), Times.Once());
         }
     }
 }

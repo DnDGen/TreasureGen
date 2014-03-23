@@ -15,11 +15,12 @@ namespace EquipmentGen.Mappers
             this.streamLoader = streamLoader;
         }
 
-        public Dictionary<String, IEnumerable<String>> Map(String fileName)
+        public Dictionary<String, IEnumerable<String>> Map(String tableName)
         {
             var results = new Dictionary<String, IEnumerable<String>>();
+            var filename = String.Format("{0}.xml", tableName);
 
-            using (var stream = streamLoader.LoadFor(fileName))
+            using (var stream = streamLoader.LoadFor(filename))
             {
                 var xmlDocument = new XmlDocument();
                 xmlDocument.Load(stream);
@@ -28,7 +29,7 @@ namespace EquipmentGen.Mappers
                 foreach (XmlNode node in objects)
                 {
                     var name = node.SelectSingleNode("name").InnerText;
-                    var attributes = GetTypesFrom(node);
+                    var attributes = GetAttributesFrom(node);
 
                     results.Add(name, attributes);
                 }
@@ -37,7 +38,7 @@ namespace EquipmentGen.Mappers
             return results;
         }
 
-        private IEnumerable<String> GetTypesFrom(XmlNode node)
+        private IEnumerable<String> GetAttributesFrom(XmlNode node)
         {
             var attributes = new List<String>();
             var attributesFromNode = node.SelectNodes("attribute");

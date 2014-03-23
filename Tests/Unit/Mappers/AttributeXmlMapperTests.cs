@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
     {
         private IAttributesMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String filename = "AttributeXmlMapperTests.xml";
+        private const String tableName = "AttributeXmlMapperTests";
 
         [SetUp]
         public void Setup()
@@ -22,15 +22,22 @@ namespace EquipmentGen.Tests.Unit.Mappers
             MakeXmlFile();
 
             mockStreamLoader = new Mock<IStreamLoader>();
-            mockStreamLoader.Setup(l => l.LoadFor(filename)).Returns(GetStream());
+            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(GetStream());
 
             mapper = new AttributesXmlMapper(mockStreamLoader.Object);
         }
 
         [Test]
+        public void AppendXmlFileExtensionToTableName()
+        {
+            mapper.Map(tableName);
+            mockStreamLoader.Verify(l => l.LoadFor(tableName + ".xml"), Times.Once);
+        }
+
+        [Test]
         public void LoadFromStream()
         {
-            var table = mapper.Map(filename);
+            var table = mapper.Map(tableName);
 
             Assert.That(table.Count(), Is.EqualTo(2));
 
@@ -48,27 +55,27 @@ namespace EquipmentGen.Tests.Unit.Mappers
 
         private Stream GetStream()
         {
-            return new FileStream(filename, FileMode.Open);
+            return new FileStream(tableName, FileMode.Open);
         }
 
         private void MakeXmlFile()
         {
             var content = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-                        <attributes>
-                            <object>
-                                <name>armor</name>
-                                <attribute>attribute 1</attribute>
-                                <attribute>attribute 2</attribute>
-                            </object>
-                            <object>
-                                <name>weapon</name>
-                                <attribute>attribute 1</attribute>
-                                <attribute>attribute 2</attribute>
-                                <attribute>attribute 3</attribute>
-                            </object>
-                        </attributes>";
+                            <attributes>
+                                <object>
+                                    <name>armor</name>
+                                    <attribute>attribute 1</attribute>
+                                    <attribute>attribute 2</attribute>
+                                </object>
+                                <object>
+                                    <name>weapon</name>
+                                    <attribute>attribute 1</attribute>
+                                    <attribute>attribute 2</attribute>
+                                    <attribute>attribute 3</attribute>
+                                </object>
+                            </attributes>";
 
-            File.WriteAllText(filename, content);
+            File.WriteAllText(tableName, content);
         }
     }
 }

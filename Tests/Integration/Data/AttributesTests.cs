@@ -20,8 +20,8 @@ namespace EquipmentGen.Tests.Integration.Tables
         [SetUp]
         public void Setup()
         {
-            var file = GetTableNameFromAttribute();
-            table = AttributesMapper.Map(file);
+            var tableName = GetTableNameFromAttribute();
+            table = AttributesMapper.Map(tableName);
         }
 
         private String GetTableNameFromAttribute()
@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Integration.Tables
                 throw new ArgumentException("This test class does not have the needed AttributesTableAttribute");
 
             var attributesFilenameAttribute = attributes.First(a => a is AttributesTableAttribute) as AttributesTableAttribute;
-            return String.Format("{0}.xml", attributesFilenameAttribute.TableName);
+            return attributesFilenameAttribute.TableName;
         }
 
         protected void AssertContent(String name, IEnumerable<String> expectedAttributes)

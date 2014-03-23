@@ -25,8 +25,8 @@ namespace EquipmentGen.Tests.Unit.Selectors
             table.Add("other name", expected);
 
             mockAttributesMapper = new Mock<IAttributesMapper>();
-            mockAttributesMapper.Setup(p => p.Map("table name.xml")).Returns(table);
-            mockAttributesMapper.Setup(p => p.Map("other table name.xml")).Returns(table);
+            mockAttributesMapper.Setup(p => p.Map("table name")).Returns(table);
+            mockAttributesMapper.Setup(p => p.Map("other table name")).Returns(table);
 
             attributesSelector = new AttributesSelector(mockAttributesMapper.Object);
         }
@@ -56,8 +56,8 @@ namespace EquipmentGen.Tests.Unit.Selectors
             attributesSelector.SelectFrom("other name", "other table name");
 
             mockAttributesMapper.Verify(p => p.Map(It.IsAny<String>()), Times.Exactly(2));
-            mockAttributesMapper.Verify(p => p.Map("table name.xml"), Times.Once);
-            mockAttributesMapper.Verify(p => p.Map("other table name.xml"), Times.Once);
+            mockAttributesMapper.Verify(p => p.Map("table name"), Times.Once);
+            mockAttributesMapper.Verify(p => p.Map("other table name"), Times.Once);
         }
 
         [Test]

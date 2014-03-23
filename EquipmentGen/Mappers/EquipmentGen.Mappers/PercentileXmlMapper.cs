@@ -16,9 +16,10 @@ namespace EquipmentGen.Mappers
             this.streamLoader = streamLoader;
         }
 
-        public IEnumerable<PercentileObject> Map(String filename)
+        public IEnumerable<PercentileObject> Map(String tableName)
         {
             var results = new List<PercentileObject>();
+            var filename = String.Format("{0}.xml", tableName);
 
             using (var stream = streamLoader.LoadFor(filename))
             {

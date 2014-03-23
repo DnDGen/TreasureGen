@@ -12,7 +12,7 @@ namespace EquipmentGen.Selectors
         private ISpecialAbilityDataMapper specialAbilityDataMapper;
         private IAttributesSelector attributesSelector;
 
-        private Dictionary<String, SpecialAbilityDataObject> data;
+        private Dictionary<String, SpecialAbilityDataObject> specialAbilityData;
 
         public SpecialAbilityDataSelector(ISpecialAbilityDataMapper specialAbilityDataMapper,
             IAttributesSelector attributesSelector)
@@ -23,20 +23,20 @@ namespace EquipmentGen.Selectors
 
         public SpecialAbility SelectFor(String specialAbilityName)
         {
-            if (data == null)
+            if (specialAbilityData == null)
                 CacheTable();
 
-            if (!data.ContainsKey(specialAbilityName))
+            if (!specialAbilityData.ContainsKey(specialAbilityName))
             {
                 var message = String.Format("The ability {0} was not present in the special ability data collection.", specialAbilityName);
                 throw new ArgumentException(message);
             }
 
             var ability = new SpecialAbility();
-            ability.BonusEquivalent = data[specialAbilityName].BonusEquivalent;
-            ability.CoreName = data[specialAbilityName].CoreName;
+            ability.BonusEquivalent = specialAbilityData[specialAbilityName].BonusEquivalent;
+            ability.CoreName = specialAbilityData[specialAbilityName].CoreName;
             ability.Name = specialAbilityName;
-            ability.Strength = data[specialAbilityName].Strength;
+            ability.Strength = specialAbilityData[specialAbilityName].Strength;
             ability.AttributeRequirements = attributesSelector.SelectFrom(ability.CoreName, "SpecialAbilityAttributes");
 
             return ability;
@@ -44,7 +44,7 @@ namespace EquipmentGen.Selectors
 
         private void CacheTable()
         {
-            data = specialAbilityDataMapper.Map("SpecialAbilityData.xml");
+            specialAbilityData = specialAbilityDataMapper.Map("SpecialAbilityData");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
     {
         private ISpecialAbilityDataMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String filename = "SpecialAbilityDataXmlMapperTests.xml";
+        private const String tableName = "SpecialAbilityDataXmlMapperTests";
 
         [SetUp]
         public void Setup()
@@ -22,15 +22,22 @@ namespace EquipmentGen.Tests.Unit.Mappers
             MakeXmlFile();
 
             mockStreamLoader = new Mock<IStreamLoader>();
-            mockStreamLoader.Setup(l => l.LoadFor(filename)).Returns(GetStream());
+            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(GetStream());
 
             mapper = new SpecialAbilityDataXmlMapper(mockStreamLoader.Object);
         }
 
         [Test]
+        public void AppendXmlFileExtensionToTableName()
+        {
+            mapper.Map(tableName);
+            mockStreamLoader.Verify(l => l.LoadFor(tableName + ".xml"), Times.Once);
+        }
+
+        [Test]
         public void LoadFromStream()
         {
-            var objects = mapper.Map(filename);
+            var objects = mapper.Map(tableName);
 
             Assert.That(objects.Count(), Is.EqualTo(2));
             Assert.That(objects["ability"].BonusEquivalent, Is.EqualTo(92));
@@ -43,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
 
         private Stream GetStream()
         {
-            return new FileStream(filename, FileMode.Open);
+            return new FileStream(tableName, FileMode.Open);
         }
 
         private void MakeXmlFile()
@@ -64,7 +71,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
                                 </object>
                             </abilities>";
 
-            File.WriteAllText(filename, content);
+            File.WriteAllText(tableName, content);
         }
     }
 }

@@ -33,8 +33,7 @@ namespace EquipmentGen.Selectors
 
         private void CacheTable(String tableName)
         {
-            var filename = tableName + ".xml";
-            var table = percentileMapper.Map(filename);
+            var table = percentileMapper.Map(tableName);
             cachedTables.Add(tableName, table);
         }
 

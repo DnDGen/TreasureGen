@@ -21,8 +21,8 @@ namespace EquipmentGen.Tests.Integration.Tables
         [SetUp]
         public void Setup()
         {
-            var file = GetTableNameFromAttribute();
-            table = PercentileMapper.Map(file);
+            var tableName = GetTableNameFromAttribute();
+            table = PercentileMapper.Map(tableName);
         }
 
         private String GetTableNameFromAttribute()
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Integration.Tables
                 throw new ArgumentException("This test class does not have the needed PercentileTableAttribute");
 
             var percentileTableAttribute = attributes.First(a => a is PercentileTableAttribute) as PercentileTableAttribute;
-            return String.Format("{0}.xml", percentileTableAttribute.Table);
+            return percentileTableAttribute.Table;
         }
 
         protected void AssertEmpty(Int32 roll)

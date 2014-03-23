@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
     {
         private IPercentileMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String filename = "PercentileXmlMapperTests.xml";
+        private const String tableName = "PercentileXmlMapperTests";
 
         [SetUp]
         public void Setup()
@@ -22,15 +22,22 @@ namespace EquipmentGen.Tests.Unit.Mappers
             MakeXmlFile();
 
             mockStreamLoader = new Mock<IStreamLoader>();
-            mockStreamLoader.Setup(l => l.LoadFor(filename)).Returns(GetStream());
+            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(GetStream());
 
             mapper = new PercentileXmlMapper(mockStreamLoader.Object);
         }
 
         [Test]
+        public void AppendXmlFileExtensionToTableName()
+        {
+            mapper.Map(tableName);
+            mockStreamLoader.Verify(l => l.LoadFor(tableName + ".xml"), Times.Once);
+        }
+
+        [Test]
         public void LoadFromStream()
         {
-            var objects = mapper.Map(filename);
+            var objects = mapper.Map(tableName);
 
             Assert.That(objects.Count(), Is.EqualTo(2));
 
@@ -47,13 +54,13 @@ namespace EquipmentGen.Tests.Unit.Mappers
 
         private Stream GetStream()
         {
-            return new FileStream(filename, FileMode.Open);
+            return new FileStream(tableName, FileMode.Open);
         }
 
         private void MakeXmlFile()
         {
             var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><percentile><object><lower>1</lower><content>one through five</content><upper>5</upper></object><object><lower>6</lower><content>six only</content><upper>6</upper></object></percentile>";
-            File.WriteAllText(filename, content);
+            File.WriteAllText(tableName, content);
         }
     }
 }

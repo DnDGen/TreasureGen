@@ -15,11 +15,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
         [Inject]
         public ISpecialAbilityDataMapper SpecialAbilityDataMapper { get; set; }
 
-        private Dictionary<String, SpecialAbilityDataObject> data;
+        private Dictionary<String, SpecialAbilityDataObject> specialAbilityData;
 
         public SpecialAbilityDataTests()
         {
-            data = SpecialAbilityDataMapper.Map("SpecialAbilityData.xml");
+            specialAbilityData = SpecialAbilityDataMapper.Map("SpecialAbilityData");
         }
 
         [Test]
@@ -462,9 +462,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
 
         private void AssertData(String name, Int32 bonus, String coreName, Int32 strength)
         {
-            Assert.That(data[name].BonusEquivalent, Is.EqualTo(bonus), "bonus");
-            Assert.That(data[name].CoreName, Is.EqualTo(coreName));
-            Assert.That(data[name].Strength, Is.EqualTo(strength), "strength");
+            Assert.That(specialAbilityData[name].BonusEquivalent, Is.EqualTo(bonus), "bonus");
+            Assert.That(specialAbilityData[name].CoreName, Is.EqualTo(coreName));
+            Assert.That(specialAbilityData[name].Strength, Is.EqualTo(strength), "strength");
         }
     }
 }

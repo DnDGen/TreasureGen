@@ -30,8 +30,7 @@ namespace EquipmentGen.Selectors
 
         private void CacheTable(String tableName)
         {
-            var filename = String.Format("{0}.xml", tableName);
-            var table = attributesMapper.Map(filename);
+            var table = attributesMapper.Map(tableName);
             tables.Add(tableName, table);
         }
     }

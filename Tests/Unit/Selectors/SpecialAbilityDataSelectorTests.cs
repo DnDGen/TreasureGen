@@ -32,7 +32,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
             data.Add("ability name", specialAbilityData);
 
             mockMapper = new Mock<ISpecialAbilityDataMapper>();
-            mockMapper.Setup(p => p.Map("SpecialAbilityData.xml")).Returns(data);
+            mockMapper.Setup(p => p.Map("SpecialAbilityData")).Returns(data);
 
             selector = new SpecialAbilityDataSelector(mockMapper.Object, mockAttributesSelector.Object);
         }

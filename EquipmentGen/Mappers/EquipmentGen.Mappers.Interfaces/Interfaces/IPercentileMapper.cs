@@ -6,6 +6,6 @@ namespace EquipmentGen.Mappers.Interfaces
 {
     public interface IPercentileMapper
     {
-        IEnumerable<PercentileObject> Map(String filename);
+        IEnumerable<PercentileObject> Map(String tableName);
     }
 }
