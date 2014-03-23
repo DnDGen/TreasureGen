@@ -55,7 +55,7 @@ namespace EquipmentGen.Generators.Items
             return items;
         }
 
-        public Item GenerateAtPower(String power)
+        private Item GenerateAtPower(String power)
         {
             if (power == PowerConstants.Mundane)
                 return mundaneItemGenerator.Generate();
@@ -67,13 +67,13 @@ namespace EquipmentGen.Generators.Items
         {
             var roll = dice.Percentile();
             var tableName = String.Format("{0}Items", power);
-            var type = percentileSelector.SelectFrom(tableName, roll);
+            var itemType = percentileSelector.SelectFrom(tableName, roll);
 
             Item item;
-            if (type == ItemTypeConstants.Armor || type == ItemTypeConstants.Weapon)
-                item = GenerateMagicalGearAtPower(type, power);
+            if (itemType == ItemTypeConstants.Armor || itemType == ItemTypeConstants.Weapon)
+                item = GenerateMagicalGearAtPower(itemType, power);
             else
-                item = GenerateMagicalItemAtPower(type, power);
+                item = GenerateMagicalItemAtPower(itemType, power);
 
             if (curseGenerator.HasCurse(item.Magic))
             {

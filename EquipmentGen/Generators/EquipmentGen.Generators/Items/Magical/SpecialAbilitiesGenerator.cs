@@ -173,7 +173,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (ability.CoreName == "Spell storing" && dice.Percentile() > 50)
             {
-                var level = dice.d3();
+                var level = dice.d4() - 1;
                 var spellType = spellGenerator.GenerateType();
                 var spell = spellGenerator.Generate(spellType, level);
                 return String.Format("Spell storing (contains {0})", spell);

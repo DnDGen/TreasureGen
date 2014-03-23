@@ -443,9 +443,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(It.IsAny<String>())).Returns(spellStoring);
             mockDice.Setup(d => d.Percentile(1)).Returns(100);
 
-            mockDice.Setup(d => d.d3(1)).Returns(9266);
+            mockDice.Setup(d => d.d4(1)).Returns(9266);
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
             var ability = abilities.First();
