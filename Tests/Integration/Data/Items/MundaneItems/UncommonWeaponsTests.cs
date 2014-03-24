@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
@@ -7,232 +8,47 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
     [TestFixture, PercentileTable("UncommonWeapons")]
     public class UncommonWeaponsTests : PercentileTests
     {
-        [Test]
-        public void OrcDoubleAxePercentile()
+        [TestCase(WeaponConstants.OrcDoubleAxe, 1, 3)]
+        [TestCase(WeaponConstants.Battleaxe, 4, 7)]
+        [TestCase(WeaponConstants.SpikedChain, 8, 10)]
+        [TestCase(WeaponConstants.Club, 11, 12)]
+        [TestCase(WeaponConstants.HandCrossbow, 13, 16)]
+        [TestCase(WeaponConstants.RepeatingCrossbow, 17, 19)]
+        [TestCase(WeaponConstants.PunchingDagger, 20, 21)]
+        [TestCase(WeaponConstants.Falchion, 22, 23)]
+        [TestCase(WeaponConstants.DireFlail, 24, 26)]
+        [TestCase(WeaponConstants.HeavyFlail, 27, 31)]
+        [TestCase(WeaponConstants.LightFlail, 32, 35)]
+        [TestCase(WeaponConstants.Gauntlet, 36, 37)]
+        [TestCase(WeaponConstants.SpikedGauntlet, 38, 39)]
+        [TestCase(WeaponConstants.Glaive, 40, 41)]
+        [TestCase(WeaponConstants.Greatclub, 42, 43)]
+        [TestCase(WeaponConstants.Guisarme, 44, 45)]
+        [TestCase(WeaponConstants.Halberd, 46, 48)]
+        [TestCase(WeaponConstants.Halfspear, 49, 51)]
+        [TestCase(WeaponConstants.GnomeHookedHammer, 52, 54)]
+        [TestCase(WeaponConstants.LightHammer, 55, 56)]
+        [TestCase(WeaponConstants.Handaxe, 57, 58)]
+        [TestCase(WeaponConstants.Kukri, 59, 61)]
+        [TestCase(WeaponConstants.Lance, 62, 64)]
+        [TestCase(WeaponConstants.Longspear, 65, 67)]
+        [TestCase(WeaponConstants.Morningstar, 68, 70)]
+        [TestCase(WeaponConstants.Net, 71, 72)]
+        [TestCase(WeaponConstants.HeavyPick, 73, 74)]
+        [TestCase(WeaponConstants.LightPick, 75, 76)]
+        [TestCase(WeaponConstants.Ranseur, 77, 78)]
+        [TestCase(WeaponConstants.Sap, 79, 80)]
+        [TestCase(WeaponConstants.Scythe, 81, 82)]
+        [TestCase(WeaponConstants.Shuriken, 83, 84)]
+        [TestCase(WeaponConstants.Sickle, 85, 86)]
+        [TestCase(WeaponConstants.TwoBladedSword, 87, 89)]
+        [TestCase(WeaponConstants.Trident, 90, 91)]
+        [TestCase(WeaponConstants.DwarvenUrgrosh, 92, 94)]
+        [TestCase(WeaponConstants.Warhammer, 95, 97)]
+        [TestCase(WeaponConstants.Whip, 98, 100)]
+        public void UncommonWeaponPercentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(WeaponConstants.OrcDoubleAxe, 1, 3);
-        }
-
-        [Test]
-        public void BattleaxePercentile()
-        {
-            AssertContent(WeaponConstants.Battleaxe, 4, 7);
-        }
-
-        [Test]
-        public void SpikedChainPercentile()
-        {
-            AssertContent(WeaponConstants.SpikedChain, 8, 10);
-        }
-
-        [Test]
-        public void ClubPercentile()
-        {
-            AssertContent(WeaponConstants.Club, 11, 12);
-        }
-
-        [Test]
-        public void HandCrossbowPercentile()
-        {
-            AssertContent(WeaponConstants.HandCrossbow, 13, 16);
-        }
-
-        [Test]
-        public void RepeatingCrossbowPercentile()
-        {
-            AssertContent(WeaponConstants.RepeatingCrossbow, 17, 19);
-        }
-
-        [Test]
-        public void PunchingDaggerPercentile()
-        {
-            AssertContent(WeaponConstants.PunchingDagger, 20, 21);
-        }
-
-        [Test]
-        public void FalchionPercentile()
-        {
-            AssertContent(WeaponConstants.Falchion, 22, 23);
-        }
-
-        [Test]
-        public void DireFlailPercentile()
-        {
-            AssertContent(WeaponConstants.DireFlail, 24, 26);
-        }
-
-        [Test]
-        public void HeavyFlailPercentile()
-        {
-            AssertContent(WeaponConstants.HeavyFlail, 27, 31);
-        }
-
-        [Test]
-        public void LightFlailPercentile()
-        {
-            AssertContent(WeaponConstants.LightFlail, 32, 35);
-        }
-
-        [Test]
-        public void GauntletPercentile()
-        {
-            AssertContent(WeaponConstants.Gauntlet, 36, 37);
-        }
-
-        [Test]
-        public void SpikedGauntletPercentile()
-        {
-            AssertContent(WeaponConstants.SpikedGauntlet, 38, 39);
-        }
-
-        [Test]
-        public void GlaivePercentile()
-        {
-            AssertContent(WeaponConstants.Glaive, 40, 41);
-        }
-
-        [Test]
-        public void GreatclubPercentile()
-        {
-            AssertContent(WeaponConstants.Greatclub, 42, 43);
-        }
-
-        [Test]
-        public void GuisarmePercentile()
-        {
-            AssertContent(WeaponConstants.Guisarme, 44, 45);
-        }
-
-        [Test]
-        public void HalberdPercentile()
-        {
-            AssertContent(WeaponConstants.Halberd, 46, 48);
-        }
-
-        [Test]
-        public void HalfspearPercentile()
-        {
-            AssertContent(WeaponConstants.Halfspear, 49, 51);
-        }
-
-        [Test]
-        public void GnomeHookedHammerPercentile()
-        {
-            AssertContent(WeaponConstants.GnomeHookedHammer, 52, 54);
-        }
-
-        [Test]
-        public void LightHammerPercentile()
-        {
-            AssertContent(WeaponConstants.LightHammer, 55, 56);
-        }
-
-        [Test]
-        public void HandaxePercentile()
-        {
-            AssertContent(WeaponConstants.Handaxe, 57, 58);
-        }
-
-        [Test]
-        public void KukriPercentile()
-        {
-            AssertContent(WeaponConstants.Kukri, 59, 61);
-        }
-
-        [Test]
-        public void LancePercentile()
-        {
-            AssertContent(WeaponConstants.Lance, 62, 64);
-        }
-
-        [Test]
-        public void LongspearPercentile()
-        {
-            AssertContent(WeaponConstants.Longspear, 65, 67);
-        }
-
-        [Test]
-        public void MorningstarPercentile()
-        {
-            AssertContent(WeaponConstants.Morningstar, 68, 70);
-        }
-
-        [Test]
-        public void NetPercentile()
-        {
-            AssertContent(WeaponConstants.Net, 71, 72);
-        }
-
-        [Test]
-        public void HeavyPickPercentile()
-        {
-            AssertContent(WeaponConstants.HeavyPick, 73, 74);
-        }
-
-        [Test]
-        public void LightPickPercentile()
-        {
-            AssertContent(WeaponConstants.LightPick, 75, 76);
-        }
-
-        [Test]
-        public void RanseurPercentile()
-        {
-            AssertContent(WeaponConstants.Ranseur, 77, 78);
-        }
-
-        [Test]
-        public void SapPercentile()
-        {
-            AssertContent(WeaponConstants.Sap, 79, 80);
-        }
-
-        [Test]
-        public void ScythePercentile()
-        {
-            AssertContent(WeaponConstants.Scythe, 81, 82);
-        }
-
-        [Test]
-        public void ShurikenPercentile()
-        {
-            AssertContent(WeaponConstants.Shuriken, 83, 84);
-        }
-
-        [Test]
-        public void SicklePercentile()
-        {
-            AssertContent(WeaponConstants.Sickle, 85, 86);
-        }
-
-        [Test]
-        public void TwoBladedSwordPercentile()
-        {
-            AssertContent(WeaponConstants.TwoBladedSword, 87, 89);
-        }
-
-        [Test]
-        public void TridentPercentile()
-        {
-            AssertContent(WeaponConstants.Trident, 90, 91);
-        }
-
-        [Test]
-        public void DwarvenUrgroshPercentile()
-        {
-            AssertContent(WeaponConstants.DwarvenUrgrosh, 92, 94);
-        }
-
-        [Test]
-        public void WarhammerPercentile()
-        {
-            AssertContent(WeaponConstants.Warhammer, 95, 97);
-        }
-
-        [Test]
-        public void WhipPercentile()
-        {
-            AssertContent(WeaponConstants.Whip, 98, 100);
+            AssertContent(content, lower, upper);
         }
     }
 }

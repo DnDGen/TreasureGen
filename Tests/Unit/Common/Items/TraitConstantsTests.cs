@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Items
@@ -6,70 +7,20 @@ namespace EquipmentGen.Tests.Unit.Common.Items
     [TestFixture]
     public class TraitConstantsTests
     {
-        [Test]
-        public void MasterworkConstant()
+        [TestCase(TraitConstants.Masterwork, "Masterwork")]
+        [TestCase(TraitConstants.Darkwood, "Darkwood")]
+        [TestCase(TraitConstants.Small, "Small")]
+        [TestCase(TraitConstants.Medium, "Medium")]
+        [TestCase(TraitConstants.Adamantine, "Adamantine")]
+        [TestCase(TraitConstants.Dragonhide, "Dragonhide")]
+        [TestCase(TraitConstants.ColdIron, "Cold iron")]
+        [TestCase(TraitConstants.Mithral, "Mithral")]
+        [TestCase(TraitConstants.AlchemicalSilver, "Alchemical silver")]
+        [TestCase(TraitConstants.Markings, "Markings provide a clue to its function")]
+        [TestCase(TraitConstants.ShedsLight, "Sheds light")]
+        public void TraitConstantIsCorrect(String constant, String value)
         {
-            Assert.That(TraitConstants.Masterwork, Is.EqualTo("Masterwork"));
-        }
-
-        [Test]
-        public void DarkwoodConstant()
-        {
-            Assert.That(TraitConstants.Darkwood, Is.EqualTo("Darkwood"));
-        }
-
-        [Test]
-        public void SmallConstant()
-        {
-            Assert.That(TraitConstants.Small, Is.EqualTo("Small"));
-        }
-
-        [Test]
-        public void MediumConstant()
-        {
-            Assert.That(TraitConstants.Medium, Is.EqualTo("Medium"));
-        }
-
-        [Test]
-        public void AdamantineConstant()
-        {
-            Assert.That(TraitConstants.Adamantine, Is.EqualTo("Adamantine"));
-        }
-
-        [Test]
-        public void DragonhideConstant()
-        {
-            Assert.That(TraitConstants.Dragonhide, Is.EqualTo("Dragonhide"));
-        }
-
-        [Test]
-        public void ColdIronConstant()
-        {
-            Assert.That(TraitConstants.ColdIron, Is.EqualTo("Cold iron"));
-        }
-
-        [Test]
-        public void MithralConstant()
-        {
-            Assert.That(TraitConstants.Mithral, Is.EqualTo("Mithral"));
-        }
-
-        [Test]
-        public void AlchemicalSilverConstant()
-        {
-            Assert.That(TraitConstants.AlchemicalSilver, Is.EqualTo("Alchemical silver"));
-        }
-
-        [Test]
-        public void MarkingsConstant()
-        {
-            Assert.That(TraitConstants.Markings, Is.EqualTo("Markings provide a clue to its function"));
-        }
-
-        [Test]
-        public void ShedsLightConstant()
-        {
-            Assert.That(TraitConstants.ShedsLight, Is.EqualTo("Sheds light"));
+            Assert.That(constant, Is.EqualTo(value));
         }
     }
 }

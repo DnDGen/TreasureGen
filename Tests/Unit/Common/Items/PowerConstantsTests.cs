@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Items
@@ -6,28 +7,13 @@ namespace EquipmentGen.Tests.Unit.Common.Items
     [TestFixture]
     public class PowerConstantsTests
     {
-        [Test]
-        public void MundaneConstant()
+        [TestCase(PowerConstants.Mundane, "Mundane")]
+        [TestCase(PowerConstants.Minor, "Minor")]
+        [TestCase(PowerConstants.Medium, "Medium")]
+        [TestCase(PowerConstants.Major, "Major")]
+        public void PowerConstantIsCorrect(String constant, String value)
         {
-            Assert.That(PowerConstants.Mundane, Is.EqualTo("Mundane"));
-        }
-
-        [Test]
-        public void MinorConstant()
-        {
-            Assert.That(PowerConstants.Minor, Is.EqualTo("Minor"));
-        }
-
-        [Test]
-        public void MediumConstant()
-        {
-            Assert.That(PowerConstants.Medium, Is.EqualTo("Medium"));
-        }
-
-        [Test]
-        public void MajorConstant()
-        {
-            Assert.That(PowerConstants.Major, Is.EqualTo("Major"));
+            Assert.That(constant, Is.EqualTo(value));
         }
     }
 }

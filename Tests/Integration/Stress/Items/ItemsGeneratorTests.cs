@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items
         }
 
         [Test]
-        public void StressedItemsGeneratorAtLevel()
+        public void StressedItemsGenerator()
         {
             while (TestShouldKeepRunning())
             {

@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Goods;
+﻿using System;
+using EquipmentGen.Common.Goods;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Goods
@@ -6,16 +7,11 @@ namespace EquipmentGen.Tests.Unit.Common.Goods
     [TestFixture]
     public class GoodsConstantsTests
     {
-        [Test]
-        public void GemConstant()
+        [TestCase(GoodsConstants.Gem, "Gem")]
+        [TestCase(GoodsConstants.Art, "Art")]
+        public void GoodsConstantIsCorrect(String constant, String value)
         {
-            Assert.That(GoodsConstants.Gem, Is.EqualTo("Gem"));
-        }
-
-        [Test]
-        public void ArtConstant()
-        {
-            Assert.That(GoodsConstants.Art, Is.EqualTo("Art"));
+            Assert.That(constant, Is.EqualTo(value));
         }
     }
 }

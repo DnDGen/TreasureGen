@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Items
@@ -6,69 +7,20 @@ namespace EquipmentGen.Tests.Unit.Common.Items
     [TestFixture]
     public class ItemTypeConstantsTests
     {
-        [Test]
-        public void AlchemicalConstant()
+        [TestCase(ItemTypeConstants.AlchemicalItem, "Alchemical Item")]
+        [TestCase(ItemTypeConstants.Armor, "Armor")]
+        [TestCase(ItemTypeConstants.Weapon, "Weapon")]
+        [TestCase(ItemTypeConstants.Tool, "Tool")]
+        [TestCase(ItemTypeConstants.Potion, "Potion")]
+        [TestCase(ItemTypeConstants.Ring, "Ring")]
+        [TestCase(ItemTypeConstants.Rod, "Rod")]
+        [TestCase(ItemTypeConstants.Scroll, "Scroll")]
+        [TestCase(ItemTypeConstants.Staff, "Staff")]
+        [TestCase(ItemTypeConstants.Wand, "Wand")]
+        [TestCase(ItemTypeConstants.WondrousItem, "Wondrous item")]
+        public void ItemTypeConstantIsCorrect(String constant, String value)
         {
-            Assert.That(ItemTypeConstants.AlchemicalItem, Is.EqualTo("Alchemical Item"));
-        }
-
-        [Test]
-        public void ArmorConstant()
-        {
-            Assert.That(ItemTypeConstants.Armor, Is.EqualTo("Armor"));
-        }
-
-        [Test]
-        public void WeaponConstant()
-        {
-            Assert.That(ItemTypeConstants.Weapon, Is.EqualTo("Weapon"));
-        }
-
-        [Test]
-        public void ToolConstant()
-        {
-            Assert.That(ItemTypeConstants.Tool, Is.EqualTo("Tool"));
-        }
-        [Test]
-        public void PotionItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Potion, Is.EqualTo("Potion"));
-        }
-
-        [Test]
-        public void RingItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Ring, Is.EqualTo("Ring"));
-        }
-
-        [Test]
-        public void RodItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Rod, Is.EqualTo("Rod"));
-        }
-
-        [Test]
-        public void ScrollItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Scroll, Is.EqualTo("Scroll"));
-        }
-
-        [Test]
-        public void StaffItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Staff, Is.EqualTo("Staff"));
-        }
-
-        [Test]
-        public void WandItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.Wand, Is.EqualTo("Wand"));
-        }
-
-        [Test]
-        public void WondrousItemTypeConstant()
-        {
-            Assert.That(ItemTypeConstants.WondrousItem, Is.EqualTo("Wondrous item"));
+            Assert.That(constant, Is.EqualTo(value));
         }
     }
 }

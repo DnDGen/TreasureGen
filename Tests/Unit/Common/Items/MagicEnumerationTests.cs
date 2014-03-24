@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -7,39 +8,23 @@ namespace EquipmentGen.Tests.Unit.Common.Items
     [TestFixture]
     public class MagicEnumerationTests
     {
-        [Test]
-        public void BonusConstant()
+        private IEnumerable<String> names;
+
+        [SetUp]
+        public void Setup()
         {
-            var index = Convert.ToInt32(Magic.Bonus);
-            Assert.That(index, Is.EqualTo(0));
+            names = Enum.GetNames(typeof(Magic));
         }
 
-        [Test]
-        public void AbilitiesConstant()
+        [TestCase("Bonus")]
+        [TestCase("Abilities")]
+        [TestCase("Charges")]
+        [TestCase("Intelligence")]
+        [TestCase("Curse")]
+        [TestCase("IsMagical")]
+        public void MagicEnumContains(String name)
         {
-            var index = Convert.ToInt32(Magic.Abilities);
-            Assert.That(index, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void ChargesConstant()
-        {
-            var index = Convert.ToInt32(Magic.Charges);
-            Assert.That(index, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void IntelligenceConstant()
-        {
-            var index = Convert.ToInt32(Magic.Intelligence);
-            Assert.That(index, Is.EqualTo(3));
-        }
-
-        [Test]
-        public void CurseConstant()
-        {
-            var index = Convert.ToInt32(Magic.Curse);
-            Assert.That(index, Is.EqualTo(4));
+            Assert.That(names, Contains.Item(name));
         }
     }
 }
