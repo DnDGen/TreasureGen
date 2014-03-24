@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Coins;
+﻿using System;
+using EquipmentGen.Common.Coins;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Common.Coins
@@ -6,28 +7,13 @@ namespace EquipmentGen.Tests.Unit.Common.Coins
     [TestFixture]
     public class CoinConstantsTests
     {
-        [Test]
-        public void GoldConstant()
+        [TestCase(CoinConstants.Gold, "Gold")]
+        [TestCase(CoinConstants.Platinum, "Platinum")]
+        [TestCase(CoinConstants.Silver, "Silver")]
+        [TestCase(CoinConstants.Copper, "Copper")]
+        public void CoinConstantIsCorrect(String constant, String value)
         {
-            Assert.That(CoinConstants.Gold, Is.EqualTo("Gold"));
-        }
-
-        [Test]
-        public void PlatinumConstant()
-        {
-            Assert.That(CoinConstants.Platinum, Is.EqualTo("Platinum"));
-        }
-
-        [Test]
-        public void SilverConstant()
-        {
-            Assert.That(CoinConstants.Silver, Is.EqualTo("Silver"));
-        }
-
-        [Test]
-        public void CopperConstant()
-        {
-            Assert.That(CoinConstants.Copper, Is.EqualTo("Copper"));
+            Assert.That(constant, Is.EqualTo(value));
         }
     }
 }

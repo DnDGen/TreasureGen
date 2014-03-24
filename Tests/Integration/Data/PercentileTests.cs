@@ -37,14 +37,10 @@ namespace EquipmentGen.Tests.Integration.Tables
             return percentileTableAttribute.Table;
         }
 
-        protected void AssertEmpty(Int32 roll)
+        protected void AssertEmpty(Int32 lower, Int32 upper)
         {
-            AssertEmpty(roll, roll);
-        }
-
-        protected void AssertEmpty(Int32 minInclusive, Int32 maxInclusive)
-        {
-            Assert.That(table.Any(o => o.LowerLimit >= minInclusive && o.UpperLimit <= maxInclusive), Is.False);
+            var isEmptyInRange = table.Any(o => o.LowerLimit >= lower && o.UpperLimit <= upper);
+            Assert.That(isEmptyInRange, Is.False);
         }
 
         protected void AssertContent(String content, Int32 roll)
@@ -52,14 +48,13 @@ namespace EquipmentGen.Tests.Integration.Tables
             AssertContent(content, roll, roll);
         }
 
-        protected void AssertContent(String content, Int32 minInclusive, Int32 maxInclusive)
+        protected void AssertContent(String content, Int32 lower, Int32 upper)
         {
-            Assert.That(table.Select(o => o.Content), Contains.Item(content), "Content not in table");
-            Assert.That(table.Where(o => o.Content == content).Count(), Is.EqualTo(1), "Uniqueness of content");
+            Assert.That(table.Select(o => o.Content), Contains.Item(content));
 
             var result = table.Single(o => o.Content == content);
-            Assert.That(result.LowerLimit, Is.EqualTo(minInclusive), "Lower limit");
-            Assert.That(result.UpperLimit, Is.EqualTo(maxInclusive), "Upper limit");
+            Assert.That(result.LowerLimit, Is.EqualTo(lower), "Lower limit");
+            Assert.That(result.UpperLimit, Is.EqualTo(upper), "Upper limit");
         }
     }
 }
