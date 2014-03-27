@@ -18,14 +18,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Coins
         public void Level19GoldPercentile()
         {
             var result = String.Format("{0},3d8*1000", CoinConstants.Gold);
-            AssertContent(result, 3, 65);
+            AssertPercentile(result, 3, 65);
         }
 
         [Test]
         public void Level19PlatinumPercentile()
         {
             var result = String.Format("{0},3d10*100", CoinConstants.Platinum);
-            AssertContent(result, 66, 100);
+            AssertPercentile(result, 66, 100);
         }
     }
 }

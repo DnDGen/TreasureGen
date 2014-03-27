@@ -9,49 +9,49 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major
         [Test]
         public void AdamantineBreastplatePercentile()
         {
-            AssertContent("Adamantine breastplate", 1, 10);
+            AssertPercentile("Adamantine breastplate", 1, 10);
         }
 
         [Test]
         public void DwarvenPlatePercentile()
         {
-            AssertContent("Dwarven plate", 11, 20);
+            AssertPercentile("Dwarven plate", 11, 20);
         }
 
         [Test]
         public void BandedMailOfLuckPercentile()
         {
-            AssertContent("Banded mail of luck", 21, 32);
+            AssertPercentile("Banded mail of luck", 21, 32);
         }
 
         [Test]
         public void CelestialArmorPercentile()
         {
-            AssertContent("Celestial armor", 33, 50);
+            AssertPercentile("Celestial armor", 33, 50);
         }
 
         [Test]
         public void PlateArmorOfTheDeepPercentile()
         {
-            AssertContent("Plate armor of the deep", 51, 60);
+            AssertPercentile("Plate armor of the deep", 51, 60);
         }
 
         [Test]
         public void BreastplateOfCommandPercentile()
         {
-            AssertContent("Breastplate of command", 61, 75);
+            AssertPercentile("Breastplate of command", 61, 75);
         }
 
         [Test]
         public void MithralFullPlateOfSpeedPercentile()
         {
-            AssertContent("Mithral full plate of speed", 76, 90);
+            AssertPercentile("Mithral full plate of speed", 76, 90);
         }
 
         [Test]
         public void DemonArmorPercentile()
         {
-            AssertContent("Demon armor", 91, 100);
+            AssertPercentile("Demon armor", 91, 100);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
@@ -7,34 +8,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
     [TestFixture, PercentileTable("MasterworkShields")]
     public class MasterworkShieldsTests : PercentileTests
     {
-        [Test]
-        public void BucklerPercentile()
+        [TestCase(ArmorConstants.Buckler, 1, 17)]
+        [TestCase(ArmorConstants.LightWoodenShield, 18, 40)]
+        [TestCase(ArmorConstants.LightSteelShield, 41, 60)]
+        [TestCase(ArmorConstants.HeavyWoodenShield, 61, 83)]
+        [TestCase(ArmorConstants.HeavySteelShield, 84, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(ArmorConstants.Buckler, 1, 17);
-        }
-
-        [Test]
-        public void LightWoodenShieldPercentile()
-        {
-            AssertContent(ArmorConstants.LightWoodenShield, 18, 40);
-        }
-
-        [Test]
-        public void LightSteelShieldPercentile()
-        {
-            AssertContent(ArmorConstants.LightSteelShield, 41, 60);
-        }
-
-        [Test]
-        public void HeavyWoodenShieldPercentile()
-        {
-            AssertContent(ArmorConstants.HeavyWoodenShield, 61, 83);
-        }
-
-        [Test]
-        public void HeavySteelShieldPercentile()
-        {
-            AssertContent(ArmorConstants.HeavySteelShield, 84, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

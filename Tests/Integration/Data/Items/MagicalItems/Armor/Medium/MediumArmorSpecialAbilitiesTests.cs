@@ -10,121 +10,121 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
         [Test]
         public void GlameredPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Glamered, 1, 5);
+            AssertPercentile(SpecialAbilityConstants.Glamered, 1, 5);
         }
 
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.LightFortification, 6, 8);
+            AssertPercentile(SpecialAbilityConstants.LightFortification, 6, 8);
         }
 
         [Test]
         public void SlickPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Slick, 9, 11);
+            AssertPercentile(SpecialAbilityConstants.Slick, 9, 11);
         }
 
         [Test]
         public void ShadowPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Shadow, 12, 14);
+            AssertPercentile(SpecialAbilityConstants.Shadow, 12, 14);
         }
 
         [Test]
         public void SilentMovesPercentile()
         {
-            AssertContent(SpecialAbilityConstants.SilentMoves, 15, 17);
+            AssertPercentile(SpecialAbilityConstants.SilentMoves, 15, 17);
         }
 
         [Test]
         public void SpellResistance13Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance13, 18, 19);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 18, 19);
         }
 
         [Test]
         public void ImprovedSlickPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedSlick, 20, 29);
+            AssertPercentile(SpecialAbilityConstants.ImprovedSlick, 20, 29);
         }
 
         [Test]
         public void ImprovedShadowPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedShadow, 30, 39);
+            AssertPercentile(SpecialAbilityConstants.ImprovedShadow, 30, 39);
         }
 
         [Test]
         public void ImprovedSilentMovesPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedSilentMoves, 40, 49);
+            AssertPercentile(SpecialAbilityConstants.ImprovedSilentMoves, 40, 49);
         }
 
         [Test]
         public void AcidResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.AcidResistance, 50, 54);
+            AssertPercentile(SpecialAbilityConstants.AcidResistance, 50, 54);
         }
 
         [Test]
         public void ColdResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.ColdResistance, 55, 59);
+            AssertPercentile(SpecialAbilityConstants.ColdResistance, 55, 59);
         }
 
         [Test]
         public void ElectricityResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.ElectricityResistance, 60, 64);
+            AssertPercentile(SpecialAbilityConstants.ElectricityResistance, 60, 64);
         }
 
         [Test]
         public void FireResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.FireResistance, 65, 69);
+            AssertPercentile(SpecialAbilityConstants.FireResistance, 65, 69);
         }
 
         [Test]
         public void SonicResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.SonicResistance, 70, 74);
+            AssertPercentile(SpecialAbilityConstants.SonicResistance, 70, 74);
         }
 
         [Test]
         public void GhostTouchPercentile()
         {
-            AssertContent(SpecialAbilityConstants.GhostTouchArmor, 75, 79);
+            AssertPercentile(SpecialAbilityConstants.GhostTouchArmor, 75, 79);
         }
 
         [Test]
         public void InvulnerabilityPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Invulnerability, 80, 84);
+            AssertPercentile(SpecialAbilityConstants.Invulnerability, 80, 84);
         }
 
         [Test]
         public void ModerateFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ModerateFortification, 85, 89);
+            AssertPercentile(SpecialAbilityConstants.ModerateFortification, 85, 89);
         }
 
         [Test]
         public void SpellResistance15Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance15, 90, 94);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance15, 90, 94);
         }
 
         [Test]
         public void WildPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Wild, 95, 99);
+            AssertPercentile(SpecialAbilityConstants.Wild, 95, 99);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 100);
+            AssertPercentile("BonusSpecialAbility", 100);
         }
     }
 }

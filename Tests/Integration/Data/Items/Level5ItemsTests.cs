@@ -18,14 +18,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Items
         public void Level5ItemsMundanePercentile()
         {
             var content = String.Format("{0},1d4", PowerConstants.Mundane);
-            AssertContent(content, 58, 67);
+            AssertPercentile(content, 58, 67);
         }
 
         [Test]
         public void Level5ItemsMinorPercentile()
         {
             var content = String.Format("{0},1d3", PowerConstants.Minor);
-            AssertContent(content, 68, 100);
+            AssertPercentile(content, 68, 100);
         }
     }
 }

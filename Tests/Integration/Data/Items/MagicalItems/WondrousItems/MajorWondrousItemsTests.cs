@@ -107,9 +107,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
         [TestCase("Iron flask", 98)]
         [TestCase("Mirror of mental prowess", 99)]
         [TestCase("Mirror of life trapping", 100)]
-        public void MajorWondrousItemsPercentile(String content, Int32 roll)
+        public void Percentile(String content, Int32 roll)
         {
-            AssertContent(content, roll);
+            AssertPercentile(content, roll);
         }
     }
 }

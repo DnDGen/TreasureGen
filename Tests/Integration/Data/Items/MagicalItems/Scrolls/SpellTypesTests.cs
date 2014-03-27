@@ -9,13 +9,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
         [Test]
         public void ArcanePercentile()
         {
-            AssertContent("Arcane", 1, 70);
+            AssertPercentile("Arcane", 1, 70);
         }
 
         [Test]
         public void DivinePercentile()
         {
-            AssertContent("Divine", 71, 100);
+            AssertPercentile("Divine", 71, 100);
         }
     }
 }

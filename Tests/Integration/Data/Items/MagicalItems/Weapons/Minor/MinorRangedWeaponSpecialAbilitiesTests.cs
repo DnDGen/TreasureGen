@@ -10,61 +10,61 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Minor
         [Test]
         public void BanePercentile()
         {
-            AssertContent(SpecialAbilityConstants.Bane, 1, 12);
+            AssertPercentile(SpecialAbilityConstants.Bane, 1, 12);
         }
 
         [Test]
         public void DistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.Distance, 13, 25);
+            AssertPercentile(SpecialAbilityConstants.Distance, 13, 25);
         }
 
         [Test]
         public void FlamingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Flaming, 26, 40);
+            AssertPercentile(SpecialAbilityConstants.Flaming, 26, 40);
         }
 
         [Test]
         public void FrostPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Frost, 41, 55);
+            AssertPercentile(SpecialAbilityConstants.Frost, 41, 55);
         }
 
         [Test]
         public void MercifulPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Merciful, 56, 60);
+            AssertPercentile(SpecialAbilityConstants.Merciful, 56, 60);
         }
 
         [Test]
         public void ReturningPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Returning, 61, 68);
+            AssertPercentile(SpecialAbilityConstants.Returning, 61, 68);
         }
 
         [Test]
         public void ShockPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Shock, 69, 83);
+            AssertPercentile(SpecialAbilityConstants.Shock, 69, 83);
         }
 
         [Test]
         public void SeekingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Seeking, 84, 93);
+            AssertPercentile(SpecialAbilityConstants.Seeking, 84, 93);
         }
 
         [Test]
         public void ThunderingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Thundering, 94, 99);
+            AssertPercentile(SpecialAbilityConstants.Thundering, 94, 99);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 100);
+            AssertPercentile("BonusSpecialAbility", 100);
         }
     }
 }

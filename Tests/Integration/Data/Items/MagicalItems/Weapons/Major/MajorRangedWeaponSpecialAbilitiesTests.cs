@@ -10,109 +10,109 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Major
         [Test]
         public void BanePercentile()
         {
-            AssertContent(SpecialAbilityConstants.Bane, 1, 4);
+            AssertPercentile(SpecialAbilityConstants.Bane, 1, 4);
         }
 
         [Test]
         public void DistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.Distance, 5, 8);
+            AssertPercentile(SpecialAbilityConstants.Distance, 5, 8);
         }
 
         [Test]
         public void FlamingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Flaming, 9, 12);
+            AssertPercentile(SpecialAbilityConstants.Flaming, 9, 12);
         }
 
         [Test]
         public void FrostPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Frost, 13, 16);
+            AssertPercentile(SpecialAbilityConstants.Frost, 13, 16);
         }
 
         [Test]
         public void ReturningPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Returning, 17, 21);
+            AssertPercentile(SpecialAbilityConstants.Returning, 17, 21);
         }
 
         [Test]
         public void ShockPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Shock, 22, 25);
+            AssertPercentile(SpecialAbilityConstants.Shock, 22, 25);
         }
 
         [Test]
         public void SeekingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Seeking, 26, 27);
+            AssertPercentile(SpecialAbilityConstants.Seeking, 26, 27);
         }
 
         [Test]
         public void ThunderingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Thundering, 28, 29);
+            AssertPercentile(SpecialAbilityConstants.Thundering, 28, 29);
         }
 
         [Test]
         public void AnarchicPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Anarchic, 30, 34);
+            AssertPercentile(SpecialAbilityConstants.Anarchic, 30, 34);
         }
 
         [Test]
         public void AxiomaticPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Axiomatic, 35, 39);
+            AssertPercentile(SpecialAbilityConstants.Axiomatic, 35, 39);
         }
 
         [Test]
         public void FlamingBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.FlamingBurst, 40, 49);
+            AssertPercentile(SpecialAbilityConstants.FlamingBurst, 40, 49);
         }
 
         [Test]
         public void HolyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Holy, 50, 54);
+            AssertPercentile(SpecialAbilityConstants.Holy, 50, 54);
         }
 
         [Test]
         public void IcyBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.IcyBurst, 55, 64);
+            AssertPercentile(SpecialAbilityConstants.IcyBurst, 55, 64);
         }
 
         [Test]
         public void ShockingBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ShockingBurst, 65, 74);
+            AssertPercentile(SpecialAbilityConstants.ShockingBurst, 65, 74);
         }
 
         [Test]
         public void UnholyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Unholy, 75, 79);
+            AssertPercentile(SpecialAbilityConstants.Unholy, 75, 79);
         }
 
         [Test]
         public void SpeedPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Speed, 80, 84);
+            AssertPercentile(SpecialAbilityConstants.Speed, 80, 84);
         }
 
         [Test]
         public void BrilliantEnergyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.BrilliantEnergy, 85, 90);
+            AssertPercentile(SpecialAbilityConstants.BrilliantEnergy, 85, 90);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 91, 100);
+            AssertPercentile("BonusSpecialAbility", 91, 100);
         }
     }
 }

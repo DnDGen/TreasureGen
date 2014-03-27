@@ -10,61 +10,61 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Minor
         [Test]
         public void GlameredPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Glamered, 1, 25);
+            AssertPercentile(SpecialAbilityConstants.Glamered, 1, 25);
         }
 
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.LightFortification, 26, 32);
+            AssertPercentile(SpecialAbilityConstants.LightFortification, 26, 32);
         }
 
         [Test]
         public void SlickPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Slick, 33, 52);
+            AssertPercentile(SpecialAbilityConstants.Slick, 33, 52);
         }
 
         [Test]
         public void ShadowPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Shadow, 53, 72);
+            AssertPercentile(SpecialAbilityConstants.Shadow, 53, 72);
         }
 
         [Test]
         public void SilentMovesPercentile()
         {
-            AssertContent(SpecialAbilityConstants.SilentMoves, 73, 92);
+            AssertPercentile(SpecialAbilityConstants.SilentMoves, 73, 92);
         }
 
         [Test]
         public void SpellResistance13Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance13, 93, 96);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 93, 96);
         }
 
         [Test]
         public void ImprovedSlickPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedSlick, 97);
+            AssertPercentile(SpecialAbilityConstants.ImprovedSlick, 97);
         }
 
         [Test]
         public void ImprovedShadowPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedShadow, 98);
+            AssertPercentile(SpecialAbilityConstants.ImprovedShadow, 98);
         }
 
         [Test]
         public void ImprovedSilentMovesPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ImprovedSilentMoves, 99);
+            AssertPercentile(SpecialAbilityConstants.ImprovedSilentMoves, 99);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 100);
+            AssertPercentile("BonusSpecialAbility", 100);
         }
     }
 }

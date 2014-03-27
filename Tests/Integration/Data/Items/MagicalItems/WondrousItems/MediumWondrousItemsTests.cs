@@ -107,9 +107,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
         [TestCase("Tome of clear thought +1", 98)]
         [TestCase("Tome of leadership and influence +1", 99)]
         [TestCase("Tome of understanding +1", 100)]
-        public void MediumWondrousItemsPercentile(String content, Int32 roll)
+        public void Percentile(String content, Int32 roll)
         {
-            AssertContent(content, roll);
+            AssertPercentile(content, roll);
         }
     }
 }

@@ -43,12 +43,12 @@ namespace EquipmentGen.Tests.Integration.Tables
             Assert.That(isEmptyInRange, Is.False);
         }
 
-        protected void AssertContent(String content, Int32 roll)
+        protected void AssertPercentile(String content, Int32 roll)
         {
-            AssertContent(content, roll, roll);
+            AssertPercentile(content, roll, roll);
         }
 
-        protected void AssertContent(String content, Int32 lower, Int32 upper)
+        protected void AssertPercentile(String content, Int32 lower, Int32 upper)
         {
             Assert.That(table.Select(o => o.Content), Contains.Item(content));
 

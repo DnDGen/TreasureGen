@@ -18,14 +18,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods
         public void Level8GemPercentile()
         {
             var content = String.Format("{0},1d6", GoodsConstants.Gem);
-            AssertContent(content, 46, 85);
+            AssertPercentile(content, 46, 85);
         }
 
         [Test]
         public void Level8ArtPercentile()
         {
             var content = String.Format("{0},1d4", GoodsConstants.Art);
-            AssertContent(content, 86, 100);
+            AssertPercentile(content, 86, 100);
         }
     }
 }

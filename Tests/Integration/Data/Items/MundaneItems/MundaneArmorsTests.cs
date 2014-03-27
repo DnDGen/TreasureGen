@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
@@ -7,52 +8,17 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
     [TestFixture, PercentileTable("MundaneArmors")]
     public class MundaneArmorsTests : PercentileTests
     {
-        [Test]
-        public void ChainShirtPercentile()
+        [TestCase(ArmorConstants.ChainShirt, 1, 12)]
+        [TestCase(ArmorConstants.StuddedLeatherArmor, 13, 18)]
+        [TestCase(ArmorConstants.Breastplate, 19, 26)]
+        [TestCase(ArmorConstants.BandedMail, 27, 34)]
+        [TestCase(ArmorConstants.HalfPlate, 35, 54)]
+        [TestCase(ArmorConstants.FullPlate, 55, 80)]
+        [TestCase(TraitConstants.Darkwood, 81, 90)]
+        [TestCase(TraitConstants.Masterwork, 91, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(ArmorConstants.ChainShirt, 1, 12);
-        }
-
-        [Test]
-        public void StuddedLeatherArmorPercentile()
-        {
-            AssertContent(ArmorConstants.StuddedLeatherArmor, 13, 18);
-        }
-
-        [Test]
-        public void BreastplatePercentile()
-        {
-            AssertContent(ArmorConstants.Breastplate, 19, 26);
-        }
-
-        [Test]
-        public void BandedMailPercentile()
-        {
-            AssertContent(ArmorConstants.BandedMail, 27, 34);
-        }
-
-        [Test]
-        public void HalfPlatePercentile()
-        {
-            AssertContent(ArmorConstants.HalfPlate, 35, 54);
-        }
-
-        [Test]
-        public void FullPlatePercentile()
-        {
-            AssertContent(ArmorConstants.FullPlate, 55, 80);
-        }
-
-        [Test]
-        public void DarkwoodPercentile()
-        {
-            AssertContent(TraitConstants.Darkwood, 81, 90);
-        }
-
-        [Test]
-        public void MasterworkPercentile()
-        {
-            AssertContent(TraitConstants.Masterwork, 91, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

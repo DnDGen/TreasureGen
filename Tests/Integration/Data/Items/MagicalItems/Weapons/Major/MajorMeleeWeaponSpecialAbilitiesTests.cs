@@ -10,151 +10,151 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Major
         [Test]
         public void BanePercentile()
         {
-            AssertContent(SpecialAbilityConstants.Bane, 1, 3);
+            AssertPercentile(SpecialAbilityConstants.Bane, 1, 3);
         }
 
         [Test]
         public void FlamingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Flaming, 4, 6);
+            AssertPercentile(SpecialAbilityConstants.Flaming, 4, 6);
         }
 
         [Test]
         public void FrostPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Frost, 7, 9);
+            AssertPercentile(SpecialAbilityConstants.Frost, 7, 9);
         }
 
         [Test]
         public void ShockPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Shock, 10, 12);
+            AssertPercentile(SpecialAbilityConstants.Shock, 10, 12);
         }
 
         [Test]
         public void GhostTouchPercentile()
         {
-            AssertContent(SpecialAbilityConstants.GhostTouchWeapon, 13, 15);
+            AssertPercentile(SpecialAbilityConstants.GhostTouchWeapon, 13, 15);
         }
 
         [Test]
         public void KiFocusPercentile()
         {
-            AssertContent(SpecialAbilityConstants.KiFocus, 16, 19);
+            AssertPercentile(SpecialAbilityConstants.KiFocus, 16, 19);
         }
 
         [Test]
         public void MightyCleavingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.MightyCleaving, 20, 21);
+            AssertPercentile(SpecialAbilityConstants.MightyCleaving, 20, 21);
         }
 
         [Test]
         public void SpellStoringPercentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellStoring, 22, 24);
+            AssertPercentile(SpecialAbilityConstants.SpellStoring, 22, 24);
         }
 
         [Test]
         public void ThrowingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Throwing, 25, 28);
+            AssertPercentile(SpecialAbilityConstants.Throwing, 25, 28);
         }
 
         [Test]
         public void ThunderingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Thundering, 29, 32);
+            AssertPercentile(SpecialAbilityConstants.Thundering, 29, 32);
         }
 
         [Test]
         public void ViciousPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Vicious, 33, 36);
+            AssertPercentile(SpecialAbilityConstants.Vicious, 33, 36);
         }
 
         [Test]
         public void AnarchicPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Anarchic, 37, 41);
+            AssertPercentile(SpecialAbilityConstants.Anarchic, 37, 41);
         }
 
         [Test]
         public void AxiomaticPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Axiomatic, 42, 46);
+            AssertPercentile(SpecialAbilityConstants.Axiomatic, 42, 46);
         }
 
         [Test]
         public void DisruptionPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Disruption, 47, 49);
+            AssertPercentile(SpecialAbilityConstants.Disruption, 47, 49);
         }
 
         [Test]
         public void FlamingBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.FlamingBurst, 50, 54);
+            AssertPercentile(SpecialAbilityConstants.FlamingBurst, 50, 54);
         }
 
         [Test]
         public void IcyBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.IcyBurst, 55, 59);
+            AssertPercentile(SpecialAbilityConstants.IcyBurst, 55, 59);
         }
 
         [Test]
         public void HolyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Holy, 60, 64);
+            AssertPercentile(SpecialAbilityConstants.Holy, 60, 64);
         }
 
         [Test]
         public void ShockingBurstPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ShockingBurst, 65, 69);
+            AssertPercentile(SpecialAbilityConstants.ShockingBurst, 65, 69);
         }
 
         [Test]
         public void UnholyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Unholy, 70, 74);
+            AssertPercentile(SpecialAbilityConstants.Unholy, 70, 74);
         }
 
         [Test]
         public void WoundingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Wounding, 75, 78);
+            AssertPercentile(SpecialAbilityConstants.Wounding, 75, 78);
         }
 
         [Test]
         public void SpeedPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Speed, 79, 83);
+            AssertPercentile(SpecialAbilityConstants.Speed, 79, 83);
         }
 
         [Test]
         public void BrilliantEnergyPercentile()
         {
-            AssertContent(SpecialAbilityConstants.BrilliantEnergy, 84, 86);
+            AssertPercentile(SpecialAbilityConstants.BrilliantEnergy, 84, 86);
         }
 
         [Test]
         public void DancingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Dancing, 87, 88);
+            AssertPercentile(SpecialAbilityConstants.Dancing, 87, 88);
         }
 
         [Test]
         public void VorpalPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Vorpal, 89, 90);
+            AssertPercentile(SpecialAbilityConstants.Vorpal, 89, 90);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 91, 100);
+            AssertPercentile("BonusSpecialAbility", 91, 100);
         }
     }
 }

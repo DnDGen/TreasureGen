@@ -12,46 +12,46 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Minor
         public void Plus1ShieldPercentile()
         {
             var content = String.Format("{0},1", AttributeConstants.Shield);
-            AssertContent(content, 1, 60);
+            AssertPercentile(content, 1, 60);
         }
 
         [Test]
         public void Plus1ArmorPercentile()
         {
             var content = String.Format("{0},1", ItemTypeConstants.Armor);
-            AssertContent(content, 61, 80);
+            AssertPercentile(content, 61, 80);
         }
 
         [Test]
         public void Plus2ShieldPercentile()
         {
             var content = String.Format("{0},2", AttributeConstants.Shield);
-            AssertContent(content, 81, 85);
+            AssertPercentile(content, 81, 85);
         }
 
         [Test]
         public void Plus2ArmorPercentile()
         {
             var content = String.Format("{0},2", ItemTypeConstants.Armor);
-            AssertContent(content, 86, 87);
+            AssertPercentile(content, 86, 87);
         }
 
         [Test]
         public void SpecificArmorPercentile()
         {
-            AssertContent("SpecificArmors,0", 88, 89);
+            AssertPercentile("SpecificArmors,0", 88, 89);
         }
 
         [Test]
         public void SpecificShieldPercentile()
         {
-            AssertContent("SpecificShields,0", 90, 91);
+            AssertPercentile("SpecificShields,0", 90, 91);
         }
 
         [Test]
         public void SpecialAbilityPercentile()
         {
-            AssertContent("SpecialAbility,1", 92, 100);
+            AssertPercentile("SpecialAbility,1", 92, 100);
         }
     }
 }

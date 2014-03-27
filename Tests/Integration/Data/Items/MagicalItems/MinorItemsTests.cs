@@ -15,9 +15,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
         [TestCase(ItemTypeConstants.Scroll, 47, 81)]
         [TestCase(ItemTypeConstants.Wand, 82, 91)]
         [TestCase(ItemTypeConstants.WondrousItem, 92, 100)]
-        public void MinorItemsPercentile(String content, Int32 lower, Int32 upper)
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(content, lower, upper);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

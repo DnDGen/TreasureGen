@@ -10,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
         [Test]
         public void MarkingsPercentile()
         {
-            AssertContent(TraitConstants.Markings, 1, 20);
+            AssertPercentile(TraitConstants.Markings, 1, 20);
         }
 
         [Test]

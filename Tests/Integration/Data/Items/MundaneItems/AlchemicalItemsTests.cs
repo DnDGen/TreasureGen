@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
@@ -6,52 +7,17 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
     [TestFixture, PercentileTable("AlchemicalItems")]
     public class AlchemicalItemsTests : PercentileTests
     {
-        [Test]
-        public void AlchemistsFirePercentile()
+        [TestCase("Alchemist's fire,1d4", 1, 12)]
+        [TestCase("Acid,2d4", 13, 24)]
+        [TestCase("Smokestick,1d4", 25, 36)]
+        [TestCase("Holy water,1d4", 37, 48)]
+        [TestCase("Antitoxin,1d4", 49, 62)]
+        [TestCase("Everburning torch,1", 63, 74)]
+        [TestCase("Tanglefoot bag,1d4", 75, 88)]
+        [TestCase("Thunderstone,1d4", 89, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent("Alchemist's fire,1d4", 1, 12);
-        }
-
-        [Test]
-        public void AcidPercentile()
-        {
-            AssertContent("Acid,2d4", 13, 24);
-        }
-
-        [Test]
-        public void SmokestickPercentile()
-        {
-            AssertContent("Smokestick,1d4", 25, 36);
-        }
-
-        [Test]
-        public void HolyWaterPercentile()
-        {
-            AssertContent("Holy water,1d4", 37, 48);
-        }
-
-        [Test]
-        public void AntitoxinPercentile()
-        {
-            AssertContent("Antitoxin,1d4", 49, 62);
-        }
-
-        [Test]
-        public void EverburningTorchPercentile()
-        {
-            AssertContent("Everburning torch,1", 63, 74);
-        }
-
-        [Test]
-        public void TanglefootBagPercentile()
-        {
-            AssertContent("Tanglefoot bag,1d4", 75, 88);
-        }
-
-        [Test]
-        public void ThunderstonePercentile()
-        {
-            AssertContent("Thunderstone,1d4", 89, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

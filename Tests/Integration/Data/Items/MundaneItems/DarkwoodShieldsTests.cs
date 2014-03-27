@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
@@ -7,16 +8,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
     [TestFixture, PercentileTable("DarkwoodShields")]
     public class DarkwoodShieldsTests : PercentileTests
     {
-        [Test]
-        public void DarkwoodBucklerPercentile()
+        [TestCase(ArmorConstants.DarkwoodBuckler, 1, 50)]
+        [TestCase(ArmorConstants.DarkwoodShield, 51, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(ArmorConstants.DarkwoodBuckler, 1, 50);
-        }
-
-        [Test]
-        public void DarkwoodShieldPercentile()
-        {
-            AssertContent(ArmorConstants.DarkwoodShield, 51, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

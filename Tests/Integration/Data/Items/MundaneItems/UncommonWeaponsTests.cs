@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
         [TestCase(WeaponConstants.Whip, 98, 100)]
         public void UncommonWeaponPercentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent(content, lower, upper);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

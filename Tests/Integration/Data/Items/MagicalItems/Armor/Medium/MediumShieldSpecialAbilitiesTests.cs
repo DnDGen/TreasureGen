@@ -10,103 +10,103 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
         [Test]
         public void ArrowCatchingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ArrowCatching, 1, 10);
+            AssertPercentile(SpecialAbilityConstants.ArrowCatching, 1, 10);
         }
 
         [Test]
         public void BashingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Bashing, 11, 20);
+            AssertPercentile(SpecialAbilityConstants.Bashing, 11, 20);
         }
 
         [Test]
         public void BlindingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Blinding, 21, 25);
+            AssertPercentile(SpecialAbilityConstants.Blinding, 21, 25);
         }
 
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.LightFortification, 26, 40);
+            AssertPercentile(SpecialAbilityConstants.LightFortification, 26, 40);
         }
 
         [Test]
         public void ArrowDeflectionPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ArrowDeflection, 41, 50);
+            AssertPercentile(SpecialAbilityConstants.ArrowDeflection, 41, 50);
         }
 
         [Test]
         public void AnimatedPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Animated, 51, 57);
+            AssertPercentile(SpecialAbilityConstants.Animated, 51, 57);
         }
 
         [Test]
         public void SpellResistance13Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance13, 58, 59);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 58, 59);
         }
 
         [Test]
         public void AcidResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.AcidResistance, 60, 63);
+            AssertPercentile(SpecialAbilityConstants.AcidResistance, 60, 63);
         }
 
         [Test]
         public void ColdResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.ColdResistance, 64, 67);
+            AssertPercentile(SpecialAbilityConstants.ColdResistance, 64, 67);
         }
 
         [Test]
         public void ElectricityResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.ElectricityResistance, 68, 71);
+            AssertPercentile(SpecialAbilityConstants.ElectricityResistance, 68, 71);
         }
 
         [Test]
         public void FireResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.FireResistance, 72, 75);
+            AssertPercentile(SpecialAbilityConstants.FireResistance, 72, 75);
         }
 
         [Test]
         public void SonicResistancePercentile()
         {
-            AssertContent(SpecialAbilityConstants.SonicResistance, 76, 79);
+            AssertPercentile(SpecialAbilityConstants.SonicResistance, 76, 79);
         }
 
         [Test]
         public void GhostTouchPercentile()
         {
-            AssertContent(SpecialAbilityConstants.GhostTouchArmor, 80, 85);
+            AssertPercentile(SpecialAbilityConstants.GhostTouchArmor, 80, 85);
         }
 
         [Test]
         public void ModerateFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ModerateFortification, 86, 95);
+            AssertPercentile(SpecialAbilityConstants.ModerateFortification, 86, 95);
         }
 
         [Test]
         public void SpellResistance15Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance15, 96, 98);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance15, 96, 98);
         }
 
         [Test]
         public void WildPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Wild, 99);
+            AssertPercentile(SpecialAbilityConstants.Wild, 99);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 100);
+            AssertPercentile("BonusSpecialAbility", 100);
         }
     }
 }

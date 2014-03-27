@@ -9,133 +9,133 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Arcan
         [Test]
         public void AcidSplashPercentile()
         {
-            AssertContent("Acid splash", 1, 4);
+            AssertPercentile("Acid splash", 1, 4);
         }
 
         [Test]
         public void ArcaneMarkPercentile()
         {
-            AssertContent("Arcane mark", 5, 8);
+            AssertPercentile("Arcane mark", 5, 8);
         }
 
         [Test]
         public void DancingLightsPercentile()
         {
-            AssertContent("Dancing lights", 9, 13);
+            AssertPercentile("Dancing lights", 9, 13);
         }
 
         [Test]
         public void DazePercentile()
         {
-            AssertContent("Daze", 14, 17);
+            AssertPercentile("Daze", 14, 17);
         }
 
         [Test]
         public void DetectMagicPercentile()
         {
-            AssertContent("Detect magic", 18, 24);
+            AssertPercentile("Detect magic", 18, 24);
         }
 
         [Test]
         public void DetectPoisonPercentile()
         {
-            AssertContent("Detect poison", 25, 28);
+            AssertPercentile("Detect poison", 25, 28);
         }
 
         [Test]
         public void DisruptUndeadPercentile()
         {
-            AssertContent("Disrupt undead", 29, 32);
+            AssertPercentile("Disrupt undead", 29, 32);
         }
 
         [Test]
         public void FlarePercentile()
         {
-            AssertContent("Flare", 33, 37);
+            AssertPercentile("Flare", 33, 37);
         }
 
         [Test]
         public void GhostSoundPercentile()
         {
-            AssertContent("Ghost sound", 38, 42);
+            AssertPercentile("Ghost sound", 38, 42);
         }
 
         [Test]
         public void KnowDirectionPercentile()
         {
-            AssertContent("Know direction", 43, 44);
+            AssertPercentile("Know direction", 43, 44);
         }
 
         [Test]
         public void LightPercentile()
         {
-            AssertContent("Light", 45, 50);
+            AssertPercentile("Light", 45, 50);
         }
 
         [Test]
         public void LullabyPercentile()
         {
-            AssertContent("Lullaby", 51, 52);
+            AssertPercentile("Lullaby", 51, 52);
         }
 
         [Test]
         public void MageHandPercentile()
         {
-            AssertContent("Mage hand", 53, 57);
+            AssertPercentile("Mage hand", 53, 57);
         }
 
         [Test]
         public void MendingPercentile()
         {
-            AssertContent("Mending", 58, 62);
+            AssertPercentile("Mending", 58, 62);
         }
 
         [Test]
         public void MessagePercentile()
         {
-            AssertContent("Message", 63, 67);
+            AssertPercentile("Message", 63, 67);
         }
 
         [Test]
         public void OpenClosePercentile()
         {
-            AssertContent("Open/close", 68, 72);
+            AssertPercentile("Open/close", 68, 72);
         }
 
         [Test]
         public void PrestidigitationPercentile()
         {
-            AssertContent("Prestidigitation", 73, 77);
+            AssertPercentile("Prestidigitation", 73, 77);
         }
 
         [Test]
         public void RayOfFrostPercentile()
         {
-            AssertContent("Ray of frost", 78, 81);
+            AssertPercentile("Ray of frost", 78, 81);
         }
 
         [Test]
         public void ReadMagicPercentile()
         {
-            AssertContent("Read magic", 82, 87);
+            AssertPercentile("Read magic", 82, 87);
         }
 
         [Test]
         public void ResistancePercentile()
         {
-            AssertContent("Resistance", 88, 94);
+            AssertPercentile("Resistance", 88, 94);
         }
 
         [Test]
         public void SummonInstrumentPercentile()
         {
-            AssertContent("Summon instrument", 95, 96);
+            AssertPercentile("Summon instrument", 95, 96);
         }
 
         [Test]
         public void TouchOfFatiguePercentile()
         {
-            AssertContent("Touch of fatigue", 97, 100);
+            AssertPercentile("Touch of fatigue", 97, 100);
         }
     }
 }

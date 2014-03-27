@@ -9,19 +9,19 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MundaneItems
         [Test]
         public void MundaneCommonMeleeWeaponPercentile()
         {
-            AssertContent("CommonMelee", 1, 50);
+            AssertPercentile("CommonMelee", 1, 50);
         }
 
         [Test]
         public void MundaneUncommonWeaponPercentile()
         {
-            AssertContent("Uncommon", 51, 70);
+            AssertPercentile("Uncommon", 51, 70);
         }
 
         [Test]
         public void MundaneRangedWeaponPercentile()
         {
-            AssertContent("CommonRanged", 71, 100);
+            AssertPercentile("CommonRanged", 71, 100);
         }
     }
 }

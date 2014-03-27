@@ -10,49 +10,49 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Minor
         [Test]
         public void ArrowCatchingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ArrowCatching, 1, 20);
+            AssertPercentile(SpecialAbilityConstants.ArrowCatching, 1, 20);
         }
 
         [Test]
         public void BashingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Bashing, 21, 40);
+            AssertPercentile(SpecialAbilityConstants.Bashing, 21, 40);
         }
 
         [Test]
         public void BlindingPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Blinding, 41, 50);
+            AssertPercentile(SpecialAbilityConstants.Blinding, 41, 50);
         }
 
         [Test]
         public void LightFortificationPercentile()
         {
-            AssertContent(SpecialAbilityConstants.LightFortification, 51, 75);
+            AssertPercentile(SpecialAbilityConstants.LightFortification, 51, 75);
         }
 
         [Test]
         public void ArrowDeflectionPercentile()
         {
-            AssertContent(SpecialAbilityConstants.ArrowDeflection, 76, 92);
+            AssertPercentile(SpecialAbilityConstants.ArrowDeflection, 76, 92);
         }
 
         [Test]
         public void AnimatedPercentile()
         {
-            AssertContent(SpecialAbilityConstants.Animated, 93, 97);
+            AssertPercentile(SpecialAbilityConstants.Animated, 93, 97);
         }
 
         [Test]
         public void SpellResistance13Percentile()
         {
-            AssertContent(SpecialAbilityConstants.SpellResistance13, 98, 99);
+            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 98, 99);
         }
 
         [Test]
         public void BonusSpecialAbilityPercentile()
         {
-            AssertContent("BonusSpecialAbility", 100);
+            AssertPercentile("BonusSpecialAbility", 100);
         }
     }
 }

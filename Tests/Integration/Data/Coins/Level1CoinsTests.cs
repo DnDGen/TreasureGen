@@ -18,28 +18,28 @@ namespace EquipmentGen.Tests.Integration.Tables.Coins
         public void Level1CopperPercentile()
         {
             var result = String.Format("{0},1d6*1000", CoinConstants.Copper);
-            AssertContent(result, 15, 29);
+            AssertPercentile(result, 15, 29);
         }
 
         [Test]
         public void Level1SilverPercentile()
         {
             var result = String.Format("{0},1d8*100", CoinConstants.Silver);
-            AssertContent(result, 30, 52);
+            AssertPercentile(result, 30, 52);
         }
 
         [Test]
         public void Level1GoldPercentile()
         {
             var result = String.Format("{0},2d8*10", CoinConstants.Gold);
-            AssertContent(result, 53, 95);
+            AssertPercentile(result, 53, 95);
         }
 
         [Test]
         public void Level1PlatinumPercentile()
         {
             var result = String.Format("{0},1d4*10", CoinConstants.Platinum);
-            AssertContent(result, 96, 100);
+            AssertPercentile(result, 96, 100);
         }
     }
 }

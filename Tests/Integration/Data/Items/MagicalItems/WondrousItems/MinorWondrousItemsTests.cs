@@ -110,9 +110,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
         [TestCase("Bottle of air", 98)]
         [TestCase("Bag of holding type III", 99)]
         [TestCase("Periapt of health", 100)]
-        public void MinorWondrousItemsPercentile(String content, Int32 roll)
+        public void Percentile(String content, Int32 roll)
         {
-            AssertContent(content, roll);
+            AssertPercentile(content, roll);
         }
     }
 }

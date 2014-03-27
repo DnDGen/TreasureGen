@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
@@ -6,190 +7,45 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
     [TestFixture, PercentileTable("DesignatedFoes")]
     public class DesignatedFoesTests : PercentileTests
     {
-        [Test]
-        public void AberrationPercentile()
+        [TestCase("Aquatic-humanoid", 40)]
+        [TestCase("Gnoll", 45)]
+        [TestCase("Gnome", 46)]
+        [TestCase("Halfling", 50)]
+        [TestCase("Air-outsider", 73)]
+        [TestCase("Earth-outsider", 77)]
+        [TestCase("Fire-outsider", 81)]
+        [TestCase("Water-outsider", 88)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertContent("Aberration", 1, 5);
+            AssertPercentile(content, roll);
         }
 
-        [Test]
-        public void AnimalPercentile()
+        [TestCase("Aberration", 1, 5)]
+        [TestCase("Animal", 6, 9)]
+        [TestCase("Construct", 10, 16)]
+        [TestCase("Dragon", 17, 22)]
+        [TestCase("Elemental", 23, 27)]
+        [TestCase("Fey", 28, 32)]
+        [TestCase("Giant", 33, 39)]
+        [TestCase("Dwarf", 41, 42)]
+        [TestCase("Elf", 43, 44)]
+        [TestCase("Goblinoid", 47, 49)]
+        [TestCase("Human", 51, 54)]
+        [TestCase("Reptilian-humanoid", 55, 57)]
+        [TestCase("Orc", 58, 60)]
+        [TestCase("Magical-beast", 61, 65)]
+        [TestCase("Mounstrous-humanoid", 66, 70)]
+        [TestCase("Ooze", 71, 72)]
+        [TestCase("Chaotic-outsider", 74, 76)]
+        [TestCase("Evil-outsider", 78, 80)]
+        [TestCase("Good-outsider", 82, 84)]
+        [TestCase("Lawful-outsider", 85, 87)]
+        [TestCase("Plant", 89, 90)]
+        [TestCase("Undead", 91, 98)]
+        [TestCase("Vermin", 99, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertContent("Animal", 6, 9);
-        }
-
-        [Test]
-        public void ConstructPercentile()
-        {
-            AssertContent("Construct", 10, 16);
-        }
-
-        [Test]
-        public void DragonPercentile()
-        {
-            AssertContent("Dragon", 17, 22);
-        }
-
-        [Test]
-        public void ElementalPercentile()
-        {
-            AssertContent("Elemental", 23, 27);
-        }
-
-        [Test]
-        public void FeyPercentile()
-        {
-            AssertContent("Fey", 28, 32);
-        }
-
-        [Test]
-        public void GiantPercentile()
-        {
-            AssertContent("Giant", 33, 39);
-        }
-
-        [Test]
-        public void AquaticHumanoidPercentile()
-        {
-            AssertContent("Aquatic-humanoid", 40);
-        }
-
-        [Test]
-        public void DwarfPercentile()
-        {
-            AssertContent("Dwarf", 41, 42);
-        }
-
-        [Test]
-        public void ElfPercentile()
-        {
-            AssertContent("Elf", 43, 44);
-        }
-
-        [Test]
-        public void GnollPercentile()
-        {
-            AssertContent("Gnoll", 45);
-        }
-
-        [Test]
-        public void GnomePercentile()
-        {
-            AssertContent("Gnome", 46);
-        }
-
-        [Test]
-        public void GoblinoidPercentile()
-        {
-            AssertContent("Goblinoid", 47, 49);
-        }
-
-        [Test]
-        public void HalflingPercentile()
-        {
-            AssertContent("Halfling", 50);
-        }
-
-        [Test]
-        public void HumanPercentile()
-        {
-            AssertContent("Human", 51, 54);
-        }
-
-        [Test]
-        public void ReptilianHumanoidPercentile()
-        {
-            AssertContent("Reptilian-humanoid", 55, 57);
-        }
-
-        [Test]
-        public void OrcPercentile()
-        {
-            AssertContent("Orc", 58, 60);
-        }
-
-        [Test]
-        public void MagicalBeastPercentile()
-        {
-            AssertContent("Magical-beast", 61, 65);
-        }
-
-        [Test]
-        public void MonstrousHumanoidsPercentile()
-        {
-            AssertContent("Mounstrous-humanoid", 66, 70);
-        }
-
-        [Test]
-        public void OozePercentile()
-        {
-            AssertContent("Ooze", 71, 72);
-        }
-
-        [Test]
-        public void AirOutsiderPercentile()
-        {
-            AssertContent("Air-outsider", 73);
-        }
-
-        [Test]
-        public void ChaoticOutsiderPercentile()
-        {
-            AssertContent("Chaotic-outsider", 74, 76);
-        }
-
-        [Test]
-        public void EarthOutsiderPercentile()
-        {
-            AssertContent("Earth-outsider", 77);
-        }
-
-        [Test]
-        public void EvilOutsiderPercentile()
-        {
-            AssertContent("Evil-outsider", 78, 80);
-        }
-
-        [Test]
-        public void FireOutsiderPercentile()
-        {
-            AssertContent("Fire-outsider", 81);
-        }
-
-        [Test]
-        public void GoodOutsiderPercentile()
-        {
-            AssertContent("Good-outsider", 82, 84);
-        }
-
-        [Test]
-        public void LawfulOutsiderPercentile()
-        {
-            AssertContent("Lawful-outsider", 85, 87);
-        }
-
-        [Test]
-        public void WaterOutsiderPercentile()
-        {
-            AssertContent("Water-outsider", 88);
-        }
-
-        [Test]
-        public void PlantPercentile()
-        {
-            AssertContent("Plant", 89, 90);
-        }
-
-        [Test]
-        public void UndeadPercentile()
-        {
-            AssertContent("Undead", 91, 98);
-        }
-
-        [Test]
-        public void VerminPercentile()
-        {
-            AssertContent("Vermin", 99, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Divin
         [TestCase("Virtue", 94, 100)]
         public void Level0DivineSpellsPercentile(String spell, Int32 lower, Int32 upper)
         {
-            AssertContent(spell, lower, upper);
+            AssertPercentile(spell, lower, upper);
         }
     }
 }
