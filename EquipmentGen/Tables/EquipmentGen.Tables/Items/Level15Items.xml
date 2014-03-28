@@ -2,6 +2,11 @@
 
 <percentile>
     <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>11</upper>
+    </object>
+    <object>
         <lower>12</lower>
         <content>Minor,1d10</content>
         <upper>46</upper>

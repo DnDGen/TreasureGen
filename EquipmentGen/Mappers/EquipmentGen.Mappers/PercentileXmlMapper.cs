@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Mappers
@@ -16,9 +15,9 @@ namespace EquipmentGen.Mappers
             this.streamLoader = streamLoader;
         }
 
-        public IEnumerable<PercentileObject> Map(String tableName)
+        public Dictionary<Int32, String> Map(String tableName)
         {
-            var results = new List<PercentileObject>();
+            var table = new Dictionary<Int32, String>();
             var filename = String.Format("{0}.xml", tableName);
 
             using (var stream = streamLoader.LoadFor(filename))
@@ -29,17 +28,16 @@ namespace EquipmentGen.Mappers
                 var objects = xmlDocument.DocumentElement.ChildNodes;
                 foreach (XmlNode node in objects)
                 {
-                    var percentileObject = new PercentileObject();
+                    var lower = Convert.ToInt32(node.SelectSingleNode("lower").InnerText);
+                    var upper = Convert.ToInt32(node.SelectSingleNode("upper").InnerText);
+                    var content = node.SelectSingleNode("content").InnerText;
 
-                    percentileObject.LowerLimit = Convert.ToInt32(node.SelectSingleNode("lower").InnerText);
-                    percentileObject.Content = node.SelectSingleNode("content").InnerText;
-                    percentileObject.UpperLimit = Convert.ToInt32(node.SelectSingleNode("upper").InnerText);
-
-                    results.Add(percentileObject);
+                    for (var i = lower; i <= upper; i++)
+                        table.Add(i, content);
                 }
             }
 
-            return results;
+            return table;
         }
     }
 }

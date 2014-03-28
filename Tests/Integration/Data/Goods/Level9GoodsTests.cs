@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods
         [Test]
         public void Level9EmptyPercentile()
         {
-            AssertEmpty(1, 40);
+            AssertPercentile(String.Empty, 1, 40);
         }
 
         [Test]

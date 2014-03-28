@@ -2,6 +2,11 @@
 
 <percentile>
     <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>54</upper>
+    </object>
+    <object>
         <lower>55</lower>
         <content>Mundane,1d4</content>
         <upper>59</upper>

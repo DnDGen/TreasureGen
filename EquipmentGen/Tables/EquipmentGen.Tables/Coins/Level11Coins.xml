@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
+    <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>8</upper>
+    </object>
   <object>
     <lower>9</lower>
     <content>Silver,3d10*1000</content>

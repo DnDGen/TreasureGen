@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Mappers
     {
         private IPercentileMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String tableName = "PercentileXmlMapperTests";
+        private const String filename = "PercentileXmlMapperTests.xml";
 
         [SetUp]
         public void Setup()
@@ -30,37 +30,34 @@ namespace EquipmentGen.Tests.Unit.Mappers
         [Test]
         public void AppendXmlFileExtensionToTableName()
         {
-            mapper.Map(tableName);
-            mockStreamLoader.Verify(l => l.LoadFor(tableName + ".xml"), Times.Once);
+            mapper.Map(filename);
+            mockStreamLoader.Verify(l => l.LoadFor(filename + ".xml"), Times.Once);
         }
 
         [Test]
         public void LoadFromStream()
         {
-            var objects = mapper.Map(tableName);
+            var table = mapper.Map(filename);
 
-            Assert.That(objects.Count(), Is.EqualTo(2));
-
-            var firstElement = objects.ElementAt(0);
-            Assert.That(firstElement.LowerLimit, Is.EqualTo(1));
-            Assert.That(firstElement.Content, Is.EqualTo("one through five"));
-            Assert.That(firstElement.UpperLimit, Is.EqualTo(5));
-
-            var secondElement = objects.ElementAt(1);
-            Assert.That(secondElement.LowerLimit, Is.EqualTo(6));
-            Assert.That(secondElement.Content, Is.EqualTo("six only"));
-            Assert.That(secondElement.UpperLimit, Is.EqualTo(6));
+            Assert.That(table[1], Is.EqualTo("one through five"));
+            Assert.That(table[2], Is.EqualTo("one through five"));
+            Assert.That(table[3], Is.EqualTo("one through five"));
+            Assert.That(table[4], Is.EqualTo("one through five"));
+            Assert.That(table[5], Is.EqualTo("one through five"));
+            Assert.That(table[6], Is.EqualTo("six only"));
+            Assert.That(table[7], Is.Empty);
+            Assert.That(table.Count(), Is.EqualTo(7));
         }
 
         private Stream GetStream()
         {
-            return new FileStream(tableName, FileMode.Open);
+            return new FileStream(filename, FileMode.Open);
         }
 
         private void MakeXmlFile()
         {
-            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><percentile><object><lower>1</lower><content>one through five</content><upper>5</upper></object><object><lower>6</lower><content>six only</content><upper>6</upper></object></percentile>";
-            File.WriteAllText(tableName, content);
+            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><percentile><object><lower>1</lower><content>one through five</content><upper>5</upper></object><object><lower>6</lower><content>six only</content><upper>6</upper></object><object><lower>7</lower><content></content><upper>7</upper></object></percentile>";
+            File.WriteAllText(filename, content);
         }
     }
 }

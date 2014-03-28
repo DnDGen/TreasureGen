@@ -2,6 +2,11 @@
 
 <percentile>
     <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>11</upper>
+    </object>
+    <object>
         <lower>12</lower>
         <content>Gem,2d8</content>
         <upper>66</upper>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Selectors
@@ -10,12 +9,12 @@ namespace EquipmentGen.Selectors
     public class PercentileSelector : IPercentileSelector
     {
         private IPercentileMapper percentileMapper;
-        private Dictionary<String, IEnumerable<PercentileObject>> cachedTables;
+        private Dictionary<String, Dictionary<Int32, String>> cachedTables;
 
         public PercentileSelector(IPercentileMapper percentileMapper)
         {
             this.percentileMapper = percentileMapper;
-            cachedTables = new Dictionary<String, IEnumerable<PercentileObject>>();
+            cachedTables = new Dictionary<String, Dictionary<Int32, String>>();
         }
 
         public String SelectFrom(String tableName, Int32 roll)
@@ -23,12 +22,10 @@ namespace EquipmentGen.Selectors
             if (!cachedTables.ContainsKey(tableName))
                 CacheTable(tableName);
 
-            var percentileObject = cachedTables[tableName].FirstOrDefault(o => RollIsInRange(roll, o));
+            if (roll < 1 || roll > 100)
+                throw new ArgumentException();
 
-            if (percentileObject == null)
-                return String.Empty;
-
-            return percentileObject.Content;
+            return cachedTables[tableName][roll];
         }
 
         private void CacheTable(String tableName)
@@ -37,17 +34,12 @@ namespace EquipmentGen.Selectors
             cachedTables.Add(tableName, table);
         }
 
-        private Boolean RollIsInRange(Int32 roll, PercentileObject percentileObject)
-        {
-            return percentileObject.LowerLimit <= roll && roll <= percentileObject.UpperLimit;
-        }
-
         public IEnumerable<String> SelectAllFrom(String tableName)
         {
             if (!cachedTables.ContainsKey(tableName))
                 CacheTable(tableName);
 
-            return cachedTables[tableName].Select(o => o.Content);
+            return cachedTables[tableName].Values.Distinct();
         }
     }
 }

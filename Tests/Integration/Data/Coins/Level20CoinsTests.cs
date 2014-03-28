@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Coins
         [Test]
         public void Level20EmptyPercentile()
         {
-            AssertEmpty(1, 2);
+            AssertPercentile(String.Empty, 1, 2);
         }
 
         [Test]

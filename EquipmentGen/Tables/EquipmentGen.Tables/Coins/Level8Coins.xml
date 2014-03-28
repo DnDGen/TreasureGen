@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
+    <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>10</upper>
+    </object>
   <object>
     <lower>11</lower>
     <content>Copper,1d12*10000</content>

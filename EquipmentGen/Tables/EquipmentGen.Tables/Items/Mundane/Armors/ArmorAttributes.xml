@@ -15,6 +15,7 @@
         <name>Buckler</name>
         <attribute>Armor</attribute>
         <attribute>Wood</attribute>
+      <attribute>Shield</attribute>
     </object>
     <object>
         <name>Chainmail</name>
@@ -40,11 +41,13 @@
         <name>Heavy steel shield</name>
         <attribute>Armor</attribute>
         <attribute>Metal</attribute>
+      <attribute>Shield</attribute>
     </object>
     <object>
         <name>Heavy wooden shield</name>
         <attribute>Armor</attribute>
         <attribute>Wood</attribute>
+      <attribute>Shield</attribute>
     </object>
     <object>
         <name>Hide armor</name>
@@ -58,11 +61,13 @@
         <name>Light steel shield</name>
         <attribute>Armor</attribute>
         <attribute>Metal</attribute>
+      <attribute>Shield</attribute>
     </object>
     <object>
         <name>Light wooden shield</name>
         <attribute>Armor</attribute>
         <attribute>Wood</attribute>
+      <attribute>Shield</attribute>
     </object>
     <object>
         <name>Padded armor</name>
@@ -87,5 +92,6 @@
         <name>Tower shield</name>
         <attribute>Armor</attribute>
         <attribute>Wood</attribute>
+      <attribute>Shield</attribute>
     </object>
 </attributes>

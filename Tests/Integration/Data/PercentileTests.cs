@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tests.Integration.Common;
 using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using Ninject;
@@ -16,12 +15,13 @@ namespace EquipmentGen.Tests.Integration.Tables
         [Inject]
         public IPercentileMapper PercentileMapper { get; set; }
 
-        private IEnumerable<PercentileObject> table;
+        private Dictionary<Int32, String> table;
+        private String tableName;
 
         [SetUp]
         public void Setup()
         {
-            var tableName = GetTableNameFromAttribute();
+            tableName = GetTableNameFromAttribute();
             table = PercentileMapper.Map(tableName);
         }
 
@@ -37,24 +37,27 @@ namespace EquipmentGen.Tests.Integration.Tables
             return percentileTableAttribute.Table;
         }
 
-        protected void AssertEmpty(Int32 lower, Int32 upper)
+        [Test]
+        public void TableIsComplete()
         {
-            var isEmptyInRange = table.Any(o => o.LowerLimit >= lower && o.UpperLimit <= upper);
-            Assert.That(isEmptyInRange, Is.False);
+            for (var i = 100; i > 0; i--)
+                Assert.That(table[i], Is.Not.Null, tableName);
+
+            Assert.That(table.Keys.Count, Is.EqualTo(100), tableName);
         }
 
-        protected void AssertPercentile(String content, Int32 roll)
+        protected void AssertPercentile(String content, Int32 lower, Int32 upper = 0)
         {
-            AssertPercentile(content, roll, roll);
-        }
+            if (upper == 0)
+                upper = lower;
 
-        protected void AssertPercentile(String content, Int32 lower, Int32 upper)
-        {
-            Assert.That(table.Select(o => o.Content), Contains.Item(content));
-
-            var result = table.Single(o => o.Content == content);
-            Assert.That(result.LowerLimit, Is.EqualTo(lower), "Lower limit");
-            Assert.That(result.UpperLimit, Is.EqualTo(upper), "Upper limit");
+            for (var i = 100; i > 0; i--)
+            {
+                if (i >= lower && i <= upper)
+                    Assert.That(table[i], Is.EqualTo(content));
+                else
+                    Assert.That(table[i], Is.Not.EqualTo(content));
+            }
         }
     }
 }

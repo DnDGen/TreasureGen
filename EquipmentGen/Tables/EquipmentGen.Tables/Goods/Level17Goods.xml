@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
+    <object>
+        <lower>1</lower>
+        <content></content>
+        <upper>4</upper>
+    </object>
   <object>
     <lower>5</lower>
     <content>Gem,4d8</content>

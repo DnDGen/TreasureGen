@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Selectors;
 using EquipmentGen.Selectors.Interfaces;
 using Moq;
@@ -14,22 +13,18 @@ namespace EquipmentGen.Tests.Unit.Selectors
     public class PercentileSelectorTests
     {
         private IPercentileSelector percentileSelector;
-        private List<PercentileObject> table;
+        private Dictionary<Int32, String> table;
         private Mock<IPercentileMapper> mockPercentileMapper;
         private const String tableName = "table";
-        private const Int32 min = 1;
-        private const Int32 max = 50;
+        private const Int32 min = 10;
+        private const Int32 max = 12;
 
         [SetUp]
         public void Setup()
         {
-            var percentileObject = new PercentileObject();
-            percentileObject.Content = "content";
-            percentileObject.LowerLimit = min;
-            percentileObject.UpperLimit = max;
-
-            table = new List<PercentileObject>();
-            table.Add(percentileObject);
+            table = new Dictionary<Int32, String>();
+            for (var i = min; i <= max; i++)
+                table.Add(i, "content");
 
             mockPercentileMapper = new Mock<IPercentileMapper>();
             mockPercentileMapper.Setup(p => p.Map(tableName)).Returns(table);
@@ -40,32 +35,38 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void GetResultCachesTable()
         {
-            percentileSelector.SelectFrom(tableName, 1);
-            percentileSelector.SelectFrom(tableName, 1);
+            percentileSelector.SelectFrom(tableName, min);
+            percentileSelector.SelectFrom(tableName, min);
 
             mockPercentileMapper.Verify(p => p.Map(tableName), Times.Once());
         }
 
         [Test]
-        public void GetResultReturnsEmptyStringForEmptyTable()
+        public void ThrowErrorIfRollLessThan1()
         {
-            table.Clear();
-            var result = percentileSelector.SelectFrom(tableName, 1);
-            Assert.That(result, Is.EqualTo(String.Empty));
+            Assert.That(() => percentileSelector.SelectFrom(tableName, 0), Throws.ArgumentException);
         }
 
         [Test]
-        public void GetResultReturnsEmptyStringIfBelowRange()
+        public void ThrowErrorIfRollGreaterThan100()
         {
+            Assert.That(() => percentileSelector.SelectFrom(tableName, 101), Throws.ArgumentException);
+        }
+
+        [Test]
+        public void GetResultReturnsDifferentContentIfBelowRange()
+        {
+            table.Add(min - 1, "other content");
             var result = percentileSelector.SelectFrom(tableName, min - 1);
-            Assert.That(result, Is.EqualTo(String.Empty));
+            Assert.That(result, Is.EqualTo(table[min - 1]));
         }
 
         [Test]
-        public void GetResultReturnsEmptyStringIfAboveRange()
+        public void GetResultReturnsDifferentContentIfAboveRange()
         {
+            table.Add(max + 1, "other content");
             var result = percentileSelector.SelectFrom(tableName, max + 1);
-            Assert.That(result, Is.EqualTo(String.Empty));
+            Assert.That(result, Is.EqualTo(table[max + 1]));
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void GetAllResultsReturnsWholeTable()
         {
             var results = percentileSelector.SelectAllFrom(tableName);
-            var tableContents = table.Select(o => o.Content);
+            var tableContents = table.Values.Distinct();
             Assert.That(results, Is.EqualTo(tableContents));
         }
 
