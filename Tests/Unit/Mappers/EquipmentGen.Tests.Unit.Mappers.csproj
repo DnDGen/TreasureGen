@@ -45,10 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeXmlMapperTests.cs" />
-    <Compile Include="PercentileXmlMapperTests.cs" />
+    <Compile Include="Attributes\AttributeMapperCachingProxyTests.cs" />
+    <Compile Include="Attributes\AttributeXmlMapperTests.cs" />
+    <Compile Include="Percentile\PercentileMapperCachingProxyTests.cs" />
+    <Compile Include="Percentile\PercentileXmlMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecialAbilityDataXmlMapperTests.cs" />
+    <Compile Include="SpecialAbilityData\SpecialAbilityDataMapperCachingProxyTests.cs" />
+    <Compile Include="SpecialAbilityData\SpecialAbilityDataXmlMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

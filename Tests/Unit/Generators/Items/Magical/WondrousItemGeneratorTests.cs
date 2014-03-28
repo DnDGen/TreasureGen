@@ -66,7 +66,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom(name, "WondrousItemAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WondrousItemAttributes", name)).Returns(attributes);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Attributes, Is.EqualTo(attributes));
@@ -102,7 +102,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void DoNotGetChargesIfNotCharged()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom(name, "WondrousItemAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WondrousItemAttributes", name)).Returns(attributes);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
@@ -114,7 +114,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetChargesIfCharged()
         {
             var attributes = new[] { AttributeConstants.Charged };
-            mockAttributesSelector.Setup(p => p.SelectFrom(name, "WondrousItemAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WondrousItemAttributes", name)).Returns(attributes);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, name)).Returns(9266);
 
@@ -177,7 +177,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns("wondrous item +9266");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            mockAttributesSelector.Verify(p => p.SelectFrom("wondrous item", "WondrousItemAttributes"), Times.Once);
+            mockAttributesSelector.Verify(p => p.SelectFrom("WondrousItemAttributes", "wondrous item"), Times.Once);
         }
 
         [Test]
@@ -186,7 +186,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns("wondrous item type IXCCLXVI");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            mockAttributesSelector.Verify(p => p.SelectFrom("wondrous item", "WondrousItemAttributes"), Times.Once);
+            mockAttributesSelector.Verify(p => p.SelectFrom("WondrousItemAttributes", "wondrous item"), Times.Once);
         }
 
         [Test]
@@ -195,7 +195,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns("wondrous item, type");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            mockAttributesSelector.Verify(p => p.SelectFrom("wondrous item", "WondrousItemAttributes"), Times.Once);
+            mockAttributesSelector.Verify(p => p.SelectFrom("WondrousItemAttributes", "wondrous item"), Times.Once);
         }
 
         [Test]

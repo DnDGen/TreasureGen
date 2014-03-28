@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using EquipmentGen.Mappers;
 using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Percentile;
 using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Mappers
+namespace EquipmentGen.Tests.Unit.Mappers.Percentile
 {
     [TestFixture]
     public class PercentileXmlMapperTests

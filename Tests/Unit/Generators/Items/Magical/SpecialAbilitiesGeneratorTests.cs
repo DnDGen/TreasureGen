@@ -354,7 +354,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(It.IsAny<String>())).Returns(ability);
 
             attributes.Add("type 1");
-            mockAttributesSelector.Setup(p => p.SelectFrom(ability.Name, "SpecialAbilityTypes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityTypes", ability.Name)).Returns(attributes);
             var inputTypes = attributes.Union(new[] { "other type" });
 
             var abilities = specialAbilitiesGenerator.GenerateWith(inputTypes, "power", 1, 1);

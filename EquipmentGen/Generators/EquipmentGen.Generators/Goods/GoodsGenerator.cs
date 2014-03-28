@@ -42,7 +42,7 @@ namespace EquipmentGen.Generators.Goods
             {
                 roll = dice.Percentile();
                 var valueRoll = percentileSelector.SelectFrom(valueTableName, roll);
-                var descriptions = attributesSelector.SelectFrom(valueRoll, descriptionTableName);
+                var descriptions = attributesSelector.SelectFrom(descriptionTableName, valueRoll);
                 var descriptionIndexRoll = String.Format("1d{0}-1", descriptions.Count());
                 var descriptionIndex = dice.Roll(descriptionIndexRoll);
 

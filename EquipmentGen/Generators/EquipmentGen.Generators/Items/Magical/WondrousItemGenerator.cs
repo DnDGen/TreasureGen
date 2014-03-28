@@ -40,7 +40,7 @@ namespace EquipmentGen.Generators.Items.Magical
             item.Magic[Magic.IsMagical] = true;
 
             var attributeName = GetNameForAttributes(item.Name);
-            item.Attributes = attributesSelector.SelectFrom(attributeName, "WondrousItemAttributes");
+            item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", attributeName);
 
             if (item.Name.Contains("+"))
                 item.Magic[Magic.Bonus] = GetBonus(item.Name);

@@ -62,7 +62,7 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.Magic[Magic.Bonus] = result.AmountToRoll;
             roll = dice.Percentile();
             armor.Name = percentileSelector.SelectFrom(tableName, roll);
-            armor.Attributes = attributesSelector.SelectFrom(armor.Name, "ArmorAttributes");
+            armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
 
             var quantity = dice.Roll(result.AmountToRoll);
             var abilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, quantity, abilityCount);

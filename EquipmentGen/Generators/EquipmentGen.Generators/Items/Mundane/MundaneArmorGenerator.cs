@@ -34,7 +34,7 @@ namespace EquipmentGen.Generators.Items.Mundane
                 var tableName = String.Format("{0}Shields", result);
                 roll = dice.Percentile();
                 armor.Name = percentileSelector.SelectFrom(tableName, roll);
-                armor.Attributes = attributesSelector.SelectFrom(ArmorConstants.Buckler, "ArmorAttributes");
+                armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", ArmorConstants.Buckler);
                 armor.Traits.Add(result);
 
                 return armor;
@@ -54,7 +54,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            armor.Attributes = attributesSelector.SelectFrom(armor.Name, "ArmorAttributes");
+            armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
 
             roll = dice.Percentile();
             var size = percentileSelector.SelectFrom("ArmorSizes", roll);

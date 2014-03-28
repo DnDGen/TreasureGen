@@ -33,7 +33,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         private void AddTypes(String specialMaterial)
         {
-            var attributeRequirements = attributesSelector.SelectFrom(specialMaterial, "SpecialMaterials");
+            var attributeRequirements = attributesSelector.SelectFrom("SpecialMaterials", specialMaterial);
             specialMaterialAttributes.Add(specialMaterial, attributeRequirements);
         }
 

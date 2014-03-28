@@ -1,5 +1,7 @@
-﻿using EquipmentGen.Mappers;
+﻿using EquipmentGen.Bootstrap.Factories.Mappers;
 using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Tables.Interfaces;
+using Ninject;
 using Ninject.Modules;
 
 namespace EquipmentGen.Bootstrap.Modules
@@ -8,9 +10,12 @@ namespace EquipmentGen.Bootstrap.Modules
     {
         public override void Load()
         {
-            Bind<IPercentileMapper>().To<PercentileXmlMapper>();
-            Bind<ISpecialAbilityDataMapper>().To<SpecialAbilityDataXmlMapper>();
-            Bind<IAttributesMapper>().To<AttributesXmlMapper>();
+            Bind<IPercentileMapper>().ToMethod(c => PercentileMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
+                .InSingletonScope();
+            Bind<ISpecialAbilityDataMapper>().ToMethod(c => SpecialAbilityDataMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
+                .InSingletonScope();
+            Bind<IAttributesMapper>().ToMethod(c => AttributesMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
+                .InSingletonScope();
         }
     }
 }

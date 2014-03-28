@@ -33,15 +33,6 @@ namespace EquipmentGen.Tests.Unit.Selectors
         }
 
         [Test]
-        public void GetResultCachesTable()
-        {
-            percentileSelector.SelectFrom(tableName, min);
-            percentileSelector.SelectFrom(tableName, min);
-
-            mockPercentileMapper.Verify(p => p.Map(tableName), Times.Once());
-        }
-
-        [Test]
         public void ThrowErrorIfRollLessThan1()
         {
             Assert.That(() => percentileSelector.SelectFrom(tableName, 0), Throws.ArgumentException);
@@ -85,15 +76,6 @@ namespace EquipmentGen.Tests.Unit.Selectors
             var results = percentileSelector.SelectAllFrom(tableName);
             var tableContents = table.Values.Distinct();
             Assert.That(results, Is.EqualTo(tableContents));
-        }
-
-        [Test]
-        public void GetAllResultsCachesTable()
-        {
-            percentileSelector.SelectAllFrom(tableName);
-            percentileSelector.SelectAllFrom(tableName);
-
-            mockPercentileMapper.Verify(p => p.Map(tableName), Times.Once());
         }
     }
 }

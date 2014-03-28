@@ -51,18 +51,10 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void GetAttributeRequirements()
         {
             var attributes = new[] { "type 1" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("core name", "SpecialAbilityAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityAttributes", "core name")).Returns(attributes);
 
             var result = selector.SelectFor("ability name");
             Assert.That(result.AttributeRequirements, Is.EqualTo(attributes));
-        }
-
-        [Test]
-        public void CacheTable()
-        {
-            selector.SelectFor("ability name");
-            selector.SelectFor("ability name");
-            mockMapper.Verify(p => p.Map(It.IsAny<String>()), Times.Once);
         }
 
         [Test]

@@ -54,7 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("ring ability", "RingAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring ability")).Returns(attributes);
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetChargesIfCharged()
         {
             var attributes = new[] { AttributeConstants.Charged };
-            mockAttributesSelector.Setup(p => p.SelectFrom("ring ability", "RingAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring ability")).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");
@@ -122,7 +122,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void DoNotGetChargesIfNotCharged()
         {
             var attributes = new[] { "new attribute" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("ring", "RingAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring")).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");

@@ -102,7 +102,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("armor type", "ArmorAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorAttributes", "armor type")).Returns(attributes);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
@@ -142,7 +142,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DragonhideIsNotMetal()
         {
             var types = new[] { AttributeConstants.Metal };
-            mockAttributesSelector.Setup(p => p.SelectFrom("armor type", "ArmorTypes")).Returns(types);
+            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorTypes", "armor type")).Returns(types);
 
             mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
             mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
@@ -155,7 +155,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DragonhideIsNotWood()
         {
             var types = new[] { AttributeConstants.Wood };
-            mockAttributesSelector.Setup(p => p.SelectFrom("armor type", "ArmorTypes")).Returns(types);
+            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorTypes", "armor type")).Returns(types);
 
             mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
             mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);

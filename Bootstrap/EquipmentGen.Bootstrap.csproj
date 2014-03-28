@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\Mappers\AttributesMapperFactory.cs" />
+    <Compile Include="Factories\Mappers\PercentileMapperFactory.cs" />
+    <Compile Include="Factories\Mappers\SpecialAbilityDataMapperFactory.cs" />
     <Compile Include="Modules\GeneratorsModule.cs" />
     <Compile Include="Modules\TablesModule.cs" />
     <Compile Include="Modules\SelectorsModule.cs" />
@@ -90,6 +93,7 @@
       <Name>EquipmentGen.Tables</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

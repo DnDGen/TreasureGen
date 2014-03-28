@@ -84,7 +84,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types", 42)).Returns("armor name");
 
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("armor name", "ArmorAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorAttributes", "armor name")).Returns(attributes);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Attributes, Is.EqualTo(attributes));

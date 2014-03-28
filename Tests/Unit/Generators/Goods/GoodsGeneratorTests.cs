@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
 
             var types = new[] { "description 1", "description 2" };
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            mockAttributesSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), typeAndAmountResult.Type + "Descriptions")).Returns(types);
+            mockAttributesSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Descriptions", It.IsAny<String>())).Returns(types);
 
             generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object,
                 mockPercentileSelector.Object, mockAttributesSelector.Object);

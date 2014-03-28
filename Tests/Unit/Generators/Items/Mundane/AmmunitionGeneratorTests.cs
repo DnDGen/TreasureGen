@@ -50,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void AmmunitionGeneratorGetsAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom(result.Type, "AmmunitionAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("AmmunitionAttributes", result.Type)).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));

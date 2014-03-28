@@ -5,7 +5,7 @@ using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Mappers.Objects;
 using EquipmentGen.Tables.Interfaces;
 
-namespace EquipmentGen.Mappers
+namespace EquipmentGen.Mappers.SpecialAbilityData
 {
     public class SpecialAbilityDataXmlMapper : ISpecialAbilityDataMapper
     {

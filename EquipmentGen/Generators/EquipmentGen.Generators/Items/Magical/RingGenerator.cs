@@ -40,7 +40,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", ability);
             ring.Magic[Magic.IsMagical] = true;
-            ring.Attributes = attributesSelector.SelectFrom(ability, "RingAttributes");
+            ring.Attributes = attributesSelector.SelectFrom("RingAttributes", ability);
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
             ring.Traits.AddRange(traits);
 

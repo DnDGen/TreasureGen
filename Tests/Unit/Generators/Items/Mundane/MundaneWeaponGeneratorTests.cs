@@ -81,7 +81,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("weapon name", "WeaponAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
             var armor = mundaneWeaponGenerator.Generate();
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DoubleWeaponsCanHaveMultipleSpecialMaterials()
         {
             var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("weapon name", "WeaponAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
             mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(attributes)).Returns(true);
             mockMaterialsSelector.SetupSequence(p => p.GenerateFor(attributes)).Returns("special material 1").Returns("special material 2");
@@ -125,7 +125,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void CannotAddDuplicateSpecialMaterials()
         {
             var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("weapon name", "WeaponAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
             mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(attributes)).Returns(true);
             mockMaterialsSelector.Setup(p => p.GenerateFor(attributes)).Returns("special material");
@@ -138,7 +138,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void IfSecondHeadDoesNotHaveSpecialMaterial_WholeWeaponOneSpecialMaterial()
         {
             var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("weapon name", "WeaponAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
             mockMaterialsSelector.SetupSequence(p => p.HasSpecialMaterial(attributes)).Returns(true).Returns(false);
             mockMaterialsSelector.SetupSequence(p => p.GenerateFor(attributes)).Returns("special material 1").Returns("special material 2");
@@ -152,7 +152,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void NonDoubleWeaponsCannotHaveMultipleSpecialMaterials()
         {
             var attributes = new[] { "not double weapon" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("weapon name", "WeaponAttributes")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
             mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(attributes)).Returns(true);
             mockMaterialsSelector.SetupSequence(p => p.GenerateFor(attributes)).Returns("special material 1").Returns("special material 2");

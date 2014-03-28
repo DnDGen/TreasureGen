@@ -39,9 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributesXmlMapper.cs" />
-    <Compile Include="PercentileXmlMapper.cs" />
-    <Compile Include="SpecialAbilityDataXmlMapper.cs" />
+    <Compile Include="Attributes\AttributesMapperCachingProxy.cs" />
+    <Compile Include="Attributes\AttributesXmlMapper.cs" />
+    <Compile Include="Percentile\PercentileXmlMapper.cs" />
+    <Compile Include="Percentile\PercentileMapperCachingProxy.cs" />
+    <Compile Include="SpecialAbilityData\SpecialAbilityDataMapperCachingProxy.cs" />
+    <Compile Include="SpecialAbilityData\SpecialAbilityDataXmlMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

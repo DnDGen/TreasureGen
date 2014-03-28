@@ -42,7 +42,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             else
             {
                 weapon.Name = weaponName;
-                weapon.Attributes = attributesSelector.SelectFrom(weapon.Name, "WeaponAttributes");
+                weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
             }
 
             weapon.Traits.Add(TraitConstants.Masterwork);

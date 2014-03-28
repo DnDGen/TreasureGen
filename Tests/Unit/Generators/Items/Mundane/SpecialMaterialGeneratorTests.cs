@@ -32,8 +32,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
 
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
-            mockAttributesSelector.Setup(p => p.SelectFrom(materials[0], "SpecialMaterials")).Returns(material1Types);
-            mockAttributesSelector.Setup(p => p.SelectFrom(materials[1], "SpecialMaterials")).Returns(material2Types);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[0])).Returns(material1Types);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[1])).Returns(material2Types);
 
             specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object);
         }
@@ -43,7 +43,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         {
             mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials"), Times.Once);
             foreach (var material in materials)
-                mockAttributesSelector.Verify(p => p.SelectFrom(material, "SpecialMaterials"), Times.Once);
+                mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", material), Times.Once);
         }
 
         [Test]

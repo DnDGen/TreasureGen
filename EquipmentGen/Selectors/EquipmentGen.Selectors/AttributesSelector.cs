@@ -9,29 +9,20 @@ namespace EquipmentGen.Selectors
     public class AttributesSelector : IAttributesSelector
     {
         private IAttributesMapper attributesMapper;
-        private Dictionary<String, Dictionary<String, IEnumerable<String>>> tables;
 
         public AttributesSelector(IAttributesMapper attributesMapper)
         {
             this.attributesMapper = attributesMapper;
-            tables = new Dictionary<String, Dictionary<String, IEnumerable<String>>>();
         }
 
-        public IEnumerable<String> SelectFrom(String name, String table)
-        {
-            if (!tables.ContainsKey(table))
-                CacheTable(table);
-
-            if (!tables[table].ContainsKey(name))
-                return Enumerable.Empty<String>();
-
-            return tables[table][name];
-        }
-
-        private void CacheTable(String tableName)
+        public IEnumerable<String> SelectFrom(String tableName, String name)
         {
             var table = attributesMapper.Map(tableName);
-            tables.Add(tableName, table);
+
+            if (!table.ContainsKey(name))
+                return Enumerable.Empty<String>();
+
+            return table[name];
         }
     }
 }

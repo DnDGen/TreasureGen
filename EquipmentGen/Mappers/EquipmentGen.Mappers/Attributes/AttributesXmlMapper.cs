@@ -4,7 +4,7 @@ using System.Xml;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Tables.Interfaces;
 
-namespace EquipmentGen.Mappers
+namespace EquipmentGen.Mappers.Attributes
 {
     public class AttributesXmlMapper : IAttributesMapper
     {

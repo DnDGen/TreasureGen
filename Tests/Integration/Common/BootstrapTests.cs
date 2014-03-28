@@ -7,7 +7,10 @@ using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using EquipmentGen.Mappers.Attributes;
 using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Mappers.Percentile;
+using EquipmentGen.Mappers.SpecialAbilityData;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Tables.Interfaces;
 using Ninject;
@@ -54,15 +57,22 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void PercentileSelectorConstructedAsSingleton()
+        public void PercentileSelectorNotConstructedAsSingleton()
         {
-            AssertSingleton<IPercentileSelector>();
+            AssertNotSingleton<IPercentileSelector>();
         }
 
         [Test]
-        public void PercentileMapperNotConstructedAsSingleton()
+        public void PercentileMapperConstructedAsSingleton()
         {
-            AssertNotSingleton<IPercentileMapper>();
+            AssertSingleton<IPercentileMapper>();
+        }
+
+        [Test]
+        public void PercentileMapperHasCachingProxy()
+        {
+            var mapper = kernel.Get<IPercentileMapper>();
+            Assert.That(mapper, Is.InstanceOf<PercentileMapperCachingProxy>());
         }
 
         [Test]
@@ -126,21 +136,28 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAmterialsGeneratorNotConstructedAsSingleton()
+        public void SpecialMaterialGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpecialMaterialGenerator>();
         }
 
         [Test]
-        public void AttributesSelectorConstructedAsSingleton()
+        public void AttributesSelectorNotConstructedAsSingleton()
         {
-            AssertSingleton<IAttributesSelector>();
+            AssertNotSingleton<IAttributesSelector>();
         }
 
         [Test]
-        public void AttributesMapperNotConstructedAsSingleton()
+        public void AttributesMapperConstructedAsSingleton()
         {
-            AssertNotSingleton<IAttributesMapper>();
+            AssertSingleton<IAttributesMapper>();
+        }
+
+        [Test]
+        public void AttributesMapperHasCachingProxy()
+        {
+            var mapper = kernel.Get<IAttributesMapper>();
+            Assert.That(mapper, Is.InstanceOf<AttributesMapperCachingProxy>());
         }
 
         [Test]
@@ -162,9 +179,9 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityDataSelectorConstructedAsSingleton()
+        public void SpecialAbilityDataSelectorNotConstructedAsSingleton()
         {
-            AssertSingleton<ISpecialAbilityDataSelector>();
+            AssertNotSingleton<ISpecialAbilityDataSelector>();
         }
 
         [Test]
@@ -174,9 +191,16 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityDataMapperNotConstructedAsSingleton()
+        public void SpecialAbilityDataMapperConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityDataMapper>();
+            AssertSingleton<ISpecialAbilityDataMapper>();
+        }
+
+        [Test]
+        public void SpecialAbilityDataMapperHasCachingProxy()
+        {
+            var mapper = kernel.Get<ISpecialAbilityDataMapper>();
+            Assert.That(mapper, Is.InstanceOf<SpecialAbilityDataMapperCachingProxy>());
         }
 
         [Test]
