@@ -46,11 +46,13 @@ namespace EquipmentGen.Tests.Integration.Tables
             Assert.That(table.Keys.Count, Is.EqualTo(100), tableName);
         }
 
-        protected void AssertPercentile(String content, Int32 lower, Int32 upper = 0)
+        protected void AssertPercentile(String content, Int32 roll)
         {
-            if (upper == 0)
-                upper = lower;
+            AssertPercentile(content, roll, roll);
+        }
 
+        protected void AssertPercentile(String content, Int32 lower, Int32 upper)
+        {
             for (var i = 100; i > 0; i--)
             {
                 if (i >= lower && i <= upper)
