@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Wands
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
 {
     [TestFixture]
     public class WandTraitsTests : PercentileTests

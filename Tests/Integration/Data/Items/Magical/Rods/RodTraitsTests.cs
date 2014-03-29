@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Rods
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
 {
     [TestFixture]
     public class RodTraitsTests : PercentileTests

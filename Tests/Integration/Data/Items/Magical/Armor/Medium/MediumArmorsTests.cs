@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
 {
     [TestFixture]
     public class MediumArmorsTests : PercentileTests

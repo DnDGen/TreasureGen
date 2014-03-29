@@ -110,10 +110,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
-            abilityResult.AmountToRoll = "1";
+            abilityResult.AmountToRoll = "90210";
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors", 42))
                 .Returns(abilityResult).Returns(result);
-            mockDice.Setup(d => d.Roll(abilityResult.AmountToRoll)).Returns(90210);
 
             var abilities = new[] { new SpecialAbility() };
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateWith(It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(), 90210))

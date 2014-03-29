@@ -11,76 +11,26 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
             return "ArtValues";
         }
 
-        [Test]
-        public void ArtValue1d10x10Percentile()
+        [TestCase("1d10*10", 1, 10)]
+        [TestCase("3d6*10", 11, 25)]
+        [TestCase("1d6*100", 26, 40)]
+        [TestCase("1d10*100", 41, 50)]
+        [TestCase("2d6*100", 51, 60)]
+        [TestCase("3d6*100", 61, 70)]
+        [TestCase("4d6*100", 71, 80)]
+        [TestCase("5d6*100", 81, 85)]
+        [TestCase("1d4*1000", 86, 90)]
+        [TestCase("1d6*1000", 91, 95)]
+        [TestCase("2d4*1000", 96, 99)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("1d10*10", 1, 10);
+            AssertPercentile(content, lower, upper);
         }
 
-        [Test]
-        public void ArtValue3d6x10Percentile()
+        [TestCase("2d6*1000", 100)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertPercentile("3d6*10", 11, 25);
-        }
-
-        [Test]
-        public void ArtValue1d6x100Percentile()
-        {
-            AssertPercentile("1d6*100", 26, 40);
-        }
-
-        [Test]
-        public void ArtValue1d10x100Percentile()
-        {
-            AssertPercentile("1d10*100", 41, 50);
-        }
-
-        [Test]
-        public void ArtValue2d6x100Percentile()
-        {
-            AssertPercentile("2d6*100", 51, 60);
-        }
-
-        [Test]
-        public void ArtValue3d6x100Percentile()
-        {
-            AssertPercentile("3d6*100", 61, 70);
-        }
-
-        [Test]
-        public void ArtValue4d6x100Percentile()
-        {
-            AssertPercentile("4d6*100", 71, 80);
-        }
-
-        [Test]
-        public void ArtValue5d6x100Percentile()
-        {
-            AssertPercentile("5d6*100", 81, 85);
-        }
-
-        [Test]
-        public void ArtValue1d4x1000Percentile()
-        {
-            AssertPercentile("1d4*1000", 86, 90);
-        }
-
-        [Test]
-        public void ArtValue1d6x1000Percentile()
-        {
-            AssertPercentile("1d6*1000", 91, 95);
-        }
-
-        [Test]
-        public void ArtValue2d4x1000Percentile()
-        {
-            AssertPercentile("2d4*1000", 96, 99);
-        }
-
-        [Test]
-        public void ArtValue2d6x1000Percentile()
-        {
-            AssertPercentile("2d6*1000", 100);
+            AssertPercentile(content, roll);
         }
     }
 }

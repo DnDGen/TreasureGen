@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls
 {
     [TestFixture]
     public class MinorSpellLevelsTests : PercentileTests

@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
     public class WondrousItemAttributesTests : AttributesTests

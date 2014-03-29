@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Arcane
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
     [TestFixture]
     public class Level2ArcaneSpellsTests : PercentileTests
@@ -11,352 +11,72 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Arcan
             return "Level2ArcaneSpells";
         }
 
-        [Test]
-        public void AnimalMessengerPercentile()
+        [TestCase("Animal messenger", 1)]
+        [TestCase("Animal trance", 2)]
+        [TestCase("Arcane lock", 3)]
+        [TestCase("Calm emotions", 14)]
+        [TestCase("Continual flame", 20)]
+        [TestCase("Cure moderate wounds", 21)]
+        [TestCase("Darkness", 22)]
+        [TestCase("Daze monster", 26)]
+        [TestCase("Delay poison", 27)]
+        [TestCase("Enthrall", 35)]
+        [TestCase("Fog cloud", 40)]
+        [TestCase("Ghoul touch", 44)]
+        [TestCase("Gust of wind", 47)]
+        [TestCase("Leomund's trap", 56)]
+        [TestCase("Locate object", 59)]
+        [TestCase("Magic mouth", 60)]
+        [TestCase("Minor image", 63)]
+        [TestCase("Misdirection", 66)]
+        [TestCase("Obscure object", 67)]
+        [TestCase("Rope trick", 79)]
+        [TestCase("Scare", 80)]
+        [TestCase("Shatter", 86)]
+        [TestCase("Silence", 87)]
+        [TestCase("Sound burst", 88)]
+        [TestCase("Spectral hand", 89)]
+        [TestCase("Tasha's hideous laughter", 96)]
+        [TestCase("Touch of idiocy", 97)]
+        [TestCase("Whispering wind", 100)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertPercentile("Animal messenger", 1);
+            AssertPercentile(content, roll);
         }
 
-        [Test]
-        public void AnimalTrancePercentile()
+        [TestCase("Bear's endurance", 4, 6)]
+        [TestCase("Blindness/deafness", 7, 8)]
+        [TestCase("Blur", 9, 10)]
+        [TestCase("Bull's strength", 11, 13)]
+        [TestCase("Cat's grace", 15, 17)]
+        [TestCase("Command undead", 18, 19)]
+        [TestCase("Darkvision", 23, 25)]
+        [TestCase("Detect thoughts", 28, 29)]
+        [TestCase("Disguise self", 30, 31)]
+        [TestCase("Eagle's splendor", 32, 34)]
+        [TestCase("False life", 36, 37)]
+        [TestCase("Flaming sphere", 38, 39)]
+        [TestCase("Fox's cunning", 41, 43)]
+        [TestCase("Glitterdust", 45, 46)]
+        [TestCase("Hypnotic pattern", 48, 49)]
+        [TestCase("Invisibility", 50, 52)]
+        [TestCase("Knock", 53, 55)]
+        [TestCase("Levitate", 57, 58)]
+        [TestCase("Melf's acid arrow", 61, 62)]
+        [TestCase("Mirror image", 64, 65)]
+        [TestCase("Owl's wisdom", 68, 70)]
+        [TestCase("Protection from arrows", 71, 73)]
+        [TestCase("Pyrotechnics", 74, 75)]
+        [TestCase("Resist energy", 76, 78)]
+        [TestCase("Scorching ray", 81, 82)]
+        [TestCase("See invisibility", 83, 85)]
+        [TestCase("Spider climb", 90, 91)]
+        [TestCase("Summon monster II", 92, 93)]
+        [TestCase("Summon swarm", 94, 95)]
+        [TestCase("Web", 98, 99)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("Animal trance", 2);
-        }
-
-        [Test]
-        public void ArcaneLockPercentile()
-        {
-            AssertPercentile("Arcane lock", 3);
-        }
-
-        [Test]
-        public void BearsEndurancePercentile()
-        {
-            AssertPercentile("Bear's endurance", 4, 6);
-        }
-
-        [Test]
-        public void BlindnessDeafnessPercentile()
-        {
-            AssertPercentile("Blindness/deafness", 7, 8);
-        }
-
-        [Test]
-        public void BlurPercentile()
-        {
-            AssertPercentile("Blur", 9, 10);
-        }
-
-        [Test]
-        public void BullsStrengthPercentile()
-        {
-            AssertPercentile("Bull's strength", 11, 13);
-        }
-
-        [Test]
-        public void CalmEmotionsPercentile()
-        {
-            AssertPercentile("Calm emotions", 14);
-        }
-
-        [Test]
-        public void CatsGracePercentile()
-        {
-            AssertPercentile("Cat's grace", 15, 17);
-        }
-
-        [Test]
-        public void CommandUndeadPercentile()
-        {
-            AssertPercentile("Command undead", 18, 19);
-        }
-
-        [Test]
-        public void ContinualFlamePercentile()
-        {
-            AssertPercentile("Continual flame", 20);
-        }
-
-        [Test]
-        public void CureModerateWoundsPercentile()
-        {
-            AssertPercentile("Cure moderate wounds", 21);
-        }
-
-        [Test]
-        public void DarknessPercentile()
-        {
-            AssertPercentile("Darkness", 22);
-        }
-
-        [Test]
-        public void DarkvisionPercentile()
-        {
-            AssertPercentile("Darkvision", 23, 25);
-        }
-
-        [Test]
-        public void DazeMonsterPercentile()
-        {
-            AssertPercentile("Daze monster", 26);
-        }
-
-        [Test]
-        public void DelayPoisonPercentile()
-        {
-            AssertPercentile("Delay poison", 27);
-        }
-
-        [Test]
-        public void DetectThoughtsPercentile()
-        {
-            AssertPercentile("Detect thoughts", 28, 29);
-        }
-
-        [Test]
-        public void DisguiseSelfPercentile()
-        {
-            AssertPercentile("Disguise self", 30, 31);
-        }
-
-        [Test]
-        public void EaglesSplendorPercentile()
-        {
-            AssertPercentile("Eagle's splendor", 32, 34);
-        }
-
-        [Test]
-        public void EnthrallPercentile()
-        {
-            AssertPercentile("Enthrall", 35);
-        }
-
-        [Test]
-        public void FalseLifePercentile()
-        {
-            AssertPercentile("False life", 36, 37);
-        }
-
-        [Test]
-        public void FlamingSpherePercentile()
-        {
-            AssertPercentile("Flaming sphere", 38, 39);
-        }
-
-        [Test]
-        public void FogCloudPercentile()
-        {
-            AssertPercentile("Fog cloud", 40);
-        }
-
-        [Test]
-        public void FoxsCunningPercentile()
-        {
-            AssertPercentile("Fox's cunning", 41, 43);
-        }
-
-        [Test]
-        public void GhoulTouchPercentile()
-        {
-            AssertPercentile("Ghoul touch", 44);
-        }
-
-        [Test]
-        public void GlitterdustPercentile()
-        {
-            AssertPercentile("Glitterdust", 45, 46);
-        }
-
-        [Test]
-        public void GustOfWindPercentile()
-        {
-            AssertPercentile("Gust of wind", 47);
-        }
-
-        [Test]
-        public void HypnoticPatternPercentile()
-        {
-            AssertPercentile("Hypnotic pattern", 48, 49);
-        }
-
-        [Test]
-        public void InvisibilityPercentile()
-        {
-            AssertPercentile("Invisibility", 50, 52);
-        }
-
-        [Test]
-        public void KnockPercentile()
-        {
-            AssertPercentile("Knock", 53, 55);
-        }
-
-        [Test]
-        public void LeomundsTrapPercentile()
-        {
-            AssertPercentile("Leomund's trap", 56);
-        }
-
-        [Test]
-        public void LevitatePercentile()
-        {
-            AssertPercentile("Levitate", 57, 58);
-        }
-
-        [Test]
-        public void LocateObjectPercentile()
-        {
-            AssertPercentile("Locate object", 59);
-        }
-
-        [Test]
-        public void MagicMouthPercentile()
-        {
-            AssertPercentile("Magic mouth", 60);
-        }
-
-        [Test]
-        public void MelfsAcidArrowPercentile()
-        {
-            AssertPercentile("Melf's acid arrow", 61, 62);
-        }
-
-        [Test]
-        public void MinorImagePercentile()
-        {
-            AssertPercentile("Minor image", 63);
-        }
-
-        [Test]
-        public void MirrorImagePercentile()
-        {
-            AssertPercentile("Mirror image", 64, 65);
-        }
-
-        [Test]
-        public void MisdirectionPercentile()
-        {
-            AssertPercentile("Misdirection", 66);
-        }
-
-        [Test]
-        public void ObscureObjectPercentile()
-        {
-            AssertPercentile("Obscure object", 67);
-        }
-
-        [Test]
-        public void OwlsWisdomPercentile()
-        {
-            AssertPercentile("Owl's wisdom", 68, 70);
-        }
-
-        [Test]
-        public void ProtectionFromArrowsPercentile()
-        {
-            AssertPercentile("Protection from arrows", 71, 73);
-        }
-
-        [Test]
-        public void PyrotechnicsPercentile()
-        {
-            AssertPercentile("Pyrotechnics", 74, 75);
-        }
-
-        [Test]
-        public void ResistEnergyPercentile()
-        {
-            AssertPercentile("Resist energy", 76, 78);
-        }
-
-        [Test]
-        public void RopeTrickPercentile()
-        {
-            AssertPercentile("Rope trick", 79);
-        }
-
-        [Test]
-        public void ScarePercentile()
-        {
-            AssertPercentile("Scare", 80);
-        }
-
-        [Test]
-        public void ScorchingRayPercentile()
-        {
-            AssertPercentile("Scorching ray", 81, 82);
-        }
-
-        [Test]
-        public void SeeInvisibilityPercentile()
-        {
-            AssertPercentile("See invisibility", 83, 85);
-        }
-
-        [Test]
-        public void ShatterPercentile()
-        {
-            AssertPercentile("Shatter", 86);
-        }
-
-        [Test]
-        public void SilencePercentile()
-        {
-            AssertPercentile("Silence", 87);
-        }
-
-        [Test]
-        public void SoundBurstPercentile()
-        {
-            AssertPercentile("Sound burst", 88);
-        }
-
-        [Test]
-        public void SpectralHandPercentile()
-        {
-            AssertPercentile("Spectral hand", 89);
-        }
-
-        [Test]
-        public void SpiderClimbPercentile()
-        {
-            AssertPercentile("Spider climb", 90, 91);
-        }
-
-        [Test]
-        public void SummonMonsterIIPercentile()
-        {
-            AssertPercentile("Summon monster II", 92, 93);
-        }
-
-        [Test]
-        public void SummonSwarmPercentile()
-        {
-            AssertPercentile("Summon swarm", 94, 95);
-        }
-
-        [Test]
-        public void TashasHideousLaughterPercentile()
-        {
-            AssertPercentile("Tasha's hideous laughter", 96);
-        }
-
-        [Test]
-        public void TouchOfIdiocyPercentile()
-        {
-            AssertPercentile("Touch of idiocy", 97);
-        }
-
-        [Test]
-        public void WebPercentile()
-        {
-            AssertPercentile("Web", 98, 99);
-        }
-
-        [Test]
-        public void WhisperingWindPercentile()
-        {
-            AssertPercentile("Whispering wind", 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

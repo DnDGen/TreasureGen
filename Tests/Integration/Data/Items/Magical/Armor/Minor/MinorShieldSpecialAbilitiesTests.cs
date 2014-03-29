@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Minor
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
 {
     [TestFixture]
     public class MinorShieldSpecialAbilitiesTests : PercentileTests
@@ -12,52 +12,22 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Minor
             return "MinorShieldSpecialAbilities";
         }
 
-        [Test]
-        public void ArrowCatchingPercentile()
+        [TestCase(SpecialAbilityConstants.ArrowCatching, 1, 20)]
+        [TestCase(SpecialAbilityConstants.Bashing, 21, 40)]
+        [TestCase(SpecialAbilityConstants.Blinding, 41, 50)]
+        [TestCase(SpecialAbilityConstants.LightFortification, 51, 75)]
+        [TestCase(SpecialAbilityConstants.ArrowDeflection, 76, 92)]
+        [TestCase(SpecialAbilityConstants.Animated, 93, 97)]
+        [TestCase(SpecialAbilityConstants.SpellResistance13, 98, 99)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(SpecialAbilityConstants.ArrowCatching, 1, 20);
+            AssertPercentile(content, lower, upper);
         }
 
-        [Test]
-        public void BashingPercentile()
+        [TestCase("BonusSpecialAbility", 100)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(SpecialAbilityConstants.Bashing, 21, 40);
-        }
-
-        [Test]
-        public void BlindingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Blinding, 41, 50);
-        }
-
-        [Test]
-        public void LightFortificationPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.LightFortification, 51, 75);
-        }
-
-        [Test]
-        public void ArrowDeflectionPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ArrowDeflection, 76, 92);
-        }
-
-        [Test]
-        public void AnimatedPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Animated, 93, 97);
-        }
-
-        [Test]
-        public void SpellResistance13Percentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 98, 99);
-        }
-
-        [Test]
-        public void BonusSpecialAbilityPercentile()
-        {
-            AssertPercentile("BonusSpecialAbility", 100);
+            AssertPercentile(content, roll);
         }
     }
 }

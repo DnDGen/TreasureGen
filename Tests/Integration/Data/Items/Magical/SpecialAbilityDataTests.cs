@@ -7,7 +7,7 @@ using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
     public class SpecialAbilityDataTests : IntegrationTests

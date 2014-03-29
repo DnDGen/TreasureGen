@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
 {
     [TestFixture]
     public class MeleeTraitsTests : PercentileTests

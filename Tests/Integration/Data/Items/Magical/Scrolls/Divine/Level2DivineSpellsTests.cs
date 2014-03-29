@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Divine
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
     [TestFixture]
     public class Level2DivineSpellsTests : PercentileTests

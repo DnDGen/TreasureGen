@@ -10,13 +10,13 @@ namespace EquipmentGen.Generators.Items.Magical
 {
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
+        private const Int32 MaxBonus = 10;
+
         private ISpecialAbilityDataSelector specialAbilityDataSelector;
         private IAttributesSelector attributesSelector;
         private IPercentileSelector percentileSelector;
         private IDice dice;
         private ISpellGenerator spellGenerator;
-
-        private const Int32 MaxBonus = 10;
 
         public SpecialAbilitiesGenerator(ISpecialAbilityDataSelector specialAbilityDataSelector, IAttributesSelector attributesSelector,
             IPercentileSelector percentileSelector, IDice dice, ISpellGenerator spellGenerator)
@@ -40,13 +40,9 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity > 0 && availableAbilities.Count > 0)
             {
-                if (quantity >= availableAbilities.Count && availableAbilities.Sum(a => a.BonusEquivalent) + bonusSum <= MaxBonus)
+                if (CanHaveAllAvailableAbilities(quantity, bonusSum, availableAbilities))
                 {
-                    var strongestAbilities = GetStrongestAbilities(availableAbilities);
-
-                    foreach (var strongAbility in strongestAbilities)
-                        strongAbility.Name = GetModifiedName(strongAbility);
-
+                    var strongestAbilities = GetStrongestAvailableAbilities(availableAbilities);
                     var duplicates = abilities.Where(a => strongestAbilities.Any(sA => sA.CoreName == a.CoreName));
                     abilities = abilities.Except(duplicates).ToList();
 
@@ -78,21 +74,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
                 var tooStrongAbilities = availableAbilities.Where(a => a.BonusEquivalent + bonusSum > 10);
                 availableAbilities = availableAbilities.Except(tooStrongAbilities).ToList();
-            }
-
-            return abilities;
-        }
-
-        private IEnumerable<SpecialAbility> GetStrongestAbilities(List<SpecialAbility> availableAbilities)
-        {
-            var abilities = new List<SpecialAbility>();
-
-            foreach (var ability in availableAbilities)
-            {
-                var max = availableAbilities.Where(a => a.CoreName == ability.CoreName).Max(a => a.Strength);
-
-                if (ability.Strength == max)
-                    abilities.Add(ability);
             }
 
             return abilities;
@@ -141,6 +122,29 @@ namespace EquipmentGen.Generators.Items.Magical
         private Boolean AllAttributeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> attributes)
         {
             return requirements.All(r => attributes.Contains(r));
+        }
+
+        private Boolean CanHaveAllAvailableAbilities(Int32 quantity, Int32 bonusSum, IEnumerable<SpecialAbility> availableAbilities)
+        {
+            return quantity >= availableAbilities.Count() && availableAbilities.Sum(a => a.BonusEquivalent) + bonusSum <= MaxBonus;
+        }
+
+        private IEnumerable<SpecialAbility> GetStrongestAvailableAbilities(IEnumerable<SpecialAbility> availableAbilities)
+        {
+            var strongestAbilities = new List<SpecialAbility>();
+
+            foreach (var ability in availableAbilities)
+            {
+                var max = availableAbilities.Where(a => a.CoreName == ability.CoreName).Max(a => a.Strength);
+
+                if (ability.Strength == max)
+                {
+                    ability.Name = GetModifiedName(ability);
+                    strongestAbilities.Add(ability);
+                }
+            }
+
+            return strongestAbilities;
         }
 
         private SpecialAbility GenerateAbilityFrom(IEnumerable<SpecialAbility> availableAbilities, String tableName)

@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
     public class MediumItemsTests : PercentileTests

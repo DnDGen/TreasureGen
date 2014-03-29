@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Minor
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
 {
     [TestFixture]
     public class MinorRangedWeaponSpecialAbilitiesTests : PercentileTests

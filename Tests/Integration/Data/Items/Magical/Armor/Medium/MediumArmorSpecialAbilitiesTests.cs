@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
 {
     [TestFixture]
     public class MediumArmorSpecialAbilitiesTests : PercentileTests
@@ -12,124 +12,33 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
             return "MediumArmorSpecialAbilities";
         }
 
-        [Test]
-        public void GlameredPercentile()
+        [TestCase(SpecialAbilityConstants.Glamered, 1, 5)]
+        [TestCase(SpecialAbilityConstants.LightFortification, 6, 8)]
+        [TestCase(SpecialAbilityConstants.Slick, 9, 11)]
+        [TestCase(SpecialAbilityConstants.Shadow, 12, 14)]
+        [TestCase(SpecialAbilityConstants.SilentMoves, 15, 17)]
+        [TestCase(SpecialAbilityConstants.SpellResistance13, 18, 19)]
+        [TestCase(SpecialAbilityConstants.ImprovedSlick, 20, 29)]
+        [TestCase(SpecialAbilityConstants.ImprovedShadow, 30, 39)]
+        [TestCase(SpecialAbilityConstants.ImprovedSilentMoves, 40, 49)]
+        [TestCase(SpecialAbilityConstants.AcidResistance, 50, 54)]
+        [TestCase(SpecialAbilityConstants.ColdResistance, 55, 59)]
+        [TestCase(SpecialAbilityConstants.ElectricityResistance, 60, 64)]
+        [TestCase(SpecialAbilityConstants.FireResistance, 65, 69)]
+        [TestCase(SpecialAbilityConstants.SonicResistance, 70, 74)]
+        [TestCase(SpecialAbilityConstants.GhostTouchArmor, 75, 79)]
+        [TestCase(SpecialAbilityConstants.ModerateFortification, 85, 89)]
+        [TestCase(SpecialAbilityConstants.SpellResistance15, 90, 94)]
+        [TestCase(SpecialAbilityConstants.Wild, 95, 99)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(SpecialAbilityConstants.Glamered, 1, 5);
+            AssertPercentile(content, lower, upper);
         }
 
-        [Test]
-        public void LightFortificationPercentile()
+        [TestCase("BonusSpecialAbility", 100)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(SpecialAbilityConstants.LightFortification, 6, 8);
-        }
-
-        [Test]
-        public void SlickPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Slick, 9, 11);
-        }
-
-        [Test]
-        public void ShadowPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Shadow, 12, 14);
-        }
-
-        [Test]
-        public void SilentMovesPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SilentMoves, 15, 17);
-        }
-
-        [Test]
-        public void SpellResistance13Percentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SpellResistance13, 18, 19);
-        }
-
-        [Test]
-        public void ImprovedSlickPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ImprovedSlick, 20, 29);
-        }
-
-        [Test]
-        public void ImprovedShadowPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ImprovedShadow, 30, 39);
-        }
-
-        [Test]
-        public void ImprovedSilentMovesPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ImprovedSilentMoves, 40, 49);
-        }
-
-        [Test]
-        public void AcidResistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.AcidResistance, 50, 54);
-        }
-
-        [Test]
-        public void ColdResistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ColdResistance, 55, 59);
-        }
-
-        [Test]
-        public void ElectricityResistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ElectricityResistance, 60, 64);
-        }
-
-        [Test]
-        public void FireResistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.FireResistance, 65, 69);
-        }
-
-        [Test]
-        public void SonicResistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SonicResistance, 70, 74);
-        }
-
-        [Test]
-        public void GhostTouchPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.GhostTouchArmor, 75, 79);
-        }
-
-        [Test]
-        public void InvulnerabilityPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Invulnerability, 80, 84);
-        }
-
-        [Test]
-        public void ModerateFortificationPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ModerateFortification, 85, 89);
-        }
-
-        [Test]
-        public void SpellResistance15Percentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SpellResistance15, 90, 94);
-        }
-
-        [Test]
-        public void WildPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Wild, 95, 99);
-        }
-
-        [Test]
-        public void BonusSpecialAbilityPercentile()
-        {
-            AssertPercentile("BonusSpecialAbility", 100);
+            AssertPercentile(content, roll);
         }
     }
 }

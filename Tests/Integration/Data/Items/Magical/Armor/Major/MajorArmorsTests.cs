@@ -2,7 +2,7 @@
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
 {
     [TestFixture]
     public class MajorArmorsTests : PercentileTests

@@ -11,40 +11,20 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
             return "GemValues";
         }
 
-        [Test]
-        public void GemValue4d4Percentile()
+        [TestCase("4d4", 1, 25)]
+        [TestCase("2d4*10", 26, 50)]
+        [TestCase("4d4*10", 51, 70)]
+        [TestCase("2d4*100", 71, 90)]
+        [TestCase("4d4*100", 91, 99)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("4d4", 1, 25);
+            AssertPercentile(content, lower, upper);
         }
 
-        [Test]
-        public void GemValue2d4x10Percentile()
+        [TestCase("2d4*1000", 100)]
+        public void Percentile(String content, Int32 roll)
         {
-            AssertPercentile("2d4*10", 26, 50);
-        }
-
-        [Test]
-        public void GemValue4d4x10Percentile()
-        {
-            AssertPercentile("4d4*10", 51, 70);
-        }
-
-        [Test]
-        public void GemValue2d4x100Percentile()
-        {
-            AssertPercentile("2d4*100", 71, 90);
-        }
-
-        [Test]
-        public void GemValue4d4x100Percentile()
-        {
-            AssertPercentile("4d4*100", 91, 99);
-        }
-
-        [Test]
-        public void GemValue2d4x1000Percentile()
-        {
-            AssertPercentile("2d4*1000", 100);
+            AssertPercentile(content, roll);
         }
     }
 }
