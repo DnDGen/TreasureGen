@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Coins;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Coins
 {
-    [TestFixture, PercentileTable("Level2Coins")]
-    public class Level2CoinTests : PercentileTests
+    [TestFixture]
+    public class Level2CoinsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "Level2Coins";
+        }
+
         [Test]
         public void Level2EmptyPercentile()
         {

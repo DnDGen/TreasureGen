@@ -1,12 +1,16 @@
 ﻿using System;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Alchemical
 {
-    [TestFixture, PercentileTable("AlchemicalItems")]
+    [TestFixture]
     public class AlchemicalItemsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "AlchemicalItems";
+        }
+
         [TestCase("Alchemist's fire,1d4", 1, 12)]
         [TestCase("Acid,2d4", 13, 24)]
         [TestCase("Smokestick,1d4", 25, 36)]

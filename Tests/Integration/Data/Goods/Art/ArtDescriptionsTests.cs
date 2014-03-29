@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
 {
-    [TestFixture, AttributesTable("ArtDescriptions")]
+    [TestFixture]
     public class ArtDescriptionsTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "ArtDescriptions";
+        }
+
         [Test]
         public void ArtValue1d10x10Descriptions()
         {

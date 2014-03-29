@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor
 {
-    [TestFixture, PercentileTable("ShieldTypes")]
+    [TestFixture]
     public class ShieldTypesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "ShieldTypes";
+        }
+
         [Test]
         public void BucklerPercentile()
         {

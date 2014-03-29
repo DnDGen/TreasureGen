@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
 {
-    [TestFixture, PercentileTable("MeleeTraits")]
+    [TestFixture]
     public class MeleeTraitsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MeleeTraits";
+        }
+
         [TestCase(TraitConstants.ShedsLight, 1, 30)]
         [TestCase(TraitConstants.Markings, 31, 45)]
         public void Percentile(String content, Int32 lower, Int32 upper)

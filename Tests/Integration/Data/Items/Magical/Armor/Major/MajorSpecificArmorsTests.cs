@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major
 {
-    [TestFixture, PercentileTable("MajorSpecificArmors")]
+    [TestFixture]
     public class MajorSpecificArmorsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MajorSpecificArmors";
+        }
+
         [Test]
         public void AdamantineBreastplatePercentile()
         {

@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
-    [TestFixture, AttributesTable("WeaponAttributes")]
+    [TestFixture]
     public class WeaponAttributesTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "WeaponAttributes";
+        }
+
         [Test]
         public void DaggerAttributes()
         {

@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
 {
-    [TestFixture, AttributesTable("SpecialMaterials")]
+    [TestFixture]
     public class SpecialMaterialsTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "SpecialMaterials";
+        }
+
         [Test]
         public void AdamantineAttributes()
         {

@@ -1,12 +1,16 @@
 ﻿using System;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
 {
-    [TestFixture, PercentileTable("Tools")]
+    [TestFixture]
     public class ToolsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "Tools";
+        }
+
         [TestCase("Empty backpack", 1, 3)]
         [TestCase("Crowbar", 4, 6)]
         [TestCase("Bullseye lantern", 7, 11)]

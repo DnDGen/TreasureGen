@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
 {
-    [TestFixture, PercentileTable("MediumSpellLevels")]
+    [TestFixture]
     public class MediumSpellLevelsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MediumSpellLevels";
+        }
+
         [Test]
         public void Level2Percentile()
         {

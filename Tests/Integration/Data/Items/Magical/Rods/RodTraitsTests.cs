@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Rods
 {
-    [TestFixture, PercentileTable("RodTraits")]
+    [TestFixture]
     public class RodTraitsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "RodTraits";
+        }
+
         [Test]
         public void MarkingsPercentile()
         {

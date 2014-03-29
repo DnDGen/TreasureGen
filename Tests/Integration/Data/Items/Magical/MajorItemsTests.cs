@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
 {
-    [TestFixture, PercentileTable("MajorItems")]
+    [TestFixture]
     public class MajorItemsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MajorItems";
+        }
+
         [TestCase(ItemTypeConstants.Armor, 1, 10)]
         [TestCase(ItemTypeConstants.Weapon, 11, 20)]
         [TestCase(ItemTypeConstants.Potion, 21, 25)]

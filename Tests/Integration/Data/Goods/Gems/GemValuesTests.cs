@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
 {
-    [TestFixture, PercentileTable("GemValues")]
+    [TestFixture]
     public class GemValuesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "GemValues";
+        }
+
         [Test]
         public void GemValue4d4Percentile()
         {

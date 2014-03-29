@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items
 {
-    [TestFixture, PercentileTable("Level4Items")]
+    [TestFixture]
     public class Level4ItemsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "Level4Items";
+        }
+
         [Test]
         public void Level4ItemsEmptyPercentile()
         {

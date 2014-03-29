@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
-    [TestFixture, PercentileTable("CommonRangedWeapons")]
+    [TestFixture]
     public class CommonRangedWeaponsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "CommonRangedWeapons";
+        }
+
         [TestCase(AttributeConstants.Ammunition, 1, 10)]
         [TestCase(WeaponConstants.ThrowingAxe, 11, 15)]
         [TestCase(WeaponConstants.HeavyCrossbow, 16, 25)]

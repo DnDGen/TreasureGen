@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
 {
-    [TestFixture, PercentileTable("MundaneItems")]
+    [TestFixture]
     public class MundaneItemsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MundaneItems";
+        }
+
         [TestCase(ItemTypeConstants.AlchemicalItem, 1, 17)]
         [TestCase(ItemTypeConstants.Armor, 18, 50)]
         [TestCase(ItemTypeConstants.Weapon, 51, 83)]

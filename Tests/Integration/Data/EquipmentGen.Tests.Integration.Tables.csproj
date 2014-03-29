@@ -61,8 +61,6 @@
     <Compile Include="Items\Magical\Scrolls\Divine\Level0DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level1DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level7DivineSpellsTests.cs" />
-    <Compile Include="TestAttributes\AttributesTableAttribute.cs" />
-    <Compile Include="TestAttributes\PercentileTableAttribute.cs" />
     <Compile Include="Coins\Level10CoinsTests.cs" />
     <Compile Include="Coins\Level11CoinsTests.cs" />
     <Compile Include="Coins\Level12CoinsTests.cs" />

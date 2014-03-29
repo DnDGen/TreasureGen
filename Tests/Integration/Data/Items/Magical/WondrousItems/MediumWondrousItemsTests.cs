@@ -1,12 +1,16 @@
 ﻿using System;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
 {
-    [TestFixture, PercentileTable("MediumWondrousItems")]
+    [TestFixture]
     public class MediumWondrousItemsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MediumWondrousItems";
+        }
+
         [TestCase("Boots of levitation", 1)]
         [TestCase("Harp of charming", 2)]
         [TestCase("Amulet of natural armor +2", 3)]

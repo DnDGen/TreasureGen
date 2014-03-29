@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Tests.Integration.Common;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using Ninject;
 using NUnit.Framework;
 
@@ -15,26 +14,17 @@ namespace EquipmentGen.Tests.Integration.Tables
         [Inject]
         public IAttributesMapper AttributesMapper { get; set; }
 
+        private String tableName;
         private Dictionary<String, IEnumerable<String>> table;
 
         [SetUp]
         public void Setup()
         {
-            var tableName = GetTableNameFromAttribute();
+            tableName = GetTableName();
             table = AttributesMapper.Map(tableName);
         }
 
-        private String GetTableNameFromAttribute()
-        {
-            var type = GetType();
-            var attributes = type.GetCustomAttributes(true);
-
-            if (!attributes.Any(a => a is AttributesTableAttribute))
-                throw new ArgumentException("This test class does not have the needed AttributesTableAttribute");
-
-            var attributesFilenameAttribute = attributes.First(a => a is AttributesTableAttribute) as AttributesTableAttribute;
-            return attributesFilenameAttribute.TableName;
-        }
+        protected abstract String GetTableName();
 
         protected void AssertContent(String name, IEnumerable<String> expectedAttributes)
         {

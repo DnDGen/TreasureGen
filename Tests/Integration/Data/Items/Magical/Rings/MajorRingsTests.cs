@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Rings
 {
-    [TestFixture, PercentileTable("MajorRings")]
+    [TestFixture]
     public class MajorRingsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MajorRings";
+        }
+
         [Test]
         public void MinorEnergyResistancePercentile()
         {

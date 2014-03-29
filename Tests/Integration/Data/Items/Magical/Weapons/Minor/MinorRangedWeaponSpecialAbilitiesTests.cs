@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Minor
 {
-    [TestFixture, PercentileTable("MinorRangedWeaponSpecialAbilities")]
+    [TestFixture]
     public class MinorRangedWeaponSpecialAbilitiesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MinorRangedWeaponSpecialAbilities";
+        }
+
         [TestCase(SpecialAbilityConstants.Bane, 1, 12)]
         [TestCase(SpecialAbilityConstants.Distance, 13, 25)]
         [TestCase(SpecialAbilityConstants.Flaming, 26, 40)]

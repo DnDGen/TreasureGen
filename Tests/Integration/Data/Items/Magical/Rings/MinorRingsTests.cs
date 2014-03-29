@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Rings
 {
-    [TestFixture, PercentileTable("MinorRings")]
+    [TestFixture]
     public class MinorRingsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MinorRings";
+        }
+
         [Test]
         public void ProtectionPlus1Percentile()
         {

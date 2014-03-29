@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.WondrousItems
 {
-    [TestFixture, AttributesTable("WondrousItemAttributes")]
+    [TestFixture]
     public class WondrousItemAttributesTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "WondrousItemAttributes";
+        }
+
         [Test]
         public void BeadOfForceAttributes()
         {

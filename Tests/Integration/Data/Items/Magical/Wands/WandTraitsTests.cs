@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Wands
 {
-    [TestFixture, PercentileTable("WandTraits")]
+    [TestFixture]
     public class WandTraitsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "WandTraits";
+        }
+
         [Test]
         public void MarkingsPercentile()
         {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Tests.Integration.Common;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using Ninject;
 using NUnit.Framework;
 
@@ -15,27 +13,17 @@ namespace EquipmentGen.Tests.Integration.Tables
         [Inject]
         public IPercentileMapper PercentileMapper { get; set; }
 
-        private Dictionary<Int32, String> table;
         private String tableName;
+        private Dictionary<Int32, String> table;
 
         [SetUp]
         public void Setup()
         {
-            tableName = GetTableNameFromAttribute();
+            tableName = GetTableName();
             table = PercentileMapper.Map(tableName);
         }
 
-        private String GetTableNameFromAttribute()
-        {
-            var type = GetType();
-            var attributes = type.GetCustomAttributes(true);
-
-            if (!attributes.Any(a => a is PercentileTableAttribute))
-                throw new ArgumentException("This test class does not have the needed PercentileTableAttribute");
-
-            var percentileTableAttribute = attributes.First(a => a is PercentileTableAttribute) as PercentileTableAttribute;
-            return percentileTableAttribute.Table;
-        }
+        protected abstract String GetTableName();
 
         [Test]
         public void TableIsComplete()

@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls.Divine
 {
-    [TestFixture, PercentileTable("Level2DivineSpells")]
+    [TestFixture]
     public class Level2DivineSpellsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "Level2DivineSpells";
+        }
+
         [Test]
         public void AnimalMessengerPercentile()
         {

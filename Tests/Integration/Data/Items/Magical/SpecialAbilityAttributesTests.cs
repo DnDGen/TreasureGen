@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Linq;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems
 {
-    [TestFixture, AttributesTable("SpecialAbilityAttributes")]
+    [TestFixture]
     public class SpecialAbilityAttributesTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "SpecialAbilityAttributes";
+        }
+
         [Test]
         public void GlameredAttributes()
         {

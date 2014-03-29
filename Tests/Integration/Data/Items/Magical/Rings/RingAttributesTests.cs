@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Rings
 {
-    [TestFixture, AttributesTable("RingAttributes")]
+    [TestFixture]
     public class RingAttributesTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "RingAttributes";
+        }
+
         [Test]
         public void RamAttributes()
         {

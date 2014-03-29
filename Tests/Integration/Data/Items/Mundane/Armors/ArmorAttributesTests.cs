@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
 {
-    [TestFixture, AttributesTable("ArmorAttributes")]
+    [TestFixture]
     public class ArmorAttributesTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "ArmorAttributes";
+        }
+
         [Test]
         public void BucklerAttributes()
         {

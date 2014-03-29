@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
 {
-    [TestFixture, AttributesTable("GemDescriptions")]
+    [TestFixture]
     public class GemDescriptionsTests : AttributesTests
     {
+        protected override String GetTableName()
+        {
+            return "GemDescriptions";
+        }
+
         [Test]
         public void GemValue4d4Descriptions()
         {

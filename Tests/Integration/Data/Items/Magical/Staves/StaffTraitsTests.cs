@@ -1,13 +1,17 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Staves
 {
-    [TestFixture, PercentileTable("StaffTraits")]
+    [TestFixture]
     public class StaffTraitsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "StaffTraits";
+        }
+
         [Test]
         public void MarkingsPercentile()
         {

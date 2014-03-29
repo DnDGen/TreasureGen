@@ -1,42 +1,46 @@
 ﻿using System;
 using EquipmentGen.Common.Coins;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Coins
 {
-    [TestFixture, PercentileTable("Level1Coins")]
-    public class Level1CoinTests : PercentileTests
+    [TestFixture]
+    public class Level1CoinsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "Level1Coins";
+        }
+
         [Test]
-        public void Level1EmptyPercentile()
+        public void EmptyPercentile()
         {
             AssertPercentile(String.Empty, 1, 14);
         }
 
         [Test]
-        public void Level1CopperPercentile()
+        public void CopperPercentile()
         {
             var result = String.Format("{0},1d6*1000", CoinConstants.Copper);
             AssertPercentile(result, 15, 29);
         }
 
         [Test]
-        public void Level1SilverPercentile()
+        public void SilverPercentile()
         {
             var result = String.Format("{0},1d8*100", CoinConstants.Silver);
             AssertPercentile(result, 30, 52);
         }
 
         [Test]
-        public void Level1GoldPercentile()
+        public void GoldPercentile()
         {
             var result = String.Format("{0},2d8*10", CoinConstants.Gold);
             AssertPercentile(result, 53, 95);
         }
 
         [Test]
-        public void Level1PlatinumPercentile()
+        public void PlatinumPercentile()
         {
             var result = String.Format("{0},1d4*10", CoinConstants.Platinum);
             AssertPercentile(result, 96, 100);

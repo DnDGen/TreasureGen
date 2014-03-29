@@ -1,12 +1,16 @@
 ﻿using System;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons
 {
-    [TestFixture, PercentileTable("DesignatedFoes")]
+    [TestFixture]
     public class DesignatedFoesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "DesignatedFoes";
+        }
+
         [TestCase("Aquatic-humanoid", 40)]
         [TestCase("Gnoll", 45)]
         [TestCase("Gnome", 46)]

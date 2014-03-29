@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Medium
 {
-    [TestFixture, PercentileTable("MediumSpecificShields")]
+    [TestFixture]
     public class MediumSpecificShieldsTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MediumSpecificShields";
+        }
+
         [Test]
         public void DarkwoodBucklerPercentile()
         {

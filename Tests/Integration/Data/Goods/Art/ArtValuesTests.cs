@@ -1,11 +1,16 @@
-﻿using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
 {
-    [TestFixture, PercentileTable("ArtValues")]
+    [TestFixture]
     public class ArtValuesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "ArtValues";
+        }
+
         [Test]
         public void ArtValue1d10x10Percentile()
         {

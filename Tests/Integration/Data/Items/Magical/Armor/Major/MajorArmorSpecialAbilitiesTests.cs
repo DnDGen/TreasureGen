@@ -1,12 +1,17 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Tables.TestAttributes;
+﻿using System;
+using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Armor.Major
 {
-    [TestFixture, PercentileTable("MajorArmorSpecialAbilities")]
+    [TestFixture]
     public class MajorArmorSpecialAbilitiesTests : PercentileTests
     {
+        protected override String GetTableName()
+        {
+            return "MajorArmorSpecialAbilities";
+        }
+
         [Test]
         public void GlameredPercentile()
         {
