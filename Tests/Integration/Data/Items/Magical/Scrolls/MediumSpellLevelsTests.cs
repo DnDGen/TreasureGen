@@ -11,28 +11,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
             return "MediumSpellLevels";
         }
 
-        [Test]
-        public void Level2Percentile()
+        [TestCase("2", 1, 5)]
+        [TestCase("3", 6, 65)]
+        [TestCase("4", 66, 95)]
+        [TestCase("5", 96, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("2", 1, 5);
-        }
-
-        [Test]
-        public void Level3Percentile()
-        {
-            AssertPercentile("3", 6, 65);
-        }
-
-        [Test]
-        public void Level4Percentile()
-        {
-            AssertPercentile("4", 66, 95);
-        }
-
-        [Test]
-        public void Level5Percentile()
-        {
-            AssertPercentile("5", 96, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

@@ -12,106 +12,26 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Mediu
             return "MediumRangedWeaponSpecialAbilities";
         }
 
-        [Test]
-        public void BanePercentile()
+        [TestCase(SpecialAbilityConstants.Bane, 1, 8)]
+        [TestCase(SpecialAbilityConstants.Distance, 9, 16)]
+        [TestCase(SpecialAbilityConstants.Flaming, 17, 28)]
+        [TestCase(SpecialAbilityConstants.Frost, 29, 40)]
+        [TestCase(SpecialAbilityConstants.Merciful, 41, 42)]
+        [TestCase(SpecialAbilityConstants.Returning, 43, 47)]
+        [TestCase(SpecialAbilityConstants.Shock, 48, 59)]
+        [TestCase(SpecialAbilityConstants.Seeking, 60, 64)]
+        [TestCase(SpecialAbilityConstants.Thundering, 65, 68)]
+        [TestCase(SpecialAbilityConstants.Anarchic, 69, 71)]
+        [TestCase(SpecialAbilityConstants.Axiomatic, 72, 74)]
+        [TestCase(SpecialAbilityConstants.FlamingBurst, 75, 79)]
+        [TestCase(SpecialAbilityConstants.Holy, 80, 82)]
+        [TestCase(SpecialAbilityConstants.IcyBurst, 83, 87)]
+        [TestCase(SpecialAbilityConstants.ShockingBurst, 88, 92)]
+        [TestCase(SpecialAbilityConstants.Unholy, 93, 95)]
+        [TestCase("BonusSpecialAbility", 96, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(SpecialAbilityConstants.Bane, 1, 8);
-        }
-
-        [Test]
-        public void DistancePercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Distance, 9, 16);
-        }
-
-        [Test]
-        public void FlamingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Flaming, 17, 28);
-        }
-
-        [Test]
-        public void FrostPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Frost, 29, 40);
-        }
-
-        [Test]
-        public void MercifulPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Merciful, 41, 42);
-        }
-
-        [Test]
-        public void ReturningPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Returning, 43, 47);
-        }
-
-        [Test]
-        public void ShockPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Shock, 48, 59);
-        }
-
-        [Test]
-        public void SeekingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Seeking, 60, 64);
-        }
-
-        [Test]
-        public void ThunderingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Thundering, 65, 68);
-        }
-
-        [Test]
-        public void AnarchicPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Anarchic, 69, 71);
-        }
-
-        [Test]
-        public void AxiomaticPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Axiomatic, 72, 74);
-        }
-
-        [Test]
-        public void FlamingBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.FlamingBurst, 75, 79);
-        }
-
-        [Test]
-        public void HolyPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Holy, 80, 82);
-        }
-
-        [Test]
-        public void IcyBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.IcyBurst, 83, 87);
-        }
-
-        [Test]
-        public void ShockingBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ShockingBurst, 88, 92);
-        }
-
-        [Test]
-        public void UnholyPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Unholy, 93, 95);
-        }
-
-        [Test]
-        public void BonusSpecialAbilityPercentile()
-        {
-            AssertPercentile("BonusSpecialAbility", 96, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

@@ -12,148 +12,33 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Weapons.Mediu
             return "MediumMeleeWeaponSpecialAbilities";
         }
 
-        [Test]
-        public void BanePercentile()
+        [TestCase(SpecialAbilityConstants.Bane, 1, 6)]
+        [TestCase(SpecialAbilityConstants.Defending, 7, 12)]
+        [TestCase(SpecialAbilityConstants.Flaming, 13, 19)]
+        [TestCase(SpecialAbilityConstants.Frost, 20, 26)]
+        [TestCase(SpecialAbilityConstants.Shock, 27, 33)]
+        [TestCase(SpecialAbilityConstants.GhostTouchWeapon, 34, 38)]
+        [TestCase(SpecialAbilityConstants.Keen, 39, 44)]
+        [TestCase(SpecialAbilityConstants.KiFocus, 45, 48)]
+        [TestCase(SpecialAbilityConstants.Merciful, 49, 50)]
+        [TestCase(SpecialAbilityConstants.MightyCleaving, 51, 54)]
+        [TestCase(SpecialAbilityConstants.SpellStoring, 55, 59)]
+        [TestCase(SpecialAbilityConstants.Throwing, 60, 63)]
+        [TestCase(SpecialAbilityConstants.Thundering, 64, 65)]
+        [TestCase(SpecialAbilityConstants.Vicious, 66, 69)]
+        [TestCase(SpecialAbilityConstants.Anarchic, 70, 72)]
+        [TestCase(SpecialAbilityConstants.Axiomatic, 73, 75)]
+        [TestCase(SpecialAbilityConstants.Disruption, 76, 78)]
+        [TestCase(SpecialAbilityConstants.FlamingBurst, 79, 81)]
+        [TestCase(SpecialAbilityConstants.IcyBurst, 82, 84)]
+        [TestCase(SpecialAbilityConstants.Holy, 85, 87)]
+        [TestCase(SpecialAbilityConstants.ShockingBurst, 88, 90)]
+        [TestCase(SpecialAbilityConstants.Unholy, 91, 93)]
+        [TestCase(SpecialAbilityConstants.Wounding, 94, 95)]
+        [TestCase("BonusSpecialAbility", 96, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(SpecialAbilityConstants.Bane, 1, 6);
-        }
-
-        [Test]
-        public void DefendingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Defending, 7, 12);
-        }
-
-        [Test]
-        public void FlamingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Flaming, 13, 19);
-        }
-
-        [Test]
-        public void FrostPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Frost, 20, 26);
-        }
-
-        [Test]
-        public void ShockPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Shock, 27, 33);
-        }
-
-        [Test]
-        public void GhostTouchPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.GhostTouchWeapon, 34, 38);
-        }
-
-        [Test]
-        public void KeenPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Keen, 39, 44);
-        }
-
-        [Test]
-        public void KiFocusPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.KiFocus, 45, 48);
-        }
-
-        [Test]
-        public void MercifulPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Merciful, 49, 50);
-        }
-
-        [Test]
-        public void MightyCleavingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.MightyCleaving, 51, 54);
-        }
-
-        [Test]
-        public void SpellStoringPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.SpellStoring, 55, 59);
-        }
-
-        [Test]
-        public void ThrowingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Throwing, 60, 63);
-        }
-
-        [Test]
-        public void ThunderingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Thundering, 64, 65);
-        }
-
-        [Test]
-        public void ViciousPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Vicious, 66, 69);
-        }
-
-        [Test]
-        public void AnarchicPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Anarchic, 70, 72);
-        }
-
-        [Test]
-        public void AxiomaticPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Axiomatic, 73, 75);
-        }
-
-        [Test]
-        public void DisruptionPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Disruption, 76, 78);
-        }
-
-        [Test]
-        public void FlamingBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.FlamingBurst, 79, 81);
-        }
-
-        [Test]
-        public void IcyBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.IcyBurst, 82, 84);
-        }
-
-        [Test]
-        public void HolyPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Holy, 85, 87);
-        }
-
-        [Test]
-        public void ShockingBurstPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.ShockingBurst, 88, 90);
-        }
-
-        [Test]
-        public void UnholyPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Unholy, 91, 93);
-        }
-
-        [Test]
-        public void WoundingPercentile()
-        {
-            AssertPercentile(SpecialAbilityConstants.Wounding, 94, 95);
-        }
-
-        [Test]
-        public void BonusSpecialAbilityPercentile()
-        {
-            AssertPercentile("BonusSpecialAbility", 96, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

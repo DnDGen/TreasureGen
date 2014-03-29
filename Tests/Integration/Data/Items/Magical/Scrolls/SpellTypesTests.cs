@@ -11,16 +11,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
             return "SpellTypes";
         }
 
-        [Test]
-        public void ArcanePercentile()
+        [TestCase("Arcane", 1, 70)]
+        [TestCase("Divine", 71, 100)]
+        public void ArcanePercentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("Arcane", 1, 70);
-        }
-
-        [Test]
-        public void DivinePercentile()
-        {
-            AssertPercentile("Divine", 71, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

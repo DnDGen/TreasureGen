@@ -11,28 +11,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.MagicalItems.Scrolls
             return "MinorSpellLevels";
         }
 
-        [Test]
-        public void Level0Percentile()
+        [TestCase("0", 1, 5)]
+        [TestCase("1", 6, 50)]
+        [TestCase("2", 51, 95)]
+        [TestCase("3", 96, 100)]
+        public void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile("0", 1, 5);
-        }
-
-        [Test]
-        public void Level1Percentile()
-        {
-            AssertPercentile("1", 6, 50);
-        }
-
-        [Test]
-        public void Level2Percentile()
-        {
-            AssertPercentile("2", 51, 95);
-        }
-
-        [Test]
-        public void Level3Percentile()
-        {
-            AssertPercentile("3", 96, 100);
+            AssertPercentile(content, lower, upper);
         }
     }
 }
