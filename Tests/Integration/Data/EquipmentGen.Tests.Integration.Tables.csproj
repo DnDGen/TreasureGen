@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level4ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level9ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level0DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level1DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level6DivineSpellsTests.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Goods\Level7GoodsTests.cs" />
     <Compile Include="Goods\Level8GoodsTests.cs" />
     <Compile Include="Goods\Level9GoodsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
     <Compile Include="Items\Mundane\Armors\ArmorAttributesTests.cs" />
     <Compile Include="Items\Level10ItemsTests.cs" />
     <Compile Include="Items\Level11ItemsTests.cs" />

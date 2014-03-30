@@ -28,26 +28,26 @@ namespace EquipmentGen.Tests.Integration.Tables
         [Test]
         public void TableIsComplete()
         {
-            for (var i = 100; i > 0; i--)
-                Assert.That(table[i], Is.Not.Null, tableName);
+            for (var roll = 100; roll > 0; roll--)
+            {
+                Assert.That(table.Keys, Contains.Item(roll), tableName);
+                Assert.That(table[roll], Is.Not.Null, tableName);
+            }
 
             Assert.That(table.Keys.Count, Is.EqualTo(100), tableName);
         }
 
         protected void AssertPercentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll, roll);
+            var message = String.Format("Roll: {0}", roll);
+            Assert.That(table.Keys, Contains.Item(roll));
+            Assert.That(table[roll], Is.EqualTo(content), message);
         }
 
         protected void AssertPercentile(String content, Int32 lower, Int32 upper)
         {
-            for (var i = 100; i > 0; i--)
-            {
-                if (i >= lower && i <= upper)
-                    Assert.That(table[i], Is.EqualTo(content));
-                else
-                    Assert.That(table[i], Is.Not.EqualTo(content));
-            }
+            for (var roll = lower; roll <= upper; roll++)
+                AssertPercentile(content, roll);
         }
     }
 }

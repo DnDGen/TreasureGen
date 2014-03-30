@@ -27,6 +27,11 @@
         <upper>21</upper>
     </object>
     <object>
+        <lower>22</lower>
+        <content>Mass cure serious wounds</content>
+        <upper>27</upper>
+    </object>
+    <object>
         <lower>28</lower>
         <content>Destruction</content>
         <upper>32</upper>
@@ -42,24 +47,9 @@
         <upper>41</upper>
     </object>
     <object>
-        <lower>66</lower>
-        <content>Greater restoration</content>
-        <upper>69</upper>
-    </object>
-    <object>
-        <lower>72</lower>
-        <content>Greater scrying</content>
-        <upper>76</upper>
-    </object>
-    <object>
         <lower>42</lower>
         <content>Holy word</content>
         <upper>45</upper>
-    </object>
-    <object>
-        <lower>22</lower>
-        <content>Mass cure serious wounds</content>
-        <upper>27</upper>
     </object>
     <object>
         <lower>46</lower>
@@ -82,9 +72,19 @@
         <upper>65</upper>
     </object>
     <object>
+        <lower>66</lower>
+        <content>Greater restoration</content>
+        <upper>69</upper>
+    </object>
+    <object>
         <lower>70</lower>
         <content>Resurrection</content>
         <upper>71</upper>
+    </object>
+    <object>
+        <lower>72</lower>
+        <content>Greater scrying</content>
+        <upper>76</upper>
     </object>
     <object>
         <lower>77</lower>
