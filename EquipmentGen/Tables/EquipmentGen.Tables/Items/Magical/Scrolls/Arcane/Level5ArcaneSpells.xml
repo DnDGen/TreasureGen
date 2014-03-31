@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Animal growth</content>
+        <upper>2</upper>
+    </object>
+    <object>
+        <lower>3</lower>
+        <content>Baleful polymorph</content>
+        <upper>5</upper>
+    </object>
+    <object>
+        <lower>6</lower>
+        <content>Bigby's interposing hand</content>
+        <upper>7</upper>
+    </object>
+    <object>
+        <lower>8</lower>
+        <content>Blight</content>
+        <upper>9</upper>
+    </object>
+    <object>
+        <lower>10</lower>
+        <content>Break enchantment</content>
+        <upper>12</upper>
+    </object>
+    <object>
+        <lower>13</lower>
+        <content>Cloudkill</content>
+        <upper>14</upper>
+    </object>
+    <object>
+        <lower>15</lower>
+        <content>Cone of cold</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Contact other plane</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Mass cure light wounds</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Dismissal</content>
+        <upper>23</upper>
+    </object>
+    <object>
+        <lower>24</lower>
+        <content>Greater dispel magic</content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Dominate person</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Dream</content>
+        <upper>29</upper>
+    </object>
+    <object>
+        <lower>30</lower>
+        <content>Fabricate</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>False vision</content>
+        <upper>33</upper>
+    </object>
+    <object>
+        <lower>34</lower>
+        <content>Feeblemind</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Hold monster</content>
+        <upper>39</upper>
+    </object>
+    <object>
+        <lower>40</lower>
+        <content>Leomund's secret chest</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Magic jar</content>
+        <upper>41</upper>
+    </object>
+    <object>
+        <lower>42</lower>
+        <content>Major creation</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Mind fog</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Mirage arcana</content>
+        <upper>47</upper>
+    </object>
+    <object>
+        <lower>48</lower>
+        <content>Mordenkainen's faithful hound</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Mordenkainen's private sanctum</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Nightmare</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Overland flight</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Passwall</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Permanency</content>
+        <upper>61</upper>
+    </object>
+    <object>
+        <lower>62</lower>
+        <content>Persistent image</content>
+        <upper>63</upper>
+    </object>
+    <object>
+        <lower>64</lower>
+        <content>Lesser planar binding</content>
+        <upper>65</upper>
+    </object>
+    <object>
+        <lower>66</lower>
+        <content>Prying eyes</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Rary's telepathic bond</content>
+        <upper>69</upper>
+    </object>
+    <object>
+        <lower>70</lower>
+        <content>Seeming</content>
+        <upper>71</upper>
+    </object>
+    <object>
+        <lower>72</lower>
+        <content>Sending</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Shadow evocation</content>
+        <upper>76</upper>
+    </object>
+    <object>
+        <lower>77</lower>
+        <content>Song of discord</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Summon monster V</content>
+        <upper>79</upper>
+    </object>
+    <object>
+        <lower>80</lower>
+        <content>Symbol of pain</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Symbol of sleep</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Telekinesis</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Teleport</content>
+        <upper>88</upper>
+    </object>
+    <object>
+        <lower>89</lower>
+        <content>Transmute mud to rock</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Transmute rock to mud</content>
+        <upper>92</upper>
+    </object>
+    <object>
+        <lower>93</lower>
+        <content>Wall of force</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Wall of stone</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Waves of fatigue</content>
+        <upper>100</upper>
+    </object>
+</percentile>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Greater arcane sight</content>
+        <upper>3</upper>
+    </object>
+    <object>
+        <lower>4</lower>
+        <content>Banishment</content>
+        <upper>7</upper>
+    </object>
+    <object>
+        <lower>8</lower>
+        <content>Bigby's grasping hand</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Control undead</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Control weather</content>
+        <upper>16</upper>
+    </object>
+    <object>
+        <lower>17</lower>
+        <content>Delayed blast fireball</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Drawmij's instant summons</content>
+        <upper>21</upper>
+    </object>
+    <object>
+        <lower>22</lower>
+        <content>Ethereal jaunt</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Finger of death</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Forcecage</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Mass hold person</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Insanity</content>
+        <upper>38</upper>
+    </object>
+    <object>
+        <lower>39</lower>
+        <content>Mass invisibility</content>
+        <upper>42</upper>
+    </object>
+    <object>
+        <lower>43</lower>
+        <content>Limited wish</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Mordenkainen's magnificent mansion</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Mordenkainen's sword</content>
+        <upper>48</upper>
+    </object>
+    <object>
+        <lower>49</lower>
+        <content>Phase door</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Plane shift</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Power word blind</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Prismatic spray</content>
+        <upper>61</upper>
+    </object>
+    <object>
+        <lower>62</lower>
+        <content>Project image</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Reverse gravity</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Greater scrying</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Sequester</content>
+        <upper>73</upper>
+    </object>
+    <object>
+        <lower>74</lower>
+        <content>Greater shadow conjuration</content>
+        <upper>76</upper>
+    </object>
+    <object>
+        <lower>77</lower>
+        <content>Simulacrum</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Spell turning</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Statue</content>
+        <upper>82</upper>
+    </object>
+    <object>
+        <lower>83</lower>
+        <content>Summon monster VII</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>Symbol of stunning</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Symbol of weakness</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Teleport object</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Greater teleport</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Vision</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Waves of exhaustion</content>
+        <upper>100</upper>
+    </object>
+</percentile>

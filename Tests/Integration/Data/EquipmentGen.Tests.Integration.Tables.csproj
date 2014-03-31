@@ -59,6 +59,10 @@
     <Compile Include="AttributesTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level4ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level5ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level6ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level7ArcaneSpellsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\Arcane\Level8ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level9ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level0DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level1DivineSpellsTests.cs" />

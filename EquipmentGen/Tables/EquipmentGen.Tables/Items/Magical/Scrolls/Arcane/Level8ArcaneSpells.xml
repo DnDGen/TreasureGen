@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Antipathy</content>
+        <upper>2</upper>
+    </object>
+    <object>
+        <lower>3</lower>
+        <content>Bigby's clenched fist</content>
+        <upper>5</upper>
+    </object>
+    <object>
+        <lower>6</lower>
+        <content>Binding</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Mass charm monster</content>
+        <upper>12</upper>
+    </object>
+    <object>
+        <lower>13</lower>
+        <content>Clone</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Create greater undead</content>
+        <upper>16</upper>
+    </object>
+    <object>
+        <lower>17</lower>
+        <content>Demand</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Dimensional lock</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Discern location</content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Horrid wilting</content>
+        <upper>29</upper>
+    </object>
+    <object>
+        <lower>30</lower>
+        <content>Incendiary cloud</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Iron body</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Maze</content>
+        <upper>38</upper>
+    </object>
+    <object>
+        <lower>39</lower>
+        <content>Mind blank</content>
+        <upper>41</upper>
+    </object>
+    <object>
+        <lower>42</lower>
+        <content>Moment of prescience</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Otiluke's telekinetic sphere</content>
+        <upper>48</upper>
+    </object>
+    <object>
+        <lower>49</lower>
+        <content>Otto's irresistible dance</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Greater planar binding</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Polar ray</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Polymorph any object</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Power word stun</content>
+        <upper>63</upper>
+    </object>
+    <object>
+        <lower>64</lower>
+        <content>Prismatic wall</content>
+        <upper>66</upper>
+    </object>
+    <object>
+        <lower>67</lower>
+        <content>Protection from spells</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Greater prying eyes</content>
+        <upper>73</upper>
+    </object>
+    <object>
+        <lower>74</lower>
+        <content>Scintillating pattern</content>
+        <upper>76</upper>
+    </object>
+    <object>
+        <lower>77</lower>
+        <content>Screen</content>
+        <upper>78</upper>
+    </object>
+    <object>
+        <lower>79</lower>
+        <content>Greater shadow evocation</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Greater shout</content>
+        <upper>84</upper>
+    </object>
+    <object>
+        <lower>85</lower>
+        <content>Summon monster VIII</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Sunburst</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Symbol of death</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Symbol of insanity</content>
+        <upper>92</upper>
+    </object>
+    <object>
+        <lower>93</lower>
+        <content>Sympathy</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Temporal stasis</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Trap the soul</content>
+        <upper>100</upper>
+    </object>
+</percentile>
