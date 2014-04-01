@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected void AssertPercentile(String content, Int32 roll)
         {
             var message = String.Format("Roll: {0}", roll);
-            Assert.That(table.Keys, Contains.Item(roll));
+            Assert.That(table.Keys, Contains.Item(roll), tableName);
             Assert.That(table[roll], Is.EqualTo(content), message);
         }
 
