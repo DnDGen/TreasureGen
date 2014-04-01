@@ -1,4 +1,5 @@
 ﻿using D20Dice;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators;
 using EquipmentGen.Generators.Coins;
 using EquipmentGen.Generators.Goods;
@@ -41,6 +42,20 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
+
+            Bind<IMagicalGearGenerator>().To<MagicalArmorGenerator>().Named(ItemTypeConstants.Armor);
+            Bind<IMagicalGearGenerator>().To<MagicalWeaponGenerator>().Named(ItemTypeConstants.Weapon);
+
+            Bind<IMagicalItemGenerator>().To<PotionGenerator>().Named(ItemTypeConstants.Potion);
+            Bind<IMagicalItemGenerator>().To<RingGenerator>().Named(ItemTypeConstants.Ring);
+            Bind<IMagicalItemGenerator>().To<RodGenerator>().Named(ItemTypeConstants.Rod);
+            Bind<IMagicalItemGenerator>().To<ScrollGenerator>().Named(ItemTypeConstants.Scroll);
+            Bind<IMagicalItemGenerator>().To<StaffGenerator>().Named(ItemTypeConstants.Staff);
+            Bind<IMagicalItemGenerator>().To<WandGenerator>().Named(ItemTypeConstants.Wand);
+            Bind<IMagicalItemGenerator>().To<WondrousItemGenerator>().Named(ItemTypeConstants.WondrousItem);
+
+            Bind<IMundaneGearGenerator>().To<MundaneArmorGenerator>().Named(ItemTypeConstants.Armor);
+            Bind<IMundaneGearGenerator>().To<MundaneWeaponGenerator>().Named(ItemTypeConstants.Weapon);
         }
     }
 }

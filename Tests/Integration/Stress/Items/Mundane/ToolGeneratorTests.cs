@@ -10,33 +10,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IToolGenerator ToolGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var tool = ToolGenerator.Generate();
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedToolGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var tool = ToolGenerator.Generate();
-
-                Assert.That(tool.Name, Is.Not.Empty);
-                Assert.That(tool.Attributes, Is.Empty);
-                Assert.That(tool.Magic, Is.Empty);
-                Assert.That(tool.Quantity, Is.EqualTo(1));
-                Assert.That(tool.Traits, Is.Empty);
-            }
-
-            AssertIterations();
+            Assert.That(tool.Name, Is.Not.Empty);
+            Assert.That(tool.Attributes, Is.Empty);
+            Assert.That(tool.Magic, Is.Empty);
+            Assert.That(tool.Quantity, Is.EqualTo(1));
+            Assert.That(tool.Traits, Is.Empty);
         }
     }
 }

@@ -1,11 +1,15 @@
-﻿using D20Dice;
+﻿using System;
+using D20Dice;
 using EquipmentGen.Bootstrap;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Mappers.Attributes;
 using EquipmentGen.Mappers.Interfaces;
@@ -221,6 +225,149 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<ISpecificGearGenerator>();
         }
 
+        [Test]
+        public void MagicalGearGeneratorNamedArmorIsMagicalArmorGenerator()
+        {
+            var generator = kernel.Get<IMagicalGearGenerator>(ItemTypeConstants.Armor);
+            Assert.That(generator, Is.InstanceOf<MagicalArmorGenerator>());
+        }
+
+        [Test]
+        public void MagicalArmorGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalGearGenerator>(ItemTypeConstants.Armor);
+        }
+
+        [Test]
+        public void MagicalGearGeneratorNamedWeaponIsMagicalWeaponGenerator()
+        {
+            var generator = kernel.Get<IMagicalGearGenerator>(ItemTypeConstants.Weapon);
+            Assert.That(generator, Is.InstanceOf<MagicalWeaponGenerator>());
+        }
+
+        [Test]
+        public void MagicalWeaponGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalGearGenerator>(ItemTypeConstants.Weapon);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedPotionIsPotionGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Potion);
+            Assert.That(generator, Is.InstanceOf<PotionGenerator>());
+        }
+
+        [Test]
+        public void PotionGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Potion);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedRingIsRingGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+            Assert.That(generator, Is.InstanceOf<RingGenerator>());
+        }
+
+        [Test]
+        public void RingGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedRodIsRodGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Rod);
+            Assert.That(generator, Is.InstanceOf<RodGenerator>());
+        }
+
+        [Test]
+        public void RodGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Rod);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedScrollIsScrollGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+            Assert.That(generator, Is.InstanceOf<ScrollGenerator>());
+        }
+
+        [Test]
+        public void ScrollGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedStaffIsStaffGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Staff);
+            Assert.That(generator, Is.InstanceOf<StaffGenerator>());
+        }
+
+        [Test]
+        public void StaffGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Staff);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedWandIsWandGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Wand);
+            Assert.That(generator, Is.InstanceOf<WandGenerator>());
+        }
+
+        [Test]
+        public void WandGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Wand);
+        }
+
+        [Test]
+        public void MagicalItemGeneratorNamedWondrousItemIsWondrousItemGenerator()
+        {
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+            Assert.That(generator, Is.InstanceOf<WondrousItemGenerator>());
+        }
+
+        [Test]
+        public void WondrousItemGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+        }
+
+        [Test]
+        public void MundaneGearGeneratorNamedArmorIsMundaneArmorGenerator()
+        {
+            var generator = kernel.Get<IMundaneGearGenerator>(ItemTypeConstants.Armor);
+            Assert.That(generator, Is.InstanceOf<MundaneArmorGenerator>());
+        }
+
+        [Test]
+        public void MundaneArmorGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMundaneGearGenerator>(ItemTypeConstants.Armor);
+        }
+
+        [Test]
+        public void MundaneGearGeneratorNamedWeaponIsMundaneWeaponGenerator()
+        {
+            var generator = kernel.Get<IMundaneGearGenerator>(ItemTypeConstants.Weapon);
+            Assert.That(generator, Is.InstanceOf<MundaneWeaponGenerator>());
+        }
+
+        [Test]
+        public void MundaneWeaponGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMundaneGearGenerator>(ItemTypeConstants.Weapon);
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();
@@ -232,6 +379,13 @@ namespace EquipmentGen.Tests.Integration.Common
         {
             var first = kernel.Get<T>();
             var second = kernel.Get<T>();
+            Assert.That(first, Is.Not.EqualTo(second));
+        }
+
+        private void AssertNotSingleton<T>(String name)
+        {
+            var first = kernel.Get<T>(name);
+            var second = kernel.Get<T>(name);
             Assert.That(first, Is.Not.EqualTo(second));
         }
     }

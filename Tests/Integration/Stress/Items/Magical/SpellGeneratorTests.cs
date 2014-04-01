@@ -11,56 +11,17 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpellGenerator SpellGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var spellType = SpellGenerator.GenerateType();
+            Assert.That(spellType, Is.EqualTo("Arcane").Or.EqualTo("Divine"));
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
+            var power = GetNewPower(false);
+            var level = SpellGenerator.GenerateLevel(power);
+            Assert.That(level, Is.InRange<Int32>(0, 9));
 
-        [Test]
-        public void StressedSpellGeneratorSpellType()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var spellType = SpellGenerator.GenerateType();
-                Assert.That(spellType, Is.EqualTo("Arcane").Or.EqualTo("Divine"));
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void StressedSpellGeneratorSpellLevel()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var power = GetNewPower(false);
-                var level = SpellGenerator.GenerateLevel(power);
-                Assert.That(level, Is.InRange<Int32>(0, 9));
-            }
-
-            AssertIterations();
-        }
-
-        [Test]
-        public void StressedSpellGeneratorSpell()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var spellType = SpellGenerator.GenerateType();
-                var level = Random.Next(10);
-                var spell = SpellGenerator.Generate(spellType, level);
-
-                Assert.That(spell, Is.Not.Empty);
-            }
-
-            AssertIterations();
+            var spell = SpellGenerator.Generate(spellType, level);
+            Assert.That(spell, Is.Not.Empty);
         }
     }
 }

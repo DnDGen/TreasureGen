@@ -21,27 +21,35 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         private Int32 iterations;
 
-        protected void StartTest()
+        [SetUp]
+        public void Setup()
         {
             iterations = 0;
             Stopwatch.Start();
         }
 
-        protected void StopTest()
+        [TearDown]
+        public void TearDown()
         {
             Stopwatch.Reset();
         }
 
-        protected Boolean TestShouldKeepRunning()
+        [Test]
+        public void StressedGenerator()
+        {
+            while (TestShouldKeepRunning())
+                StressGenerator();
+
+            Assert.That(iterations, Is.GreaterThan(0));
+            Assert.Pass("Iterations: {0}", iterations);
+        }
+
+        private Boolean TestShouldKeepRunning()
         {
             return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations++ < ConfidentIterations;
         }
 
-        protected void AssertIterations()
-        {
-            Assert.That(iterations, Is.GreaterThan(0));
-            Assert.Pass("Iterations: {0}", iterations);
-        }
+        protected abstract void StressGenerator();
 
         protected Int32 GetNewLevel()
         {

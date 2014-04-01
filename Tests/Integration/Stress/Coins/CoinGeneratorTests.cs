@@ -10,31 +10,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
         [Inject]
         public ICoinGenerator CoinGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var level = GetNewLevel();
+            var coin = CoinGenerator.GenerateAtLevel(level);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedCoinGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var level = GetNewLevel();
-                var coin = CoinGenerator.GenerateAtLevel(level);
-
-                Assert.That(coin.Currency, Is.Not.Null);
-                Assert.That(coin.Quantity, Is.GreaterThanOrEqualTo(0));
-            }
-
-            AssertIterations();
+            Assert.That(coin.Currency, Is.Not.Null);
+            Assert.That(coin.Quantity, Is.GreaterThanOrEqualTo(0));
         }
     }
 }

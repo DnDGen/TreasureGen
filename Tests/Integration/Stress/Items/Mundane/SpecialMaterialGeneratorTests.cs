@@ -10,30 +10,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public ISpecialMaterialGenerator SpecialMaterialGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var types = GetNewAttributes(false);
+            var material = SpecialMaterialGenerator.GenerateFor(types);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedSpecialMaterialGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var types = GetNewAttributes(false);
-                var material = SpecialMaterialGenerator.GenerateFor(types);
-
-                Assert.That(material, Is.Not.Null);
-            }
-
-            AssertIterations();
+            Assert.That(material, Is.Not.Null);
         }
     }
 }

@@ -12,30 +12,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public IMagicalItemTraitsGenerator TraitsGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var itemType = GetNewMagicalItemType();
+            var traits = TraitsGenerator.GenerateFor(itemType);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedMagicalItemTraitsGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var itemType = GetNewMagicalItemType();
-                var traits = TraitsGenerator.GenerateFor(itemType);
-
-                Assert.That(traits, Is.Not.Null);
-            }
-
-            AssertIterations();
+            Assert.That(traits, Is.Not.Null);
         }
 
         private String GetNewMagicalItemType()

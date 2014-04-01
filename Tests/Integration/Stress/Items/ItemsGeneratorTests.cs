@@ -10,38 +10,20 @@ namespace EquipmentGen.Tests.Integration.Stress.Items
         [Inject]
         public IItemsGenerator ItemsGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var level = GetNewLevel();
+            var items = ItemsGenerator.GenerateAtLevel(level);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedItemsGenerator()
-        {
-            while (TestShouldKeepRunning())
+            Assert.That(items, Is.Not.Null);
+            foreach (var item in items)
             {
-                var level = GetNewLevel();
-                var items = ItemsGenerator.GenerateAtLevel(level);
-
-                Assert.That(items, Is.Not.Null);
-                foreach (var item in items)
-                {
-                    Assert.That(item.Name, Is.Not.Empty);
-                    Assert.That(item.Attributes, Is.Not.Null);
-                    Assert.That(item.Magic, Is.Not.Null);
-                    Assert.That(item.Quantity, Is.GreaterThan(0));
-                    Assert.That(item.Traits, Is.Not.Null);
-                }
+                Assert.That(item.Name, Is.Not.Empty);
+                Assert.That(item.Attributes, Is.Not.Null);
+                Assert.That(item.Magic, Is.Not.Null);
+                Assert.That(item.Quantity, Is.GreaterThan(0));
+                Assert.That(item.Traits, Is.Not.Null);
             }
-
-            AssertIterations();
         }
     }
 }

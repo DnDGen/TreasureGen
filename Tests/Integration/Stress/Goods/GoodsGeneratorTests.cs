@@ -10,36 +10,18 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
         [Inject]
         public IGoodsGenerator GoodsGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var level = GetNewLevel();
+            var goods = GoodsGenerator.GenerateAtLevel(level);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
+            Assert.That(goods, Is.Not.Null);
 
-        [Test]
-        public void StressedGoodsGenerator()
-        {
-            while (TestShouldKeepRunning())
+            foreach (var good in goods)
             {
-                var level = GetNewLevel();
-                var goods = GoodsGenerator.GenerateAtLevel(level);
-
-                Assert.That(goods, Is.Not.Null);
-
-                foreach (var good in goods)
-                {
-                    Assert.That(good.Description, Is.Not.Empty);
-                    Assert.That(good.ValueInGold, Is.GreaterThanOrEqualTo(0));
-                }
+                Assert.That(good.Description, Is.Not.Empty);
+                Assert.That(good.ValueInGold, Is.GreaterThanOrEqualTo(0));
             }
-
-            AssertIterations();
         }
     }
 }

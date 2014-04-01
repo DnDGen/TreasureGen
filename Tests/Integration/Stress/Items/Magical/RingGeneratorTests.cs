@@ -1,6 +1,5 @@
 ﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,41 +8,19 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class RingGeneratorTests : StressTests
     {
-        [Inject]
-        public IMagicalItemGeneratorFactory MagicalItemGeneratorFactory { get; set; }
+        [Inject, Named(ItemTypeConstants.Ring)]
+        public IMagicalItemGenerator RingGenerator { get; set; }
 
-        private IMagicalItemGenerator ringGenerator;
-
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            ringGenerator = MagicalItemGeneratorFactory.CreateWith(ItemTypeConstants.Ring);
+            var power = GetNewPower(false);
+            var ring = RingGenerator.GenerateAtPower(power);
 
-            StartTest();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedRingGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var power = GetNewPower(false);
-                var item = ringGenerator.GenerateAtPower(power);
-
-                Assert.That(item.Name, Is.StringStarting("Ring of "));
-                Assert.That(item.Traits, Is.Not.Null);
-                Assert.That(item.Attributes, Is.Not.Null);
-                Assert.That(item.Quantity, Is.EqualTo(1));
-                Assert.That(item.Magic[Magic.IsMagical], Is.True);
-            }
-
-            AssertIterations();
+            Assert.That(ring.Name, Is.StringStarting("Ring of "));
+            Assert.That(ring.Traits, Is.Not.Null);
+            Assert.That(ring.Attributes, Is.Not.Null);
+            Assert.That(ring.Quantity, Is.EqualTo(1));
+            Assert.That(ring.Magic[Magic.IsMagical], Is.True);
         }
     }
 }

@@ -60,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EquipmentGen\Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EquipmentGen\Generators\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
       <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
       <Name>EquipmentGen.Generators.Interfaces</Name>

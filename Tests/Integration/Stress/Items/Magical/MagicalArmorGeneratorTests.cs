@@ -1,6 +1,5 @@
 ﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,40 +8,19 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class MagicalArmorGeneratorTests : StressTests
     {
-        [Inject]
-        public IMagicalGearGeneratorFactory MagicalGearGeneratorFactory { get; set; }
+        [Inject, Named(ItemTypeConstants.Armor)]
+        public IMagicalGearGenerator MagicalArmorGenerator { get; set; }
 
-        private IMagicalGearGenerator magicalArmorGenerator;
-
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            magicalArmorGenerator = MagicalGearGeneratorFactory.CreateWith(ItemTypeConstants.Armor);
-            StartTest();
-        }
+            var power = GetNewPower(false);
+            var armor = MagicalArmorGenerator.GenerateAtPower(power);
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedMagicalArmorGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var power = GetNewPower(false);
-                var armor = magicalArmorGenerator.GenerateAtPower(power);
-
-                Assert.That(armor.Name, Is.Not.Empty);
-                Assert.That(armor.Traits, Is.Not.Null);
-                Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
-                Assert.That(armor.Quantity, Is.EqualTo(1));
-                Assert.That(armor.Magic, Is.Not.Null);
-            }
-
-            AssertIterations();
+            Assert.That(armor.Name, Is.Not.Empty);
+            Assert.That(armor.Traits, Is.Not.Null);
+            Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
+            Assert.That(armor.Quantity, Is.EqualTo(1));
+            Assert.That(armor.Magic, Is.Not.Null);
         }
     }
 }

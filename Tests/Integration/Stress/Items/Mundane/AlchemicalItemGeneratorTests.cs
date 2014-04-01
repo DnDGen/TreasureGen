@@ -10,33 +10,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IAlchemicalItemGenerator AlchemicalItemGenerator { get; set; }
 
-        [SetUp]
-        public void Setup()
+        protected override void StressGenerator()
         {
-            StartTest();
-        }
+            var item = AlchemicalItemGenerator.Generate();
 
-        [TearDown]
-        public void TearDown()
-        {
-            StopTest();
-        }
-
-        [Test]
-        public void StressedAlchemicalItemGenerator()
-        {
-            while (TestShouldKeepRunning())
-            {
-                var item = AlchemicalItemGenerator.Generate();
-
-                Assert.That(item.Name, Is.Not.Empty);
-                Assert.That(item.Quantity, Is.GreaterThan(0));
-                Assert.That(item.Magic, Is.Empty);
-                Assert.That(item.Attributes, Is.Empty);
-                Assert.That(item.Traits, Is.Empty);
-            }
-
-            AssertIterations();
+            Assert.That(item.Name, Is.Not.Empty);
+            Assert.That(item.Quantity, Is.GreaterThan(0));
+            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.Attributes, Is.Empty);
+            Assert.That(item.Traits, Is.Empty);
         }
     }
 }
