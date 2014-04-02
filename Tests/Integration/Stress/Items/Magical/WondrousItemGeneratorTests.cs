@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.WondrousItem)]
         public IMagicalItemGenerator WondrousItemGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedWondrousItemGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var power = GetNewPower(false);
             var item = WondrousItemGenerator.GenerateAtPower(power);

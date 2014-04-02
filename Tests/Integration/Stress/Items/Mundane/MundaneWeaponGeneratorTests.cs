@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.Weapon)]
         public IMundaneGearGenerator MundaneWeaponGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedMundaneWeaponGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var weapon = MundaneWeaponGenerator.Generate();
 

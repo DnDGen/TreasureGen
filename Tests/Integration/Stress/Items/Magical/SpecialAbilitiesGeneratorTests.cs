@@ -12,7 +12,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpecialAbilitiesGenerator SpecialAbilitiesGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedSpecialAbilitiesGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var types = GetNewAttributes(true);
             var power = GetNewPower(false);

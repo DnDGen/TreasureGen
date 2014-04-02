@@ -10,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Stress
         [Inject]
         public ITreasureGenerator TreasureGenerator { get; set; }
 
-        protected override void StressGenerator()
+        protected override void MakeAssertions()
         {
             var level = GetNewLevel();
             var treasure = TreasureGenerator.GenerateAtLevel(level);

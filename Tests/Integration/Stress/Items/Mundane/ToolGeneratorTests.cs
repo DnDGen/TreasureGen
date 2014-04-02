@@ -10,7 +10,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IToolGenerator ToolGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedToolGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var tool = ToolGenerator.Generate();
 

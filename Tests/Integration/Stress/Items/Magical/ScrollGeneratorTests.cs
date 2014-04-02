@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Scroll)]
         public IMagicalItemGenerator ScrollGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedScrollGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var power = GetNewPower(false);
             var scroll = ScrollGenerator.GenerateAtPower(power);

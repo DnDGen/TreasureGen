@@ -10,7 +10,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IAlchemicalItemGenerator AlchemicalItemGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedAlchemicalItemGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var item = AlchemicalItemGenerator.Generate();
 

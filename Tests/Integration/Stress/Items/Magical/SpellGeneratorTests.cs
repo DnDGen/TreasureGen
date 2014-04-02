@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpellGenerator SpellGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedSpellGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var spellType = SpellGenerator.GenerateType();
             Assert.That(spellType, Is.EqualTo("Arcane").Or.EqualTo("Divine"));

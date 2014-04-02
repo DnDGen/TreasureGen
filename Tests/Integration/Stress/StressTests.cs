@@ -34,11 +34,10 @@ namespace EquipmentGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
-        [Test]
-        public void StressedGenerator()
+        protected void StressGenerator()
         {
             while (TestShouldKeepRunning())
-                StressGenerator();
+                MakeAssertions();
 
             Assert.That(iterations, Is.GreaterThan(0));
             Assert.Pass("Iterations: {0}", iterations);
@@ -49,7 +48,7 @@ namespace EquipmentGen.Tests.Integration.Stress
             return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations++ < ConfidentIterations;
         }
 
-        protected abstract void StressGenerator();
+        protected abstract void MakeAssertions();
 
         protected Int32 GetNewLevel()
         {

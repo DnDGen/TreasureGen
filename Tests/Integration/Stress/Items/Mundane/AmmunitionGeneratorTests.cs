@@ -12,7 +12,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IAmmunitionGenerator AmmunitionGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedAmmunitionGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var ammunition = AmmunitionGenerator.Generate();
 

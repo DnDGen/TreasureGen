@@ -10,7 +10,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
         [Inject]
         public ICoinGenerator CoinGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedCoinGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var level = GetNewLevel();
             var coin = CoinGenerator.GenerateAtLevel(level);

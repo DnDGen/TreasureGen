@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Armor)]
         public IMagicalGearGenerator MagicalArmorGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedMagicalArmorGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var power = GetNewPower(false);
             var armor = MagicalArmorGenerator.GenerateAtPower(power);

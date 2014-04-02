@@ -11,7 +11,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Ring)]
         public IMagicalItemGenerator RingGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedRingGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var power = GetNewPower(false);
             var ring = RingGenerator.GenerateAtPower(power);

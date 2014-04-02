@@ -10,7 +10,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public IMundaneItemGenerator MundaneItemGenerator { get; set; }
 
-        protected override void StressGenerator()
+        [Test]
+        public void StressedMundaneItemGenerator()
+        {
+            StressGenerator();
+        }
+
+        protected override void MakeAssertions()
         {
             var item = MundaneItemGenerator.Generate();
             Assert.That(item.Name, Is.Not.Empty);
