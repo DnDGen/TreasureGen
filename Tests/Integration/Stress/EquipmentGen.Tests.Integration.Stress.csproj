@@ -54,6 +54,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />
     <Compile Include="Items\Magical\ScrollGeneratorTests.cs" />
     <Compile Include="Items\Mundane\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Items\Mundane\AmmunitionGeneratorTests.cs" />
