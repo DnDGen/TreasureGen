@@ -73,5 +73,17 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         {
             Assert.That(intelligence.SpecialPurpose, Is.Empty);
         }
+
+        [Test]
+        public void LanguagesAreInitialized()
+        {
+            Assert.That(intelligence.Languages, Is.Empty);
+        }
+
+        [Test]
+        public void PersonalityIsInitialized()
+        {
+            Assert.That(intelligence.Personality, Is.Empty);
+        }
     }
 }

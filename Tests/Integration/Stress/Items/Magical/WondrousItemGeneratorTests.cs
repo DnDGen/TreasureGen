@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(item.Traits, Is.Not.Null);
             Assert.That(item.Attributes, Is.Not.Null);
             Assert.That(item.Quantity, Is.EqualTo(1));
-            Assert.That(item.Magic, Is.Not.Empty);
+            Assert.That(item.Magic[Magic.IsMagical], Is.True);
         }
     }
 }

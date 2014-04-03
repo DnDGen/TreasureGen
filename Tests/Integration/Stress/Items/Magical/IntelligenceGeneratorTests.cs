@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -31,20 +32,27 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             magic[Magic.Bonus] = bonus;
             magic[Magic.Abilities] = AbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
+            magic[Magic.IsMagical] = true;
 
             var intelligence = IntelligenceGenerator.GenerateFor(magic);
 
             Assert.That(intelligence.Alignment, Contains.Item("Lawful").Or.Contains("Neutral").Or.Contains("Chaotic"));
             Assert.That(intelligence.Alignment, Contains.Item("Good").Or.Contains("Neutral").Or.Contains("Evil"));
-            Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 18));
+            Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
             Assert.That(intelligence.Communication, Is.Not.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Not.Null);
             Assert.That(intelligence.Ego, Is.GreaterThan(0));
-            Assert.That(intelligence.IntelligenceStat, Is.InRange<Int32>(10, 18));
+            Assert.That(intelligence.IntelligenceStat, Is.InRange<Int32>(10, 19));
             Assert.That(intelligence.Powers, Is.Not.Empty);
             Assert.That(intelligence.Senses, Is.Not.Empty);
             Assert.That(intelligence.SpecialPurpose, Is.Not.Null);
-            Assert.That(intelligence.WisdomStat, Is.InRange<Int32>(10, 18));
+            Assert.That(intelligence.WisdomStat, Is.InRange<Int32>(10, 19));
+            Assert.That(intelligence.Personality, Is.Not.Null);
+
+            if (intelligence.Communication.Contains("Speech"))
+                Assert.That(intelligence.Languages, Contains.Item("Common"));
+            else
+                Assert.That(intelligence.Languages, Is.Empty);
         }
     }
 }
