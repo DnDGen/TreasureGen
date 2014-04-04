@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>12</name>
+        <attribute>Empathy</attribute>
+    </object>
+    <object>
+        <name>13</name>
+        <attribute>Empathy</attribute>
+    </object>
+    <object>
+        <name>14</name>
+        <attribute>Speech</attribute>
+    </object>
+    <object>
+        <name>15</name>
+        <attribute>Speech</attribute>
+    </object>
+    <object>
+        <name>16</name>
+        <attribute>Speech</attribute>
+        <attribute>Read</attribute>
+    </object>
+    <object>
+        <name>17</name>
+        <attribute>Speech</attribute>
+        <attribute>Read</attribute>
+        <attribute>Telepathy</attribute>
+    </object>
+    <object>
+        <name>18</name>
+        <attribute>Speech</attribute>
+        <attribute>Read all languages</attribute>
+        <attribute>Read magic</attribute>
+        <attribute>Telepathy</attribute>
+    </object>
+    <object>
+        <name>19</name>
+        <attribute>Speech</attribute>
+        <attribute>Read all languages</attribute>
+        <attribute>Read magic</attribute>
+        <attribute>Telepathy</attribute>
+    </object>
+</attributes>

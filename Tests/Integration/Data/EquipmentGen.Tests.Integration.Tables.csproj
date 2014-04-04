@@ -57,6 +57,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceCommunicationTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersCountTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceSensesTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceStrongStatTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level4ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level5ArcaneSpellsTests.cs" />

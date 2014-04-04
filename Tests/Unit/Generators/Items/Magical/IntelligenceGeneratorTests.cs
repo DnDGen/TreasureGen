@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 {
-    [TestFixture, System.Runtime.InteropServices.GuidAttribute("CE5B815C-3609-48E6-9DC1-8AC7A00A335A")]
+    [TestFixture]
     public class IntelligenceGeneratorTests
     {
         private IIntelligenceGenerator intelligenceGenerator;
@@ -684,6 +684,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("PersonalityTraits", It.IsAny<Int32>())).Returns("personality");
             var intelligence = intelligenceGenerator.GenerateFor(magic);
             Assert.That(intelligence.Personality, Is.EqualTo("personality"));
+        }
+
+        [Test]
+        public void ChooseCategoryForRanksInKnowledge()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void CanHaveRanksInDifferentKnowledge()
+        {
+            Assert.Fail();
         }
     }
 }
