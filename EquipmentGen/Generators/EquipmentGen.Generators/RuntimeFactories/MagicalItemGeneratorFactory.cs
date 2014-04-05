@@ -43,7 +43,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
                     magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice,
                     curseGenerator);
                 case ItemTypeConstants.Rod: return new RodGenerator();
-                case ItemTypeConstants.Scroll: return new ScrollGenerator();
+                case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator, curseGenerator);
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator();
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector,
