@@ -36,8 +36,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             var intelligence = IntelligenceGenerator.GenerateFor(magic);
 
-            Assert.That(intelligence.Alignment, Contains.Item("Lawful").Or.Contains("Neutral").Or.Contains("Chaotic"));
-            Assert.That(intelligence.Alignment, Contains.Item("Good").Or.Contains("Neutral").Or.Contains("Evil"));
+            Assert.That(intelligence.Alignment, Is.StringContaining("Lawful").Or.Contains("Neutral").Or.Contains("Chaotic").Or.Contains("True"));
+            Assert.That(intelligence.Alignment, Is.StringContaining("good").Or.Contains("neutral").Or.Contains("evil"));
             Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
             Assert.That(intelligence.Communication, Is.Not.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Not.Null);

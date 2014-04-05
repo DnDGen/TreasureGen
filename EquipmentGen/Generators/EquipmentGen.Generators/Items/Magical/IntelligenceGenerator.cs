@@ -113,6 +113,13 @@ namespace EquipmentGen.Generators.Items.Magical
                 roll = dice.Percentile();
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurpose", roll);
 
+                if (intelligence.SpecialPurpose.Contains("DesignatedFoe"))
+                {
+                    roll = dice.Percentile();
+                    var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+                    intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DesignatedFoe", designatedFoe);
+                }
+
                 roll = dice.Percentile();
                 intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPower", roll);
 
@@ -158,15 +165,25 @@ namespace EquipmentGen.Generators.Items.Magical
             while (list.Count < quantity)
             {
                 var roll = dice.Percentile(1);
-                var power = percentileSelector.SelectFrom(tableName, roll);
+                var result = percentileSelector.SelectFrom(tableName, roll);
 
-                if (list.Contains(power))
+                if (result.Contains("Knowledge"))
+                    result = GetKnowledgeCategory(result);
+
+                if (list.Contains(result))
                     continue;
 
-                list.Add(power);
+                list.Add(result);
             }
 
             return list;
+        }
+
+        private String GetKnowledgeCategory(String power)
+        {
+            var roll = dice.Percentile();
+            var category = percentileSelector.SelectFrom("KnowledgeCategories", roll);
+            return String.Format("{0} ({1})", power, category);
         }
     }
 }

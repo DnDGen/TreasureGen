@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Defeat/slay diametrically opposed alignment</content>
+    <upper>20</upper>
+  </object>
+    <object>
+        <lower>21</lower>
+        <content>Defeat/slay arcane spellcasters (including spellcasting monsters and those that use spell-like abilities)</content>
+        <upper>30</upper>
+    </object>
+    <object>
+        <lower>31</lower>
+        <content>Defeat/slay divine spellcasters (including divine entities and servitors)</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Defeat/slay nonspellcasters</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Defeat/slay DesignatedFoe</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Defend DesignatedFoe</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Defeat/slay the servants of a specific diety</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Defend the servants of a specific diety</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Defeat/slay all (other than the item and the wielder)</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Defend arcane spellcasters</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Defend divine spellcasters</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>Defend nonspellcasters</content>
+        <upper>100</upper>
+    </object>
+</percentile>

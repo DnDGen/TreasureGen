@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Item can Bless its allies 3/day</content>
+    <upper>5</upper>
+  </object>
+    <object>
+        <lower>6</lower>
+        <content>Item can use Faerie Fire 3/day</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Item can cast Minor Image 1/day</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Item has Deathwatch continually active</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Item can use Detect Magic at will</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Item has 10 ranks in Intimidate</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Item has 10 ranks in Decipher Script</content>
+        <upper>33</upper>
+    </object>
+    <object>
+        <lower>34</lower>
+        <content>Item has 10 ranks in Knowledge</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>37</lower>
+        <content>Item has 10 ranks in Search</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Item has 10 ranks in Spot</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Item has 10 ranks in Listen</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Item has 10 ranks in Spellcraft</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Item has 10 ranks in Sense Motive</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Item has 10 ranks in Bluff</content>
+        <upper>66</upper>
+    </object>
+    <object>
+        <lower>67</lower>
+        <content>Item has 10 ranks in Diplomacy</content>
+        <upper>72</upper>
+    </object>
+    <object>
+        <lower>73</lower>
+        <content>Item can cast Major Image 1/day</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Item can cast Darkness 3/day</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Item can use Hold Person on an enemy 3/day</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Item can activate Zone of Truth 3/day</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Item can use Daze Monster 3/day</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Item can use Locate Object 3/day</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Item can use Cure Moderate Wounds (2d8+3) on wielder 3/day</content>
+        <upper>100</upper>
+    </object>
+</percentile>

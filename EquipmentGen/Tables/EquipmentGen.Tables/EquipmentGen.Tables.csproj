@@ -492,6 +492,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceLesserPowersCount.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceLesserPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceGreaterPowersCount.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceAlignments.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\PersonalityTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\Languages.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\KnowledgeCategories.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceGreaterPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceSpecialPurpose.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

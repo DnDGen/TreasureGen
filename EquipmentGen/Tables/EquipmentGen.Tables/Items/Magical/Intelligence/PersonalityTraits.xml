@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+      <lower>1</lower>
+      <content>Distinctive groove</content>
+      <upper>1</upper>
+  </object>
+    <object>
+        <lower>2</lower>
+        <content>Chipped</content>
+        <upper>2</upper>
+    </object>
+    <object>
+        <lower>3</lower>
+        <content>Small part broken off</content>
+        <upper>3</upper>
+    </object>
+    <object>
+        <lower>4</lower>
+        <content>Unpleasant odor when item communicates</content>
+        <upper>4</upper>
+    </object>
+    <object>
+        <lower>5</lower>
+        <content>Strong, unpleasant, unwavering odor</content>
+        <upper>5</upper>
+    </object>
+    <object>
+        <lower>6</lower>
+        <content>Pleasant smelling (perfumed)</content>
+        <upper>6</upper>
+    </object>
+    <object>
+        <lower>7</lower>
+        <content>Slippery</content>
+        <upper>7</upper>
+    </object>
+    <object>
+        <lower>8</lower>
+        <content>Vibrates lightly when wielded</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Unusual-colored markings</content>
+        <upper>9</upper>
+    </object>
+    <object>
+        <lower>10</lower>
+        <content>Sputters</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Drones on</content>
+        <upper>11</upper>
+    </object>
+    <object>
+        <lower>12</lower>
+        <content>Particularly low voice</content>
+        <upper>12</upper>
+    </object>
+    <object>
+        <lower>13</lower>
+        <content>Particularly high voice</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Slurs words</content>
+        <upper>14</upper>
+    </object>
+    <object>
+        <lower>15</lower>
+        <content>Lisps</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Stutters</content>
+        <upper>16</upper>
+    </object>
+    <object>
+        <lower>17</lower>
+        <content>Enunciates very clearly</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Speaks loudly</content>
+        <upper>18</upper>
+    </object>
+    <object>
+        <lower>19</lower>
+        <content>Whispers</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Hard of hearing</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Marked by previous owner</content>
+        <upper>21</upper>
+    </object>
+    <object>
+        <lower>22</lower>
+        <content>Marked by creator</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Unusual color</content>
+        <upper>23</upper>
+    </object>
+    <object>
+        <lower>24</lower>
+        <content>Shiny</content>
+        <upper>24</upper>
+    </object>
+    <object>
+        <lower>25</lower>
+        <content>Dull</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content></content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Tarnish or wear</content>
+        <upper>27</upper>
+    </object>
+    <object>
+        <lower>28</lower>
+        <content>Complains</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Distinctive jewels</content>
+        <upper>29</upper>
+    </object>
+    <object>
+        <lower>30</lower>
+        <content>Flamboyant or outlandish decoration</content>
+        <upper>30</upper>
+    </object>
+    <object>
+        <lower>31</lower>
+        <content>Bare</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Ornate</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Reflective</content>
+        <upper>33</upper>
+    </object>
+    <object>
+        <lower>34</lower>
+        <content>Nervous</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Whistles a lot</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Sings a lot</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>37</lower>
+        <content>Indifferent</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Prideful</content>
+        <upper>38</upper>
+    </object>
+    <object>
+        <lower>39</lower>
+        <content>Curved, bent, or warped</content>
+        <upper>39</upper>
+    </object>
+    <object>
+        <lower>40</lower>
+        <content>Long</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Short</content>
+        <upper>41</upper>
+    </object>
+    <object>
+        <lower>42</lower>
+        <content>Thin</content>
+        <upper>42</upper>
+    </object>
+    <object>
+        <lower>43</lower>
+        <content>Thick</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Visible wear and tear</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Short attention span</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Gets lost in thought</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Frequently ponders out loud</content>
+        <upper>47</upper>
+    </object>
+    <object>
+        <lower>48</lower>
+        <content>Dirty and ill-kept</content>
+        <upper>48</upper>
+    </object>
+    <object>
+        <lower>49</lower>
+        <content>Clean</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Distinctive feel</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Selfish</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Obsequious</content>
+        <upper>52</upper>
+    </object>
+    <object>
+        <lower>53</lower>
+        <content>Drowsy</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Bookish</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Observant</content>
+        <upper>55</upper>
+    </object>
+    <object>
+        <lower>56</lower>
+        <content>Not very observant</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Overly critical</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Passionate art lover</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>Passionate hobbyist (riddles, reading, hunting, etc.)</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Storyteller</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>Stingy</content>
+        <upper>61</upper>
+    </object>
+    <object>
+        <lower>62</lower>
+        <content>Squanderer</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Pessimist</content>
+        <upper>63</upper>
+    </object>
+    <object>
+        <lower>64</lower>
+        <content>Optimist</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Gets drunk off of victory</content>
+        <upper>65</upper>
+    </object>
+    <object>
+        <lower>66</lower>
+        <content>Offended by drunkenness</content>
+        <upper>66</upper>
+    </object>
+    <object>
+        <lower>67</lower>
+        <content>Well mannered</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Rude</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Easily startled</content>
+        <upper>69</upper>
+    </object>
+    <object>
+        <lower>70</lower>
+        <content>Excessively concerned with appearance</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Overbearing</content>
+        <upper>71</upper>
+    </object>
+    <object>
+        <lower>72</lower>
+        <content>Aloof</content>
+        <upper>72</upper>
+    </object>
+    <object>
+        <lower>73</lower>
+        <content>Proud</content>
+        <upper>73</upper>
+    </object>
+    <object>
+        <lower>74</lower>
+        <content>Individualist</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Conformist</content>
+        <upper>75</upper>
+    </object>
+    <object>
+        <lower>76</lower>
+        <content>Hot tempered</content>
+        <upper>76</upper>
+    </object>
+    <object>
+        <lower>77</lower>
+        <content>Even tempered</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Neurotic</content>
+        <upper>78</upper>
+    </object>
+    <object>
+        <lower>79</lower>
+        <content>Jealous</content>
+        <upper>79</upper>
+    </object>
+    <object>
+        <lower>80</lower>
+        <content>Brave</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Cowardly</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Careless</content>
+        <upper>82</upper>
+    </object>
+    <object>
+        <lower>83</lower>
+        <content>Curious</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Truthful</content>
+        <upper>84</upper>
+    </object>
+    <object>
+        <lower>85</lower>
+        <content>Liar</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>Lazy</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Energetic</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Reverent or pious</content>
+        <upper>88</upper>
+    </object>
+    <object>
+        <lower>89</lower>
+        <content>Irreverent or irreligious</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Strong opinions on politics or morals</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Moody</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Cruel</content>
+        <upper>92</upper>
+    </object>
+    <object>
+        <lower>93</lower>
+        <content>Uses flowery speech or long words</content>
+        <upper>93</upper>
+    </object>
+    <object>
+        <lower>94</lower>
+        <content>Uses the same phrase over and over</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Sexist, racist, or otherwise prejudiced</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>Fascinated by magic</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Distrustful of magic</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Prefers members of one class over all others</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Jokester</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>No sense of humor</content>
+        <upper>100</upper>
+    </object>
+</percentile>
