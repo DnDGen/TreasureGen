@@ -481,7 +481,7 @@
     <EmbeddedResource Include="Items\Magical\Scrolls\Divine\Level8DivineSpells.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceStrongStat.xml" />
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceStrongStats.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceCommunication.xml" />
@@ -514,7 +514,13 @@
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceGreaterPowers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceSpecialPurpose.xml" />
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceSpecialPurposes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceDedicatedPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\WondrousItems\WondrousItemTraits.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

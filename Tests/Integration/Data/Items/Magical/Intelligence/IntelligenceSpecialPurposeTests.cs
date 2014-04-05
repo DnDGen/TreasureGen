@@ -8,7 +8,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
     {
         protected override String GetTableName()
         {
-            return "IntelligenceSpecialPurpose";
+            return "IntelligenceSpecialPurposes";
         }
 
         [TestCase("Defeat/slay diametrically opposed alignment", 1, 20)]

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
@@ -177,78 +176,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items.Single(), Is.EqualTo(magicalItem));
-        }
-
-        [Test]
-        public void DoNotGetCurseIfNotCursed()
-        {
-            result.Type = "power";
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
-
-            var magicalItem = new Item();
-            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerItems", 42)).Returns("magic item");
-            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
-
-            mockCurseGenerator.Setup(g => g.HasCurse(magicalItem.Magic)).Returns(false);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var items = itemsGenerator.GenerateAtLevel(1);
-            Assert.That(items.Single().Magic.Keys, Is.Not.Contains(Magic.Curse));
-        }
-
-        [Test]
-        public void GetCurseIfCursed()
-        {
-            result.Type = "power";
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
-
-            var magicalItem = new Item();
-            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerItems", 42)).Returns("magic item");
-            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
-
-            mockCurseGenerator.Setup(g => g.HasCurse(magicalItem.Magic)).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("curse");
-
-            var items = itemsGenerator.GenerateAtLevel(1);
-            Assert.That(items.Single().Magic[Magic.Curse], Is.EqualTo("curse"));
-        }
-
-        [Test]
-        public void GetSpecificCursedItems()
-        {
-            result.Type = "power";
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
-
-            var magicalItem = new Item();
-            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerItems", 42)).Returns("magic item");
-            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
-
-            var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(magicalItem.Magic)).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
-            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
-
-            var items = itemsGenerator.GenerateAtLevel(1);
-            Assert.That(items.Single(), Is.EqualTo(cursedItem));
-        }
-
-        [Test]
-        public void MundaneItemsCannotBeCursed()
-        {
-            result.Type = PowerConstants.Mundane;
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
-
-            var mundaneItem = new Item();
-            mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(mundaneItem);
-
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("curse");
-
-            var items = itemsGenerator.GenerateAtLevel(1);
-            Assert.That(items.Single().Magic, Is.Empty);
         }
     }
 }

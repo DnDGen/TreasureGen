@@ -20,12 +20,13 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private IIntelligenceGenerator intelligenceGenerator;
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
+        private ICurseGenerator curseGenerator;
 
         public MagicalGearGeneratorFactory(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
             ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecialMaterialGenerator materialsSelector,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            ISpecificGearGenerator specificGearGenerator, IDice dice)
+            ISpecificGearGenerator specificGearGenerator, IDice dice, ICurseGenerator curseGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
@@ -36,6 +37,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.intelligenceGenerator = intelligenceGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.dice = dice;
+            this.curseGenerator = curseGenerator;
         }
 
         public IMagicalGearGenerator CreateWith(String type)
@@ -44,7 +46,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             {
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector,
                     percentileSelector, attributesSelector, specialAbilitiesSelector, materialsSelector,
-                    magicItemTraitsGenerator, intelligenceGenerator, specificGearGenerator, dice);
+                    magicItemTraitsGenerator, intelligenceGenerator, specificGearGenerator, dice, curseGenerator);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException();
             }

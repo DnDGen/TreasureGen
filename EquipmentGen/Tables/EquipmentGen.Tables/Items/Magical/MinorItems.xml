@@ -33,7 +33,7 @@
     </object>
     <object>
         <lower>92</lower>
-        <content>Wondrous item</content>
+        <content>WondrousItem</content>
         <upper>100</upper>
     </object>
 </percentile>

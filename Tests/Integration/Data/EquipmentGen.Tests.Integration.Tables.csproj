@@ -59,6 +59,7 @@
     <Compile Include="AttributesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceAlignmentsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceCommunicationTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceDedicatedPowerTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceGreaterPowersCountTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceGreaterPowersTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersCountTests.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Goods\Level9GoodsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\WondrousItemTraitsTests.cs" />
     <Compile Include="Items\Mundane\Armors\ArmorAttributesTests.cs" />
     <Compile Include="Items\Level10ItemsTests.cs" />
     <Compile Include="Items\Level11ItemsTests.cs" />

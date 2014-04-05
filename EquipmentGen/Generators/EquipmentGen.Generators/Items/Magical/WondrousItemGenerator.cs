@@ -16,10 +16,12 @@ namespace EquipmentGen.Generators.Items.Magical
         private IAttributesSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
+        private ICurseGenerator curseGenerator;
 
         public WondrousItemGenerator(IPercentileSelector percentileSelector,
             IMagicalItemTraitsGenerator traitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice)
+            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice,
+            ICurseGenerator curseGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.traitsGenerator = traitsGenerator;
@@ -27,6 +29,7 @@ namespace EquipmentGen.Generators.Items.Magical
             this.attributesSelector = attributesSelector;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
+            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -50,6 +53,15 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.Magic))
                 item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(item.Magic);
+
+            if (curseGenerator.HasCurse(item.Magic))
+            {
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == "SpecificCursedItem")
+                    return curseGenerator.GenerateSpecificCursedItem();
+
+                item.Magic.Add(Magic.Curse, curse);
+            }
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);

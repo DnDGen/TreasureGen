@@ -8,7 +8,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
     {
         protected override String GetTableName()
         {
-            return "IntelligenceStrongStat";
+            return "IntelligenceStrongStats";
         }
 
         [TestCase("12", 1, 34)]

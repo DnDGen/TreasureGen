@@ -17,10 +17,11 @@ namespace EquipmentGen.Generators.Items.Magical
         private IIntelligenceGenerator intelligenceGenerator;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
+        private ICurseGenerator curseGenerator;
 
         public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
             IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IChargesGenerator chargesGenerator, IDice dice)
+            IChargesGenerator chargesGenerator, IDice dice, ICurseGenerator curseGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
@@ -29,6 +30,7 @@ namespace EquipmentGen.Generators.Items.Magical
             this.intelligenceGenerator = intelligenceGenerator;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
+            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -52,6 +54,15 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, ring.Attributes, ring.Magic))
                 ring.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ring.Magic);
+
+            if (curseGenerator.HasCurse(ring.Magic))
+            {
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == "SpecificCursedItem")
+                    return curseGenerator.GenerateSpecificCursedItem();
+
+                ring.Magic.Add(Magic.Curse, curse);
+            }
 
             if (ability.Contains("Counterspells"))
             {

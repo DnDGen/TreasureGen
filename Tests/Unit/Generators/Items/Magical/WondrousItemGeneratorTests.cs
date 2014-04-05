@@ -20,6 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IDice> mockDice;
+        private Mock<ICurseGenerator> mockCurseGenerator;
 
         private String name;
 
@@ -38,10 +39,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
+            mockCurseGenerator = new Mock<ICurseGenerator>();
 
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object,
                 mockTraitsGenerator.Object, mockIntelligenceGenerator.Object, mockAttributesSelector.Object,
-                mockChargesGenerator.Object, mockDice.Object);
+                mockChargesGenerator.Object, mockDice.Object, mockCurseGenerator.Object);
         }
 
         [Test]
@@ -243,6 +245,39 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Cubic gate (Material plane, plane 1, plane 2, plane 3, plane 4, plane 5)"));
+        }
+
+        [Test]
+        public void DoNotGetCurseIfNotCursed()
+        {
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Curse));
+        }
+
+        [Test]
+        public void GetCurseIfCursed()
+        {
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Magic.Keys, Contains.Item(Magic.Curse));
+            Assert.That(item.Magic[Magic.Curse], Is.EqualTo("cursed"));
+        }
+
+        [Test]
+        public void GetSpecificCursedItems()
+        {
+            var cursedItem = new Item();
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
+            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(cursedItem));
         }
     }
 }

@@ -18,12 +18,13 @@ namespace EquipmentGen.Generators.Items.Magical
         private IIntelligenceGenerator intelligenceGenerator;
         private ISpecificGearGenerator specificGearGenerator;
         private IDice dice;
+        private ICurseGenerator curseGenerator;
 
         public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
             ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecialMaterialGenerator materialsSelector,
             IMagicalItemTraitsGenerator magicItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            ISpecificGearGenerator specificGearGenerator, IDice dice)
+            ISpecificGearGenerator specificGearGenerator, IDice dice, ICurseGenerator curseGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
@@ -34,6 +35,7 @@ namespace EquipmentGen.Generators.Items.Magical
             this.intelligenceGenerator = intelligenceGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.dice = dice;
+            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -81,6 +83,15 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 var intelligence = intelligenceGenerator.GenerateFor(armor.Magic);
                 armor.Magic.Add(Magic.Intelligence, intelligence);
+            }
+
+            if (curseGenerator.HasCurse(armor.Magic))
+            {
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == "SpecificCursedItem")
+                    return curseGenerator.GenerateSpecificCursedItem();
+
+                armor.Magic.Add(Magic.Curse, curse);
             }
 
             return armor;

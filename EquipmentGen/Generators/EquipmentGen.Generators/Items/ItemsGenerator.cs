@@ -65,26 +65,14 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMagicalItemAtPower(String power)
         {
-            var roll = dice.Percentile();
             var tableName = String.Format("{0}Items", power);
+            var roll = dice.Percentile();
             var itemType = percentileSelector.SelectFrom(tableName, roll);
 
-            Item item;
             if (itemType == ItemTypeConstants.Armor || itemType == ItemTypeConstants.Weapon)
-                item = GenerateMagicalGearAtPower(itemType, power);
-            else
-                item = GenerateMagicalItemAtPower(itemType, power);
+                return GenerateMagicalGearAtPower(itemType, power);
 
-            if (curseGenerator.HasCurse(item.Magic))
-            {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
-                    return curseGenerator.GenerateSpecificCursedItem();
-
-                item.Magic.Add(Magic.Curse, curse);
-            }
-
-            return item;
+            return GenerateMagicalItemAtPower(itemType, power);
         }
 
         private Item GenerateMagicalGearAtPower(String type, String power)

@@ -3,7 +3,7 @@
 <percentile>
   <object>
     <lower>1</lower>
-    <content>Alchemical Item</content>
+    <content>AlchemicalItem</content>
     <upper>17</upper>
   </object>
   <object>

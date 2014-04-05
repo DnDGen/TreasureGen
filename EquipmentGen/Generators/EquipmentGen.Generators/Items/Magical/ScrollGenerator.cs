@@ -8,7 +8,9 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         public Item GenerateAtPower(String power)
         {
-            throw new NotImplementedException();
+            var scroll = new Item();
+
+            return scroll;
         }
     }
 }

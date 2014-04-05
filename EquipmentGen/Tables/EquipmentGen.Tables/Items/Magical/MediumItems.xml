@@ -43,7 +43,7 @@
     </object>
     <object>
         <lower>84</lower>
-        <content>Wondrous item</content>
+        <content>WondrousItem</content>
         <upper>100</upper>
     </object>
 </percentile>

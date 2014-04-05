@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Item can use Ice Storm</content>
+    <upper>6</upper>
+  </object>
+    <object>
+        <lower>7</lower>
+        <content>Item can use Confusion</content>
+        <upper>12</upper>
+    </object>
+    <object>
+        <lower>13</lower>
+        <content>Item can use Phantasmal Killer</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Item can use Crushing Despair</content>
+        <upper>24</upper>
+    </object>
+    <object>
+        <lower>25</lower>
+        <content>Item can use Dimension Door on itself and wielder</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Item can use Contagion (heightened to 4th level) as touch attack</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>37</lower>
+        <content>Item can use Poison (heightened to 4th level) as touch attack</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Item can use Rusting Grasp as touch attack</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Item can cast 10d6 Lightning Bolt</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Item can cast 10d6 Fireball</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Wielder gets +2 luck bonus on attacks, saves, and checks</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Item can use Mass Inflict Light Wounds</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Item can use Song of Discord</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Item can use Prying Eyes</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Item can cast 15d6 Greater Shout 3/day</content>
+        <upper>92</upper>
+    </object>
+    <object>
+        <lower>93</lower>
+        <content>Item can use Waves of Exhaustion</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Item can use True Resurrection on wielder 1/month</content>
+        <upper>100</upper>
+    </object>
+</percentile>

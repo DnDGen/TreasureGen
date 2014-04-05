@@ -26,10 +26,11 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockChargesGenerator = new Mock<IChargesGenerator>();
             var mockDice = new Mock<IDice>();
             var mockSpellGenerator = new Mock<ISpellGenerator>();
+            var mockCurseGenerator = new Mock<ICurseGenerator>();
 
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object,
                 mockIntelligenceGenerator.Object, mockAttributesSelector.Object, mockChargesGenerator.Object,
-                mockDice.Object, mockSpellGenerator.Object);
+                mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object);
         }
 
         [Test]

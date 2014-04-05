@@ -7,7 +7,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
     [TestFixture]
     public class ItemTypeConstantsTests
     {
-        [TestCase(ItemTypeConstants.AlchemicalItem, "Alchemical Item")]
+        [TestCase(ItemTypeConstants.AlchemicalItem, "AlchemicalItem")]
         [TestCase(ItemTypeConstants.Armor, "Armor")]
         [TestCase(ItemTypeConstants.Weapon, "Weapon")]
         [TestCase(ItemTypeConstants.Tool, "Tool")]
@@ -17,7 +17,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(ItemTypeConstants.Scroll, "Scroll")]
         [TestCase(ItemTypeConstants.Staff, "Staff")]
         [TestCase(ItemTypeConstants.Wand, "Wand")]
-        [TestCase(ItemTypeConstants.WondrousItem, "Wondrous item")]
+        [TestCase(ItemTypeConstants.WondrousItem, "WondrousItem")]
         public void ItemTypeConstantIsCorrect(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));

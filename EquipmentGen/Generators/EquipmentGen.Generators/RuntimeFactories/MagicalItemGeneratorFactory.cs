@@ -17,10 +17,12 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private IChargesGenerator chargesGenerator;
         private IDice dice;
         private ISpellGenerator spellGenerator;
+        private ICurseGenerator curseGenerator;
 
         public MagicalItemGeneratorFactory(IPercentileSelector percentileSelector,
             IMagicalItemTraitsGenerator magicalItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
+            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator,
+            ICurseGenerator curseGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
@@ -29,6 +31,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
             this.spellGenerator = spellGenerator;
+            this.curseGenerator = curseGenerator;
         }
 
         public IMagicalItemGenerator CreateWith(String type)
@@ -37,13 +40,15 @@ namespace EquipmentGen.Generators.RuntimeFactories
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator();
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector,
-                    magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice);
+                    magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice,
+                    curseGenerator);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator();
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator();
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector,
-                    magicalItemTraitsGenerator, intelligenceGenerator, attributesSelector, chargesGenerator, dice);
+                    magicalItemTraitsGenerator, intelligenceGenerator, attributesSelector, chargesGenerator, dice,
+                    curseGenerator);
                 default: throw new ArgumentOutOfRangeException(type);
             }
         }

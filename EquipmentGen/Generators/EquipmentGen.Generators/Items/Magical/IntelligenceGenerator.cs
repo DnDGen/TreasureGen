@@ -52,7 +52,7 @@ namespace EquipmentGen.Generators.Items.Magical
         public Intelligence GenerateFor(Dictionary<Magic, Object> magic)
         {
             var roll = dice.Percentile();
-            var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStat", roll);
+            var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats", roll);
             var highStat = Convert.ToInt32(highStatResult);
 
             var intelligence = new Intelligence();
@@ -111,7 +111,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
 
                 roll = dice.Percentile();
-                intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurpose", roll);
+                intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes", roll);
 
                 if (intelligence.SpecialPurpose.Contains("DesignatedFoe"))
                 {
@@ -121,7 +121,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 }
 
                 roll = dice.Percentile();
-                intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPower", roll);
+                intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPowers", roll);
 
                 intelligence.Ego += 4;
             }
