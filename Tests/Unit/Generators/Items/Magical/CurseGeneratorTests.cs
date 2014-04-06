@@ -159,6 +159,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void IfDrawback_GetShrinkOrGrows()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom("Curses", It.IsAny<Int32>())).Returns("Drawback");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CurseDrawbacks", It.IsAny<Int32>())).Returns("drawback with HEIGHTs");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CurseHeightChanges", It.IsAny<Int32>())).Returns("grow");
+
+            var curse = curseGenerator.GenerateCurse();
+            Assert.That(curse, Is.EqualTo("drawback with grows"));
+        }
+
+        [Test]
         public void GetSpecificCursedItem()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("SpecificCursedItems", It.IsAny<Int32>())).Returns("specific cursed item");

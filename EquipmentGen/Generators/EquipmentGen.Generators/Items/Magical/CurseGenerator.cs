@@ -94,7 +94,19 @@ namespace EquipmentGen.Generators.Items.Magical
         private String GetDrawback()
         {
             var roll = dice.Percentile();
-            return percentileSelector.SelectFrom("CurseDrawbacks", roll);
+            var drawback = percentileSelector.SelectFrom("CurseDrawbacks", roll);
+
+            if (drawback.Contains("HEIGHT"))
+                return GetDrawbackWithHeight(drawback);
+
+            return drawback;
+        }
+
+        private string GetDrawbackWithHeight(String drawback)
+        {
+            var roll = dice.Percentile();
+            var change = percentileSelector.SelectFrom("CurseHeightChanges", roll);
+            return drawback.Replace("HEIGHT", change);
         }
 
         public Item GenerateSpecificCursedItem()

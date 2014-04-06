@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceAlignmentsTests.cs" />
