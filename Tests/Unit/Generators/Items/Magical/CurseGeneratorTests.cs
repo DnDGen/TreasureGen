@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<IDice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
 
-            curseGenerator = new CurseGenerator(mockDice.Object);
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.d3(1)).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Unreliable)"));
+            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: Unreliable)"));
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.d3(1)).Returns(3);
 
             var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Uncontrolled)"));
+            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: Uncontrolled)"));
         }
 
         [Test]

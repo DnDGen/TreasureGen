@@ -57,6 +57,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\Curses\CursesTests.cs" />
+    <Compile Include="Items\Magical\Curses\SpecificCursedItemsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceAlignmentsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceCommunicationTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceDedicatedPowerTests.cs" />
@@ -248,6 +250,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
