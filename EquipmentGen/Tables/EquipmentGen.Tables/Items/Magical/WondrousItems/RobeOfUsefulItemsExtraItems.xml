@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Bag of 100 gold pieces</content>
+        <upper>8</upper>
+    </object>
+    <object>
+        <lower>9</lower>
+        <content>Silver coffer (6 in, by 6 in, by 1 ft.) (500gp value)</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Iron door (up to 10 ft. wide and 10 ft. high and barred on one side - must be placed upright, attaches and hinges itself)</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>10 gems (100gp value each)</content>
+        <upper>30</upper>
+    </object>
+    <object>
+        <lower>31</lower>
+        <content>Wooden ladder (24 ft. long)</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Mule (with saddle bags)</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Open pit (10 ft. by 10 ft. by 10 ft.)</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Potion of cure serious wounds</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Rowboat (12 ft. long)</content>
+        <upper>75</upper>
+    </object>
+    <object>
+        <lower>76</lower>
+        <content>Scroll</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Pair of war dogs (treat as riding dogs)</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Window (2 ft. by 4 ft., up to 2 ft. deep)</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Portable ram</content>
+        <upper>100</upper>
+    </object>
+</percentile>

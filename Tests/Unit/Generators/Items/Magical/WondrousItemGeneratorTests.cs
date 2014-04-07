@@ -21,6 +21,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IDice> mockDice;
         private Mock<ICurseGenerator> mockCurseGenerator;
+        private Mock<ISpellGenerator> mockSpellGenerator;
 
         private String name;
 
@@ -40,10 +41,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockCurseGenerator = new Mock<ICurseGenerator>();
+            mockSpellGenerator = new Mock<ISpellGenerator>();
 
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object,
                 mockTraitsGenerator.Object, mockIntelligenceGenerator.Object, mockAttributesSelector.Object,
-                mockChargesGenerator.Object, mockDice.Object, mockCurseGenerator.Object);
+                mockChargesGenerator.Object, mockDice.Object, mockCurseGenerator.Object, mockSpellGenerator.Object);
         }
 
         [Test]
@@ -212,6 +214,22 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: item 1, item 2)"));
+        }
+
+        [Test]
+        public void RobeOfUsefulItemsExtraItemsScrollDetermined()
+        {
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Robe of useful items");
+            mockDice.Setup(d => d.d4(4)).Returns(1);
+            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems", 66)).Returns("Scroll");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
+            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: spell type scroll of spell (9266))"));
         }
 
         [Test]

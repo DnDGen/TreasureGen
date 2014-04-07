@@ -537,6 +537,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Curses\CurseHeightChanges.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItems.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

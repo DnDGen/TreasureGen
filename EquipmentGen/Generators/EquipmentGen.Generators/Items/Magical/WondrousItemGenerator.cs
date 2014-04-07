@@ -17,11 +17,12 @@ namespace EquipmentGen.Generators.Items.Magical
         private IChargesGenerator chargesGenerator;
         private IDice dice;
         private ICurseGenerator curseGenerator;
+        private ISpellGenerator spellGenerator;
 
         public WondrousItemGenerator(IPercentileSelector percentileSelector,
             IMagicalItemTraitsGenerator traitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice,
-            ICurseGenerator curseGenerator)
+            ICurseGenerator curseGenerator, ISpellGenerator spellGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.traitsGenerator = traitsGenerator;
@@ -30,6 +31,7 @@ namespace EquipmentGen.Generators.Items.Magical
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
             this.curseGenerator = curseGenerator;
+            this.spellGenerator = spellGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -124,6 +126,16 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 var roll = dice.Percentile();
                 var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems", roll);
+
+                if (item == ItemTypeConstants.Scroll)
+                {
+                    var spellType = spellGenerator.GenerateType();
+                    var level = spellGenerator.GenerateLevel(PowerConstants.Minor);
+                    var spell = spellGenerator.Generate(spellType, level);
+
+                    item = String.Format("{0} scroll of {1} ({2})", spellType, spell, level);
+                }
+
                 extraItems.Add(item);
             }
 

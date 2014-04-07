@@ -48,7 +48,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
                 case ItemTypeConstants.Wand: return new WandGenerator();
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector,
                     magicalItemTraitsGenerator, intelligenceGenerator, attributesSelector, chargesGenerator, dice,
-                    curseGenerator);
+                    curseGenerator, spellGenerator);
                 default: throw new ArgumentOutOfRangeException(type);
             }
         }

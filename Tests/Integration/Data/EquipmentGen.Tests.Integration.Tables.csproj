@@ -135,6 +135,7 @@
     <Compile Include="Goods\Level9GoodsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\WondrousItemTraitsTests.cs" />
     <Compile Include="Items\Mundane\Armors\ArmorAttributesTests.cs" />
     <Compile Include="Items\Level10ItemsTests.cs" />
