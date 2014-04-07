@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>Temperature below freezing</content>
+    <upper>3</upper>
+  </object>
+    <object>
+        <lower>4</lower>
+        <content>Temperature above freezing</content>
+        <upper>5</upper>
+    </object>
+    <object>
+        <lower>6</lower>
+        <content>During the day</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>During the night</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>In direct sunlight</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Out of direct sunlight</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Underwater</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Out of water</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Underground</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Aboveground</content>
+        <upper>55</upper>
+    </object>
+    <object>
+        <lower>56</lower>
+        <content>Within 10 feet of a DesignatedFoe</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Within 10 feet of an arcane spellcaster</content>
+        <upper>72</upper>
+    </object>
+    <object>
+        <lower>73</lower>
+        <content>Within 10 feet of a divine spellcaster</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>In the hands of a nonspellcaster</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>In the hands of a spellcaster</content>
+        <upper>90</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>In the hands of a Alignment creature</content>
+        <upper>95</upper>
+    </object>
+    <object>
+        <lower>96</lower>
+        <content>In the hands of a Gender</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>On nonholy days or during particular astrological events</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>More than 100 miles from a particular site</content>
+        <upper>100</upper>
+    </object>
+</percentile>

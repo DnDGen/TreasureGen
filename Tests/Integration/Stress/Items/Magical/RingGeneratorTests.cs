@@ -22,6 +22,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var ring = RingGenerator.GenerateAtPower(power);
 
+            if (ring.Magic.ContainsKey(Magic.Curse) && ring.Magic[Magic.Curse] == "This is a specific cursed item")
+                return;
+
             Assert.That(ring.Name, Is.StringStarting("Ring of "));
             Assert.That(ring.Traits, Is.Not.Null);
             Assert.That(ring.Attributes, Is.Not.Null);

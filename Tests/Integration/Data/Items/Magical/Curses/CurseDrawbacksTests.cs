@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Character's race or kind changes", 33, 34)]
         [TestCase("Item continually emits a disturbing sound (moaning, weeping, screaming, cursing, insults, etc.)", 36, 39)]
         [TestCase("Character becomes selfishly possessive of the item", 41, 45)]
-        [TestCase("Character becomes paranoid about losing the item anf afraid od damage occurring to it", 46, 49)]
+        [TestCase("Character becomes paranoid about losing the item and afraid of damage occurring to it", 46, 49)]
         [TestCase("Character's alignment changes", 50, 51)]
         [TestCase("Character must attack nearest creature (5% chance each day)", 52, 54)]
         [TestCase("Character is stunned for 1d4 rounds once item function is finished (or randomly 1/day)", 55, 57)]
@@ -41,7 +41,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
 
         [TestCase("Character is afflicted with a random disease that cannot be cured", 35)]
         [TestCase("Item looks ridiculous (garishly colored, silly shape, glows bright pink, etc.)", 40)]
-        [TestCase("Character gains two negative level", 65)]
+        [TestCase("Character gains two negative levels", 65)]
         [TestCase("Character is polymorphed into a specific creature (5% chance each day)", 96)]
         [TestCase("Character cannot cast arcane spells", 97)]
         [TestCase("Character cannot cast divine spells", 98)]

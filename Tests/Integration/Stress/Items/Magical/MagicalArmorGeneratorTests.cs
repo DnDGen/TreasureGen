@@ -22,6 +22,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var armor = MagicalArmorGenerator.GenerateAtPower(power);
 
+            if (armor.Magic.ContainsKey(Magic.Curse) && armor.Magic[Magic.Curse] == "This is a specific cursed item")
+                return;
+
             Assert.That(armor.Name, Is.Not.Empty);
             Assert.That(armor.Traits, Is.Not.Null);
             Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
