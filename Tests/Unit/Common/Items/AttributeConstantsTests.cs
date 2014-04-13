@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(AttributeConstants.NotTower, "Not tower")]
         [TestCase(AttributeConstants.OneTimeUse, "One-time use")]
         [TestCase(AttributeConstants.Charged, "Charged")]
-        public void AttributeConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

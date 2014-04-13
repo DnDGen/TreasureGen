@@ -61,7 +61,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                ring.Magic.Add(Magic.Curse, curse);
+                ring.Magic[Magic.Curse] = curse;
             }
 
             if (ability.Contains("Counterspells"))

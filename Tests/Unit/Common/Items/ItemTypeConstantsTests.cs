@@ -18,7 +18,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(ItemTypeConstants.Staff, "Staff")]
         [TestCase(ItemTypeConstants.Wand, "Wand")]
         [TestCase(ItemTypeConstants.WondrousItem, "WondrousItem")]
-        public void ItemTypeConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -10,561 +9,86 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
     {
         protected override String tableName
         {
-            get { return "GemDescriptions"; }
+            get { return "SpecialAbilityAttributes"; }
         }
 
-        protected override String GetTableName()
+        [TestCase(SpecialAbilityConstants.Glamered, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Fortification, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Slick, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Shadow, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.SilentMoves, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.SpellResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.AcidResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.ColdResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.ElectricityResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.FireResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.SonicResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.GhostTouch)]
+        [TestCase(SpecialAbilityConstants.Invulnerability, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Wild, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Etherealness, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.UndeadControlling, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.ArrowCatching, ItemTypeConstants.Armor,
+                                                         AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Bashing, ItemTypeConstants.Armor,
+                                                   AttributeConstants.Shield,
+                                                   AttributeConstants.NotTower)]
+        [TestCase(SpecialAbilityConstants.Blinding, ItemTypeConstants.Armor,
+                                                    AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.ArrowDeflection, ItemTypeConstants.Armor,
+                                                           AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Animated, ItemTypeConstants.Armor,
+                                                    AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Reflecting, ItemTypeConstants.Armor,
+                                                      AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Bane, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Distance, ItemTypeConstants.Weapon,
+                                                    AttributeConstants.Ranged)]
+        [TestCase(SpecialAbilityConstants.Disruption, ItemTypeConstants.Weapon,
+                                                      AttributeConstants.Melee,
+                                                      AttributeConstants.Bludgeoning)]
+        [TestCase(SpecialAbilityConstants.Flaming, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Frost, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Merciful, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Returning, ItemTypeConstants.Weapon,
+                                                     AttributeConstants.Ranged,
+                                                     AttributeConstants.Thrown)]
+        [TestCase(SpecialAbilityConstants.Shock, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Seeking, ItemTypeConstants.Weapon,
+                                                   AttributeConstants.Ranged)]
+        [TestCase(SpecialAbilityConstants.Thundering, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Anarchic, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Axiomatic, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Holy, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Unholy, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Speed, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.BrilliantEnergy, ItemTypeConstants.Weapon)]
+        [TestCase(SpecialAbilityConstants.Keen, ItemTypeConstants.Weapon,
+                                                AttributeConstants.Melee,
+                                                AttributeConstants.NotBludgeoning)]
+        [TestCase(SpecialAbilityConstants.KiFocus, ItemTypeConstants.Weapon,
+                                                   AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.MightyCleaving, ItemTypeConstants.Weapon,
+                                                          AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.SpellStoring, ItemTypeConstants.Weapon,
+                                                        AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Throwing, ItemTypeConstants.Weapon,
+                                                    AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Vicious, ItemTypeConstants.Weapon,
+                                                   AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Defending, ItemTypeConstants.Weapon,
+                                                     AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Wounding, ItemTypeConstants.Weapon,
+                                                    AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Dancing, ItemTypeConstants.Weapon,
+                                                   AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Vorpal, ItemTypeConstants.Weapon,
+                                                  AttributeConstants.Melee,
+                                                  AttributeConstants.NotBludgeoning,
+                                                  AttributeConstants.Slashing)]
+        public void Attributes(String name, params String[] attributes)
         {
-            return "SpecialAbilityAttributes";
-        }
-
-        [Test]
-        public void GlameredAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Glamered, attributes);
-        }
-
-        [Test]
-        public void FortificationAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Fortification, attributes);
-        }
-
-        [Test]
-        public void SlickAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Slick, attributes);
-        }
-
-        [Test]
-        public void ShadowAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Shadow, attributes);
-        }
-
-        [Test]
-        public void SilentMovesAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.SilentMoves, attributes);
-        }
-
-        [Test]
-        public void SpellResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.SpellResistance, attributes);
-        }
-
-        [Test]
-        public void AcidResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.AcidResistance, attributes);
-        }
-
-        [Test]
-        public void ColdResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.ColdResistance, attributes);
-        }
-
-        [Test]
-        public void ElectricityResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.ElectricityResistance, attributes);
-        }
-
-        [Test]
-        public void FireResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.FireResistance, attributes);
-        }
-
-        [Test]
-        public void SonicResistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.SonicResistance, attributes);
-        }
-
-        [Test]
-        public void GhostTouchAttributes()
-        {
-            AssertAttributes(SpecialAbilityConstants.GhostTouch, Enumerable.Empty<String>());
-        }
-
-        [Test]
-        public void InvulnerabilityAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Invulnerability, attributes);
-        }
-
-        [Test]
-        public void WildAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Wild, attributes);
-        }
-
-        [Test]
-        public void EtherealnessAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Etherealness, attributes);
-        }
-
-        [Test]
-        public void UndeadControllingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(SpecialAbilityConstants.UndeadControlling, attributes);
-        }
-
-        [Test]
-        public void ArrowCatchingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(SpecialAbilityConstants.ArrowCatching, attributes);
-        }
-
-        [Test]
-        public void BashingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield,
-                AttributeConstants.NotTower
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Bashing, attributes);
-        }
-
-        [Test]
-        public void BlindingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Blinding, attributes);
-        }
-
-        [Test]
-        public void ArrowDeflectionAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(SpecialAbilityConstants.ArrowDeflection, attributes);
-        }
-
-        [Test]
-        public void AnimatedAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Animated, attributes);
-        }
-
-        [Test]
-        public void ReflectingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Reflecting, attributes);
-        }
-
-        [Test]
-        public void BaneAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Bane, attributes);
-        }
-
-        [Test]
-        public void DistanceAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Ranged
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Distance, attributes);
-        }
-
-        [Test]
-        public void DisruptionAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee,
-                AttributeConstants.Bludgeoning
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Disruption, attributes);
-        }
-
-        [Test]
-        public void FlamingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Flaming, attributes);
-        }
-
-        [Test]
-        public void FrostAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Frost, attributes);
-        }
-
-        [Test]
-        public void MercifulAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Merciful, attributes);
-        }
-
-        [Test]
-        public void ReturningAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Ranged,
-                AttributeConstants.Thrown
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Returning, attributes);
-        }
-
-        [Test]
-        public void ShockAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Shock, attributes);
-        }
-
-        [Test]
-        public void SeekingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Ranged
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Seeking, attributes);
-        }
-
-        [Test]
-        public void ThunderingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Thundering, attributes);
-        }
-
-        [Test]
-        public void AnarchicAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Anarchic, attributes);
-        }
-
-        [Test]
-        public void AxiomaticAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Axiomatic, attributes);
-        }
-
-        [Test]
-        public void HolyAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Holy, attributes);
-        }
-
-        [Test]
-        public void UnholyAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Unholy, attributes);
-        }
-
-        [Test]
-        public void SpeedAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Speed, attributes);
-        }
-
-        [Test]
-        public void BrilliantEnergyAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon
-            };
-
-            AssertAttributes(SpecialAbilityConstants.BrilliantEnergy, attributes);
-        }
-
-        [Test]
-        public void KeenAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee,
-                AttributeConstants.NotBludgeoning
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Keen, attributes);
-        }
-
-        [Test]
-        public void KiFocusAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.KiFocus, attributes);
-        }
-
-        [Test]
-        public void MightyCleavingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.MightyCleaving, attributes);
-        }
-
-        [Test]
-        public void SpellStoringAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.SpellStoring, attributes);
-        }
-
-        [Test]
-        public void ThrowingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Throwing, attributes);
-        }
-
-        [Test]
-        public void ViciousAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Vicious, attributes);
-        }
-
-        [Test]
-        public void DefendingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Defending, attributes);
-        }
-
-        [Test]
-        public void WoundingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Wounding, attributes);
-        }
-
-        [Test]
-        public void DancingAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Dancing, attributes);
-        }
-
-        [Test]
-        public void VorpalAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon,
-                AttributeConstants.Melee,
-                AttributeConstants.NotBludgeoning,
-                AttributeConstants.Slashing
-            };
-
-            AssertAttributes(SpecialAbilityConstants.Vorpal, attributes);
+            AssertAttributes(name, attributes);
         }
     }
 }

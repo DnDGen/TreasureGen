@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(ArmorConstants.LionsShield, "Lion's shield")]
         [TestCase(ArmorConstants.WingedShield, "Winged shield")]
         [TestCase(ArmorConstants.AbsorbingShield, "Absorbing shield")]
-        public void ArmorConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

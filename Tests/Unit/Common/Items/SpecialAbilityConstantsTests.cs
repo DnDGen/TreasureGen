@@ -83,7 +83,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(SpecialAbilityConstants.Vicious, "Vicious")]
         [TestCase(SpecialAbilityConstants.GhostTouchWeapon, "Ghost touch (weapon)")]
         [TestCase(SpecialAbilityConstants.GhostTouchArmor, "Ghost touch (armor)")]
-        public void SpecialAbilityConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

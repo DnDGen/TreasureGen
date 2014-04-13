@@ -40,7 +40,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                scroll.Magic.Add(Magic.Curse, curse);
+                scroll.Magic[Magic.Curse] = curse;
             }
 
             return scroll;

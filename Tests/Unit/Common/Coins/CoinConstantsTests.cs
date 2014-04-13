@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Unit.Common.Coins
         [TestCase(CoinConstants.Platinum, "Platinum")]
         [TestCase(CoinConstants.Silver, "Silver")]
         [TestCase(CoinConstants.Copper, "Copper")]
-        public void CoinConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

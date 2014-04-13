@@ -48,7 +48,7 @@
     <Compile Include="Items\Intelligence.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemTypeConstants.cs" />
-    <Compile Include="Items\MagicEnumeration.cs" />
+    <Compile Include="Items\MagicConstants.cs" />
     <Compile Include="Items\PowerConstants.cs" />
     <Compile Include="Items\SpecialAbility.cs" />
     <Compile Include="Items\SpecialAbilityConstants.cs" />

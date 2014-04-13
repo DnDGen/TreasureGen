@@ -9,231 +9,51 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
     {
         protected override String tableName
         {
-            get { return "GemDescriptions"; }
+            get { return "ArmorAttributes"; }
         }
 
-        protected override String GetTableName()
+        [TestCase(ArmorConstants.Buckler, ItemTypeConstants.Armor,
+                                          AttributeConstants.Wood,
+                                          AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.LightWoodenShield, ItemTypeConstants.Armor,
+                                                    AttributeConstants.Wood,
+                                                    AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.LightSteelShield, ItemTypeConstants.Armor,
+                                                   AttributeConstants.Metal,
+                                                   AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.HeavyWoodenShield, ItemTypeConstants.Armor,
+                                                    AttributeConstants.Wood,
+                                                    AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.HeavySteelShield, ItemTypeConstants.Armor,
+                                                   AttributeConstants.Metal,
+                                                   AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.TowerShield, ItemTypeConstants.Armor,
+                                              AttributeConstants.Wood,
+                                              AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.PaddedArmor, ItemTypeConstants.Armor)]
+        [TestCase(ArmorConstants.LeatherArmor, ItemTypeConstants.Armor)]
+        [TestCase(ArmorConstants.StuddedLeatherArmor, ItemTypeConstants.Armor,
+                                                      AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.ChainShirt, ItemTypeConstants.Armor,
+                                             AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.HideArmor, ItemTypeConstants.Armor)]
+        [TestCase(ArmorConstants.ScaleMail, ItemTypeConstants.Armor,
+                                            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.Chainmail, ItemTypeConstants.Armor,
+                                            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.Breastplate, ItemTypeConstants.Armor,
+                                              AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.SplintMail, ItemTypeConstants.Armor,
+                                             AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.BandedMail, ItemTypeConstants.Armor,
+                                             AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.HalfPlate, ItemTypeConstants.Armor,
+                                            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.FullPlate, ItemTypeConstants.Armor,
+                                            AttributeConstants.Metal)]
+        public void Attributes(String name, params String[] attributes)
         {
-            return "ArmorAttributes";
-        }
-
-        [Test]
-        public void BucklerAttributes()
-        {
-            var attributes = new[] 
-            { 
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Wood,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.Buckler, attributes);
-        }
-
-        [Test]
-        public void LightWoodenShieldAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Wood,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.LightWoodenShield, attributes);
-        }
-
-        [Test]
-        public void LightSteelShieldAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Metal,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.LightSteelShield, attributes);
-        }
-
-        [Test]
-        public void HeavyWoodenShieldAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Wood,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.HeavyWoodenShield, attributes);
-        }
-
-        [Test]
-        public void HeavySteelShieldAttributes()
-        {
-            var attributes = new[]
-            { 
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.HeavySteelShield, attributes);
-        }
-
-        [Test]
-        public void TowerShieldAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Wood,
-                AttributeConstants.Shield
-            };
-
-            AssertAttributes(ArmorConstants.TowerShield, attributes);
-        }
-
-        [Test]
-        public void PaddedArmorAttributes()
-        {
-            var attributes = new[]
-            { 
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(ArmorConstants.PaddedArmor, attributes);
-        }
-
-        [Test]
-        public void LeatherArmorAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(ArmorConstants.LeatherArmor, attributes);
-        }
-
-        [Test]
-        public void StuddedLeatherArmorAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.StuddedLeatherArmor, attributes);
-        }
-
-        [Test]
-        public void ChainShirtAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.ChainShirt, attributes);
-        }
-
-        [Test]
-        public void HideArmorAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor
-            };
-
-            AssertAttributes(ArmorConstants.HideArmor, attributes);
-        }
-
-        [Test]
-        public void ScaleMailAttributes()
-        {
-            var attributes = new[] 
-            { 
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.ScaleMail, attributes);
-        }
-
-        [Test]
-        public void ChainmailAttributes()
-        {
-            var attributes = new[]
-            { 
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.Chainmail, attributes);
-        }
-
-        [Test]
-        public void BreastplateAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.Breastplate, attributes);
-        }
-
-        [Test]
-        public void SplintMailAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal 
-            };
-
-            AssertAttributes(ArmorConstants.SplintMail, attributes);
-        }
-
-        [Test]
-        public void BandedMailAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.BandedMail, attributes);
-        }
-
-        [Test]
-        public void HalfPlateAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Armor,
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.HalfPlate, attributes);
-        }
-
-        [Test]
-        public void FullPlateAttributes()
-        {
-            var attributes = new[] 
-            { 
-                ItemTypeConstants.Armor, 
-                AttributeConstants.Metal
-            };
-
-            AssertAttributes(ArmorConstants.FullPlate, attributes);
+            AssertAttributes(name, attributes);
         }
     }
 }

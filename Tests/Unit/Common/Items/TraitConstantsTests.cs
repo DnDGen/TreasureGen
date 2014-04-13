@@ -18,7 +18,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(TraitConstants.AlchemicalSilver, "Alchemical silver")]
         [TestCase(TraitConstants.Markings, "Markings provide a clue to its function")]
         [TestCase(TraitConstants.ShedsLight, "Sheds light")]
-        public void TraitConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

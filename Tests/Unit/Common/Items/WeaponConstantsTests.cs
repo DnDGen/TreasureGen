@@ -80,7 +80,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(WeaponConstants.CompositePlus2Longbow, "Composite (+2) longbow")]
         [TestCase(WeaponConstants.CompositePlus3Longbow, "Composite (+3) longbow")]
         [TestCase(WeaponConstants.CompositePlus4Longbow, "Composite (+4) longbow")]
-        public void WeaponConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

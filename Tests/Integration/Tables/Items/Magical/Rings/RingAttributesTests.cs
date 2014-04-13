@@ -9,36 +9,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
     {
         protected override String tableName
         {
-            get { return "GemDescriptions"; }
+            get { return "RingAttributes"; }
         }
 
-        protected override String GetTableName()
+        [TestCase("Ram", AttributeConstants.Charged,
+                         AttributeConstants.OneTimeUse)]
+        [TestCase("Three wishes", AttributeConstants.Charged,
+                                  AttributeConstants.OneTimeUse)]
+        public void Attributes(String name, params String[] attributes)
         {
-            return "RingAttributes";
-        }
-
-        [Test]
-        public void RamAttributes()
-        {
-            var attributes = new[]
-            {
-                AttributeConstants.Charged,
-                AttributeConstants.OneTimeUse
-            };
-
-            AssertAttributes("Ram", attributes);
-        }
-
-        [Test]
-        public void ThreeWishesAttributes()
-        {
-            var attributes = new[]
-            {
-                AttributeConstants.Charged,
-                AttributeConstants.OneTimeUse
-            };
-
-            AssertAttributes("Three wishes", attributes);
+            AssertAttributes(name, attributes);
         }
     }
 }

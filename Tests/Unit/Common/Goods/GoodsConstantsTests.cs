@@ -9,7 +9,7 @@ namespace EquipmentGen.Tests.Unit.Common.Goods
     {
         [TestCase(GoodsConstants.Gem, "Gem")]
         [TestCase(GoodsConstants.Art, "Art")]
-        public void GoodsConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

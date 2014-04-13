@@ -9,70 +9,26 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
     {
         protected override String tableName
         {
-            get { return "GemDescriptions"; }
+            get { return "SpecialMaterials"; }
         }
 
-        protected override String GetTableName()
+        [TestCase(TraitConstants.Adamantine, AttributeConstants.Metal)]
+        [TestCase(TraitConstants.Dragonhide, ItemTypeConstants.Armor)]
+        [TestCase(TraitConstants.ColdIron, AttributeConstants.Metal,
+                                           ItemTypeConstants.Weapon)]
+        [TestCase(TraitConstants.Mithral, AttributeConstants.Metal)]
+        [TestCase(TraitConstants.AlchemicalSilver, AttributeConstants.Metal,
+                                                   ItemTypeConstants.Weapon)]
+        [TestCase(TraitConstants.Darkwood, AttributeConstants.Wood)]
+        [TestCase("SpecialMaterials", TraitConstants.Mithral,
+                                      TraitConstants.Adamantine,
+                                      TraitConstants.AlchemicalSilver,
+                                      TraitConstants.Darkwood,
+                                      TraitConstants.ColdIron,
+                                      TraitConstants.Dragonhide)]
+        public void Attributes(String name, params String[] attributes)
         {
-            return "SpecialMaterials";
-        }
-
-        [Test]
-        public void AdamantineAttributes()
-        {
-            var attributes = new[] { AttributeConstants.Metal };
-            AssertAttributes(TraitConstants.Adamantine, attributes);
-        }
-
-        [Test]
-        public void DragonhideAttributes()
-        {
-            var attributes = new[] { ItemTypeConstants.Armor };
-            AssertAttributes(TraitConstants.Dragonhide, attributes);
-        }
-
-        [Test]
-        public void ColdIronAttributes()
-        {
-            var attributes = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
-            AssertAttributes(TraitConstants.ColdIron, attributes);
-        }
-
-        [Test]
-        public void MithralAttributes()
-        {
-            var attributes = new[] { AttributeConstants.Metal };
-            AssertAttributes(TraitConstants.Mithral, attributes);
-        }
-
-        [Test]
-        public void AlchemicalSilverAttributes()
-        {
-            var attributes = new[] { AttributeConstants.Metal, ItemTypeConstants.Weapon };
-            AssertAttributes(TraitConstants.AlchemicalSilver, attributes);
-        }
-
-        [Test]
-        public void DarkwoodAttributes()
-        {
-            var attributes = new[] { AttributeConstants.Wood };
-            AssertAttributes(TraitConstants.Darkwood, attributes);
-        }
-
-        [Test]
-        public void SpecialMaterialAttributes()
-        {
-            var attributes = new[]
-            {
-                TraitConstants.Mithral,
-                TraitConstants.Adamantine,
-                TraitConstants.AlchemicalSilver,
-                TraitConstants.Darkwood,
-                TraitConstants.ColdIron,
-                TraitConstants.Dragonhide
-            };
-
-            AssertAttributes("SpecialMaterials", attributes);
+            AssertAttributes(name, attributes);
         }
     }
 }

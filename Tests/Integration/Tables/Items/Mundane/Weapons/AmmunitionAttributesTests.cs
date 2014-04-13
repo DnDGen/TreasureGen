@@ -9,61 +9,31 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
     {
         protected override String tableName
         {
-            get { return "GemDescriptions"; }
+            get { return "AmmunitionAttributes"; }
         }
 
-        protected override String GetTableName()
+        [TestCase(WeaponConstants.Arrow, ItemTypeConstants.Weapon,
+                                         AttributeConstants.Common,
+                                         AttributeConstants.Ranged,
+                                         AttributeConstants.Ammunition,
+                                         AttributeConstants.Metal,
+                                         AttributeConstants.Wood,
+                                         AttributeConstants.NotBludgeoning)]
+        [TestCase(WeaponConstants.CrossbowBolt, ItemTypeConstants.Weapon,
+                                                AttributeConstants.Common,
+                                                AttributeConstants.Ranged,
+                                                AttributeConstants.Ammunition,
+                                                AttributeConstants.Metal,
+                                                AttributeConstants.NotBludgeoning)]
+        [TestCase(WeaponConstants.SlingBullet, ItemTypeConstants.Weapon,
+                                               AttributeConstants.Common,
+                                               AttributeConstants.Ranged,
+                                               AttributeConstants.Ammunition,
+                                               AttributeConstants.Metal,
+                                               AttributeConstants.Bludgeoning)]
+        public void Attributes(String name, params String[] attributes)
         {
-            return "AmmunitionAttributes";
-        }
-
-        [Test]
-        public void ArrowAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Weapon, 
-                AttributeConstants.Common,
-                AttributeConstants.Ranged,
-                AttributeConstants.Ammunition,
-                AttributeConstants.Metal, 
-                AttributeConstants.Wood,
-                AttributeConstants.NotBludgeoning
-            };
-
-            AssertAttributes(WeaponConstants.Arrow, attributes);
-        }
-
-        [Test]
-        public void CrossbowBoltAttributes()
-        {
-            var attributes = new[]
-            {
-                ItemTypeConstants.Weapon, 
-                AttributeConstants.Common, 
-                AttributeConstants.Ranged, 
-                AttributeConstants.Ammunition, 
-                AttributeConstants.Metal,
-                AttributeConstants.NotBludgeoning
-            };
-
-            AssertAttributes(WeaponConstants.CrossbowBolt, attributes);
-        }
-
-        [Test]
-        public void SlingBulletAttributes()
-        {
-            var attributes = new[] 
-            {
-                ItemTypeConstants.Weapon, 
-                AttributeConstants.Common, 
-                AttributeConstants.Ranged, 
-                AttributeConstants.Ammunition,
-                AttributeConstants.Metal,
-                AttributeConstants.Bludgeoning
-            };
-
-            AssertAttributes(WeaponConstants.SlingBullet, attributes);
+            AssertAttributes(name, attributes);
         }
     }
 }

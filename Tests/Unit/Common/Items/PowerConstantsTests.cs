@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(PowerConstants.Minor, "Minor")]
         [TestCase(PowerConstants.Medium, "Medium")]
         [TestCase(PowerConstants.Major, "Major")]
-        public void PowerConstantIsCorrect(String constant, String value)
+        public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
