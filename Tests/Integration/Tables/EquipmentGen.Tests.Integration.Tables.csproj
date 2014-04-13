@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\ChargeLimitsTests.cs" />
     <Compile Include="Items\Magical\Curses\CursedDependentSituationsTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />

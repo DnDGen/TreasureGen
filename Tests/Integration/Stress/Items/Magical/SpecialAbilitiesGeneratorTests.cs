@@ -20,11 +20,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var types = GetNewAttributes(true);
+            var attributes = GetNewAttributes(true);
             var power = GetNewPower(false);
             var bonus = Random.Next(5) + 1;
             var quantity = Random.Next(10) + 1;
-            var abilities = SpecialAbilitiesGenerator.GenerateWith(types, power, bonus, quantity);
+            var abilities = SpecialAbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
 
             Assert.That(abilities.Count(), Is.AtLeast(1));
 
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var coreNames = abilities.Select(a => a.CoreName);
             var names = abilities.Select(a => a.Name);
             var message = String.Format("Power: {0}\nTypes: {1}\nBonus: {2}\nQuantity: {3}\nNames: {4}\nCore names: {5}",
-                power, String.Join(", ", types), bonus, quantity, String.Join(", ", names), String.Join(", ", coreNames));
+                power, String.Join(", ", attributes), bonus, quantity, String.Join(", ", names), String.Join(", ", coreNames));
             var distinct = coreNames.Distinct();
             Assert.That(abilities.Count(), Is.EqualTo(distinct.Count()), message);
 

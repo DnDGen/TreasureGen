@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         private String GetNewMagicalItemType()
         {
-            switch (Random.Next(7))
+            switch (Random.Next(8))
             {
                 case 0: return ItemTypeConstants.Armor;
                 case 1: return ItemTypeConstants.Ring;
