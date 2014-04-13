@@ -3,58 +3,123 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Bag of 100 gold pieces</content>
-        <upper>8</upper>
+        <content>Material Plane</content>
+        <upper>5</upper>
     </object>
     <object>
-        <lower>9</lower>
-        <content>Silver coffer (6 in, by 6 in, by 1 ft.) (500gp value)</content>
+        <lower>6</lower>
+        <content>Ethereal Plane</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Plane of Shadow</content>
         <upper>15</upper>
     </object>
     <object>
         <lower>16</lower>
-        <content>Iron door (up to 10 ft. wide and 10 ft. high and barred on one side - must be placed upright, attaches and hinges itself)</content>
-        <upper>22</upper>
+        <content>Astral plane</content>
+        <upper>20</upper>
     </object>
     <object>
-        <lower>23</lower>
-        <content>10 gems (100gp value each)</content>
+        <lower>21</lower>
+        <content>Elemental Plane of Air</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Elemental Plane of Earth</content>
         <upper>30</upper>
     </object>
     <object>
         <lower>31</lower>
-        <content>Wooden ladder (24 ft. long)</content>
-        <upper>44</upper>
+        <content>Elemental Plane of Fire</content>
+        <upper>35</upper>
     </object>
     <object>
-        <lower>45</lower>
-        <content>Mule (with saddle bags)</content>
-        <upper>51</upper>
+        <lower>36</lower>
+        <content>Elemental Plane of Water</content>
+        <upper>40</upper>
     </object>
     <object>
-        <lower>52</lower>
-        <content>Open pit (10 ft. by 10 ft. by 10 ft.)</content>
+        <lower>41</lower>
+        <content>Negative Energy Plane</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Positive Energy Plane</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Celestia</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Bytopia</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Elysium</content>
         <upper>59</upper>
     </object>
     <object>
         <lower>60</lower>
-        <content>Potion of cure serious wounds</content>
+        <content>Beastlands</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Arborea</content>
+        <upper>65</upper>
+    </object>
+    <object>
+        <lower>66</lower>
+        <content>Arcadia</content>
         <upper>68</upper>
     </object>
     <object>
         <lower>69</lower>
-        <content>Rowboat (12 ft. long)</content>
-        <upper>75</upper>
+        <content>Ysgard</content>
+        <upper>71</upper>
     </object>
     <object>
-        <lower>76</lower>
-        <content>Scroll</content>
+        <lower>72</lower>
+        <content>Mechanus</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Limbo</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Acheron</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Pandemonium</content>
         <upper>83</upper>
     </object>
     <object>
         <lower>84</lower>
-        <content>Pair of war dogs (treat as riding dogs)</content>
-        <upper>90</upper>
+        <content>Baator</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Gehenna</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Hades</content>
+        <upper>92</upper>
     </object>
     <object>
         <lower>93</lower>
@@ -68,7 +133,7 @@
     </object>
     <object>
         <lower>99</lower>
-        <content>Portable ram</content>
+        <content>The Outlands</content>
         <upper>100</upper>
     </object>
 </percentile>

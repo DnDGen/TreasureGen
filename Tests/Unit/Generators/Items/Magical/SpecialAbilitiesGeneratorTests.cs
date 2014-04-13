@@ -300,6 +300,32 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void CanGetAbilitiesWithBonusOf0WhileAtBonusOf10()
+        {
+            var ability1 = CreateSpecialAbility("ability 1");
+            ability1.BonusEquivalent = 9;
+            var ability2 = CreateSpecialAbility("ability 2");
+            ability2.BonusEquivalent = 0;
+            var ability3 = CreateSpecialAbility("ability 3");
+            ability3.BonusEquivalent = 1;
+
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<String>()))
+                .Returns(new[] { ability1.Name, ability2.Name, ability3.Name });
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(1).Returns(2).Returns(3);
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 1)).Returns(ability1.Name);
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns(ability2.Name);
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 3)).Returns(ability3.Name);
+            mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(ability1.Name)).Returns(ability1);
+            mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(ability2.Name)).Returns(ability2);
+            mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(ability3.Name)).Returns(ability3);
+
+            var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
+            Assert.That(abilities, Contains.Item(ability1));
+            Assert.That(abilities, Contains.Item(ability2));
+            Assert.That(abilities.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
         public void DuplicateAbilitiesCannotBeAdded()
         {
             var ability = CreateSpecialAbility("ability");
