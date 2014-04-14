@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(weapon.Attributes, Contains.Item(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.GreaterThan(0));
-            Assert.That(weapon.Magic, Is.Empty);
+            Assert.That(weapon.IsMagical, Is.False);
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon));
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
         }

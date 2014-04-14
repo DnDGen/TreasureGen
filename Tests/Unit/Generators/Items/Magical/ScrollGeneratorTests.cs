@@ -103,35 +103,34 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void ScrollsAreMagical()
         {
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Magic[Magic.IsMagical], Is.True);
+            Assert.That(scroll.IsMagical, Is.True);
         }
 
         [Test]
         public void DoNotGetCurseIfNotCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Magic.Keys, Is.Not.Contains(Magic.Curse));
+            Assert.That(scroll.Magic.Curse, Is.Empty);
         }
 
         [Test]
         public void GetCurseIfCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Magic.Keys, Contains.Item(Magic.Curse));
-            Assert.That(scroll.Magic[Magic.Curse], Is.EqualTo("cursed"));
+            Assert.That(scroll.Magic.Curse, Is.EqualTo("cursed"));
         }
 
         [Test]
         public void GetSpecificCursedItems()
         {
             var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
 

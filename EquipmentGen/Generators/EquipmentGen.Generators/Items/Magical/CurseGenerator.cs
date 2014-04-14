@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -19,9 +17,9 @@ namespace EquipmentGen.Generators.Items.Magical
             this.percentileSelector = percentileSelector;
         }
 
-        public Boolean HasCurse(Dictionary<Magic, Object> magic)
+        public Boolean HasCurse(Boolean isMagical)
         {
-            if (!magic.Any())
+            if (!isMagical)
                 return false;
 
             var roll = dice.Percentile();
@@ -115,8 +113,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var roll = dice.Percentile();
 
             specificCursedItem.Name = percentileSelector.SelectFrom("SpecificCursedItems", roll);
-            specificCursedItem.Magic[Magic.IsMagical] = true;
-            specificCursedItem.Magic[Magic.Curse] = "This is a specific cursed item";
+            specificCursedItem.Magic.Curse = "This is a specific cursed item";
 
             return specificCursedItem;
         }

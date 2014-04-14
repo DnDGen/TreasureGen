@@ -22,14 +22,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var scroll = ScrollGenerator.GenerateAtPower(power);
 
-            if (scroll.Magic.ContainsKey(Magic.Curse) && scroll.Magic[Magic.Curse] == "This is a specific cursed item")
+            if (scroll.Magic.Curse == "This is a specific cursed item")
                 return;
 
             Assert.That(scroll.Name, Is.EqualTo("Divine scroll").Or.EqualTo("Arcane scroll"));
             Assert.That(scroll.Traits, Is.Not.Empty);
             Assert.That(scroll.Attributes, Is.Not.Null);
             Assert.That(scroll.Quantity, Is.EqualTo(1));
-            Assert.That(scroll.Magic[Magic.IsMagical], Is.True);
+            Assert.That(scroll.IsMagical, Is.True);
         }
     }
 }

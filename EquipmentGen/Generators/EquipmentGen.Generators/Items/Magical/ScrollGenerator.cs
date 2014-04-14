@@ -23,7 +23,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
             scroll.Name = String.Format("{0} scroll", spellType);
-            scroll.Magic[Magic.IsMagical] = true;
+            scroll.IsMagical = true;
 
             var quantity = GetQuantity(power);
             while (quantity-- > 0)
@@ -34,13 +34,13 @@ namespace EquipmentGen.Generators.Items.Magical
                 scroll.Traits.Add(spellWithLevel);
             }
 
-            if (curseGenerator.HasCurse(scroll.Magic))
+            if (curseGenerator.HasCurse(scroll.IsMagical))
             {
                 var curse = curseGenerator.GenerateCurse();
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                scroll.Magic[Magic.Curse] = curse;
+                scroll.Magic.Curse = curse;
             }
 
             return scroll;

@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         {
             var ammunition = AmmunitionGenerator.Generate();
 
-            Assert.That(ammunition.Magic, Is.Empty);
+            Assert.That(ammunition.IsMagical, Is.False);
             Assert.That(ammunition.Name, Is.Not.Empty);
             Assert.That(ammunition.Quantity, Is.InRange<Int32>(1, 50));
             Assert.That(ammunition.Traits, Is.Not.Null);

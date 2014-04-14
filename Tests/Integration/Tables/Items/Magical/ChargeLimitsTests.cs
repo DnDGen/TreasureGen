@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
             get { return "ChargeLimits"; }
         }
 
-        [TestCase("Bracelet of fiends", 1, 4)]
+        [TestCase("Bracelet of friends", 1, 4)]
         [TestCase("Brooch of shielding", 1, 101)]
         [TestCase("Chime of opening", 1, 10)]
         [TestCase("Deck of illusions", 14, 33)] //90% of the time is full (34), 10% rolls here. See http://www.d20srd.org/srd/magicItems/wondrousItems.htm

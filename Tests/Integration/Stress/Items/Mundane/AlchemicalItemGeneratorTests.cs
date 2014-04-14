@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 
             Assert.That(item.Name, Is.Not.Empty);
             Assert.That(item.Quantity, Is.GreaterThan(0));
-            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.Traits, Is.Empty);
         }

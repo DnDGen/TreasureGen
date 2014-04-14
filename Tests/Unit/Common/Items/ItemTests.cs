@@ -29,7 +29,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [Test]
         public void MagicInitialized()
         {
-            Assert.That(item.Magic, Is.Empty);
+            Assert.That(item.Magic, Is.Not.Null);
         }
 
         [Test]
@@ -42,6 +42,62 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         public void TraitsInitialized()
         {
             Assert.That(item.Traits, Is.Empty);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfSetToTrue()
+        {
+            item.IsMagical = true;
+            Assert.That(item.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void IsMagicalDefaultsToFalse()
+        {
+            Assert.That(item.IsMagical, Is.False);
+        }
+
+        [Test]
+        public void IsMagicalFalseIfSetToFalse()
+        {
+            item.IsMagical = true;
+            item.IsMagical = false;
+            Assert.That(item.IsMagical, Is.False);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfThereIsABonus()
+        {
+            item.Magic.Bonus = 1;
+            Assert.That(item.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfThereAreCharges()
+        {
+            item.Magic.Charges = 1;
+            Assert.That(item.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfThereIsACurse()
+        {
+            item.Magic.Curse = "curse";
+            Assert.That(item.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfThereIsIntelligenceWithEgo()
+        {
+            item.Magic.Intelligence.Ego = 1;
+            Assert.That(item.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void IsMagicalTrueIfThereAreSpecialAbilities()
+        {
+            item.Magic.SpecialAbilities = new[] { new SpecialAbility() };
+            Assert.That(item.IsMagical, Is.True);
         }
     }
 }

@@ -26,13 +26,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var attributes = GetNewAttributes(true);
             var power = GetNewPower(false);
-            var magic = new Dictionary<Magic, Object>();
+            var magic = new Magic();
             var bonus = Random.Next(5) + 1;
             var quantity = Random.Next(10) + 1;
 
-            magic[Magic.Bonus] = bonus;
-            magic[Magic.Abilities] = AbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
-            magic[Magic.IsMagical] = true;
+            magic.Bonus = bonus;
+            magic.SpecialAbilities = AbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
 
             var intelligence = IntelligenceGenerator.GenerateFor(magic);
 

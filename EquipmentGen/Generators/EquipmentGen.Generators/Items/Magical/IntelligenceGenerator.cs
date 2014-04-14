@@ -21,9 +21,9 @@ namespace EquipmentGen.Generators.Items.Magical
             this.attributesSelector = attributesSelector;
         }
 
-        public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Dictionary<Magic, Object> magic)
+        public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Boolean isMagical)
         {
-            if (!magic.Any())
+            if (!isMagical)
                 return false;
 
             if (attributes.Contains(AttributeConstants.OneTimeUse))
@@ -49,7 +49,7 @@ namespace EquipmentGen.Generators.Items.Magical
             }
         }
 
-        public Intelligence GenerateFor(Dictionary<Magic, Object> magic)
+        public Intelligence GenerateFor(Magic magic)
         {
             var roll = dice.Percentile();
             var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats", roll);
@@ -57,16 +57,10 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var intelligence = new Intelligence();
             intelligence.Ego += (highStat - 10) / 2 * 2;
+            intelligence.Ego += magic.Bonus;
 
-            if (magic.ContainsKey(Magic.Bonus))
-                intelligence.Ego += Convert.ToInt32(magic[Magic.Bonus]);
-
-            if (magic.ContainsKey(Magic.Abilities))
-            {
-                var abilities = magic[Magic.Abilities] as IEnumerable<SpecialAbility>;
-                foreach (var ability in abilities)
-                    intelligence.Ego += ability.BonusEquivalent;
-            }
+            foreach (var ability in magic.SpecialAbilities)
+                intelligence.Ego += ability.BonusEquivalent;
 
             switch (dice.d3())
             {

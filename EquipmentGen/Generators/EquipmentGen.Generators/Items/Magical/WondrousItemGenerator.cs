@@ -42,27 +42,27 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var item = new Item();
             item.Name = result;
-            item.Magic[Magic.IsMagical] = true;
+            item.IsMagical = true;
 
             var attributeName = GetNameForAttributes(item.Name);
             item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", attributeName);
 
             if (item.Name.Contains("+"))
-                item.Magic[Magic.Bonus] = GetBonus(item.Name);
+                item.Magic.Bonus = GetBonus(item.Name);
 
             if (item.Attributes.Any(a => a == AttributeConstants.Charged))
-                item.Magic[Magic.Charges] = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Name);
+                item.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Name);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.Magic))
-                item.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(item.Magic);
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.IsMagical))
+                item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item.Magic);
 
-            if (curseGenerator.HasCurse(item.Magic))
+            if (curseGenerator.HasCurse(item.IsMagical))
             {
                 var curse = curseGenerator.GenerateCurse();
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                item.Magic.Add(Magic.Curse, curse);
+                item.Magic.Curse = curse;
             }
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
@@ -78,6 +78,13 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 roll = dice.Percentile();
                 var contents = percentileSelector.SelectFrom("IronFlaskContents", roll);
+
+                if (contents == "BalorOrPitFiend")
+                {
+                    roll = dice.Percentile();
+                    contents = percentileSelector.SelectFrom("BalorOrPitFiend", roll);
+                }
+
                 item.Name = String.Format("{0} ({1})", item.Name, contents);
             }
             else if (item.Name == "Robe of useful items")

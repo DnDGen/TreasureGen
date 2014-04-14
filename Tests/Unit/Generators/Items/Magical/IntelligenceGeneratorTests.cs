@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private List<String> attributes;
-        private Dictionary<Magic, Object> magic;
+        private Magic magic;
 
         [SetUp]
         public void Setup()
@@ -35,8 +35,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
 
             attributes = new List<String>();
-            magic = new Dictionary<Magic, Object>();
-            magic[Magic.IsMagical] = true;
+            magic = new Magic();
 
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
                 mockAttributesSelector.Object);
@@ -48,7 +47,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.AlchemicalItem, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.AlchemicalItem, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -57,7 +56,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void ArmorsAreIntelligentOnRollOf1()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, true);
             Assert.That(isIntelligent, Is.True);
         }
 
@@ -67,7 +66,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 1; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -78,7 +77,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Potion, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Potion, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -87,7 +86,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void RingsAreIntelligentOnRollOf1()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, true);
             Assert.That(isIntelligent, Is.True);
         }
 
@@ -97,7 +96,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 1; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -106,7 +105,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void RodsAreIntelligentOnRollOf1()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, true);
             Assert.That(isIntelligent, Is.True);
         }
 
@@ -116,7 +115,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 1; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -127,7 +126,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Scroll, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Scroll, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -138,7 +137,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Staff, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Staff, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -149,7 +148,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Wand, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Wand, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -158,7 +157,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void WondrousItemsAreIntelligentOnRollOf1()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, true);
             Assert.That(isIntelligent, Is.True);
         }
 
@@ -168,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 1; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -179,7 +178,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 5; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, true);
                 Assert.That(isIntelligent, Is.True);
             }
         }
@@ -190,7 +189,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 5; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -201,7 +200,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 15; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
                 Assert.That(isIntelligent, Is.True);
             }
         }
@@ -212,7 +211,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 15; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, magic);
+                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
                 Assert.That(isIntelligent, Is.False);
             }
         }
@@ -220,20 +219,16 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void OneTimeUseItemsAreNotIntelligent()
         {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
             attributes.Add(AttributeConstants.OneTimeUse);
 
-            var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
             Assert.That(isIntelligent, Is.False);
         }
 
         [Test]
         public void NonMagicalItemsAreNotIntelligent()
         {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            magic.Clear();
-
-            var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, magic);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, false);
             Assert.That(isIntelligent, Is.False);
         }
 
@@ -557,7 +552,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoIncludesMagicBonus()
         {
-            magic[Magic.Bonus] = 9266;
+            magic.Bonus = 9266;
 
             var intelligence = intelligenceGenerator.GenerateFor(magic);
             Assert.That(intelligence.Ego, Is.EqualTo(9266));
@@ -568,7 +563,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var ability = new SpecialAbility();
             ability.BonusEquivalent = 9266;
-            magic[Magic.Abilities] = new[] { ability };
+            magic.SpecialAbilities = new[] { ability };
 
             var intelligence = intelligenceGenerator.GenerateFor(magic);
             Assert.That(intelligence.Ego, Is.EqualTo(9266));
@@ -671,8 +666,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 .Returns("power 1").Returns("power 2");
             var ability = new SpecialAbility();
             ability.BonusEquivalent = 92;
-            magic[Magic.Abilities] = new[] { ability };
-            magic[Magic.Bonus] = 66;
+            magic.SpecialAbilities = new[] { ability };
+            magic.Bonus = 66;
 
             var intelligence = intelligenceGenerator.GenerateFor(magic);
             Assert.That(intelligence.Ego, Is.EqualTo(177));

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <name>Bracelet of friends</name>
+    <attribute>1</attribute>
+    <attribute>4</attribute>
+  </object>
+    <object>
+        <name>Brooch of shielding</name>
+        <attribute>1</attribute>
+        <attribute>101</attribute>
+    </object>
+  <object>
+    <name>Chime of opening</name>
+    <attribute>1</attribute>
+    <attribute>10</attribute>
+  </object>
+    <object>
+        <name>Deck of illusions</name>
+        <attribute>14</attribute>
+        <attribute>33</attribute>
+    </object>
+    <object>
+        <name>Gem of brightness</name>
+        <attribute>1</attribute>
+        <attribute>50</attribute>
+    </object>
+    <object>
+        <name>Keoghtom's ointment</name>
+        <attribute>1</attribute>
+        <attribute>5</attribute>
+    </object>
+    <object>
+        <name>Ram</name>
+        <attribute>1</attribute>
+        <attribute>50</attribute>
+    </object>
+    <object>
+        <name>Scarab of protection</name>
+        <attribute>1</attribute>
+        <attribute>12</attribute>
+    </object>
+    <object>
+        <name>Three wishes</name>
+        <attribute>1</attribute>
+        <attribute>3</attribute>
+    </object>
+</percentile>

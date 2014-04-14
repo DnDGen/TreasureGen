@@ -38,6 +38,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             charges = ChargesGenerator.GenerateFor(String.Empty, name);
             var min = Convert.ToInt32(table[name].First());
             var max = Convert.ToInt32(table[name].Last());
+
+            if (name == "Deck of illusions")
+                max = 34;
+
             Assert.That(charges, Is.InRange<Int32>(min, max));
         }
 

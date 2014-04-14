@@ -54,7 +54,7 @@
     <Compile Include="Items\IntelligenceTests.cs" />
     <Compile Include="Items\ItemTests.cs" />
     <Compile Include="Items\ItemTypeConstantsTests.cs" />
-    <Compile Include="Items\MagicConstantsTests.cs" />
+    <Compile Include="Items\MagicTests.cs" />
     <Compile Include="Items\PowerConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityTests.cs" />

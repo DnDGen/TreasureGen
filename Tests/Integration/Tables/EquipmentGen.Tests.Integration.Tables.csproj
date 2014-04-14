@@ -137,6 +137,9 @@
     <Compile Include="Goods\Level9GoodsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\BalorOrPitFiendTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\HornOfValhallaTypesTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\IronFlaskContentsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\PlanesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\WondrousItemTraitsTests.cs" />

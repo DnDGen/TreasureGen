@@ -41,27 +41,27 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", ability);
-            ring.Magic[Magic.IsMagical] = true;
+            ring.IsMagical = true;
             ring.Attributes = attributesSelector.SelectFrom("RingAttributes", ability);
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
             ring.Traits.AddRange(traits);
 
             if (ability.Contains("+"))
-                ring.Magic[Magic.Bonus] = GetBonus(ability);
+                ring.Magic.Bonus = GetBonus(ability);
 
-            if (ring.Attributes.Any(a => a == AttributeConstants.Charged))
-                ring.Magic[Magic.Charges] = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, ability);
+            if (ring.Attributes.Contains(AttributeConstants.Charged))
+                ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, ability);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, ring.Attributes, ring.Magic))
-                ring.Magic[Magic.Intelligence] = intelligenceGenerator.GenerateFor(ring.Magic);
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, ring.Attributes, ring.IsMagical))
+                ring.Magic.Intelligence = intelligenceGenerator.GenerateFor(ring.Magic);
 
-            if (curseGenerator.HasCurse(ring.Magic))
+            if (curseGenerator.HasCurse(ring.IsMagical))
             {
                 var curse = curseGenerator.GenerateCurse();
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                ring.Magic[Magic.Curse] = curse;
+                ring.Magic.Curse = curse;
             }
 
             if (ability.Contains("Counterspells"))

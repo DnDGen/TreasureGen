@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using D20Dice;
-using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -14,15 +12,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
     public class CurseGeneratorTests
     {
         private ICurseGenerator curseGenerator;
-        private Dictionary<Magic, Object> magic;
         private Mock<IDice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
-            magic = new Dictionary<Magic, Object>();
-            magic[Magic.IsMagical] = true;
             mockDice = new Mock<IDice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
 
@@ -32,8 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NotCursedIfNoMagic()
         {
-            magic.Clear();
-            var cursed = curseGenerator.HasCurse(magic);
+            var cursed = curseGenerator.HasCurse(false);
             Assert.That(cursed, Is.False);
         }
 
@@ -43,7 +37,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 100; roll > 5; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var cursed = curseGenerator.HasCurse(magic);
+                var cursed = curseGenerator.HasCurse(true);
                 Assert.That(cursed, Is.False);
             }
         }
@@ -54,7 +48,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 5; roll > 0; roll--)
             {
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var cursed = curseGenerator.HasCurse(magic);
+                var cursed = curseGenerator.HasCurse(true);
                 Assert.That(cursed, Is.True);
             }
         }
@@ -176,8 +170,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
-            Assert.That(cursedItem.Magic[Magic.IsMagical], Is.True);
-            Assert.That(cursedItem.Magic[Magic.Curse], Is.EqualTo("This is a specific cursed item"));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
         }
     }
 }

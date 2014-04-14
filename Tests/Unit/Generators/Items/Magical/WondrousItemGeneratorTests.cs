@@ -80,13 +80,14 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void DoNotGetIntelligenceIfNotIntelligent()
         {
             var intelligence = new Intelligence();
+            intelligence.Ego = 9266;
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
-                .Returns(intelligence);
+                It.IsAny<Boolean>())).Returns(false);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Intelligence));
+            Assert.That(item.Magic.Intelligence, Is.Not.EqualTo(intelligence));
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
 
         [Test]
@@ -94,12 +95,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
-                .Returns(intelligence);
+                It.IsAny<Boolean>())).Returns(true);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic[Magic.Intelligence], Is.EqualTo(intelligence));
+            Assert.That(item.Magic.Intelligence, Is.EqualTo(intelligence));
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Charges));
+            Assert.That(item.Magic.Charges, Is.EqualTo(0));
         }
 
         [Test]
@@ -123,15 +123,14 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, name)).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            var charges = Convert.ToInt32(item.Magic[Magic.Charges]);
-            Assert.That(charges, Is.EqualTo(9266));
+            Assert.That(item.Magic.Charges, Is.EqualTo(9266));
         }
 
         [Test]
         public void DoNotGetBonusIfNoBonus()
         {
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Bonus));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(0));
         }
 
         [Test]
@@ -140,15 +139,14 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns("wondrous item +9266");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            var bonus = Convert.ToInt32(item.Magic[Magic.Bonus]);
-            Assert.That(bonus, Is.EqualTo(9266));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
         }
 
         [Test]
         public void WondrousItemsAreMagical()
         {
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic[Magic.IsMagical], Is.True);
+            Assert.That(item.IsMagical, Is.True);
         }
 
         [Test]
@@ -173,6 +171,19 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask (contents)"));
+        }
+
+        [Test]
+        public void IfBalorOrPitFiend_GetFromSelector()
+        {
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
+            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns("BalorOrPitFiend");
+            mockPercentileSelector.Setup(p => p.SelectFrom("BalorOrPitFiend", It.IsAny<Int32>())).Returns("balor or pit fiend");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Iron flask (balor or pit fiend)"));
         }
 
         [Test]
@@ -268,29 +279,28 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGetCurseIfNotCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Keys, Is.Not.Contains(Magic.Curse));
+            Assert.That(item.Magic.Curse, Is.Empty);
         }
 
         [Test]
         public void GetCurseIfCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Keys, Contains.Item(Magic.Curse));
-            Assert.That(item.Magic[Magic.Curse], Is.EqualTo("cursed"));
+            Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
 
         [Test]
         public void GetSpecificCursedItems()
         {
             var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
 

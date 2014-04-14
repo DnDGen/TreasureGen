@@ -9,14 +9,29 @@ namespace EquipmentGen.Common.Items
         public String Name { get; set; }
         public List<String> Traits { get; set; }
         public IEnumerable<String> Attributes { get; set; }
-        public Dictionary<Magic, Object> Magic { get; set; }
+        public Magic Magic { get; set; }
         public Int32 Quantity { get; set; }
+
+        public Boolean IsMagical
+        {
+            get
+            {
+                return isMagical || Magic.Bonus > 0 || Magic.Charges > 0 || !String.IsNullOrEmpty(Magic.Curse)
+                       || Magic.Intelligence.Ego > 0 || Magic.SpecialAbilities.Any();
+            }
+            set
+            {
+                isMagical = value;
+            }
+        }
+
+        private Boolean isMagical;
 
         public Item()
         {
             Traits = new List<String>();
             Attributes = Enumerable.Empty<String>();
-            Magic = new Dictionary<Magic, Object>();
+            Magic = new Magic();
             Quantity = 1;
             Name = String.Empty;
         }

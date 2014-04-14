@@ -49,7 +49,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));
-            Assert.That(ring.Magic[Magic.IsMagical], Is.True);
+            Assert.That(ring.IsMagical, Is.True);
         }
 
         [Test]
@@ -87,26 +87,27 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetIntelligenceIfIntelligent()
         {
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+                It.IsAny<Boolean>())).Returns(true);
             var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
-                .Returns(intelligence);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic[Magic.Intelligence], Is.EqualTo(intelligence));
+            Assert.That(ring.Magic.Intelligence, Is.EqualTo(intelligence));
         }
 
         [Test]
         public void DoNotGetIntelligenceIfNotIntelligent()
         {
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+                It.IsAny<Boolean>())).Returns(false);
             var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Dictionary<Magic, Object>>()))
+            intelligence.Ego = 9266;
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
                 .Returns(intelligence);
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Keys, Is.Not.Contains(Magic.Intelligence));
+            Assert.That(ring.Magic.Intelligence, Is.Not.EqualTo(intelligence));
+            Assert.That(ring.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
 
         [Test]
@@ -117,7 +118,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic[Magic.Charges], Is.EqualTo(9266));
+            Assert.That(ring.Magic.Charges, Is.EqualTo(9266));
         }
 
         [Test]
@@ -128,7 +129,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Keys, Is.Not.Contains(Magic.Charges));
+            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
         }
 
         [Test]
@@ -305,35 +306,34 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability +90210"));
-            Assert.That(ring.Magic[Magic.Bonus], Is.EqualTo(90210));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(90210));
         }
 
         [Test]
         public void DoNotGetCurseIfNotCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Keys, Is.Not.Contains(Magic.Curse));
+            Assert.That(ring.Magic.Curse, Is.Empty);
         }
 
         [Test]
         public void GetCurseIfCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Keys, Contains.Item(Magic.Curse));
-            Assert.That(ring.Magic[Magic.Curse], Is.EqualTo("cursed"));
+            Assert.That(ring.Magic.Curse, Is.EqualTo("cursed"));
         }
 
         [Test]
         public void GetSpecificCursedItems()
         {
             var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Dictionary<Magic, Object>>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
 

@@ -61,14 +61,11 @@ namespace EquipmentGen.Generators.Items.Magical
 
             tableName = String.Format("{0}Types", result.Type);
             roll = dice.Percentile();
-            var bonus = Convert.ToInt32(result.AmountToRoll);
 
             armor.Name = percentileSelector.SelectFrom(tableName, roll);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
-            armor.Magic[Magic.Bonus] = bonus;
-
-            var abilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, bonus, abilityCount);
-            armor.Magic[Magic.Abilities] = abilities;
+            armor.Magic.Bonus = Convert.ToInt32(result.AmountToRoll);
+            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
 
             if (materialsSelector.HasSpecialMaterial(armor.Attributes))
             {
@@ -79,19 +76,16 @@ namespace EquipmentGen.Generators.Items.Magical
             var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
             armor.Traits.AddRange(traits);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes, armor.Magic))
-            {
-                var intelligence = intelligenceGenerator.GenerateFor(armor.Magic);
-                armor.Magic.Add(Magic.Intelligence, intelligence);
-            }
+            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes, armor.IsMagical))
+                armor.Magic.Intelligence = intelligenceGenerator.GenerateFor(armor.Magic); ;
 
-            if (curseGenerator.HasCurse(armor.Magic))
+            if (curseGenerator.HasCurse(armor.IsMagical))
             {
                 var curse = curseGenerator.GenerateCurse();
                 if (curse == "SpecificCursedItem")
                     return curseGenerator.GenerateSpecificCursedItem();
 
-                armor.Magic.Add(Magic.Curse, curse);
+                armor.Magic.Curse = curse;
             }
 
             return armor;
