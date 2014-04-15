@@ -42,7 +42,6 @@
     <Compile Include="AttributesSelector.cs" />
     <Compile Include="PercentileSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecialAbilityDataSelector.cs" />
     <Compile Include="TypeAndAmountPercentileSelector.cs" />
   </ItemGroup>
   <ItemGroup>

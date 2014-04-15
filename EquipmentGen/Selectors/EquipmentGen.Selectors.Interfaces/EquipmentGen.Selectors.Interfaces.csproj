@@ -40,17 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IPercentileSelector.cs" />
-    <Compile Include="Interfaces\ISpecialAbilityDataSelector.cs" />
     <Compile Include="Interfaces\ITypeAndAmountPercentileSelector.cs" />
     <Compile Include="Interfaces\IAttributesSelector.cs" />
     <Compile Include="Objects\TypeAndAmountPercentileResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\EquipmentGen.Common.csproj">
-      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
-      <Name>EquipmentGen.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

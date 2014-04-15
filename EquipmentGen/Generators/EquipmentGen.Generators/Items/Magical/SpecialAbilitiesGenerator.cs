@@ -12,16 +12,14 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         private const Int32 MaxBonus = 10;
 
-        private ISpecialAbilityDataSelector specialAbilityDataSelector;
         private IAttributesSelector attributesSelector;
         private IPercentileSelector percentileSelector;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
-        public SpecialAbilitiesGenerator(ISpecialAbilityDataSelector specialAbilityDataSelector, IAttributesSelector attributesSelector,
-            IPercentileSelector percentileSelector, IDice dice, ISpellGenerator spellGenerator)
+        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IDice dice,
+            ISpellGenerator spellGenerator)
         {
-            this.specialAbilityDataSelector = specialAbilityDataSelector;
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.dice = dice;
@@ -110,13 +108,26 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (abilityName == "BonusSpecialAbility")
                     continue;
 
-                var ability = specialAbilityDataSelector.SelectFor(abilityName);
+                var ability = GetSpecialAbilityWithData(abilityName);
 
                 if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
                     availableAbilities.Add(ability);
             }
 
             return availableAbilities;
+        }
+
+        private SpecialAbility GetSpecialAbilityWithData(String abilityName)
+        {
+            var ability = new SpecialAbility();
+
+            ability.Name = abilityName;
+            ability.CoreName = attributesSelector.SelectFrom("SpecialAbilityCoreNames", abilityName).First();
+            ability.AttributeRequirements = attributesSelector.SelectFrom("SpecialAbilityAttributes", ability.CoreName);
+            ability.BonusEquivalent = Convert.ToInt32(attributesSelector.SelectFrom("SpecialAbilityBonuses", abilityName).First());
+            ability.Strength = Convert.ToInt32(attributesSelector.SelectFrom("SpecialAbilityStrengths", abilityName).First());
+
+            return ability;
         }
 
         private Boolean AllAttributeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> attributes)
