@@ -13,17 +13,19 @@ namespace EquipmentGen.Generators.Items.Magical
         private const Int32 MaxBonus = 10;
 
         private IAttributesSelector attributesSelector;
+        private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IDice dice;
         private ISpellGenerator spellGenerator;
 
         public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IDice dice,
-            ISpellGenerator spellGenerator)
+            ISpellGenerator spellGenerator, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.dice = dice;
             this.spellGenerator = spellGenerator;
+            this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
         }
 
         public IEnumerable<SpecialAbility> GenerateWith(IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
@@ -41,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (CanHaveAllAvailableAbilities(quantity, bonusSum, availableAbilities))
                 {
                     var strongestAbilities = GetStrongestAvailableAbilities(availableAbilities);
-                    var duplicates = abilities.Where(a => strongestAbilities.Any(sA => sA.CoreName == a.CoreName));
+                    var duplicates = abilities.Where(a => strongestAbilities.Any(sA => sA.BaseName == a.BaseName));
                     abilities = abilities.Except(duplicates).ToList();
 
                     abilities.AddRange(strongestAbilities);
@@ -56,9 +58,9 @@ namespace EquipmentGen.Generators.Items.Magical
                     continue;
                 }
 
-                if (abilities.Any(a => a.CoreName == ability.CoreName))
+                if (abilities.Any(a => a.BaseName == ability.BaseName))
                 {
-                    var previousAbility = abilities.First(a => a.CoreName == ability.CoreName);
+                    var previousAbility = abilities.First(a => a.BaseName == ability.BaseName);
                     bonusSum -= previousAbility.BonusEquivalent;
                     abilities.Remove(previousAbility);
                 }
@@ -67,7 +69,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 bonusSum += ability.BonusEquivalent;
                 abilities.Add(ability);
 
-                var weakerAbilities = availableAbilities.Where(a => a.CoreName == ability.CoreName && a.Strength <= ability.Strength);
+                var weakerAbilities = availableAbilities.Where(a => a.BaseName == ability.BaseName && a.Strength <= ability.Strength);
                 availableAbilities = availableAbilities.Except(weakerAbilities).ToList();
 
                 var tooStrongAbilities = availableAbilities.Where(a => a.BonusEquivalent + bonusSum > 10);
@@ -120,12 +122,13 @@ namespace EquipmentGen.Generators.Items.Magical
         private SpecialAbility GetSpecialAbilityWithData(String abilityName)
         {
             var ability = new SpecialAbility();
+            var abilityResult = specialAbilityAttributesSelector.SelectFrom("SpecialAbilityAttributes", abilityName);
 
             ability.Name = abilityName;
-            ability.CoreName = attributesSelector.SelectFrom("SpecialAbilityCoreNames", abilityName).First();
-            ability.AttributeRequirements = attributesSelector.SelectFrom("SpecialAbilityAttributes", ability.CoreName);
-            ability.BonusEquivalent = Convert.ToInt32(attributesSelector.SelectFrom("SpecialAbilityBonuses", abilityName).First());
-            ability.Strength = Convert.ToInt32(attributesSelector.SelectFrom("SpecialAbilityStrengths", abilityName).First());
+            ability.BaseName = abilityResult.BaseName;
+            ability.AttributeRequirements = attributesSelector.SelectFrom("SpecialAbilityAttributeRequirements", ability.BaseName);
+            ability.BonusEquivalent = abilityResult.BonusEquivalent;
+            ability.Strength = abilityResult.Strength;
 
             return ability;
         }
@@ -146,7 +149,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             foreach (var ability in availableAbilities)
             {
-                var max = availableAbilities.Where(a => a.CoreName == ability.CoreName).Max(a => a.Strength);
+                var max = availableAbilities.Where(a => a.BaseName == ability.BaseName).Max(a => a.Strength);
 
                 if (ability.Strength == max)
                 {
@@ -179,14 +182,14 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetModifiedName(SpecialAbility ability)
         {
-            if (ability.CoreName == "Bane")
+            if (ability.BaseName == "Bane")
             {
                 var roll = dice.Percentile();
                 var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
                 return String.Format("{0}bane", designatedFoe);
             }
 
-            if (ability.CoreName == "Spell storing" && dice.Percentile() > 50)
+            if (ability.BaseName == "Spell storing" && dice.Percentile() > 50)
             {
                 var level = dice.d4() - 1;
                 var spellType = spellGenerator.GenerateType();

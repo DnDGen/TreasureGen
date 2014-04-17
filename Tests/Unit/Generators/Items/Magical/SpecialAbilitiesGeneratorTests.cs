@@ -96,7 +96,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ability = abilities.First();
             Assert.That(ability.AttributeRequirements, Is.EqualTo(attributes));
             Assert.That(ability.Name, Is.EqualTo("name"));
-            Assert.That(ability.CoreName, Is.EqualTo("core name"));
+            Assert.That(ability.BaseName, Is.EqualTo("core name"));
             Assert.That(ability.Strength, Is.EqualTo(266));
             Assert.That(ability.BonusEquivalent, Is.EqualTo(9));
             Assert.That(abilities.Count(), Is.EqualTo(1));
@@ -124,7 +124,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var ability = new SpecialAbility();
             ability.Name = name;
-            ability.CoreName = name;
+            ability.BaseName = name;
             ability.AttributeRequirements = attributes;
             return ability;
         }
@@ -323,7 +323,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
             var ability = abilities.First();
-            Assert.That(ability.CoreName, Is.EqualTo("Bane"));
+            Assert.That(ability.BaseName, Is.EqualTo("Bane"));
             Assert.That(ability.Name, Is.EqualTo("foebane"));
         }
 
@@ -338,7 +338,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
                 var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
                 var ability = abilities.First();
-                Assert.That(ability.CoreName, Is.EqualTo("Spell storing"));
+                Assert.That(ability.BaseName, Is.EqualTo("Spell storing"));
                 Assert.That(ability.Name, Is.EqualTo("Spell storing"));
             }
         }
@@ -354,7 +354,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 mockDice.Setup(d => d.Percentile(1)).Returns(roll);
                 var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
                 var ability = abilities.First();
-                Assert.That(ability.CoreName, Is.EqualTo("Spell storing"));
+                Assert.That(ability.BaseName, Is.EqualTo("Spell storing"));
                 Assert.That(ability.Name, Is.EqualTo("Spell storing (contains spell)"));
             }
         }
@@ -412,10 +412,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ability1 = CreateSpecialAbility("ability 1");
             var ability2 = CreateSpecialAbility("ability 2");
             var ability3 = CreateSpecialAbility("ability 3");
-            ability3.CoreName = "ability";
+            ability3.BaseName = "ability";
             ability3.Strength = 1;
             var ability4 = CreateSpecialAbility("ability 4");
-            ability4.CoreName = "ability";
+            ability4.BaseName = "ability";
             ability4.Strength = 2;
 
             mockSpecialAbilityDataSelector.Setup(p => p.SelectFor(ability1.Name)).Returns(ability1);
@@ -471,10 +471,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ability1 = CreateSpecialAbility("ability 1");
             var ability2 = CreateSpecialAbility("ability 2");
             var ability3 = CreateSpecialAbility("ability 3");
-            ability3.CoreName = "ability";
+            ability3.BaseName = "ability";
             ability3.Strength = 1;
             var ability4 = CreateSpecialAbility("ability 4");
-            ability4.CoreName = "ability";
+            ability4.BaseName = "ability";
             ability4.Strength = 2;
 
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
@@ -500,10 +500,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ability1 = CreateSpecialAbility("ability 1");
             var ability2 = CreateSpecialAbility("ability 2");
             var ability3 = CreateSpecialAbility("ability 3");
-            ability3.CoreName = "ability";
+            ability3.BaseName = "ability";
             ability3.Strength = 1;
             var ability4 = CreateSpecialAbility("ability 4");
-            ability4.CoreName = "ability";
+            ability4.BaseName = "ability";
             ability4.Strength = 2;
 
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);

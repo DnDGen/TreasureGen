@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -10,12 +9,12 @@ namespace EquipmentGen.Generators.Items.Magical
     public class ChargesGenerator : IChargesGenerator
     {
         private IDice dice;
-        private IAttributesSelector attributesSelector;
+        private IRangeAttributesSelector rangeAttributesSelector;
 
-        public ChargesGenerator(IDice dice, IAttributesSelector attributesSelector)
+        public ChargesGenerator(IDice dice, IRangeAttributesSelector rangeAttributesSelector)
         {
             this.dice = dice;
-            this.attributesSelector = attributesSelector;
+            this.rangeAttributesSelector = rangeAttributesSelector;
         }
 
         public Int32 GenerateFor(String itemType, String name)
@@ -26,12 +25,11 @@ namespace EquipmentGen.Generators.Items.Magical
             if (name == "Deck of illusions" && dice.Percentile() <= 90)
                 return 34;
 
-            var limits = attributesSelector.SelectFrom("ChargeLimits", name);
-            var minimum = Convert.ToInt32(limits.First());
-            var maximum = Convert.ToInt32(limits.Last());
-            var roll = String.Format("1d({0}-{1}+1)+{1}-1", maximum, minimum);
+            var rangeAttributesResult = rangeAttributesSelector.SelectFrom("ChargeLimits", name);
+            var die = rangeAttributesResult.Maximum - rangeAttributesResult.Minimum + 1;
+            var roll = String.Format("1d{0}", die);
 
-            return dice.Roll(roll);
+            return dice.Roll(roll) + rangeAttributesResult.Minimum - 1;
         }
 
         private Int32 PercentileCharges()

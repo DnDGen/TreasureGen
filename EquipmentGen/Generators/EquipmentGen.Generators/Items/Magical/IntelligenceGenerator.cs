@@ -13,12 +13,15 @@ namespace EquipmentGen.Generators.Items.Magical
         private IDice dice;
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
+        private IIntelligenceAttributesSelector intelligenceAttributesSelector;
 
-        public IntelligenceGenerator(IDice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector)
+        public IntelligenceGenerator(IDice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
+            IIntelligenceAttributesSelector intelligenceAttributesSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
+            this.intelligenceAttributesSelector = intelligenceAttributesSelector;
         }
 
         public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Boolean isMagical)
@@ -92,15 +95,16 @@ namespace EquipmentGen.Generators.Items.Magical
             if (intelligence.Communication.Contains("Telepathy"))
                 intelligence.Ego++;
 
-            intelligence.Senses = attributesSelector.SelectFrom("IntelligenceSenses", highStatResult).First();
+            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom("IntelligenceAttributes", highStatResult);
+            intelligence.Senses = intelligenceAttributesResult.Senses;
 
-            var lesserPowers = GeneratePowers("Lesser", highStatResult);
+            var lesserPowers = GeneratePowers("Lesser", intelligenceAttributesResult.LesserPowersCount);
             intelligence.Ego += lesserPowers.Count;
             intelligence.Powers.AddRange(lesserPowers);
 
-            var greaterPowers = GeneratePowers("Greater", highStatResult);
+            var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
 
-            if (dice.d4() <= greaterPowers.Count())
+            if (dice.d4() <= intelligenceAttributesResult.GreaterPowersCount)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
 
@@ -141,15 +145,10 @@ namespace EquipmentGen.Generators.Items.Magical
             return languages;
         }
 
-        private List<String> GeneratePowers(String strength, String highStatResult)
+        private List<String> GeneratePowers(String strength, Int32 count)
         {
-            var tableName = String.Format("Intelligence{0}PowersCount", strength);
-            var powersResult = attributesSelector.SelectFrom(tableName, highStatResult).First();
-            var powersCount = Convert.ToInt32(powersResult);
-
-            tableName = String.Format("Intelligence{0}Powers", strength);
-
-            return GetNonDuplicateList(tableName, powersCount);
+            var tableName = String.Format("Intelligence{0}Powers", strength);
+            return GetNonDuplicateList(tableName, count);
         }
 
         private List<String> GetNonDuplicateList(String tableName, Int32 quantity)
@@ -163,6 +162,9 @@ namespace EquipmentGen.Generators.Items.Magical
 
                 if (result.Contains("Knowledge"))
                     result = GetKnowledgeCategory(result);
+
+                if (result.Equals("Common", StringComparison.InvariantCultureIgnoreCase))
+                    continue;
 
                 if (list.Contains(result))
                     continue;

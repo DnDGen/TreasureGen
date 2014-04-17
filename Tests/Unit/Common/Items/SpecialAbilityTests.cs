@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [Test]
         public void CoreNameInitialized()
         {
-            Assert.That(specialAbility.CoreName, Is.Empty);
+            Assert.That(specialAbility.BaseName, Is.Empty);
         }
 
         [Test]
