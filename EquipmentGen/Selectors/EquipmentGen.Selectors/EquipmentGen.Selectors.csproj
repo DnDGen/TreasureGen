@@ -40,8 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributesSelector.cs" />
+    <Compile Include="IntelligenceAttributesSelector.cs" />
     <Compile Include="PercentileSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeAttributesSelector.cs" />
+    <Compile Include="SpecialAbilityAttributesSelector.cs" />
     <Compile Include="TypeAndAmountPercentileSelector.cs" />
   </ItemGroup>
   <ItemGroup>

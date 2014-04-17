@@ -6,6 +6,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -19,6 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IDice> mockDice;
         private Mock<ISpellGenerator> mockSpellGenerator;
+        private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilityAttributesSelector;
 
         private List<String> attributes;
 
@@ -32,9 +34,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
+            mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
 
-            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockSpecialAbilityDataSelector.Object,
-                mockAttributesSelector.Object, mockPercentileSelector.Object, mockDice.Object, mockSpellGenerator.Object);
+            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object,
+                mockDice.Object, mockSpellGenerator.Object, mockSpecialAbilityAttributesSelector.Object);
         }
 
         [Test]
@@ -87,10 +90,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
             mockPercentileSelector.Setup(p => p.SelectAllFrom("powerArmorSpecialAbilities")).Returns(new[] { "name" });
             mockPercentileSelector.Setup(p => p.SelectFrom("powerArmorSpecialAbilities", 9266)).Returns("name");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityCoreNames", "name")).Returns(new[] { "core name" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityAttributes", "core name")).Returns(attributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "name")).Returns(new[] { "9" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityStrengths", "name")).Returns(new[] { "266" });
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityAttributeRequirements", "base name")).Returns(attributes);
+
+            var result = new SpecialAbilityAttributesResult();
+            result.BaseName = "base name";
+            result.BonusEquivalent = 9;
+            result.Strength = 266;
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "name")).Returns(result);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
             var ability = abilities.First();
@@ -137,8 +143,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(1).Returns(2);
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 1)).Returns("big ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("small ability");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "big ability")).Returns(new[] { "2" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "small ability")).Returns(new[] { "1" });
+
+            var bigResult = new SpecialAbilityAttributesResult { BonusEquivalent = 2 };
+            var smallResult = new SpecialAbilityAttributesResult { BonusEquivalent = 1 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "big ability")).Returns(bigResult);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "small ability")).Returns(smallResult);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 9, 1);
             var names = abilities.Select(a => a.Name);
@@ -156,10 +165,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("ability 2");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 3)).Returns("ability 3");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 4)).Returns("ability 4");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 1")).Returns(new[] { "2" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 2")).Returns(new[] { "2" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 3")).Returns(new[] { "3" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 4")).Returns(new[] { "0" });
+
+            var result1 = new SpecialAbilityAttributesResult { BonusEquivalent = 2 };
+            var result2 = new SpecialAbilityAttributesResult { BonusEquivalent = 2 };
+            var result3 = new SpecialAbilityAttributesResult { BonusEquivalent = 3 };
+            var result4 = new SpecialAbilityAttributesResult { BonusEquivalent = 0 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 1")).Returns(result1);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 2")).Returns(result2);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 3")).Returns(result3);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 4")).Returns(result4);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 5, 3);
             var names = abilities.Select(a => a.Name);
@@ -177,8 +191,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(1).Returns(2);
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 1)).Returns("weak ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("strong ability");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityStrengths", "strong ability")).Returns(new[] { "2" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityStrengths", "weak ability")).Returns(new[] { "1" });
+
+            var weakResult = new SpecialAbilityAttributesResult { Strength = 1 };
+            var strongResult = new SpecialAbilityAttributesResult { Strength = 2 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "weak ability")).Returns(weakResult);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "strong ability")).Returns(strongResult);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
             var names = abilities.Select(a => a.Name);
@@ -195,8 +212,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 1)).Returns("strong ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("weak ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 3)).Returns("other ability");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityStrengths", "strong ability")).Returns(new[] { "2" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityStrengths", "weak ability")).Returns(new[] { "1" });
+
+            var weakResult = new SpecialAbilityAttributesResult { Strength = 1 };
+            var strongResult = new SpecialAbilityAttributesResult { Strength = 2 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "weak ability")).Returns(weakResult);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "strong ability")).Returns(strongResult);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
             var names = abilities.Select(a => a.Name);
@@ -214,10 +234,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("ability 2");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 3)).Returns("ability 3");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 4)).Returns("ability 4");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 1")).Returns(new[] { "3" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 2")).Returns(new[] { "3" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 3")).Returns(new[] { "3" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 4")).Returns(new[] { "1" });
+
+            var result1 = new SpecialAbilityAttributesResult { BonusEquivalent = 2 };
+            var result2 = new SpecialAbilityAttributesResult { BonusEquivalent = 2 };
+            var result3 = new SpecialAbilityAttributesResult { BonusEquivalent = 3 };
+            var result4 = new SpecialAbilityAttributesResult { BonusEquivalent = 0 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 1")).Returns(result1);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 2")).Returns(result2);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 3")).Returns(result3);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 4")).Returns(result4);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 4);
             var names = abilities.Select(a => a.Name);
@@ -236,9 +261,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 1)).Returns("ability 1");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 2)).Returns("ability 2");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 3)).Returns("ability 3");
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 1")).Returns(new[] { "9" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 2")).Returns(new[] { "0" });
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityBonuses", "ability 3")).Returns(new[] { "1" });
+
+            var result1 = new SpecialAbilityAttributesResult { BonusEquivalent = 9 };
+            var result2 = new SpecialAbilityAttributesResult { BonusEquivalent = 0 };
+            var result3 = new SpecialAbilityAttributesResult { BonusEquivalent = 3 };
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 1")).Returns(result1);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 2")).Returns(result2);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 3")).Returns(result3);
 
             var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 2);
             var names = abilities.Select(a => a.Name);
@@ -529,6 +558,28 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void NoAttributesThrowsError()
         {
             Assert.That(() => specialAbilitiesGenerator.GenerateWith(Enumerable.Empty<String>(), "power", 1, 1), Throws.Exception);
+        }
+
+        private SpecialAbilityAttributesResult CreateSpecialAbility(String name)
+        {
+            var result = new SpecialAbilityAttributesResult();
+
+            result.BaseName = name;
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", name)).Returns(result);
+
+            return result;
+        }
+
+        private void SetUpAbilityChain(params String[] names)
+        {
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<String>())).Returns(names);
+            var sequence = mockDice.SetupSequence(d => d.Percentile(1));
+
+            for (var roll = 0; roll < names.Length; roll++)
+            {
+                sequence = sequence.Returns(roll);
+                mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), roll)).Returns(names[roll]);
+            }
         }
     }
 }

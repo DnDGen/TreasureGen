@@ -9,7 +9,9 @@ namespace EquipmentGen.Bootstrap.Modules
         public override void Load()
         {
             Bind<IPercentileSelector>().To<PercentileSelector>();
-            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>();
+            Bind<ISpecialAbilityAttributesSelector>().To<SpecialAbilityAttributesSelector>();
+            Bind<IIntelligenceAttributesSelector>().To<IntelligenceAttributesSelector>();
+            Bind<IRangeAttributesSelector>().To<RangeAttributesSelector>();
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
             Bind<IAttributesSelector>().To<AttributesSelector>();
         }
