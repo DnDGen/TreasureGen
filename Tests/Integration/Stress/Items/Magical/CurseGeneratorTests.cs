@@ -1,5 +1,4 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
+﻿using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
 
