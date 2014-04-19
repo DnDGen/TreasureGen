@@ -4,33 +4,49 @@
     <object>
         <name>12</name>
         <attribute>30 ft. vision and hearing</attribute>
+        <attribute>1</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>13</name>
         <attribute>60 ft. vision and hearing</attribute>
+        <attribute>2</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>14</name>
         <attribute>120 ft. vision and hearing</attribute>
+        <attribute>2</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>15</name>
         <attribute>60 ft. darkvision and hearing</attribute>
+        <attribute>3</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>16</name>
         <attribute>60 ft. darkvision and hearing</attribute>
+        <attribute>3</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>17</name>
         <attribute>120 ft. darkvision and hearing</attribute>
+        <attribute>3</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>18</name>
         <attribute>120 ft. darkvision, blindsense, and hearing</attribute>
+        <attribute>3</attribute>
+        <attribute>2</attribute>
     </object>
     <object>
         <name>19</name>
         <attribute>120 ft. darkvision, blindsense, and hearing</attribute>
+        <attribute>4</attribute>
+        <attribute>3</attribute>
     </object>
 </attributes>

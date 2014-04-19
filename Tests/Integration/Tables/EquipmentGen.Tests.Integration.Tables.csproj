@@ -66,11 +66,9 @@
     <Compile Include="Items\Magical\Intelligence\IntelligenceAlignmentsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceCommunicationTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceDedicatedPowerTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IntelligenceGreaterPowersCountTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceGreaterPowersTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersCountTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceAttributesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IntelligenceSensesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceSpecialPurposeTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceStrongStatTests.cs" />
     <Compile Include="Items\Magical\Intelligence\KnowledgeCategoriesTests.cs" />
@@ -196,8 +194,8 @@
     <Compile Include="Items\Magical\Scrolls\MediumSpellLevelsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\MinorSpellLevelsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\SpellTypesTests.cs" />
+    <Compile Include="Items\Magical\SpecialAbilityAttributeRequirementsTests.cs" />
     <Compile Include="Items\Magical\SpecialAbilityAttributesTests.cs" />
-    <Compile Include="Items\Magical\SpecialAbilityDataTests.cs" />
     <Compile Include="Items\Magical\Staves\StaffTraitsTests.cs" />
     <Compile Include="Items\Magical\Wands\WandTraitsTests.cs" />
     <Compile Include="Items\Magical\Weapons\DesignatedFoesTests.cs" />

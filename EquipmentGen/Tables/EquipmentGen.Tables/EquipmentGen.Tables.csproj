@@ -334,10 +334,10 @@
     <EmbeddedResource Include="Items\Magical\Scrolls\SpellTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\SpecialAbilityAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\SpecialAbilityAttributeRequirements.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\SpecialAbilityData.xml" />
+    <EmbeddedResource Include="Items\Magical\SpecialAbilityAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Staves\StaffTraits.xml" />
@@ -487,16 +487,10 @@
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceCommunication.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceSenses.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceLesserPowersCount.xml" />
+    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceLesserPowers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceGreaterPowersCount.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IntelligenceAlignments.xml" />

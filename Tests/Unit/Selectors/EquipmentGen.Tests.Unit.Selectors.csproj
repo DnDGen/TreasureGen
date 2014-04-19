@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributesSelectorTests.cs" />
+    <Compile Include="IntelligenceAttributesSelectorTests.cs" />
     <Compile Include="PercentileSelectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeAttributesSelectorTests.cs" />
+    <Compile Include="SpecialAbilityAttributesSelectorTests.cs" />
     <Compile Include="TypeAndAmountPercentileSelectorTests.cs" />
   </ItemGroup>
   <ItemGroup>

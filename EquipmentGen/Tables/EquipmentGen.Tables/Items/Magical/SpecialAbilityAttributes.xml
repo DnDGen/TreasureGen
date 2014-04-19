@@ -1,218 +1,442 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
+<abilities>
     <object>
         <name>Acid resistance</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
-        <name>Cold resistance</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
-        <name>Electricity resistance</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
-        <name>Fire resistance</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
-        <name>Sonic resistance</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Acid resistance</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Anarchic</name>
-        <attribute>Weapon</attribute>
+        <attribute>2</attribute>
+        <attribute>Anarchic</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Animated</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <attribute>2</attribute>
+        <attribute>Animated</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Arrow catching</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <attribute>1</attribute>
+        <attribute>Arrow catching</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Arrow deflection</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <attribute>2</attribute>
+        <attribute>Arrow deflection</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Axiomatic</name>
-        <attribute>Weapon</attribute>
+        <attribute>2</attribute>
+        <attribute>Axiomatic</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Bane</name>
-        <attribute>Weapon</attribute>
+        <attribute>1</attribute>
+        <attribute>Bane</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Bashing</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
+        <attribute>1</attribute>
+        <attribute>Bashing</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Blinding</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <attribute>1</attribute>
+        <attribute>Blinding</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Brilliant energy</name>
-        <attribute>Weapon</attribute>
+        <attribute>4</attribute>
+        <attribute>Brilliant energy</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Cold resistance</name>
+        <attribute>0</attribute>
+        <attribute>Cold resistance</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Dancing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>4</attribute>
+        <attribute>Dancing</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Defending</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Defending</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Disruption</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Bludgeoning</attribute>
+        <attribute>2</attribute>
+        <attribute>Disruption</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Distance</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
+        <attribute>1</attribute>
+        <attribute>Distance</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Electricity resistance</name>
+        <attribute>0</attribute>
+        <attribute>Electricity resistance</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Etherealness</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Etherealness</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Fire resistance</name>
+        <attribute>0</attribute>
+        <attribute>Fire resistance</attribute>
+        <attribute>1</attribute>
+    </object>
+    <object>
+        <name>Flaming burst</name>
+        <attribute>2</attribute>
+        <attribute>Flaming</attribute>
+        <attribute>2</attribute>
     </object>
     <object>
         <name>Flaming</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
-        <name>Fortification</name>
-        <attribute>Armor</attribute>
+        <attribute>1</attribute>
+        <attribute>Flaming</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Frost</name>
-        <attribute>Weapon</attribute>
+        <attribute>1</attribute>
+        <attribute>Frost</attribute>
+        <attribute>1</attribute>
+    </object>
+    <object>
+        <name>Ghost touch (armor)</name>
+        <attribute>3</attribute>
+        <attribute>Ghost touch</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Ghost touch (weapon)</name>
+        <attribute>1</attribute>
+        <attribute>Ghost touch</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Glamered</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Glamered</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Greater acid resistance</name>
+        <attribute>0</attribute>
+        <attribute>Acid resistance</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater cold resistance</name>
+        <attribute>0</attribute>
+        <attribute>Cold resistance</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater electricity resistance</name>
+        <attribute>0</attribute>
+        <attribute>Electricity resistance</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater fire resistance</name>
+        <attribute>0</attribute>
+        <attribute>Fire resistance</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater slick</name>
+        <attribute>0</attribute>
+        <attribute>Slick</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater shadow</name>
+        <attribute>0</attribute>
+        <attribute>Shadow</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater silent moves</name>
+        <attribute>0</attribute>
+        <attribute>Silent moves</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Greater sonic resistance</name>
+        <attribute>0</attribute>
+        <attribute>Sonic resistance</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Heavy fortification</name>
+        <attribute>5</attribute>
+        <attribute>Fortification</attribute>
+        <attribute>3</attribute>
     </object>
     <object>
         <name>Holy</name>
-        <attribute>Weapon</attribute>
+        <attribute>2</attribute>
+        <attribute>Holy</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Icy burst</name>
+        <attribute>2</attribute>
+        <attribute>Frost</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved acid resistance</name>
+        <attribute>0</attribute>
+        <attribute>Acid resistance</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved cold resistance</name>
+        <attribute>0</attribute>
+        <attribute>Cold resistance</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved electricity resistance</name>
+        <attribute>0</attribute>
+        <attribute>Electricity resistance</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved fire resistance</name>
+        <attribute>0</attribute>
+        <attribute>Fire resistance</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved slick</name>
+        <attribute>0</attribute>
+        <attribute>Slick</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved shadow</name>
+        <attribute>0</attribute>
+        <attribute>Shadow</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved silent moves</name>
+        <attribute>0</attribute>
+        <attribute>Silent moves</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Improved sonic resistance</name>
+        <attribute>0</attribute>
+        <attribute>Sonic resistance</attribute>
+        <attribute>2</attribute>
     </object>
     <object>
         <name>Invulnerability</name>
-        <attribute>Armor</attribute>
+        <attribute>3</attribute>
+        <attribute>Invulnerability</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Keen</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
+        <attribute>1</attribute>
+        <attribute>Keen</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Ki focus</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Ki focus</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Light fortification</name>
+        <attribute>1</attribute>
+        <attribute>Fortification</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Merciful</name>
-        <attribute>Weapon</attribute>
+        <attribute>1</attribute>
+        <attribute>Merciful</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Mighty cleaving</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Mighty cleaving</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Moderate fortification</name>
+        <attribute>3</attribute>
+        <attribute>Fortification</attribute>
+        <attribute>2</attribute>
     </object>
     <object>
         <name>Reflecting</name>
-        <attribute>Armor</attribute>
-        <attribute>Shield</attribute>
+        <attribute>5</attribute>
+        <attribute>Reflecting</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Returning</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
-        <attribute>Thrown</attribute>
+        <attribute>1</attribute>
+        <attribute>Returning</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Seeking</name>
-        <attribute>Weapon</attribute>
-        <attribute>Ranged</attribute>
+        <attribute>1</attribute>
+        <attribute>Seeking</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Shadow</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Shadow</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Shock</name>
-        <attribute>Weapon</attribute>
+        <attribute>1</attribute>
+        <attribute>Shock</attribute>
+        <attribute>1</attribute>
+    </object>
+    <object>
+        <name>Shocking burst</name>
+        <attribute>2</attribute>
+        <attribute>Shock</attribute>
+        <attribute>2</attribute>
     </object>
     <object>
         <name>Silent moves</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Silent moves</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Slick</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Slick</attribute>
+        <attribute>1</attribute>
+    </object>
+    <object>
+        <name>Sonic resistance</name>
+        <attribute>0</attribute>
+        <attribute>Sonic resistance</attribute>
+        <attribute>1</attribute>
     </object>
     <object>
         <name>Speed</name>
-        <attribute>Weapon</attribute>
+        <attribute>3</attribute>
+        <attribute>Speed</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
-        <name>Spell resistance</name>
-        <attribute>Armor</attribute>
+        <name>Spell resistance (13)</name>
+        <attribute>2</attribute>
+        <attribute>Spell resistance</attribute>
+        <attribute>13</attribute>
+    </object>
+    <object>
+        <name>Spell resistance (15)</name>
+        <attribute>3</attribute>
+        <attribute>Spell resistance</attribute>
+        <attribute>15</attribute>
+    </object>
+    <object>
+        <name>Spell resistance (17)</name>
+        <attribute>4</attribute>
+        <attribute>Spell resistance</attribute>
+        <attribute>17</attribute>
+    </object>
+    <object>
+        <name>Spell resistance (19)</name>
+        <attribute>5</attribute>
+        <attribute>Spell resistance</attribute>
+        <attribute>19</attribute>
     </object>
     <object>
         <name>Spell storing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Spell storing</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Throwing</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Throwing</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Thundering</name>
-        <attribute>Weapon</attribute>
+        <attribute>1</attribute>
+        <attribute>Thundering</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Undead controlling</name>
-        <attribute>Armor</attribute>
+        <attribute>0</attribute>
+        <attribute>Undead controlling</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Unholy</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
-        <name>Wounding</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>2</attribute>
+        <attribute>Unholy</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Vicious</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
+        <attribute>1</attribute>
+        <attribute>Vicious</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Vorpal</name>
-        <attribute>Weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
-        <attribute>Slashing</attribute>
+        <attribute>5</attribute>
+        <attribute>Vorpal</attribute>
+        <attribute>0</attribute>
     </object>
     <object>
         <name>Wild</name>
-        <attribute>Armor</attribute>
+        <attribute>3</attribute>
+        <attribute>Wild</attribute>
+        <attribute>0</attribute>
     </object>
-</attributes>
+    <object>
+        <name>Wounding</name>
+        <attribute>2</attribute>
+        <attribute>Wounding</attribute>
+        <attribute>0</attribute>
+    </object>
+</abilities>
