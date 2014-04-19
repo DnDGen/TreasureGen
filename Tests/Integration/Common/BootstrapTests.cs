@@ -183,9 +183,21 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void SpecialAbilityDataSelectorNotConstructedAsSingleton()
+        public void SpecialAbilityAttributesSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityDataSelector>();
+            AssertNotSingleton<ISpecialAbilityAttributesSelector>();
+        }
+
+        [Test]
+        public void IntelligenceAttributesSelectorNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IIntelligenceAttributesSelector>();
+        }
+
+        [Test]
+        public void RangeAttributesSWelectorNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IRangeAttributesSelector>();
         }
 
         [Test]

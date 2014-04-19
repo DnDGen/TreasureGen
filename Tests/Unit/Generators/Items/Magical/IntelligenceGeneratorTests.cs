@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -18,8 +18,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IDice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<IIntelligenceAttributesSelector> mockIntelligenceAttributesSelector;
         private List<String> attributes;
         private Magic magic;
+        private IntelligenceAttributesResult intelligenceAttributesResult;
 
         [SetUp]
         public void Setup()
@@ -34,11 +36,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var fillerValues = new[] { "0" };
             mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
 
+            mockIntelligenceAttributesSelector = new Mock<IIntelligenceAttributesSelector>();
+            intelligenceAttributesResult = new IntelligenceAttributesResult();
+            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom("IntelligenceAttributes", It.IsAny<String>())).Returns(intelligenceAttributesResult);
+
             attributes = new List<String>();
             magic = new Magic();
 
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
-                mockAttributesSelector.Object);
+                mockAttributesSelector.Object, mockIntelligenceAttributesSelector.Object);
         }
 
         [Test]
@@ -335,20 +341,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetSensesFromAttributesSelector()
         {
-            var attributes = new[] { "sensy" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceSenses", "9266")).Returns(attributes);
-
+            intelligenceAttributesResult.Senses = "sensy";
             var intelligence = intelligenceGenerator.GenerateFor(magic);
-            Assert.That(intelligence.Senses, Is.EqualTo(attributes.First()));
+            Assert.That(intelligence.Senses, Is.EqualTo(intelligenceAttributesResult.Senses));
         }
 
         [Test]
         public void GetLesserPowersFromAttributesSelector()
         {
-            var attributes = new[] { "2" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 2");
 
@@ -359,9 +360,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CannotHaveDuplicateLesserPowers()
         {
-            var attributes = new[] { "2" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 1").Returns("power 2");
 
@@ -374,9 +373,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetGreaterPowersFromAttributesSelector()
         {
-            var attributes = new[] { "2" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 2");
 
@@ -387,9 +384,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CannotHaveDuplicateGreaterPowers()
         {
-            var attributes = new[] { "2" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 1").Returns("power 2");
 
@@ -402,9 +397,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void OneGreaterPowerMeans25PercentChanceForSpecialPurpose()
         {
-            var attributes = new[] { "1" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>())).Returns("greater power");
             mockDice.Setup(d => d.d4(1)).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -420,9 +413,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void OneGreaterPowerMeans75PercentChanceForGreaterPower()
         {
-            var attributes = new[] { "1" };
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>())).Returns("greater power");
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceDedicatedPowers", It.IsAny<Int32>()))
@@ -445,9 +436,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             for (var roll = 2; roll > 0; roll--)
             {
-                var attributes = new[] { "2" };
-                mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-                mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+                intelligenceAttributesResult.GreaterPowersCount = 2;
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                     .Returns("greater power 1").Returns("greater power 2");
                 mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -469,9 +458,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             for (var roll = 4; roll > 2; roll--)
             {
-                var attributes = new[] { "2" };
-                mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-                mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+                intelligenceAttributesResult.GreaterPowersCount = 2;
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                     .Returns("greater power 1").Returns("greater power 2");
                 mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -494,9 +481,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             for (var roll = 3; roll > 0; roll--)
             {
-                var attributes = new[] { "3" };
-                mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-                mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+                intelligenceAttributesResult.GreaterPowersCount = 3;
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                     .Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
                 mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -519,9 +504,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             for (var roll = 4; roll > 3; roll--)
             {
-                var attributes = new[] { "3" };
-                mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("9266");
-                mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "9266")).Returns(attributes);
+                intelligenceAttributesResult.GreaterPowersCount = 3;
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                     .Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
                 mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -572,8 +555,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoIncludesLesserPowers()
         {
-            var attributes = new[] { "2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", "10")).Returns(attributes);
+            intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 2");
 
@@ -584,8 +566,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoIncludesGreaterPowers()
         {
-            var attributes = new[] { "2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "10")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                 .Returns("greater power 1").Returns("greater power 2");
 
@@ -596,8 +577,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoIncludesDedicatedPower()
         {
-            var attributes = new[] { "1" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "10")).Returns(attributes);
+            intelligenceAttributesResult.GreaterPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>())).Returns("greater power");
             mockDice.Setup(d => d.d4(1)).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
@@ -650,18 +630,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoSumsAllFactors()
         {
-            var powerCount = new[] { "2" };
             var communication = new[] { "Read", "Read magic", "Telepathy" };
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("19");
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "19")).Returns(communication);
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", "19")).Returns(powerCount);
+            intelligenceAttributesResult.LesserPowersCount = 2;
+            intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>()))
                 .Returns("greater power 1").Returns("greater power 2");
             mockDice.Setup(d => d.d4(1)).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceDedicatedPowers", It.IsAny<Int32>()))
                 .Returns("dedicated power");
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", "19")).Returns(powerCount);
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("power 1").Returns("power 2");
             var ability = new SpecialAbility();
@@ -684,8 +663,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ChooseCategoryForRanksInKnowledge()
         {
-            var powerCount = new[] { "1" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", It.IsAny<String>())).Returns(powerCount);
+            intelligenceAttributesResult.LesserPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("this ability has Knowledge");
             mockPercentileSelector.Setup(s => s.SelectFrom("KnowledgeCategories", It.IsAny<Int32>())).Returns("category");
@@ -697,8 +675,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CanHaveRanksInDifferentKnowledge()
         {
-            var powerCount = new[] { "2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", It.IsAny<String>())).Returns(powerCount);
+            intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("this ability has Knowledge");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("KnowledgeCategories", It.IsAny<Int32>())).Returns("category")
@@ -713,8 +690,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CannotHaveDuplicateKnowledgeCategories()
         {
-            var powerCount = new[] { "2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowersCount", It.IsAny<String>())).Returns(powerCount);
+            intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers", It.IsAny<Int32>()))
                 .Returns("this ability has Knowledge");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("KnowledgeCategories", It.IsAny<Int32>())).Returns("category")
@@ -729,8 +705,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DesignatedFoesDetermined()
         {
-            var powerCount = new[] { "1" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowersCount", It.IsAny<String>())).Returns(powerCount);
+            intelligenceAttributesResult.GreaterPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>())).Returns("greater power");
             mockDice.Setup(d => d.d4(1)).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose has DesignatedFoe");

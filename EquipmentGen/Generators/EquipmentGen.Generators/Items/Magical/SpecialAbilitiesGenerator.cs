@@ -110,7 +110,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (abilityName == "BonusSpecialAbility")
                     continue;
 
-                var ability = GetSpecialAbilityWithData(abilityName);
+                var ability = GetSpecialAbility(abilityName);
 
                 if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
                     availableAbilities.Add(ability);
@@ -119,7 +119,7 @@ namespace EquipmentGen.Generators.Items.Magical
             return availableAbilities;
         }
 
-        private SpecialAbility GetSpecialAbilityWithData(String abilityName)
+        private SpecialAbility GetSpecialAbility(String abilityName)
         {
             var ability = new SpecialAbility();
             var abilityResult = specialAbilityAttributesSelector.SelectFrom("SpecialAbilityAttributes", abilityName);
