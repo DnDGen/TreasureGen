@@ -3,42 +3,42 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Adamantine breastplate</content>
+        <content>Breastplate,0</content>
         <upper>10</upper>
     </object>
     <object>
         <lower>11</lower>
-        <content>Dwarven plate</content>
+        <content>Dwarven plate,0</content>
         <upper>20</upper>
     </object>
     <object>
         <lower>21</lower>
-        <content>Banded mail of luck</content>
+        <content>Banded mail of luck,3</content>
         <upper>32</upper>
     </object>
     <object>
         <lower>33</lower>
-        <content>Celestial armor</content>
+        <content>Celestial armor,3</content>
         <upper>50</upper>
     </object>
     <object>
         <lower>51</lower>
-        <content>Plate armor of the deep</content>
+        <content>Plate armor of the deep,1</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>Breastplate of command</content>
+        <content>Breastplate of command,2</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Mithral full plate of speed</content>
+        <content>Full plate of speed,1</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Demon armor</content>
+        <content>Demon armor,4</content>
         <upper>100</upper>
     </object>
 </percentile>

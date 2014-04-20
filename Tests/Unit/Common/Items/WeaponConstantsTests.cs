@@ -80,6 +80,11 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(WeaponConstants.CompositePlus2Longbow, "Composite (+2) longbow")]
         [TestCase(WeaponConstants.CompositePlus3Longbow, "Composite (+3) longbow")]
         [TestCase(WeaponConstants.CompositePlus4Longbow, "Composite (+4) longbow")]
+        [TestCase(WeaponConstants.SleepArrow, "Sleep arrow")]
+        [TestCase(WeaponConstants.ScreamingBolt, "Screaming bolt")]
+        [TestCase(WeaponConstants.SilverDagger, "Silver dagger")]
+        [TestCase(WeaponConstants.JavelinOfLightning, "Javelin of lightning")]
+        [TestCase(WeaponConstants.SlayingArrow, "Slaying arrow")]
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));

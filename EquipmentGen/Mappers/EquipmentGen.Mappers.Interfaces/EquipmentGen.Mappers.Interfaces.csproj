@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAttributesMapper.cs" />
-    <Compile Include="Interfaces\IPercentileMapper.cs" />
-    <Compile Include="Interfaces\ISpecialAbilityDataMapper.cs" />
+    <Compile Include="IAttributesMapper.cs" />
+    <Compile Include="IPercentileMapper.cs" />
+    <Compile Include="ISpecialAbilityDataMapper.cs" />
     <Compile Include="Objects\SpecialAbilityDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -39,12 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IIntelligenceAttributesSelector.cs" />
-    <Compile Include="Interfaces\IPercentileSelector.cs" />
-    <Compile Include="Interfaces\IRangeAttributesSelector.cs" />
-    <Compile Include="Interfaces\ISpecialAbilityAttributesSelector.cs" />
-    <Compile Include="Interfaces\ITypeAndAmountPercentileSelector.cs" />
-    <Compile Include="Interfaces\IAttributesSelector.cs" />
+    <Compile Include="IIntelligenceAttributesSelector.cs" />
+    <Compile Include="IPercentileSelector.cs" />
+    <Compile Include="IRangeAttributesSelector.cs" />
+    <Compile Include="ISpecialAbilityAttributesSelector.cs" />
+    <Compile Include="ITypeAndAmountPercentileSelector.cs" />
+    <Compile Include="IAttributesSelector.cs" />
     <Compile Include="Objects\IntelligenceAttributesResult.cs" />
     <Compile Include="Objects\RangeAttributesResult.cs" />
     <Compile Include="Objects\SpecialAbilityAttributesResult.cs" />

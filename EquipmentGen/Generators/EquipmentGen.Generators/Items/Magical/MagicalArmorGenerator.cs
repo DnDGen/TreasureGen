@@ -51,7 +51,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (result.Type == "SpecialAbility")
             {
-                abilityCount += Convert.ToInt32(result.AmountToRoll);
+                abilityCount += Convert.ToInt32(result.Amount);
                 roll = dice.Percentile();
                 result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
             }
@@ -64,7 +64,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             armor.Name = percentileSelector.SelectFrom(tableName, roll);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
-            armor.Magic.Bonus = Convert.ToInt32(result.AmountToRoll);
+            armor.Magic.Bonus = Convert.ToInt32(result.Amount);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
 
             if (materialsSelector.HasSpecialMaterial(armor.Attributes))

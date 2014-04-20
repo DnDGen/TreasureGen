@@ -58,6 +58,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />
+    <Compile Include="Items\Magical\Armor\Minor\MinorSpecificArmorsTests.cs" />
     <Compile Include="Items\Magical\ChargeLimitsTests.cs" />
     <Compile Include="Items\Magical\Curses\CursedDependentSituationsTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Goods\Level9GoodsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Minor\MinorSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\BalorOrPitFiendTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\HornOfValhallaTypesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\IronFlaskContentsTests.cs" />

@@ -2,7 +2,7 @@
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -22,13 +22,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "alchemical item";
-            result.AmountToRoll = "9266";
+            result.Amount = "9266";
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems", 42)).Returns(result);
 
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
-            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(9266);
+            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
 
             generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
         }

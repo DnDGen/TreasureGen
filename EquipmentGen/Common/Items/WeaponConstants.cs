@@ -77,5 +77,10 @@ namespace EquipmentGen.Common.Items
         public const String CompositePlus2Longbow = "Composite (+2) longbow";
         public const String CompositePlus3Longbow = "Composite (+3) longbow";
         public const String CompositePlus4Longbow = "Composite (+4) longbow";
+        public const String SleepArrow = "Sleep arrow";
+        public const String ScreamingBolt = "Screaming bolt";
+        public const String SilverDagger = "Silver dagger";
+        public const String JavelinOfLightning = "Javelin of lightning";
+        public const String SlayingArrow = "Slaying arrow";
     }
 }

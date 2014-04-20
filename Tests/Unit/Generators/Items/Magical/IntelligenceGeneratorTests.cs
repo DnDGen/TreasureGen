@@ -223,6 +223,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void AmmunitionIsNotIntelligent()
+        {
+            attributes.Add(AttributeConstants.Ammunition);
+
+            var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
+            Assert.That(isIntelligent, Is.False);
+        }
+
+        [Test]
         public void OneTimeUseItemsAreNotIntelligent()
         {
             attributes.Add(AttributeConstants.OneTimeUse);

@@ -6,7 +6,7 @@ using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "armor type";
-            result.AmountToRoll = "9266";
+            result.Amount = "9266";
 
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
@@ -96,7 +96,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var specificResult = new TypeAndAmountPercentileResult();
             specificResult.Type = "SpecificArmor";
-            specificResult.AmountToRoll = "0";
+            specificResult.Amount = "0";
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors", 42)).Returns(specificResult);
 
             var specificArmor = new Item();
@@ -111,7 +111,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
-            abilityResult.AmountToRoll = "90210";
+            abilityResult.Amount = "90210";
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors", 42))
                 .Returns(abilityResult).Returns(result);
 
@@ -152,6 +152,20 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             foreach (var trait in traits)
                 Assert.That(armor.Traits, Contains.Item(trait));
+        }
+
+        [Test]
+        public void DoNotGetIntelligenceIfNotIntelligent()
+        {
+            var intelligence = new Intelligence();
+            intelligence.Ego = 9266;
+            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(),
+                It.IsAny<Boolean>())).Returns(false);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
+                .Returns(intelligence);
+
+            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
 
         [Test]

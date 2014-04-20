@@ -1,6 +1,6 @@
 ﻿using System;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 
 namespace EquipmentGen.Selectors
 {
@@ -30,7 +30,7 @@ namespace EquipmentGen.Selectors
             var parsedResult = percentileResult.Split(',');
 
             result.Type = parsedResult[0];
-            result.AmountToRoll = parsedResult[1];
+            result.Amount = parsedResult[1];
 
             return result;
         }

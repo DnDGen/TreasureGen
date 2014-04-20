@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public class SpeciicGearGeneratorTests : StressTests
+    public class SpecificGearGeneratorTests : StressTests
     {
         [Inject]
         public ISpecificGearGenerator SpecificGearGenerator { get; set; }
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             if (!gear.IsMagical)
                 return;
 
-            Assert.That(gear.Magic.Bonus, Is.AtLeast(0));
+            Assert.That(gear.Magic.Bonus, Is.AtLeast(1));
             Assert.That(gear.Magic.Charges, Is.AtLeast(0));
             Assert.That(gear.Magic.Curse, Is.Not.Null);
             Assert.That(gear.Magic.SpecialAbilities, Is.Not.Null);
@@ -45,9 +45,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             switch (Random.Next(3))
             {
-                case 0: return "SpecificArmor";
-                case 1: return "SpecificShield";
-                case 2: return "SpecificWeapon";
+                case 0: return "SpecificArmors";
+                case 1: return "SpecificShields";
+                case 2: return "SpecificWeapons";
                 default: throw new ArgumentOutOfRangeException();
             }
         }

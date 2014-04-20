@@ -3,7 +3,7 @@ using D20Dice;
 using EquipmentGen.Generators.Coins;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "coin type";
-            result.AmountToRoll = "92d66";
+            result.Amount = "92d66";
 
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
@@ -55,7 +55,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         [Test]
         public void ParsesCurrencyOutOfPercentileResult()
         {
-            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(42);
+            mockDice.Setup(d => d.Roll(result.Amount)).Returns(42);
 
             var coin = generator.GenerateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(result.Type));

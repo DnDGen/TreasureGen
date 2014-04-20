@@ -8,7 +8,7 @@ using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -34,13 +34,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             result = new TypeAndAmountPercentileResult();
             result.Type = "power";
-            result.AmountToRoll = "9266";
+            result.Amount = "9266";
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
 
             mockDice = new Mock<IDice>();
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
-            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(9266);
+            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
 
             mockMundaneItemGenerator = new Mock<IMundaneItemGenerator>();
             mockMagicalGearGenerator = new Mock<IMagicalGearGenerator>();
@@ -86,8 +86,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void ReturnItems()
         {
             result.Type = PowerConstants.Mundane;
-            result.AmountToRoll = "2";
-            mockDice.Setup(d => d.Roll(result.AmountToRoll)).Returns(2);
+            result.Amount = "2";
+            mockDice.Setup(d => d.Roll(result.Amount)).Returns(2);
 
             var firstItem = new Item();
             var secondItem = new Item();
@@ -103,7 +103,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void IfSelectorReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
         {
             result.Type = String.Empty;
-            result.AmountToRoll = String.Empty;
+            result.Amount = String.Empty;
             mockDice.Setup(d => d.Roll(String.Empty)).Throws(new Exception());
 
             var items = itemsGenerator.GenerateAtLevel(1);

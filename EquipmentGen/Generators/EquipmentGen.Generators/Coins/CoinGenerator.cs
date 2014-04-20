@@ -29,7 +29,7 @@ namespace EquipmentGen.Generators.Coins
                 return coin;
 
             coin.Currency = result.Type;
-            coin.Quantity = dice.Roll(result.AmountToRoll);
+            coin.Quantity = dice.Roll(result.Amount);
 
             return coin;
         }

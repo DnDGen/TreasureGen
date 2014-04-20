@@ -1,5 +1,5 @@
 ﻿using System;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 
 namespace EquipmentGen.Selectors.Interfaces
 {

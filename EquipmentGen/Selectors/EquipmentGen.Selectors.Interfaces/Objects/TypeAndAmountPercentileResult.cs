@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace EquipmentGen.Selectors.Objects
+namespace EquipmentGen.Selectors.Interfaces.Objects
 {
     public class TypeAndAmountPercentileResult
     {
         public String Type { get; set; }
-        public String AmountToRoll { get; set; }
+        public String Amount { get; set; }
 
         public TypeAndAmountPercentileResult()
         {
             Type = String.Empty;
-            AmountToRoll = String.Empty;
+            Amount = String.Empty;
         }
     }
 }

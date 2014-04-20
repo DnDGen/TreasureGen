@@ -26,7 +26,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             var ammunition = new Item();
             ammunition.Name = result.Type;
-            ammunition.Quantity = dice.Roll(result.AmountToRoll);
+            ammunition.Quantity = dice.Roll(result.Amount);
             ammunition.Attributes = attributesSelector.SelectFrom("AmmunitionAttributes", ammunition.Name);
 
             return ammunition;

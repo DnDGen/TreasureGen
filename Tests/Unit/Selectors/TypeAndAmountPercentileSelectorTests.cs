@@ -37,7 +37,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
 
             var result = typeAndAmountPercentileSelector.SelectFrom("table name", 1);
             Assert.That(result.Type, Is.Empty);
-            Assert.That(result.AmountToRoll, Is.Empty);
+            Assert.That(result.Amount, Is.Empty);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         {
             var result = typeAndAmountPercentileSelector.SelectFrom("table name", 9266);
             Assert.That(result.Type, Is.EqualTo("type"));
-            Assert.That(result.AmountToRoll, Is.EqualTo("roll"));
+            Assert.That(result.Amount, Is.EqualTo("roll"));
         }
 
         [Test]

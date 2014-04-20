@@ -4,7 +4,7 @@ using D20Dice;
 using EquipmentGen.Generators.Goods;
 using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Objects;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -26,11 +26,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         {
             typeAndAmountResult = new TypeAndAmountPercentileResult();
             typeAndAmountResult.Type = "type";
-            typeAndAmountResult.AmountToRoll = "2";
+            typeAndAmountResult.Amount = "2";
 
             mockDice = new Mock<IDice>();
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(123);
-            mockDice.Setup(d => d.Roll(typeAndAmountResult.AmountToRoll)).Returns(2);
+            mockDice.Setup(d => d.Roll(typeAndAmountResult.Amount)).Returns(2);
 
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 92)).Returns(typeAndAmountResult);
@@ -71,8 +71,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         [Test]
         public void ReturnsNumberOfGoodsDeterminedByDice()
         {
-            typeAndAmountResult.AmountToRoll = "9266";
-            mockDice.Setup(d => d.Roll(typeAndAmountResult.AmountToRoll)).Returns(9266);
+            typeAndAmountResult.Amount = "9266";
+            mockDice.Setup(d => d.Roll(typeAndAmountResult.Amount)).Returns(9266);
 
             var goods = generator.GenerateAtLevel(1);
             Assert.That(goods.Count(), Is.EqualTo(9266));

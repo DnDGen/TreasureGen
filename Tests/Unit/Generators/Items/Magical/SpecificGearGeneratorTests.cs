@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -12,46 +16,204 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
     public class SpecificGearGeneratorTests
     {
         private ISpecificGearGenerator generator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
         private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilitiesAttributesSelector;
+        private Mock<IChargesGenerator> mockChargesGenerator;
+        private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
+        private Mock<ICurseGenerator> mockCurseGenerator;
+        private TypeAndAmountPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockSpecialAbilitiesAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
+            mockChargesGenerator = new Mock<IChargesGenerator>();
+            mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
+            mockCurseGenerator = new Mock<ICurseGenerator>();
+            result = new TypeAndAmountPercentileResult();
 
-            generator = new SpecificGearGenerator();
+            result.Type = "specific gear";
+            result.Amount = "0";
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
+
+            generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
+                mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object,
+                mockIntelligenceGenerator.Object, mockCurseGenerator.Object);
         }
 
         [Test]
         public void ReturnGear()
         {
-            var gear = generator.GenerateFrom("power", "specific gear type");
+            var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear, Is.Not.Null);
         }
 
         [Test]
-        public void GetGearNameFromTypeTable()
+        public void GetGearNameAndBonusFromSelector()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-            mockPercentileSelector.Setup(s => s.SelectFrom("powerspecific gear types", 9266)).Returns("specific gear");
+            var newResult = new TypeAndAmountPercentileResult();
+            newResult.Type = "new specific gear";
+            newResult.Amount = "42";
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerSpecific gear type", 9266)).Returns(newResult);
 
-            var gear = generator.GenerateFrom("power", "specific gear type");
-            Assert.That(gear.Name, Is.EqualTo("specific gear"));
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Name, Is.EqualTo("new specific gear"));
+            Assert.That(gear.Magic.Bonus, Is.EqualTo(42));
+        }
+
+        [Test]
+        public void JavelinOfLightningIsMagical()
+        {
+            result.Type = "Javelin of lightning";
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.IsMagical, Is.True);
         }
 
         [Test]
         public void GetAttributesFromSelector()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns("specific gear");
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("specific gear typeAttributes", "specific gear")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", "specific gear")).Returns(attributes);
 
-            var gear = generator.GenerateFrom("power", "specific gear type");
+            var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GetTraitsFromSelector()
+        {
+            var traits = new[] { "trait 1", "trait 2" };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeTraits", "specific gear")).Returns(traits);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            foreach (var trait in traits)
+                Assert.That(gear.Traits, Contains.Item(trait));
+
+            Assert.That(gear.Traits.Count, Is.EqualTo(traits.Count()));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromSelector()
+        {
+            var specialAbilities = new[] { "ability 1", "ability 2" };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeSpecialAbilities", "specific gear")).Returns(specialAbilities);
+            var ability1Result = new SpecialAbilityAttributesResult();
+            ability1Result.BaseName = "base name";
+            ability1Result.BonusEquivalent = 9266;
+            ability1Result.Strength = 42;
+            var ability1Requirements = new[] { "req 1", "req 2" };
+            var ability2Result = new SpecialAbilityAttributesResult();
+            ability2Result.BaseName = "base name 2";
+            ability2Result.BonusEquivalent = 6629;
+            ability2Result.Strength = 24;
+            var ability2Requirements = new[] { "req a", "req b" };
+            mockSpecialAbilitiesAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 1")).Returns(ability1Result);
+            mockSpecialAbilitiesAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", "ability 2")).Returns(ability2Result);
+            mockAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributeRequirements", "base name")).Returns(ability1Requirements);
+            mockAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributeRequirements", "base name 2")).Returns(ability2Requirements);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            var ability1 = gear.Magic.SpecialAbilities.First();
+            var ability2 = gear.Magic.SpecialAbilities.Last();
+            Assert.That(ability1.Name, Is.EqualTo("ability 1"));
+            Assert.That(ability1.BaseName, Is.EqualTo(ability1Result.BaseName));
+            Assert.That(ability1.AttributeRequirements, Is.EqualTo(ability1Requirements));
+            Assert.That(ability1.BonusEquivalent, Is.EqualTo(ability1Result.BonusEquivalent));
+            Assert.That(ability1.Strength, Is.EqualTo(ability1Result.Strength));
+            Assert.That(ability2.Name, Is.EqualTo("ability 2"));
+            Assert.That(ability2.BaseName, Is.EqualTo(ability2Result.BaseName));
+            Assert.That(ability2.AttributeRequirements, Is.EqualTo(ability2Requirements));
+            Assert.That(ability2.BonusEquivalent, Is.EqualTo(ability2Result.BonusEquivalent));
+            Assert.That(ability2.Strength, Is.EqualTo(ability2Result.Strength));
+            Assert.That(gear.Magic.SpecialAbilities.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void IfCharged_GetChargesFromGenerator()
+        {
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", "specific gear")).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", "specific gear")).Returns(9266);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Charges, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void IfNotCharged_DoNotGetChargesFromGenerator()
+        {
+            var attributes = new[] { "not charged" };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", "specific gear")).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", "specific gear")).Returns(9266);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Charges, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void DoNotGetIntelligenceIfNotIntelligent()
+        {
+            var intelligence = new Intelligence();
+            intelligence.Ego = 9266;
+            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(" gear type", It.IsAny<IEnumerable<String>>(),
+                It.IsAny<Boolean>())).Returns(false);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
+                .Returns(intelligence);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Intelligence.Ego, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void GetIntelligenceFromGenerator()
+        {
+            var intelligence = new Intelligence();
+            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(" gear type", It.IsAny<IEnumerable<String>>(),
+                It.IsAny<Boolean>())).Returns(true);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
+                .Returns(intelligence);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Intelligence, Is.EqualTo(intelligence));
+        }
+
+        [Test]
+        public void DoNotGetCurseIfNotCursed()
+        {
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Curse, Is.Empty);
+        }
+
+        [Test]
+        public void GetCurseIfCursed()
+        {
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Magic.Curse, Is.EqualTo("cursed"));
+        }
+
+        [Test]
+        public void GetSpecificCursedItems()
+        {
+            var cursedItem = new Item();
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
+            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear, Is.EqualTo(cursedItem));
         }
     }
 }

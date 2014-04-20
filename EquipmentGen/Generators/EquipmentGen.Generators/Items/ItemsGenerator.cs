@@ -44,7 +44,7 @@ namespace EquipmentGen.Generators.Items
             if (String.IsNullOrEmpty(typeAndAmountResult.Type))
                 return items;
 
-            var amount = dice.Roll(typeAndAmountResult.AmountToRoll);
+            var amount = dice.Roll(typeAndAmountResult.Amount);
 
             while (amount-- > 0)
             {

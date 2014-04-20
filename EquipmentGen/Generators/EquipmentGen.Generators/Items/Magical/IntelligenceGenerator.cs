@@ -29,7 +29,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (!isMagical)
                 return false;
 
-            if (attributes.Contains(AttributeConstants.OneTimeUse))
+            if (attributes.Contains(AttributeConstants.OneTimeUse) || attributes.Contains(AttributeConstants.Ammunition))
                 return false;
 
             var roll = dice.Percentile();

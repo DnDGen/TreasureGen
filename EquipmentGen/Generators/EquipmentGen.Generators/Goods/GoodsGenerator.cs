@@ -36,7 +36,7 @@ namespace EquipmentGen.Generators.Goods
             var goods = new List<Good>();
             var valueTableName = String.Format("{0}Values", typeAndAmountResult.Type);
             var descriptionTableName = String.Format("{0}Descriptions", typeAndAmountResult.Type);
-            var quantity = dice.Roll(typeAndAmountResult.AmountToRoll);
+            var quantity = dice.Roll(typeAndAmountResult.Amount);
 
             while (quantity-- > 0)
             {
