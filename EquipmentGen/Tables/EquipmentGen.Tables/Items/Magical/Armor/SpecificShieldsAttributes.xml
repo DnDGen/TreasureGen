@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Absorbing shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Buckler</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Wood</attribute>
+    </object>
+    <object>
+        <name>Caster's shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Wood</attribute>
+    </object>
+    <object>
+        <name>Heavy steel shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Heavy wooden shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Wood</attribute>
+    </object>
+    <object>
+        <name>Lion's shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Spined shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Winged shield</name>
+        <attribute>Armor</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Wood</attribute>
+    </object>
+</attributes>

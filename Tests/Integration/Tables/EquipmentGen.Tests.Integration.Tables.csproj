@@ -61,7 +61,8 @@
     <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />
     <Compile Include="Items\Magical\Armor\Medium\MediumSpecificArmorsTests.cs" />
     <Compile Include="Items\Magical\Armor\Minor\MinorSpecificArmorsTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificShieldsSpecialAbilitiesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Minor\MinorSpecificShieldsTests.cs" />
+    <Compile Include="Items\Magical\Armor\SpecificShieldsAttributesTests.cs" />
     <Compile Include="Items\Magical\ChargeLimitsTests.cs" />
     <Compile Include="Items\Magical\Curses\CursedDependentSituationsTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Goods\Level9GoodsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Major\MajorSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\BalorOrPitFiendTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\HornOfValhallaTypesTests.cs" />

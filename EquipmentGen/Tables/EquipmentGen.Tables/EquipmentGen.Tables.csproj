@@ -565,7 +565,13 @@
     <EmbeddedResource Include="Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Armor\Minor\MinorSpecificShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorSpecificWeapons.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

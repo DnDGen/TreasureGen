@@ -82,5 +82,27 @@ namespace EquipmentGen.Common.Items
         public const String SilverDagger = "Silver dagger";
         public const String JavelinOfLightning = "Javelin of lightning";
         public const String SlayingArrow = "Slaying arrow";
+        public const String AssassinsDagger = "Assassin's dagger";
+        public const String ShiftersSorrow = "Shifter's sorrow";
+        public const String TridentOfFishCommand = "Trident of fish command";
+        public const String FlameTongue = "Flame tongue";
+        public const String LuckBlade0 = "Luck blade (0 wishes)";
+        public const String LuckBlade1 = "Luck blade (1 wish)";
+        public const String LuckBlade2 = "Luck blade (2 wishes)";
+        public const String LuckBlade3 = "Luck blade (3 wishes)";
+        public const String SwordOfSubtlety = "Sword of subtlety";
+        public const String SwordOfThePlanes = "Sword of the planes";
+        public const String NineLivesStealer = "Nine lives stealer";
+        public const String SwordOfLifeStealing = "Sword of life stealing";
+        public const String Oathbow = "Oathbow";
+        public const String MaceOfTerror = "Mace of terror";
+        public const String LifeDrinker = "Life-drinker";
+        public const String SylvanScimitar = "Sylvan scimitar";
+        public const String RapierOfPuncturing = "Rapier of puncturing";
+        public const String SunBlade = "Sun blade";
+        public const String FrostBrand = "Frost brand";
+        public const String DwarvenThrower = "Dwarven thrower";
+        public const String MaceOfSmiting = "Mace of smiting";
+        public const String HolyAvenger = "Holy avenger";
     }
 }

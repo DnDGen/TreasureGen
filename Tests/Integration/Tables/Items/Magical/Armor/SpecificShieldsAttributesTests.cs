@@ -5,11 +5,11 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor
 {
     [TestFixture]
-    public class SpecificShieldsSpecialAbilitiesTests : AttributesTests
+    public class SpecificShieldsAttributesTests : AttributesTests
     {
         protected override String tableName
         {
-            get { return "SpecificShieldsSpecialAbilities"; }
+            get { return "SpecificShieldsAttributes"; }
         }
 
         [TestCase(ArmorConstants.AbsorbingShield, ItemTypeConstants.Armor,
