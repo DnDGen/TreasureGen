@@ -59,7 +59,9 @@
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
     <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />
+    <Compile Include="Items\Magical\Armor\Medium\MediumSpecificArmorsTests.cs" />
     <Compile Include="Items\Magical\Armor\Minor\MinorSpecificArmorsTests.cs" />
+    <Compile Include="Items\Magical\Armor\SpecificShieldsSpecialAbilitiesTests.cs" />
     <Compile Include="Items\Magical\ChargeLimitsTests.cs" />
     <Compile Include="Items\Magical\Curses\CursedDependentSituationsTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
