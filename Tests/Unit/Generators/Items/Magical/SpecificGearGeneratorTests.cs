@@ -23,6 +23,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
         private Mock<ICurseGenerator> mockCurseGenerator;
+        private Mock<ISpellGenerator> mockSpellGenerator;
+        private Mock<IPercentileSelector> mockPercentileSelector;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
@@ -35,6 +37,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockCurseGenerator = new Mock<ICurseGenerator>();
+            mockSpellGenerator = new Mock<ISpellGenerator>();
+            mockPercentileSelector = new Mock<IPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
 
             result.Type = "specific gear";
@@ -283,6 +287,42 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             Assert.That(gear.Magic.Charges, Is.EqualTo(3));
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
+        }
+
+        [Test]
+        public void CastersShieldHasNoSpellIfBelow51()
+        {
+            result.Type = ArmorConstants.CastersShield;
+            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
+
+            for (var roll = 50; roll > 0; roll--)
+            {
+                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
+
+                var gear = generator.GenerateFrom("power", "Specific gear type");
+                Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
+                Assert.That(gear.Traits, Is.Not.Contains("spell (spell type, level 42)"));
+            }
+        }
+
+        [Test]
+        public void CastersShieldHasSpellIfAbove50()
+        {
+            result.Type = ArmorConstants.CastersShield;
+            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
+
+            for (var roll = 100; roll > 50; roll--)
+            {
+                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
+
+                var gear = generator.GenerateFrom("power", "Specific gear type");
+                Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
+                Assert.That(gear.Traits, Contains.Item("spell (spell type, level 42)"));
+            }
         }
     }
 }
