@@ -215,5 +215,74 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear, Is.EqualTo(cursedItem));
         }
+
+        [Test]
+        public void SilverDaggerBecomesDaggerWithAlchemicalSilverTrait()
+        {
+            result.Type = WeaponConstants.SilverDagger;
+            var traits = new[] { TraitConstants.AlchemicalSilver };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeTraits", result.Type)).Returns(traits);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            Assert.That(gear.Traits, Contains.Item(TraitConstants.AlchemicalSilver));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.Dagger));
+        }
+
+        [Test]
+        public void LuckBlade0BecomesLuckBladeWithChargeOf0()
+        {
+            result.Type = WeaponConstants.LuckBlade0;
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", result.Type)).Returns(0);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            Assert.That(gear.Magic.Charges, Is.EqualTo(0));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
+        }
+
+        [Test]
+        public void LuckBlade1BecomesLuckBladeWithChargeOf1()
+        {
+            result.Type = WeaponConstants.LuckBlade1;
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", result.Type)).Returns(1);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            Assert.That(gear.Magic.Charges, Is.EqualTo(1));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
+        }
+
+        [Test]
+        public void LuckBlade2BecomesLuckBladeWithChargeOf2()
+        {
+            result.Type = WeaponConstants.LuckBlade2;
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", result.Type)).Returns(2);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            Assert.That(gear.Magic.Charges, Is.EqualTo(2));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
+        }
+
+        [Test]
+        public void LuckBlade3BecomesLuckBladeWithChargeOf3()
+        {
+            result.Type = WeaponConstants.LuckBlade3;
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", result.Type)).Returns(3);
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+
+            Assert.That(gear.Magic.Charges, Is.EqualTo(3));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
+        }
     }
 }

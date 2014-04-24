@@ -46,4 +46,29 @@
         <attribute>1</attribute>
         <attribute>3</attribute>
     </object>
+    <object>
+        <name>Luck blade (0 wishes)</name>
+        <attribute>0</attribute>
+        <attribute>0</attribute>
+    </object>
+    <object>
+        <name>Luck blade (1 wish)</name>
+        <attribute>1</attribute>
+        <attribute>1</attribute>
+    </object>
+    <object>
+        <name>Luck blade (2 wishes)</name>
+        <attribute>2</attribute>
+        <attribute>2</attribute>
+    </object>
+    <object>
+        <name>Luck blade (3 wishes)</name>
+        <attribute>3</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Luck blade</name>
+        <attribute>0</attribute>
+        <attribute>3</attribute>
+    </object>
 </percentile>

@@ -40,10 +40,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var gear = new Item();
             gear.Name = result.Type;
-
-            if (gear.Name == "Javelin of lightning")
-                gear.IsMagical = true;
-
             gear.Magic.Bonus = Convert.ToInt32(result.Amount);
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
@@ -56,6 +52,11 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (gear.Attributes.Contains(AttributeConstants.Charged))
                 gear.Magic.Charges = chargesGenerator.GenerateFor(itemType, gear.Name);
+
+            if (gear.Name == "Javelin of lightning")
+                gear.IsMagical = true;
+
+            gear.Name = RenameGear(gear.Name);
 
             if (intelligenceGenerator.IsIntelligent(itemType, gear.Attributes, gear.IsMagical))
                 gear.Magic.Intelligence = intelligenceGenerator.GenerateFor(gear.Magic);
@@ -70,6 +71,19 @@ namespace EquipmentGen.Generators.Items.Magical
             }
 
             return gear;
+        }
+
+        private String RenameGear(String oldName)
+        {
+            switch (oldName)
+            {
+                case WeaponConstants.SilverDagger: return WeaponConstants.Dagger;
+                case WeaponConstants.LuckBlade0: return WeaponConstants.LuckBlade;
+                case WeaponConstants.LuckBlade1: return WeaponConstants.LuckBlade;
+                case WeaponConstants.LuckBlade2: return WeaponConstants.LuckBlade;
+                case WeaponConstants.LuckBlade3: return WeaponConstants.LuckBlade;
+                default: return oldName;
+            }
         }
 
         private IEnumerable<SpecialAbility> GetSpecialAbilities(String specificGearType, String name)

@@ -104,5 +104,6 @@ namespace EquipmentGen.Common.Items
         public const String DwarvenThrower = "Dwarven thrower";
         public const String MaceOfSmiting = "Mace of smiting";
         public const String HolyAvenger = "Holy avenger";
+        public const String LuckBlade = "Luck blade";
     }
 }

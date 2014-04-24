@@ -107,6 +107,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(WeaponConstants.DwarvenThrower, "Dwarven thrower")]
         [TestCase(WeaponConstants.MaceOfSmiting, "Mace of smiting")]
         [TestCase(WeaponConstants.HolyAvenger, "Holy avenger")]
+        [TestCase(WeaponConstants.LuckBlade, "Luck blade")]
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
