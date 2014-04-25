@@ -99,5 +99,11 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             item.Magic.SpecialAbilities = new[] { new SpecialAbility() };
             Assert.That(item.IsMagical, Is.True);
         }
+
+        [Test]
+        public void ContentsInitialized()
+        {
+            Assert.That(item.Contents, Is.Empty);
+        }
     }
 }

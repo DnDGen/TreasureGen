@@ -30,6 +30,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(ring.Attributes, Is.Not.Null);
             Assert.That(ring.Quantity, Is.EqualTo(1));
             Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.Contents, Is.Not.Null);
         }
     }
 }

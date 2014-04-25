@@ -11,6 +11,7 @@ namespace EquipmentGen.Common.Items
         public IEnumerable<String> Attributes { get; set; }
         public Magic Magic { get; set; }
         public Int32 Quantity { get; set; }
+        public List<String> Contents { get; set; }
 
         public Boolean IsMagical
         {
@@ -34,6 +35,7 @@ namespace EquipmentGen.Common.Items
             Magic = new Magic();
             Quantity = 1;
             Name = String.Empty;
+            Contents = new List<String>();
         }
     }
 }

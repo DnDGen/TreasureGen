@@ -29,6 +29,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(armor.Traits, Is.Not.Null);
             Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
             Assert.That(armor.Quantity, Is.EqualTo(1));
+            Assert.That(armor.Contents, Is.Not.Null);
 
             if (armor.IsMagical)
                 Assert.That(armor.Magic.Bonus, Is.GreaterThan(0));

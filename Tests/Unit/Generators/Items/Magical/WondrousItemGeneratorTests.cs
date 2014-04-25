@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -170,7 +171,22 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns("contents");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Iron flask (contents)"));
+            Assert.That(item.Name, Is.EqualTo("Iron flask"));
+            Assert.That(item.Contents, Contains.Item("contents"));
+        }
+
+        [Test]
+        public void IronFlaskOnlyContainsOneThing()
+        {
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom("IronFlaskContents", 66)).Returns("contents").Returns("more contents");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Iron flask"));
+            Assert.That(item.Contents, Contains.Item("contents"));
+            Assert.That(item.Contents.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -183,7 +199,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("BalorOrPitFiend", It.IsAny<Int32>())).Returns("balor or pit fiend");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Iron flask (balor or pit fiend)"));
+            Assert.That(item.Name, Is.EqualTo("Iron flask"));
+            Assert.That(item.Contents, Contains.Item("balor or pit fiend"));
         }
 
         [Test]
@@ -214,6 +231,27 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void RobeOfUsefulItemsBaseItemsAdded()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", It.IsAny<Int32>())).Returns("Robe of useful items");
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Robe of useful items"));
+            Assert.That(item.Contents, Contains.Item(WeaponConstants.Dagger));
+            Assert.That(item.Contents, Contains.Item("Bullseye lantern (filled and lit)"));
+            Assert.That(item.Contents, Contains.Item("Mirror (highly polished, 2-foot by 4-foot, steel)"));
+            Assert.That(item.Contents, Contains.Item("10-foot pole"));
+            Assert.That(item.Contents, Contains.Item("50-foot Hempen rope"));
+            Assert.That(item.Contents, Contains.Item("Sack"));
+
+            foreach (var content in item.Contents.Distinct())
+            {
+                var allOfContent = item.Contents.FindAll(c => c == content);
+                Assert.That(allOfContent.Count, Is.EqualTo(2));
+            }
+        }
+
+        [Test]
         public void RobeOfUsefulItemsExtraItemsDetermined()
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(42);
@@ -224,7 +262,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems", 42)).Returns("item 2");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: item 1, item 2)"));
+            Assert.That(item.Name, Is.EqualTo("Robe of useful items"));
+            Assert.That(item.Contents, Contains.Item("item 1"));
+            Assert.That(item.Contents, Contains.Item("item 2"));
         }
 
         [Test]
@@ -240,7 +280,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Robe of useful items (extra items: spell type scroll of spell (9266))"));
+            Assert.That(item.Name, Is.EqualTo("Robe of useful items"));
+            Assert.That(item.Contents, Contains.Item("spell type scroll of spell (9266)"));
         }
 
         [Test]
@@ -256,7 +297,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 5)).Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Cubic gate (Material plane, plane 1, plane 2, plane 3, plane 4, plane 5)"));
+            Assert.That(item.Name, Is.EqualTo("Cubic gate"));
+            Assert.That(item.Contents, Contains.Item("Material plane"));
+            Assert.That(item.Contents, Contains.Item("plane 1"));
+            Assert.That(item.Contents, Contains.Item("plane 2"));
+            Assert.That(item.Contents, Contains.Item("plane 3"));
+            Assert.That(item.Contents, Contains.Item("plane 4"));
+            Assert.That(item.Contents, Contains.Item("plane 5"));
         }
 
         [Test]
@@ -273,7 +320,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 5)).Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Cubic gate (Material plane, plane 1, plane 2, plane 3, plane 4, plane 5)"));
+            Assert.That(item.Name, Is.EqualTo("Cubic gate"));
+            Assert.That(item.Contents, Contains.Item("Material plane"));
+            Assert.That(item.Contents, Contains.Item("plane 1"));
+            Assert.That(item.Contents, Contains.Item("plane 2"));
+            Assert.That(item.Contents, Contains.Item("plane 3"));
+            Assert.That(item.Contents, Contains.Item("plane 4"));
+            Assert.That(item.Contents, Contains.Item("plane 5"));
         }
 
         [Test]

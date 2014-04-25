@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -44,7 +43,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             Assert.That(scroll.Name, Is.EqualTo("spell type scroll"));
-            Assert.That(scroll.Traits, Contains.Item("spell (9266)"));
+            Assert.That(scroll.Contents, Contains.Item("spell (9266)"));
         }
 
         [Test]
@@ -53,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.d3(1)).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Traits.Count, Is.EqualTo(9266));
+            Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
         [Test]
@@ -62,7 +61,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.d4(1)).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Medium);
-            Assert.That(scroll.Traits.Count, Is.EqualTo(9266));
+            Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
         [Test]
@@ -71,7 +70,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.d6(1)).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Major);
-            Assert.That(scroll.Traits.Count, Is.EqualTo(9266));
+            Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
         [Test]

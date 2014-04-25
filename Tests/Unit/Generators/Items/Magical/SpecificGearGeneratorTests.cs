@@ -47,7 +47,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object,
-                mockIntelligenceGenerator.Object, mockCurseGenerator.Object);
+                mockIntelligenceGenerator.Object, mockCurseGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object);
         }
 
         [Test]
@@ -303,7 +303,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 var gear = generator.GenerateFrom("power", "Specific gear type");
                 Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
-                Assert.That(gear.Traits, Is.Not.Contains("spell (spell type, level 42)"));
+                Assert.That(gear.Contents, Is.Empty);
             }
         }
 
@@ -321,7 +321,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 var gear = generator.GenerateFrom("power", "Specific gear type");
                 Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
-                Assert.That(gear.Traits, Contains.Item("spell (spell type, level 42)"));
+                Assert.That(gear.Contents, Contains.Item("spell (spell type, 42)"));
             }
         }
     }
