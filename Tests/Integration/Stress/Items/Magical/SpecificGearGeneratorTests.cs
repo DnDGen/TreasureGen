@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -27,9 +28,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 return;
 
             Assert.That(gear.Name, Is.Not.Empty);
-            Assert.That(gear.Attributes, Is.Not.Empty);
+            Assert.That(gear.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(gear.Quantity, Is.EqualTo(1));
             Assert.That(gear.Traits, Is.Not.Null);
+            Assert.That(gear.Contents, Is.Not.Null);
 
             if (!gear.IsMagical)
                 return;

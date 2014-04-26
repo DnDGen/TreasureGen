@@ -29,6 +29,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(ammunition.Attributes, Contains.Item(ItemTypeConstants.Weapon));
             Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ammunition));
             Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ranged));
+            Assert.That(ammunition.Contents, Is.Empty);
         }
     }
 }

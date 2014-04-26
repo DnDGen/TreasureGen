@@ -157,10 +157,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void IfNotCharged_DoNotGetChargesFromGenerator()
         {
             var attributes = new[] { "not charged" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typeAttributes", "specific gear")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom("Specific gear typesAttributes", "specific gear")).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", "specific gear")).Returns(9266);
 
-            var gear = generator.GenerateFrom("power", "Specific gear type");
+            var gear = generator.GenerateFrom("power", "Specific gear types");
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));
         }
 

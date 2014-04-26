@@ -143,7 +143,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of Minor spell storing"));
-            Assert.That(ring.Contents, Contains.Item("spell"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 2)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 

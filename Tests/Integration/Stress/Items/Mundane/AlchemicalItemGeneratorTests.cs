@@ -25,6 +25,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.Traits, Is.Empty);
+            Assert.That(item.Contents, Is.Empty);
         }
     }
 }

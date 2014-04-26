@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Buckler</name>
+        <attribute>Darkwood</attribute>
+    </object>
+    <object>
+        <name>Heavy steel shield</name>
+        <attribute>Mithral</attribute>
+    </object>
+    <object>
+        <name>Heavy wooden shield</name>
+        <attribute>Darkwood</attribute>
+    </object>
+</attributes>
