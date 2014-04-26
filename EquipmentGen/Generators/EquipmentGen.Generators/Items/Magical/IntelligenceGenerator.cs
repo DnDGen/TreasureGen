@@ -14,14 +14,16 @@ namespace EquipmentGen.Generators.Items.Magical
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
         private IIntelligenceAttributesSelector intelligenceAttributesSelector;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
         public IntelligenceGenerator(IDice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
-            IIntelligenceAttributesSelector intelligenceAttributesSelector)
+            IIntelligenceAttributesSelector intelligenceAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
             this.intelligenceAttributesSelector = intelligenceAttributesSelector;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Boolean isMagical)
@@ -33,23 +35,8 @@ namespace EquipmentGen.Generators.Items.Magical
                 return false;
 
             var roll = dice.Percentile();
-            var upperLimit = GetUpperLimitFor(itemType);
-
-            return roll <= upperLimit;
-        }
-
-        private Int32 GetUpperLimitFor(String itemType)
-        {
-            switch (itemType)
-            {
-                case ItemTypeConstants.Ring:
-                case ItemTypeConstants.Rod:
-                case ItemTypeConstants.WondrousItem:
-                case ItemTypeConstants.Armor: return 1;
-                case AttributeConstants.Ranged: return 5;
-                case AttributeConstants.Melee: return 15;
-                default: return 0;
-            }
+            var tableName = String.Format("Is{0}Intelligent", itemType);
+            return booleanPercentileSelector.SelectFrom(tableName, roll);
         }
 
         public Intelligence GenerateFor(Magic magic)
@@ -59,6 +46,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var highStat = Convert.ToInt32(highStatResult);
 
             var intelligence = new Intelligence();
+            //dividing and multiplying by 2 so that integer division rounds down odd numbers
             intelligence.Ego += (highStat - 10) / 2 * 2;
             intelligence.Ego += magic.Bonus;
 

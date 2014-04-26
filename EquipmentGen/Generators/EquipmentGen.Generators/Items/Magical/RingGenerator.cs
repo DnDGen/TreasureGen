@@ -71,20 +71,24 @@ namespace EquipmentGen.Generators.Items.Magical
                 {
                     var type = spellGenerator.GenerateType();
                     var spell = spellGenerator.Generate(type, level);
-                    ring.Name = String.Format("{0} ({1})", ring.Name, spell);
+                    var formattedSpell = String.Format("{0} ({1}, {2})", spell, type, level);
+                    ring.Contents.Add(formattedSpell);
                 }
             }
             else if (ability.Contains("Minor spell storing"))
             {
-                ring.Name = GetNewRingNameWithSpells(ring.Name, power, 3);
+                var spells = GenerateSpells(power, 3);
+                ring.Contents.AddRange(spells);
             }
             else if (ability.Contains("Major spell storing"))
             {
-                ring.Name = GetNewRingNameWithSpells(ring.Name, power, 10);
+                var spells = GenerateSpells(power, 10);
+                ring.Contents.AddRange(spells);
             }
             else if (ability.Contains("Spell storing"))
             {
-                ring.Name = GetNewRingNameWithSpells(ring.Name, power, 5);
+                var spells = GenerateSpells(power, 5);
+                ring.Contents.AddRange(spells);
             }
             else if (ability.Contains("nergy resistance"))
             {
@@ -100,13 +104,6 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var bonus = name.Split('+').Last();
             return Convert.ToInt32(bonus);
-        }
-
-        private String GetNewRingNameWithSpells(String name, String power, Int32 levelCap)
-        {
-            var spells = GenerateSpells(power, levelCap);
-            var spellsString = String.Join(", ", spells);
-            return String.Format("{0} ({1})", name, spellsString);
         }
 
         private IEnumerable<String> GenerateSpells(String power, Int32 levelCap)

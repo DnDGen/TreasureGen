@@ -10,11 +10,13 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         private IDice dice;
         private IPercentileSelector percentileSelector;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public CurseGenerator(IDice dice, IPercentileSelector percentileSelector)
+        public CurseGenerator(IDice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public Boolean HasCurse(Boolean isMagical)
@@ -23,7 +25,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 return false;
 
             var roll = dice.Percentile();
-            return roll <= 5;
+            return booleanPercentileSelector.SelectFrom("IsItemCursed", roll);
         }
 
         public String GenerateCurse()

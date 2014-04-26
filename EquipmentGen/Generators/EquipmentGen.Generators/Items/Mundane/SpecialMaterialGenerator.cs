@@ -10,31 +10,20 @@ namespace EquipmentGen.Generators.Items.Mundane
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private IDice dice;
-        private IAttributesSelector attributesSelector;
         private Dictionary<String, IEnumerable<String>> specialMaterialAttributes;
 
         public SpecialMaterialGenerator(IDice dice, IAttributesSelector attributesSelector)
         {
             this.dice = dice;
-            this.attributesSelector = attributesSelector;
-
             specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
 
-            CacheSpecialMaterialTypes();
-        }
-
-        private void CacheSpecialMaterialTypes()
-        {
             var materials = attributesSelector.SelectFrom("SpecialMaterials", "SpecialMaterials");
 
             foreach (var material in materials)
-                AddTypes(material);
-        }
-
-        private void AddTypes(String specialMaterial)
-        {
-            var attributeRequirements = attributesSelector.SelectFrom("SpecialMaterials", specialMaterial);
-            specialMaterialAttributes.Add(specialMaterial, attributeRequirements);
+            {
+                var attributeRequirements = attributesSelector.SelectFrom("SpecialMaterials", material);
+                specialMaterialAttributes.Add(material, attributeRequirements);
+            }
         }
 
         public Boolean HasSpecialMaterial(IEnumerable<String> attributes)

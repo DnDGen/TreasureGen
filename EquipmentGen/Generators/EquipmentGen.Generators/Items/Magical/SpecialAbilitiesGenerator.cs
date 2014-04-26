@@ -17,15 +17,18 @@ namespace EquipmentGen.Generators.Items.Magical
         private IPercentileSelector percentileSelector;
         private IDice dice;
         private ISpellGenerator spellGenerator;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
         public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IDice dice,
-            ISpellGenerator spellGenerator, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector)
+            ISpellGenerator spellGenerator, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
+            IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.dice = dice;
             this.spellGenerator = spellGenerator;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public IEnumerable<SpecialAbility> GenerateWith(IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
@@ -182,22 +185,12 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetModifiedName(SpecialAbility ability)
         {
-            if (ability.BaseName == "Bane")
-            {
-                var roll = dice.Percentile();
-                var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
-                return String.Format("{0}bane", designatedFoe);
-            }
+            if (ability.BaseName != "Bane")
+                return ability.Name;
 
-            if (ability.BaseName == "Spell storing" && dice.Percentile() > 50)
-            {
-                var level = dice.d4() - 1;
-                var spellType = spellGenerator.GenerateType();
-                var spell = spellGenerator.Generate(spellType, level);
-                return String.Format("Spell storing (contains {0})", spell);
-            }
-
-            return ability.Name;
+            var roll = dice.Percentile();
+            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+            return String.Format("{0}bane", designatedFoe);
         }
     }
 }

@@ -19,11 +19,12 @@ namespace EquipmentGen.Generators.Items.Magical
         private ICurseGenerator curseGenerator;
         private IPercentileSelector percentileSelector;
         private ISpellGenerator spellGenerator;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice,
             IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
             IChargesGenerator chargesGenerator, IIntelligenceGenerator intelligenceGenerator, ICurseGenerator curseGenerator,
-            IPercentileSelector percentileSelector, ISpellGenerator spellGenerator)
+            IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.dice = dice;
@@ -34,6 +35,7 @@ namespace EquipmentGen.Generators.Items.Magical
             this.curseGenerator = curseGenerator;
             this.percentileSelector = percentileSelector;
             this.spellGenerator = spellGenerator;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public Item GenerateFrom(String power, String specificGearType)
@@ -65,11 +67,16 @@ namespace EquipmentGen.Generators.Items.Magical
             else if (gear.Name == ArmorConstants.CastersShield && dice.Percentile() > 50)
             {
                 roll = dice.Percentile();
-                var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes", roll);
-                var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
-                var spell = spellGenerator.Generate(spellType, spellLevel);
-                var formattedSpell = String.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
-                gear.Contents.Add(formattedSpell);
+                var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell", roll);
+
+                if (hasSpell)
+                {
+                    var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes", roll);
+                    var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
+                    var spell = spellGenerator.Generate(spellType, spellLevel);
+                    var formattedSpell = String.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
+                    gear.Contents.Add(formattedSpell);
+                }
             }
 
             gear.Name = RenameGear(gear.Name);

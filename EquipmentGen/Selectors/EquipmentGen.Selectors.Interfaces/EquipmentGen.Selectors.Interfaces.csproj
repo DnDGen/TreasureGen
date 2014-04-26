@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBooleanPercentileSelector.cs" />
     <Compile Include="IIntelligenceAttributesSelector.cs" />
     <Compile Include="IPercentileSelector.cs" />
     <Compile Include="IRangeAttributesSelector.cs" />
