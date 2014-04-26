@@ -25,6 +25,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<ICurseGenerator> mockCurseGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
@@ -39,6 +40,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator = new Mock<ICurseGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
 
             result.Type = "specific gear";
@@ -47,7 +49,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object,
-                mockIntelligenceGenerator.Object, mockCurseGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object);
+                mockIntelligenceGenerator.Object, mockCurseGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object,
+                mockBooleanPercentileSelector.Object);
         }
 
         [Test]
@@ -290,39 +293,31 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void CastersShieldHasNoSpellIfBelow51()
+        public void CastersShieldHasNoSpellIfSelectorSaysSo()
         {
             result.Type = ArmorConstants.CastersShield;
             mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell", It.IsAny<Int32>())).Returns(false);
 
-            for (var roll = 50; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-
-                var gear = generator.GenerateFrom("power", "Specific gear type");
-                Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
-                Assert.That(gear.Contents, Is.Empty);
-            }
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
+            Assert.That(gear.Contents, Is.Empty);
         }
 
         [Test]
-        public void CastersShieldHasSpellIfAbove50()
+        public void CastersShieldHasSpellIfSelectorSaysSo()
         {
             result.Type = ArmorConstants.CastersShield;
             mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell", It.IsAny<Int32>())).Returns(true);
 
-            for (var roll = 100; roll > 50; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-
-                var gear = generator.GenerateFrom("power", "Specific gear type");
-                Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
-                Assert.That(gear.Contents, Contains.Item("spell (spell type, 42)"));
-            }
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
+            Assert.That(gear.Contents, Contains.Item("spell (spell type, 42)"));
         }
     }
 }

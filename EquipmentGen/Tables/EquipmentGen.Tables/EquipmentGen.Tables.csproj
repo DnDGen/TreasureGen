@@ -576,6 +576,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsSpecialAbilities.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\WondrousItems\IsDeckOfIllusionsFullyCharged.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Curses\IsItemCursed.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Armor\SpecificArmorsAttributes.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

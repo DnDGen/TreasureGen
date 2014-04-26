@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>True</content>
+    <upper>5</upper>
+  </object>
+    <object>
+        <lower>6</lower>
+        <content>False</content>
+        <upper>100</upper>
+    </object>
+</percentile>

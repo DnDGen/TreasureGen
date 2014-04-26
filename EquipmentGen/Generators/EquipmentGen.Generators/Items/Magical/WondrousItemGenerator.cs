@@ -72,7 +72,7 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 roll = dice.Percentile();
                 var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes", roll);
-                item.Name = String.Format("{0} ({1})", item.Name, hornType);
+                item.Name = String.Format("{0} {1}", hornType, item.Name);
             }
             else if (item.Name == "Iron flask")
             {
@@ -85,22 +85,29 @@ namespace EquipmentGen.Generators.Items.Magical
                     contents = percentileSelector.SelectFrom("BalorOrPitFiend", roll);
                 }
 
-                item.Name = String.Format("{0} ({1})", item.Name, contents);
+                if (!String.IsNullOrEmpty(contents))
+                    item.Contents.Add(contents);
             }
             else if (item.Name == "Robe of useful items")
             {
+                var baseItems = GetBaseItemsInRobeOfUsefulItems();
+                item.Contents.AddRange(baseItems);
+
                 var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
-                var extraItemsString = String.Join(", ", extraItems);
-                item.Name = String.Format("{0} (extra items: {1})", item.Name, extraItemsString);
+                item.Contents.AddRange(extraItems);
             }
             else if (item.Name == "Cubic gate")
             {
                 var planes = GeneratePlanesForCubicGate();
-                var planesString = String.Join(", ", planes);
-                item.Name = String.Format("{0} ({1})", item.Name, planesString);
+                item.Contents.AddRange(planes);
             }
 
             return item;
+        }
+
+        private IEnumerable<String> GetBaseItemsInRobeOfUsefulItems()
+        {
+            return attributesSelector.SelectFrom("RobeOfUsefulItemsBaseItems", "Items");
         }
 
         private String GetNameForAttributes(String itemName)

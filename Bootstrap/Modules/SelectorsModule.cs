@@ -14,6 +14,7 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<IRangeAttributesSelector>().To<RangeAttributesSelector>();
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
             Bind<IAttributesSelector>().To<AttributesSelector>();
+            Bind<IBooleanPercentileSelector>().To<BooleanPercentileSelector>();
         }
     }
 }

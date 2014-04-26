@@ -31,7 +31,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 var level = spellGenerator.GenerateLevel(power);
                 var spell = spellGenerator.Generate(spellType, level);
                 var spellWithLevel = String.Format("{0} ({1})", spell, level);
-                scroll.Traits.Add(spellWithLevel);
+                scroll.Contents.Add(spellWithLevel);
             }
 
             if (curseGenerator.HasCurse(scroll.IsMagical))

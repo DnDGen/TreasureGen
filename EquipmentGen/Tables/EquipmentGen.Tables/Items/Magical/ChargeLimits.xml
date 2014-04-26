@@ -71,4 +71,9 @@
         <attribute>0</attribute>
         <attribute>3</attribute>
     </object>
+    <object>
+        <name>Full deck of illusions</name>
+        <attribute>34</attribute>
+        <attribute>34</attribute>
+    </object>
 </percentile>

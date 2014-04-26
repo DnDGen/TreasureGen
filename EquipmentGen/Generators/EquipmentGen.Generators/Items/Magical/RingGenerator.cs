@@ -121,7 +121,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
                 var type = spellGenerator.GenerateType();
                 var spell = spellGenerator.Generate(type, level);
-                spells.Add(spell);
+                var formattedSpell = String.Format("{0} ({1}, {2})", spell, type, level);
+                spells.Add(formattedSpell);
             }
 
             return spells;

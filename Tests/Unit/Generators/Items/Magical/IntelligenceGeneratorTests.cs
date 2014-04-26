@@ -19,6 +19,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IIntelligenceAttributesSelector> mockIntelligenceAttributesSelector;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private List<String> attributes;
         private Magic magic;
         private IntelligenceAttributesResult intelligenceAttributesResult;
@@ -27,199 +28,38 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.d4(1)).Returns(4);
-
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("10");
-
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            var fillerValues = new[] { "0" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
-
             mockIntelligenceAttributesSelector = new Mock<IIntelligenceAttributesSelector>();
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             intelligenceAttributesResult = new IntelligenceAttributesResult();
-            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom("IntelligenceAttributes", It.IsAny<String>())).Returns(intelligenceAttributesResult);
-
             attributes = new List<String>();
             magic = new Magic();
 
+            var fillerValues = new[] { "0" };
+            mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
+            mockDice.Setup(d => d.d4(1)).Returns(4);
+            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats", It.IsAny<Int32>())).Returns("10");
+            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom("IntelligenceAttributes", It.IsAny<String>())).Returns(intelligenceAttributesResult);
+
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
-                mockAttributesSelector.Object, mockIntelligenceAttributesSelector.Object);
+                mockAttributesSelector.Object, mockIntelligenceAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
-        public void AlchemicalItemsAreNotIntelligent()
+        public void GetIntelligentFromBooleanSelector()
         {
-            for (var roll = 100; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.AlchemicalItem, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void ArmorsAreIntelligentOnRollOf1()
-        {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("Isitem typeIntelligent", It.IsAny<Int32>())).Returns(true);
+            var isIntelligent = intelligenceGenerator.IsIntelligent("item type", attributes, true);
             Assert.That(isIntelligent, Is.True);
         }
 
         [Test]
-        public void ArmorsAreNotIntelligentOnRollAbove1()
+        public void GetNotIntelligentFromBooleanSelector()
         {
-            for (var roll = 100; roll > 1; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void PotionsAreNotIntelligent()
-        {
-            for (var roll = 100; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Potion, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void RingsAreIntelligentOnRollOf1()
-        {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, true);
-            Assert.That(isIntelligent, Is.True);
-        }
-
-        [Test]
-        public void RingsAreNotIntelligentOnRollAbove1()
-        {
-            for (var roll = 100; roll > 1; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void RodsAreIntelligentOnRollOf1()
-        {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, true);
-            Assert.That(isIntelligent, Is.True);
-        }
-
-        [Test]
-        public void RodsAreNotIntelligentOnRollAbove1()
-        {
-            for (var roll = 100; roll > 1; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Rod, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void ScrollsAreNotIntelligent()
-        {
-            for (var roll = 100; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Scroll, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void StavesAreNotIntelligent()
-        {
-            for (var roll = 100; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Staff, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void WandsAreNotIntelligent()
-        {
-            for (var roll = 100; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Wand, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void WondrousItemsAreIntelligentOnRollOf1()
-        {
-            mockDice.Setup(d => d.Percentile(1)).Returns(1);
-            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, true);
-            Assert.That(isIntelligent, Is.True);
-        }
-
-        [Test]
-        public void WondrousItemsAreNotIntelligentOnRollAbove1()
-        {
-            for (var roll = 100; roll > 1; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void RangedWeaponsAreIntelligentOnRollOf1Through5()
-        {
-            for (var roll = 5; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, true);
-                Assert.That(isIntelligent, Is.True);
-            }
-        }
-
-        [Test]
-        public void RangedWeaponsAreNotIntelligentOnRollAbove5()
-        {
-            for (var roll = 100; roll > 5; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Ranged, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
-        }
-
-        [Test]
-        public void MeleeWeaponsAreIntelligentOnRollOf1Through15()
-        {
-            for (var roll = 15; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
-                Assert.That(isIntelligent, Is.True);
-            }
-        }
-
-        [Test]
-        public void MeleeWeaponsAreNotIntelligentOnRollAbove15()
-        {
-            for (var roll = 100; roll > 15; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var isIntelligent = intelligenceGenerator.IsIntelligent(AttributeConstants.Melee, attributes, true);
-                Assert.That(isIntelligent, Is.False);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("Isitem typeIntelligent", It.IsAny<Int32>())).Returns(false);
+            var isIntelligent = intelligenceGenerator.IsIntelligent("item type", attributes, true);
+            Assert.That(isIntelligent, Is.False);
         }
 
         [Test]

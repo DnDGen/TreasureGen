@@ -16,17 +16,14 @@ namespace EquipmentGen.Generators.Items.Magical
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IDice dice;
-        private ISpellGenerator spellGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
         public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IDice dice,
-            ISpellGenerator spellGenerator, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
-            IBooleanPercentileSelector booleanPercentileSelector)
+            ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.dice = dice;
-            this.spellGenerator = spellGenerator;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
@@ -71,8 +68,9 @@ namespace EquipmentGen.Generators.Items.Magical
                 quantity--;
                 bonusSum += ability.BonusEquivalent;
                 abilities.Add(ability);
+                availableAbilities.Remove(ability);
 
-                var weakerAbilities = availableAbilities.Where(a => a.BaseName == ability.BaseName && a.Strength <= ability.Strength);
+                var weakerAbilities = availableAbilities.Where(a => a.BaseName == ability.BaseName && a.Strength < ability.Strength);
                 availableAbilities = availableAbilities.Except(weakerAbilities).ToList();
 
                 var tooStrongAbilities = availableAbilities.Where(a => a.BonusEquivalent + bonusSum > 10);

@@ -64,7 +64,7 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 gear.IsMagical = true;
             }
-            else if (gear.Name == ArmorConstants.CastersShield && dice.Percentile() > 50)
+            else if (gear.Name == ArmorConstants.CastersShield)
             {
                 roll = dice.Percentile();
                 var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell", roll);

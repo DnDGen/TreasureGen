@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -159,7 +158,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("HornOfValhallaTypes", 66)).Returns("metallic");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Name, Is.EqualTo("Horn of Valhalla (metallic)"));
+            Assert.That(item.Name, Is.EqualTo("metallic Horn of Valhalla"));
         }
 
         [Test]
@@ -173,6 +172,19 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask"));
             Assert.That(item.Contents, Contains.Item("contents"));
+        }
+
+        [Test]
+        public void IronFlaskContentsDoNotContainsEmptyString()
+        {
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
+            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns(String.Empty);
+
+            var item = wondrousItemGenerator.GenerateAtPower("power");
+            Assert.That(item.Name, Is.EqualTo("Iron flask"));
+            Assert.That(item.Contents, Is.Empty);
         }
 
         [Test]
@@ -234,21 +246,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsBaseItemsAdded()
         {
             mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", It.IsAny<Int32>())).Returns("Robe of useful items");
+            var items = new[] { "item 1", "item 2", "item 3" };
+            mockAttributesSelector.Setup(s => s.SelectFrom("RobeOfUsefulItemsBaseItems", "Items")).Returns(items);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Robe of useful items"));
-            Assert.That(item.Contents, Contains.Item(WeaponConstants.Dagger));
-            Assert.That(item.Contents, Contains.Item("Bullseye lantern (filled and lit)"));
-            Assert.That(item.Contents, Contains.Item("Mirror (highly polished, 2-foot by 4-foot, steel)"));
-            Assert.That(item.Contents, Contains.Item("10-foot pole"));
-            Assert.That(item.Contents, Contains.Item("50-foot Hempen rope"));
-            Assert.That(item.Contents, Contains.Item("Sack"));
-
-            foreach (var content in item.Contents.Distinct())
-            {
-                var allOfContent = item.Contents.FindAll(c => c == content);
-                Assert.That(allOfContent.Count, Is.EqualTo(2));
-            }
+            foreach (var baseItem in items)
+                Assert.That(item.Contents, Contains.Item(baseItem));
         }
 
         [Test]

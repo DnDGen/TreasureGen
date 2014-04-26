@@ -14,43 +14,40 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private ICurseGenerator curseGenerator;
         private Mock<IDice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<IDice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
-            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object);
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
         public void NotCursedIfNoMagic()
         {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed", It.IsAny<Int32>())).Returns(true);
             var cursed = curseGenerator.HasCurse(false);
             Assert.That(cursed, Is.False);
         }
 
         [Test]
-        public void NotCursedIfRollAbove5()
+        public void NotCursedIfSelectorSaySo()
         {
-            for (var roll = 100; roll > 5; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var cursed = curseGenerator.HasCurse(true);
-                Assert.That(cursed, Is.False);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed", It.IsAny<Int32>())).Returns(false);
+            var cursed = curseGenerator.HasCurse(true);
+            Assert.That(cursed, Is.False);
         }
 
         [Test]
-        public void CursedIfRollBelow5()
+        public void CursedIfSelectorSaysSo()
         {
-            for (var roll = 5; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var cursed = curseGenerator.HasCurse(true);
-                Assert.That(cursed, Is.True);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed", It.IsAny<Int32>())).Returns(true);
+            var cursed = curseGenerator.HasCurse(true);
+            Assert.That(cursed, Is.True);
         }
 
         [Test]

@@ -380,6 +380,12 @@ namespace EquipmentGen.Tests.Integration.Common
             AssertNotSingleton<IMundaneGearGenerator>(ItemTypeConstants.Weapon);
         }
 
+        [Test]
+        public void BooleanPercentileSelectorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IBooleanPercentileSelector>();
+        }
+
         private void AssertSingleton<T>()
         {
             var first = kernel.Get<T>();

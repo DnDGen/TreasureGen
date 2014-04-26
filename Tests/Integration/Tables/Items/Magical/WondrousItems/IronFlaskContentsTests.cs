@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "IronFlaskContents"; }
         }
 
-        [TestCase("Empty", 1, 50)]
+        [TestCase(EmptyContent, 1, 50)]
         [TestCase("Large air elemental", 51, 54)]
         [TestCase("Arrowhawk", 55, 58)]
         [TestCase("Large earth elemental", 59, 62)]

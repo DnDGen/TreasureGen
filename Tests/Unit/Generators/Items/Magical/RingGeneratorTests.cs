@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -155,7 +156,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2").Returns("spell 3").Returns("spell 4");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Minor spell storing (spell 1, spell 2, spell 3)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Minor spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 3 (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(3));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(3));
             mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(3));
         }
@@ -169,7 +174,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Minor spell storing (spell, spell, spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Minor spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(3));
+            Assert.That(ring.Contents.Distinct().Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -181,7 +189,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 3)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing (spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 3)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -194,7 +204,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 .Returns("spell 3").Returns("spell 4").Returns("spell 5").Returns("spell 6");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing (spell 1, spell 2, spell 3, spell 4, spell 5)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 3 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 4 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 5 (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(5));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(5));
             mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(5));
         }
@@ -208,7 +224,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing (spell, spell, spell, spell, spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(5));
+            Assert.That(ring.Contents.Distinct().Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -220,7 +239,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing (spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 6)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -234,7 +255,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 .Returns("spell 9").Returns("spell 10").Returns("spell 11");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing (spell 1, spell 2, spell 3, spell 4, spell 5, spell 6, spell 7, spell 8, spell 9, spell 10)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 3 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 4 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 5 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 6 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 7 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 8 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 9 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 10 (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(10));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(10));
             mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(10));
         }
@@ -248,7 +280,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing (spell, spell, spell, spell, spell, spell, spell, spell, spell, spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Major spell storing"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(10));
+            Assert.That(ring.Contents.Distinct().Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -260,7 +295,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 4)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 4)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -272,7 +309,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell 1)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
+            Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(1));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(1));
             mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(1));
         }
@@ -283,22 +322,25 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(6);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell lvl. 6");
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells (spell lvl. 6)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
+            Assert.That(ring.Contents, Contains.Item("spell (spell type, 6)"));
+            Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
         [Test]
-        public void CounterspellsDoesNotHaveSpellHigherThanSixthLevel()
+        public void CounterspellsHasNoSpellHigherThanSixthLevel()
         {
             mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(7);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 7)).Returns("spell lvl. 7");
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 7)).Returns("spell");
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
+            Assert.That(ring.Contents, Is.Empty);
         }
 
         [Test]

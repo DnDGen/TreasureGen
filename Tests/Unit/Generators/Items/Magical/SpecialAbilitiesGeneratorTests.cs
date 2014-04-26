@@ -19,10 +19,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IDice> mockDice;
-        private Mock<ISpellGenerator> mockSpellGenerator;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilityAttributesSelector;
 
         private List<String> attributes;
+        private List<String> names;
 
         [SetUp]
         public void Setup()
@@ -33,11 +34,14 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
-            mockSpellGenerator = new Mock<ISpellGenerator>();
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
+            names = new List<String>();
+
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<String>())).Returns(names);
 
             specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object,
-                mockDice.Object, mockSpellGenerator.Object, mockSpecialAbilityAttributesSelector.Object);
+                mockDice.Object, mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
@@ -292,57 +296,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void SpellStoringAbilityDoesNotHaveSpellIfBelow51()
-        {
-            CreateSpecialAbility("Spell storing");
-            SetUpAbilityChain("Spell storing");
-            mockSpellGenerator.Setup(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
-
-            for (var roll = 50; roll > 0; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
-                var ability = abilities.First();
-                Assert.That(ability.BaseName, Is.EqualTo("Spell storing"));
-                Assert.That(ability.Name, Is.EqualTo("Spell storing"));
-            }
-        }
-
-        [Test]
-        public void SpellStoringAbilityHasSpellIfAbove50()
-        {
-            CreateSpecialAbility("Spell storing");
-            SetUpAbilityChain("Spell storing");
-            mockSpellGenerator.Setup(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>())).Returns("spell");
-
-            for (var roll = 100; roll > 50; roll--)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
-                var ability = abilities.First();
-                Assert.That(ability.BaseName, Is.EqualTo("Spell storing"));
-                Assert.That(ability.Name, Is.EqualTo("Spell storing (contains spell)"));
-            }
-        }
-
-        [Test]
-        public void SpellStoringAbilityGetsTypeAndLevelOfSpell()
-        {
-            CreateSpecialAbility("Spell storing");
-            SetUpAbilityChain("Spell storing");
-            mockDice.Setup(d => d.Percentile(1)).Returns(100);
-
-            mockDice.Setup(d => d.d4(1)).Returns(9266);
-            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
-
-            var abilities = specialAbilitiesGenerator.GenerateWith(attributes, "power", 1, 1);
-            var ability = abilities.First();
-            Assert.That(ability.BaseName, Is.EqualTo("Spell storing"));
-            Assert.That(ability.Name, Is.EqualTo("Spell storing (contains spell)"));
-        }
-
-        [Test]
         public void StopIfAllPossibleAbilitiesAcquired()
         {
             CreateSpecialAbility("ability");
@@ -460,14 +413,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             result.BonusEquivalent = bonus;
             result.Strength = strength;
+            names.Add(name);
 
             mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom("SpecialAbilityAttributes", name)).Returns(result);
             mockAttributesSelector.Setup(p => p.SelectFrom("SpecialAbilityAttributeRequirements", result.BaseName)).Returns(attributes);
+
         }
 
         private void SetUpAbilityChain(params String[] names)
         {
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<String>())).Returns(names);
             var sequence = mockDice.SetupSequence(d => d.Percentile(1));
 
             for (var roll = 0; roll < names.Length; roll++)

@@ -25,6 +25,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase(WeaponConstants.LuckBlade2, 2, 2)]
         [TestCase(WeaponConstants.LuckBlade3, 3, 3)]
         [TestCase(WeaponConstants.LuckBlade, 0, 3)]
+        [TestCase("Full deck of illusions", 34, 34)]
         public void Attributes(String name, Int32 min, Int32 max)
         {
             var attributes = new[] { min.ToString(), max.ToString() };

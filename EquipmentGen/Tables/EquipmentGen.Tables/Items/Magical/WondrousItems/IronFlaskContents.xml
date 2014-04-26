@@ -3,7 +3,7 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Empty</content>
+        <content></content>
         <upper>50</upper>
     </object>
     <object>
