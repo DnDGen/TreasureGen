@@ -34,7 +34,7 @@ namespace EquipmentGen.Generators.Items.Mundane
                 var tableName = String.Format("{0}Shields", result);
                 roll = dice.Percentile();
                 armor.Name = percentileSelector.SelectFrom(tableName, roll);
-                armor.Attributes = attributesSelector.SelectFrom("SpecificArmorsAttributes", armor.Name);
+                armor.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", armor.Name);
                 armor.Traits.Add(result);
 
                 return armor;

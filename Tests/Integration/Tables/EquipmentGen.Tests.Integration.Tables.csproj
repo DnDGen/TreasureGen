@@ -58,15 +58,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\CastersShieldContainsSpellTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\CastersShieldSpellTypesTests.cs" />
     <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />
     <Compile Include="Items\Magical\Armor\Medium\MediumSpecificArmorsTests.cs" />
     <Compile Include="Items\Magical\Armor\Minor\MinorSpecificArmorsTests.cs" />
     <Compile Include="Items\Magical\Armor\Minor\MinorSpecificShieldsTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificArmorsAttributesTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificArmorsSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificShieldsAttributesTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificShieldsSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\Magical\Armor\SpecificShieldsTraitsTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificArmorsAttributesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificArmorsSpecialAbilitiesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificArmorsTraitsTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificShieldsAttributesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificShieldsSpecialAbilitiesTests.cs" />
+    <Compile Include="Items\Magical\Armor\Specific\SpecificShieldsTraitsTests.cs" />
     <Compile Include="Items\Magical\ChargeLimitsTests.cs" />
     <Compile Include="Items\Magical\Curses\CursedDependentSituationsTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
@@ -82,8 +85,10 @@
     <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceSpecialPurposeTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceStrongStatTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IsRingIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsShieldIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsArmorIntelligentTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IsWondrousItemIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\KnowledgeCategoriesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\LanguagesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\PersonalityTraitsTests.cs" />

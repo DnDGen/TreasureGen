@@ -565,7 +565,7 @@
     <EmbeddedResource Include="Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\Minor\MinorSpecificShields.xml" />
@@ -574,7 +574,7 @@
     <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorSpecificWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\WondrousItems\IsDeckOfIllusionsFullyCharged.xml" />
@@ -583,19 +583,34 @@
     <EmbeddedResource Include="Items\Magical\Curses\IsItemCursed.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificArmorsAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IsArmorIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificShieldsTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsTraits.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\SpecificArmorsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IsShieldIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\CastersShieldContainsSpell.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\CastersShieldSpellTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IsRingIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Intelligence\IsWondrousItemIntelligent.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,7 +3,7 @@ using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
     public class SpecificShieldsSpecialAbilitiesTests : AttributesTests

@@ -163,5 +163,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Wood));
         }
+
+        [Test]
+        public void GetAttributesForDarkwoodShields()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors", It.IsAny<Int32>())).Returns(TraitConstants.Darkwood);
+            mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields", It.IsAny<Int32>())).Returns("big shield");
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockAttributesSelector.Setup(s => s.SelectFrom("SpecificShieldsAttributes", "big shield")).Returns(attributes);
+
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Name, Is.EqualTo("big shield"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
     }
 }

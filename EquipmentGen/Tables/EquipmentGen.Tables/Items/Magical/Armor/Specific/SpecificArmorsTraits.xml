@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Breastplate</name>
+        <attribute>Adamantine</attribute>
+    </object>
+    <object>
+        <name>Dwarven plate</name>
+        <attribute>Adamantine</attribute>
+    </object>
+    <object>
+        <name>Elven chain</name>
+        <attribute>Mithral</attribute>
+    </object>
+    <object>
+        <name>Full plate of speed</name>
+        <attribute>Mithral</attribute>
+    </object>
+    <object>
+        <name>Chain shirt</name>
+        <attribute>Mithral</attribute>
+    </object>
+    <object>
+        <name>Full plate</name>
+        <attribute>Dragonhide</attribute>
+    </object>
+</attributes>

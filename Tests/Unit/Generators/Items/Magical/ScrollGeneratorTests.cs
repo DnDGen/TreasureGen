@@ -106,6 +106,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void ScrollsAreOneTimeUseItems()
+        {
+            var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
+            Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+        }
+
+        [Test]
         public void DoNotGetCurseIfNotCursed()
         {
             mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
     public class SpecificArmorsSpecialAbilitiesTests : AttributesTests
