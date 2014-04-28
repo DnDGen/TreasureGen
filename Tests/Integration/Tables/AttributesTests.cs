@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Integration.Tables
             var tooMany = table[name].Except(attributes);
             var tooManyString = String.Join(", ", tooMany);
             var message = String.Format("Should not be in results: {0}", tooManyString);
-            Assert.That(table[name].Count(), Is.EqualTo(attributes.Count()));
+            Assert.That(table[name].Count(), Is.EqualTo(attributes.Count()), message);
         }
     }
 }

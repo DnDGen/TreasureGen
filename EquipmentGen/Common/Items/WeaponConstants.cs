@@ -105,5 +105,9 @@ namespace EquipmentGen.Common.Items
         public const String MaceOfSmiting = "Mace of smiting";
         public const String HolyAvenger = "Holy avenger";
         public const String LuckBlade = "Luck blade";
+        public const String GreaterSlayingArrow = "Greater slaying arrow";
+        public const String Shatterspike = "Shatterspike";
+        public const String DaggerOfVenom = "Dagger of venom";
+        public const String TridentOfWarning = "Trident of warning";
     }
 }
