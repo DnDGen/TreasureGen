@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <name>Flame tongue</name>
+    <attribute>Flaming burst</attribute>
+  </object>
+    <object>
+        <name>Rapier of puncturing</name>
+        <attribute>Wounding</attribute>
+    </object>
+  <object>
+    <name>Frost brand</name>
+    <attribute>Frost</attribute>
+  </object>
+</percentile>

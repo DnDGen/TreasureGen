@@ -154,6 +154,7 @@
     <Compile Include="Items\Magical\Scrolls\Divine\Level8DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Divine\Level9DivineSpellsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Major\MajorSpecificWeaponsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Medium\MediumSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Specific\SpecificWeaponsSpecialAbilitiesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\BalorOrPitFiendTests.cs" />
