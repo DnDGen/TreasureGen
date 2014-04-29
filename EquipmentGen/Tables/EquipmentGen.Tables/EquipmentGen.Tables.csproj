@@ -615,6 +615,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponsSpecialAbilities.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumSpecificWeapons.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
