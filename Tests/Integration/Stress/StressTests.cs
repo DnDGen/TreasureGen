@@ -36,16 +36,18 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected void StressGenerator()
         {
-            while (TestShouldKeepRunning())
+            do
+            {
                 MakeAssertions();
+                iterations++;
+            } while (TestShouldKeepRunning());
 
-            Assert.That(iterations, Is.GreaterThan(0));
             Assert.Pass("Iterations: {0}", iterations);
         }
 
         private Boolean TestShouldKeepRunning()
         {
-            return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations++ < ConfidentIterations;
+            return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations < ConfidentIterations;
         }
 
         protected abstract void MakeAssertions();

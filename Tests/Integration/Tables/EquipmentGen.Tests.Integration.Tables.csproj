@@ -158,6 +158,7 @@
     <Compile Include="Items\Magical\Weapons\Minor\MinorSpecificWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Specific\SpecificWeaponsAttributesTests.cs" />
     <Compile Include="Items\Magical\Weapons\Specific\SpecificWeaponsSpecialAbilitiesTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Specific\SpecificWeaponsTraitsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\BalorOrPitFiendTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\HornOfValhallaTypesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\IronFlaskContentsTests.cs" />

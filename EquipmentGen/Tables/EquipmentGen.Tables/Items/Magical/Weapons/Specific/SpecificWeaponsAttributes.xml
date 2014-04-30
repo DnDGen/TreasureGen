@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <name>Shatterspike</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Assassin's dagger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Battleaxe</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Dagger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Dagger of venom</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Silver dagger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Dwarven thrower</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+  <object>
+    <name>Flame tongue</name>
+      <attribute>Weapon</attribute>
+      <attribute>Specific</attribute>
+      <attribute>Slashing</attribute>
+      <attribute>Not bludgeoning</attribute>
+      <attribute>Metal</attribute>
+      <attribute>Melee</attribute>
+  </object>
+  <object>
+      <name>Rapier of puncturing</name>
+      <attribute>Weapon</attribute>
+      <attribute>Specific</attribute>
+      <attribute>Not bludgeoning</attribute>
+      <attribute>Metal</attribute>
+      <attribute>Melee</attribute>
+  </object>
+  <object>
+      <name>Frost brand</name>
+      <attribute>Weapon</attribute>
+      <attribute>Specific</attribute>
+      <attribute>Slashing</attribute>
+      <attribute>Not bludgeoning</attribute>
+      <attribute>Metal</attribute>
+      <attribute>Melee</attribute>
+  </object>
+    <object>
+        <name>Greater slaying arrow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Ranged</attribute>
+    </object>
+    <object>
+        <name>Holy avenger</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Javelin of lightning</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Thrown</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Life-drinker</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Longsword</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Luck blade (0 wishes)</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Luck blade (1 wish)</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Luck blade (2 wishes)</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Luck blade (3 wishes)</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Mace of smiting</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Mace of terror</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Nine lives stealer</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Screaming bolt</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Ranged</attribute>
+    </object>
+    <object>
+        <name>Oathbow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Ranged</attribute>
+    </object>
+    <object>
+        <name>Shifter's sorrow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Double weapon</attribute>
+    </object>
+    <object>
+        <name>Slaying arrow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Ranged</attribute>
+    </object>
+    <object>
+        <name>Sleep arrow</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Ammunition</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Wood</attribute>
+        <attribute>Ranged</attribute>
+    </object>
+    <object>
+        <name>Sun blade</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Sword of life stealing</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Sword of the planes</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Sword of subtlety</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Sylvan scimitar</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Trident of warning</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+    <object>
+        <name>Trident of fish command</name>
+        <attribute>Weapon</attribute>
+        <attribute>Specific</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+    </object>
+</percentile>

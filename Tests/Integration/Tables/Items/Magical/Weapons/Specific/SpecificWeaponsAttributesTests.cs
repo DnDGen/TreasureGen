@@ -147,7 +147,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                            AttributeConstants.Ranged,
                                            AttributeConstants.Wood)]
         [TestCase(WeaponConstants.MaceOfTerror, ItemTypeConstants.Weapon,
-                                                AttributeConstants.Ammunition,
+                                                AttributeConstants.Specific,
                                                 AttributeConstants.Bludgeoning,
                                                 AttributeConstants.Melee,
                                                 AttributeConstants.Metal)]

@@ -37,10 +37,8 @@ namespace EquipmentGen.Tests.Integration.Tables
             foreach (var attribute in attributes)
                 Assert.That(table[name], Contains.Item(attribute));
 
-            var tooMany = table[name].Except(attributes);
-            var tooManyString = String.Join(", ", tooMany);
-            var message = String.Format("Should not be in results: {0}", tooManyString);
-            Assert.That(table[name].Count(), Is.EqualTo(attributes.Count()), message);
+            var extraAttributes = table[name].Except(attributes);
+            Assert.That(extraAttributes, Is.Empty);
         }
     }
 }
