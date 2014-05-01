@@ -34,9 +34,23 @@ namespace EquipmentGen.Generators.Items.Magical
             if (attributes.Contains(AttributeConstants.OneTimeUse) || attributes.Contains(AttributeConstants.Ammunition))
                 return false;
 
+            if (itemType == ItemTypeConstants.Weapon)
+                itemType = GetWeaponType(attributes);
+
             var roll = dice.Percentile();
             var tableName = String.Format("Is{0}Intelligent", itemType);
             return booleanPercentileSelector.SelectFrom(tableName, roll);
+        }
+
+        private String GetWeaponType(IEnumerable<String> attributes)
+        {
+            if (attributes.Contains(AttributeConstants.Melee))
+                return AttributeConstants.Melee + ItemTypeConstants.Weapon;
+
+            if (attributes.Contains(AttributeConstants.Ranged))
+                return AttributeConstants.Ranged + ItemTypeConstants.Weapon;
+
+            throw new ArgumentException();
         }
 
         public Intelligence GenerateFor(Magic magic)

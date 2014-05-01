@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -48,7 +49,10 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.LuckBlade3)]
         public void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            if (attributes.Any())
+                AssertAttributes(name, attributes);
+            else
+                AssertEmpty(name);
         }
     }
 }

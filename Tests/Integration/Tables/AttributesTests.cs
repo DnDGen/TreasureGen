@@ -24,14 +24,16 @@ namespace EquipmentGen.Tests.Integration.Tables
             table = AttributesMapper.Map(tableName);
         }
 
+        protected void AssertEmpty(String name)
+        {
+            if (!table.ContainsKey(name))
+                Assert.Pass();
+
+            Assert.That(table[name], Is.Empty);
+        }
+
         protected void AssertAttributes(String name, IEnumerable<String> attributes)
         {
-            if (!attributes.Any())
-            {
-                Assert.That(table.Keys, Is.Not.Contains(name));
-                return;
-            }
-
             Assert.That(table.Keys, Contains.Item(name));
 
             foreach (var attribute in attributes)

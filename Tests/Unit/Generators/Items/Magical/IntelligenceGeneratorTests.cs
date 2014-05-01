@@ -63,6 +63,41 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void IfWeapon_GetMelee()
+        {
+            attributes.Add(AttributeConstants.Melee);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsMeleeWeaponIntelligent", It.IsAny<Int32>())).Returns(true);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Weapon, attributes, true);
+            Assert.That(isIntelligent, Is.True);
+        }
+
+        [Test]
+        public void IfWeapon_ThrowIfNotMeleeOrRanged()
+        {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsMeleeWeaponIntelligent", It.IsAny<Int32>())).Returns(true);
+            Assert.That(() => intelligenceGenerator.IsIntelligent(ItemTypeConstants.Weapon, attributes, true), Throws.ArgumentException);
+        }
+
+        [Test]
+        public void IfWeapon_GetRanged()
+        {
+            attributes.Add(AttributeConstants.Ranged);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsRangedWeaponIntelligent", It.IsAny<Int32>())).Returns(true);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Weapon, attributes, true);
+            Assert.That(isIntelligent, Is.True);
+        }
+
+        [Test]
+        public void IfWeaponBothMeleeAndRanged_GetMelee()
+        {
+            attributes.Add(AttributeConstants.Melee);
+            attributes.Add(AttributeConstants.Ranged);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsMeleeWeaponIntelligent", It.IsAny<Int32>())).Returns(true);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(ItemTypeConstants.Weapon, attributes, true);
+            Assert.That(isIntelligent, Is.True);
+        }
+
+        [Test]
         public void AmmunitionIsNotIntelligent()
         {
             attributes.Add(AttributeConstants.Ammunition);

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <name>Battleaxe</name>
+        <attribute>Adamantine</attribute>
+    </object>
+    <object>
+        <name>Dagger</name>
+        <attribute>Adamantine</attribute>
+    </object>
+    <object>
+        <name>Silver dagger</name>
+        <attribute>Alchemical silver</attribute>
+    </object>
+    <object>
+        <name>Holy avenger</name>
+        <attribute>Cold iron</attribute>
+    </object>
+    <object>
+        <name>Longsword</name>
+        <attribute>Masterwork</attribute>
+        <attribute>Cold iron</attribute>
+    </object>
+    <object>
+        <name>Mace of smiting</name>
+        <attribute>Adamantine</attribute>
+    </object>
+    <object>
+        <name>Shifter's sorrow</name>
+        <attribute>Alchemical silver</attribute>
+    </object>
+</percentile>

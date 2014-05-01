@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -22,7 +23,10 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.WingedShield)]
         public void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            if (attributes.Any())
+                AssertAttributes(name, attributes);
+            else
+                AssertEmpty(name);
         }
     }
 }

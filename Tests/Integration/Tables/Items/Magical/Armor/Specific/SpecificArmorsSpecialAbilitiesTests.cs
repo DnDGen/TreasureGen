@@ -24,9 +24,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.ChainShirt)]
         [TestCase(ArmorConstants.FullPlate)]
         [TestCase(ArmorConstants.Breastplate)]
-        public void Attributes(String name, params String[] attributes)
+        public void Attributes(String name)
         {
-            AssertAttributes(name, attributes);
+            AssertEmpty(name);
         }
     }
 }
