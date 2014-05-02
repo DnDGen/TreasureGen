@@ -12,8 +12,6 @@ namespace EquipmentGen.Bootstrap.Modules
         {
             Bind<IPercentileMapper>().ToMethod(c => PercentileMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
                 .InSingletonScope();
-            Bind<ISpecialAbilityDataMapper>().ToMethod(c => SpecialAbilityDataMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
-                .InSingletonScope();
             Bind<IAttributesMapper>().ToMethod(c => AttributesMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
                 .InSingletonScope();
         }

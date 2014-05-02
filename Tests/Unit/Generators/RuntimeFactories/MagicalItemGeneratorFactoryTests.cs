@@ -27,65 +27,66 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockDice = new Mock<IDice>();
             var mockSpellGenerator = new Mock<ISpellGenerator>();
             var mockCurseGenerator = new Mock<ICurseGenerator>();
+            var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
 
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object,
                 mockIntelligenceGenerator.Object, mockAttributesSelector.Object, mockChargesGenerator.Object,
-                mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object);
+                mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
         }
 
         [Test]
         public void CreatePotionGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Potion);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Potion);
             Assert.That(generator, Is.TypeOf<PotionGenerator>());
         }
 
         [Test]
         public void CreateRingGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Ring);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Ring);
             Assert.That(generator, Is.TypeOf<RingGenerator>());
         }
 
         [Test]
         public void CreateRodGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Rod);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Rod);
             Assert.That(generator, Is.TypeOf<RodGenerator>());
         }
 
         [Test]
         public void CreateScrollGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Scroll);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Scroll);
             Assert.That(generator, Is.TypeOf<ScrollGenerator>());
         }
 
         [Test]
         public void CreateStaffGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Staff);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Staff);
             Assert.That(generator, Is.TypeOf<StaffGenerator>());
         }
 
         [Test]
         public void CreateWandGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Wand);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Wand);
             Assert.That(generator, Is.TypeOf<WandGenerator>());
         }
 
         [Test]
         public void CreateWondrousItemGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.WondrousItem);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.WondrousItem);
             Assert.That(generator, Is.TypeOf<WondrousItemGenerator>());
         }
 
         [Test]
         public void InvalidTypeThrowsException()
         {
-            Assert.That(() => factory.CreateWith("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
+            Assert.That(() => factory.CreateGeneratorOf("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

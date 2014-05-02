@@ -55,7 +55,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var dummyMock = new Mock<IMagicalItemGenerator>();
             var item = new Item();
             dummyMock.Setup(m => m.GenerateAtPower(It.IsAny<String>())).Returns(item);
-            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith(It.IsAny<String>())).Returns(dummyMock.Object);
+            mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf(It.IsAny<String>())).Returns(dummyMock.Object);
 
             itemsGenerator = new ItemsGenerator(mockTypeAndAmountPercentileSelector.Object, mockMundaneItemGenerator.Object, mockPercentileSelector.Object,
                 mockMagicalGearGeneratorFactory.Object, mockMagicalItemGeneratorFactory.Object, mockCurseGenerator.Object, mockDice.Object);
@@ -172,7 +172,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var magicalItem = new Item();
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
             mockPercentileSelector.Setup(p => p.SelectFrom("powerItems", 42)).Returns("magic item");
-            mockMagicalItemGeneratorFactory.Setup(f => f.CreateWith("magic item")).Returns(mockMagicalItemGenerator.Object);
+            mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("magic item")).Returns(mockMagicalItemGenerator.Object);
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items.Single(), Is.EqualTo(magicalItem));

@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Factories\Mappers\AttributesMapperFactory.cs" />
     <Compile Include="Factories\Mappers\PercentileMapperFactory.cs" />
-    <Compile Include="Factories\Mappers\SpecialAbilityDataMapperFactory.cs" />
     <Compile Include="Modules\GeneratorsModule.cs" />
     <Compile Include="Modules\TablesModule.cs" />
     <Compile Include="Modules\SelectorsModule.cs" />

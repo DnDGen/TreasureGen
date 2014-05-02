@@ -14,7 +14,6 @@ using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Mappers.Attributes;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Mappers.Percentile;
-using EquipmentGen.Mappers.SpecialAbilityData;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Tables.Interfaces;
 using Ninject;
@@ -204,19 +203,6 @@ namespace EquipmentGen.Tests.Integration.Common
         public void SpellGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpellGenerator>();
-        }
-
-        [Test]
-        public void SpecialAbilityDataMapperConstructedAsSingleton()
-        {
-            AssertSingleton<ISpecialAbilityDataMapper>();
-        }
-
-        [Test]
-        public void SpecialAbilityDataMapperHasCachingProxy()
-        {
-            var mapper = kernel.Get<ISpecialAbilityDataMapper>();
-            Assert.That(mapper, Is.InstanceOf<SpecialAbilityDataMapperCachingProxy>());
         }
 
         [Test]

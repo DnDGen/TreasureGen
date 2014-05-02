@@ -41,6 +41,7 @@ namespace EquipmentGen.Tests.Integration.Tables
 
             var extraAttributes = table[name].Except(attributes);
             Assert.That(extraAttributes, Is.Empty);
+            Assert.That(table[name].Count(), Is.EqualTo(attributes.Count()));
         }
     }
 }

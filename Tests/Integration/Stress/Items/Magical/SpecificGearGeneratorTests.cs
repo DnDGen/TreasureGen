@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             if (!gear.IsMagical)
                 return;
 
-            Assert.That(gear.Magic.Bonus, Is.AtLeast(1));
+            Assert.That(gear.Magic.Bonus, Is.AtLeast(0), gear.Name);
             Assert.That(gear.Magic.Charges, Is.AtLeast(0));
             Assert.That(gear.Magic.Curse, Is.Not.Null);
             Assert.That(gear.Magic.SpecialAbilities, Is.Not.Null);

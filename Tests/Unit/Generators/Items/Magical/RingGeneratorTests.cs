@@ -6,6 +6,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
@@ -15,6 +16,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
     public class RingGeneratorTests
     {
         private IMagicalItemGenerator ringGenerator;
+        private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
@@ -23,22 +25,23 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IDice> mockDice;
         private Mock<ICurseGenerator> mockCurseGenerator;
+        private TypeAndAmountPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
             mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockCurseGenerator = new Mock<ICurseGenerator>();
-
-            mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("ring ability");
+            mockDice = new Mock<IDice>();
+            result = new TypeAndAmountPercentileResult();
+
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
 
             ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object,
                 mockTraitsGenerator.Object, mockSpellGenerator.Object, mockIntelligenceGenerator.Object, mockChargesGenerator.Object,
@@ -48,6 +51,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateRing()
         {
+            var newResult = new TypeAndAmountPercentileResult();
+            newResult.Type = "ring ability";
+
+            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns(newResult);
+
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));
             Assert.That(ring.IsMagical, Is.True);
@@ -76,12 +85,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EnergyResistanceDeterminesType()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 92)).Returns("energy resistance");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Elements", 66)).Returns("element");
+            result.Type = "ENERGY resistance";
+            mockPercentileSelector.Setup(p => p.SelectFrom("Elements", It.IsAny<Int32>())).Returns("element");
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of energy resistance (element)"));
+            Assert.That(ring.Name, Is.EqualTo("Ring of element resistance"));
         }
 
         [Test]
@@ -136,7 +144,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorSpellStoringHasSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Minor spell storing");
+            result.Type = "Minor spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(2);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 2)).Returns("spell");
@@ -150,7 +158,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorSpellStoringHasAtMost3SpellLevels()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Minor spell storing");
+            result.Type = "Minor spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2").Returns("spell 3").Returns("spell 4");
@@ -168,7 +176,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorSpellStoringAllowsDuplicateSpells()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Minor spell storing");
+            result.Type = "Minor spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
@@ -183,7 +191,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringHasSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Spell storing");
+            result.Type = "Spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(3);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 3)).Returns("spell");
@@ -197,7 +205,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringHasAtMost5SpellLevels()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Spell storing");
+            result.Type = "Spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2")
@@ -218,7 +226,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringAllowsDuplicateSpells()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Spell storing");
+            result.Type = "Spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
@@ -233,7 +241,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MajorSpellStoringHasSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Major spell storing");
+            result.Type = "Major spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(6);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
@@ -247,7 +255,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MajorSpellStoringHasAtMost10SpellLevels()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Major spell storing");
+            result.Type = "Major spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2")
@@ -274,7 +282,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MajorSpellStoringAllowsDuplicateSpells()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Major spell storing");
+            result.Type = "Major spell storing";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
@@ -289,7 +297,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CounterspellsHasSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
+            result.Type = "Counterspells";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(4);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 4)).Returns("spell");
@@ -303,7 +311,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CounterspellsHasAtMost1Spell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
+            result.Type = "Counterspells";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2");
@@ -319,7 +327,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CounterspellsHasSpellOfAtMostSixthLevel()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
+            result.Type = "Counterspells";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(6);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
@@ -333,7 +341,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CounterspellsHasNoSpellHigherThanSixthLevel()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("Counterspells");
+            result.Type = "Counterspells";
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel("power")).Returns(7);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 7)).Returns("spell");
@@ -344,13 +352,14 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ParseBonus()
+        public void GetBonus()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns("ring ability +90210");
+            result.Type = "ring ability";
+            result.Type = "9266";
 
             var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Name, Is.EqualTo("Ring of ring ability +90210"));
-            Assert.That(ring.Magic.Bonus, Is.EqualTo(90210));
+            Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
         }
 
         [Test]

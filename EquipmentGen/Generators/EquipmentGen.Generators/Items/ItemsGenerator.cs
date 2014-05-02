@@ -83,7 +83,7 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMagicalItemAtPower(String type, String power)
         {
-            var magicalItemGenerator = magicalItemGeneratorFactory.CreateWith(type);
+            var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(type);
             return magicalItemGenerator.GenerateAtPower(power);
         }
     }

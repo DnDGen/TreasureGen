@@ -5,6 +5,6 @@ namespace EquipmentGen.Generators.RuntimeFactories.Interfaces
 {
     public interface IMagicalItemGeneratorFactory
     {
-        IMagicalItemGenerator CreateWith(String type);
+        IMagicalItemGenerator CreateGeneratorOf(String type);
     }
 }

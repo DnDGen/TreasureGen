@@ -18,11 +18,12 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private IDice dice;
         private ISpellGenerator spellGenerator;
         private ICurseGenerator curseGenerator;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
         public MagicalItemGeneratorFactory(IPercentileSelector percentileSelector,
             IMagicalItemTraitsGenerator magicalItemTraitsGenerator, IIntelligenceGenerator intelligenceGenerator,
             IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator,
-            ICurseGenerator curseGenerator)
+            ICurseGenerator curseGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
@@ -32,13 +33,15 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.dice = dice;
             this.spellGenerator = spellGenerator;
             this.curseGenerator = curseGenerator;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
-        public IMagicalItemGenerator CreateWith(String type)
+        public IMagicalItemGenerator CreateGeneratorOf(String type)
         {
             switch (type)
             {
-                case ItemTypeConstants.Potion: return new PotionGenerator();
+                case ItemTypeConstants.Potion: return new PotionGenerator(dice, typeAndAmountPercentileSelector,
+                    percentileSelector);
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector,
                     magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice,
                     curseGenerator);

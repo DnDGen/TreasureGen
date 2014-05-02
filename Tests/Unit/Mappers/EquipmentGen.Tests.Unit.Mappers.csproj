@@ -50,8 +50,6 @@
     <Compile Include="Percentile\PercentileMapperCachingProxyTests.cs" />
     <Compile Include="Percentile\PercentileXmlMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecialAbilityData\SpecialAbilityDataMapperCachingProxyTests.cs" />
-    <Compile Include="SpecialAbilityData\SpecialAbilityDataXmlMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
