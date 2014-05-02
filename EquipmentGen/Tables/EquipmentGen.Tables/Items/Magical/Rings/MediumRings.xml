@@ -3,102 +3,102 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Counterspells</content>
+        <content>Counterspells,0</content>
         <upper>5</upper>
     </object>
     <object>
         <lower>6</lower>
-        <content>Mind shielding</content>
+        <content>Mind shielding,0</content>
         <upper>8</upper>
     </object>
     <object>
         <lower>9</lower>
-        <content>Protection +2</content>
+        <content>Protection,2</content>
         <upper>18</upper>
     </object>
     <object>
         <lower>19</lower>
-        <content>Force shield</content>
+        <content>Force shield,0</content>
         <upper>23</upper>
     </object>
     <object>
         <lower>24</lower>
-        <content>Ram</content>
+        <content>Ram,0</content>
         <upper>28</upper>
     </object>
     <object>
         <lower>29</lower>
-        <content>Improved climbing</content>
+        <content>Improved climbing,0</content>
         <upper>34</upper>
     </object>
     <object>
         <lower>35</lower>
-        <content>Improved jumping</content>
+        <content>Improved jumping,0</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Improved swimming</content>
+        <content>Improved swimming,0</content>
         <upper>46</upper>
     </object>
     <object>
         <lower>47</lower>
-        <content>Animal friendship</content>
+        <content>Animal friendship,0</content>
         <upper>51</upper>
     </object>
     <object>
         <lower>52</lower>
-        <content>Minor energy resistance</content>
+        <content>Minor ENERGY resistance,0</content>
         <upper>56</upper>
     </object>
     <object>
         <lower>57</lower>
-        <content>Chameleon power</content>
+        <content>Chameleon power,0</content>
         <upper>61</upper>
     </object>
     <object>
         <lower>62</lower>
-        <content>Water walking</content>
+        <content>Water walking,0</content>
         <upper>66</upper>
     </object>
   <object>
     <lower>67</lower>
-    <content>Protection +3</content>
+    <content>Protection,3</content>
     <upper>71</upper>
   </object>
   <object>
     <lower>72</lower>
-    <content>Minor spell storing</content>
+    <content>Minor spell storing,0</content>
     <upper>76</upper>
   </object>
   <object>
     <lower>77</lower>
-    <content>Invisibility</content>
+    <content>Invisibility,0</content>
     <upper>81</upper>
   </object>
   <object>
     <lower>82</lower>
-    <content>Wizardry (I)</content>
+    <content>Wizardry (I),0</content>
     <upper>85</upper>
   </object>
   <object>
     <lower>86</lower>
-    <content>Evasion</content>
+    <content>Evasion,0</content>
     <upper>90</upper>
   </object>
   <object>
     <lower>91</lower>
-    <content>X-ray vision</content>
+    <content>X-ray vision,0</content>
     <upper>93</upper>
   </object>
   <object>
     <lower>94</lower>
-    <content>Blinking</content>
+    <content>Blinking,0</content>
     <upper>97</upper>
   </object>
   <object>
     <lower>98</lower>
-    <content>Major energy resistance</content>
+    <content>Major ENERGY resistance,0</content>
     <upper>100</upper>
   </object>
 </percentile>

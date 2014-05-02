@@ -42,10 +42,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result = new TypeAndAmountPercentileResult();
 
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
+            result.Amount = "0";
 
             ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object,
                 mockTraitsGenerator.Object, mockSpellGenerator.Object, mockIntelligenceGenerator.Object, mockChargesGenerator.Object,
-                mockDice.Object, mockCurseGenerator.Object);
+                mockDice.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
         }
 
         [Test]
@@ -53,6 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var newResult = new TypeAndAmountPercentileResult();
             newResult.Type = "ring ability";
+            newResult.Amount = "0";
 
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerRings", 9266)).Returns(newResult);
@@ -65,8 +67,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetAttributesFromSelector()
         {
+            result.Type = "ring ability";
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring ability")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", result.Type)).Returns(attributes);
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
@@ -83,7 +86,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void EnergyResistanceDeterminesType()
+        public void EnergyIsGenerated()
         {
             result.Type = "ENERGY resistance";
             mockPercentileSelector.Setup(p => p.SelectFrom("Elements", It.IsAny<Int32>())).Returns("element");
@@ -122,9 +125,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetChargesIfCharged()
         {
+            result.Type = "ring ability";
             var attributes = new[] { AttributeConstants.Charged };
-            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring ability")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, result.Type)).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Magic.Charges, Is.EqualTo(9266));
@@ -133,9 +137,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGetChargesIfNotCharged()
         {
+            result.Type = "ring ability";
             var attributes = new[] { "new attribute" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", "ring")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring ability")).Returns(9266);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, result.Type)).Returns(9266);
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Magic.Charges, Is.EqualTo(0));
@@ -304,7 +309,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
-            Assert.That(ring.Contents, Contains.Item("spell (spell type, 4)"));
+            Assert.That(ring.Contents, Contains.Item("spell"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
@@ -318,7 +323,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
-            Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
+            Assert.That(ring.Contents, Contains.Item("spell 1"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(1));
             mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(1));
@@ -334,7 +339,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of Counterspells"));
-            Assert.That(ring.Contents, Contains.Item("spell (spell type, 6)"));
+            Assert.That(ring.Contents, Contains.Item("spell"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
         }
 
@@ -355,7 +360,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetBonus()
         {
             result.Type = "ring ability";
-            result.Type = "9266";
+            result.Amount = "9266";
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));

@@ -41,10 +41,10 @@ namespace EquipmentGen.Generators.RuntimeFactories
             switch (type)
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator(dice, typeAndAmountPercentileSelector,
-                    percentileSelector);
+                    percentileSelector, curseGenerator);
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector,
                     magicalItemTraitsGenerator, spellGenerator, intelligenceGenerator, chargesGenerator, dice,
-                    curseGenerator);
+                    curseGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator, curseGenerator);
                 case ItemTypeConstants.Staff: return new StaffGenerator();

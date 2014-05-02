@@ -12,12 +12,15 @@ namespace EquipmentGen.Generators.Items.Magical
         private IDice dice;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;
+        private ICurseGenerator curseGenerator;
 
-        public PotionGenerator(IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector)
+        public PotionGenerator(IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector,
+            ICurseGenerator curseGenerator)
         {
             this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
+            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -29,6 +32,15 @@ namespace EquipmentGen.Generators.Items.Magical
             potion.Magic.Bonus = Convert.ToInt32(result.Amount);
             potion.IsMagical = true;
             potion.Attributes = new[] { AttributeConstants.OneTimeUse };
+
+            if (curseGenerator.HasCurse(potion.IsMagical))
+            {
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == "SpecificCursedItem")
+                    return curseGenerator.GenerateSpecificCursedItem();
+
+                potion.Magic.Curse = curse;
+            }
 
             return potion;
         }
@@ -42,7 +54,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (result.Type.Contains("ALIGNMENT"))
             {
                 roll = dice.Percentile();
-                var alignment = percentileSelector.SelectFrom("IntelligenceAlignments", roll);
+                var alignment = percentileSelector.SelectFrom("ProtectionAlignments", roll);
                 result.Type = result.Type.Replace("ALIGNMENT", alignment);
             }
 

@@ -94,6 +94,7 @@
     <Compile Include="Items\Magical\Intelligence\KnowledgeCategoriesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\LanguagesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\PersonalityTraitsTests.cs" />
+    <Compile Include="Items\Magical\Potions\MinorPotionsTests.cs" />
     <Compile Include="Items\Magical\Rings\ElementsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level4ArcaneSpellsTests.cs" />

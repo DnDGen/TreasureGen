@@ -30,8 +30,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator = new Mock<ICurseGenerator>();
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
+            result.Amount = "0";
 
-            potionGenerator = new PotionGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object);
+            potionGenerator = new PotionGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object,
+                mockCurseGenerator.Object);
         }
 
         [Test]
@@ -55,8 +57,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerPotions", 9266)).Returns(newResult);
 
             var potion = potionGenerator.GenerateAtPower("power");
-            Assert.That(potion.Name, Is.EqualTo(result.Type));
-            Assert.That(potion.Magic.Bonus, Is.EqualTo(Convert.ToInt32(result.Amount)));
+            Assert.That(potion.Name, Is.EqualTo(newResult.Type));
+            Assert.That(potion.Magic.Bonus, Is.EqualTo(Convert.ToInt32(newResult.Amount)));
 
         }
 
@@ -64,7 +66,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void AlignmentIsGenerated()
         {
             result.Type = "potion of ALIGNMENT";
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceAlignments", It.IsAny<Int32>())).Returns("an alignment");
+            mockPercentileSelector.Setup(s => s.SelectFrom("ProtectionAlignments", It.IsAny<Int32>())).Returns("an alignment");
 
             var potion = potionGenerator.GenerateAtPower("power");
             Assert.That(potion.Name, Is.EqualTo("potion of an alignment"));
