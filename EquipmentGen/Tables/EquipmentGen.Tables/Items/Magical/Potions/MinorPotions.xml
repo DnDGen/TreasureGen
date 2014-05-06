@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Potion of cure light wounds,1</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Potion of endure elements,0</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Potion of hide from animals,0</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Potion of hide from undead,0</content>
+        <upper>17</upper>
+    </object>
+    <object>
+        <lower>18</lower>
+        <content>Potion of jump,0</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Potion of mage armor,0</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Oil of magic stone,0</content>
+        <upper>26</upper>
+    </object>
+    <object>
+        <lower>27</lower>
+        <content>Oil of magic weapon,0</content>
+        <upper>27</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Sustenance,0</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>39</lower>
+        <content>Oil of shillelagh,0</content>
+        <upper>39</upper>
+    </object>
+    <object>
+        <lower>40</lower>
+        <content>Oil of bless weapon,0</content>
+        <upper>41</upper>
+    </object>
+    <object>
+        <lower>42</lower>
+        <content>Potion of enlarge person,0</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Potion of aid,0</content>
+        <upper>47</upper>
+    </object>
+    <object>
+        <lower>48</lower>
+        <content>Potion of barkskin,2</content>
+        <upper>50</upper>
+    </object>
+    <object>
+        <lower>51</lower>
+        <content>Potion of bear's endurance,0</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Potion of blur,0</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Potion of bull's strength,0</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Potion of cat's grace,0</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Potion of cure moderate wounds,0</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Oil of darkness,0</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Potion of darkvision,0</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>72</lower>
+        <content>Potion of delay poisong,0</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Potion of eagle's splendor,0</content>
+        <upper>76</upper>
+    </object>
+    <object>
+        <lower>77</lower>
+        <content>Potion of fox's cunning,0</content>
+        <upper>78</upper>
+    </object>
+    <object>
+        <lower>79</lower>
+        <content>Potion of invisibility,0</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Oil of invisibility,0</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Potion of lesser restoration,0</content>
+        <upper>82</upper>
+    </object>
+    <object>
+        <lower>85</lower>
+        <content>Potion of levitate,0</content>
+        <upper>85</upper>
+    </object>
+    <object>
+        <lower>86</lower>
+        <content>Oil of levitate,0</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>91</lower>
+        <content>Animal friendship,0</content>
+        <upper>93</upper>
+    </object>
+    <object>
+        <lower>94</lower>
+        <content>Minor ENERGY resistance,0</content>
+        <upper>96</upper>
+    </object>
+    <object>
+        <lower>97</lower>
+        <content>Chameleon power,0</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Water walking,0</content>
+        <upper>100</upper>
+    </object>
+</percentile>
