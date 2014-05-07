@@ -3,7 +3,7 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Potion of cure light wounds,1</content>
+        <content>Potion of cure light wounds,0</content>
         <upper>10</upper>
     </object>
     <object>
@@ -29,6 +29,11 @@
     <object>
         <lower>20</lower>
         <content>Potion of mage armor,0</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Potion of magic fang,0</content>
         <upper>25</upper>
     </object>
     <object>
@@ -39,12 +44,32 @@
     <object>
         <lower>27</lower>
         <content>Oil of magic weapon,0</content>
-        <upper>27</upper>
+        <upper>29</upper>
     </object>
     <object>
-        <lower>29</lower>
-        <content>Sustenance,0</content>
-        <upper>36</upper>
+        <lower>30</lower>
+        <content>Potion of pass without trace,0</content>
+        <upper>30</upper>
+    </object>
+    <object>
+        <lower>31</lower>
+        <content>Potion of protection from ALIGNMENT,0</content>
+        <upper>32</upper>
+    </object>
+    <object>
+        <lower>33</lower>
+        <content>Potion of remove fear,0</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Potion of sanctuary,0</content>
+        <upper>35</upper>
+    </object>
+    <object>
+        <lower>36</lower>
+        <content>Potion of shield of faith,2</content>
+        <upper>38</upper>
     </object>
     <object>
         <lower>39</lower>
@@ -59,6 +84,11 @@
     <object>
         <lower>42</lower>
         <content>Potion of enlarge person,0</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Potion of reduce person,0</content>
         <upper>45</upper>
     </object>
     <object>
@@ -104,11 +134,11 @@
     <object>
         <lower>69</lower>
         <content>Potion of darkvision,0</content>
-        <upper>70</upper>
+        <upper>71</upper>
     </object>
     <object>
         <lower>72</lower>
-        <content>Potion of delay poisong,0</content>
+        <content>Potion of delay poison,0</content>
         <upper>74</upper>
     </object>
     <object>
@@ -134,7 +164,7 @@
     <object>
         <lower>82</lower>
         <content>Potion of lesser restoration,0</content>
-        <upper>82</upper>
+        <upper>84</upper>
     </object>
     <object>
         <lower>85</lower>
@@ -147,23 +177,43 @@
         <upper>86</upper>
     </object>
     <object>
-        <lower>91</lower>
-        <content>Animal friendship,0</content>
+        <lower>87</lower>
+        <content>Potion of misdirection,0</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Potion of owl's wisdom,0</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Potion of protection from arrows 10/magic,0</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Potion of remove paralysis,0</content>
         <upper>93</upper>
     </object>
     <object>
         <lower>94</lower>
-        <content>Minor ENERGY resistance,0</content>
+        <content>Potion of resist ENERGY,0</content>
         <upper>96</upper>
     </object>
     <object>
         <lower>97</lower>
-        <content>Chameleon power,0</content>
-        <upper>98</upper>
+        <content>Potion of shield of faith,3</content>
+        <upper>97</upper>
     </object>
     <object>
-        <lower>99</lower>
-        <content>Water walking,0</content>
+        <lower>98</lower>
+        <content>Potion of spider climb,0</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>Potion of undetectable alignment,0</content>
         <upper>100</upper>
     </object>
 </percentile>
