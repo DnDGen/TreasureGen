@@ -22,14 +22,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var armor = MagicalArmorGenerator.GenerateAtPower(power);
 
-            if (armor.Magic.Curse == "This is a specific cursed item")
+            if (armor.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(armor.Name, Is.Not.Empty);
             Assert.That(armor.Traits, Is.Not.Null);
-            Assert.That(armor.Attributes, Contains.Item(ItemTypeConstants.Armor));
+            Assert.That(armor.Attributes, Is.Not.Null);
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.Contents, Is.Not.Null);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
 
             if (armor.IsMagical)
                 Assert.That(armor.Magic.Bonus, Is.GreaterThan(0));

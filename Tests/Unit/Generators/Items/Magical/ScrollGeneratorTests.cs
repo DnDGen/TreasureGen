@@ -31,7 +31,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void ReturnScroll()
         {
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll, Is.Not.Null);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
         }
 
         [Test]

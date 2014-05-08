@@ -44,6 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Quantity, Is.EqualTo(1));
+            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
         }
 
         [Test]

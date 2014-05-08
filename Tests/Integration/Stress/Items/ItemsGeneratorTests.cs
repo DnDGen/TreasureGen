@@ -30,6 +30,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items
                 Assert.That(item.Quantity, Is.GreaterThan(0));
                 Assert.That(item.Traits, Is.Not.Null);
                 Assert.That(item.Contents, Is.Not.Null);
+                Assert.That(item.ItemType, Is.Not.Empty);
             }
         }
     }

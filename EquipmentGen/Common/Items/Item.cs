@@ -7,6 +7,7 @@ namespace EquipmentGen.Common.Items
     public class Item
     {
         public String Name { get; set; }
+        public String ItemType { get; set; }
         public List<String> Traits { get; set; }
         public IEnumerable<String> Attributes { get; set; }
         public Magic Magic { get; set; }

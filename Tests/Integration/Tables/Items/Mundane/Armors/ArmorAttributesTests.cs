@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -12,48 +13,41 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
             get { return "ArmorAttributes"; }
         }
 
-        [TestCase(ArmorConstants.Buckler, ItemTypeConstants.Armor,
-                                          AttributeConstants.Wood,
-                                          AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.LightWoodenShield, ItemTypeConstants.Armor,
-                                                    AttributeConstants.Wood,
-                                                    AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.LightSteelShield, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Metal,
-                                                   AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.HeavyWoodenShield, ItemTypeConstants.Armor,
-                                                    AttributeConstants.Wood,
-                                                    AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.HeavySteelShield, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Metal,
-                                                   AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.TowerShield, ItemTypeConstants.Armor,
-                                              AttributeConstants.Wood,
+        [TestCase(ArmorConstants.Buckler, AttributeConstants.Wood,
+                                          AttributeConstants.Shield,
+                                          AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.LightWoodenShield, AttributeConstants.Wood,
+                                                    AttributeConstants.Shield,
+                                                    AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.LightSteelShield, AttributeConstants.Metal,
+                                                   AttributeConstants.Shield,
+                                                   AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.HeavyWoodenShield, AttributeConstants.Wood,
+                                                    AttributeConstants.Shield,
+                                                    AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.HeavySteelShield, AttributeConstants.Metal,
+                                                   AttributeConstants.Shield,
+                                                   AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.TowerShield, AttributeConstants.Wood,
                                               AttributeConstants.Shield)]
-        [TestCase(ArmorConstants.PaddedArmor, ItemTypeConstants.Armor)]
-        [TestCase(ArmorConstants.LeatherArmor, ItemTypeConstants.Armor)]
-        [TestCase(ArmorConstants.StuddedLeatherArmor, ItemTypeConstants.Armor,
-                                                      AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.ChainShirt, ItemTypeConstants.Armor,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.HideArmor, ItemTypeConstants.Armor)]
-        [TestCase(ArmorConstants.ScaleMail, ItemTypeConstants.Armor,
-                                            AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.Chainmail, ItemTypeConstants.Armor,
-                                            AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.Breastplate, ItemTypeConstants.Armor,
-                                              AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.SplintMail, ItemTypeConstants.Armor,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.BandedMail, ItemTypeConstants.Armor,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.HalfPlate, ItemTypeConstants.Armor,
-                                            AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.FullPlate, ItemTypeConstants.Armor,
-                                            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.PaddedArmor)]
+        [TestCase(ArmorConstants.LeatherArmor)]
+        [TestCase(ArmorConstants.StuddedLeatherArmor, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.ChainShirt, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.HideArmor)]
+        [TestCase(ArmorConstants.ScaleMail, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.Chainmail, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.Breastplate, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.SplintMail, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.BandedMail, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.HalfPlate, AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
         public void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            if (attributes.Any())
+                AssertAttributes(name, attributes);
+            else
+                AssertEmpty(name);
         }
     }
 }

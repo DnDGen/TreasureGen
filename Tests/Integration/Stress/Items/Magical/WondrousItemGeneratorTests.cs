@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var item = WondrousItemGenerator.GenerateAtPower(power);
 
-            if (item.Magic.Curse == "This is a specific cursed item")
+            if (item.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(item.Name, Is.Not.Empty);
@@ -31,6 +31,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(item.Quantity, Is.EqualTo(1));
             Assert.That(item.IsMagical, Is.True);
             Assert.That(item.Contents, Is.Not.Null);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
         }
     }
 }

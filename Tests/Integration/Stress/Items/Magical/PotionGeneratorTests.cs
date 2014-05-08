@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var potion = PotionGenerator.GenerateAtPower(power);
 
-            if (potion.Magic.Curse == "This is a specific cursed item")
+            if (potion.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(potion.Name, Is.StringStarting("Potion of ").Or.StringStarting("Oil of "));
@@ -35,6 +35,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(potion.Magic.SpecialAbilities, Is.Empty);
             Assert.That(potion.Quantity, Is.EqualTo(1));
             Assert.That(potion.Traits, Is.Empty);
+            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
         }
     }
 }

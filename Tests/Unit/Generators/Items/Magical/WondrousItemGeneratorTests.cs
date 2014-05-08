@@ -53,6 +53,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(name));
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
         }
 
         [Test]

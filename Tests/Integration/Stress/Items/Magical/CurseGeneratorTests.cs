@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Generators.Interfaces.Items.Magical;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
 
@@ -31,6 +32,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(cursedItem.Quantity, Is.EqualTo(1));
             Assert.That(cursedItem.Traits, Is.Not.Null);
             Assert.That(cursedItem.Contents, Is.Empty);
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
         }
     }
 }

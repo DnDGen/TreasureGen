@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var scroll = ScrollGenerator.GenerateAtPower(power);
 
-            if (scroll.Magic.Curse == "This is a specific cursed item")
+            if (scroll.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(scroll.Name, Is.EqualTo("Divine scroll").Or.EqualTo("Arcane scroll"));
@@ -31,6 +31,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(scroll.Quantity, Is.EqualTo(1));
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Contents, Is.Not.Empty);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
         }
     }
 }

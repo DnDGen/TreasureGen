@@ -136,7 +136,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private Boolean AllAttributeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> attributes)
         {
-            return requirements.All(r => attributes.Contains(r));
+            var missingRequirements = requirements.Except(attributes);
+            return !missingRequirements.Any();
         }
 
         private Boolean CanHaveAllAvailableAbilities(Int32 quantity, Int32 bonusSum, IEnumerable<SpecialAbility> availableAbilities)

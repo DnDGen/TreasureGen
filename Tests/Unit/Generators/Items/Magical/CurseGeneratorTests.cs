@@ -1,5 +1,6 @@
 ﻿using System;
 using D20Dice;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -169,6 +170,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.IsMagical, Is.True);
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
         }
     }
 }

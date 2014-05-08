@@ -24,7 +24,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var specificGearType = GetNewSpecificGearType();
             var gear = SpecificGearGenerator.GenerateFrom(power, specificGearType);
 
-            if (gear.Magic.Curse == "This is a specific cursed item")
+            if (gear.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(gear.Name, Is.Not.Empty);
@@ -32,6 +32,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(gear.Quantity, Is.EqualTo(1));
             Assert.That(gear.Traits, Is.Not.Null);
             Assert.That(gear.Contents, Is.Not.Null);
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor).Or.EqualTo(ItemTypeConstants.Weapon));
 
             if (!gear.IsMagical)
                 return;

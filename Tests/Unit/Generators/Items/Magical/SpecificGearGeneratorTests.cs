@@ -61,6 +61,27 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void ItemTypeIsArmorIfArmor()
+        {
+            var gear = generator.GenerateFrom("power", "SpecificArmor");
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+        }
+
+        [Test]
+        public void ItemTypeIsArmorIfShield()
+        {
+            var gear = generator.GenerateFrom("power", "SpecificShield");
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+        }
+
+        [Test]
+        public void ItemTypeIsWeaponIfWeapon()
+        {
+            var gear = generator.GenerateFrom("power", "SpecificWeapon");
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+        }
+
+        [Test]
         public void GetGearNameAndBonusFromSelector()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);

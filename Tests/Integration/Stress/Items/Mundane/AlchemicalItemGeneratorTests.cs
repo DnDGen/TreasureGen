@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Generators.Interfaces.Items.Mundane;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
 
@@ -26,6 +27,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.Traits, Is.Empty);
             Assert.That(item.Contents, Is.Empty);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
     }
 }

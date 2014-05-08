@@ -105,5 +105,11 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         {
             Assert.That(item.Contents, Is.Empty);
         }
+
+        [Test]
+        public void ItemTypeInitialized()
+        {
+            Assert.That(item.ItemType, Is.Empty);
+        }
     }
 }

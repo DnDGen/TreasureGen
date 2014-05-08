@@ -13,78 +13,58 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
             get { return "SpecialAbilityAttributeRequirements"; }
         }
 
-        [TestCase(SpecialAbilityConstants.Glamered, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.Fortification, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.Slick, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.Shadow, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.SilentMoves, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.SpellResistance, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.AcidResistance, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.ColdResistance, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.ElectricityResistance, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.FireResistance, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.SonicResistance, ItemTypeConstants.Armor)]
+        [TestCase(SpecialAbilityConstants.Glamered)]
+        [TestCase(SpecialAbilityConstants.Fortification)]
+        [TestCase(SpecialAbilityConstants.Slick)]
+        [TestCase(SpecialAbilityConstants.Shadow)]
+        [TestCase(SpecialAbilityConstants.SilentMoves)]
+        [TestCase(SpecialAbilityConstants.SpellResistance)]
+        [TestCase(SpecialAbilityConstants.AcidResistance)]
+        [TestCase(SpecialAbilityConstants.ColdResistance)]
+        [TestCase(SpecialAbilityConstants.ElectricityResistance)]
+        [TestCase(SpecialAbilityConstants.FireResistance)]
+        [TestCase(SpecialAbilityConstants.SonicResistance)]
         [TestCase(SpecialAbilityConstants.GhostTouch)]
-        [TestCase(SpecialAbilityConstants.Invulnerability, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.Wild, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.Etherealness, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.UndeadControlling, ItemTypeConstants.Armor)]
-        [TestCase(SpecialAbilityConstants.ArrowCatching, ItemTypeConstants.Armor,
-                                                         AttributeConstants.Shield)]
-        [TestCase(SpecialAbilityConstants.Bashing, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Shield,
+        [TestCase(SpecialAbilityConstants.Invulnerability)]
+        [TestCase(SpecialAbilityConstants.Wild)]
+        [TestCase(SpecialAbilityConstants.Etherealness)]
+        [TestCase(SpecialAbilityConstants.UndeadControlling)]
+        [TestCase(SpecialAbilityConstants.ArrowCatching, AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Bashing, AttributeConstants.Shield,
                                                    AttributeConstants.NotTower)]
-        [TestCase(SpecialAbilityConstants.Blinding, ItemTypeConstants.Armor,
-                                                    AttributeConstants.Shield)]
-        [TestCase(SpecialAbilityConstants.ArrowDeflection, ItemTypeConstants.Armor,
-                                                           AttributeConstants.Shield)]
-        [TestCase(SpecialAbilityConstants.Animated, ItemTypeConstants.Armor,
-                                                    AttributeConstants.Shield)]
-        [TestCase(SpecialAbilityConstants.Reflecting, ItemTypeConstants.Armor,
-                                                      AttributeConstants.Shield)]
-        [TestCase(SpecialAbilityConstants.Bane, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Distance, ItemTypeConstants.Weapon,
-                                                    AttributeConstants.Ranged)]
-        [TestCase(SpecialAbilityConstants.Disruption, ItemTypeConstants.Weapon,
-                                                      AttributeConstants.Melee,
+        [TestCase(SpecialAbilityConstants.Blinding, AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.ArrowDeflection, AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Animated, AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Reflecting, AttributeConstants.Shield)]
+        [TestCase(SpecialAbilityConstants.Bane)]
+        [TestCase(SpecialAbilityConstants.Distance, AttributeConstants.Ranged)]
+        [TestCase(SpecialAbilityConstants.Disruption, AttributeConstants.Melee,
                                                       AttributeConstants.Bludgeoning)]
-        [TestCase(SpecialAbilityConstants.Flaming, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Frost, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Merciful, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Returning, ItemTypeConstants.Weapon,
-                                                     AttributeConstants.Ranged,
+        [TestCase(SpecialAbilityConstants.Flaming)]
+        [TestCase(SpecialAbilityConstants.Frost)]
+        [TestCase(SpecialAbilityConstants.Merciful)]
+        [TestCase(SpecialAbilityConstants.Returning, AttributeConstants.Ranged,
                                                      AttributeConstants.Thrown)]
-        [TestCase(SpecialAbilityConstants.Shock, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Seeking, ItemTypeConstants.Weapon,
-                                                   AttributeConstants.Ranged)]
-        [TestCase(SpecialAbilityConstants.Thundering, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Anarchic, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Axiomatic, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Holy, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Unholy, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Speed, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.BrilliantEnergy, ItemTypeConstants.Weapon)]
-        [TestCase(SpecialAbilityConstants.Keen, ItemTypeConstants.Weapon,
-                                                AttributeConstants.Melee,
+        [TestCase(SpecialAbilityConstants.Shock)]
+        [TestCase(SpecialAbilityConstants.Seeking, AttributeConstants.Ranged)]
+        [TestCase(SpecialAbilityConstants.Thundering)]
+        [TestCase(SpecialAbilityConstants.Anarchic)]
+        [TestCase(SpecialAbilityConstants.Axiomatic)]
+        [TestCase(SpecialAbilityConstants.Holy)]
+        [TestCase(SpecialAbilityConstants.Unholy)]
+        [TestCase(SpecialAbilityConstants.Speed)]
+        [TestCase(SpecialAbilityConstants.BrilliantEnergy)]
+        [TestCase(SpecialAbilityConstants.Keen, AttributeConstants.Melee,
                                                 AttributeConstants.NotBludgeoning)]
-        [TestCase(SpecialAbilityConstants.KiFocus, ItemTypeConstants.Weapon,
-                                                   AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.MightyCleaving, ItemTypeConstants.Weapon,
-                                                          AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.SpellStoring, ItemTypeConstants.Weapon,
-                                                        AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Throwing, ItemTypeConstants.Weapon,
-                                                    AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Vicious, ItemTypeConstants.Weapon,
-                                                   AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Defending, ItemTypeConstants.Weapon,
-                                                     AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Wounding, ItemTypeConstants.Weapon,
-                                                    AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Dancing, ItemTypeConstants.Weapon,
-                                                   AttributeConstants.Melee)]
-        [TestCase(SpecialAbilityConstants.Vorpal, ItemTypeConstants.Weapon,
-                                                  AttributeConstants.Melee,
+        [TestCase(SpecialAbilityConstants.KiFocus, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.MightyCleaving, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.SpellStoring, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Throwing, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Vicious, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Defending, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Wounding, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Dancing, AttributeConstants.Melee)]
+        [TestCase(SpecialAbilityConstants.Vorpal, AttributeConstants.Melee,
                                                   AttributeConstants.NotBludgeoning,
                                                   AttributeConstants.Slashing)]
         public void Attributes(String name, params String[] attributes)

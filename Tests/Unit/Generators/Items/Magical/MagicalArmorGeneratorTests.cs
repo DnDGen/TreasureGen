@@ -58,6 +58,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void GetArmor()
+        {
+            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+        }
+
+        [Test]
         public void ThrowErrorIfMundane()
         {
             Assert.That(() => magicalArmorGenerator.GenerateAtPower(PowerConstants.Mundane), Throws.ArgumentException);

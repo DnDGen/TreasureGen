@@ -62,6 +62,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));
             Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
         }
 
         [Test]

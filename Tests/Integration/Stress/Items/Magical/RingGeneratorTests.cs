@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var ring = RingGenerator.GenerateAtPower(power);
 
-            if (ring.Magic.Curse == "This is a specific cursed item")
+            if (ring.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
             Assert.That(ring.Name, Is.StringStarting("Ring of "));
@@ -31,6 +31,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(ring.Quantity, Is.EqualTo(1));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.Contents, Is.Not.Null);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
         }
     }
 }
