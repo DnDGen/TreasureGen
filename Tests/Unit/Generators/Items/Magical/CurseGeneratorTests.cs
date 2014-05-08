@@ -86,7 +86,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("Curses", It.IsAny<Int32>())).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.d3(1)).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with DesignatedFoe");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with DESIGNATEDFOE");
             mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes", It.IsAny<Int32>())).Returns("creature type");
 
             var curse = curseGenerator.GenerateCurse();
@@ -98,8 +98,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("Curses", It.IsAny<Int32>())).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.d3(1)).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with Alignment");
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceAlignments", It.IsAny<Int32>())).Returns("neutral");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with ALIGNMENT");
+            mockPercentileSelector.Setup(s => s.SelectFrom("ProtectionAlignments", It.IsAny<Int32>())).Returns("neutral");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with neutral)"));
@@ -110,7 +110,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("Curses", It.IsAny<Int32>())).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.d3(1)).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with Gender");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with GENDER");
             mockDice.Setup(d => d.d2(1)).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();

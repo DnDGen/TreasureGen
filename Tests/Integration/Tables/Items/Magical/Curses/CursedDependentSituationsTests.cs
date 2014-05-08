@@ -21,19 +21,19 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Out of water", 35, 37)]
         [TestCase("Underground", 38, 45)]
         [TestCase("Aboveground", 46, 55)]
-        [TestCase("Within 10 feet of a DesignatedFoe", 56, 64)]
+        [TestCase("Within 10 feet of a DESIGNATEDFOE", 56, 64)]
         [TestCase("Within 10 feet of an arcane spellcaster", 65, 72)]
         [TestCase("Within 10 feet of a divine spellcaster", 73, 80)]
         [TestCase("In the hands of a nonspellcaster", 81, 85)]
         [TestCase("In the hands of a spellcaster", 86, 90)]
-        [TestCase("In the hands of a Alignment creature", 91, 95)]
+        [TestCase("In the hands of a ALIGNMENT creature", 91, 95)]
         [TestCase("On nonholy days or during particular astrological events", 97, 99)]
         public void Percentile(String content, Int32 lower, Int32 upper)
         {
             AssertPercentile(content, lower, upper);
         }
 
-        [TestCase("In the hands of a Gender", 96)]
+        [TestCase("In the hands of a GENDER", 96)]
         [TestCase("More than 100 miles from a particular site", 100)]
         public void Percentile(String content, Int32 roll)
         {

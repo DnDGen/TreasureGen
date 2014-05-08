@@ -592,7 +592,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.GreaterPowersCount = 1;
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceGreaterPowers", It.IsAny<Int32>())).Returns("greater power");
             mockDice.Setup(d => d.d4(1)).Returns(1);
-            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose has DesignatedFoe");
+            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes", It.IsAny<Int32>())).Returns("purpose has DESIGNATEDFOE");
             mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes", It.IsAny<Int32>())).Returns("foe");
 
             var intelligence = intelligenceGenerator.GenerateFor(magic);

@@ -53,7 +53,7 @@
     </object>
     <object>
         <lower>56</lower>
-        <content>Within 10 feet of a DesignatedFoe</content>
+        <content>Within 10 feet of a DESIGNATEDFOE</content>
         <upper>64</upper>
     </object>
     <object>
@@ -78,12 +78,12 @@
     </object>
     <object>
         <lower>91</lower>
-        <content>In the hands of a Alignment creature</content>
+        <content>In the hands of a ALIGNMENT creature</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>In the hands of a Gender</content>
+        <content>In the hands of a GENDER</content>
         <upper>96</upper>
     </object>
     <object>

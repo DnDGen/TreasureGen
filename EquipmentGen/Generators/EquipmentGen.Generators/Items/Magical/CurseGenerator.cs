@@ -55,13 +55,13 @@ namespace EquipmentGen.Generators.Items.Magical
             roll = dice.Percentile();
             var situation = percentileSelector.SelectFrom("CursedDependentSituations", roll);
 
-            if (situation.Contains("DesignatedFoe"))
+            if (situation.Contains("DESIGNATEDFOE"))
                 situation = GetSituationWithDesignatedFoe(situation);
 
-            if (situation.Contains("Alignment"))
+            if (situation.Contains("ALIGNMENT"))
                 situation = GetSituationWithAlignment(situation);
 
-            if (situation.Contains("Gender"))
+            if (situation.Contains("GENDER"))
                 situation = GetSituationWithGender(situation);
 
             return situation;
@@ -71,14 +71,14 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var roll = dice.Percentile();
             var foe = percentileSelector.SelectFrom("DesignatedFoes", roll);
-            return situation.Replace("DesignatedFoe", foe);
+            return situation.Replace("DESIGNATEDFOE", foe);
         }
 
         private String GetSituationWithAlignment(String situation)
         {
             var roll = dice.Percentile();
-            var alignment = percentileSelector.SelectFrom("IntelligenceAlignments", roll);
-            return situation.Replace("Alignment", alignment);
+            var alignment = percentileSelector.SelectFrom("ProtectionAlignments", roll);
+            return situation.Replace("ALIGNMENT", alignment);
         }
 
         private String GetSituationWithGender(String situation)
@@ -86,9 +86,9 @@ namespace EquipmentGen.Generators.Items.Magical
             var roll = dice.d2();
 
             if (roll == 1)
-                return situation.Replace("Gender", "male");
+                return situation.Replace("GENDER", "male");
 
-            return situation.Replace("Gender", "female");
+            return situation.Replace("GENDER", "female");
         }
 
         private String GetDrawback()
