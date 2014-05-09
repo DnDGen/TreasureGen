@@ -8,15 +8,15 @@ using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.RuntimeFactories
 {
-    public class MundaneGearGeneratorFactory : IMundaneGearGeneratorFactory
+    public class MundaneItemGeneratorFactory : IMundaneItemGeneratorFactory
     {
         private IPercentileSelector percentileSelector;
-        private IAmmunitionGenerator ammunitionGenerator;
+        private IMundaneItemGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsSelector;
         private IAttributesSelector attributesSelector;
         private IDice dice;
 
-        public MundaneGearGeneratorFactory(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator,
+        public MundaneItemGeneratorFactory(IPercentileSelector percentileSelector, IMundaneItemGenerator ammunitionGenerator,
             ISpecialMaterialGenerator materialsSelector, IAttributesSelector attributesSelector, IDice dice)
         {
             this.percentileSelector = percentileSelector;
@@ -26,7 +26,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.dice = dice;
         }
 
-        public IMundaneGearGenerator CreateWith(String type)
+        public IMundaneItemGenerator CreateGeneratorOf(String type)
         {
             switch (type)
             {

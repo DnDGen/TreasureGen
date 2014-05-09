@@ -13,9 +13,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class MundaneWeaponGeneratorTests
     {
-        private IMundaneGearGenerator mundaneWeaponGenerator;
+        private IMundaneItemGenerator mundaneWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
+        private Mock<IMundaneItemGenerator> mockAmmunitionGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IDice> mockDice;
@@ -30,7 +30,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom("MundaneWeapons", 92)).Returns("weapon type");
             mockPercentileSelector.Setup(p => p.SelectFrom("weapon typeWeapons", 66)).Returns("weapon name");
 
-            mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
+            mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
             mockMaterialsSelector = new Mock<ISpecialMaterialGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
 

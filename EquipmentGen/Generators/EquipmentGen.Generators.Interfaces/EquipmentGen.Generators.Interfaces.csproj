@@ -39,24 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\Mundane\IAlchemicalItemGenerator.cs" />
-    <Compile Include="Items\Mundane\IAmmunitionGenerator.cs" />
     <Compile Include="Items\Magical\IChargesGenerator.cs" />
     <Compile Include="Coins\ICoinGenerator.cs" />
     <Compile Include="Items\Magical\ICurseGenerator.cs" />
     <Compile Include="Goods\IGoodsGenerator.cs" />
     <Compile Include="Items\Magical\IIntelligenceGenerator.cs" />
     <Compile Include="Items\IItemsGenerator.cs" />
-    <Compile Include="Items\Magical\IMagicalGearGenerator.cs" />
     <Compile Include="Items\Magical\IMagicalItemGenerator.cs" />
     <Compile Include="Items\Magical\IMagicalItemTraitsGenerator.cs" />
-    <Compile Include="Items\Mundane\IMundaneGearGenerator.cs" />
     <Compile Include="Items\Mundane\IMundaneItemGenerator.cs" />
     <Compile Include="Items\Magical\ISpecialAbilitiesGenerator.cs" />
     <Compile Include="Items\Mundane\ISpecialMaterialGenerator.cs" />
     <Compile Include="Items\Magical\ISpecificGearGenerator.cs" />
     <Compile Include="Items\Magical\ISpellGenerator.cs" />
-    <Compile Include="Items\Mundane\IToolGenerator.cs" />
     <Compile Include="ITreasureGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

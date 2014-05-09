@@ -97,27 +97,35 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void AlchemicalItemGeneratorNotConstructedAsSingleton()
+        public void MundaneItemGeneratorNamedAlchemicalItemIsAlchemicalItemGenerator()
         {
-            AssertNotSingleton<IAlchemicalItemGenerator>();
+            var generator = kernel.Get<IMundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
+            Assert.That(generator, Is.InstanceOf<AlchemicalItemGenerator>());
         }
 
         [Test]
-        public void MagicalGearGeneratorFactoryNotConstructedAsSingleton()
+        public void AlchemicalItemGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalGearGeneratorFactory>();
+            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
         }
 
         [Test]
-        public void ToolGeneratorNotConstructedAsSingleton()
+        public void MundaneItemGeneratorNamedToolIsToolGenerator()
         {
-            AssertNotSingleton<IToolGenerator>();
+            var generator = kernel.Get<IMundaneItemGenerator>(ItemTypeConstants.Tool);
+            Assert.That(generator, Is.InstanceOf<ToolGenerator>());
+        }
+
+        [Test]
+        public void ToolGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Tool);
         }
 
         [Test]
         public void MundaneGearGeneratorFactoryNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneGearGeneratorFactory>();
+            AssertNotSingleton<IMundaneItemGeneratorFactory>();
         }
 
         [Test]
@@ -133,9 +141,16 @@ namespace EquipmentGen.Tests.Integration.Common
         }
 
         [Test]
-        public void AmmunitionGeneratorNotConstructedAsSingleton()
+        public void MundaneItemGeneratorNamedAmmunutionIsAmmunitionGenerator()
         {
-            AssertNotSingleton<IAmmunitionGenerator>();
+            var generator = kernel.Get<IMundaneItemGenerator>(AttributeConstants.Ammunition);
+            Assert.That(generator, Is.InstanceOf<AmmunitionGenerator>());
+        }
+
+        [Test]
+        public void AmmunitionGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IMundaneItemGenerator>(AttributeConstants.Ammunition);
         }
 
         [Test]
@@ -226,27 +241,27 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void MagicalGearGeneratorNamedArmorIsMagicalArmorGenerator()
         {
-            var generator = kernel.Get<IMagicalGearGenerator>(ItemTypeConstants.Armor);
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Armor);
             Assert.That(generator, Is.InstanceOf<MagicalArmorGenerator>());
         }
 
         [Test]
         public void MagicalArmorGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalGearGenerator>(ItemTypeConstants.Armor);
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Armor);
         }
 
         [Test]
         public void MagicalGearGeneratorNamedWeaponIsMagicalWeaponGenerator()
         {
-            var generator = kernel.Get<IMagicalGearGenerator>(ItemTypeConstants.Weapon);
+            var generator = kernel.Get<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
             Assert.That(generator, Is.InstanceOf<MagicalWeaponGenerator>());
         }
 
         [Test]
         public void MagicalWeaponGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalGearGenerator>(ItemTypeConstants.Weapon);
+            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
         }
 
         [Test]
@@ -343,27 +358,27 @@ namespace EquipmentGen.Tests.Integration.Common
         [Test]
         public void MundaneGearGeneratorNamedArmorIsMundaneArmorGenerator()
         {
-            var generator = kernel.Get<IMundaneGearGenerator>(ItemTypeConstants.Armor);
+            var generator = kernel.Get<IMundaneItemGenerator>(ItemTypeConstants.Armor);
             Assert.That(generator, Is.InstanceOf<MundaneArmorGenerator>());
         }
 
         [Test]
         public void MundaneArmorGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneGearGenerator>(ItemTypeConstants.Armor);
+            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Armor);
         }
 
         [Test]
         public void MundaneGearGeneratorNamedWeaponIsMundaneWeaponGenerator()
         {
-            var generator = kernel.Get<IMundaneGearGenerator>(ItemTypeConstants.Weapon);
+            var generator = kernel.Get<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
             Assert.That(generator, Is.InstanceOf<MundaneWeaponGenerator>());
         }
 
         [Test]
         public void MundaneWeaponGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneGearGenerator>(ItemTypeConstants.Weapon);
+            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
         }
 
         [Test]

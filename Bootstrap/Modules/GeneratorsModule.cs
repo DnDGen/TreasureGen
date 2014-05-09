@@ -22,8 +22,6 @@ namespace EquipmentGen.Bootstrap.Modules
     {
         public override void Load()
         {
-            Bind<IAlchemicalItemGenerator>().To<AlchemicalItemGenerator>();
-            Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
@@ -31,21 +29,23 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
-            Bind<IMagicalGearGeneratorFactory>().To<MagicalGearGeneratorFactory>();
             Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
-            Bind<IMundaneGearGeneratorFactory>().To<MundaneGearGeneratorFactory>();
-            Bind<IMundaneItemGenerator>().To<MundaneItemGenerator>();
+            Bind<IMundaneItemGeneratorFactory>().To<MundaneItemGeneratorFactory>();
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
-            Bind<IToolGenerator>().To<ToolGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
 
-            Bind<IMagicalGearGenerator>().To<MagicalArmorGenerator>().Named(ItemTypeConstants.Armor);
-            Bind<IMagicalGearGenerator>().To<MagicalWeaponGenerator>().Named(ItemTypeConstants.Weapon);
+            Bind<IMundaneItemGenerator>().To<ToolGenerator>().Named(ItemTypeConstants.Tool);
+            Bind<IMundaneItemGenerator>().To<AlchemicalItemGenerator>().Named(ItemTypeConstants.AlchemicalItem);
+            Bind<IMundaneItemGenerator>().To<AmmunitionGenerator>().Named(AttributeConstants.Ammunition);
+            Bind<IMundaneItemGenerator>().To<MundaneArmorGenerator>().Named(ItemTypeConstants.Armor);
+            Bind<IMundaneItemGenerator>().To<MundaneWeaponGenerator>().Named(ItemTypeConstants.Weapon);
 
+            Bind<IMagicalItemGenerator>().To<MagicalArmorGenerator>().Named(ItemTypeConstants.Armor);
+            Bind<IMagicalItemGenerator>().To<MagicalWeaponGenerator>().Named(ItemTypeConstants.Weapon);
             Bind<IMagicalItemGenerator>().To<PotionGenerator>().Named(ItemTypeConstants.Potion);
             Bind<IMagicalItemGenerator>().To<RingGenerator>().Named(ItemTypeConstants.Ring);
             Bind<IMagicalItemGenerator>().To<RodGenerator>().Named(ItemTypeConstants.Rod);
@@ -54,8 +54,6 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<IMagicalItemGenerator>().To<WandGenerator>().Named(ItemTypeConstants.Wand);
             Bind<IMagicalItemGenerator>().To<WondrousItemGenerator>().Named(ItemTypeConstants.WondrousItem);
 
-            Bind<IMundaneGearGenerator>().To<MundaneArmorGenerator>().Named(ItemTypeConstants.Armor);
-            Bind<IMundaneGearGenerator>().To<MundaneWeaponGenerator>().Named(ItemTypeConstants.Weapon);
         }
     }
 }

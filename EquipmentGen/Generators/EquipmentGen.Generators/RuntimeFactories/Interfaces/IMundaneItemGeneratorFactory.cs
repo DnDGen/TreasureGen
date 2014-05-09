@@ -3,8 +3,8 @@ using EquipmentGen.Generators.Interfaces.Items.Mundane;
 
 namespace EquipmentGen.Generators.RuntimeFactories.Interfaces
 {
-    public interface IMundaneGearGeneratorFactory
+    public interface IMundaneItemGeneratorFactory
     {
-        IMundaneGearGenerator CreateWith(String type);
+        IMundaneItemGenerator CreateGeneratorOf(String type);
     }
 }

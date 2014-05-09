@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class MundaneArmorGeneratorTests
     {
-        private IMundaneGearGenerator mundaneArmorGenerator;
+        private IMundaneItemGenerator mundaneArmorGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ISpecialMaterialGenerator> mockMaterialsSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;

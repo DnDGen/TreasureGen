@@ -8,8 +8,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class ToolGeneratorTests : StressTests
     {
-        [Inject]
-        public IToolGenerator ToolGenerator { get; set; }
+        [Inject, Named(ItemTypeConstants.Tool)]
+        public IMundaneItemGenerator ToolGenerator { get; set; }
 
         [Test]
         public void StressedToolGenerator()

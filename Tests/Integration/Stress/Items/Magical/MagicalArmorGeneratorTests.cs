@@ -9,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     public class MagicalArmorGeneratorTests : StressTests
     {
         [Inject, Named(ItemTypeConstants.Armor)]
-        public IMagicalGearGenerator MagicalArmorGenerator { get; set; }
+        public IMagicalItemGenerator MagicalArmorGenerator { get; set; }
 
         [Test]
         public void StressedMagicalArmorGenerator()

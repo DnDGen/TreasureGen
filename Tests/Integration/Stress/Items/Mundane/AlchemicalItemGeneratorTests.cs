@@ -8,8 +8,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class AlchemicalItemGeneratorTests : StressTests
     {
-        [Inject]
-        public IAlchemicalItemGenerator AlchemicalItemGenerator { get; set; }
+        [Inject, Named(ItemTypeConstants.AlchemicalItem)]
+        public IMundaneItemGenerator AlchemicalItemGenerator { get; set; }
 
         [Test]
         public void StressedAlchemicalItemGenerator()

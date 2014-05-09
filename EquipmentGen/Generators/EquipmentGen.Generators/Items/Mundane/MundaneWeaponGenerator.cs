@@ -7,15 +7,15 @@ using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
-    public class MundaneWeaponGenerator : IMundaneGearGenerator
+    public class MundaneWeaponGenerator : IMundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IAmmunitionGenerator ammunitionGenerator;
+        private IMundaneItemGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsSelector;
         private IAttributesSelector attributesSelector;
         private IDice dice;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator,
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IMundaneItemGenerator ammunitionGenerator,
             ISpecialMaterialGenerator materialsSelector, IAttributesSelector attributesSelector, IDice dice)
         {
             this.percentileSelector = percentileSelector;

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Selectors.Interfaces;
 
@@ -13,24 +11,18 @@ namespace EquipmentGen.Generators.Items
     public class ItemsGenerator : IItemsGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IMundaneItemGenerator mundaneItemGenerator;
         private IPercentileSelector percentileSelector;
-        private IMagicalGearGeneratorFactory magicalGearGeneratorFactory;
+        private IMundaneItemGeneratorFactory mundaneItemGeneratorFactory;
         private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
-        private ICurseGenerator curseGenerator;
         private IDice dice;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            IMundaneItemGenerator mundaneItemGenerator, IPercentileSelector percentileSelector,
-            IMagicalGearGeneratorFactory magicalGearGeneratorFactory, IMagicalItemGeneratorFactory magicalItemGeneratorFactory,
-            ICurseGenerator curseGenerator, IDice dice)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory,
+            IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory, IDice dice)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.mundaneItemGenerator = mundaneItemGenerator;
+            this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;
             this.percentileSelector = percentileSelector;
-            this.magicalGearGeneratorFactory = magicalGearGeneratorFactory;
             this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
-            this.curseGenerator = curseGenerator;
             this.dice = dice;
         }
 
@@ -58,9 +50,19 @@ namespace EquipmentGen.Generators.Items
         private Item GenerateAtPower(String power)
         {
             if (power == PowerConstants.Mundane)
-                return mundaneItemGenerator.Generate();
+                return GenerateMundaneItem();
 
             return GenerateMagicalItemAtPower(power);
+        }
+
+        private Item GenerateMundaneItem()
+        {
+            var tableName = String.Format("{0}Items", PowerConstants.Mundane);
+            var roll = dice.Percentile();
+            var itemType = percentileSelector.SelectFrom(tableName, roll);
+            var generator = mundaneItemGeneratorFactory.CreateGeneratorOf(itemType);
+
+            return generator.Generate();
         }
 
         private Item GenerateMagicalItemAtPower(String power)
@@ -68,22 +70,8 @@ namespace EquipmentGen.Generators.Items
             var tableName = String.Format("{0}Items", power);
             var roll = dice.Percentile();
             var itemType = percentileSelector.SelectFrom(tableName, roll);
+            var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(itemType);
 
-            if (itemType == ItemTypeConstants.Armor || itemType == ItemTypeConstants.Weapon)
-                return GenerateMagicalGearAtPower(itemType, power);
-
-            return GenerateMagicalItemAtPower(itemType, power);
-        }
-
-        private Item GenerateMagicalGearAtPower(String type, String power)
-        {
-            var powerGearGenerator = magicalGearGeneratorFactory.CreateWith(type);
-            return powerGearGenerator.GenerateAtPower(power);
-        }
-
-        private Item GenerateMagicalItemAtPower(String type, String power)
-        {
-            var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(type);
             return magicalItemGenerator.GenerateAtPower(power);
         }
     }

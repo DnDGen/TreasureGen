@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generators.Decorators
 {
     [TestFixture]
-    public class ItemIntelligenceDecoratorTests
+    public class MagicalItemGeneratorIntelligenceDecoratorTests
     {
         private IMagicalItemGenerator intelligenceDecorator;
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
@@ -21,7 +21,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         {
             mockInnerGenerator = new Mock<IMagicalItemGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
-            intelligenceDecorator = new ItemIntelligenceDecorator();
+            intelligenceDecorator = new MagicalItemGeneratorIntelligenceDecorator(mockInnerGenerator.Object, mockIntelligenceGenerator.Object);
 
             innerItem = new Item();
             innerItem.ItemType = "item type";
@@ -45,6 +45,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
 
             var item = intelligenceDecorator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Intelligence, Is.Not.EqualTo(intelligence));
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
@@ -57,6 +58,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
 
             var item = intelligenceDecorator.GenerateAtPower("power");
+            Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Intelligence, Is.EqualTo(intelligence));
         }
     }

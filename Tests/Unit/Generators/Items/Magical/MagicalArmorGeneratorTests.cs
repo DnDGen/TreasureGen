@@ -15,7 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
     [TestFixture]
     public class MagicalArmorGeneratorTests
     {
-        private IMagicalGearGenerator magicalArmorGenerator;
+        private IMagicalItemGenerator magicalArmorGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;

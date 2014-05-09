@@ -48,16 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decorators\ItemIntelligenceDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
     <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
     <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
     <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />
     <Compile Include="Items\Magical\PotionGeneratorTests.cs" />
     <Compile Include="Items\Magical\ScrollGeneratorTests.cs" />
     <Compile Include="Items\Magical\SpecificGearGeneratorTests.cs" />
-    <Compile Include="RuntimeFactories\MagicalGearGeneratorFactoryTests.cs" />
     <Compile Include="RuntimeFactories\MagicalItemGeneratorFactoryTests.cs" />
-    <Compile Include="RuntimeFactories\MundaneGearGeneratorFactoryTests.cs" />
+    <Compile Include="RuntimeFactories\MundaneItemGeneratorFactoryTests.cs" />
     <Compile Include="Items\Mundane\AlchemicalItemGeneratorTests.cs" />
     <Compile Include="Items\Mundane\AmmunitionGeneratorTests.cs" />
     <Compile Include="Coins\CoinGeneratorTests.cs" />
@@ -66,7 +65,6 @@
     <Compile Include="Items\Magical\MagicalArmorGeneratorTests.cs" />
     <Compile Include="Items\Magical\MagicalItemTraitsGeneratorTests.cs" />
     <Compile Include="Items\Mundane\MundaneArmorGeneratorTests.cs" />
-    <Compile Include="Items\Mundane\MundaneItemGeneratorTests.cs" />
     <Compile Include="Items\Mundane\MundaneWeaponGeneratorTests.cs" />
     <Compile Include="Items\Magical\RingGeneratorTests.cs" />
     <Compile Include="Items\Magical\SpecialAbilitiesGeneratorTests.cs" />

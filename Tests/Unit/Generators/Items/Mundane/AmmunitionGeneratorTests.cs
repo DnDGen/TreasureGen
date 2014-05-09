@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class AmmunitionGeneratorTests
     {
-        private IAmmunitionGenerator ammunitionGenerator;
+        private IMundaneItemGenerator ammunitionGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
         private Mock<IAttributesSelector> mockAttributesSelector;

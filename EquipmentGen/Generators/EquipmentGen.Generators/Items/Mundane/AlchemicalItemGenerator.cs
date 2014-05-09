@@ -5,7 +5,7 @@ using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
-    public class AlchemicalItemGenerator : IAlchemicalItemGenerator
+    public class AlchemicalItemGenerator : IMundaneItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IDice dice;

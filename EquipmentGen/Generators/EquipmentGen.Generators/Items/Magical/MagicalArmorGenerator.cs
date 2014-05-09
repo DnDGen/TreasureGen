@@ -7,7 +7,7 @@ using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
-    public class MagicalArmorGenerator : IMagicalGearGenerator
+    public class MagicalArmorGenerator : IMagicalItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;
@@ -78,7 +78,7 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.Traits.AddRange(traits);
 
             if (intelligenceGenerator.IsIntelligent(armor.ItemType, armor.Attributes, armor.IsMagical))
-                armor.Magic.Intelligence = intelligenceGenerator.GenerateFor(armor.Magic); ;
+                armor.Magic.Intelligence = intelligenceGenerator.GenerateFor(armor.Magic);
 
             if (curseGenerator.HasCurse(armor.IsMagical))
             {

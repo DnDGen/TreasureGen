@@ -7,7 +7,7 @@ using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
-    public class MundaneArmorGenerator : IMundaneGearGenerator
+    public class MundaneArmorGenerator : IMundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private ISpecialMaterialGenerator materialsGenerator;

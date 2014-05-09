@@ -42,13 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decorators\ItemIntelligenceDecorator.cs" />
-    <Compile Include="RuntimeFactories\Interfaces\IMagicalGearGeneratorFactory.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecorator.cs" />
     <Compile Include="RuntimeFactories\Interfaces\IMagicalItemGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\Interfaces\IMundaneGearGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\MagicalGearGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\Interfaces\IMundaneItemGeneratorFactory.cs" />
     <Compile Include="RuntimeFactories\MagicalItemGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\MundaneGearGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\MundaneItemGeneratorFactory.cs" />
     <Compile Include="Items\Mundane\AlchemicalItemGenerator.cs" />
     <Compile Include="Items\Mundane\AmmunitionGenerator.cs" />
     <Compile Include="Items\Magical\ChargesGenerator.cs" />
@@ -61,7 +59,6 @@
     <Compile Include="Items\Magical\MagicalItemTraitsGenerator.cs" />
     <Compile Include="Items\Magical\MagicalWeaponGenerator.cs" />
     <Compile Include="Items\Mundane\MundaneArmorGenerator.cs" />
-    <Compile Include="Items\Mundane\MundaneItemGenerator.cs" />
     <Compile Include="Items\Mundane\MundaneWeaponGenerator.cs" />
     <Compile Include="Items\Magical\PotionGenerator.cs" />
     <Compile Include="Items\Magical\RingGenerator.cs" />

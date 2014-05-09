@@ -9,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     public class MundaneArmorGeneratorTests : StressTests
     {
         [Inject, Named(ItemTypeConstants.Armor)]
-        public IMundaneGearGenerator MundaneArmorGenerator { get; set; }
+        public IMundaneItemGenerator MundaneArmorGenerator { get; set; }
 
         [Test]
         public void StressedMundaneArmorGenerator()

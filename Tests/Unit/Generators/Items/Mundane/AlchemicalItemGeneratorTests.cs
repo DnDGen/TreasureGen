@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class AlchemicalItemGeneratorTests
     {
-        private IAlchemicalItemGenerator generator;
+        private IMundaneItemGenerator generator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
 

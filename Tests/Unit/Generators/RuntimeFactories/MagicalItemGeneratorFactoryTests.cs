@@ -2,6 +2,7 @@
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.RuntimeFactories;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
@@ -28,10 +29,15 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockSpellGenerator = new Mock<ISpellGenerator>();
             var mockCurseGenerator = new Mock<ICurseGenerator>();
             var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            var mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
+            var mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
+            var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
+            var mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
 
-            factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object,
-                mockIntelligenceGenerator.Object, mockAttributesSelector.Object, mockChargesGenerator.Object,
-                mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
+            factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object, mockIntelligenceGenerator.Object,
+                mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialsGenerator.Object, mockMagicItemTraitsGenerator.Object,
+                mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object,
+                mockSpecificGearGenerator.Object);
         }
 
         [Test]
@@ -81,6 +87,20 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         {
             var generator = factory.CreateGeneratorOf(ItemTypeConstants.WondrousItem);
             Assert.That(generator, Is.TypeOf<WondrousItemGenerator>());
+        }
+
+        [Test]
+        public void CreateArmorGenerator()
+        {
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            Assert.That(generator, Is.TypeOf<MagicalArmorGenerator>());
+        }
+
+        [Test]
+        public void CreateWeaponGenerator()
+        {
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            Assert.That(generator, Is.TypeOf<MagicalWeaponGenerator>());
         }
 
         [Test]

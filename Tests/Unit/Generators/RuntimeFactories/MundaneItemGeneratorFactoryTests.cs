@@ -12,41 +12,55 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
 {
     [TestFixture]
-    public class MundaneGearGeneratorFactoryTests
+    public class MundaneItemGeneratorFactoryTests
     {
-        private IMundaneGearGeneratorFactory factory;
+        private IMundaneItemGeneratorFactory factory;
 
         [SetUp]
         public void Setup()
         {
             var mockPercentileSelector = new Mock<IPercentileSelector>();
-            var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
+            var mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
             var mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
             var mockAttributesSelector = new Mock<IAttributesSelector>();
             var mockDice = new Mock<IDice>();
 
-            factory = new MundaneGearGeneratorFactory(mockPercentileSelector.Object, mockAmmunitionGenerator.Object,
+            factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockAmmunitionGenerator.Object,
                 mockMaterialsGenerator.Object, mockAttributesSelector.Object, mockDice.Object);
         }
 
         [Test]
-        public void ProduceArmorGenerator()
+        public void CreateArmorGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Armor);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Armor);
             Assert.That(generator, Is.TypeOf<MundaneArmorGenerator>());
         }
 
         [Test]
-        public void ProduceWeaponGenerator()
+        public void CreateWeaponGenerator()
         {
-            var generator = factory.CreateWith(ItemTypeConstants.Weapon);
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
+        }
+
+        [Test]
+        public void CreateAlchemicalItemGenerator()
+        {
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.AlchemicalItem);
+            Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
+        }
+
+        [Test]
+        public void CreateToolGenerator()
+        {
+            var generator = factory.CreateGeneratorOf(ItemTypeConstants.Tool);
             Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
         }
 
         [Test]
         public void InvalidTypeThrowsError()
         {
-            Assert.That(() => factory.CreateWith("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
+            Assert.That(() => factory.CreateGeneratorOf("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

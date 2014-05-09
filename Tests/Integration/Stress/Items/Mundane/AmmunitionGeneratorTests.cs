@@ -9,8 +9,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class AmmunitionGeneratorTests : StressTests
     {
-        [Inject]
-        public IAmmunitionGenerator AmmunitionGenerator { get; set; }
+        [Inject, Named(AttributeConstants.Ammunition)]
+        public IMundaneItemGenerator AmmunitionGenerator { get; set; }
 
         [Test]
         public void StressedAmmunitionGenerator()
