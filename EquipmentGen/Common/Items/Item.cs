@@ -37,6 +37,7 @@ namespace EquipmentGen.Common.Items
             Quantity = 1;
             Name = String.Empty;
             Contents = new List<String>();
+            ItemType = String.Empty;
         }
     }
 }

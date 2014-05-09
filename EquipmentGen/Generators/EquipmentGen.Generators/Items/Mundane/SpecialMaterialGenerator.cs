@@ -11,10 +11,13 @@ namespace EquipmentGen.Generators.Items.Mundane
     {
         private IDice dice;
         private Dictionary<String, IEnumerable<String>> specialMaterialAttributes;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public SpecialMaterialGenerator(IDice dice, IAttributesSelector attributesSelector)
+        public SpecialMaterialGenerator(IDice dice, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
+            this.booleanPercentileSelector = booleanPercentileSelector;
+
             specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
 
             var materials = attributesSelector.SelectFrom("SpecialMaterials", "SpecialMaterials");
@@ -26,9 +29,12 @@ namespace EquipmentGen.Generators.Items.Mundane
             }
         }
 
-        public Boolean HasSpecialMaterial(IEnumerable<String> attributes)
+        public Boolean HasSpecialMaterial(String itemType, IEnumerable<String> attributes)
         {
-            return dice.Percentile() > 95 && AttributesAllowForSpecialMaterials(attributes);
+            var attributesWithType = attributes.Union(new[] { itemType });
+            var roll = dice.Percentile();
+
+            return booleanPercentileSelector.SelectFrom("HasSpecialMaterial", roll) && AttributesAllowForSpecialMaterials(attributesWithType);
         }
 
         private Boolean AttributesAllowForSpecialMaterials(IEnumerable<String> attributes)
@@ -36,12 +42,13 @@ namespace EquipmentGen.Generators.Items.Mundane
             return specialMaterialAttributes.Any(kvp => kvp.Value.All(v => attributes.Contains(v)));
         }
 
-        public String GenerateFor(IEnumerable<String> attributes)
+        public String GenerateFor(String itemType, IEnumerable<String> attributes)
         {
-            if (!AttributesAllowForSpecialMaterials(attributes))
-                throw new ArgumentException(String.Join(",", attributes));
+            var attributesWithType = attributes.Union(new[] { itemType });
+            if (!AttributesAllowForSpecialMaterials(attributesWithType))
+                throw new ArgumentException(String.Join(",", attributesWithType));
 
-            var filteredSpecialMaterials = specialMaterialAttributes.Where(kvp => kvp.Value.All(v => attributes.Contains(v)));
+            var filteredSpecialMaterials = specialMaterialAttributes.Where(kvp => kvp.Value.All(v => attributesWithType.Contains(v)));
             var allowedSpecialMaterials = filteredSpecialMaterials.Select<KeyValuePair<String, IEnumerable<String>>, String>(kvp => kvp.Key);
 
             if (allowedSpecialMaterials.Count() == 1)

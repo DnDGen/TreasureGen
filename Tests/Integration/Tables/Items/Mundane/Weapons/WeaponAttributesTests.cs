@@ -117,8 +117,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
                                                 AttributeConstants.Uncommon,
                                                 AttributeConstants.Ranged,
                                                 AttributeConstants.NotBludgeoning)]
-        [TestCase(WeaponConstants.RepeatingCrossbow, ItemTypeConstants.Weapon,
-                                                     AttributeConstants.Metal,
+        [TestCase(WeaponConstants.RepeatingCrossbow, AttributeConstants.Metal,
                                                      AttributeConstants.Uncommon,
                                                      AttributeConstants.Ranged,
                                                      AttributeConstants.NotBludgeoning)]

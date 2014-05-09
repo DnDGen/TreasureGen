@@ -113,11 +113,11 @@ namespace EquipmentGen.Generators.Items.Magical
                 roll = dice.Percentile();
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes", roll);
 
-                if (intelligence.SpecialPurpose.Contains("DesignatedFoe"))
+                if (intelligence.SpecialPurpose.Contains("DESIGNATEDFOE"))
                 {
                     roll = dice.Percentile();
                     var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
-                    intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DesignatedFoe", designatedFoe);
+                    intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DESIGNATEDFOE", designatedFoe);
                 }
 
                 roll = dice.Percentile();

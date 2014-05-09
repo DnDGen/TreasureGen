@@ -23,6 +23,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             var tool = new Item();
             tool.Name = result;
+            tool.ItemType = ItemTypeConstants.Tool;
 
             return tool;
         }

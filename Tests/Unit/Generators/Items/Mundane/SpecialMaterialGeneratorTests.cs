@@ -16,30 +16,31 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<IDice> mockDice;
         private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         private List<String> materials;
-        private List<String> material1Types;
-        private List<String> material2Types;
+        private List<String> material1Attributes;
+        private List<String> material2Attributes;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-
             materials = new List<String>() { "material 1", "material 2" };
-            material1Types = new List<String>() { "type 1", "type 2" };
-            material2Types = new List<String>() { "type 3", "type 2" };
-
+            material1Attributes = new List<String>() { "type 1", "type 2" };
+            material2Attributes = new List<String>() { "type 3", "type 2" };
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[0])).Returns(material1Types);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[1])).Returns(material2Types);
 
-            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[0])).Returns(material1Attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[1])).Returns(material2Attributes);
+
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
-        public void CacheMaterialsAndTypesOnConstruction()
+        public void CacheMaterialsAndAttributeRequirementsOnConstruction()
         {
             mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials"), Times.Once);
             foreach (var material in materials)
@@ -47,79 +48,67 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void HasSpecialMaterialReturnsFalseIfPercentileLessThan96()
+        public void GetTrueFromBooleanSelector()
         {
-            for (var roll = 0; roll < 96; roll++)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(material1Types);
-                Assert.That(hasSpecialMaterial, Is.False);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(true);
+            var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", material1Attributes);
+            Assert.That(hasSpecialMaterial, Is.True);
         }
 
         [Test]
-        public void HasSpecialMaterialReturnsTrueIfPercentileGreaterThan95AndTypesMatch()
+        public void GetFalseFromBooleanSelector()
         {
-            var inputTypes = material1Types.Union(new[] { "other type" });
-
-            for (var roll = 96; roll <= 100; roll++)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(inputTypes);
-                Assert.That(hasSpecialMaterial, Is.True);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(false);
+            var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", material1Attributes);
+            Assert.That(hasSpecialMaterial, Is.False);
         }
 
         [Test]
-        public void HasSpecialMaterialReturnsFalseIfGivenTypesDoNotMatchAnySpecialMaterials()
+        public void HasSpecialMaterialReturnsFalseIfGivenAttributesDoNotMatchAnySpecialMaterials()
         {
-            var newTypes = new[] { "other type", "type 2" };
-
-            for (var roll = 0; roll < 96; roll++)
-            {
-                mockDice.Setup(d => d.Percentile(1)).Returns(roll);
-                var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(newTypes);
-                Assert.That(hasSpecialMaterial, Is.False);
-            }
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(true);
+            var newAttributes = new[] { "other type", "type 2" };
+            var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", newAttributes);
+            Assert.That(hasSpecialMaterial, Is.False);
         }
 
         [Test]
-        public void GenerateForTypesThrowsErrorIfNoTypesMatch()
+        public void GenerateForAttributesThrowsErrorIfNoTypesMatch()
         {
-            var newTypes = new[] { "other type", "type 2" };
-            Assert.That(() => specialMaterialsGenerator.GenerateFor(newTypes), Throws.ArgumentException);
+            var newAttributes = new[] { "other type", "type 2" };
+            Assert.That(() => specialMaterialsGenerator.GenerateFor("item type", newAttributes), Throws.ArgumentException);
         }
 
         [Test]
         public void GenerateForTypesGetsMaterialThatMatchesTypes()
         {
-            var material = specialMaterialsGenerator.GenerateFor(material1Types);
+            var material = specialMaterialsGenerator.GenerateFor("item type", material1Attributes);
             Assert.That(material, Is.EqualTo(materials[0]));
 
-            material = specialMaterialsGenerator.GenerateFor(material2Types);
+            material = specialMaterialsGenerator.GenerateFor("item type", material2Attributes);
             Assert.That(material, Is.EqualTo(materials[1]));
         }
 
         [Test]
         public void ExtraTypesDoNotMatter()
         {
-            var inputTypes = material1Types.Union(new[] { "other type" });
-            var material = specialMaterialsGenerator.GenerateFor(inputTypes);
+            var inputTypes = material1Attributes.Union(new[] { "other type" });
+            var material = specialMaterialsGenerator.GenerateFor("item type", inputTypes);
             Assert.That(material, Is.EqualTo(materials[0]));
         }
 
         [Test]
         public void IfMultipleMatchingMaterials_RollsToDetermineWhichOne()
         {
-            var inputTypes = material1Types.Union(material2Types);
+            var inputTypes = material1Attributes.Union(material2Attributes);
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(0);
 
-            var material = specialMaterialsGenerator.GenerateFor(inputTypes);
+            var material = specialMaterialsGenerator.GenerateFor("item type", inputTypes);
             Assert.That(material, Is.EqualTo(materials[0]));
 
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
 
-            material = specialMaterialsGenerator.GenerateFor(inputTypes);
+            material = specialMaterialsGenerator.GenerateFor("item type", inputTypes);
             Assert.That(material, Is.EqualTo(materials[1]));
         }
     }

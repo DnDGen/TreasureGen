@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -20,11 +21,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var attributes = GetNewAttributes(true);
+            var itemType = GetNewGearItemType();
+            var attributes = GetNewAttributesForGear(itemType, false);
             var power = GetNewPower(false);
             var bonus = Random.Next(5) + 1;
             var quantity = Random.Next(10) + 1;
-            var abilities = SpecialAbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
+            var abilities = SpecialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, bonus, quantity);
 
             Assert.That(abilities.Count(), Is.AtLeast(1));
 

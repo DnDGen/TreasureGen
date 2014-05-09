@@ -23,19 +23,31 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var attributes = GetNewAttributes(true);
+            var itemType = GetNewGearItemType();
+            var attributes = GetNewAttributesForGear(itemType, false);
             var power = GetNewPower(false);
-            var magic = new Magic();
-            var bonus = Random.Next(5) + 1;
             var quantity = Random.Next(10) + 1;
 
-            magic.Bonus = bonus;
-            magic.SpecialAbilities = AbilitiesGenerator.GenerateWith(attributes, power, bonus, quantity);
+            var magic = new Magic();
+            magic.Bonus = Random.Next(5) + 1;
+            magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, magic.Bonus, quantity);
 
             var intelligence = IntelligenceGenerator.GenerateFor(magic);
 
-            Assert.That(intelligence.Alignment, Is.StringContaining("Lawful").Or.Contains("Neutral").Or.Contains("Chaotic").Or.Contains("True"));
-            Assert.That(intelligence.Alignment, Is.StringContaining("good").Or.Contains("neutral").Or.Contains("evil"));
+            var alignments = new[]
+                {
+                    "Lawful good",
+                    "Neutral good",
+                    "Chaotic good",
+                    "Lawful neutral",
+                    "True neutral",
+                    "Chaotic neutral",
+                    "Lawful evil",
+                    "Neutral evil",
+                    "Chaotic evil",
+                };
+
+            Assert.That(alignments, Contains.Item(intelligence.Alignment));
             Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
             Assert.That(intelligence.Communication, Is.Not.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Not.Null);

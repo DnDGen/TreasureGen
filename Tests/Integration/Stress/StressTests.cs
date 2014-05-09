@@ -71,17 +71,21 @@ namespace EquipmentGen.Tests.Integration.Stress
             }
         }
 
-        protected IEnumerable<String> GetNewAttributes(Boolean allowNoMaterial)
+        protected String GetNewGearItemType()
+        {
+            switch (Random.Next(2))
+            {
+                case 0: return ItemTypeConstants.Armor;
+                case 1: return ItemTypeConstants.Weapon;
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        protected IEnumerable<String> GetNewAttributesForGear(String itemType, Boolean forceMaterials)
         {
             var attributes = new List<String>();
 
-            switch (Random.Next(2))
-            {
-                case 0: attributes.Add(ItemTypeConstants.Armor); break;
-                case 1: attributes.Add(ItemTypeConstants.Weapon); break;
-            }
-
-            if (attributes.Contains(ItemTypeConstants.Weapon))
+            if (itemType == ItemTypeConstants.Weapon)
             {
                 switch (Random.Next(3))
                 {
@@ -102,14 +106,12 @@ namespace EquipmentGen.Tests.Integration.Stress
                         attributes.Add(AttributeConstants.Wood);
                         break;
                     case 3:
-                        if (allowNoMaterial)
-                            break;
-                        attributes.Add(AttributeConstants.Metal);
+                        if (forceMaterials)
+                            attributes.Add(AttributeConstants.Metal);
                         break;
                 }
             }
-
-            if (attributes.Contains(ItemTypeConstants.Armor))
+            else if (itemType == ItemTypeConstants.Armor)
             {
                 switch (Random.Next(3))
                 {

@@ -25,6 +25,7 @@ namespace EquipmentGen.Generators.Items.Magical
             scroll.Name = String.Format("{0} scroll", spellType);
             scroll.IsMagical = true;
             scroll.Attributes = new[] { AttributeConstants.OneTimeUse };
+            scroll.ItemType = ItemTypeConstants.Scroll;
 
             var quantity = GetQuantity(power);
             while (quantity-- > 0)

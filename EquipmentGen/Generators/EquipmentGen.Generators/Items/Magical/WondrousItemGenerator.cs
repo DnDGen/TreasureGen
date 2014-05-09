@@ -43,6 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var item = new Item();
             item.Name = result;
             item.IsMagical = true;
+            item.ItemType = ItemTypeConstants.WondrousItem;
 
             var attributeName = GetNameForAttributes(item.Name);
             item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", attributeName);

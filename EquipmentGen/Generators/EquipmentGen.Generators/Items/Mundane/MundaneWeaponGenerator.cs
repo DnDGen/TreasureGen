@@ -42,20 +42,21 @@ namespace EquipmentGen.Generators.Items.Mundane
             else
             {
                 weapon.Name = weaponName;
+                weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
             }
 
             weapon.Traits.Add(TraitConstants.Masterwork);
 
-            if (materialsSelector.HasSpecialMaterial(weapon.Attributes))
+            if (materialsSelector.HasSpecialMaterial(weapon.ItemType, weapon.Attributes))
             {
-                var specialMaterial = materialsSelector.GenerateFor(weapon.Attributes);
+                var specialMaterial = materialsSelector.GenerateFor(weapon.ItemType, weapon.Attributes);
                 if (!String.IsNullOrEmpty(specialMaterial))
                     weapon.Traits.Add(specialMaterial);
 
-                if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon) && materialsSelector.HasSpecialMaterial(weapon.Attributes))
+                if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon) && materialsSelector.HasSpecialMaterial(weapon.ItemType, weapon.Attributes))
                 {
-                    var secondSpecialMaterial = materialsSelector.GenerateFor(weapon.Attributes);
+                    var secondSpecialMaterial = materialsSelector.GenerateFor(weapon.ItemType, weapon.Attributes);
 
                     if (specialMaterial != secondSpecialMaterial)
                         weapon.Traits.Add(secondSpecialMaterial);

@@ -18,8 +18,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 
         protected override void MakeAssertions()
         {
-            var types = GetNewAttributes(false);
-            var material = SpecialMaterialGenerator.GenerateFor(types);
+            var itemType = GetNewGearItemType();
+            var attributes = GetNewAttributesForGear(itemType, true);
+            var material = SpecialMaterialGenerator.GenerateFor(itemType, attributes);
 
             Assert.That(material, Is.Not.Null);
         }

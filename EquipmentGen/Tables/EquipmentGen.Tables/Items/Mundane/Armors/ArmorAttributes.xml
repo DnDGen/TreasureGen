@@ -2,7 +2,7 @@
 
 <attributes>
   <object>
-    <name>Banded mail</name>
+      <name>Banded mail</name>
       <attribute>Metal</attribute>
   </object>
     <object>
@@ -12,7 +12,8 @@
     <object>
         <name>Buckler</name>
         <attribute>Wood</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
+        <attribute>Not tower</attribute>
     </object>
     <object>
         <name>Chainmail</name>
@@ -33,25 +34,25 @@
     <object>
         <name>Heavy steel shield</name>
         <attribute>Metal</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
         <attribute>Not tower</attribute>
     </object>
     <object>
         <name>Heavy wooden shield</name>
         <attribute>Wood</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
         <attribute>Not tower</attribute>
     </object>
     <object>
         <name>Light steel shield</name>
         <attribute>Metal</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
         <attribute>Not tower</attribute>
     </object>
     <object>
         <name>Light wooden shield</name>
         <attribute>Wood</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
         <attribute>Not tower</attribute>
     </object>
     <object>
@@ -69,6 +70,6 @@
     <object>
         <name>Tower shield</name>
         <attribute>Wood</attribute>
-      <attribute>Shield</attribute>
+        <attribute>Shield</attribute>
     </object>
 </attributes>

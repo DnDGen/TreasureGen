@@ -36,6 +36,7 @@ namespace EquipmentGen.Generators.Items.Mundane
                 armor.Name = percentileSelector.SelectFrom(tableName, roll);
                 armor.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", armor.Name);
                 armor.Traits.Add(result);
+                armor.ItemType = ItemTypeConstants.Armor;
 
                 return armor;
             }
@@ -52,6 +53,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             }
 
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
+            armor.ItemType = ItemTypeConstants.Armor;
 
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
@@ -60,9 +62,9 @@ namespace EquipmentGen.Generators.Items.Mundane
             var size = percentileSelector.SelectFrom("ArmorSizes", roll);
             armor.Traits.Add(size);
 
-            if (materialsGenerator.HasSpecialMaterial(armor.Attributes))
+            if (materialsGenerator.HasSpecialMaterial(armor.ItemType, armor.Attributes))
             {
-                var specialMaterial = materialsGenerator.GenerateFor(armor.Attributes);
+                var specialMaterial = materialsGenerator.GenerateFor(armor.ItemType, armor.Attributes);
                 armor.Traits.Add(specialMaterial);
 
                 if (specialMaterial == TraitConstants.Dragonhide)

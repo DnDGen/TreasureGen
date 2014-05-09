@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\ItemIntelligenceDecoratorTests.cs" />
     <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
     <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
     <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />

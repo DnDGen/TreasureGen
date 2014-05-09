@@ -102,7 +102,7 @@ namespace EquipmentGen.Generators.Items.Magical
             return drawback;
         }
 
-        private string GetDrawbackWithHeight(String drawback)
+        private String GetDrawbackWithHeight(String drawback)
         {
             var roll = dice.Percentile();
             var change = percentileSelector.SelectFrom("CurseHeightChanges", roll);
@@ -111,11 +111,13 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateSpecificCursedItem()
         {
-            var specificCursedItem = new Item();
             var roll = dice.Percentile();
 
+            var specificCursedItem = new Item();
+            specificCursedItem.ItemType = ItemTypeConstants.SpecificCursedItem;
             specificCursedItem.Name = percentileSelector.SelectFrom("SpecificCursedItems", roll);
             specificCursedItem.Magic.Curse = "This is a specific cursed item";
+            specificCursedItem.Attributes = new[] { AttributeConstants.Specific };
 
             return specificCursedItem;
         }

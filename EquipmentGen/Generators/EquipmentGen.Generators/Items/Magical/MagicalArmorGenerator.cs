@@ -46,7 +46,6 @@ namespace EquipmentGen.Generators.Items.Magical
             var tableName = String.Format("{0}Armors", power);
             var roll = dice.Percentile();
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
-            var armor = new Item();
             var abilityCount = 0;
 
             while (result.Type == "SpecialAbility")
@@ -62,21 +61,23 @@ namespace EquipmentGen.Generators.Items.Magical
             tableName = String.Format("{0}Types", result.Type);
             roll = dice.Percentile();
 
+            var armor = new Item();
+            armor.ItemType = ItemTypeConstants.Armor;
             armor.Name = percentileSelector.SelectFrom(tableName, roll);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.Magic.Bonus = Convert.ToInt32(result.Amount);
-            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateWith(armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
+            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
 
-            if (materialsSelector.HasSpecialMaterial(armor.Attributes))
+            if (materialsSelector.HasSpecialMaterial(armor.ItemType, armor.Attributes))
             {
-                var specialMaterial = materialsSelector.GenerateFor(armor.Attributes);
+                var specialMaterial = materialsSelector.GenerateFor(armor.ItemType, armor.Attributes);
                 armor.Traits.Add(specialMaterial);
             }
 
-            var traits = magicItemTraitsGenerator.GenerateFor(ItemTypeConstants.Armor);
+            var traits = magicItemTraitsGenerator.GenerateFor(armor.ItemType);
             armor.Traits.AddRange(traits);
 
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Armor, armor.Attributes, armor.IsMagical))
+            if (intelligenceGenerator.IsIntelligent(armor.ItemType, armor.Attributes, armor.IsMagical))
                 armor.Magic.Intelligence = intelligenceGenerator.GenerateFor(armor.Magic); ;
 
             if (curseGenerator.HasCurse(armor.IsMagical))

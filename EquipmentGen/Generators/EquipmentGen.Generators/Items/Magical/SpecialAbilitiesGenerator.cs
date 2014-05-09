@@ -28,12 +28,12 @@ namespace EquipmentGen.Generators.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
-        public IEnumerable<SpecialAbility> GenerateWith(IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
+        public IEnumerable<SpecialAbility> GenerateFor(String itemType, IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
         {
             if (magicalBonus <= 0)
                 return Enumerable.Empty<SpecialAbility>();
 
-            var tableName = GetTableName(attributes, power);
+            var tableName = GetTableName(itemType, attributes, power);
             var bonusSum = magicalBonus;
             var availableAbilities = GetAvailableAbilities(tableName, bonusSum, attributes);
             var abilities = new List<SpecialAbility>();
@@ -80,25 +80,30 @@ namespace EquipmentGen.Generators.Items.Magical
             return abilities;
         }
 
-        private String GetTableName(IEnumerable<String> attributes, String power)
+        private String GetTableName(String itemType, IEnumerable<String> attributes, String power)
         {
-            if (!attributes.Any())
-                throw new ArgumentException("no attributes when getting table name for special abilities");
+            if (itemType == ItemTypeConstants.Weapon)
+            {
+                if (attributes.Contains(AttributeConstants.Melee))
+                    return String.Format("{0}MeleeWeaponSpecialAbilities", power);
+                else if (attributes.Contains(AttributeConstants.Ranged))
+                    return String.Format("{0}RangedWeaponSpecialAbilities", power);
 
-            if (attributes.Contains(AttributeConstants.Shield))
-                return String.Format("{0}ShieldSpecialAbilities", power);
+                var attributesString = String.Join(",", attributes);
+                var attributeMessage = String.Format("invalid attributes for special abilities: {0}, {1}", itemType, attributesString);
+                throw new ArgumentException(attributeMessage);
+            }
 
-            if (attributes.Contains(AttributeConstants.Melee))
-                return String.Format("{0}MeleeWeaponSpecialAbilities", power);
+            if (itemType == ItemTypeConstants.Armor)
+            {
+                if (attributes.Contains(AttributeConstants.Shield))
+                    return String.Format("{0}ShieldSpecialAbilities", power);
 
-            if (attributes.Contains(AttributeConstants.Ranged))
-                return String.Format("{0}RangedWeaponSpecialAbilities", power);
-
-            if (attributes.Contains(ItemTypeConstants.Armor))
                 return String.Format("{0}ArmorSpecialAbilities", power);
+            }
 
-            var attributesString = String.Join(",", attributes);
-            throw new ArgumentException("invalid attributes for special abilities: {0}", attributesString);
+            var itemTypeMessage = String.Format("invalid item type for special abilities: {0}", itemType);
+            throw new ArgumentException(itemTypeMessage);
         }
 
         private List<SpecialAbility> GetAvailableAbilities(String tableName, Int32 bonus, IEnumerable<String> attributes)

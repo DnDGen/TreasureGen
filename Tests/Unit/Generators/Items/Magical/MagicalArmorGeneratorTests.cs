@@ -123,7 +123,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
                 .Returns(abilityResult).Returns(result);
 
             var abilities = new[] { new SpecialAbility() };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateWith(It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(), 90210))
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(), 90210))
                 .Returns(abilities);
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
@@ -133,8 +133,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         [Test]
         public void DoNotGetSpecialMaterialIfArmorDoesNotHaveSpecialMaterial()
         {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(false);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(false);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Traits, Is.Not.Contains("special material"));
@@ -143,8 +143,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         [Test]
         public void GetSpecialMaterialFromMaterialSelector()
         {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(true);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Traits, Contains.Item("special material"));

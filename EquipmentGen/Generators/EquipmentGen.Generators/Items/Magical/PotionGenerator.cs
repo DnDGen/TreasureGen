@@ -29,6 +29,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var potion = new Item();
 
             potion.Name = result.Type;
+            potion.ItemType = ItemTypeConstants.Potion;
             potion.Magic.Bonus = Convert.ToInt32(result.Amount);
             potion.IsMagical = true;
             potion.Attributes = new[] { AttributeConstants.OneTimeUse };

@@ -78,8 +78,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors", 92)).Returns(TraitConstants.Darkwood);
             mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields", 66)).Returns("big shield");
 
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(true);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item(TraitConstants.Darkwood));
@@ -121,8 +121,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoNotGetSpecialMaterialIfArmorDoesNotHaveSpecialMaterial()
         {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(false);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(false);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Is.Not.Contains("special material"));
@@ -131,8 +131,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetSpecialMaterialFromMaterialSelector()
         {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns("special material");
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(true);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item("special material"));
@@ -144,8 +144,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var types = new[] { AttributeConstants.Metal };
             mockAttributesSelector.Setup(p => p.SelectFrom("ArmorTypes", "armor type")).Returns(types);
 
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(ItemTypeConstants.Armor, types)).Returns(true);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Metal));
@@ -157,8 +157,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var types = new[] { AttributeConstants.Wood };
             mockAttributesSelector.Setup(p => p.SelectFrom("ArmorTypes", "armor type")).Returns(types);
 
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(types)).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
+            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(ItemTypeConstants.Armor, types)).Returns(true);
+            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(TraitConstants.Dragonhide);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Wood));

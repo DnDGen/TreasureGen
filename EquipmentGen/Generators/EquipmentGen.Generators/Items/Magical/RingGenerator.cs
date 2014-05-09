@@ -46,6 +46,7 @@ namespace EquipmentGen.Generators.Items.Magical
             ring.Magic.Bonus = Convert.ToInt32(result.Amount);
             ring.IsMagical = true;
             ring.Attributes = attributesSelector.SelectFrom("RingAttributes", result.Type);
+            ring.ItemType = ItemTypeConstants.Ring;
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
             ring.Traits.AddRange(traits);

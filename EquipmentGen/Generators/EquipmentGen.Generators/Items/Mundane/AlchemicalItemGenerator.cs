@@ -24,6 +24,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             var item = new Item();
             item.Name = result.Type;
             item.Quantity = dice.Roll(result.Amount);
+            item.ItemType = ItemTypeConstants.AlchemicalItem;
 
             return item;
         }

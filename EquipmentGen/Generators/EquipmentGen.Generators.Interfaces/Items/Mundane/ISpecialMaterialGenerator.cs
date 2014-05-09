@@ -5,7 +5,7 @@ namespace EquipmentGen.Generators.Interfaces.Items.Mundane
 {
     public interface ISpecialMaterialGenerator
     {
-        Boolean HasSpecialMaterial(IEnumerable<String> types);
-        String GenerateFor(IEnumerable<String> types);
+        Boolean HasSpecialMaterial(String itemType, IEnumerable<String> types);
+        String GenerateFor(String itemType, IEnumerable<String> types);
     }
 }

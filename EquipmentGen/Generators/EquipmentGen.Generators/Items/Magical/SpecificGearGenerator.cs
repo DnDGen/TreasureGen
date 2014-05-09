@@ -50,6 +50,11 @@ namespace EquipmentGen.Generators.Items.Magical
             gear.Magic.Bonus = Convert.ToInt32(result.Amount);
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
+            if (itemType == ItemTypeConstants.Armor || itemType == AttributeConstants.Shield)
+                gear.ItemType = ItemTypeConstants.Armor;
+            else
+                gear.ItemType = ItemTypeConstants.Weapon;
+
             tableName = String.Format("{0}Attributes", specificGearType);
             gear.Attributes = attributesSelector.SelectFrom(tableName, gear.Name);
 

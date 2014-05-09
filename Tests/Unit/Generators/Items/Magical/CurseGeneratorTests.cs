@@ -123,7 +123,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("Curses", It.IsAny<Int32>())).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.d3(1)).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with Gender");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations", It.IsAny<Int32>())).Returns("situation with GENDER");
             mockDice.Setup(d => d.d2(1)).Returns(2);
 
             var curse = curseGenerator.GenerateCurse();
@@ -171,6 +171,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.IsMagical, Is.True);
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
             Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.That(cursedItem.Attributes, Contains.Item(AttributeConstants.Specific));
         }
     }
 }
