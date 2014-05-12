@@ -16,13 +16,14 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
     public class MagicalItemGeneratorFactoryTests
     {
         private IMagicalItemGeneratorFactory factory;
+        private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
 
         [SetUp]
         public void Setup()
         {
             var mockPercentileSelector = new Mock<IPercentileSelector>();
             var mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
-            var mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
+            mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             var mockAttributesSelector = new Mock<IAttributesSelector>();
             var mockChargesGenerator = new Mock<IChargesGenerator>();
             var mockDice = new Mock<IDice>();

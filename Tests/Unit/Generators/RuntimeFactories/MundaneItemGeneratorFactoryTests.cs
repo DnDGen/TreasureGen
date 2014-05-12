@@ -20,13 +20,13 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         public void Setup()
         {
             var mockPercentileSelector = new Mock<IPercentileSelector>();
-            var mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
             var mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
             var mockAttributesSelector = new Mock<IAttributesSelector>();
             var mockDice = new Mock<IDice>();
+            var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
 
-            factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockAmmunitionGenerator.Object,
-                mockMaterialsGenerator.Object, mockAttributesSelector.Object, mockDice.Object);
+            factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockMaterialsGenerator.Object, mockAttributesSelector.Object,
+                mockDice.Object, mockTypeAndAmountPercentileSelector.Object);
         }
 
         [Test]
@@ -47,14 +47,14 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         public void CreateAlchemicalItemGenerator()
         {
             var generator = factory.CreateGeneratorOf(ItemTypeConstants.AlchemicalItem);
-            Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
+            Assert.That(generator, Is.TypeOf<AlchemicalItemGenerator>());
         }
 
         [Test]
         public void CreateToolGenerator()
         {
             var generator = factory.CreateGeneratorOf(ItemTypeConstants.Tool);
-            Assert.That(generator, Is.TypeOf<MundaneWeaponGenerator>());
+            Assert.That(generator, Is.TypeOf<ToolGenerator>());
         }
 
         [Test]

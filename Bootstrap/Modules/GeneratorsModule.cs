@@ -14,6 +14,7 @@ using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+using Ninject;
 using Ninject.Modules;
 
 namespace EquipmentGen.Bootstrap.Modules
@@ -40,9 +41,9 @@ namespace EquipmentGen.Bootstrap.Modules
 
             Bind<IMundaneItemGenerator>().To<ToolGenerator>().Named(ItemTypeConstants.Tool);
             Bind<IMundaneItemGenerator>().To<AlchemicalItemGenerator>().Named(ItemTypeConstants.AlchemicalItem);
-            Bind<IMundaneItemGenerator>().To<AmmunitionGenerator>().Named(AttributeConstants.Ammunition);
             Bind<IMundaneItemGenerator>().To<MundaneArmorGenerator>().Named(ItemTypeConstants.Armor);
-            Bind<IMundaneItemGenerator>().To<MundaneWeaponGenerator>().Named(ItemTypeConstants.Weapon);
+            Bind<IMundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Weapon))
+                .Named(ItemTypeConstants.Weapon);
 
             Bind<IMagicalItemGenerator>().To<MagicalArmorGenerator>().Named(ItemTypeConstants.Armor);
             Bind<IMagicalItemGenerator>().To<MagicalWeaponGenerator>().Named(ItemTypeConstants.Weapon);

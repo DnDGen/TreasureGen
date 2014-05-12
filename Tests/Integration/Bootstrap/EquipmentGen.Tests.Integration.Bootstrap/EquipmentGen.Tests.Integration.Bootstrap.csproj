@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EquipmentGen.Tests.Integration.Bootstrap</RootNamespace>
+    <AssemblyName>EquipmentGen.Tests.Integration.Bootstrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="D20Dice">
+      <HintPath>..\..\..\..\packages\D20Dice.3.1\lib\D20Dice.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BootstrapTests.cs" />
+    <Compile Include="Modules\GeneratorsModuleTests.cs" />
+    <Compile Include="Modules\MappersModuleTests.cs" />
+    <Compile Include="Modules\SelectorsModuleTests.cs" />
+    <Compile Include="Modules\TablesModuleTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Common\EquipmentGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Generators\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
+      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
+      <Name>EquipmentGen.Generators.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Generators\EquipmentGen.Generators\EquipmentGen.Generators.csproj">
+      <Project>{187f1421-35eb-4050-879a-4aa77e89615b}</Project>
+      <Name>EquipmentGen.Generators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers.Interfaces\EquipmentGen.Mappers.Interfaces.csproj">
+      <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
+      <Name>EquipmentGen.Mappers.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Mappers\EquipmentGen.Mappers\EquipmentGen.Mappers.csproj">
+      <Project>{74aaa5dd-7de2-4bbd-bed1-829b26f0d4eb}</Project>
+      <Name>EquipmentGen.Mappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Selectors\EquipmentGen.Selectors.Interfaces\EquipmentGen.Selectors.Interfaces.csproj">
+      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
+      <Name>EquipmentGen.Selectors.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EquipmentGen\Tables\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\EquipmentGen.Tests.Integration.Common.csproj">
+      <Project>{4386b84e-fcca-4fc2-84d7-bd4161ca4612}</Project>
+      <Name>EquipmentGen.Tests.Integration.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

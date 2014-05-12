@@ -37,6 +37,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockMagicalItemGenerator = new Mock<IMagicalItemGenerator>();
             mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            mockMundaneItemGenerator = new Mock<IMundaneItemGenerator>();
 
             result.Type = "power";
             result.Amount = "9266";
@@ -87,6 +88,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
 
             var firstItem = new Item();
             var secondItem = new Item();
+            mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf(It.IsAny<String>())).Returns(mockMundaneItemGenerator.Object);
             mockMundaneItemGenerator.SetupSequence(f => f.Generate()).Returns(firstItem).Returns(secondItem);
 
             var items = itemsGenerator.GenerateAtLevel(1);
@@ -115,6 +117,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var mundaneItem = new Item();
             mockPercentileSelector.Setup(p => p.SelectFrom("MundaneItems", 42)).Returns("mundane item type");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMagicalItemGenerator.Object);
+            mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMundaneItemGenerator.Object);
             mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(mundaneItem);
 
             var items = itemsGenerator.GenerateAtLevel(1);

@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Bootstrap;
+﻿using System;
+using EquipmentGen.Bootstrap;
 using Ninject;
 using NUnit.Framework;
 
@@ -17,6 +18,16 @@ namespace EquipmentGen.Tests.Integration.Common
             equipmentGenModuleLoader.LoadModules(kernel);
 
             kernel.Inject(this);
+        }
+
+        protected T GetNewInstanceOf<T>()
+        {
+            return kernel.Get<T>();
+        }
+
+        protected T GetNewInstanceOf<T>(String name)
+        {
+            return kernel.Get<T>(name);
         }
     }
 }
