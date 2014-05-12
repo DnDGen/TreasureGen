@@ -1,6 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using EquipmentGen.Generators.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,8 +9,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class AmmunitionGeneratorTests : StressTests
     {
-        [Inject, Named(AttributeConstants.Ammunition)]
-        public IMundaneItemGenerator AmmunitionGenerator { get; set; }
+        [Inject]
+        public AmmunitionGenerator AmmunitionGenerator { get; set; }
 
         [Test]
         public void StressedAmmunitionGenerator()

@@ -6,7 +6,6 @@ using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using NUnit.Framework;
@@ -133,23 +132,9 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MagicalGearGeneratorNamedArmorIsMagicalArmorGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Armor);
-            Assert.That(generator, Is.InstanceOf<MagicalArmorGenerator>());
-        }
-
-        [Test]
         public void MagicalArmorGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Armor);
-        }
-
-        [Test]
-        public void MagicalGearGeneratorNamedWeaponIsMagicalWeaponGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
-            Assert.That(generator, Is.InstanceOf<MagicalWeaponGenerator>());
         }
 
         [Test]
@@ -159,23 +144,9 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MagicalItemGeneratorNamedPotionIsPotionGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Potion);
-            Assert.That(generator, Is.InstanceOf<PotionGenerator>());
-        }
-
-        [Test]
         public void PotionGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Potion);
-        }
-
-        [Test]
-        public void MagicalItemGeneratorNamedRingIsRingGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Ring);
-            Assert.That(generator, Is.InstanceOf<RingGenerator>());
         }
 
         [Test]
@@ -185,23 +156,9 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MagicalItemGeneratorNamedRodIsRodGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Rod);
-            Assert.That(generator, Is.InstanceOf<RodGenerator>());
-        }
-
-        [Test]
         public void RodGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Rod);
-        }
-
-        [Test]
-        public void MagicalItemGeneratorNamedScrollIsScrollGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
-            Assert.That(generator, Is.InstanceOf<ScrollGenerator>());
         }
 
         [Test]
@@ -211,36 +168,15 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MagicalItemGeneratorNamedStaffIsStaffGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Staff);
-            Assert.That(generator, Is.InstanceOf<StaffGenerator>());
-        }
-
-        [Test]
         public void StaffGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Staff);
         }
 
         [Test]
-        public void MagicalItemGeneratorNamedWandIsWandGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Wand);
-            Assert.That(generator, Is.InstanceOf<WandGenerator>());
-        }
-
-        [Test]
         public void WandGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Wand);
-        }
-
-        [Test]
-        public void MagicalItemGeneratorNamedWondrousItemIsWondrousItemGenerator()
-        {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
-            Assert.That(generator, Is.InstanceOf<WondrousItemGenerator>());
         }
 
         [Test]

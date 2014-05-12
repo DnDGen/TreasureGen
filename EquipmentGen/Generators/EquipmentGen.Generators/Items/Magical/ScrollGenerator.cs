@@ -9,13 +9,11 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         private IDice dice;
         private ISpellGenerator spellGenerator;
-        private ICurseGenerator curseGenerator;
 
-        public ScrollGenerator(IDice dice, ISpellGenerator spellGenerator, ICurseGenerator curseGenerator)
+        public ScrollGenerator(IDice dice, ISpellGenerator spellGenerator)
         {
             this.dice = dice;
             this.spellGenerator = spellGenerator;
-            this.curseGenerator = curseGenerator;
         }
 
         public Item GenerateAtPower(String power)
@@ -34,15 +32,6 @@ namespace EquipmentGen.Generators.Items.Magical
                 var spell = spellGenerator.Generate(spellType, level);
                 var spellWithLevel = String.Format("{0} ({1})", spell, level);
                 scroll.Contents.Add(spellWithLevel);
-            }
-
-            if (curseGenerator.HasCurse(scroll.IsMagical))
-            {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
-                    return curseGenerator.GenerateSpecificCursedItem();
-
-                scroll.Magic.Curse = curse;
             }
 
             return scroll;

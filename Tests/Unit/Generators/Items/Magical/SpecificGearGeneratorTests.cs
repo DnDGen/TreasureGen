@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
@@ -183,33 +182,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var gear = generator.GenerateFrom("power", "Specific gear types");
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void DoNotGetIntelligenceIfNotIntelligent()
-        {
-            var intelligence = new Intelligence();
-            intelligence.Ego = 9266;
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(" gear type", It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
-                .Returns(intelligence);
-
-            var gear = generator.GenerateFrom("power", "Specific gear type");
-            Assert.That(gear.Magic.Intelligence.Ego, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void GetIntelligenceFromGenerator()
-        {
-            var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(" gear type", It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
-                .Returns(intelligence);
-
-            var gear = generator.GenerateFrom("power", "Specific gear type");
-            Assert.That(gear.Magic.Intelligence, Is.EqualTo(intelligence));
         }
 
         [Test]

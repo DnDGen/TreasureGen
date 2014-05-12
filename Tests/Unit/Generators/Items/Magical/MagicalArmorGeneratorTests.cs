@@ -51,10 +51,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockCurseGenerator = new Mock<ICurseGenerator>();
 
-            magicalArmorGenerator = new MagicalArmorGenerator(mockTypeAndAmountPercentileSelector.Object,
-                mockPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object,
-                mockMaterialsSelector.Object, mockMagicItemTraitsGenerator.Object, mockIntelligenceGenerator.Object,
-                mockSpecificGearGenerator.Object, mockDice.Object, mockCurseGenerator.Object);
+            magicalArmorGenerator = new MagicalArmorGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialsSelector.Object, mockMagicItemTraitsGenerator.Object, mockSpecificGearGenerator.Object, mockDice.Object);
         }
 
         [Test]
@@ -62,12 +59,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
-        }
-
-        [Test]
-        public void ThrowErrorIfMundane()
-        {
-            Assert.That(() => magicalArmorGenerator.GenerateAtPower(PowerConstants.Mundane), Throws.ArgumentException);
         }
 
         [Test]
@@ -159,65 +150,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             foreach (var trait in traits)
                 Assert.That(armor.Traits, Contains.Item(trait));
-        }
-
-        [Test]
-        public void DoNotGetIntelligenceIfNotIntelligent()
-        {
-            var intelligence = new Intelligence();
-            intelligence.Ego = 9266;
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
-                .Returns(intelligence);
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void GetIntelligenceFromGenerator()
-        {
-            var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
-                .Returns(intelligence);
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Magic.Intelligence, Is.EqualTo(intelligence));
-        }
-
-        [Test]
-        public void DoNotGetCurseIfNotCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Magic.Curse, Is.Empty);
-        }
-
-        [Test]
-        public void GetCurseIfCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor.Magic.Curse, Is.EqualTo("cursed"));
-        }
-
-        [Test]
-        public void GetSpecificCursedItems()
-        {
-            var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
-            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
-
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
-            Assert.That(armor, Is.EqualTo(cursedItem));
         }
     }
 }

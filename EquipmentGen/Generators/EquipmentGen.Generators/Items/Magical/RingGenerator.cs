@@ -14,24 +14,20 @@ namespace EquipmentGen.Generators.Items.Magical
         private IAttributesSelector attributesSelector;
         private IMagicalItemTraitsGenerator traitsGenerator;
         private ISpellGenerator spellGenerator;
-        private IIntelligenceGenerator intelligenceGenerator;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
-        private ICurseGenerator curseGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
         public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
-            IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IChargesGenerator chargesGenerator, IDice dice, ICurseGenerator curseGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+            IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IChargesGenerator chargesGenerator,
+            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
             this.traitsGenerator = traitsGenerator;
             this.spellGenerator = spellGenerator;
-            this.intelligenceGenerator = intelligenceGenerator;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
-            this.curseGenerator = curseGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
@@ -53,18 +49,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, result.Type);
-
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.Ring, ring.Attributes, ring.IsMagical))
-                ring.Magic.Intelligence = intelligenceGenerator.GenerateFor(ring.Magic);
-
-            if (curseGenerator.HasCurse(ring.IsMagical))
-            {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
-                    return curseGenerator.GenerateSpecificCursedItem();
-
-                ring.Magic.Curse = curse;
-            }
 
             if (result.Type.Contains("Counterspells"))
             {
@@ -103,21 +87,19 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private IEnumerable<String> GenerateSpells(String power, Int32 levelCap)
         {
-            var levelSum = 0;
+            var level = spellGenerator.GenerateLevel(power);
+            var levelSum = level;
             var spells = new List<String>();
 
-            while (levelSum < levelCap)
+            while (levelSum <= levelCap)
             {
-                var level = spellGenerator.GenerateLevel(power);
-                levelSum += level;
-
-                if (levelSum > levelCap)
-                    continue;
-
                 var type = spellGenerator.GenerateType();
                 var spell = spellGenerator.Generate(type, level);
                 var formattedSpell = String.Format("{0} ({1}, {2})", spell, type, level);
                 spells.Add(formattedSpell);
+
+                level = spellGenerator.GenerateLevel(power);
+                levelSum += level;
             }
 
             return spells;

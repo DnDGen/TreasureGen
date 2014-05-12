@@ -71,7 +71,6 @@
     <Compile Include="Coins\CoinGeneratorTests.cs" />
     <Compile Include="Goods\GoodsGeneratorTests.cs" />
     <Compile Include="Items\ItemsGeneratorTests.cs" />
-    <Compile Include="Items\Mundane\MundaneItemGeneratorTests.cs" />
     <Compile Include="Items\Mundane\SpecialMaterialGeneratorTests.cs" />
     <Compile Include="Items\Magical\SpellGeneratorTests.cs" />
     <Compile Include="Items\Mundane\ToolGeneratorTests.cs" />
@@ -81,10 +80,6 @@
     <Compile Include="StressTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Bootstrap\EquipmentGen.Bootstrap.csproj">
-      <Project>{ee68faeb-1d40-447f-9bcd-93d1ffdfe858}</Project>
-      <Name>EquipmentGen.Bootstrap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EquipmentGen\Common\EquipmentGen.Common.csproj">
       <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
       <Name>EquipmentGen.Common</Name>

@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\MagicalItemGeneratorCurseDecorator.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecorator.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorMundaneProxy.cs" />
     <Compile Include="RuntimeFactories\Interfaces\IMagicalItemGeneratorFactory.cs" />
     <Compile Include="RuntimeFactories\Interfaces\IMundaneItemGeneratorFactory.cs" />
     <Compile Include="RuntimeFactories\MagicalItemGeneratorFactory.cs" />

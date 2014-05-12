@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Unit.Sel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Tables", "Tests\Integration\Tables\EquipmentGen.Tests.Integration.Tables.csproj", "{A53AB08B-6155-4F91-8F83-384265F58530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Bootstrap", "Tests\Integration\Bootstrap\EquipmentGen.Tests.Integration.Bootstrap\EquipmentGen.Tests.Integration.Bootstrap.csproj", "{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Bootstrap", "Tests\Integration\Bootstrap\EquipmentGen.Tests.Integration.Bootstrap.csproj", "{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

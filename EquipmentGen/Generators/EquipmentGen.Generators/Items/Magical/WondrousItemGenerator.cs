@@ -12,25 +12,19 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         private IPercentileSelector percentileSelector;
         private IMagicalItemTraitsGenerator traitsGenerator;
-        private IIntelligenceGenerator intelligenceGenerator;
         private IAttributesSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
-        private ICurseGenerator curseGenerator;
         private ISpellGenerator spellGenerator;
 
-        public WondrousItemGenerator(IPercentileSelector percentileSelector,
-            IMagicalItemTraitsGenerator traitsGenerator, IIntelligenceGenerator intelligenceGenerator,
-            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice,
-            ICurseGenerator curseGenerator, ISpellGenerator spellGenerator)
+        public WondrousItemGenerator(IPercentileSelector percentileSelector, IMagicalItemTraitsGenerator traitsGenerator,
+            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.traitsGenerator = traitsGenerator;
-            this.intelligenceGenerator = intelligenceGenerator;
             this.attributesSelector = attributesSelector;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
-            this.curseGenerator = curseGenerator;
             this.spellGenerator = spellGenerator;
         }
 
@@ -53,18 +47,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (item.Attributes.Any(a => a == AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Name);
-
-            if (intelligenceGenerator.IsIntelligent(ItemTypeConstants.WondrousItem, item.Attributes, item.IsMagical))
-                item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item.Magic);
-
-            if (curseGenerator.HasCurse(item.IsMagical))
-            {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
-                    return curseGenerator.GenerateSpecificCursedItem();
-
-                item.Magic.Curse = curse;
-            }
 
             var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
             item.Traits.AddRange(traits);
@@ -91,7 +73,7 @@ namespace EquipmentGen.Generators.Items.Magical
             }
             else if (item.Name == "Robe of useful items")
             {
-                var baseItems = GetBaseItemsInRobeOfUsefulItems();
+                var baseItems = attributesSelector.SelectFrom("RobeOfUsefulItemsBaseItems", "Items");
                 item.Contents.AddRange(baseItems);
 
                 var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
@@ -104,11 +86,6 @@ namespace EquipmentGen.Generators.Items.Magical
             }
 
             return item;
-        }
-
-        private IEnumerable<String> GetBaseItemsInRobeOfUsefulItems()
-        {
-            return attributesSelector.SelectFrom("RobeOfUsefulItemsBaseItems", "Items");
         }
 
         private String GetNameForAttributes(String itemName)
@@ -166,6 +143,7 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 var roll = dice.Percentile();
                 var plane = percentileSelector.SelectFrom("Planes", roll);
+
                 if (!planes.Contains(plane))
                     planes.Add(plane);
             }

@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\MagicalItemGeneratorCurseDecoratorTests.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorMundaneProxyTests.cs" />
     <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
     <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
     <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />

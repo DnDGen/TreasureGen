@@ -17,7 +17,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IDice> mockDice;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<ICurseGenerator> mockCurseGenerator;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
@@ -27,13 +26,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
-            mockCurseGenerator = new Mock<ICurseGenerator>();
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
             result.Amount = "0";
 
-            potionGenerator = new PotionGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object,
-                mockCurseGenerator.Object);
+            potionGenerator = new PotionGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object);
         }
 
         [Test]
@@ -81,38 +78,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var potion = potionGenerator.GenerateAtPower("power");
             Assert.That(potion.Name, Is.EqualTo("potion of an element"));
-        }
-
-        [Test]
-        public void DoNotGetCurseIfNotCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var potion = potionGenerator.GenerateAtPower("power");
-            Assert.That(potion.Magic.Curse, Is.Empty);
-        }
-
-        [Test]
-        public void GetCurseIfCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var potion = potionGenerator.GenerateAtPower("power");
-            Assert.That(potion.Magic.Curse, Is.EqualTo("cursed"));
-        }
-
-        [Test]
-        public void GetSpecificCursedItems()
-        {
-            var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
-            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
-
-            var potion = potionGenerator.GenerateAtPower("power");
-            Assert.That(potion, Is.EqualTo(cursedItem));
         }
     }
 }

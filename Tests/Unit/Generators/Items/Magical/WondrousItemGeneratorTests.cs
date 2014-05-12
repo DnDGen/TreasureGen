@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -16,36 +15,27 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private IMagicalItemGenerator wondrousItemGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
-        private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IDice> mockDice;
-        private Mock<ICurseGenerator> mockCurseGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
-
         private String name;
 
         [SetUp]
         public void Setup()
         {
-            name = "wondrous item";
-
-            mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns(name);
-
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
-            mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
-            mockCurseGenerator = new Mock<ICurseGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
+            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockDice = new Mock<IDice>();
+            wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockTraitsGenerator.Object,
+                mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object);
 
-            wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object,
-                mockTraitsGenerator.Object, mockIntelligenceGenerator.Object, mockAttributesSelector.Object,
-                mockChargesGenerator.Object, mockDice.Object, mockCurseGenerator.Object, mockSpellGenerator.Object);
+            name = "wondrous item";
+            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns(name);
         }
 
         [Test]
@@ -75,32 +65,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Attributes, Is.EqualTo(attributes));
-        }
-
-        [Test]
-        public void DoNotGetIntelligenceIfNotIntelligent()
-        {
-            var intelligence = new Intelligence();
-            intelligence.Ego = 9266;
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Intelligence, Is.Not.EqualTo(intelligence));
-            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void GetIntelligenceIfIntelligent()
-        {
-            var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Intelligence, Is.EqualTo(intelligence));
         }
 
         [Test]
@@ -332,38 +296,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Contents, Contains.Item("plane 3"));
             Assert.That(item.Contents, Contains.Item("plane 4"));
             Assert.That(item.Contents, Contains.Item("plane 5"));
-        }
-
-        [Test]
-        public void DoNotGetCurseIfNotCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Curse, Is.Empty);
-        }
-
-        [Test]
-        public void GetCurseIfCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
-        }
-
-        [Test]
-        public void GetSpecificCursedItems()
-        {
-            var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
-            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            Assert.That(item, Is.EqualTo(cursedItem));
         }
     }
 }

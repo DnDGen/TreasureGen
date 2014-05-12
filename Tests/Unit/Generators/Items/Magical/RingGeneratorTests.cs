@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
@@ -20,11 +19,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
-        private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IDice> mockDice;
-        private Mock<ICurseGenerator> mockCurseGenerator;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
@@ -33,20 +30,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
-            mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockCurseGenerator = new Mock<ICurseGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
             result = new TypeAndAmountPercentileResult();
+            ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object,
+                mockTraitsGenerator.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockDice.Object,
+                mockTypeAndAmountPercentileSelector.Object);
 
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
             result.Amount = "0";
-
-            ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object,
-                mockTraitsGenerator.Object, mockSpellGenerator.Object, mockIntelligenceGenerator.Object, mockChargesGenerator.Object,
-                mockDice.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
         }
 
         [Test]
@@ -94,33 +88,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of element resistance"));
-        }
-
-        [Test]
-        public void GetIntelligenceIfIntelligent()
-        {
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(true);
-            var intelligence = new Intelligence();
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Intelligence, Is.EqualTo(intelligence));
-        }
-
-        [Test]
-        public void DoNotGetIntelligenceIfNotIntelligent()
-        {
-            mockIntelligenceGenerator.Setup(g => g.IsIntelligent(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>(),
-                It.IsAny<Boolean>())).Returns(false);
-            var intelligence = new Intelligence();
-            intelligence.Ego = 9266;
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>()))
-                .Returns(intelligence);
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Intelligence, Is.Not.EqualTo(intelligence));
-            Assert.That(ring.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
 
         [Test]
@@ -176,7 +143,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Contents, Contains.Item("spell 3 (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(3));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(3));
-            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(3));
+            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.AtLeast(3));
         }
 
         [Test]
@@ -226,7 +193,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Contents, Contains.Item("spell 5 (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(5));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(5));
-            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(5));
+            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.AtLeast(5));
         }
 
         [Test]
@@ -282,7 +249,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Contents, Contains.Item("spell 10 (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(10));
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Exactly(10));
-            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.Exactly(10));
+            mockSpellGenerator.Verify(g => g.GenerateLevel("power"), Times.AtLeast(10));
         }
 
         [Test]
@@ -366,38 +333,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));
             Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
-        }
-
-        [Test]
-        public void DoNotGetCurseIfNotCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Curse, Is.Empty);
-        }
-
-        [Test]
-        public void GetCurseIfCursed()
-        {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Magic.Curse, Is.EqualTo("cursed"));
-        }
-
-        [Test]
-        public void GetSpecificCursedItems()
-        {
-            var cursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
-            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(cursedItem);
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring, Is.EqualTo(cursedItem));
         }
     }
 }
