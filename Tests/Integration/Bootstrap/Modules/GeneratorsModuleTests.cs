@@ -1,5 +1,6 @@
 ﻿using D20Dice;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Decorators;
 using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Generators.Interfaces.Goods;
@@ -138,9 +139,23 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
+        public void MagicalArmorGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Armor);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+        }
+
+        [Test]
         public void MagicalWeaponGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
+        }
+
+        [Test]
+        public void MagicalWeaponGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
         }
 
         [Test]
@@ -150,9 +165,23 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
+        public void PotionGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Potion);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+        }
+
+        [Test]
         public void RingGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+        }
+
+        [Test]
+        public void RingGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
         }
 
         [Test]
@@ -162,9 +191,23 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
+        public void RodGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Rod);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+        }
+
+        [Test]
         public void ScrollGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+        }
+
+        [Test]
+        public void ScrollGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
         }
 
         [Test]
@@ -174,15 +217,36 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
+        public void StaffGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Staff);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+        }
+
+        [Test]
         public void WandGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Wand);
         }
 
         [Test]
+        public void WandGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Wand);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+        }
+
+        [Test]
         public void WondrousItemGeneratorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+        }
+
+        [Test]
+        public void WondrousItemGeneratorIsDecorated()
+        {
+            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
         }
 
         [Test]
