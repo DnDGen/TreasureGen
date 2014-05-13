@@ -67,7 +67,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of magic circle against ALIGNMENT", 0, 81)]
         [TestCase("Potion of remove blindness/deafness", 0, 94)]
         [TestCase("Potion of remove curse", 0, 95)]
-        [TestCase("Potion of remove diseaseT", 0, 96)]
+        [TestCase("Potion of remove disease", 0, 96)]
         [TestCase("Potion of tongues", 0, 97)]
         [TestCase("Potion of water walk", 0, 100)]
         public void Percentile(String name, Int32 bonus, Int32 roll)

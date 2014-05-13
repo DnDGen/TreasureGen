@@ -642,6 +642,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Items\Mundane\HasSpecialMaterial.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Potions\MediumPotions.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
