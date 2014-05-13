@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of owl's wisdom", 0, 88, 89)]
         [TestCase("Potion of protection from arrows 10/magic", 0, 90, 91)]
         [TestCase("Potion of remove paralysis", 0, 92, 93)]
-        [TestCase("Potion of resist ENERGY", 0, 94, 96)]
+        [TestCase("Potion of resist ENERGY 10", 0, 94, 96)]
         [TestCase("Potion of spider climb", 0, 98, 99)]
         public void Percentile(String name, Int32 bonus, Int32 lower, Int32 upper)
         {
