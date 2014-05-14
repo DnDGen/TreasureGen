@@ -34,6 +34,7 @@ namespace EquipmentGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
+        [Test]
         protected void StressGenerator()
         {
             do

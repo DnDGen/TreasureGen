@@ -16,7 +16,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name", 9266))
+            mockPercentileSelector.Setup(p => p.SelectFrom("table name"))
                 .Returns("type,roll");
 
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object);
@@ -26,13 +26,13 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void AccessesPercentileSelectorWithTableNameAndRoll()
         {
             typeAndAmountPercentileSelector.SelectFrom("table name", 9266);
-            mockPercentileSelector.Verify(p => p.SelectFrom("table name", 9266), Times.Once);
+            mockPercentileSelector.Verify(p => p.SelectFrom("table name"), Times.Once);
         }
 
         [Test]
         public void ReturnEmptyIfPercentileIsEmpty()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()))
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>()))
                 .Returns(String.Empty);
 
             var result = typeAndAmountPercentileSelector.SelectFrom("table name", 1);
@@ -51,7 +51,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void ThrowFormatExceptionIfNoComma()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns("no comma in this result");
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns("no comma in this result");
             Assert.That(() => typeAndAmountPercentileSelector.SelectFrom("table name", 1), Throws.InstanceOf<FormatException>());
         }
     }

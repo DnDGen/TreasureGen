@@ -71,7 +71,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         [Test]
         public void GetNameFromPercentileResultSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types", 42)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types")).Returns("armor name");
 
             var armor = magicalArmorGenerator.GenerateAtPower("power");
             Assert.That(armor.Name, Is.EqualTo("armor name"));
@@ -80,7 +80,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         [Test]
         public void GetAttributesFromSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types", 42)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types")).Returns("armor name");
 
             var attributes = new[] { "type 1", "type 2" };
             mockAttributesSelector.Setup(p => p.SelectFrom("ArmorAttributes", "armor name")).Returns(attributes);

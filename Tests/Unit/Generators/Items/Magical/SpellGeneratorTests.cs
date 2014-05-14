@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpellLevel()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerSpellLevels", 42)).Returns("9266");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerSpellLevels")).Returns("9266");
             var level = generator.GenerateLevel("power");
             Assert.That(level, Is.EqualTo(9266));
         }
@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpellType()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("SpellTypes", 42)).Returns("spell type");
+            mockPercentileSelector.Setup(p => p.SelectFrom("SpellTypes")).Returns("spell type");
             var type = generator.GenerateType();
             Assert.That(type, Is.EqualTo("spell type"));
         }
@@ -42,7 +42,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("Level9266spell typeSpells", 42)).Returns("this is my spell");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Level9266spell typeSpells")).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
             Assert.That(spell, Is.EqualTo("this is my spell"));
         }

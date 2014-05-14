@@ -48,11 +48,10 @@ namespace EquipmentGen.Generators.Items.Magical
                 return specificGearGenerator.GenerateFrom(power, result.Type);
 
             tableName = String.Format("{0}Types", result.Type);
-            roll = dice.Percentile();
 
             var armor = new Item();
             armor.ItemType = ItemTypeConstants.Armor;
-            armor.Name = percentileSelector.SelectFrom(tableName, roll);
+            armor.Name = percentileSelector.SelectFrom(tableName);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.Magic.Bonus = Convert.ToInt32(result.Amount);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;

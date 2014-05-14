@@ -109,10 +109,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void HornOfValhallaGetsType()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Horn of Valhalla");
-            mockPercentileSelector.Setup(p => p.SelectFrom("HornOfValhallaTypes", 66)).Returns("metallic");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Horn of Valhalla");
+            mockPercentileSelector.Setup(p => p.SelectFrom("HornOfValhallaTypes")).Returns("metallic");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("metallic Horn of Valhalla"));
@@ -121,10 +119,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskContentsGenerated()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
-            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns("contents");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Iron flask");
+            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents")).Returns("contents");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask"));
@@ -134,10 +130,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskContentsDoNotContainsEmptyString()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
-            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns(String.Empty);
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Iron flask");
+            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents")).Returns(String.Empty);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask"));
@@ -147,10 +141,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskOnlyContainsOneThing()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom("IronFlaskContents", 66)).Returns("contents").Returns("more contents");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Iron flask");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom("IronFlaskContents")).Returns("contents").Returns("more contents");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask"));
@@ -163,9 +155,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
 
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Iron flask");
-            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents", 66)).Returns("BalorOrPitFiend");
-            mockPercentileSelector.Setup(p => p.SelectFrom("BalorOrPitFiend", It.IsAny<Int32>())).Returns("balor or pit fiend");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Iron flask");
+            mockPercentileSelector.Setup(p => p.SelectFrom("IronFlaskContents")).Returns("BalorOrPitFiend");
+            mockPercentileSelector.Setup(p => p.SelectFrom("BalorOrPitFiend")).Returns("balor or pit fiend");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Iron flask"));
@@ -175,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsBaseItemsAdded()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", It.IsAny<Int32>())).Returns("Robe of useful items");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Robe of useful items");
             var items = new[] { "item 1", "item 2", "item 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom("RobeOfUsefulItemsBaseItems", "Items")).Returns(items);
 
@@ -188,12 +180,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsExtraItemsDetermined()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(42);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Robe of useful items");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Robe of useful items");
             mockDice.Setup(d => d.d4(4)).Returns(2);
-            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems", 66)).Returns("item 1");
-            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems", 42)).Returns("item 2");
+            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems")).Returns("item 1");
+            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems")).Returns("item 2");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Robe of useful items"));
@@ -204,11 +194,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsExtraItemsScrollDetermined()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Robe of useful items");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Robe of useful items");
             mockDice.Setup(d => d.d4(4)).Returns(1);
-            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems", 66)).Returns("Scroll");
+            mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems")).Returns("Scroll");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
@@ -223,12 +211,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(1).Returns(2).Returns(3).Returns(4).Returns(5);
 
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Cubic gate");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 1)).Returns("plane 1");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 2)).Returns("plane 2");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 3)).Returns("plane 3");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 4)).Returns("plane 4");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 5)).Returns("plane 5");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Cubic gate");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 1");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 2");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 3");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 4");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Cubic gate"));
@@ -243,15 +231,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CubicGateGetsDistinctPlanes()
         {
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(1).Returns(1).Returns(2).Returns(3).Returns(4)
-                .Returns(5);
-
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 92)).Returns("Cubic gate");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 1)).Returns("plane 1");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 2)).Returns("plane 2");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 3)).Returns("plane 3");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 4)).Returns("plane 4");
-            mockPercentileSelector.Setup(p => p.SelectFrom("Planes", 5)).Returns("plane 5");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns("Cubic gate");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 1");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 2");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 3");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 4");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Planes")).Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo("Cubic gate"));

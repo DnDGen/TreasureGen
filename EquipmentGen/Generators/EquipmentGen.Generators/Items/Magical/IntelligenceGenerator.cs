@@ -39,7 +39,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var roll = dice.Percentile();
             var tableName = String.Format("Is{0}Intelligent", itemType);
-            return booleanPercentileSelector.SelectFrom(tableName, roll);
+            return booleanPercentileSelector.SelectFrom(tableName);
         }
 
         private String GetWeaponType(IEnumerable<String> attributes)
@@ -55,8 +55,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Intelligence GenerateFor(Magic magic)
         {
-            var roll = dice.Percentile();
-            var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats", roll);
+            var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats");
             var highStat = Convert.ToInt32(highStatResult);
 
             var intelligence = new Intelligence();
@@ -110,30 +109,23 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
 
-                roll = dice.Percentile();
-                intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes", roll);
+                intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes");
 
                 if (intelligence.SpecialPurpose.Contains("DESIGNATEDFOE"))
                 {
-                    roll = dice.Percentile();
-                    var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+                    var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
                     intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DESIGNATEDFOE", designatedFoe);
                 }
 
-                roll = dice.Percentile();
-                intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPowers", roll);
+                intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPowers");
 
                 intelligence.Ego += 4;
             }
 
             intelligence.Ego += greaterPowers.Count * 2;
             intelligence.Powers.AddRange(greaterPowers);
-
-            roll = dice.Percentile();
-            intelligence.Alignment = percentileSelector.SelectFrom("IntelligenceAlignments", roll);
-
-            roll = dice.Percentile();
-            intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits", roll);
+            intelligence.Alignment = percentileSelector.SelectFrom("IntelligenceAlignments");
+            intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits");
 
             return intelligence;
         }
@@ -159,8 +151,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (list.Count < quantity)
             {
-                var roll = dice.Percentile(1);
-                var result = percentileSelector.SelectFrom(tableName, roll);
+                var result = percentileSelector.SelectFrom(tableName);
 
                 if (result.Contains("Knowledge"))
                     result = GetKnowledgeCategory(result);
@@ -179,8 +170,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetKnowledgeCategory(String power)
         {
-            var roll = dice.Percentile();
-            var category = percentileSelector.SelectFrom("KnowledgeCategories", roll);
+            var category = percentileSelector.SelectFrom("KnowledgeCategories");
             return String.Format("{0} ({1})", power, category);
         }
     }

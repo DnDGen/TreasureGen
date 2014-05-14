@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void ToolGeneratorSetsToolNameByPercentileResult()
         {
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-            mockPercentileSelector.Setup(p => p.SelectFrom("Tools", 9266)).Returns("tool");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Tools")).Returns("tool");
             var tool = generator.Generate();
             Assert.That(tool.Name, Is.EqualTo("tool"));
         }

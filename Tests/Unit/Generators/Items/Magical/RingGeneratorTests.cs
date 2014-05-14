@@ -84,7 +84,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void EnergyIsGenerated()
         {
             result.Type = "ENERGY resistance";
-            mockPercentileSelector.Setup(p => p.SelectFrom("Elements", It.IsAny<Int32>())).Returns("element");
+            mockPercentileSelector.Setup(p => p.SelectFrom("Elements")).Returns("element");
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of element resistance"));

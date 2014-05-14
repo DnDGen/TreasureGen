@@ -34,7 +34,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             var attributesWithType = attributes.Union(new[] { itemType });
             var roll = dice.Percentile();
 
-            return booleanPercentileSelector.SelectFrom("HasSpecialMaterial", roll) && AttributesAllowForSpecialMaterials(attributesWithType);
+            return booleanPercentileSelector.SelectFrom("HasSpecialMaterial") && AttributesAllowForSpecialMaterials(attributesWithType);
         }
 
         private Boolean AttributesAllowForSpecialMaterials(IEnumerable<String> attributes)

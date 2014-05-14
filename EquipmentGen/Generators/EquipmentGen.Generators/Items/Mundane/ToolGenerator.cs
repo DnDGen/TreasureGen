@@ -18,8 +18,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var result = percentileSelector.SelectFrom("Tools", roll);
+            var result = percentileSelector.SelectFrom("Tools");
 
             var tool = new Item();
             tool.Name = result;

@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
             mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(ItemTypeConstants.WondrousItem);
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(ItemTypeConstants.WondrousItem);
 
             var dummyMagicalMock = new Mock<IMagicalItemGenerator>();
             var item = new Item();
@@ -115,7 +115,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
 
             var mundaneItem = new Item();
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneItems", 42)).Returns("mundane item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneItems")).Returns("mundane item type");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMagicalItemGenerator.Object);
             mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMundaneItemGenerator.Object);
             mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(mundaneItem);
@@ -131,7 +131,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
 
             var magicalItem = new Item();
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerItems", 42)).Returns("magic item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom("powerItems")).Returns("magic item type");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("magic item type")).Returns(mockMagicalItemGenerator.Object);
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower("power")).Returns(magicalItem);
 
