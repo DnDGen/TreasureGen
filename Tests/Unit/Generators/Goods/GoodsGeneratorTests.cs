@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
             mockDice.Setup(d => d.Roll(typeAndAmountResult.Amount)).Returns(2);
 
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 92)).Returns(typeAndAmountResult);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
 
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
@@ -57,7 +57,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         public void GetTypeAndAmountFromSelector()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods", 92), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods"), Times.Once);
         }
 
         [Test]

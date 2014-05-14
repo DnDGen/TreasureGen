@@ -41,8 +41,7 @@ namespace EquipmentGen.Generators.Items.Magical
         public Item GenerateFrom(String power, String specificGearType)
         {
             var tableName = String.Format("{0}{1}", power, specificGearType);
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var itemType = specificGearType.Replace("Specific", String.Empty).TrimEnd('s');
 
             var gear = new Item();

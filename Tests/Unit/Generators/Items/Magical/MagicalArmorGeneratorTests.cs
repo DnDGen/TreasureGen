@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
 
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors", 42)).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(result);
 
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
@@ -95,7 +95,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var specificResult = new TypeAndAmountPercentileResult();
             specificResult.Type = "SpecificArmor";
             specificResult.Amount = "0";
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors", 42)).Returns(specificResult);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(specificResult);
 
             var specificArmor = new Item();
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", specificResult.Type)).Returns(specificArmor);
@@ -110,7 +110,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
             abilityResult.Amount = "90210";
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors", 42))
+            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors"))
                 .Returns(abilityResult).Returns(result);
 
             var abilities = new[] { new SpecialAbility() };

@@ -36,9 +36,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private TypeAndAmountPercentileResult GetResult(String power)
         {
-            var roll = dice.Percentile();
             var tableName = String.Format("{0}Potions", power);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             if (result.Type.Contains("ALIGNMENT"))
             {

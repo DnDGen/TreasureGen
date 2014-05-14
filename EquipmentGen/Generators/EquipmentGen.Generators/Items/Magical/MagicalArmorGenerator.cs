@@ -33,15 +33,13 @@ namespace EquipmentGen.Generators.Items.Magical
         public Item GenerateAtPower(String power)
         {
             var tableName = String.Format("{0}Armors", power);
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var abilityCount = 0;
 
             while (result.Type == "SpecialAbility")
             {
                 abilityCount += Convert.ToInt32(result.Amount);
-                roll = dice.Percentile();
-                result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+                result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             }
 
             if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))

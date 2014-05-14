@@ -33,9 +33,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateAtPower(String power)
         {
-            var roll = dice.Percentile();
             var tableName = String.Format("{0}Rings", power);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", result.Type);

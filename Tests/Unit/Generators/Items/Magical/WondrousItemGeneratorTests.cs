@@ -40,7 +40,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result.Type = "wondrous item";
             result.Amount = "0";
             mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems", 9266)).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns(result);
         }
 
         [Test]

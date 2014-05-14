@@ -41,7 +41,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
 
             result.Type = "power";
             result.Amount = "9266";
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
             mockDice.Setup(d => d.Percentile(1)).Returns(42);
             mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(ItemTypeConstants.WondrousItem);
@@ -69,7 +69,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void GetItemTypeFromSelector()
         {
             itemsGenerator.GenerateAtLevel(9266);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level9266Items", 42), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level9266Items"), Times.Once);
         }
 
         [Test]

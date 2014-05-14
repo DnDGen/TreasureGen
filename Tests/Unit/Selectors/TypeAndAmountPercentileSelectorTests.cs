@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void AccessesPercentileSelectorWithTableNameAndRoll()
         {
-            typeAndAmountPercentileSelector.SelectFrom("table name", 9266);
+            typeAndAmountPercentileSelector.SelectFrom("table name");
             mockPercentileSelector.Verify(p => p.SelectFrom("table name"), Times.Once);
         }
 
@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>()))
                 .Returns(String.Empty);
 
-            var result = typeAndAmountPercentileSelector.SelectFrom("table name", 1);
+            var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             Assert.That(result.Type, Is.Empty);
             Assert.That(result.Amount, Is.Empty);
         }
@@ -43,7 +43,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void ReturnCorrectObject()
         {
-            var result = typeAndAmountPercentileSelector.SelectFrom("table name", 9266);
+            var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             Assert.That(result.Type, Is.EqualTo("type"));
             Assert.That(result.Amount, Is.EqualTo("roll"));
         }
@@ -52,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void ThrowFormatExceptionIfNoComma()
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns("no comma in this result");
-            Assert.That(() => typeAndAmountPercentileSelector.SelectFrom("table name", 1), Throws.InstanceOf<FormatException>());
+            Assert.That(() => typeAndAmountPercentileSelector.SelectFrom("table name"), Throws.InstanceOf<FormatException>());
         }
     }
 }

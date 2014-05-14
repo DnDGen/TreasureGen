@@ -28,9 +28,8 @@ namespace EquipmentGen.Generators.Items
 
         public IEnumerable<Item> GenerateAtLevel(Int32 level)
         {
-            var roll = dice.Percentile();
             var tableName = String.Format("Level{0}Items", level);
-            var typeAndAmountResult = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var typeAndAmountResult = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var items = new List<Item>();
 
             if (String.IsNullOrEmpty(typeAndAmountResult.Type))
