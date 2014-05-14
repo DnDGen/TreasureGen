@@ -25,15 +25,13 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var result = percentileSelector.SelectFrom("MundaneArmors", roll);
+            var result = percentileSelector.SelectFrom("MundaneArmors");
             var armor = new Item();
 
             if (result == TraitConstants.Darkwood)
             {
                 var tableName = String.Format("{0}Shields", result);
-                roll = dice.Percentile();
-                armor.Name = percentileSelector.SelectFrom(tableName, roll);
+                armor.Name = percentileSelector.SelectFrom(tableName);
                 armor.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", armor.Name);
                 armor.Traits.Add(result);
                 armor.ItemType = ItemTypeConstants.Armor;
@@ -43,8 +41,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             else if (result == TraitConstants.Masterwork)
             {
                 var tableName = String.Format("{0}Shields", result);
-                roll = dice.Percentile();
-                armor.Name = percentileSelector.SelectFrom(tableName, roll);
+                armor.Name = percentileSelector.SelectFrom(tableName);
                 armor.Traits.Add(result);
             }
             else
@@ -58,8 +55,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            roll = dice.Percentile();
-            var size = percentileSelector.SelectFrom("ArmorSizes", roll);
+            var size = percentileSelector.SelectFrom("ArmorSizes");
             armor.Traits.Add(size);
 
             if (materialsGenerator.HasSpecialMaterial(armor.ItemType, armor.Attributes))

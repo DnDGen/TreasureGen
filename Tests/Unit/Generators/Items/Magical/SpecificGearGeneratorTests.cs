@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             result.Type = "specific gear";
             result.Amount = "0";
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
 
             generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object,
@@ -87,7 +87,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var newResult = new TypeAndAmountPercentileResult();
             newResult.Type = "new specific gear";
             newResult.Amount = "42";
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerSpecific gear type", 9266)).Returns(newResult);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerSpecific gear type")).Returns(newResult);
 
             var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
@@ -289,10 +289,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void CastersShieldHasNoSpellIfSelectorSaysSo()
         {
             result.Type = ArmorConstants.CastersShield;
-            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes")).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell", It.IsAny<Int32>())).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell")).Returns(false);
 
             var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
@@ -303,10 +303,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void CastersShieldHasSpellIfSelectorSaysSo()
         {
             result.Type = ArmorConstants.CastersShield;
-            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes", It.IsAny<Int32>())).Returns("spell type");
+            mockPercentileSelector.Setup(s => s.SelectFrom("CastersShieldSpellTypes")).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell", It.IsAny<Int32>())).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("CastersShieldContainsSpell")).Returns(true);
 
             var gear = generator.GenerateFrom("power", "Specific gear type");
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));

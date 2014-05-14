@@ -33,10 +33,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
             mockDice.Setup(d => d.Roll(typeAndAmountResult.Amount)).Returns(2);
 
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 92)).Returns(typeAndAmountResult);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
 
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
+            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
 
             var types = new[] { "description 1", "description 2" };
             mockAttributesSelector = new Mock<IAttributesSelector>();
@@ -57,7 +57,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         public void GetTypeAndAmountFromSelector()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods", 92), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods"), Times.Once);
         }
 
         [Test]
@@ -81,8 +81,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         [Test]
         public void ValueDeterminedByValueResult()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 123)).Returns("other roll");
+            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
+            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("other roll");
             mockDice.Setup(d => d.Roll("92d66")).Returns(9266);
             mockDice.Setup(d => d.Roll("other roll")).Returns(42);
 

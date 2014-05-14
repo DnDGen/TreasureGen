@@ -20,8 +20,7 @@ namespace EquipmentGen.Generators.Items.Magical
         public IEnumerable<String> GenerateFor(String itemType)
         {
             var tableName = String.Format("{0}Traits", itemType);
-            var roll = dice.Percentile();
-            var result = percentileSelector.SelectFrom(tableName, roll);
+            var result = percentileSelector.SelectFrom(tableName);
             var traits = new List<String>();
 
             if (String.IsNullOrEmpty(result))

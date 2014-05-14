@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetTraitsFromPercentileSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits", 9266)).Returns("trait");
+            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns("trait");
             var traits = generator.GenerateFor("item type");
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SplitsCommaDelimitedTraits()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits", 9266)).Returns("trait,other trait");
+            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns("trait,other trait");
             var traits = generator.GenerateFor("item type");
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits, Contains.Item("other trait"));
@@ -54,7 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotAddEmptyTrait()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits", 9266)).Returns(String.Empty);
+            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns(String.Empty);
             var traits = generator.GenerateFor("item type");
             Assert.That(traits, Is.Empty);
         }

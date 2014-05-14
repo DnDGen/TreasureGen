@@ -80,7 +80,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
             mockDice.Setup(d => d.Roll("1d27")).Returns(9266);
             mockDice.Setup(d => d.Roll("1d1")).Returns(1);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged", It.IsAny<Int32>())).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(true);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
             Assert.That(charges, Is.EqualTo(34));
@@ -100,7 +100,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
             mockDice.Setup(d => d.Roll("1d27")).Returns(9266);
             mockDice.Setup(d => d.Roll("1d1")).Returns(1);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged", It.IsAny<Int32>())).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(false);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
             Assert.That(charges, Is.EqualTo(9331));

@@ -292,7 +292,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("Bane");
             SetUpAbilityChain("Bane");
-            mockPercentileSelector.Setup(p => p.SelectFrom("DesignatedFoes", It.IsAny<Int32>())).Returns("foe");
+            mockPercentileSelector.Setup(p => p.SelectFrom("DesignatedFoes")).Returns("foe");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, "power", 1, 1);
             var ability = abilities.First();
@@ -344,7 +344,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Never);
+            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>()), Times.Never);
         }
 
         [Test]
@@ -362,7 +362,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 3"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Exactly(3));
+            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>()), Times.Exactly(3));
         }
 
         [Test]
@@ -380,7 +380,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Once);
+            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>()), Times.Once);
         }
 
         [Test]
@@ -398,7 +398,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Exactly(2));
+            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<String>()), Times.Exactly(2));
         }
 
         private void CreateSpecialAbility(String name, String baseName = "", Int32 bonus = 0, Int32 strength = 0)
@@ -426,7 +426,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             for (var roll = 0; roll < names.Length; roll++)
             {
                 sequence = sequence.Returns(roll);
-                mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), roll)).Returns(names[roll]);
+                throw new Exception("I don't get how this is being used.");
+                // mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), roll)).Returns(names[roll]);
             }
         }
     }

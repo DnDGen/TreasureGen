@@ -24,10 +24,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             result.Type = "alchemical item";
             result.Amount = "9266";
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems", 42)).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems")).Returns(result);
 
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(42);
             mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
 
             generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);

@@ -41,8 +41,7 @@ namespace EquipmentGen.Generators.Items.Magical
         public Item GenerateFrom(String power, String specificGearType)
         {
             var tableName = String.Format("{0}{1}", power, specificGearType);
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var itemType = specificGearType.Replace("Specific", String.Empty).TrimEnd('s');
 
             var gear = new Item();
@@ -71,12 +70,11 @@ namespace EquipmentGen.Generators.Items.Magical
             }
             else if (gear.Name == ArmorConstants.CastersShield)
             {
-                roll = dice.Percentile();
-                var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell", roll);
+                var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell");
 
                 if (hasSpell)
                 {
-                    var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes", roll);
+                    var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes");
                     var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
                     var spell = spellGenerator.Generate(spellType, spellLevel);
                     var formattedSpell = String.Format("{0} ({1}, {2})", spell, spellType, spellLevel);

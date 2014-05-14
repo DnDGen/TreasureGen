@@ -5,6 +5,6 @@ namespace EquipmentGen.Selectors.Interfaces
 {
     public interface ITypeAndAmountPercentileSelector
     {
-        TypeAndAmountPercentileResult SelectFrom(String tableName, Int32 roll);
+        TypeAndAmountPercentileResult SelectFrom(String tableName);
     }
 }

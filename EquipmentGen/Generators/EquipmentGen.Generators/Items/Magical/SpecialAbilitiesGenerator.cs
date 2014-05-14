@@ -174,8 +174,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             do
             {
-                var roll = dice.Percentile();
-                abilityName = percentileSelector.SelectFrom(tableName, roll);
+                abilityName = percentileSelector.SelectFrom(tableName);
 
                 if (abilityName == "BonusSpecialAbility")
                     return new SpecialAbility { Name = abilityName };
@@ -192,8 +191,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (ability.BaseName != "Bane")
                 return ability.Name;
 
-            var roll = dice.Percentile();
-            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
             return String.Format("{0}bane", designatedFoe);
         }
     }

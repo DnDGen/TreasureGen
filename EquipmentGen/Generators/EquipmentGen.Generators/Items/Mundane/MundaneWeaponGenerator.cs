@@ -27,12 +27,10 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var type = percentileSelector.SelectFrom("MundaneWeapons", roll);
+            var type = percentileSelector.SelectFrom("MundaneWeapons");
             var tableName = String.Format("{0}Weapons", type);
 
-            roll = dice.Percentile();
-            var weaponName = percentileSelector.SelectFrom(tableName, roll);
+            var weaponName = percentileSelector.SelectFrom(tableName);
             var weapon = new Item();
 
             if (weaponName == "Ammunition")

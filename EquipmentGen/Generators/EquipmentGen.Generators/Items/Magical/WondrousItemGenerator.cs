@@ -30,9 +30,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateAtPower(String power)
         {
-            var roll = dice.Percentile();
             var tablename = String.Format("{0}WondrousItems", power);
-            var result = percentileSelector.SelectFrom(tablename, roll);
+            var result = percentileSelector.SelectFrom(tablename);
 
             var item = new Item();
             item.Name = result;
@@ -53,19 +52,16 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (item.Name == "Horn of Valhalla")
             {
-                roll = dice.Percentile();
-                var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes", roll);
+                var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes");
                 item.Name = String.Format("{0} {1}", hornType, item.Name);
             }
             else if (item.Name == "Iron flask")
             {
-                roll = dice.Percentile();
-                var contents = percentileSelector.SelectFrom("IronFlaskContents", roll);
+                var contents = percentileSelector.SelectFrom("IronFlaskContents");
 
                 if (contents == "BalorOrPitFiend")
                 {
-                    roll = dice.Percentile();
-                    contents = percentileSelector.SelectFrom("BalorOrPitFiend", roll);
+                    contents = percentileSelector.SelectFrom("BalorOrPitFiend");
                 }
 
                 if (!String.IsNullOrEmpty(contents))
@@ -116,8 +112,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var roll = dice.Percentile();
-                var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems", roll);
+                var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems");
 
                 if (item == ItemTypeConstants.Scroll)
                 {
@@ -141,8 +136,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (planes.Count < 6)
             {
-                var roll = dice.Percentile();
-                var plane = percentileSelector.SelectFrom("Planes", roll);
+                var plane = percentileSelector.SelectFrom("Planes");
 
                 if (!planes.Contains(plane))
                     planes.Add(plane);

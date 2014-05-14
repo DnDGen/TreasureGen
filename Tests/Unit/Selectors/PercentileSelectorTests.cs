@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using D20Dice;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Selectors;
 using EquipmentGen.Selectors.Interfaces;
@@ -15,6 +16,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         private IPercentileSelector percentileSelector;
         private Dictionary<Int32, String> table;
         private Mock<IPercentileMapper> mockPercentileMapper;
+        private Mock<IDice> mockDice;
         private const String tableName = "table";
         private const Int32 min = 10;
         private const Int32 max = 12;
@@ -29,26 +31,17 @@ namespace EquipmentGen.Tests.Unit.Selectors
             mockPercentileMapper = new Mock<IPercentileMapper>();
             mockPercentileMapper.Setup(p => p.Map(tableName)).Returns(table);
 
-            percentileSelector = new PercentileSelector(mockPercentileMapper.Object);
-        }
+            mockDice = new Mock<IDice>();
 
-        [Test]
-        public void ThrowErrorIfRollLessThan1()
-        {
-            Assert.That(() => percentileSelector.SelectFrom(tableName, 0), Throws.ArgumentException);
-        }
-
-        [Test]
-        public void ThrowErrorIfRollGreaterThan100()
-        {
-            Assert.That(() => percentileSelector.SelectFrom(tableName, 101), Throws.ArgumentException);
+            percentileSelector = new PercentileSelector(mockPercentileMapper.Object, mockDice.Object);
         }
 
         [Test]
         public void GetResultReturnsDifferentContentIfBelowRange()
         {
             table.Add(min - 1, "other content");
-            var result = percentileSelector.SelectFrom(tableName, min - 1);
+            mockDice.Setup(s => s.Percentile(1)).Returns(min - 1);
+            var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[min - 1]));
         }
 
@@ -56,7 +49,8 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void GetResultReturnsDifferentContentIfAboveRange()
         {
             table.Add(max + 1, "other content");
-            var result = percentileSelector.SelectFrom(tableName, max + 1);
+            mockDice.Setup(s => s.Percentile(1)).Returns(max + 1);
+            var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[max + 1]));
         }
 
@@ -65,7 +59,8 @@ namespace EquipmentGen.Tests.Unit.Selectors
         {
             for (var roll = min; roll <= max; roll++)
             {
-                var result = percentileSelector.SelectFrom(tableName, roll);
+                mockDice.Setup(s => s.Percentile(1)).Returns(roll);
+                var result = percentileSelector.SelectFrom(tableName);
                 Assert.That(result, Is.EqualTo("content"));
             }
         }
