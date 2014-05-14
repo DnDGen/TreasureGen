@@ -37,7 +37,6 @@ namespace EquipmentGen.Generators.Items.Magical
             if (itemType == ItemTypeConstants.Weapon)
                 itemType = GetWeaponType(attributes);
 
-            var roll = dice.Percentile();
             var tableName = String.Format("Is{0}Intelligent", itemType);
             return booleanPercentileSelector.SelectFrom(tableName);
         }

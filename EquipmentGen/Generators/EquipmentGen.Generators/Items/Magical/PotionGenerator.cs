@@ -48,7 +48,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (result.Type.Contains("ENERGY"))
             {
-                roll = dice.Percentile();
                 var energy = percentileSelector.SelectFrom("Elements");
                 result.Type = result.Type.Replace("ENERGY", energy);
             }
