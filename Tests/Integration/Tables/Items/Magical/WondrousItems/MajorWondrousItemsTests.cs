@@ -83,7 +83,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Mantle of spell resistance", 0, 70)]
         [TestCase("Mirror of opposition", 0, 71)]
         [TestCase("Greater strand of prayer beads", 0, 72)]
-        [TestCase("Amulet of mighty fists +4", 4, 73)]
+        [TestCase("Amulet of mighty fists", 4, 73)]
         [TestCase("Eyes of petrification", 0, 74)]
         [TestCase("Bowl of commanding water elementals", 0, 75)]
         [TestCase("Brazier of commanding fire elementals", 0, 76)]

@@ -17,24 +17,32 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected abstract String tableName { get; }
 
         private Dictionary<String, IEnumerable<String>> table;
+        private List<String> testedNames;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Setup()
         {
+            testedNames = new List<String>();
             table = AttributesMapper.Map(tableName);
         }
 
-        protected void AssertEmpty(String name)
+        [Test, TestFixtureTearDown]
+        public void AllNamesTested()
         {
-            if (!table.ContainsKey(name))
-                Assert.Pass();
+            var missingNames = table.Keys.Except(testedNames);
+            Assert.That(missingNames, Is.Empty, tableName);
+        }
 
-            Assert.That(table[name], Is.Empty);
+        [Test, TestFixtureTearDown]
+        public void NoNamesTestedNultipleTimes()
+        {
+            var duplicateNames = testedNames.Where(n => testedNames.Count(cn => cn == n) > 1).Distinct();
+            Assert.That(duplicateNames, Is.Empty, tableName);
         }
 
         protected void AssertAttributes(String name, IEnumerable<String> attributes)
         {
-            Assert.That(table.Keys, Contains.Item(name));
+            testedNames.Add(name);
 
             foreach (var attribute in attributes)
                 Assert.That(table[name], Contains.Item(attribute));

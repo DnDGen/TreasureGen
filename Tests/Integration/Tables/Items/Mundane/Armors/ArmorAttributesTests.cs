@@ -44,10 +44,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
         public void Attributes(String name, params String[] attributes)
         {
-            if (attributes.Any())
-                AssertAttributes(name, attributes);
-            else
-                AssertEmpty(name);
+            AssertAttributes(name, attributes);
         }
     }
 }

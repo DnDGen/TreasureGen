@@ -20,9 +20,7 @@ namespace EquipmentGen.Generators.Coins
         public Coin GenerateAtLevel(Int32 level)
         {
             var tableName = String.Format("Level{0}Coins", level);
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
-
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var coin = new Coin();
 
             if (String.IsNullOrEmpty(result.Type))

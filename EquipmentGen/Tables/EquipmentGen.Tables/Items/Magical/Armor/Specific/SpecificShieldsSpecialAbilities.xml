@@ -1,4 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <attributes>
+    <object>
+        <name>Absorbing shield</name>
+    </object>
+    <object>
+        <name>Buckler</name>
+    </object>
+    <object>
+        <name>Caster's shield</name>
+    </object>
+    <object>
+        <name>Heavy steel shield</name>
+    </object>
+    <object>
+        <name>Heavy wooden shield</name>
+    </object>
+    <object>
+        <name>Lion's shield</name>
+    </object>
+    <object>
+        <name>Spined shield</name>
+    </object>
+    <object>
+        <name>Winged shield</name>
+    </object>
 </attributes>

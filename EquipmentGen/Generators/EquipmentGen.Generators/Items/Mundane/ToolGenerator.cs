@@ -8,21 +8,16 @@ namespace EquipmentGen.Generators.Items.Mundane
     public class ToolGenerator : IMundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IDice dice;
 
-        public ToolGenerator(IPercentileSelector percentileSelector, IDice dice)
+        public ToolGenerator(IPercentileSelector percentileSelector)
         {
             this.percentileSelector = percentileSelector;
-            this.dice = dice;
         }
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var result = percentileSelector.SelectFrom("Tools", roll);
-
             var tool = new Item();
-            tool.Name = result;
+            tool.Name = percentileSelector.SelectFrom("Tools");
             tool.ItemType = ItemTypeConstants.Tool;
 
             return tool;

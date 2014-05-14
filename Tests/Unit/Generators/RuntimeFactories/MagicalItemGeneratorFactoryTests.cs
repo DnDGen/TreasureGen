@@ -42,8 +42,8 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
 
             result.Type = String.Empty;
             result.Amount = "0";
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(result);
-            mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>())).Returns(String.Empty);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
+            mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(String.Empty);
 
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object, mockIntelligenceGenerator.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialsGenerator.Object, mockMagicItemTraitsGenerator.Object,
@@ -107,8 +107,8 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             Assert.That(() => generator.GenerateAtPower(PowerConstants.Mundane), Throws.ArgumentException);
             mockIntelligenceGenerator.Verify(g => g.IsIntelligent(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<Boolean>()), Times.Never);
             mockCurseGenerator.Verify(g => g.HasCurse(It.IsAny<Boolean>()), Times.Never);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Never);
-            mockTypeAndAmountPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<Int32>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>()), Times.Never);
+            mockTypeAndAmountPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>()), Times.Never);
         }
     }
 }

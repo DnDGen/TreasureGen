@@ -13,4 +13,19 @@
         <name>Heavy wooden shield</name>
         <attribute>Darkwood</attribute>
     </object>
+    <object>
+        <name>Absorbing shield</name>
+    </object>
+    <object>
+        <name>Caster's shield</name>
+    </object>
+    <object>
+        <name>Lion's shield</name>
+    </object>
+    <object>
+        <name>Spined shield</name>
+    </object>
+    <object>
+        <name>Winged shield</name>
+    </object>
 </attributes>

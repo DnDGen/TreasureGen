@@ -49,10 +49,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.LuckBlade3)]
         public void Attributes(String name, params String[] attributes)
         {
-            if (attributes.Any())
-                AssertAttributes(name, attributes);
-            else
-                AssertEmpty(name);
+            AssertAttributes(name, attributes);
         }
     }
 }

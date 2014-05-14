@@ -14,28 +14,25 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         private IMundaneItemGenerator generator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
-
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
-            result = new TypeAndAmountPercentileResult();
-            result.Type = "alchemical item";
-            result.Amount = "9266";
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems", 42)).Returns(result);
-
             mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(42);
-            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
-
             generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
+            result = new TypeAndAmountPercentileResult();
         }
 
         [Test]
         public void GetItemAndQuantityFromSelector()
         {
+            result.Type = "alchemical item";
+            result.Amount = "amount";
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems")).Returns(result);
+            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
+
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));

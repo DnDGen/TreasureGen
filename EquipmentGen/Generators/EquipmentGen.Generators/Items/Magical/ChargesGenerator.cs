@@ -27,8 +27,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (name == "Deck of illusions")
             {
-                var roll = dice.Percentile();
-                var isFullyCharged = booleanPercentileSelector.SelectFrom("IsDeckOfIllusionsFullyCharged", roll);
+                var isFullyCharged = booleanPercentileSelector.SelectFrom("IsDeckOfIllusionsFullyCharged");
 
                 if (isFullyCharged)
                     name = "Full deck of illusions";

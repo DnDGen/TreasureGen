@@ -27,6 +27,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
         [TestCase(SpecialAbilityConstants.FireResistance, 65, 69)]
         [TestCase(SpecialAbilityConstants.SonicResistance, 70, 74)]
         [TestCase(SpecialAbilityConstants.GhostTouchArmor, 75, 79)]
+        [TestCase(SpecialAbilityConstants.Invulnerability, 80, 84)]
         [TestCase(SpecialAbilityConstants.ModerateFortification, 85, 89)]
         [TestCase(SpecialAbilityConstants.SpellResistance15, 90, 94)]
         [TestCase(SpecialAbilityConstants.Wild, 95, 99)]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Selectors.Interfaces;
 
@@ -20,7 +19,10 @@ namespace EquipmentGen.Selectors
             var table = attributesMapper.Map(tableName);
 
             if (!table.ContainsKey(name))
-                return Enumerable.Empty<String>();
+            {
+                var message = String.Format("{0} is not in the table {1}", name, tableName);
+                throw new ArgumentException(message);
+            }
 
             return table[name];
         }

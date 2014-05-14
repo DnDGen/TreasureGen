@@ -18,8 +18,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom("AlchemicalItems", roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom("AlchemicalItems");
 
             var item = new Item();
             item.Name = result.Type;

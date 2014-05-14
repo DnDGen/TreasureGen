@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -11,28 +10,19 @@ namespace EquipmentGen.Generators.Items.Magical
     public class SpecificGearGenerator : ISpecificGearGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IDice dice;
         private IAttributesSelector attributesSelector;
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IChargesGenerator chargesGenerator;
-        private IIntelligenceGenerator intelligenceGenerator;
-        private ICurseGenerator curseGenerator;
         private IPercentileSelector percentileSelector;
         private ISpellGenerator spellGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice,
-            IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
-            IChargesGenerator chargesGenerator, IIntelligenceGenerator intelligenceGenerator, ICurseGenerator curseGenerator,
-            IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.dice = dice;
             this.attributesSelector = attributesSelector;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
             this.chargesGenerator = chargesGenerator;
-            this.intelligenceGenerator = intelligenceGenerator;
-            this.curseGenerator = curseGenerator;
             this.percentileSelector = percentileSelector;
             this.spellGenerator = spellGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
@@ -41,8 +31,7 @@ namespace EquipmentGen.Generators.Items.Magical
         public Item GenerateFrom(String power, String specificGearType)
         {
             var tableName = String.Format("{0}{1}", power, specificGearType);
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var itemType = specificGearType.Replace("Specific", String.Empty).TrimEnd('s');
 
             var gear = new Item();
@@ -71,12 +60,11 @@ namespace EquipmentGen.Generators.Items.Magical
             }
             else if (gear.Name == ArmorConstants.CastersShield)
             {
-                roll = dice.Percentile();
-                var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell", roll);
+                var hasSpell = booleanPercentileSelector.SelectFrom("CastersShieldContainsSpell");
 
                 if (hasSpell)
                 {
-                    var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes", roll);
+                    var spellType = percentileSelector.SelectFrom("CastersShieldSpellTypes");
                     var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
                     var spell = spellGenerator.Generate(spellType, spellLevel);
                     var formattedSpell = String.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
@@ -85,18 +73,6 @@ namespace EquipmentGen.Generators.Items.Magical
             }
 
             gear.Name = RenameGear(gear.Name);
-
-            if (intelligenceGenerator.IsIntelligent(itemType, gear.Attributes, gear.IsMagical))
-                gear.Magic.Intelligence = intelligenceGenerator.GenerateFor(gear.Magic);
-
-            if (curseGenerator.HasCurse(gear.IsMagical))
-            {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
-                    return curseGenerator.GenerateSpecificCursedItem();
-
-                gear.Magic.Curse = curse;
-            }
 
             return gear;
         }

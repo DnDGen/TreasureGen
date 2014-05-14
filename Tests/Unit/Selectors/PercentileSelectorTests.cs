@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using D20Dice;
 using EquipmentGen.Mappers.Interfaces;
 using EquipmentGen.Selectors;
 using EquipmentGen.Selectors.Interfaces;
@@ -12,67 +13,56 @@ namespace EquipmentGen.Tests.Unit.Selectors
     [TestFixture]
     public class PercentileSelectorTests
     {
+        private const String tableName = "table";
+
         private IPercentileSelector percentileSelector;
         private Dictionary<Int32, String> table;
         private Mock<IPercentileMapper> mockPercentileMapper;
-        private const String tableName = "table";
-        private const Int32 min = 10;
-        private const Int32 max = 12;
+        private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
         {
             table = new Dictionary<Int32, String>();
-            for (var i = min; i <= max; i++)
-                table.Add(i, "content");
-
             mockPercentileMapper = new Mock<IPercentileMapper>();
+            mockDice = new Mock<IDice>();
+            percentileSelector = new PercentileSelector(mockPercentileMapper.Object, mockDice.Object);
+
             mockPercentileMapper.Setup(p => p.Map(tableName)).Returns(table);
-
-            percentileSelector = new PercentileSelector(mockPercentileMapper.Object);
         }
 
         [Test]
-        public void ThrowErrorIfRollLessThan1()
+        public void RollPercentile()
         {
-            Assert.That(() => percentileSelector.SelectFrom(tableName, 0), Throws.ArgumentException);
+            table.Add(9266, "9266 content");
+            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
+
+            var result = percentileSelector.SelectFrom(tableName);
+            Assert.That(result, Is.EqualTo(table[9266]));
         }
 
         [Test]
-        public void ThrowErrorIfRollGreaterThan100()
+        public void RerollEverySelect()
         {
-            Assert.That(() => percentileSelector.SelectFrom(tableName, 101), Throws.ArgumentException);
-        }
+            table.Add(42, "other content");
+            table.Add(9266, "9266 content");
+            mockDice.SetupSequence(d => d.Percentile(1)).Returns(42).Returns(9266);
 
-        [Test]
-        public void GetResultReturnsDifferentContentIfBelowRange()
-        {
-            table.Add(min - 1, "other content");
-            var result = percentileSelector.SelectFrom(tableName, min - 1);
-            Assert.That(result, Is.EqualTo(table[min - 1]));
-        }
+            var result = percentileSelector.SelectFrom(tableName);
+            Assert.That(result, Is.EqualTo(table[42]));
 
-        [Test]
-        public void GetResultReturnsDifferentContentIfAboveRange()
-        {
-            table.Add(max + 1, "other content");
-            var result = percentileSelector.SelectFrom(tableName, max + 1);
-            Assert.That(result, Is.EqualTo(table[max + 1]));
-        }
-
-        [Test]
-        public void GetResultReturnContentIfInInclusiveRange()
-        {
-            for (var roll = min; roll <= max; roll++)
-            {
-                var result = percentileSelector.SelectFrom(tableName, roll);
-                Assert.That(result, Is.EqualTo("content"));
-            }
+            result = percentileSelector.SelectFrom(tableName);
+            Assert.That(result, Is.EqualTo(table[9266]));
         }
 
         [Test]
         public void GetAllResultsReturnsWholeTable()
         {
+            table.Add(9266, "9266 content");
+            table.Add(42, "42 content");
+            for (var i = 0; i <= 10; i++)
+                table.Add(i, "content");
+
             var results = percentileSelector.SelectAllFrom(tableName);
             var tableContents = table.Values.Distinct();
             Assert.That(results, Is.EqualTo(tableContents));

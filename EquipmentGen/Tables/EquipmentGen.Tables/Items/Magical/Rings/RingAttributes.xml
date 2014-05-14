@@ -1,14 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <attributes>
-  <object>
-    <name>Ram</name>
-    <attribute>Charged</attribute>
-      <attribute>One-time use</attribute>
-  </object>
+    <object>
+        <name>Ram</name>
+        <attribute>Charged</attribute>
+        <attribute>One-time use</attribute>
+    </object>
     <object>
         <name>Three wishes</name>
         <attribute>Charged</attribute>
         <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Feather falling</name>
+    </object>
+    <object>
+        <name>Sustenance</name>
+    </object>
+    <object>
+        <name>Climbing</name>
+    </object>
+    <object>
+        <name>Jumping</name>
+    </object>
+    <object>
+        <name>Swimming</name>
+    </object>
+    <object>
+        <name>Counterspells</name>
+    </object>
+    <object>
+        <name>Mind shielding</name>
+    </object>
+    <object>
+        <name>Force shield</name>
+    </object>
+    <object>
+        <name>Improved climbing</name>
+    </object>
+    <object>
+        <name>Improved jumping</name>
+    </object>
+    <object>
+        <name>Improved swimming</name>
+    </object>
+    <object>
+        <name>Animal friendship</name>
+    </object>
+    <object>
+        <name>Chameleon power</name>
+    </object>
+    <object>
+        <name>Water walking</name>
+    </object>
+    <object>
+        <name>Minor ENERGY resistance</name>
+    </object>
+    <object>
+        <name>Minor spell storing</name>
+    </object>
+    <object>
+        <name>Invisibility</name>
+    </object>
+    <object>
+        <name>Wizardry (I)</name>
+    </object>
+    <object>
+        <name>Evasion</name>
+    </object>
+    <object>
+        <name>X-ray vision</name>
+    </object>
+    <object>
+        <name>Blinking</name>
+    </object>
+    <object>
+        <name>Major ENERGY resistance</name>
+    </object>
+    <object>
+        <name>Wizardry (II)</name>
+    </object>
+    <object>
+        <name>Freedom of movement</name>
+    </object>
+    <object>
+        <name>Greater ENERGY resistance</name>
+    </object>
+    <object>
+        <name>Friend shield (pair)</name>
+    </object>
+    <object>
+        <name>Protection</name>
+    </object>
+    <object>
+        <name>Shooting stars</name>
+    </object>
+    <object>
+        <name>Spell storing</name>
+    </object>
+    <object>
+        <name>Wizardry (III)</name>
+    </object>
+    <object>
+        <name>Telekinesis</name>
+    </object>
+    <object>
+        <name>Regeneration</name>
+    </object>
+    <object>
+        <name>Spell turning</name>
+    </object>
+    <object>
+        <name>Wizardry (IV)</name>
+    </object>
+    <object>
+        <name>Djinni calling</name>
+    </object>
+    <object>
+        <name>Elemental command (air)</name>
+    </object>
+    <object>
+        <name>Elemental command (earth)</name>
+    </object>
+    <object>
+        <name>Elemental command (fire)</name>
+    </object>
+    <object>
+        <name>Elemental command (water)</name>
+    </object>
+    <object>
+        <name>Major spell storing</name>
     </object>
 </attributes>

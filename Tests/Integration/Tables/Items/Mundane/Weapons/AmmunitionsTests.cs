@@ -12,25 +12,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
             get { return "Ammunitions"; }
         }
 
-        [Test]
-        public void ArrowPercentile()
+        [TestCase(WeaponConstants.Arrow, 1, 50)]
+        [TestCase(WeaponConstants.CrossbowBolt, 51, 80)]
+        [TestCase(WeaponConstants.SlingBullet, 81, 100)]
+        public void Percentile(String name, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},1d50", WeaponConstants.Arrow);
-            AssertPercentile(content, 1, 50);
-        }
-
-        [Test]
-        public void CrossbowBoltPercentile()
-        {
-            var content = String.Format("{0},1d50", WeaponConstants.CrossbowBolt);
-            AssertPercentile(content, 51, 80);
-        }
-
-        [Test]
-        public void SlingBulletPercentile()
-        {
-            var content = String.Format("{0},1d50", WeaponConstants.SlingBullet);
-            AssertPercentile(content, 81, 100);
+            var content = String.Format("{0},1d50", name);
+            AssertPercentile(content, lower, upper);
         }
     }
 }

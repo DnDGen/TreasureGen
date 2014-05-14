@@ -15,15 +15,12 @@ namespace EquipmentGen.Generators.Items.Magical
         private IAttributesSelector attributesSelector;
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
-        private IDice dice;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IDice dice,
-            ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
-            this.dice = dice;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
@@ -174,8 +171,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             do
             {
-                var roll = dice.Percentile();
-                abilityName = percentileSelector.SelectFrom(tableName, roll);
+                abilityName = percentileSelector.SelectFrom(tableName);
 
                 if (abilityName == "BonusSpecialAbility")
                     return new SpecialAbility { Name = abilityName };
@@ -192,8 +188,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (ability.BaseName != "Bane")
                 return ability.Name;
 
-            var roll = dice.Percentile();
-            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
             return String.Format("{0}bane", designatedFoe);
         }
     }

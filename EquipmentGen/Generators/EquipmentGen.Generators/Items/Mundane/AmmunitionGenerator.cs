@@ -21,8 +21,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var result = typeAndAmountPercentileSelector.SelectFrom("Ammunitions", roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom("Ammunitions");
 
             var ammunition = new Item();
             ammunition.Name = result.Type;

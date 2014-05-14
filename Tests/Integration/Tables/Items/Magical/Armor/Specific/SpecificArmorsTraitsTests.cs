@@ -27,10 +27,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.Breastplate, TraitConstants.Adamantine)]
         public void Attributes(String name, params String[] attributes)
         {
-            if (attributes.Any())
-                AssertAttributes(name, attributes);
-            else
-                AssertEmpty(name);
+            AssertAttributes(name, attributes);
         }
     }
 }

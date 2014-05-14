@@ -3,502 +3,502 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Quaal's feather token, anchor</content>
+        <content>Quaal's anchor feather token,0</content>
         <upper>1</upper>
     </object>
     <object>
         <lower>2</lower>
-        <content>Universal solvent</content>
+        <content>Universal solvent,0</content>
         <upper>2</upper>
     </object>
     <object>
         <lower>3</lower>
-        <content>Elixer of love</content>
+        <content>Elixer of love,0</content>
         <upper>3</upper>
     </object>
     <object>
         <lower>4</lower>
-        <content>Unguent of timelessness</content>
+        <content>Unguent of timelessness,0</content>
         <upper>4</upper>
     </object>
     <object>
         <lower>5</lower>
-        <content>Quaal's feather token, fan</content>
+        <content>Quaal's fan feather token,0</content>
         <upper>5</upper>
     </object>
     <object>
         <lower>6</lower>
-        <content>Dust of tracelessness</content>
+        <content>Dust of tracelessness,0</content>
         <upper>6</upper>
     </object>
     <object>
         <lower>7</lower>
-        <content>Elixer of hiding</content>
+        <content>Elixer of hiding,0</content>
         <upper>7</upper>
     </object>
     <object>
         <lower>8</lower>
-        <content>Elixer of sneaking</content>
+        <content>Elixer of sneaking,0</content>
         <upper>8</upper>
     </object>
     <object>
         <lower>9</lower>
-        <content>Elixer of swimming</content>
+        <content>Elixer of swimming,0</content>
         <upper>9</upper>
     </object>
     <object>
         <lower>10</lower>
-        <content>Elixer of vision</content>
+        <content>Elixer of vision,0</content>
         <upper>10</upper>
     </object>
     <object>
         <lower>11</lower>
-        <content>Silversheen</content>
+        <content>Silversheen,0</content>
         <upper>11</upper>
     </object>
     <object>
         <lower>12</lower>
-        <content>Quaal's feather token, bird</content>
+        <content>Quaal's bird feather token,0</content>
         <upper>12</upper>
     </object>
     <object>
         <lower>13</lower>
-        <content>Quaal's feather token, tree</content>
+        <content>Quaal's tree feather token,0</content>
         <upper>13</upper>
     </object>
     <object>
         <lower>14</lower>
-        <content>Quaal's feather token, swan boat</content>
+        <content>Quaal's swan boat feather token,0</content>
         <upper>14</upper>
     </object>
     <object>
         <lower>15</lower>
-        <content>Elixer of truth</content>
+        <content>Elixer of truth,0</content>
         <upper>15</upper>
     </object>
     <object>
         <lower>16</lower>
-        <content>Quaal's feather token, whip</content>
+        <content>Quaal's whip feather token,0</content>
         <upper>16</upper>
     </object>
     <object>
         <lower>17</lower>
-        <content>Dust of dryness</content>
+        <content>Dust of dryness,0</content>
         <upper>17</upper>
     </object>
     <object>
         <lower>18</lower>
-        <content>Gray bag of tricks</content>
+        <content>Gray bag of tricks,0</content>
         <upper>18</upper>
     </object>
     <object>
         <lower>19</lower>
-        <content>Hand of the mage</content>
+        <content>Hand of the mage,0</content>
         <upper>19</upper>
     </object>
     <object>
         <lower>20</lower>
-        <content>Bracers of armor +1</content>
+        <content>Bracers of armor,1</content>
         <upper>20</upper>
     </object>
     <object>
         <lower>21</lower>
-        <content>Cloak of resistance +1</content>
+        <content>Cloak of resistance,1</content>
         <upper>21</upper>
     </object>
     <object>
         <lower>22</lower>
-        <content>1st-level spell pearl of power</content>
+        <content>1st-level spell pearl of power,0</content>
         <upper>22</upper>
     </object>
     <object>
         <lower>23</lower>
-        <content>Phylactery of faithfulness</content>
+        <content>Phylactery of faithfulness,0</content>
         <upper>23</upper>
     </object>
     <object>
         <lower>24</lower>
-        <content>Salve of slipperiness</content>
+        <content>Salve of slipperiness,0</content>
         <upper>24</upper>
     </object>
     <object>
         <lower>25</lower>
-        <content>Elixer of fire breath</content>
+        <content>Elixer of fire breath,0</content>
         <upper>25</upper>
     </object>
     <object>
         <lower>26</lower>
-        <content>Pipes of the sewers</content>
+        <content>Pipes of the sewers,0</content>
         <upper>26</upper>
     </object>
     <object>
         <lower>27</lower>
-        <content>Dust of illusion</content>
+        <content>Dust of illusion,0</content>
         <upper>27</upper>
     </object>
     <object>
         <lower>28</lower>
-        <content>Goggles of minute seeing</content>
+        <content>Goggles of minute seeing,0</content>
         <upper>28</upper>
     </object>
     <object>
         <lower>29</lower>
-        <content>Brooch of shielding</content>
+        <content>Brooch of shielding,0</content>
         <upper>29</upper>
     </object>
     <object>
         <lower>30</lower>
-        <content>Necklace of fireballs type I</content>
+        <content>Necklace of fireballs type I,0</content>
         <upper>30</upper>
     </object>
     <object>
         <lower>31</lower>
-        <content>Dust of appearance</content>
+        <content>Dust of appearance,0</content>
         <upper>31</upper>
     </object>
     <object>
         <lower>32</lower>
-        <content>Hat of disguise</content>
+        <content>Hat of disguise,0</content>
         <upper>32</upper>
     </object>
     <object>
         <lower>33</lower>
-        <content>Pipes of sounding</content>
+        <content>Pipes of sounding,0</content>
         <upper>33</upper>
     </object>
     <object>
         <lower>34</lower>
-        <content>Quiver of Ehlonna</content>
+        <content>Quiver of Ehlonna,0</content>
         <upper>34</upper>
     </object>
     <object>
         <lower>35</lower>
-        <content>Amulet of natural armor +1</content>
+        <content>Amulet of natural armor,1</content>
         <upper>35</upper>
     </object>
     <object>
         <lower>36</lower>
-        <content>Heward's handy haversack</content>
+        <content>Heward's handy haversack,0</content>
         <upper>36</upper>
     </object>
     <object>
         <lower>37</lower>
-        <content>Horn of fog</content>
+        <content>Horn of fog,0</content>
         <upper>37</upper>
     </object>
     <object>
         <lower>38</lower>
-        <content>Elemental gem</content>
+        <content>Elemental gem,0</content>
         <upper>38</upper>
     </object>
     <object>
         <lower>39</lower>
-        <content>Robe of bones</content>
+        <content>Robe of bones,0</content>
         <upper>39</upper>
     </object>
     <object>
         <lower>40</lower>
-        <content>Sovereign glue</content>
+        <content>Sovereign glue,0</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Bag of holding type I</content>
+        <content>Bag of holding type I,0</content>
         <upper>41</upper>
     </object>
     <object>
         <lower>42</lower>
-        <content>Boots of elvenkind</content>
+        <content>Boots of elvenkind,0</content>
         <upper>42</upper>
     </object>
     <object>
         <lower>43</lower>
-        <content>Boots of the winterlands</content>
+        <content>Boots of the winterlands,0</content>
         <upper>43</upper>
     </object>
     <object>
         <lower>44</lower>
-        <content>Candle of truth</content>
+        <content>Candle of truth,0</content>
         <upper>44</upper>
     </object>
     <object>
         <lower>45</lower>
-        <content>Cloak of elvenkind</content>
+        <content>Cloak of elvenkind,0</content>
         <upper>45</upper>
     </object>
     <object>
         <lower>46</lower>
-        <content>Eyes of the eagle</content>
+        <content>Eyes of the eagle,0</content>
         <upper>46</upper>
     </object>
     <object>
         <lower>47</lower>
-        <content>Golembane scarab</content>
+        <content>Golembane scarab,0</content>
         <upper>47</upper>
     </object>
     <object>
         <lower>48</lower>
-        <content>Necklace of fireballs type II</content>
+        <content>Necklace of fireballs type II,0</content>
         <upper>48</upper>
     </object>
     <object>
         <lower>49</lower>
-        <content>Stone of alarm</content>
+        <content>Stone of alarm,0</content>
         <upper>49</upper>
     </object>
     <object>
         <lower>50</lower>
-        <content>Rust bag of tricks</content>
+        <content>Rust bag of tricks,0</content>
         <upper>50</upper>
     </object>
     <object>
         <lower>51</lower>
-        <content>Bead of force</content>
+        <content>Bead of force,0</content>
         <upper>51</upper>
     </object>
     <object>
         <lower>52</lower>
-        <content>Chime of opening</content>
+        <content>Chime of opening,0</content>
         <upper>52</upper>
     </object>
     <object>
         <lower>53</lower>
-        <content>Horseshoes of speed</content>
+        <content>Horseshoes of speed,0</content>
         <upper>53</upper>
     </object>
     <object>
         <lower>54</lower>
-        <content>Rope of climbing</content>
+        <content>Rope of climbing,0</content>
         <upper>54</upper>
     </object>
     <object>
         <lower>55</lower>
-        <content>Dust of disappearance</content>
+        <content>Dust of disappearance,0</content>
         <upper>55</upper>
     </object>
     <object>
         <lower>56</lower>
-        <content>Lens of detection</content>
+        <content>Lens of detection,0</content>
         <upper>56</upper>
     </object>
     <object>
         <lower>57</lower>
-        <content>Druid's vestments</content>
+        <content>Druid's vestments,0</content>
         <upper>57</upper>
     </object>
     <object>
         <lower>58</lower>
-        <content>Silver raven figurine of wondrous power</content>
+        <content>Silver raven figurine of wondrous power,0</content>
         <upper>58</upper>
     </object>
     <object>
         <lower>59</lower>
-        <content>Amulet of health +2</content>
+        <content>Amulet of health,2</content>
         <upper>59</upper>
     </object>
     <object>
         <lower>60</lower>
-        <content>Bracers of armor +2</content>
+        <content>Bracers of armor,2</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>Cloak of charisma +2</content>
+        <content>Cloak of charisma,2</content>
         <upper>61</upper>
     </object>
     <object>
         <lower>62</lower>
-        <content>Cloak of resistance +2</content>
+        <content>Cloak of resistance,2</content>
         <upper>62</upper>
     </object>
     <object>
         <lower>63</lower>
-        <content>Gauntlets of ogre power</content>
+        <content>Gauntlets of ogre power,0</content>
         <upper>63</upper>
     </object>
     <object>
         <lower>64</lower>
-        <content>Gloves of arrow snaring</content>
+        <content>Gloves of arrow snaring,0</content>
         <upper>64</upper>
     </object>
     <object>
         <lower>65</lower>
-        <content>Gloves of dexterity +2</content>
+        <content>Gloves of dexterity,2</content>
         <upper>65</upper>
     </object>
     <object>
         <lower>66</lower>
-        <content>Headband of intellect +2</content>
+        <content>Headband of intellect,2</content>
         <upper>66</upper>
     </object>
     <object>
         <lower>67</lower>
-        <content>Clear spindle ioun stone</content>
+        <content>Clear spindle ioun stone,0</content>
         <upper>67</upper>
     </object>
     <object>
         <lower>68</lower>
-        <content>Keoghtom's ointment</content>
+        <content>Keoghtom's ointment,0</content>
         <upper>68</upper>
     </object>
     <object>
         <lower>69</lower>
-        <content>Nolzur's marvelous pigments</content>
+        <content>Nolzur's marvelous pigments,0</content>
         <upper>69</upper>
     </object>
     <object>
         <lower>70</lower>
-        <content>2nd-level spell pearl of power</content>
+        <content>2nd-level spell pearl of power,0</content>
         <upper>70</upper>
     </object>
     <object>
         <lower>71</lower>
-        <content>Periapt of wisdom +2</content>
+        <content>Periapt of wisdom,2</content>
         <upper>71</upper>
     </object>
     <object>
         <lower>72</lower>
-        <content>Stone salve</content>
+        <content>Stone salve,0</content>
         <upper>72</upper>
     </object>
     <object>
         <lower>73</lower>
-        <content>Necklace of fireballs type III</content>
+        <content>Necklace of fireballs type III,0</content>
         <upper>73</upper>
     </object>
     <object>
         <lower>74</lower>
-        <content>Circlet of persuasion</content>
+        <content>Circlet of persuasion,0</content>
         <upper>74</upper>
     </object>
     <object>
         <lower>75</lower>
-        <content>Slippers of spider climbing</content>
+        <content>Slippers of spider climbing,0</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Incense of meditation</content>
+        <content>Incense of meditation,0</content>
         <upper>76</upper>
     </object>
     <object>
         <lower>77</lower>
-        <content>Bag of holding type II</content>
+        <content>Bag of holding type II,0</content>
         <upper>77</upper>
     </object>
     <object>
         <lower>78</lower>
-        <content>Lesser bracers of archery</content>
+        <content>Lesser bracers of archery,0</content>
         <upper>78</upper>
     </object>
     <object>
         <lower>79</lower>
-        <content>Dusty rose prism ioun stone</content>
+        <content>Dusty rose prism ioun stone,0</content>
         <upper>79</upper>
     </object>
     <object>
         <lower>80</lower>
-        <content>Helm of comprehend languages and read magic</content>
+        <content>Helm of comprehend languages and read magic,0</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Vest of escape</content>
+        <content>Vest of escape,0</content>
         <upper>81</upper>
     </object>
     <object>
         <lower>82</lower>
-        <content>Eversmoking bottle</content>
+        <content>Eversmoking bottle,0</content>
         <upper>82</upper>
     </object>
     <object>
         <lower>83</lower>
-        <content>Murlynd's spoon</content>
+        <content>Murlynd's spoon,0</content>
         <upper>83</upper>
     </object>
     <object>
         <lower>84</lower>
-        <content>Necklace of fireballs type IV</content>
+        <content>Necklace of fireballs type IV,0</content>
         <upper>84</upper>
     </object>
     <object>
         <lower>85</lower>
-        <content>Boots of striding and springing</content>
+        <content>Boots of striding and springing,0</content>
         <upper>85</upper>
     </object>
     <object>
         <lower>86</lower>
-        <content>Wind fan</content>
+        <content>Wind fan,0</content>
         <upper>86</upper>
     </object>
     <object>
         <lower>87</lower>
-        <content>Amulet of mighty fists +1</content>
+        <content>Amulet of mighty fists,1</content>
         <upper>87</upper>
     </object>
     <object>
         <lower>88</lower>
-        <content>Horseshoes of a zephyr</content>
+        <content>Horseshoes of a zephyr,0</content>
         <upper>88</upper>
     </object>
     <object>
         <lower>89</lower>
-        <content>Pipes of haunting</content>
+        <content>Pipes of haunting,0</content>
         <upper>89</upper>
     </object>
     <object>
         <lower>90</lower>
-        <content>Necklace of fireballs type V</content>
+        <content>Necklace of fireballs type V,0</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Gloves of swimming and climbing</content>
+        <content>Gloves of swimming and climbing,0</content>
         <upper>91</upper>
     </object>
     <object>
         <lower>92</lower>
-        <content>Tan bag of tricks</content>
+        <content>Tan bag of tricks,0</content>
         <upper>92</upper>
     </object>
     <object>
         <lower>93</lower>
-        <content>Minor circlet of blasting</content>
+        <content>Minor circlet of blasting,0</content>
         <upper>93</upper>
     </object>
     <object>
         <lower>94</lower>
-        <content>Horn of goodness/evil</content>
+        <content>Horn of goodness/evil,0</content>
         <upper>94</upper>
     </object>
     <object>
         <lower>95</lower>
-        <content>Robe of useful items</content>
+        <content>Robe of useful items,0</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>Folding boat</content>
+        <content>Folding boat,0</content>
         <upper>96</upper>
     </object>
     <object>
         <lower>97</lower>
-        <content>Cloak of the manta ray</content>
+        <content>Cloak of the manta ray,0</content>
         <upper>97</upper>
     </object>
     <object>
         <lower>98</lower>
-        <content>Bottle of air</content>
+        <content>Bottle of air,0</content>
         <upper>98</upper>
     </object>
     <object>
         <lower>99</lower>
-        <content>Bag of holding type III</content>
+        <content>Bag of holding type III,0</content>
         <upper>99</upper>
     </object>
     <object>
         <lower>100</lower>
-        <content>Periapt of health</content>
+        <content>Periapt of health,0</content>
         <upper>100</upper>
     </object>
 </percentile>

@@ -24,26 +24,21 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         [SetUp]
         public void Setup()
         {
+            mockDice = new Mock<IDice>();
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockAttributesSelector = new Mock<IAttributesSelector>();
+            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object, mockAttributesSelector.Object);
             typeAndAmountResult = new TypeAndAmountPercentileResult();
+
             typeAndAmountResult.Type = "type";
             typeAndAmountResult.Amount = "2";
-
-            mockDice = new Mock<IDice>();
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(92).Returns(66).Returns(123);
             mockDice.Setup(d => d.Roll(typeAndAmountResult.Amount)).Returns(2);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(typeAndAmountResult);
+            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("92d66");
 
-            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 92)).Returns(typeAndAmountResult);
-
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
-
-            var types = new[] { "description 1", "description 2" };
-            mockAttributesSelector = new Mock<IAttributesSelector>();
-            mockAttributesSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Descriptions", It.IsAny<String>())).Returns(types);
-
-            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object,
-                mockPercentileSelector.Object, mockAttributesSelector.Object);
+            var descriptions = new[] { "description 1", "description 2" };
+            mockAttributesSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Descriptions", It.IsAny<String>())).Returns(descriptions);
         }
 
         [Test]
@@ -57,7 +52,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         public void GetTypeAndAmountFromSelector()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods", 92), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Goods"), Times.Once);
         }
 
         [Test]
@@ -81,14 +76,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         [Test]
         public void ValueDeterminedByValueResult()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 66)).Returns("92d66");
-            mockPercentileSelector.Setup(p => p.SelectFrom(typeAndAmountResult.Type + "Values", 123)).Returns("other roll");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(typeAndAmountResult.Type + "Values")).Returns("92d66").Returns("other roll");
             mockDice.Setup(d => d.Roll("92d66")).Returns(9266);
             mockDice.Setup(d => d.Roll("other roll")).Returns(42);
 
-            var good = generator.GenerateAtLevel(1);
-            var firstGood = good.First();
-            var secondGood = good.Last();
+            var goods = generator.GenerateAtLevel(1);
+            var firstGood = goods.First();
+            var secondGood = goods.Last();
 
             Assert.That(firstGood.ValueInGold, Is.EqualTo(9266));
             Assert.That(secondGood.ValueInGold, Is.EqualTo(42));

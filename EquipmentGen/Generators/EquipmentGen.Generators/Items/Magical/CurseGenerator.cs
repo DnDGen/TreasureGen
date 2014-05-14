@@ -24,14 +24,12 @@ namespace EquipmentGen.Generators.Items.Magical
             if (!isMagical)
                 return false;
 
-            var roll = dice.Percentile();
-            return booleanPercentileSelector.SelectFrom("IsItemCursed", roll);
+            return booleanPercentileSelector.SelectFrom("IsItemCursed");
         }
 
         public String GenerateCurse()
         {
-            var roll = dice.Percentile();
-            var curse = percentileSelector.SelectFrom("Curses", roll);
+            var curse = percentileSelector.SelectFrom("Curses");
 
             if (curse == "Intermittent Functioning")
                 return String.Format("{0} (Dependent: {1})", curse, GetIntermittentFunctioning());
@@ -52,8 +50,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (roll == 3)
                 return "Uncontrolled";
 
-            roll = dice.Percentile();
-            var situation = percentileSelector.SelectFrom("CursedDependentSituations", roll);
+            var situation = percentileSelector.SelectFrom("CursedDependentSituations");
 
             if (situation.Contains("DESIGNATEDFOE"))
                 situation = GetSituationWithDesignatedFoe(situation);
@@ -69,15 +66,13 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetSituationWithDesignatedFoe(String situation)
         {
-            var roll = dice.Percentile();
-            var foe = percentileSelector.SelectFrom("DesignatedFoes", roll);
+            var foe = percentileSelector.SelectFrom("DesignatedFoes");
             return situation.Replace("DESIGNATEDFOE", foe);
         }
 
         private String GetSituationWithAlignment(String situation)
         {
-            var roll = dice.Percentile();
-            var alignment = percentileSelector.SelectFrom("ProtectionAlignments", roll);
+            var alignment = percentileSelector.SelectFrom("ProtectionAlignments");
             return situation.Replace("ALIGNMENT", alignment);
         }
 
@@ -93,8 +88,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetDrawback()
         {
-            var roll = dice.Percentile();
-            var drawback = percentileSelector.SelectFrom("CurseDrawbacks", roll);
+            var drawback = percentileSelector.SelectFrom("CurseDrawbacks");
 
             if (drawback.Contains("HEIGHT"))
                 return GetDrawbackWithHeight(drawback);
@@ -104,18 +98,15 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetDrawbackWithHeight(String drawback)
         {
-            var roll = dice.Percentile();
-            var change = percentileSelector.SelectFrom("CurseHeightChanges", roll);
+            var change = percentileSelector.SelectFrom("CurseHeightChanges");
             return drawback.Replace("HEIGHT", change);
         }
 
         public Item GenerateSpecificCursedItem()
         {
-            var roll = dice.Percentile();
-
             var specificCursedItem = new Item();
             specificCursedItem.ItemType = ItemTypeConstants.SpecificCursedItem;
-            specificCursedItem.Name = percentileSelector.SelectFrom("SpecificCursedItems", roll);
+            specificCursedItem.Name = percentileSelector.SelectFrom("SpecificCursedItems");
             specificCursedItem.Magic.Curse = "This is a specific cursed item";
             specificCursedItem.Attributes = new[] { AttributeConstants.Specific };
 

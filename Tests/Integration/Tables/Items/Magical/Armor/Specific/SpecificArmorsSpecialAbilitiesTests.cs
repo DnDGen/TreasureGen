@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -26,7 +27,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.Breastplate)]
         public void Attributes(String name)
         {
-            AssertEmpty(name);
+            AssertAttributes(name, Enumerable.Empty<String>());
         }
     }
 }

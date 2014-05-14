@@ -61,14 +61,14 @@ namespace EquipmentGen.Generators.RuntimeFactories
         {
             switch (itemType)
             {
-                case ItemTypeConstants.Potion: return new PotionGenerator(dice, typeAndAmountPercentileSelector, percentileSelector);
-                case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, magicalItemTraitsGenerator, spellGenerator, chargesGenerator, dice, typeAndAmountPercentileSelector);
+                case ItemTypeConstants.Potion: return new PotionGenerator(typeAndAmountPercentileSelector, percentileSelector);
+                case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, magicalItemTraitsGenerator, spellGenerator, chargesGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator);
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator();
-                case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, magicalItemTraitsGenerator, attributesSelector, chargesGenerator, dice, spellGenerator);
-                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector, specialAbilitiesGenerator, specialMaterialGenerator, magicItemTraitsGenerator, specificGearGenerator, dice);
+                case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, magicalItemTraitsGenerator, attributesSelector, chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
+                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector, specialAbilitiesGenerator, specialMaterialGenerator, magicItemTraitsGenerator, specificGearGenerator);
                 case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
                 default: throw new ArgumentOutOfRangeException(itemType);
             }

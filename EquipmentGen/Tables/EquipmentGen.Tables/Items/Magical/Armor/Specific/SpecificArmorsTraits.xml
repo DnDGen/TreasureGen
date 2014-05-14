@@ -25,4 +25,22 @@
         <name>Full plate</name>
         <attribute>Dragonhide</attribute>
     </object>
+    <object>
+        <name>Banded mail of luck</name>
+    </object>
+    <object>
+        <name>Breastplate of command</name>
+    </object>
+    <object>
+        <name>Celestial armor</name>
+    </object>
+    <object>
+        <name>Demon armor</name>
+    </object>
+    <object>
+        <name>Plate armor of the deep</name>
+    </object>
+    <object>
+        <name>Rhino hide</name>
+    </object>
 </attributes>

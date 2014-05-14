@@ -72,4 +72,13 @@
         <attribute>Wood</attribute>
         <attribute>Shield</attribute>
     </object>
+    <object>
+        <name>Hide armor</name>
+    </object>
+    <object>
+        <name>Leather armor</name>
+    </object>
+    <object>
+        <name>Padded armor</name>
+    </object>
 </attributes>

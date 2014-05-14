@@ -21,29 +21,26 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         [SetUp]
         public void Setup()
         {
+            mockDice = new Mock<IDice>();
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
             result = new TypeAndAmountPercentileResult();
+
             result.Type = "coin type";
             result.Amount = "92d66";
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
 
-            mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
-
-            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>(), 9266))
-                .Returns(result);
-
-            generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
         }
 
         [Test]
         public void ReturnCoinFromSelector()
         {
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Coins", 9266), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Coins"), Times.Once);
         }
 
         [Test]
-        public void CoinIsEmptyIfPercentileResultIsEmpty()
+        public void CoinIsEmptyIfResultIsEmpty()
         {
             result.Type = String.Empty;
 
@@ -53,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         }
 
         [Test]
-        public void ParsesCurrencyOutOfPercentileResult()
+        public void RollCurrencyAmount()
         {
             mockDice.Setup(d => d.Roll(result.Amount)).Returns(42);
 

@@ -16,9 +16,11 @@ namespace EquipmentGen.Generators.Items.Magical
         private IChargesGenerator chargesGenerator;
         private IDice dice;
         private ISpellGenerator spellGenerator;
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
         public WondrousItemGenerator(IPercentileSelector percentileSelector, IMagicalItemTraitsGenerator traitsGenerator,
-            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator)
+            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator,
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.traitsGenerator = traitsGenerator;
@@ -26,47 +28,38 @@ namespace EquipmentGen.Generators.Items.Magical
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
             this.spellGenerator = spellGenerator;
+            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
         public Item GenerateAtPower(String power)
         {
-            var roll = dice.Percentile();
             var tablename = String.Format("{0}WondrousItems", power);
-            var result = percentileSelector.SelectFrom(tablename, roll);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             var item = new Item();
-            item.Name = result;
+            item.Name = result.Type;
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
-
-            var attributeName = GetNameForAttributes(item.Name);
-            item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", attributeName);
-
-            if (item.Name.Contains("+"))
-                item.Magic.Bonus = GetBonus(item.Name);
+            item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", item.Name);
+            item.Magic.Bonus = Convert.ToInt32(result.Amount);
 
             if (item.Attributes.Any(a => a == AttributeConstants.Charged))
-                item.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, item.Name);
+                item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
 
-            var traits = traitsGenerator.GenerateFor(ItemTypeConstants.WondrousItem);
+            var traits = traitsGenerator.GenerateFor(item.ItemType);
             item.Traits.AddRange(traits);
 
             if (item.Name == "Horn of Valhalla")
             {
-                roll = dice.Percentile();
-                var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes", roll);
+                var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes");
                 item.Name = String.Format("{0} {1}", hornType, item.Name);
             }
             else if (item.Name == "Iron flask")
             {
-                roll = dice.Percentile();
-                var contents = percentileSelector.SelectFrom("IronFlaskContents", roll);
+                var contents = percentileSelector.SelectFrom("IronFlaskContents");
 
                 if (contents == "BalorOrPitFiend")
-                {
-                    roll = dice.Percentile();
-                    contents = percentileSelector.SelectFrom("BalorOrPitFiend", roll);
-                }
+                    contents = percentileSelector.SelectFrom("BalorOrPitFiend");
 
                 if (!String.IsNullOrEmpty(contents))
                     item.Contents.Add(contents);
@@ -88,27 +81,6 @@ namespace EquipmentGen.Generators.Items.Magical
             return item;
         }
 
-        private String GetNameForAttributes(String itemName)
-        {
-            var attributeName = itemName.Split(',').First();
-
-            var typeIndex = attributeName.IndexOf(" type ");
-            if (typeIndex > 0)
-                attributeName = attributeName.Remove(typeIndex);
-
-            var bonusIndex = attributeName.IndexOf(" +");
-            if (bonusIndex > 0)
-                attributeName = attributeName.Remove(bonusIndex);
-
-            return attributeName;
-        }
-
-        private Int32 GetBonus(String name)
-        {
-            var bonus = name.Split('+').Last();
-            return Convert.ToInt32(bonus);
-        }
-
         private IEnumerable<String> GenerateExtraItemsInRobeOfUsefulItems()
         {
             var extraItems = new List<String>();
@@ -116,8 +88,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var roll = dice.Percentile();
-                var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems", roll);
+                var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems");
 
                 if (item == ItemTypeConstants.Scroll)
                 {
@@ -141,8 +112,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (planes.Count < 6)
             {
-                var roll = dice.Percentile();
-                var plane = percentileSelector.SelectFrom("Planes", roll);
+                var plane = percentileSelector.SelectFrom("Planes");
 
                 if (!planes.Contains(plane))
                     planes.Add(plane);

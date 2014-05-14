@@ -22,7 +22,8 @@ namespace EquipmentGen.Tests.Unit.Mappers.Attributes
             MakeXmlFile();
 
             mockStreamLoader = new Mock<IStreamLoader>();
-            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(GetStream());
+            var stream = GetStream();
+            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(stream);
 
             mapper = new AttributesXmlMapper(mockStreamLoader.Object);
         }
@@ -39,18 +40,21 @@ namespace EquipmentGen.Tests.Unit.Mappers.Attributes
         {
             var table = mapper.Map(tableName);
 
-            Assert.That(table.Count(), Is.EqualTo(2));
+            Assert.That(table.Count(), Is.EqualTo(3));
 
             var armorAttributes = table["armor"];
-            Assert.That(armorAttributes, Contains.Item("attribute 1"));
-            Assert.That(armorAttributes, Contains.Item("attribute 2"));
+            Assert.That(armorAttributes, Contains.Item("armor attribute 1"));
+            Assert.That(armorAttributes, Contains.Item("armor attribute 2"));
             Assert.That(armorAttributes.Count(), Is.EqualTo(2));
 
             var weaponAttributes = table["weapon"];
-            Assert.That(weaponAttributes, Contains.Item("attribute 1"));
-            Assert.That(weaponAttributes, Contains.Item("attribute 2"));
-            Assert.That(weaponAttributes, Contains.Item("attribute 3"));
+            Assert.That(weaponAttributes, Contains.Item("weapon attribute 1"));
+            Assert.That(weaponAttributes, Contains.Item("weapon attribute 2"));
+            Assert.That(weaponAttributes, Contains.Item("weapon attribute 3"));
             Assert.That(weaponAttributes.Count(), Is.EqualTo(3));
+
+            var emptyAttributes = table["empty"];
+            Assert.That(emptyAttributes, Is.Empty);
         }
 
         private Stream GetStream()
@@ -64,14 +68,17 @@ namespace EquipmentGen.Tests.Unit.Mappers.Attributes
                             <attributes>
                                 <object>
                                     <name>armor</name>
-                                    <attribute>attribute 1</attribute>
-                                    <attribute>attribute 2</attribute>
+                                    <attribute>armor attribute 1</attribute>
+                                    <attribute>armor attribute 2</attribute>
                                 </object>
                                 <object>
                                     <name>weapon</name>
-                                    <attribute>attribute 1</attribute>
-                                    <attribute>attribute 2</attribute>
-                                    <attribute>attribute 3</attribute>
+                                    <attribute>weapon attribute 1</attribute>
+                                    <attribute>weapon attribute 2</attribute>
+                                    <attribute>weapon attribute 3</attribute>
+                                </object>
+                                <object>
+                                    <name>empty</name>
                                 </object>
                             </attributes>";
 

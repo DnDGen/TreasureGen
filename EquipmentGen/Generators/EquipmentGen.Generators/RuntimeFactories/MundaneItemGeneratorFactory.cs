@@ -30,10 +30,10 @@ namespace EquipmentGen.Generators.RuntimeFactories
         {
             switch (type)
             {
-                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, materialsSelector, attributesSelector, dice);
+                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, materialsSelector, attributesSelector);
                 case ItemTypeConstants.Weapon: return GetWeaponGenerator();
                 case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector, dice);
-                case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector, dice);
+                case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
                 default: throw new ArgumentOutOfRangeException();
             }
         }
@@ -41,7 +41,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private IMundaneItemGenerator GetWeaponGenerator()
         {
             var ammunitionGenerator = new AmmunitionGenerator(typeAndAmountPercentileSelector, dice, attributesSelector);
-            return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, materialsSelector, attributesSelector, dice);
+            return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, materialsSelector, attributesSelector);
         }
     }
 }

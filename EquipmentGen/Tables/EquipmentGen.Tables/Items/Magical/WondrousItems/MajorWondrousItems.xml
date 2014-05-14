@@ -3,502 +3,502 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Dimensional shackles</content>
+        <content>Dimensional shackles,0</content>
         <upper>1</upper>
     </object>
     <object>
         <lower>2</lower>
-        <content>Obsidian steed figurine of wondrous power</content>
+        <content>Obsidian steed figurine of wondrous power,0</content>
         <upper>2</upper>
     </object>
     <object>
         <lower>3</lower>
-        <content>Drums of panic</content>
+        <content>Drums of panic,0</content>
         <upper>3</upper>
     </object>
     <object>
         <lower>4</lower>
-        <content>Orange ioun stone</content>
+        <content>Orange ioun stone,0</content>
         <upper>4</upper>
     </object>
     <object>
         <lower>5</lower>
-        <content>Pale green prism ioun stone</content>
+        <content>Pale green prism ioun stone,0</content>
         <upper>5</upper>
     </object>
     <object>
         <lower>6</lower>
-        <content>Lantern of revealing</content>
+        <content>Lantern of revealing,0</content>
         <upper>6</upper>
     </object>
     <object>
         <lower>7</lower>
-        <content>Robe of blending</content>
+        <content>Robe of blending,0</content>
         <upper>7</upper>
     </object>
     <object>
         <lower>8</lower>
-        <content>Amulet of natural armor +4</content>
+        <content>Amulet of natural armor,4</content>
         <upper>8</upper>
     </object>
     <object>
         <lower>9</lower>
-        <content>Amulet of proof against detection and location</content>
+        <content>Amulet of proof against detection and location,0</content>
         <upper>9</upper>
     </object>
     <object>
         <lower>10</lower>
-        <content>5 ft. by 10 ft. carpet of flying</content>
+        <content>5 ft. by 10 ft. carpet of flying,0</content>
         <upper>10</upper>
     </object>
     <object>
         <lower>11</lower>
-        <content>Iron golem manual</content>
+        <content>Iron golem manual,0</content>
         <upper>11</upper>
     </object>
     <object>
         <lower>12</lower>
-        <content>Amulet of health +6</content>
+        <content>Amulet of health,6</content>
         <upper>12</upper>
     </object>
     <object>
         <lower>13</lower>
-        <content>Belt of giant strength +6</content>
+        <content>Belt of giant strength,6</content>
         <upper>13</upper>
     </object>
     <object>
         <lower>14</lower>
-        <content>Bracers of armor +6</content>
+        <content>Bracers of armor,6</content>
         <upper>14</upper>
     </object>
     <object>
         <lower>15</lower>
-        <content>Cloak of charisma +6</content>
+        <content>Cloak of charisma,6</content>
         <upper>15</upper>
     </object>
     <object>
         <lower>16</lower>
-        <content>Gloves of dexterity +6</content>
+        <content>Gloves of dexterity,6</content>
         <upper>16</upper>
     </object>
     <object>
         <lower>17</lower>
-        <content>Headband of intellect +6</content>
+        <content>Headband of intellect,6</content>
         <upper>17</upper>
     </object>
     <object>
         <lower>18</lower>
-        <content>Vibrant purple prism ioun stone</content>
+        <content>Vibrant purple prism ioun stone,0</content>
         <upper>18</upper>
     </object>
     <object>
         <lower>19</lower>
-        <content>6th-level spell pearl of power</content>
+        <content>6th-level spell pearl of power,0</content>
         <upper>19</upper>
     </object>
     <object>
         <lower>20</lower>
-        <content>Periapt of wisdom +6</content>
+        <content>Periapt of wisdom,6</content>
         <upper>20</upper>
     </object>
     <object>
         <lower>21</lower>
-        <content>Scarab of protection</content>
+        <content>Scarab of protection,0</content>
         <upper>21</upper>
     </object>
     <object>
         <lower>22</lower>
-        <content>Lavender and green ellipsoid ioun stone</content>
+        <content>Lavender and green ellipsoid ioun stone,0</content>
         <upper>22</upper>
     </object>
     <object>
         <lower>23</lower>
-        <content>Ring gates</content>
+        <content>Ring gates,0</content>
         <upper>23</upper>
     </object>
     <object>
         <lower>24</lower>
-        <content>Crystal ball</content>
+        <content>Crystal ball,0</content>
         <upper>24</upper>
     </object>
     <object>
         <lower>25</lower>
-        <content>Greater stone golem manual</content>
+        <content>Greater stone golem manual,0</content>
         <upper>25</upper>
     </object>
     <object>
         <lower>26</lower>
-        <content>Orb of storms</content>
+        <content>Orb of storms,0</content>
         <upper>26</upper>
     </object>
     <object>
         <lower>27</lower>
-        <content>Boots of teleportation</content>
+        <content>Boots of teleportation,0</content>
         <upper>27</upper>
     </object>
     <object>
         <lower>28</lower>
-        <content>Bracers of armor +7</content>
+        <content>Bracers of armor,7</content>
         <upper>28</upper>
     </object>
     <object>
         <lower>29</lower>
-        <content>7th-level spell pearl of power</content>
+        <content>7th-level spell pearl of power,0</content>
         <upper>29</upper>
     </object>
     <object>
         <lower>30</lower>
-        <content>Amulet of natural armor +5</content>
+        <content>Amulet of natural armor,5</content>
         <upper>30</upper>
     </object>
     <object>
         <lower>31</lower>
-        <content>Major cloak of displacement</content>
+        <content>Major cloak of displacement,0</content>
         <upper>31</upper>
     </object>
     <object>
         <lower>32</lower>
-        <content>Crystal ball with see invisibility</content>
+        <content>Crystal ball with see invisibility,0</content>
         <upper>32</upper>
     </object>
     <object>
         <lower>33</lower>
-        <content>Horn of Valhalla</content>
+        <content>Horn of Valhalla,0</content>
         <upper>33</upper>
     </object>
     <object>
         <lower>34</lower>
-        <content>Crystal ball with detect thoughts</content>
+        <content>Crystal ball with detect thoughts,0</content>
         <upper>34</upper>
     </object>
     <object>
         <lower>35</lower>
-        <content>6 ft. by 9 ft. carpet of flying</content>
+        <content>6 ft. by 9 ft. carpet of flying,0</content>
         <upper>35</upper>
     </object>
     <object>
         <lower>36</lower>
-        <content>Amulet of mighty fists +3</content>
+        <content>Amulet of mighty fists,3</content>
         <upper>36</upper>
     </object>
     <object>
         <lower>37</lower>
-        <content>Wings of flying</content>
+        <content>Wings of flying,0</content>
         <upper>37</upper>
     </object>
     <object>
         <lower>38</lower>
-        <content>Cloak of etherealness</content>
+        <content>Cloak of etherealness,0</content>
         <upper>38</upper>
     </object>
     <object>
         <lower>39</lower>
-        <content>Daern's instant fortress</content>
+        <content>Daern's instant fortress,0</content>
         <upper>39</upper>
     </object>
     <object>
         <lower>40</lower>
-        <content>Manual of bodily health +2</content>
+        <content>Manual of bodily health,2</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Manual of gainful exercise +2</content>
+        <content>Manual of gainful exercise,2</content>
         <upper>41</upper>
     </object>
     <object>
         <lower>42</lower>
-        <content>Manual of quickness in action +2</content>
+        <content>Manual of quickness in action,2</content>
         <upper>42</upper>
     </object>
     <object>
         <lower>43</lower>
-        <content>Tome of clear thought +2</content>
+        <content>Tome of clear thought,2</content>
         <upper>43</upper>
     </object>
     <object>
         <lower>44</lower>
-        <content>Tome of leadership and influence +2</content>
+        <content>Tome of leadership and influence,2</content>
         <upper>44</upper>
     </object>
     <object>
         <lower>45</lower>
-        <content>Tome of understanding +2</content>
+        <content>Tome of understanding,2</content>
         <upper>45</upper>
     </object>
     <object>
         <lower>46</lower>
-        <content>Eyes of charming</content>
+        <content>Eyes of charming,0</content>
         <upper>46</upper>
     </object>
     <object>
         <lower>47</lower>
-        <content>Robe of stars</content>
+        <content>Robe of stars,0</content>
         <upper>47</upper>
     </object>
     <object>
         <lower>48</lower>
-        <content>10 ft. by 10 ft. carpet of flying</content>
+        <content>10 ft. by 10 ft. carpet of flying,0</content>
         <upper>48</upper>
     </object>
     <object>
         <lower>49</lower>
-        <content>Darkskull</content>
+        <content>Darkskull,0</content>
         <upper>49</upper>
     </object>
     <object>
         <lower>50</lower>
-        <content>Cube of force</content>
+        <content>Cube of force,0</content>
         <upper>50</upper>
     </object>
     <object>
         <lower>51</lower>
-        <content>Bracers of armor +8</content>
+        <content>Bracers of armor,8</content>
         <upper>51</upper>
     </object>
     <object>
         <lower>52</lower>
-        <content>8th-level spell pearl of power</content>
+        <content>8th-level spell pearl of power,0</content>
         <upper>52</upper>
     </object>
     <object>
         <lower>53</lower>
-        <content>Crystal ball with telepathy</content>
+        <content>Crystal ball with telepathy,0</content>
         <upper>53</upper>
     </object>
     <object>
         <lower>54</lower>
-        <content>Greater horn of blasting</content>
+        <content>Greater horn of blasting,0</content>
         <upper>54</upper>
     </object>
     <object>
         <lower>55</lower>
-        <content>Two spells pearl of power</content>
+        <content>Two spells pearl of power,0</content>
         <upper>55</upper>
     </object>
     <object>
         <lower>56</lower>
-        <content>Helm of teleportation</content>
+        <content>Helm of teleportation,0</content>
         <upper>56</upper>
     </object>
     <object>
         <lower>57</lower>
-        <content>Gem of seeing</content>
+        <content>Gem of seeing,0</content>
         <upper>57</upper>
     </object>
     <object>
         <lower>58</lower>
-        <content>Robe of the archmagi</content>
+        <content>Robe of the archmagi,0</content>
         <upper>58</upper>
     </object>
     <object>
         <lower>59</lower>
-        <content>Mantle of faith</content>
+        <content>Mantle of faith,0</content>
         <upper>59</upper>
     </object>
     <object>
         <lower>60</lower>
-        <content>Crystal ball with true seeing</content>
+        <content>Crystal ball with true seeing,0</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>9th-level spell pearl of power</content>
+        <content>9th-level spell pearl of power,0</content>
         <upper>61</upper>
     </object>
     <object>
         <lower>62</lower>
-        <content>Well of many worlds</content>
+        <content>Well of many worlds,0</content>
         <upper>62</upper>
     </object>
     <object>
         <lower>63</lower>
-        <content>Manual of bodily health +3</content>
+        <content>Manual of bodily health,3</content>
         <upper>63</upper>
     </object>
     <object>
         <lower>64</lower>
-        <content>Manual of gainful exercise +3</content>
+        <content>Manual of gainful exercise,3</content>
         <upper>64</upper>
     </object>
     <object>
         <lower>65</lower>
-        <content>Manual of quickness in action +3</content>
+        <content>Manual of quickness in action,3</content>
         <upper>65</upper>
     </object>
     <object>
         <lower>66</lower>
-        <content>Tome of clear thought +3</content>
+        <content>Tome of clear thought,3</content>
         <upper>66</upper>
     </object>
     <object>
         <lower>67</lower>
-        <content>Tome of leadership and influence +3</content>
+        <content>Tome of leadership and influence,3</content>
         <upper>67</upper>
     </object>
     <object>
         <lower>68</lower>
-        <content>Tome of understanding +3</content>
+        <content>Tome of understanding,3</content>
         <upper>68</upper>
     </object>
     <object>
         <lower>69</lower>
-        <content>Apparatus of Kwalish</content>
+        <content>Apparatus of Kwalish,0</content>
         <upper>69</upper>
     </object>
     <object>
         <lower>70</lower>
-        <content>Mantle of spell resistance</content>
+        <content>Mantle of spell resistance,0</content>
         <upper>70</upper>
     </object>
     <object>
         <lower>71</lower>
-        <content>Mirror of opposition</content>
+        <content>Mirror of opposition,0</content>
         <upper>71</upper>
     </object>
     <object>
         <lower>72</lower>
-        <content>Greater strand of prayer beads</content>
+        <content>Greater strand of prayer beads,0</content>
         <upper>72</upper>
     </object>
     <object>
         <lower>73</lower>
-        <content>Amulet of mighty fists +4</content>
+        <content>Amulet of mighty fists,4</content>
         <upper>73</upper>
     </object>
     <object>
         <lower>74</lower>
-        <content>Eyes of petrification</content>
+        <content>Eyes of petrification,0</content>
         <upper>74</upper>
     </object>
     <object>
         <lower>75</lower>
-        <content>Bowl of commanding water elementals</content>
+        <content>Bowl of commanding water elementals,0</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Brazier of commanding fire elementals</content>
+        <content>Brazier of commanding fire elementals,0</content>
         <upper>76</upper>
     </object>
     <object>
         <lower>77</lower>
-        <content>Censer of controlling air elementals</content>
+        <content>Censer of controlling air elementals,0</content>
         <upper>77</upper>
     </object>
     <object>
         <lower>78</lower>
-        <content>Stone of controlling earth elementals</content>
+        <content>Stone of controlling earth elementals,0</content>
         <upper>78</upper>
     </object>
     <object>
         <lower>79</lower>
-        <content>Manual of bodily health +4</content>
+        <content>Manual of bodily health,4</content>
         <upper>79</upper>
     </object>
     <object>
         <lower>80</lower>
-        <content>Manual of gainful exercise +4</content>
+        <content>Manual of gainful exercise,4</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Manual of quickness in action +4</content>
+        <content>Manual of quickness in action,4</content>
         <upper>81</upper>
     </object>
     <object>
         <lower>82</lower>
-        <content>Tome of clear thought +4</content>
+        <content>Tome of clear thought,4</content>
         <upper>82</upper>
     </object>
     <object>
         <lower>83</lower>
-        <content>Tome of leadership and influence +4</content>
+        <content>Tome of leadership and influence,4</content>
         <upper>83</upper>
     </object>
     <object>
         <lower>84</lower>
-        <content>Tome of understanding +4</content>
+        <content>Tome of understanding,4</content>
         <upper>84</upper>
     </object>
     <object>
         <lower>85</lower>
-        <content>Amulet of the planes</content>
+        <content>Amulet of the planes,0</content>
         <upper>85</upper>
     </object>
     <object>
         <lower>86</lower>
-        <content>Robe of eyes</content>
+        <content>Robe of eyes,0</content>
         <upper>86</upper>
     </object>
     <object>
         <lower>87</lower>
-        <content>Helm of brilliance</content>
+        <content>Helm of brilliance,0</content>
         <upper>87</upper>
     </object>
     <object>
         <lower>88</lower>
-        <content>Manual of bodily health +5</content>
+        <content>Manual of bodily health,5</content>
         <upper>88</upper>
     </object>
     <object>
         <lower>89</lower>
-        <content>Manual of gainful exercise +5</content>
+        <content>Manual of gainful exercise,5</content>
         <upper>89</upper>
     </object>
     <object>
         <lower>90</lower>
-        <content>Manual of quickness in action +5</content>
+        <content>Manual of quickness in action,5</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Tome of clear thought +5</content>
+        <content>Tome of clear thought,5</content>
         <upper>91</upper>
     </object>
     <object>
         <lower>92</lower>
-        <content>Tome of leadership and influence +5</content>
+        <content>Tome of leadership and influence,5</content>
         <upper>92</upper>
     </object>
     <object>
         <lower>93</lower>
-        <content>Tome of understanding +5</content>
+        <content>Tome of understanding,5</content>
         <upper>93</upper>
     </object>
     <object>
         <lower>94</lower>
-        <content>Efreeti bottle</content>
+        <content>Efreeti bottle,0</content>
         <upper>94</upper>
     </object>
     <object>
         <lower>95</lower>
-        <content>Amulet of mighty fists +5</content>
+        <content>Amulet of mighty fists,5</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>Chaos diamond</content>
+        <content>Chaos diamond,0</content>
         <upper>96</upper>
     </object>
     <object>
         <lower>97</lower>
-        <content>Cubic gate</content>
+        <content>Cubic gate,0</content>
         <upper>97</upper>
     </object>
     <object>
         <lower>98</lower>
-        <content>Iron flask</content>
+        <content>Iron flask,0</content>
         <upper>98</upper>
     </object>
     <object>
         <lower>99</lower>
-        <content>Mirror of mental prowess</content>
+        <content>Mirror of mental prowess,0</content>
         <upper>99</upper>
     </object>
     <object>
         <lower>100</lower>
-        <content>Mirror of life trapping</content>
+        <content>Mirror of life trapping,0</content>
         <upper>100</upper>
     </object>
 </percentile>

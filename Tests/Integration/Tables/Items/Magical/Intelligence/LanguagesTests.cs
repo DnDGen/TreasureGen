@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Abyssal", 1, 5)]
         [TestCase("Aquan", 6, 10)]
         [TestCase("Auran", 11, 15)]
-        [TestCase("Celestial", 19, 20)]
+        [TestCase("Celestial", 16, 20)]
         [TestCase("Common", 21, 25)]
         [TestCase("Draconic", 26, 30)]
         [TestCase("Dwarven", 31, 35)]

@@ -13,9 +13,9 @@ namespace EquipmentGen.Selectors
             this.percentileSelector = percentileSelector;
         }
 
-        public TypeAndAmountPercentileResult SelectFrom(String tableName, Int32 roll)
+        public TypeAndAmountPercentileResult SelectFrom(String tableName)
         {
-            var percentileResult = percentileSelector.SelectFrom(tableName, roll);
+            var percentileResult = percentileSelector.SelectFrom(tableName);
             var result = new TypeAndAmountPercentileResult();
 
             if (String.IsNullOrEmpty(percentileResult))

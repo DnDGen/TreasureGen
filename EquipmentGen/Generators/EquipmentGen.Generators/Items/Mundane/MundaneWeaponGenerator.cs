@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
@@ -13,26 +12,21 @@ namespace EquipmentGen.Generators.Items.Mundane
         private IMundaneItemGenerator ammunitionGenerator;
         private ISpecialMaterialGenerator materialsSelector;
         private IAttributesSelector attributesSelector;
-        private IDice dice;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IMundaneItemGenerator ammunitionGenerator,
-            ISpecialMaterialGenerator materialsSelector, IAttributesSelector attributesSelector, IDice dice)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IMundaneItemGenerator ammunitionGenerator, ISpecialMaterialGenerator materialsSelector, IAttributesSelector attributesSelector)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.materialsSelector = materialsSelector;
             this.attributesSelector = attributesSelector;
-            this.dice = dice;
         }
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
-            var type = percentileSelector.SelectFrom("MundaneWeapons", roll);
+            var type = percentileSelector.SelectFrom("MundaneWeapons");
             var tableName = String.Format("{0}Weapons", type);
 
-            roll = dice.Percentile();
-            var weaponName = percentileSelector.SelectFrom(tableName, roll);
+            var weaponName = percentileSelector.SelectFrom(tableName);
             var weapon = new Item();
 
             if (weaponName == "Ammunition")

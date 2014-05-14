@@ -87,4 +87,88 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Slashing</attribute>
     </object>
+    <object>
+        <name>Acid resistance</name>
+    </object>
+    <object>
+        <name>Anarchic</name>
+    </object>
+    <object>
+        <name>Axiomatic</name>
+    </object>
+    <object>
+        <name>Bane</name>
+    </object>
+    <object>
+        <name>Brilliant energy</name>
+    </object>
+    <object>
+        <name>Cold resistance</name>
+    </object>
+    <object>
+        <name>Electricity resistance</name>
+    </object>
+    <object>
+        <name>Etherealness</name>
+    </object>
+    <object>
+        <name>Fire resistance</name>
+    </object>
+    <object>
+        <name>Flaming</name>
+    </object>
+    <object>
+        <name>Frost</name>
+    </object>
+    <object>
+        <name>Ghost touch</name>
+    </object>
+    <object>
+        <name>Glamered</name>
+    </object>
+    <object>
+        <name>Holy</name>
+    </object>
+    <object>
+        <name>Invulnerability</name>
+    </object>
+    <object>
+        <name>Merciful</name>
+    </object>
+    <object>
+        <name>Shadow</name>
+    </object>
+    <object>
+        <name>Shock</name>
+    </object>
+    <object>
+        <name>Silent moves</name>
+    </object>
+    <object>
+        <name>Slick</name>
+    </object>
+    <object>
+        <name>Sonic resistance</name>
+    </object>
+    <object>
+        <name>Speed</name>
+    </object>
+    <object>
+        <name>Spell resistance</name>
+    </object>
+    <object>
+        <name>Thundering</name>
+    </object>
+    <object>
+        <name>Undead controlling</name>
+    </object>
+    <object>
+        <name>Unholy</name>
+    </object>
+    <object>
+        <name>Wild</name>
+    </object>
+    <object>
+        <name>Fortification</name>
+    </object>
 </attributes>

@@ -21,21 +21,16 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [SetUp]
         public void Setup()
         {
+            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
+            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockDice = new Mock<IDice>();
+            ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
             result = new TypeAndAmountPercentileResult();
+
             result.Type = "ammunition name";
             result.Amount = "9266";
-
-            mockDice = new Mock<IDice>();
-            mockDice.Setup(d => d.Percentile(1)).Returns(42);
             mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
-
-            mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("Ammunitions", 42)).Returns(result);
-
-            mockAttributesSelector = new Mock<IAttributesSelector>();
-
-            ammunitionGenerator = new AmmunitionGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object,
-                mockAttributesSelector.Object);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("Ammunitions")).Returns(result);
         }
 
         [Test]

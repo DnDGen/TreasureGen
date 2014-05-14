@@ -50,7 +50,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetTrueFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", material1Attributes);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -58,7 +58,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetFalseFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(false);
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", material1Attributes);
             Assert.That(hasSpecialMaterial, Is.False);
         }
@@ -66,7 +66,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void HasSpecialMaterialReturnsFalseIfGivenAttributesDoNotMatchAnySpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial", It.IsAny<Int32>())).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
             var newAttributes = new[] { "other type", "type 2" };
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial("item type", newAttributes);
             Assert.That(hasSpecialMaterial, Is.False);

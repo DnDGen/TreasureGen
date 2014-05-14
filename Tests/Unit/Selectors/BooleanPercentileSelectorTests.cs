@@ -22,24 +22,24 @@ namespace EquipmentGen.Tests.Unit.Selectors
         [Test]
         public void ReturnTrue()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom("table name", 9266)).Returns(Boolean.TrueString);
-            var isTrue = selector.SelectFrom("table name", 9266);
+            mockInnerSelector.Setup(s => s.SelectFrom("table name")).Returns(Boolean.TrueString);
+            var isTrue = selector.SelectFrom("table name");
             Assert.That(isTrue, Is.True);
         }
 
         [Test]
         public void ReturnFalse()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom("table name", 9266)).Returns(Boolean.FalseString);
-            var isTrue = selector.SelectFrom("table name", 9266);
+            mockInnerSelector.Setup(s => s.SelectFrom("table name")).Returns(Boolean.FalseString);
+            var isTrue = selector.SelectFrom("table name");
             Assert.That(isTrue, Is.False);
         }
 
         [Test]
         public void ThrowError()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom("table name", 9266)).Returns("wrong format");
-            Assert.That(() => selector.SelectFrom("table name", 9266), Throws.InstanceOf<FormatException>());
+            mockInnerSelector.Setup(s => s.SelectFrom("table name")).Returns("wrong format");
+            Assert.That(() => selector.SelectFrom("table name"), Throws.InstanceOf<FormatException>());
         }
     }
 }

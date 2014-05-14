@@ -12,9 +12,9 @@ namespace EquipmentGen.Selectors
             this.innerSelector = innerSelector;
         }
 
-        public Boolean SelectFrom(String tableName, Int32 roll)
+        public Boolean SelectFrom(String tableName)
         {
-            var result = innerSelector.SelectFrom(tableName, roll);
+            var result = innerSelector.SelectFrom(tableName);
             return Convert.ToBoolean(result);
         }
     }

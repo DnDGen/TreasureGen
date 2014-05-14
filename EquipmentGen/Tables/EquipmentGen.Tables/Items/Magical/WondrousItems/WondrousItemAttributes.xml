@@ -136,7 +136,19 @@
         <attribute>One-time use</attribute>
     </object>
     <object>
-        <name>Quaal's feather token</name>
+        <name>Quaal's whip feather token</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Quaal's swan boat feather token</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Quaal's anchor feather token</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Quaal's bird feather token</name>
         <attribute>One-time use</attribute>
     </object>
     <object>
@@ -187,5 +199,607 @@
     <object>
         <name>Universal solvent</name>
         <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type I</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type II</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type III</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type IV</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type V</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VI</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VII</name>
+        <attribute>One-time use</attribute>
+        <attribute>Charged</attribute>
+    </object>
+    <object>
+        <name>Dimensional shackles</name>
+    </object>
+    <object>
+        <name>Obsidian steed figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Drums of panic</name>
+    </object>
+    <object>
+        <name>Orange ioun stone</name>
+    </object>
+    <object>
+        <name>Pale green prism ioun stone</name>
+    </object>
+    <object>
+        <name>Lantern of revealing</name>
+    </object>
+    <object>
+        <name>Robe of blending</name>
+    </object>
+    <object>
+        <name>Amulet of natural armor</name>
+    </object>
+    <object>
+        <name>Amulet of proof against detection and location</name>
+    </object>
+    <object>
+        <name>5 ft. by 10 ft. carpet of flying</name>
+    </object>
+    <object>
+        <name>Bracers of armor</name>
+    </object>
+    <object>
+        <name>Cloak of charisma</name>
+    </object>
+    <object>
+        <name>Gloves of dexterity</name>
+    </object>
+    <object>
+        <name>Headband of intellect</name>
+    </object>
+    <object>
+        <name>Vibrant purple prism ioun stone</name>
+    </object>
+    <object>
+        <name>6th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Periapt of wisdom</name>
+    </object>
+    <object>
+        <name>Lavender and green ellipsoid ioun stone</name>
+    </object>
+    <object>
+        <name>Ring gates</name>
+    </object>
+    <object>
+        <name>Crystal ball</name>
+    </object>
+    <object>
+        <name>Orb of storms</name>
+    </object>
+    <object>
+        <name>Boots of teleportation</name>
+    </object>
+    <object>
+        <name>7th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Major cloak of displacement</name>
+    </object>
+    <object>
+        <name>Crystal ball with see invisibility</name>
+    </object>
+    <object>
+        <name>Horn of Valhalla</name>
+    </object>
+    <object>
+        <name>Crystal ball with detect thoughts</name>
+    </object>
+    <object>
+        <name>6 ft. by 9 ft. carpet of flying</name>
+    </object>
+    <object>
+        <name>Amulet of mighty fists</name>
+    </object>
+    <object>
+        <name>Wings of flying</name>
+    </object>
+    <object>
+        <name>Cloak of etherealness</name>
+    </object>
+    <object>
+        <name>Daern's instant fortress</name>
+    </object>
+    <object>
+        <name>Eyes of charming</name>
+    </object>
+    <object>
+        <name>Robe of stars</name>
+    </object>
+    <object>
+        <name>10 ft. by 10 ft. carpet of flying</name>
+    </object>
+    <object>
+        <name>Darkskull</name>
+    </object>
+    <object>
+        <name>Cube of force</name>
+    </object>
+    <object>
+        <name>8th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Crystal ball with telepathy</name>
+    </object>
+    <object>
+        <name>Greater horn of blasting</name>
+    </object>
+    <object>
+        <name>Two spells pearl of power</name>
+    </object>
+    <object>
+        <name>Helm of teleportation</name>
+    </object>
+    <object>
+        <name>Gem of seeing</name>
+    </object>
+    <object>
+        <name>Robe of the archmagi</name>
+    </object>
+    <object>
+        <name>Mantle of faith</name>
+    </object>
+    <object>
+        <name>Crystal ball with true seeing</name>
+    </object>
+    <object>
+        <name>9th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Well of many worlds</name>
+    </object>
+    <object>
+        <name>Apparatus of Kwalish</name>
+    </object>
+    <object>
+        <name>Mantle of spell resistance</name>
+    </object>
+    <object>
+        <name>Mirror of opposition</name>
+    </object>
+    <object>
+        <name>Greater strand of prayer beads</name>
+    </object>
+    <object>
+        <name>Eyes of petrification</name>
+    </object>
+    <object>
+        <name>Bowl of commanding water elementals</name>
+    </object>
+    <object>
+        <name>Brazier of commanding fire elementals</name>
+    </object>
+    <object>
+        <name>Censer of controlling air elementals</name>
+    </object>
+    <object>
+        <name>Stone of controlling earth elementals</name>
+    </object>
+    <object>
+        <name>Amulet of the planes</name>
+    </object>
+    <object>
+        <name>Robe of eyes</name>
+    </object>
+    <object>
+        <name>Helm of brilliance</name>
+    </object>
+    <object>
+        <name>Efreeti bottle</name>
+    </object>
+    <object>
+        <name>Chaos diamond</name>
+    </object>
+    <object>
+        <name>Cubic gate</name>
+    </object>
+    <object>
+        <name>Iron flask</name>
+    </object>
+    <object>
+        <name>Mirror of mental prowess</name>
+    </object>
+    <object>
+        <name>Mirror of life trapping</name>
+    </object>
+    <object>
+        <name>Boots of levitation</name>
+    </object>
+    <object>
+        <name>Harp of charming</name>
+    </object>
+    <object>
+        <name>Hand of glory</name>
+    </object>
+    <object>
+        <name>Deep red sphere ioun stone</name>
+    </object>
+    <object>
+        <name>Incandescent blue sphere ioun stone</name>
+    </object>
+    <object>
+        <name>Pale blue rhomboid ioun stone</name>
+    </object>
+    <object>
+        <name>Pink and green sphere ioun stone</name>
+    </object>
+    <object>
+        <name>Pink rhomboid ioun stone</name>
+    </object>
+    <object>
+        <name>Scarlet and blue sphere ioun stone</name>
+    </object>
+    <object>
+        <name>Cloak of resistance</name>
+    </object>
+    <object>
+        <name>Decanter of endless water</name>
+    </object>
+    <object>
+        <name>Necklace of adaptation</name>
+    </object>
+    <object>
+        <name>3rd-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Talisman of the sphere</name>
+    </object>
+    <object>
+        <name>Serpentine owl figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Lesser strand of prayer beads</name>
+    </object>
+    <object>
+        <name>Bag of holding type IV</name>
+    </object>
+    <object>
+        <name>Bronze griffon figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Ebony fly figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Glove of storing</name>
+    </object>
+    <object>
+        <name>Dark blue rhomboid ioun stone</name>
+    </object>
+    <object>
+        <name>Courser stone horse</name>
+    </object>
+    <object>
+        <name>Cape of the mountebank</name>
+    </object>
+    <object>
+        <name>Phylactery of undead turning</name>
+    </object>
+    <object>
+        <name>Gauntlet of rust</name>
+    </object>
+    <object>
+        <name>Boots of speed</name>
+    </object>
+    <object>
+        <name>Goggles of night</name>
+    </object>
+    <object>
+        <name>Medallion of thoughts</name>
+    </object>
+    <object>
+        <name>Pipes of pain</name>
+    </object>
+    <object>
+        <name>Boccob's blessed book</name>
+    </object>
+    <object>
+        <name>Monk's belt</name>
+    </object>
+    <object>
+        <name>Lyre of building</name>
+    </object>
+    <object>
+        <name>Cloak of arachnida</name>
+    </object>
+    <object>
+        <name>Destrier stone horse</name>
+    </object>
+    <object>
+        <name>Belt of dwarvenkind</name>
+    </object>
+    <object>
+        <name>Periapt of wound-closure</name>
+    </object>
+    <object>
+        <name>Horn of the tritons</name>
+    </object>
+    <object>
+        <name>Pearl of the sirines</name>
+    </object>
+    <object>
+        <name>Onyx dog figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Amulet of health</name>
+    </object>
+    <object>
+        <name>Belt of giant strength</name>
+    </object>
+    <object>
+        <name>Winged boots</name>
+    </object>
+    <object>
+        <name>4th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Scabbard of keen edges</name>
+    </object>
+    <object>
+        <name>Golden lions figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Chime of interruption</name>
+    </object>
+    <object>
+        <name>Broom of flying</name>
+    </object>
+    <object>
+        <name>Marble elephant figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Iridescent spindle ioun stone</name>
+    </object>
+    <object>
+        <name>5 ft. by 5 ft. carpet of flying</name>
+    </object>
+    <object>
+        <name>Horn of blasting</name>
+    </object>
+    <object>
+        <name>Pale lavender ellipsoid ioun stone</name>
+    </object>
+    <object>
+        <name>Pearly white spindle ioun stone</name>
+    </object>
+    <object>
+        <name>Portable hole</name>
+    </object>
+    <object>
+        <name>Stone of good luck (luckstone)</name>
+    </object>
+    <object>
+        <name>Ivory goats figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Rope of entanglement</name>
+    </object>
+    <object>
+        <name>Mask of the skull</name>
+    </object>
+    <object>
+        <name>Mattock of the titans</name>
+    </object>
+    <object>
+        <name>Major circlet of blasting</name>
+    </object>
+    <object>
+        <name>Minor cloak of displacement</name>
+    </object>
+    <object>
+        <name>Helm of underwater action</name>
+    </object>
+    <object>
+        <name>Greater bracers of archery</name>
+    </object>
+    <object>
+        <name>Eyes of doom</name>
+    </object>
+    <object>
+        <name>5th-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Maul of the titans</name>
+    </object>
+    <object>
+        <name>Strand of prayer beads</name>
+    </object>
+    <object>
+        <name>Cloak of the bat</name>
+    </object>
+    <object>
+        <name>Iron bands of Bilarro</name>
+    </object>
+    <object>
+        <name>Cube of frost resistance</name>
+    </object>
+    <object>
+        <name>Helm of telepathy</name>
+    </object>
+    <object>
+        <name>Periapt of proof against poison</name>
+    </object>
+    <object>
+        <name>Robe of scintillating colors</name>
+    </object>
+    <object>
+        <name>Gray bag of tricks</name>
+    </object>
+    <object>
+        <name>Hand of the mage</name>
+    </object>
+    <object>
+        <name>1st-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Phylactery of faithfulness</name>
+    </object>
+    <object>
+        <name>Pipes of the sewers</name>
+    </object>
+    <object>
+        <name>Goggles of minute seeing</name>
+    </object>
+    <object>
+        <name>Hat of disguise</name>
+    </object>
+    <object>
+        <name>Pipes of sounding</name>
+    </object>
+    <object>
+        <name>Quiver of Ehlonna</name>
+    </object>
+    <object>
+        <name>Heward's handy haversack</name>
+    </object>
+    <object>
+        <name>Horn of fog</name>
+    </object>
+    <object>
+        <name>Bag of holding type I</name>
+    </object>
+    <object>
+        <name>Boots of elvenkind</name>
+    </object>
+    <object>
+        <name>Boots of the winterlands</name>
+    </object>
+    <object>
+        <name>Cloak of elvenkind</name>
+    </object>
+    <object>
+        <name>Eyes of the eagle</name>
+    </object>
+    <object>
+        <name>Golembane scarab</name>
+    </object>
+    <object>
+        <name>Stone of alarm</name>
+    </object>
+    <object>
+        <name>Rust bag of tricks</name>
+    </object>
+    <object>
+        <name>Horseshoes of speed</name>
+    </object>
+    <object>
+        <name>Rope of climbing</name>
+    </object>
+    <object>
+        <name>Lens of detection</name>
+    </object>
+    <object>
+        <name>Druid's vestments</name>
+    </object>
+    <object>
+        <name>Silver raven figurine of wondrous power</name>
+    </object>
+    <object>
+        <name>Gauntlets of ogre power</name>
+    </object>
+    <object>
+        <name>Gloves of arrow snaring</name>
+    </object>
+    <object>
+        <name>Clear spindle ioun stone</name>
+    </object>
+    <object>
+        <name>2nd-level spell pearl of power</name>
+    </object>
+    <object>
+        <name>Circlet of persuasion</name>
+    </object>
+    <object>
+        <name>Slippers of spider climbing</name>
+    </object>
+    <object>
+        <name>Bag of holding type II</name>
+    </object>
+    <object>
+        <name>Lesser bracers of archery</name>
+    </object>
+    <object>
+        <name>Dusty rose prism ioun stone</name>
+    </object>
+    <object>
+        <name>Helm of comprehend languages and read magic</name>
+    </object>
+    <object>
+        <name>Vest of escape</name>
+    </object>
+    <object>
+        <name>Eversmoking bottle</name>
+    </object>
+    <object>
+        <name>Murlynd's spoon</name>
+    </object>
+    <object>
+        <name>Boots of striding and springing</name>
+    </object>
+    <object>
+        <name>Wind fan</name>
+    </object>
+    <object>
+        <name>Horseshoes of a zephyr</name>
+    </object>
+    <object>
+        <name>Pipes of haunting</name>
+    </object>
+    <object>
+        <name>Gloves of swimming and climbing</name>
+    </object>
+    <object>
+        <name>Tan bag of tricks</name>
+    </object>
+    <object>
+        <name>Minor circlet of blasting</name>
+    </object>
+    <object>
+        <name>Horn of goodness/evil</name>
+    </object>
+    <object>
+        <name>Folding boat</name>
+    </object>
+    <object>
+        <name>Cloak of the manta ray</name>
+    </object>
+    <object>
+        <name>Bottle of air</name>
+    </object>
+    <object>
+        <name>Bag of holding type III</name>
+    </object>
+    <object>
+        <name>Periapt of health</name>
     </object>
 </attributes>
