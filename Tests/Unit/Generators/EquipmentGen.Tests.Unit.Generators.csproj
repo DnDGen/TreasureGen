@@ -54,6 +54,7 @@
     <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
     <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
     <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />
+    <Compile Include="Items\Magical\MagicalWeaponGeneratorTests.cs" />
     <Compile Include="Items\Magical\PotionGeneratorTests.cs" />
     <Compile Include="Items\Magical\ScrollGeneratorTests.cs" />
     <Compile Include="Items\Magical\SpecificGearGeneratorTests.cs" />
