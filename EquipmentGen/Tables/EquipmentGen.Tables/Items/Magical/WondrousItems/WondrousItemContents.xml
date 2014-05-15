@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>Robe of useful items</name>
+        <attribute>Dagger</attribute>
+        <attribute>Dagger</attribute>
+        <attribute>Bullseye lantern (filled and lit)</attribute>
+        <attribute>Bullseye lantern (filled and lit)</attribute>
+        <attribute>Highly polished 2-foot-by-4-foot steel mirror</attribute>
+        <attribute>Highly polished 2-foot-by-4-foot steel mirror</attribute>
+        <attribute>10-foot pole</attribute>
+        <attribute>10-foot pole</attribute>
+        <attribute>50-foot hempen rope</attribute>
+        <attribute>50-foot hempen rope</attribute>
+        <attribute>Sack</attribute>
+        <attribute>Sack</attribute>
+    </object>
+    <object>
+        <name>Robe of bones</name>
+        <attribute>Small goblin skeleton</attribute>
+        <attribute>Small goblin skeleton</attribute>
+        <attribute>Medium human commoner skeleton</attribute>
+        <attribute>Medium human commoner skeleton</attribute>
+        <attribute>Medium wolf skeleton</attribute>
+        <attribute>Medium wolf skeleton</attribute>
+        <attribute>Small goblin combie</attribute>
+        <attribute>Small goblin combie</attribute>
+        <attribute>Medium human commoner zombie</attribute>
+        <attribute>Medium human commoner zombie</attribute>
+        <attribute>Medium wolf zombie</attribute>
+        <attribute>Medium wolf zombie</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type I</name>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>5d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type II</name>
+        <attribute>2d6</attribute>
+        <attribute>2d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>6d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type III</name>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>7d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type IV</name>
+        <attribute>2d6</attribute>
+        <attribute>2d6</attribute>
+        <attribute>2d6</attribute>
+        <attribute>2d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>6d6</attribute>
+        <attribute>6d6</attribute>
+        <attribute>8d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type V</name>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>7d6</attribute>
+        <attribute>7d6</attribute>
+        <attribute>9d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VI</name>
+        <attribute>4d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>4d6</attribute>
+        <attribute>6d6</attribute>
+        <attribute>6d6</attribute>
+        <attribute>8d6</attribute>
+        <attribute>8d6</attribute>
+        <attribute>10d6</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VII</name>
+        <attribute>3d6</attribute>
+        <attribute>3d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>5d6</attribute>
+        <attribute>7d6</attribute>
+        <attribute>7d6</attribute>
+        <attribute>9d6</attribute>
+        <attribute>9d6</attribute>
+        <attribute>10d6</attribute>
+    </object>
+    <object>
+        <name>Deck of illusions</name>
+        <attribute>Ace of hearts</attribute>
+        <attribute>King of hearts</attribute>
+        <attribute>Queen of hearts</attribute>
+        <attribute>Jack of hearts</attribute>
+        <attribute>10 of hearts</attribute>
+        <attribute>9 of hearts</attribute>
+        <attribute>8 of hearts</attribute>
+        <attribute>2 of hearts</attribute>
+        <attribute>Ace of diamonds</attribute>
+        <attribute>King of diamonds</attribute>
+        <attribute>Queen of diamonds</attribute>
+        <attribute>Jack of diamonds</attribute>
+        <attribute>10 of diamonds</attribute>
+        <attribute>9 of diamonds</attribute>
+        <attribute>8 of diamonds</attribute>
+        <attribute>2 of diamonds</attribute>
+        <attribute>Ace of spades</attribute>
+        <attribute>King of spades</attribute>
+        <attribute>Queen of spades</attribute>
+        <attribute>Jack of spades</attribute>
+        <attribute>10 of spades</attribute>
+        <attribute>9 of spades</attribute>
+        <attribute>8 of spades</attribute>
+        <attribute>2 of spades</attribute>
+        <attribute>Ace of clubs</attribute>
+        <attribute>King of clubs</attribute>
+        <attribute>Queen of clubs</attribute>
+        <attribute>Jack of clubs</attribute>
+        <attribute>10 of clubs</attribute>
+        <attribute>9 of clubs</attribute>
+        <attribute>8 of clubs</attribute>
+        <attribute>2 of clubs</attribute>
+        <attribute>Joker</attribute>
+        <attribute>Joker</attribute>
+    </object>
+</attributes>

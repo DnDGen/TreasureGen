@@ -20,9 +20,14 @@ namespace EquipmentGen.Tests.Integration.Tables
         private List<String> testedNames;
 
         [TestFixtureSetUp]
-        public void Setup()
+        public void FixtureSetup()
         {
             testedNames = new List<String>();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
             table = AttributesMapper.Map(tableName);
         }
 
@@ -44,12 +49,19 @@ namespace EquipmentGen.Tests.Integration.Tables
         {
             testedNames.Add(name);
 
+            Assert.That(table.Keys, Contains.Item(name), tableName);
+
             foreach (var attribute in attributes)
+            {
                 Assert.That(table[name], Contains.Item(attribute));
+
+                var actualAttributeCount = table[name].Count(a => a == attribute);
+                var expectedAttributeCount = attributes.Count(a => a == attribute);
+                Assert.That(actualAttributeCount, Is.EqualTo(expectedAttributeCount));
+            }
 
             var extraAttributes = table[name].Except(attributes);
             Assert.That(extraAttributes, Is.Empty);
-            Assert.That(table[name].Count(), Is.EqualTo(attributes.Count()));
         }
     }
 }

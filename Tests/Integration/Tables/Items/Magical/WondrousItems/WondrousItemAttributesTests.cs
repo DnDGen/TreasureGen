@@ -21,12 +21,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Candle of truth", AttributeConstants.OneTimeUse)]
         [TestCase("Chime of opening", AttributeConstants.OneTimeUse,
                                       AttributeConstants.Charged)]
-        [TestCase("Deck of illusions", AttributeConstants.OneTimeUse,
-                                       AttributeConstants.Charged)]
+        [TestCase("Deck of illusions", AttributeConstants.OneTimeUse)]
         [TestCase("Dust of appearance", AttributeConstants.OneTimeUse)]
         [TestCase("Dust of disappearance", AttributeConstants.OneTimeUse)]
         [TestCase("Dust of illusion", AttributeConstants.OneTimeUse)]
         [TestCase("Dust of tracelessness", AttributeConstants.OneTimeUse)]
+        [TestCase("Dust of dryness", AttributeConstants.OneTimeUse)]
         [TestCase("Elemental gem", AttributeConstants.OneTimeUse)]
         [TestCase("Elixer of fire breath", AttributeConstants.OneTimeUse)]
         [TestCase("Elixer of hiding", AttributeConstants.OneTimeUse)]
@@ -49,24 +49,19 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Manual of gainful exercise", AttributeConstants.OneTimeUse)]
         [TestCase("Manual of quickness in action", AttributeConstants.OneTimeUse)]
         [TestCase("Nolzur's marvelous pigments", AttributeConstants.OneTimeUse)]
-        [TestCase("Necklace of fireballs type I", AttributeConstants.OneTimeUse,
-                                                  AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type II", AttributeConstants.OneTimeUse,
-                                                   AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type III", AttributeConstants.OneTimeUse,
-                                                    AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type IV", AttributeConstants.OneTimeUse,
-                                                   AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type V", AttributeConstants.OneTimeUse,
-                                                  AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type VI", AttributeConstants.OneTimeUse,
-                                                   AttributeConstants.Charged)]
-        [TestCase("Necklace of fireballs type VII", AttributeConstants.OneTimeUse,
-                                                    AttributeConstants.Charged)]
+        [TestCase("Necklace of fireballs type I", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type II", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type III", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type IV", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type V", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type VI", AttributeConstants.OneTimeUse)]
+        [TestCase("Necklace of fireballs type VII", AttributeConstants.OneTimeUse)]
         [TestCase("Quaal's bird feather token", AttributeConstants.OneTimeUse)]
         [TestCase("Quaal's anchor feather token", AttributeConstants.OneTimeUse)]
         [TestCase("Quaal's whip feather token", AttributeConstants.OneTimeUse)]
+        [TestCase("Quaal's fan feather token", AttributeConstants.OneTimeUse)]
         [TestCase("Quaal's swan boat feather token", AttributeConstants.OneTimeUse)]
+        [TestCase("Quaal's tree feather token", AttributeConstants.OneTimeUse)]
         [TestCase("Robe of useful items", AttributeConstants.OneTimeUse)]
         [TestCase("Robe of bones", AttributeConstants.OneTimeUse)]
         [TestCase("Salve of slipperiness", AttributeConstants.OneTimeUse)]

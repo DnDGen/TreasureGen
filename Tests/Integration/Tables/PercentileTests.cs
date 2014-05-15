@@ -22,9 +22,14 @@ namespace EquipmentGen.Tests.Integration.Tables
         private List<Int32> testedRolls;
 
         [TestFixtureSetUp]
-        public void PercentileSetUp()
+        public void FixtureSetup()
         {
             testedRolls = new List<Int32>();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
             table = PercentileMapper.Map(tableName);
         }
 
@@ -59,10 +64,11 @@ namespace EquipmentGen.Tests.Integration.Tables
 
         protected void AssertPercentile(String content, Int32 roll)
         {
-            var message = String.Format("Roll: {0}", roll);
             testedRolls.Add(roll);
 
             Assert.That(table.Keys, Contains.Item(roll), tableName);
+
+            var message = String.Format("Roll: {0}", roll);
             Assert.That(table[roll], Is.EqualTo(content), message);
         }
     }

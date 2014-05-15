@@ -35,7 +35,6 @@
     <object>
         <name>Deck of illusions</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Dust of tracelessness</name>
@@ -47,6 +46,10 @@
     </object>
     <object>
         <name>Dust of disappearance</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Dust of dryness</name>
         <attribute>One-time use</attribute>
     </object>
     <object>
@@ -140,6 +143,10 @@
         <attribute>One-time use</attribute>
     </object>
     <object>
+        <name>Quaal's fan feather token</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
         <name>Quaal's swan boat feather token</name>
         <attribute>One-time use</attribute>
     </object>
@@ -149,6 +156,10 @@
     </object>
     <object>
         <name>Quaal's bird feather token</name>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Quaal's tree feather token</name>
         <attribute>One-time use</attribute>
     </object>
     <object>
@@ -203,37 +214,30 @@
     <object>
         <name>Necklace of fireballs type I</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type II</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type III</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type IV</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type V</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type VI</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Necklace of fireballs type VII</name>
         <attribute>One-time use</attribute>
-        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Dimensional shackles</name>

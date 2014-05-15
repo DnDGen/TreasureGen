@@ -628,7 +628,7 @@
     <EmbeddedResource Include="Items\Magical\Intelligence\IsMeleeWeaponIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\WondrousItems\RobeOfUsefulItemsBaseItems.xml" />
+    <EmbeddedResource Include="Items\Magical\WondrousItems\WondrousItemContents.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IsRangedWeaponIntelligent.xml" />

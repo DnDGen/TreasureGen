@@ -171,7 +171,7 @@
     <Compile Include="Items\Magical\WondrousItems\IronFlaskContentsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\IsDeckOFIllusionsFullyChargedTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\PlanesTests.cs" />
-    <Compile Include="Items\Magical\WondrousItems\RobeOfUsefulItemsBaseItemsTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\WondrousItemContentsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\WondrousItemTraitsTests.cs" />
     <Compile Include="Items\Mundane\Armors\ArmorAttributesTests.cs" />

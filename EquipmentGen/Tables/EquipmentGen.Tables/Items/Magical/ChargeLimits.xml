@@ -76,4 +76,44 @@
         <attribute>34</attribute>
         <attribute>34</attribute>
     </object>
+    <object>
+        <name>Necklace of fireballs type I</name>
+        <attribute>1</attribute>
+        <attribute>3</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type II</name>
+        <attribute>1</attribute>
+        <attribute>5</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type III</name>
+        <attribute>1</attribute>
+        <attribute>7</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type IV</name>
+        <attribute>1</attribute>
+        <attribute>9</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type V</name>
+        <attribute>1</attribute>
+        <attribute>7</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VI</name>
+        <attribute>1</attribute>
+        <attribute>9</attribute>
+    </object>
+    <object>
+        <name>Necklace of fireballs type VII</name>
+        <attribute>1</attribute>
+        <attribute>9</attribute>
+    </object>
+    <object>
+        <name>Robe of bones</name>
+        <attribute>1</attribute>
+        <attribute>12</attribute>
+    </object>
 </percentile>

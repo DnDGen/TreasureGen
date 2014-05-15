@@ -43,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
             item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", item.Name);
             item.Magic.Bonus = Convert.ToInt32(result.Amount);
 
-            if (item.Attributes.Any(a => a == AttributeConstants.Charged))
+            if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
 
             var traits = traitsGenerator.GenerateFor(item.ItemType);
@@ -66,7 +66,7 @@ namespace EquipmentGen.Generators.Items.Magical
             }
             else if (item.Name == "Robe of useful items")
             {
-                var baseItems = attributesSelector.SelectFrom("RobeOfUsefulItemsBaseItems", "Items");
+                var baseItems = attributesSelector.SelectFrom("WondrousItemContents", item.Name);
                 item.Contents.AddRange(baseItems);
 
                 var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
@@ -77,8 +77,49 @@ namespace EquipmentGen.Generators.Items.Magical
                 var planes = GeneratePlanesForCubicGate();
                 item.Contents.AddRange(planes);
             }
+            else if (ItemHasPartialContents(item.Name))
+            {
+                var partialContents = GetPartialContents(item.Name);
+                item.Contents.AddRange(partialContents);
+            }
 
             return item;
+        }
+
+        private IEnumerable<String> GetPartialContents(String name)
+        {
+            var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
+            var fullContents = attributesSelector.SelectFrom("WondrousItemContents", name).ToList();
+
+            if (quantity >= fullContents.Count)
+                return fullContents;
+
+            var contents = new List<String>();
+
+            while (quantity-- > 0)
+            {
+                var roll = String.Format("1d{0}-1", fullContents.Count);
+                var index = dice.Roll(roll);
+
+                contents.Add(fullContents[index]);
+                fullContents.RemoveAt(index);
+            }
+
+            return contents;
+        }
+
+        private Boolean ItemHasPartialContents(String name)
+        {
+            if (name == "Robe of bones")
+                return true;
+
+            if (name.StartsWith("Necklace of fireballs"))
+                return true;
+
+            if (name == "Deck of illusions")
+                return true;
+
+            return false;
         }
 
         private IEnumerable<String> GenerateExtraItemsInRobeOfUsefulItems()
