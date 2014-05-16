@@ -270,5 +270,25 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
             Assert.That(gear.Contents, Contains.Item("spell (spell type, 42)"));
         }
+
+        [Test]
+        public void SlayingArrowHasDesignatedFoe()
+        {
+            result.Type = WeaponConstants.SlayingArrow;
+            mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes")).Returns("foe");
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Name, Is.EqualTo("Slaying arrow (foe)"));
+        }
+
+        [Test]
+        public void GreaterSlayingArrowHasDesignatedFoe()
+        {
+            result.Type = WeaponConstants.GreaterSlayingArrow;
+            mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes")).Returns("foe");
+
+            var gear = generator.GenerateFrom("power", "Specific gear type");
+            Assert.That(gear.Name, Is.EqualTo("Greater slaying arrow (foe)"));
+        }
     }
 }

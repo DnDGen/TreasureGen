@@ -7,7 +7,6 @@ using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using NUnit.Framework;
 
@@ -47,10 +46,10 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MundaneItemGeneratorNamedAlchemicalItemIsAlchemicalItemGenerator()
+        public void AlchemicalItemGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
-            Assert.That(generator, Is.InstanceOf<AlchemicalItemGenerator>());
+            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -60,10 +59,10 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MundaneItemGeneratorNamedToolIsToolGenerator()
+        public void ToolGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Tool);
-            Assert.That(generator, Is.InstanceOf<ToolGenerator>());
+            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -142,7 +141,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void MagicalArmorGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Armor);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -155,7 +154,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void MagicalWeaponGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -168,7 +167,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void PotionGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Potion);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -181,7 +180,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void RingGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Ring);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -194,7 +193,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void RodGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Rod);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -207,7 +206,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void ScrollGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -220,7 +219,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void StaffGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Staff);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -233,7 +232,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void WandGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Wand);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -246,14 +245,14 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void WondrousItemGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
-        public void MundaneItemGeneratorNamedArmorIsMundaneArmorGenerator()
+        public void MundaneArmorGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Armor);
-            Assert.That(generator, Is.InstanceOf<MundaneArmorGenerator>());
+            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
@@ -263,10 +262,10 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         }
 
         [Test]
-        public void MundaneItemGeneratorNamedWeaponIsMundaneWeaponGenerator()
+        public void MundaneWeaponGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
-            Assert.That(generator, Is.InstanceOf<MundaneWeaponGenerator>());
+            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]

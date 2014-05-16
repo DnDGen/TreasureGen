@@ -10,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Common
     {
         private IKernel kernel;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void SetUpInjection()
         {
             kernel = new StandardKernel();

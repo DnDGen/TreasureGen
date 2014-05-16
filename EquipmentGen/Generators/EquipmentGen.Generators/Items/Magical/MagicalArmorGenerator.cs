@@ -1,8 +1,6 @@
 ﻿using System;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
@@ -13,17 +11,17 @@ namespace EquipmentGen.Generators.Items.Magical
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesSelector;
-        private ISpecialMaterialGenerator materialsSelector;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private ISpecificGearGenerator specificGearGenerator;
 
-        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecialMaterialGenerator materialsSelector, IMagicalItemTraitsGenerator magicItemTraitsGenerator, ISpecificGearGenerator specificGearGenerator)
+        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector,
+            IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, IMagicalItemTraitsGenerator magicItemTraitsGenerator,
+            ISpecificGearGenerator specificGearGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
             this.specialAbilitiesSelector = specialAbilitiesSelector;
-            this.materialsSelector = materialsSelector;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.specificGearGenerator = specificGearGenerator;
         }
@@ -51,12 +49,6 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.Magic.Bonus = Convert.ToInt32(result.Amount);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
-
-            if (materialsSelector.HasSpecialMaterial(armor.ItemType, armor.Attributes))
-            {
-                var specialMaterial = materialsSelector.GenerateFor(armor.ItemType, armor.Attributes);
-                armor.Traits.Add(specialMaterial);
-            }
 
             var traits = magicItemTraitsGenerator.GenerateFor(armor.ItemType);
             armor.Traits.AddRange(traits);

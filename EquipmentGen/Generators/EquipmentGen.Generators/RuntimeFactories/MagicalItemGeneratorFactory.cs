@@ -53,6 +53,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             generator = new MagicalItemGeneratorIntelligenceDecorator(generator, intelligenceGenerator);
             generator = new MagicalItemGeneratorCurseDecorator(generator, curseGenerator);
             generator = new MagicalItemGeneratorMundaneProxy(generator);
+            generator = new MagicalItemGeneratorSpecialMaterialDecorator(generator, specialMaterialGenerator);
 
             return generator;
         }
@@ -62,14 +63,17 @@ namespace EquipmentGen.Generators.RuntimeFactories
             switch (itemType)
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator(typeAndAmountPercentileSelector, percentileSelector);
-                case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, magicalItemTraitsGenerator, spellGenerator, chargesGenerator, typeAndAmountPercentileSelector);
+                case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, magicalItemTraitsGenerator,
+                    spellGenerator, chargesGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Rod: return new RodGenerator();
                 case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator);
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator();
-                case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, magicalItemTraitsGenerator, attributesSelector, chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
-                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector, specialAbilitiesGenerator, specialMaterialGenerator, magicItemTraitsGenerator, specificGearGenerator);
-                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator();
+                case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, magicalItemTraitsGenerator, attributesSelector,
+                    chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
+                case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector,
+                    specialAbilitiesGenerator, magicItemTraitsGenerator, specificGearGenerator);
+                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator(attributesSelector, percentileSelector);
                 default: throw new ArgumentOutOfRangeException(itemType);
             }
         }

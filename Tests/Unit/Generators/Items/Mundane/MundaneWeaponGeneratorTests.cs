@@ -15,7 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         private IMundaneItemGenerator mundaneWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IMundaneItemGenerator> mockAmmunitionGenerator;
-        private Mock<ISpecialMaterialGenerator> mockMaterialsSelector;
+        private Mock<ISpecialMaterialGenerator> mockMaterialsGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
 
         [SetUp]
@@ -23,9 +23,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
-            mockMaterialsSelector = new Mock<ISpecialMaterialGenerator>();
+            mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockMaterialsSelector.Object, mockAttributesSelector.Object);
+            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object);
 
             mockPercentileSelector.Setup(p => p.SelectFrom("MundaneWeapons")).Returns("weapon type");
             mockPercentileSelector.Setup(p => p.SelectFrom("weapon typeWeapons")).Returns("weapon name");
@@ -69,83 +69,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var attributes = new[] { "type 1", "type 2" };
             mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
 
-            var armor = mundaneWeaponGenerator.Generate();
-            Assert.That(armor.Attributes, Is.EqualTo(attributes));
-        }
-
-        [Test]
-        public void DoNotGetSpecialMaterialIfWeaponDoesNotHaveSpecialMaterial()
-        {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(false);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
-
-            var armor = mundaneWeaponGenerator.Generate();
-            Assert.That(armor.Traits, Is.Not.Contains("special material"));
-        }
-
-        [Test]
-        public void GetSpecialMaterialFromMaterialSelector()
-        {
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>())).Returns("special material");
-
             var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item("special material"));
-        }
-
-        [Test]
-        public void DoubleWeaponsCanHaveMultipleSpecialMaterials()
-        {
-            var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
-
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(ItemTypeConstants.Weapon, attributes)).Returns(true);
-            mockMaterialsSelector.SetupSequence(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes)).Returns("special material 1").Returns("special material 2");
-
-            var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item("special material 1"));
-            Assert.That(weapon.Traits, Contains.Item("special material 2"));
-        }
-
-        [Test]
-        public void CannotAddDuplicateSpecialMaterials()
-        {
-            var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
-
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(ItemTypeConstants.Weapon, attributes)).Returns(true);
-            mockMaterialsSelector.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes)).Returns("special material");
-
-            var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Is.Unique);
-        }
-
-        [Test]
-        public void IfSecondHeadDoesNotHaveSpecialMaterial_WholeWeaponOneSpecialMaterial()
-        {
-            var attributes = new[] { AttributeConstants.DoubleWeapon };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
-
-            mockMaterialsSelector.SetupSequence(p => p.HasSpecialMaterial(ItemTypeConstants.Weapon, attributes)).Returns(true).Returns(false);
-            mockMaterialsSelector.SetupSequence(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes)).Returns("special material 1").Returns("special material 2");
-
-            var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item("special material 1"));
-            Assert.That(weapon.Traits, Is.Not.Contains("special material 2"));
-        }
-
-        [Test]
-        public void NonDoubleWeaponsCannotHaveMultipleSpecialMaterials()
-        {
-            var attributes = new[] { "not double weapon" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
-
-            mockMaterialsSelector.Setup(p => p.HasSpecialMaterial(ItemTypeConstants.Weapon, attributes)).Returns(true);
-            mockMaterialsSelector.SetupSequence(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes)).Returns("special material 1").Returns("special material 2");
-
-            var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item("special material 1"));
-            Assert.That(weapon.Traits, Is.Not.Contains("special material 2"));
+            Assert.That(weapon.Attributes, Is.EqualTo(attributes));
         }
     }
 }

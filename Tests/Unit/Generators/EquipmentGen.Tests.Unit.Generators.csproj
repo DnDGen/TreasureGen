@@ -51,6 +51,8 @@
     <Compile Include="Decorators\MagicalItemGeneratorCurseDecoratorTests.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorMundaneProxyTests.cs" />
+    <Compile Include="Decorators\MundaneItemGeneratorSpecialMaterialDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorSpecialMaterialDecoratorTests.cs" />
     <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
     <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
     <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />

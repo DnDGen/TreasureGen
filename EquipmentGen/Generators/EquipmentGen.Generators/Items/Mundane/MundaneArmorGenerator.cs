@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
@@ -9,13 +8,11 @@ namespace EquipmentGen.Generators.Items.Mundane
     public class MundaneArmorGenerator : IMundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private ISpecialMaterialGenerator materialsGenerator;
         private IAttributesSelector attributesSelector;
 
-        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ISpecialMaterialGenerator materialsGenerator, IAttributesSelector attributesSelector)
+        public MundaneArmorGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector)
         {
             this.percentileSelector = percentileSelector;
-            this.materialsGenerator = materialsGenerator;
             this.attributesSelector = attributesSelector;
         }
 
@@ -53,15 +50,6 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             var size = percentileSelector.SelectFrom("ArmorSizes");
             armor.Traits.Add(size);
-
-            if (materialsGenerator.HasSpecialMaterial(armor.ItemType, armor.Attributes))
-            {
-                var specialMaterial = materialsGenerator.GenerateFor(armor.ItemType, armor.Attributes);
-                armor.Traits.Add(specialMaterial);
-
-                if (specialMaterial == TraitConstants.Dragonhide)
-                    armor.Attributes = armor.Attributes.Except(new[] { AttributeConstants.Metal, AttributeConstants.Wood });
-            }
 
             return armor;
         }
