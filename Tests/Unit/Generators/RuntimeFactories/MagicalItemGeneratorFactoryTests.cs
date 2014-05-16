@@ -40,6 +40,8 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             var mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             var result = new TypeAndAmountPercentileResult();
+            var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
+            var mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
             result.Type = String.Empty;
             result.Amount = "0";
@@ -49,7 +51,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object, mockIntelligenceGenerator.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialGenerator.Object, mockMagicItemTraitsGenerator.Object,
                 mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object,
-                mockSpecificGearGenerator.Object);
+                mockSpecificGearGenerator.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]

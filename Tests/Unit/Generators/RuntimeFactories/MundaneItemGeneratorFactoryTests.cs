@@ -27,9 +27,10 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockDice = new Mock<IDice>();
             var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             var result = new TypeAndAmountPercentileResult();
+            var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
 
             factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockMaterialGenerator.Object, mockAttributesSelector.Object,
-                mockDice.Object, mockTypeAndAmountPercentileSelector.Object);
+                mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAmmunitionGenerator.Object);
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
         }

@@ -8,10 +8,10 @@ namespace EquipmentGen.Generators.Items.Mundane
     public class MundaneWeaponGenerator : IMundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IMundaneItemGenerator ammunitionGenerator;
+        private IAmmunitionGenerator ammunitionGenerator;
         private IAttributesSelector attributesSelector;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IMundaneItemGenerator ammunitionGenerator, IAttributesSelector attributesSelector)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;

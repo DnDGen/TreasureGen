@@ -86,8 +86,15 @@ namespace EquipmentGen.Generators.Items.Magical
                 case WeaponConstants.LuckBlade1: return WeaponConstants.LuckBlade;
                 case WeaponConstants.LuckBlade2: return WeaponConstants.LuckBlade;
                 case WeaponConstants.LuckBlade3: return WeaponConstants.LuckBlade;
-                default: return oldName;
             }
+
+            if (oldName.Contains("laying arrow"))
+            {
+                var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
+                return String.Format("{0} ({1})", oldName, designatedFoe);
+            }
+
+            return oldName;
         }
 
         private IEnumerable<SpecialAbility> GetSpecialAbilities(String specificGearType, String name)

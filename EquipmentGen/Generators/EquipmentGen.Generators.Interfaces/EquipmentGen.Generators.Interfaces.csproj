@@ -47,6 +47,7 @@
     <Compile Include="Items\IItemsGenerator.cs" />
     <Compile Include="Items\Magical\IMagicalItemGenerator.cs" />
     <Compile Include="Items\Magical\IMagicalItemTraitsGenerator.cs" />
+    <Compile Include="Items\Mundane\IAmmunitionGenerator.cs" />
     <Compile Include="Items\Mundane\IMundaneItemGenerator.cs" />
     <Compile Include="Items\Magical\ISpecialAbilitiesGenerator.cs" />
     <Compile Include="Items\Mundane\ISpecialMaterialGenerator.cs" />

@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
-        private Mock<IMundaneItemGenerator> mockAmmunitionGenerator;
+        private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IDice> mockDice;
@@ -33,11 +33,13 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
-            mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
+            mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockDice = new Mock<IDice>();
-            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object);
+            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object,
+                mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockMagicItemTraitsGenerator.Object, mockBooleanPercentileSelector.Object,
+                mockSpellGenerator.Object, mockDice.Object);
 
             mockPercentileSelector.Setup(s => s.SelectFrom("WeaponTypes")).Returns("weapon type");
             mockPercentileSelector.Setup(s => s.SelectFrom("weapon typeWeapons")).Returns("weapon name");

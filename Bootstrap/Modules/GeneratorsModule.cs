@@ -23,6 +23,7 @@ namespace EquipmentGen.Bootstrap.Modules
     {
         public override void Load()
         {
+            Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();

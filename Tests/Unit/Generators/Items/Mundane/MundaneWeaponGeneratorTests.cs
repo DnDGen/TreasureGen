@@ -14,7 +14,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     {
         private IMundaneItemGenerator mundaneWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IMundaneItemGenerator> mockAmmunitionGenerator;
+        private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
 
@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockAmmunitionGenerator = new Mock<IMundaneItemGenerator>();
+            mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object);

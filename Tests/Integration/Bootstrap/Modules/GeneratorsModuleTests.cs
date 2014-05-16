@@ -273,5 +273,11 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         {
             AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
         }
+
+        [Test]
+        public void AmmunitionGeneratorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IAmmunitionGenerator>();
+        }
     }
 }

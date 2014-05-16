@@ -5,6 +5,7 @@ using EquipmentGen.Generators.Decorators;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Magical;
+using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Selectors.Interfaces;
 
@@ -25,12 +26,14 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private ISpecialMaterialGenerator specialMaterialGenerator;
         private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private ISpecificGearGenerator specificGearGenerator;
+        private IAmmunitionGenerator ammunitionGenerator;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
         public MagicalItemGeneratorFactory(IPercentileSelector percentileSelector, IMagicalItemTraitsGenerator magicalItemTraitsGenerator,
             IIntelligenceGenerator intelligenceGenerator, IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecialMaterialGenerator specialMaterialGenerator, IMagicalItemTraitsGenerator magicItemTraitsGenerator, IChargesGenerator chargesGenerator,
             IDice dice, ISpellGenerator spellGenerator, ICurseGenerator curseGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            ISpecificGearGenerator specificGearGenerator)
+            ISpecificGearGenerator specificGearGenerator, IAmmunitionGenerator ammunitionGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
@@ -45,6 +48,8 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.specialMaterialGenerator = specialMaterialGenerator;
             this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.specificGearGenerator = specificGearGenerator;
+            this.ammunitionGenerator = ammunitionGenerator;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public IMagicalItemGenerator CreateGeneratorOf(String itemType)
@@ -73,7 +78,9 @@ namespace EquipmentGen.Generators.RuntimeFactories
                     chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector,
                     specialAbilitiesGenerator, magicItemTraitsGenerator, specificGearGenerator);
-                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator(attributesSelector, percentileSelector);
+                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator(attributesSelector, percentileSelector, ammunitionGenerator,
+                    specialAbilitiesGenerator, specificGearGenerator, magicalItemTraitsGenerator, booleanPercentileSelector, spellGenerator,
+                    dice);
                 default: throw new ArgumentOutOfRangeException(itemType);
             }
         }

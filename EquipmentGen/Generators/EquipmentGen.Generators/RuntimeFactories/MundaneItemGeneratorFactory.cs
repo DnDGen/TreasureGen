@@ -16,15 +16,17 @@ namespace EquipmentGen.Generators.RuntimeFactories
         private IAttributesSelector attributesSelector;
         private IDice dice;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private IAmmunitionGenerator ammunitionGenerator;
 
         public MundaneItemGeneratorFactory(IPercentileSelector percentileSelector, ISpecialMaterialGenerator materialGenerator, IAttributesSelector attributesSelector,
-            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAmmunitionGenerator ammunitionGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.materialGenerator = materialGenerator;
             this.attributesSelector = attributesSelector;
             this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
+            this.ammunitionGenerator = ammunitionGenerator;
         }
 
         public IMundaneItemGenerator CreateGeneratorOf(String type)
@@ -40,17 +42,11 @@ namespace EquipmentGen.Generators.RuntimeFactories
             switch (type)
             {
                 case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector);
-                case ItemTypeConstants.Weapon: return GetWeaponGenerator();
+                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector);
                 case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector, dice);
                 case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
                 default: throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private IMundaneItemGenerator GetWeaponGenerator()
-        {
-            var ammunitionGenerator = new AmmunitionGenerator(percentileSelector, dice, attributesSelector);
-            return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector);
         }
     }
 }
