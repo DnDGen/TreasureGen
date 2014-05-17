@@ -79,6 +79,7 @@
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumWeaponsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
     <Compile Include="Items\Magical\Curses\IsItemCursedTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemsTests.cs" />

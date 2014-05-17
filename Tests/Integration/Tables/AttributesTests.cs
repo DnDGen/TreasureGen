@@ -17,17 +17,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected abstract String tableName { get; }
 
         private Dictionary<String, IEnumerable<String>> table;
-        private List<String> testedNames;
+        private HashSet<String> testedNames;
 
-        [TestFixtureSetUp]
-        public void FixtureSetup()
+        public AttributesTests()
         {
-            testedNames = new List<String>();
-        }
-
-        [SetUp]
-        public void Setup()
-        {
+            testedNames = new HashSet<String>();
             table = AttributesMapper.Map(tableName);
         }
 
@@ -38,16 +32,10 @@ namespace EquipmentGen.Tests.Integration.Tables
             Assert.That(missingNames, Is.Empty, tableName);
         }
 
-        [Test, TestFixtureTearDown]
-        public void NoNamesTestedNultipleTimes()
-        {
-            var duplicateNames = testedNames.Where(n => testedNames.Count(cn => cn == n) > 1).Distinct();
-            Assert.That(duplicateNames, Is.Empty, tableName);
-        }
-
         protected void AssertAttributes(String name, IEnumerable<String> attributes)
         {
-            testedNames.Add(name);
+            var notTestedBefore = testedNames.Add(name);
+            Assert.That(notTestedBefore, Is.True);
 
             Assert.That(table.Keys, Contains.Item(name), tableName);
 
@@ -57,7 +45,7 @@ namespace EquipmentGen.Tests.Integration.Tables
 
                 var actualAttributeCount = table[name].Count(a => a == attribute);
                 var expectedAttributeCount = attributes.Count(a => a == attribute);
-                Assert.That(actualAttributeCount, Is.EqualTo(expectedAttributeCount));
+                Assert.That(actualAttributeCount, Is.EqualTo(expectedAttributeCount), attribute);
             }
 
             var extraAttributes = table[name].Except(attributes);

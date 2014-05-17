@@ -19,17 +19,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected abstract String tableName { get; }
 
         private Dictionary<Int32, String> table;
-        private List<Int32> testedRolls;
+        private HashSet<Int32> testedRolls;
 
-        [TestFixtureSetUp]
-        public void FixtureSetup()
+        public PercentileTests()
         {
-            testedRolls = new List<Int32>();
-        }
-
-        [SetUp]
-        public void Setup()
-        {
+            testedRolls = new HashSet<Int32>();
             table = PercentileMapper.Map(tableName);
         }
 
@@ -49,13 +43,6 @@ namespace EquipmentGen.Tests.Integration.Tables
             Assert.That(missingRolls, Is.Empty, tableName);
         }
 
-        [Test, TestFixtureTearDown]
-        public void NoNamesTestedNultipleTimes()
-        {
-            var duplicateRolls = testedRolls.Where(r => testedRolls.Count(cr => cr == r) > 1).Distinct();
-            Assert.That(duplicateRolls, Is.Empty, tableName);
-        }
-
         protected void AssertPercentile(String content, Int32 lower, Int32 upper)
         {
             for (var roll = lower; roll <= upper; roll++)
@@ -64,7 +51,8 @@ namespace EquipmentGen.Tests.Integration.Tables
 
         protected void AssertPercentile(String content, Int32 roll)
         {
-            testedRolls.Add(roll);
+            var notTestedBefore = testedRolls.Add(roll);
+            Assert.That(notTestedBefore, Is.True);
 
             Assert.That(table.Keys, Contains.Item(roll), tableName);
 
