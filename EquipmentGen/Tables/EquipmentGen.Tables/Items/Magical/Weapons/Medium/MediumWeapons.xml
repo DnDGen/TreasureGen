@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>1</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>2</content>
+        <upper>29</upper>
+    </object>
+    <object>
+        <lower>30</lower>
+        <content>3</content>
+        <upper>58</upper>
+    </object>
+    <object>
+        <lower>59</lower>
+        <content>4</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>SpecificWeapon</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>SpecialAbility</content>
+        <upper>100</upper>
+    </object>
+</percentile>
