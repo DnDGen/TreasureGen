@@ -75,10 +75,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetSpecificItemsFromGenerator()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("powerWeapons")).Returns("SpecificWeapon");
+            mockPercentileSelector.Setup(s => s.SelectFrom("powerWeapons")).Returns("SpecificWeapons");
 
             var specificWeapon = new Item();
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", "SpecificWeapon")).Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", "SpecificWeapons")).Returns(specificWeapon);
 
             var weapon = weaponGenerator.GenerateAtPower("power");
             Assert.That(weapon, Is.EqualTo(specificWeapon));

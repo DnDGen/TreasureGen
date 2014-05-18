@@ -28,10 +28,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 return;
 
             Assert.That(weapon.Name, Is.Not.Empty);
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Bludgeoning).Or.Contains(AttributeConstants.NotBludgeoning));
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon));
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon).Or.Contains(AttributeConstants.Specific));
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
-            Assert.That(weapon.Contents, Is.Empty);
+            Assert.That(weapon.Contents, Is.Not.Null);
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
 
             if (weapon.IsMagical && !weapon.Attributes.Contains(AttributeConstants.Specific))

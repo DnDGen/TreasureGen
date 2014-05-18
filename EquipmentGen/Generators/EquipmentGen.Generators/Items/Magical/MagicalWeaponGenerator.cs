@@ -47,7 +47,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 bonus = percentileSelector.SelectFrom(tablename);
             }
 
-            if (bonus == "SpecificWeapon")
+            if (bonus == "SpecificWeapons")
                 return specificGearGenerator.GenerateFrom(power, bonus);
 
             var type = percentileSelector.SelectFrom("WeaponTypes");

@@ -11,7 +11,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
             get { return "MinorWeapons"; }
         }
 
-        [TestCase("SpecificWeapon", 86, 90)]
+        [TestCase("SpecificWeapons", 86, 90)]
         [TestCase("SpecialAbility", 91, 100)]
         public void Percentile(String content, Int32 lower, Int32 upper)
         {
