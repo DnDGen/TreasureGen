@@ -78,7 +78,9 @@
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Major\MajorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumWeaponsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\Minor\MinorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
     <Compile Include="Items\Magical\Curses\IsItemCursedTests.cs" />
@@ -239,10 +241,10 @@
     <Compile Include="Items\Magical\Weapons\Major\MajorRangedWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumRangedWeaponSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\Magical\Weapons\MeleeTraitsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\MeleeWeaponTraitsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorMeleeWeaponSpecialAbilitiesTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorRangedWeaponSpecialAbilitiesTests.cs" />
-    <Compile Include="Items\Magical\Weapons\RangedTraitsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\RangedWeaponTraitsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\MajorWondrousItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\MediumWondrousItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\MinorWondrousItemsTests.cs" />

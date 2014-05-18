@@ -361,7 +361,7 @@
     <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumRangedWeaponSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\MeleeTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\MeleeWeaponTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorMeleeWeaponSpecialAbilities.xml" />
@@ -370,7 +370,7 @@
     <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorSpecificWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\RangedTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\RangedWeaponTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\WondrousItems\MajorWondrousItems.xml" />
@@ -657,6 +657,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Weapons\WeaponTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorWeapons.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

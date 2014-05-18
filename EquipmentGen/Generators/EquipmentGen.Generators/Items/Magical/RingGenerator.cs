@@ -39,7 +39,7 @@ namespace EquipmentGen.Generators.Items.Magical
             ring.Attributes = attributesSelector.SelectFrom("RingAttributes", result.Type);
             ring.ItemType = ItemTypeConstants.Ring;
 
-            var traits = traitsGenerator.GenerateFor(ItemTypeConstants.Ring);
+            var traits = traitsGenerator.GenerateFor(ring.ItemType, ring.Attributes);
             ring.Traits.AddRange(traits);
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))

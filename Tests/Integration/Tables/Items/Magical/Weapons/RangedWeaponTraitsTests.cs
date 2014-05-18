@@ -5,16 +5,15 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
 {
     [TestFixture]
-    public class MeleeTraitsTests : PercentileTests
+    public class RangedWeaponTraitsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MeleeTraits"; }
+            get { return "RangedWeaponTraits"; }
         }
 
-        [TestCase(TraitConstants.ShedsLight, 1, 30)]
-        [TestCase(TraitConstants.Markings, 31, 45)]
-        [TestCase(EmptyContent, 46, 100)]
+        [TestCase(TraitConstants.Markings, 1, 20)]
+        [TestCase(EmptyContent, 21, 100)]
         public void Percentile(String content, Int32 lower, Int32 upper)
         {
             AssertPercentile(content, lower, upper);

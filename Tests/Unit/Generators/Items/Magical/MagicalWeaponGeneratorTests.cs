@@ -101,7 +101,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetTraitsFromGenerator()
         {
             var traits = new[] { "trait 1", "trait 2" };
-            mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Weapon)).Returns(traits);
+            mockMagicItemTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>())).Returns(traits);
 
             var weapon = weaponGenerator.GenerateAtPower("power");
             foreach (var trait in traits)

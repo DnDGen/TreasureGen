@@ -67,7 +67,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
             }
 
-            var traits = magicalItemTraitsGenerator.GenerateFor(weapon.ItemType);
+            var traits = magicalItemTraitsGenerator.GenerateFor(weapon.ItemType, weapon.Attributes);
             weapon.Traits.AddRange(traits);
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon.ItemType, weapon.Attributes, power, weapon.Magic.Bonus,

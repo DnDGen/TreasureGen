@@ -18,7 +18,7 @@
     </object>
     <object>
         <lower>4</lower>
-        <content>Unpleasant odor when item communicates</content>
+        <content>Offensive (in communication or appearance)</content>
         <upper>4</upper>
     </object>
     <object>
@@ -38,17 +38,17 @@
     </object>
     <object>
         <lower>8</lower>
-        <content>Vibrates lightly when wielded</content>
+        <content>Vibrates gently when wielded</content>
         <upper>8</upper>
     </object>
     <object>
         <lower>9</lower>
-        <content>Unusual-colored markings</content>
+        <content>Unusually-colored markings</content>
         <upper>9</upper>
     </object>
     <object>
         <lower>10</lower>
-        <content>Sputters</content>
+        <content>Mumbles</content>
         <upper>10</upper>
     </object>
     <object>
@@ -333,7 +333,7 @@
     </object>
     <object>
         <lower>67</lower>
-        <content>Well mannered</content>
+        <content>Well-mannered</content>
         <upper>67</upper>
     </object>
     <object>

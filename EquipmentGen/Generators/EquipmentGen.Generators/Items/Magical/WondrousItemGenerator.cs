@@ -46,7 +46,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
 
-            var traits = traitsGenerator.GenerateFor(item.ItemType);
+            var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
             item.Traits.AddRange(traits);
 
             if (item.Name == "Horn of Valhalla")

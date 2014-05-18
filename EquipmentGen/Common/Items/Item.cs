@@ -18,8 +18,12 @@ namespace EquipmentGen.Common.Items
         {
             get
             {
-                return isMagical || Magic.Bonus > 0 || Magic.Charges > 0 || !String.IsNullOrEmpty(Magic.Curse)
-                       || Magic.Intelligence.Ego > 0 || Magic.SpecialAbilities.Any();
+                return isMagical
+                       || Magic.Bonus > 0
+                       || Magic.Charges > 0
+                       || !String.IsNullOrEmpty(Magic.Curse)
+                       || Magic.Intelligence.Ego > 0
+                       || Magic.SpecialAbilities.Any();
             }
             set
             {

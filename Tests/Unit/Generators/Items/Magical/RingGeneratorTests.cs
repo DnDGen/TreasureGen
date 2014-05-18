@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
@@ -69,7 +70,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetTraitsFromGenerator()
         {
             var traits = new[] { "trait 1", "trait 2" };
-            mockTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring)).Returns(traits);
+            mockTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>())).Returns(traits);
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Traits, Is.EqualTo(traits));

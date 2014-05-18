@@ -13,7 +13,7 @@
     </object>
     <object>
         <lower>81</lower>
-        <content>Ranged</content>
+        <content>CommonRanged</content>
         <upper>100</upper>
     </object>
 </percentile>

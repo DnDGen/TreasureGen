@@ -50,7 +50,7 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.Magic.Bonus = Convert.ToInt32(result.Amount);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
 
-            var traits = magicItemTraitsGenerator.GenerateFor(armor.ItemType);
+            var traits = magicItemTraitsGenerator.GenerateFor(armor.ItemType, armor.Attributes);
             armor.Traits.AddRange(traits);
 
             return armor;

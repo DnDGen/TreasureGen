@@ -83,52 +83,94 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected IEnumerable<String> GetNewAttributesForGear(String itemType, Boolean forceMaterials)
         {
+            if (itemType == ItemTypeConstants.Weapon)
+                return GenerateWeaponAttributes(forceMaterials);
+            else if (itemType == ItemTypeConstants.Armor)
+                return GenerateArmorAttributes(forceMaterials);
+
+            throw new ArgumentOutOfRangeException();
+        }
+
+        private IEnumerable<String> GenerateArmorAttributes(Boolean forceMaterials)
+        {
             var attributes = new List<String>();
 
-            if (itemType == ItemTypeConstants.Weapon)
+            switch (Random.Next(3))
             {
-                switch (Random.Next(3))
-                {
-                    case 0: attributes.Add(AttributeConstants.Melee); break;
-                    case 1: attributes.Add(AttributeConstants.Ranged); break;
-                    case 2:
-                        attributes.Add(AttributeConstants.Melee);
-                        attributes.Add(AttributeConstants.Ranged);
-                        break;
-                }
-
-                switch (Random.Next(4))
-                {
-                    case 0: attributes.Add(AttributeConstants.Metal); break;
-                    case 1: attributes.Add(AttributeConstants.Wood); break;
-                    case 2:
-                        attributes.Add(AttributeConstants.Metal);
-                        attributes.Add(AttributeConstants.Wood);
-                        break;
-                    case 3:
-                        if (forceMaterials)
-                            attributes.Add(AttributeConstants.Metal);
-                        break;
-                }
+                case 0: attributes.Add(AttributeConstants.Shield); break;
+                case 1: break;
+                case 2:
+                    attributes.Add(AttributeConstants.Shield);
+                    attributes.Add(AttributeConstants.NotTower);
+                    break;
             }
-            else if (itemType == ItemTypeConstants.Armor)
-            {
-                switch (Random.Next(3))
-                {
-                    case 0: attributes.Add(AttributeConstants.Shield); break;
-                    case 1: break;
-                    case 2:
-                        attributes.Add(AttributeConstants.Shield);
-                        attributes.Add(AttributeConstants.NotTower);
-                        break;
-                }
 
-                switch (Random.Next(3))
-                {
-                    case 0: attributes.Add(AttributeConstants.Metal); break;
-                    case 1: attributes.Add(AttributeConstants.Wood); break;
-                    case 2: break;
-                }
+            switch (Random.Next(3))
+            {
+                case 0: attributes.Add(AttributeConstants.Metal); break;
+                case 1: attributes.Add(AttributeConstants.Wood); break;
+                case 2:
+                    if (forceMaterials)
+                        attributes.Add(AttributeConstants.Metal);
+                    break;
+            }
+
+            return attributes;
+        }
+
+        private IEnumerable<String> GenerateWeaponAttributes(Boolean forceMaterials)
+        {
+            var attributes = new List<String>();
+
+            switch (Random.Next(3))
+            {
+                case 0: attributes.Add(AttributeConstants.Melee); break;
+                case 1: attributes.Add(AttributeConstants.Ranged); break;
+                case 2:
+                    attributes.Add(AttributeConstants.Melee);
+                    attributes.Add(AttributeConstants.Ranged);
+                    break;
+            }
+
+            switch (Random.Next(4))
+            {
+                case 0: attributes.Add(AttributeConstants.Metal); break;
+                case 1: attributes.Add(AttributeConstants.Wood); break;
+                case 2:
+                    attributes.Add(AttributeConstants.Metal);
+                    attributes.Add(AttributeConstants.Wood);
+                    break;
+                case 3:
+                    if (forceMaterials)
+                        attributes.Add(AttributeConstants.Metal);
+                    break;
+            }
+
+            if (attributes.Contains(AttributeConstants.Melee) && Random.Next(2) > 0)
+                attributes.Add(AttributeConstants.DoubleWeapon);
+            else if (attributes.Contains(AttributeConstants.Ranged) && Random.Next(2) > 0)
+                attributes.Add(AttributeConstants.Thrown);
+            else if (attributes.Contains(AttributeConstants.Ranged) && Random.Next(2) > 0)
+                attributes.Add(AttributeConstants.Ammunition);
+
+            switch (Random.Next(6))
+            {
+                case 0: attributes.Add(AttributeConstants.Bludgeoning); break;
+                case 1: attributes.Add(AttributeConstants.NotBludgeoning); break;
+                case 2:
+                    attributes.Add(AttributeConstants.NotBludgeoning);
+                    attributes.Add(AttributeConstants.Slashing);
+                    break;
+                case 3:
+                    attributes.Add(AttributeConstants.Bludgeoning);
+                    attributes.Add(AttributeConstants.NotBludgeoning);
+                    break;
+                case 4:
+                    attributes.Add(AttributeConstants.Bludgeoning);
+                    attributes.Add(AttributeConstants.NotBludgeoning);
+                    attributes.Add(AttributeConstants.Slashing);
+                    break;
+                case 5: break;
             }
 
             return attributes;
