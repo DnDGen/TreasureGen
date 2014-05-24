@@ -11,19 +11,15 @@ namespace EquipmentGen.Generators.Items.Magical
     public class WondrousItemGenerator : IMagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IMagicalItemTraitsGenerator traitsGenerator;
         private IAttributesSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
         private IDice dice;
         private ISpellGenerator spellGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
-        public WondrousItemGenerator(IPercentileSelector percentileSelector, IMagicalItemTraitsGenerator traitsGenerator,
-            IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator,
-            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public WondrousItemGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
-            this.traitsGenerator = traitsGenerator;
             this.attributesSelector = attributesSelector;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
@@ -45,9 +41,6 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
-
-            var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
-            item.Traits.AddRange(traits);
 
             if (item.Name == "Horn of Valhalla")
             {

@@ -22,12 +22,12 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<ISpecialMaterialGenerator> mockMaterialGenerator;
+        private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            var mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             var mockAttributesSelector = new Mock<IAttributesSelector>();
             var mockChargesGenerator = new Mock<IChargesGenerator>();
@@ -37,7 +37,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             var mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockMaterialGenerator = new Mock<ISpecialMaterialGenerator>();
-            var mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
+            mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             var mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             var result = new TypeAndAmountPercentileResult();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
@@ -49,7 +49,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result.Amount);
 
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object, mockIntelligenceGenerator.Object,
-                mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialGenerator.Object, mockMagicItemTraitsGenerator.Object,
+                mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialGenerator.Object, mockTraitsGenerator.Object,
                 mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object,
                 mockSpecificGearGenerator.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
         }
@@ -90,10 +90,11 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var generator = factory.CreateGeneratorOf(itemType);
             var item = generator.GenerateAtPower(PowerConstants.Major);
 
-            mockIntelligenceGenerator.Verify(g => g.IsIntelligent(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<Boolean>()), Times.Once);
-            mockCurseGenerator.Verify(g => g.HasCurse(It.IsAny<Boolean>()), Times.Once);
+            mockIntelligenceGenerator.Verify(g => g.IsIntelligent(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<Boolean>()), Times.Once, itemType);
+            mockCurseGenerator.Verify(g => g.HasCurse(It.IsAny<Boolean>()), Times.Once, itemType);
             mockMaterialGenerator.Verify(g => g.HasSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
-                Times.Once);
+                Times.Once, itemType);
+            mockTraitsGenerator.Verify(g => g.GenerateFor(itemType, It.IsAny<IEnumerable<String>>()), Times.Once, itemType);
         }
 
         [TestCase(ItemTypeConstants.Armor)]
@@ -114,6 +115,18 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             mockCurseGenerator.Verify(g => g.HasCurse(It.IsAny<Boolean>()), Times.Never);
             mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>()), Times.Never);
             mockTypeAndAmountPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<String>()), Times.Never);
+            mockMaterialGenerator.Verify(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
+                Times.Never);
+            mockTraitsGenerator.Verify(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>()), Times.Never);
+        }
+
+        [TestCase(ItemTypeConstants.AlchemicalItem)]
+        [TestCase(ItemTypeConstants.SpecificCursedItem)]
+        [TestCase(ItemTypeConstants.Tool)]
+        [TestCase("item type")]
+        public void InvalidItemType(String itemType)
+        {
+            Assert.That(() => factory.CreateGeneratorOf(itemType), Throws.ArgumentException.With.Message.EqualTo(itemType));
         }
     }
 }

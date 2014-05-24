@@ -5,6 +5,6 @@ namespace EquipmentGen.Generators.RuntimeFactories.Interfaces
 {
     public interface IMundaneItemGeneratorFactory
     {
-        IMundaneItemGenerator CreateGeneratorOf(String type);
+        IMundaneItemGenerator CreateGeneratorOf(String itemType);
     }
 }

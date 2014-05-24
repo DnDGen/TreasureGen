@@ -15,21 +15,17 @@ namespace EquipmentGen.Generators.Items.Magical
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private ISpecificGearGenerator specificGearGenerator;
-        private IMagicalItemTraitsGenerator magicalItemTraitsGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpellGenerator spellGenerator;
         private IDice dice;
 
-        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator,
-            ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IMagicalItemTraitsGenerator magicalItemTraitsGenerator,
-            IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, IDice dice)
+        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, IDice dice)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
-            this.magicalItemTraitsGenerator = magicalItemTraitsGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.spellGenerator = spellGenerator;
             this.dice = dice;
@@ -67,8 +63,6 @@ namespace EquipmentGen.Generators.Items.Magical
                 weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
             }
 
-            var traits = magicalItemTraitsGenerator.GenerateFor(weapon.ItemType, weapon.Attributes);
-            weapon.Traits.AddRange(traits);
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon.ItemType, weapon.Attributes, power, weapon.Magic.Bonus,
                 specialAbilitiesCount);

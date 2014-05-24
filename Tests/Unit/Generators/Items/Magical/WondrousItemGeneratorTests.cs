@@ -36,9 +36,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<IDice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
-            wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockTraitsGenerator.Object,
-                mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object,
-                mockTypeAndAmountPercentileSelector.Object);
+            wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
 
             result.Type = "wondrous item";
             result.Amount = "0";
@@ -52,17 +50,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Name, Is.EqualTo(result.Type));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(item.IsMagical, Is.True);
-        }
-
-        [Test]
-        public void GetTraitsFromGenerator()
-        {
-            var traits = new[] { "trait 1", "trait 2" };
-            mockTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, It.IsAny<IEnumerable<String>>())).Returns(traits);
-
-            var item = wondrousItemGenerator.GenerateAtPower("power");
-            foreach (var trait in traits)
-                Assert.That(item.Traits, Contains.Item(trait));
         }
 
         [Test]

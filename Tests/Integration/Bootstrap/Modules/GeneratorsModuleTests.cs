@@ -141,7 +141,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void MagicalArmorGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Armor);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -154,7 +154,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void MagicalWeaponGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void PotionGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Potion);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void RingGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Ring);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -193,7 +193,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void RodGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Rod);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void ScrollGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -219,7 +219,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void StaffGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Staff);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -232,7 +232,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void WandGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Wand);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
@@ -245,7 +245,7 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void WondrousItemGeneratorIsDecorated()
         {
             var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorSpecialMaterialDecorator>());
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]

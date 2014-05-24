@@ -22,6 +22,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         public AttributesTests()
         {
             testedNames = new HashSet<String>();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
             table = AttributesMapper.Map(tableName);
         }
 

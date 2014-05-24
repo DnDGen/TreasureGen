@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -12,16 +11,14 @@ namespace EquipmentGen.Generators.Items.Magical
     {
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
-        private IMagicalItemTraitsGenerator traitsGenerator;
         private ISpellGenerator spellGenerator;
         private IChargesGenerator chargesGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
-        public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, IMagicalItemTraitsGenerator traitsGenerator, ISpellGenerator spellGenerator, IChargesGenerator chargesGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, ISpellGenerator spellGenerator, IChargesGenerator chargesGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
-            this.traitsGenerator = traitsGenerator;
             this.spellGenerator = spellGenerator;
             this.chargesGenerator = chargesGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
@@ -38,9 +35,6 @@ namespace EquipmentGen.Generators.Items.Magical
             ring.IsMagical = true;
             ring.Attributes = attributesSelector.SelectFrom("RingAttributes", result.Type);
             ring.ItemType = ItemTypeConstants.Ring;
-
-            var traits = traitsGenerator.GenerateFor(ring.ItemType, ring.Attributes);
-            ring.Traits.AddRange(traits);
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, result.Type);

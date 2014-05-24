@@ -11,18 +11,14 @@ namespace EquipmentGen.Generators.Items.Magical
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesSelector;
-        private IMagicalItemTraitsGenerator magicItemTraitsGenerator;
         private ISpecificGearGenerator specificGearGenerator;
 
-        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector,
-            IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, IMagicalItemTraitsGenerator magicItemTraitsGenerator,
-            ISpecificGearGenerator specificGearGenerator)
+        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecificGearGenerator specificGearGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
             this.specialAbilitiesSelector = specialAbilitiesSelector;
-            this.magicItemTraitsGenerator = magicItemTraitsGenerator;
             this.specificGearGenerator = specificGearGenerator;
         }
 
@@ -48,10 +44,7 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.Name = percentileSelector.SelectFrom(tableName);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.Magic.Bonus = Convert.ToInt32(result.Amount);
-            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount); ;
-
-            var traits = magicItemTraitsGenerator.GenerateFor(armor.ItemType, armor.Attributes);
-            armor.Traits.AddRange(traits);
+            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount);
 
             return armor;
         }

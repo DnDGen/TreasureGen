@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="D20Dice">
-      <HintPath>..\..\..\packages\D20Dice.3.1\lib\D20Dice.dll</HintPath>
+    <Reference Include="D20Dice, Version=1.0.5257.13764, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\D20Dice.4.0\lib\D20Dice.dll</HintPath>
+    </Reference>
+    <Reference Include="D20Dice.Bootstrap">
+      <HintPath>..\..\..\packages\D20Dice.4.0\lib\D20Dice.Bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,6 +49,7 @@
     <Compile Include="Decorators\MagicalItemGeneratorCurseDecorator.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecorator.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorMundaneProxy.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorTraitsDecorator.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Decorators\MundaneItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="RuntimeFactories\Interfaces\IMagicalItemGeneratorFactory.cs" />

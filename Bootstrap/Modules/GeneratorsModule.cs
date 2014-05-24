@@ -1,5 +1,4 @@
-﻿using D20Dice;
-using EquipmentGen.Common.Items;
+﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators;
 using EquipmentGen.Generators.Coins;
 using EquipmentGen.Generators.Goods;
@@ -27,7 +26,6 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<ICoinGenerator>().To<CoinGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
-            Bind<IDice>().ToMethod(c => DiceFactory.Create()).InSingletonScope();
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
@@ -54,7 +52,6 @@ namespace EquipmentGen.Bootstrap.Modules
             Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Staff)).Named(ItemTypeConstants.Staff);
             Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Wand)).Named(ItemTypeConstants.Wand);
             Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.WondrousItem)).Named(ItemTypeConstants.WondrousItem);
-
         }
     }
 }

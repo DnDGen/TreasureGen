@@ -10,12 +10,19 @@ namespace EquipmentGen.Tests.Integration.Stress
         [Inject]
         public ITreasureGenerator TreasureGenerator { get; set; }
 
+        [Test]
+        public void StressedTreasureGenerator()
+        {
+            StressGenerator();
+        }
+
         protected override void MakeAssertions()
         {
             var level = GetNewLevel();
             var treasure = TreasureGenerator.GenerateAtLevel(level);
 
-            Assert.That(treasure.Coin, Is.Not.Null, "coin");
+            Assert.That(treasure.Coin.Currency, Is.Not.Null);
+            Assert.That(treasure.Coin.Quantity, Is.AtLeast(0));
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
             Assert.That(treasure.Items, Is.Not.Null, "items");
         }

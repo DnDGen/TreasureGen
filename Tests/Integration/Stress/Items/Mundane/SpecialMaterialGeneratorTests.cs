@@ -27,8 +27,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         protected override void MakeAssertions()
         {
             var item = GenerateItem();
+            var hasSpecialMaterial = SpecialMaterialGenerator.HasSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
 
-            if (SpecialMaterialGenerator.HasSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
+            if (hasSpecialMaterial)
             {
                 var material = SpecialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 Assert.That(material, Is.Not.Empty);

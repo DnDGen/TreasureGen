@@ -1,4 +1,5 @@
 ﻿using System;
+using D20Dice.Bootstrap;
 using EquipmentGen.Bootstrap;
 using Ninject;
 using NUnit.Framework;
@@ -16,6 +17,9 @@ namespace EquipmentGen.Tests.Integration.Common
 
             var equipmentGenModuleLoader = new EquipmentGenModuleLoader();
             equipmentGenModuleLoader.LoadModules(kernel);
+
+            var d20DiceModuleLoader = new D20DiceModuleLoader();
+            d20DiceModuleLoader.LoadModules(kernel);
 
             kernel.Inject(this);
         }

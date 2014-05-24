@@ -21,10 +21,14 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         private Int32 iterations;
 
+        public StressTests()
+        {
+            iterations = 0;
+        }
+
         [SetUp]
         public void Setup()
         {
-            iterations = 0;
             Stopwatch.Start();
         }
 
@@ -45,12 +49,19 @@ namespace EquipmentGen.Tests.Integration.Stress
             Assert.Pass("Iterations: {0}", iterations);
         }
 
+        protected abstract void MakeAssertions();
+
         private Boolean TestShouldKeepRunning()
         {
             return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations < ConfidentIterations;
         }
 
-        protected abstract void MakeAssertions();
+        [Test, TestFixtureTearDown]
+        public void GeneratorWasStressed()
+        {
+            var type = GetType();
+            Assert.That(iterations, Is.GreaterThan(0), type.Name);
+        }
 
         protected Int32 GetNewLevel()
         {

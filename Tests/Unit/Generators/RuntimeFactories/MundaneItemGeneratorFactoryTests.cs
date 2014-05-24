@@ -64,5 +64,19 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             mockMaterialGenerator.Verify(g => g.HasSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
                 Times.Once);
         }
+
+        [TestCase(ItemTypeConstants.Potion)]
+        [TestCase(ItemTypeConstants.Ring)]
+        [TestCase(ItemTypeConstants.Rod)]
+        [TestCase(ItemTypeConstants.Scroll)]
+        [TestCase(ItemTypeConstants.Staff)]
+        [TestCase(ItemTypeConstants.Wand)]
+        [TestCase(ItemTypeConstants.SpecificCursedItem)]
+        [TestCase(ItemTypeConstants.WondrousItem)]
+        [TestCase("item type")]
+        public void InvalidItemType(String itemType)
+        {
+            Assert.That(() => factory.CreateGeneratorOf(itemType), Throws.ArgumentException.With.Message.EqualTo(itemType));
+        }
     }
 }

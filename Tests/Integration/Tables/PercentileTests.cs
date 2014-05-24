@@ -24,6 +24,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         public PercentileTests()
         {
             testedRolls = new HashSet<Int32>();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
             table = PercentileMapper.Map(tableName);
         }
 

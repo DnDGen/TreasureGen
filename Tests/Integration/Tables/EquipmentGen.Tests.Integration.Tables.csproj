@@ -35,9 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,11 +76,15 @@
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
+    <Compile Include="Items\Magical\Curses\SpecificCursedItemTraitsTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
+    <Compile Include="Items\Magical\Potions\PotionTraitsTests.cs" />
+    <Compile Include="Items\Magical\Scrolls\ScrollTraitsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Major\MajorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorWeaponsTests.cs" />
+    <Compile Include="Items\Magical\Weapons\SpellStoringContainsSpellTests.cs" />
     <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
     <Compile Include="Items\Magical\Curses\IsItemCursedTests.cs" />
@@ -294,6 +298,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -29,23 +29,23 @@ namespace EquipmentGen.Generators.RuntimeFactories
             this.ammunitionGenerator = ammunitionGenerator;
         }
 
-        public IMundaneItemGenerator CreateGeneratorOf(String type)
+        public IMundaneItemGenerator CreateGeneratorOf(String itemType)
         {
-            var generator = GetGenerator(type);
+            var generator = GetGenerator(itemType);
             generator = new MundaneItemGeneratorSpecialMaterialDecorator(generator, materialGenerator);
 
             return generator;
         }
 
-        private IMundaneItemGenerator GetGenerator(String type)
+        private IMundaneItemGenerator GetGenerator(String itemType)
         {
-            switch (type)
+            switch (itemType)
             {
                 case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector);
                 case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector);
                 case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector, dice);
                 case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
-                default: throw new ArgumentOutOfRangeException();
+                default: throw new ArgumentException(itemType);
             }
         }
     }

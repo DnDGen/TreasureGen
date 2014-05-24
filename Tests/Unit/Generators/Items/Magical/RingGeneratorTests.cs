@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
-            ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockTraitsGenerator.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
+            ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
 
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
             result.Amount = "0";
@@ -64,16 +64,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
-        }
-
-        [Test]
-        public void GetTraitsFromGenerator()
-        {
-            var traits = new[] { "trait 1", "trait 2" };
-            mockTraitsGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<IEnumerable<String>>())).Returns(traits);
-
-            var ring = ringGenerator.GenerateAtPower("power");
-            Assert.That(ring.Traits, Is.EqualTo(traits));
         }
 
         [Test]
