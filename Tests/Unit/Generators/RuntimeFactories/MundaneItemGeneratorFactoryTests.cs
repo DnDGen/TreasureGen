@@ -35,12 +35,6 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
         }
 
-        [Test]
-        public void InvalidTypeThrowsException()
-        {
-            Assert.That(() => factory.CreateGeneratorOf("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
-        }
-
         [TestCase(ItemTypeConstants.Armor)]
         [TestCase(ItemTypeConstants.AlchemicalItem)]
         [TestCase(ItemTypeConstants.Weapon)]

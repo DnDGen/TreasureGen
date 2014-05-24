@@ -1,5 +1,4 @@
-﻿using D20Dice;
-using EquipmentGen.Common.Items;
+﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Decorators;
 using EquipmentGen.Generators.Interfaces;
 using EquipmentGen.Generators.Interfaces.Coins;
@@ -19,12 +18,6 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void CoinGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ICoinGenerator>();
-        }
-
-        [Test]
-        public void DiceConstructedAsSingleton()
-        {
-            AssertSingleton<IDice>();
         }
 
         [Test]

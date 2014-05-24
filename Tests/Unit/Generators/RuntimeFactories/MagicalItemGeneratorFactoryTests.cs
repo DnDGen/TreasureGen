@@ -54,12 +54,6 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
                 mockSpecificGearGenerator.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
         }
 
-        [Test]
-        public void InvalidTypeThrowsException()
-        {
-            Assert.That(() => factory.CreateGeneratorOf("invalid type"), Throws.InstanceOf<ArgumentOutOfRangeException>());
-        }
-
         [TestCase(ItemTypeConstants.Armor)]
         [TestCase(ItemTypeConstants.Potion)]
         [TestCase(ItemTypeConstants.Ring)]
