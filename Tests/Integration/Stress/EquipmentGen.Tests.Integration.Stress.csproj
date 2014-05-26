@@ -35,12 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="D20Dice, Version=1.0.5257.13764, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="D20Dice, Version=1.0.5257.42607, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\D20Dice.4.0\lib\D20Dice.dll</HintPath>
+      <HintPath>..\..\..\packages\D20Dice.5.3\lib\D20Dice.dll</HintPath>
     </Reference>
-    <Reference Include="D20Dice.Bootstrap">
-      <HintPath>..\..\..\packages\D20Dice.4.0\lib\D20Dice.Bootstrap.dll</HintPath>
+    <Reference Include="NCalc">
+      <HintPath>..\..\..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
