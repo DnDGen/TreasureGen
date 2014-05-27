@@ -3,12 +3,127 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Markings provide a clue to its function</content>
-        <upper>30</upper>
+        <content>Detect magic</content>
+        <upper>2</upper>
     </object>
     <object>
-        <lower>31</lower>
-        <content></content>
-        <upper>100</upper>
+        <lower>3</lower>
+        <content>Light</content>
+        <upper>4</upper>
+    </object>
+    <object>
+        <lower>5</lower>
+        <content>Burning hands</content>
+        <upper>7</upper>
+    </object>
+    <object>
+        <lower>8</lower>
+        <content>Charm animal</content>
+        <upper>10</upper>
+    </object>
+    <object>
+        <lower>11</lower>
+        <content>Charm person</content>
+        <upper>13</upper>
+    </object>
+    <object>
+        <lower>14</lower>
+        <content>Color spray</content>
+        <upper>16</upper>
+    </object>
+    <object>
+        <lower>17</lower>
+        <content>Cure lgiht wounds</content>
+        <upper>19</upper>
+    </object>
+    <object>
+        <lower>20</lower>
+        <content>Detect secret doors</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Darkness</content>
+        <upper>25</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Bear's endurance</content>
+        <upper>40</upper>
+    </object>
+    <object>
+        <lower>41</lower>
+        <content>Bull's strength</content>
+        <upper>43</upper>
+    </object>
+    <object>
+        <lower>44</lower>
+        <content>Cat's grace</content>
+        <upper>46</upper>
+    </object>
+    <object>
+        <lower>47</lower>
+        <content>Cure moderate wounds</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Darkness</content>
+        <upper>51</upper>
+    </object>
+    <object>
+        <lower>52</lower>
+        <content>Daze monster</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Delay poison</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Eagle's splendor</content>
+        <upper>60</upper>
+    </object>
+    <object>
+        <lower>61</lower>
+        <content>False life</content>
+        <upper>63</upper>
+    </object>
+    <object>
+        <lower>64</lower>
+        <content>Fox's cunning</content>
+        <upper>66</upper>
+    </object>
+    <object>
+        <lower>67</lower>
+        <content>Ghoul touch</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Hold person</content>
+        <upper>71</upper>
+    </object>
+    <object>
+        <lower>72</lower>
+        <content>Invisibility</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Knock</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Levitate</content>
+        <upper>80</upper>
+    </object>
+    <object>
+        <lower>81</lower>
+        <content>Acid arrow</content>
+        <upper>83</upper>
     </object>
 </percentile>
