@@ -30,6 +30,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(wand.Name, Is.StringStarting("Wand of "));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.IsMagical, Is.True);
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
         }
 
         [Test]

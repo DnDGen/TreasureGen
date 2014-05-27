@@ -26,6 +26,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var spell = percentileSelector.SelectFrom(tablename);
             wand.Magic.Charges = chargesGenerator.GenerateFor(wand.ItemType, spell);
             wand.Name = String.Format("Wand of {0}", spell);
+            wand.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
 
             return wand;
         }

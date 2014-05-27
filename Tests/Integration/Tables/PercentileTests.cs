@@ -19,11 +19,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected abstract String tableName { get; }
 
         private Dictionary<Int32, String> table;
-        private HashSet<Int32> testedRolls;
+        private List<Int32> testedRolls;
 
         public PercentileTests()
         {
-            testedRolls = new HashSet<Int32>();
+            testedRolls = new List<Int32>();
         }
 
         [SetUp]
@@ -56,8 +56,10 @@ namespace EquipmentGen.Tests.Integration.Tables
 
         protected void AssertPercentile(String content, Int32 roll)
         {
-            var notTestedBefore = testedRolls.Add(roll);
-            Assert.That(notTestedBefore, Is.True);
+            var testedBefore = testedRolls.Contains(roll);
+            Assert.That(testedBefore, Is.False);
+
+            testedRolls.Add(roll);
 
             Assert.That(table.Keys, Contains.Item(roll), tableName);
 

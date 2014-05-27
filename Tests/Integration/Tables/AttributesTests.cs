@@ -17,11 +17,11 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected abstract String tableName { get; }
 
         private Dictionary<String, IEnumerable<String>> table;
-        private HashSet<String> testedNames;
+        private List<String> testedNames;
 
         public AttributesTests()
         {
-            testedNames = new HashSet<String>();
+            testedNames = new List<String>();
         }
 
         [SetUp]
@@ -39,8 +39,10 @@ namespace EquipmentGen.Tests.Integration.Tables
 
         protected void AssertAttributes(String name, IEnumerable<String> attributes)
         {
-            var notTestedBefore = testedNames.Add(name);
-            Assert.That(notTestedBefore, Is.True);
+            var testedBefore = testedNames.Contains(name);
+            Assert.That(testedBefore, Is.False);
+
+            testedNames.Add(name);
 
             Assert.That(table.Keys, Contains.Item(name), tableName);
 
