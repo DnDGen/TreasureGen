@@ -33,7 +33,7 @@
     </object>
     <object>
         <lower>17</lower>
-        <content>Cure lgiht wounds</content>
+        <content>Cure light wounds</content>
         <upper>19</upper>
     </object>
     <object>
@@ -43,8 +43,33 @@
     </object>
     <object>
         <lower>23</lower>
-        <content>Darkness</content>
+        <content>Enlarge person</content>
         <upper>25</upper>
+    </object>
+    <object>
+        <lower>26</lower>
+        <content>Magic missile (1st)</content>
+        <upper>28</upper>
+    </object>
+    <object>
+        <lower>29</lower>
+        <content>Shocking grasp</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>Summon monster I</content>
+        <upper>34</upper>
+    </object>
+    <object>
+        <lower>35</lower>
+        <content>Magic missile (3rd)</content>
+        <upper>36</upper>
+    </object>
+    <object>
+        <lower>37</lower>
+        <content>Magic missile (5th)</content>
+        <upper>37</upper>
     </object>
     <object>
         <lower>38</lower>
@@ -125,5 +150,35 @@
         <lower>81</lower>
         <content>Acid arrow</content>
         <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Mirror image</content>
+        <upper>86</upper>
+    </object>
+    <object>
+        <lower>87</lower>
+        <content>Owl's wisdom</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Shatter</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Silence</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Summon monster II</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Web</content>
+        <upper>100</upper>
     </object>
 </percentile>
