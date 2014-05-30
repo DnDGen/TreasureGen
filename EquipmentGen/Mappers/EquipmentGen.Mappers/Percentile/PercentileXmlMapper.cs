@@ -19,22 +19,19 @@ namespace EquipmentGen.Mappers.Percentile
         {
             var table = new Dictionary<Int32, String>();
             var filename = String.Format("{0}.xml", tableName);
+            var xmlDocument = new XmlDocument();
 
             using (var stream = streamLoader.LoadFor(filename))
-            {
-                var xmlDocument = new XmlDocument();
                 xmlDocument.Load(stream);
 
-                var objects = xmlDocument.DocumentElement.ChildNodes;
-                foreach (XmlNode node in objects)
-                {
-                    var lower = Convert.ToInt32(node.SelectSingleNode("lower").InnerText);
-                    var upper = Convert.ToInt32(node.SelectSingleNode("upper").InnerText);
-                    var content = node.SelectSingleNode("content").InnerText;
+            foreach (XmlNode node in xmlDocument.DocumentElement.ChildNodes)
+            {
+                var lower = Convert.ToInt32(node.SelectSingleNode("lower").InnerText);
+                var upper = Convert.ToInt32(node.SelectSingleNode("upper").InnerText);
+                var content = node.SelectSingleNode("content").InnerText;
 
-                    for (var i = lower; i <= upper; i++)
-                        table.Add(i, content);
-                }
+                for (var i = lower; i <= upper; i++)
+                    table.Add(i, content);
             }
 
             return table;

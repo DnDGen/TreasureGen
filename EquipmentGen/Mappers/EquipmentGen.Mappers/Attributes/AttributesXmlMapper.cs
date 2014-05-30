@@ -19,20 +19,17 @@ namespace EquipmentGen.Mappers.Attributes
         {
             var results = new Dictionary<String, IEnumerable<String>>();
             var filename = String.Format("{0}.xml", tableName);
+            var xmlDocument = new XmlDocument();
 
             using (var stream = streamLoader.LoadFor(filename))
-            {
-                var xmlDocument = new XmlDocument();
                 xmlDocument.Load(stream);
 
-                var objects = xmlDocument.DocumentElement.ChildNodes;
-                foreach (XmlNode node in objects)
-                {
-                    var name = node.SelectSingleNode("name").InnerText;
-                    var attributes = GetAttributesFrom(node);
+            foreach (XmlNode node in xmlDocument.DocumentElement.ChildNodes)
+            {
+                var name = node.SelectSingleNode("name").InnerText;
+                var attributes = GetAttributesFrom(node);
 
-                    results.Add(name, attributes);
-                }
+                results.Add(name, attributes);
             }
 
             return results;
