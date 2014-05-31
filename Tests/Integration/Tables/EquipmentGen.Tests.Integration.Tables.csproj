@@ -82,6 +82,7 @@
     <Compile Include="Items\Magical\Potions\PotionTraitsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\ScrollTraitsTests.cs" />
     <Compile Include="Items\Magical\Wands\MajorWandsTests.cs" />
+    <Compile Include="Items\Magical\Wands\MediumWandsTests.cs" />
     <Compile Include="Items\Magical\Wands\MinorWandsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Major\MajorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Medium\MediumWeaponsTests.cs" />

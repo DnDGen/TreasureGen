@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <lower>1</lower>
+        <content>Magic missile (5th)</content>
+        <upper>3</upper>
+    </object>
+    <object>
+        <lower>4</lower>
+        <content>Bear's endurance</content>
+        <upper>7</upper>
+    </object>
+    <object>
+        <lower>8</lower>
+        <content>Bull's strength</content>
+        <upper>11</upper>
+    </object>
+    <object>
+        <lower>12</lower>
+        <content>Cat's grace</content>
+        <upper>15</upper>
+    </object>
+    <object>
+        <lower>16</lower>
+        <content>Cure moderate wounds</content>
+        <upper>20</upper>
+    </object>
+    <object>
+        <lower>21</lower>
+        <content>Darkness</content>
+        <upper>22</upper>
+    </object>
+    <object>
+        <lower>23</lower>
+        <content>Daze monster</content>
+        <upper>24</upper>
+    </object>
+    <object>
+        <lower>25</lower>
+        <content>Delay poison</content>
+        <upper>27</upper>
+    </object>
+    <object>
+        <lower>28</lower>
+        <content>Eagle's splendor</content>
+        <upper>31</upper>
+    </object>
+    <object>
+        <lower>32</lower>
+        <content>False life</content>
+        <upper>33</upper>
+    </object>
+    <object>
+        <lower>34</lower>
+        <content>Fox's cunning</content>
+        <upper>37</upper>
+    </object>
+    <object>
+        <lower>38</lower>
+        <content>Ghoul touch</content>
+        <upper>38</upper>
+    </object>
+    <object>
+        <lower>39</lower>
+        <content>Hold person</content>
+        <upper>39</upper>
+    </object>
+    <object>
+        <lower>40</lower>
+        <content>Invisibility</content>
+        <upper>42</upper>
+    </object>
+    <object>
+        <lower>43</lower>
+        <content>Knock</content>
+        <upper>44</upper>
+    </object>
+    <object>
+        <lower>45</lower>
+        <content>Levitate</content>
+        <upper>45</upper>
+    </object>
+    <object>
+        <lower>46</lower>
+        <content>Acid arrow</content>
+        <upper>47</upper>
+    </object>
+    <object>
+        <lower>48</lower>
+        <content>Mirror image</content>
+        <upper>49</upper>
+    </object>
+    <object>
+        <lower>50</lower>
+        <content>Owl's wisdom</content>
+        <upper>53</upper>
+    </object>
+    <object>
+        <lower>54</lower>
+        <content>Shatter</content>
+        <upper>54</upper>
+    </object>
+    <object>
+        <lower>55</lower>
+        <content>Silence</content>
+        <upper>56</upper>
+    </object>
+    <object>
+        <lower>57</lower>
+        <content>Summon monster II</content>
+        <upper>57</upper>
+    </object>
+    <object>
+        <lower>58</lower>
+        <content>Web</content>
+        <upper>59</upper>
+    </object>
+    <object>
+        <lower>60</lower>
+        <content>Magic missile (7th)</content>
+        <upper>62</upper>
+    </object>
+    <object>
+        <lower>63</lower>
+        <content>Magic missile (9th)</content>
+        <upper>64</upper>
+    </object>
+    <object>
+        <lower>65</lower>
+        <content>Call lightning (5th)</content>
+        <upper>67</upper>
+    </object>
+    <object>
+        <lower>68</lower>
+        <content>Heightened charm person (3rd-level spell)</content>
+        <upper>68</upper>
+    </object>
+    <object>
+        <lower>69</lower>
+        <content>Contagion</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>Cure serious wounds</content>
+        <upper>74</upper>
+    </object>
+    <object>
+        <lower>75</lower>
+        <content>Dispel magic</content>
+        <upper>77</upper>
+    </object>
+    <object>
+        <lower>78</lower>
+        <content>Fireball (5th)</content>
+        <upper>81</upper>
+    </object>
+    <object>
+        <lower>82</lower>
+        <content>Keen edge</content>
+        <upper>83</upper>
+    </object>
+    <object>
+        <lower>84</lower>
+        <content>Lightning bolt (5th)</content>
+        <upper>87</upper>
+    </object>
+    <object>
+        <lower>88</lower>
+        <content>Major image</content>
+        <upper>89</upper>
+    </object>
+    <object>
+        <lower>90</lower>
+        <content>Slow</content>
+        <upper>91</upper>
+    </object>
+    <object>
+        <lower>92</lower>
+        <content>Suggestion</content>
+        <upper>94</upper>
+    </object>
+    <object>
+        <lower>95</lower>
+        <content>Summon monster III</content>
+        <upper>97</upper>
+    </object>
+    <object>
+        <lower>98</lower>
+        <content>Fireball (6th)</content>
+        <upper>98</upper>
+    </object>
+    <object>
+        <lower>99</lower>
+        <content>Lightning bolt (6th)</content>
+        <upper>99</upper>
+    </object>
+    <object>
+        <lower>100</lower>
+        <content>Searing light (6th)</content>
+        <upper>100</upper>
+    </object>
+</percentile>

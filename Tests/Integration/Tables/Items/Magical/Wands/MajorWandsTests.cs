@@ -26,7 +26,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
         [TestCase("Summon monster III", 28, 29)]
         [TestCase("Fireball (6th)", 30, 31)]
         [TestCase("Lightning bolt (6th)", 32, 33)]
-        [TestCase("Saring light (6th)", 34, 35)]
+        [TestCase("Searing light (6th)", 34, 35)]
         [TestCase("Call lightning (8th)", 36, 37)]
         [TestCase("Fireball (8th)", 38, 39)]
         [TestCase("Lightning bolt (8th)", 40, 41)]
