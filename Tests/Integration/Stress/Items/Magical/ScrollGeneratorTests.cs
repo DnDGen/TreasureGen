@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -32,6 +33,34 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Contents, Is.Not.Empty);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+        }
+
+        [Test]
+        public void CursesHappen()
+        {
+            Item scroll = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(scroll.Magic.Curse) || scroll.ItemType == ItemTypeConstants.SpecificCursedItem))
+            {
+                var power = GetNewPower(false);
+                scroll = ScrollGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(scroll.Magic.Curse, Is.Not.Empty);
+        }
+
+        [Test]
+        public void SpecificCursesHappen()
+        {
+            Item scroll = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && scroll.ItemType != ItemTypeConstants.SpecificCursedItem)
+            {
+                var power = GetNewPower(false);
+                scroll = ScrollGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
         }
     }
 }

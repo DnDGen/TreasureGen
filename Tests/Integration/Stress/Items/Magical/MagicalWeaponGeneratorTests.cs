@@ -42,6 +42,67 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 Assert.That(weapon.Quantity, Is.EqualTo(1));
 
             Assert.That(weapon.Traits, Is.Not.Null);
+            Assert.That(weapon.Magic.Charges, Is.AtLeast(0));
+            Assert.That(weapon.Magic.SpecialAbilities, Is.Not.Null);
+
+            if (weapon.Attributes.Contains(AttributeConstants.Charged))
+                Assert.That(weapon.Magic.Charges, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void IntelligenceHappens()
+        {
+            Item weapon = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && weapon.Magic.Intelligence.Ego == 0)
+            {
+                var power = GetNewPower(false);
+                weapon = MagicalWeaponGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(weapon.Magic.Intelligence.Ego, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void CursesHappen()
+        {
+            Item weapon = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(weapon.Magic.Curse) || weapon.ItemType == ItemTypeConstants.SpecificCursedItem))
+            {
+                var power = GetNewPower(false);
+                weapon = MagicalWeaponGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(weapon.Magic.Curse, Is.Not.Empty);
+        }
+
+        [Test]
+        public void SpecificCursesHappen()
+        {
+            Item weapon = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && weapon.ItemType != ItemTypeConstants.SpecificCursedItem)
+            {
+                var power = GetNewPower(false);
+                weapon = MagicalWeaponGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+        }
+
+        [Test]
+        public void TraitsHappen()
+        {
+            Item weapon = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !weapon.Traits.Any())
+            {
+                var power = GetNewPower(false);
+                weapon = MagicalWeaponGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(weapon.Traits, Is.Not.Empty);
         }
     }
 }

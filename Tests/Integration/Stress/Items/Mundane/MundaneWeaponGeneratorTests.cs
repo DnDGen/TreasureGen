@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System.Linq;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
@@ -29,6 +30,20 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon));
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
             Assert.That(weapon.Contents, Is.Empty);
+        }
+
+        [Test]
+        public void SpecialMaterialsHappen()
+        {
+            Item weapon = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !weapon.Traits.Any())
+            {
+                var power = GetNewPower(false);
+                weapon = MundaneWeaponGenerator.Generate();
+            }
+
+            Assert.That(weapon.Traits, Is.Not.Empty);
         }
     }
 }

@@ -67,7 +67,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             {
                 case ItemTypeConstants.Potion: return new PotionGenerator(typeAndAmountPercentileSelector, percentileSelector);
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, spellGenerator, chargesGenerator, typeAndAmountPercentileSelector);
-                case ItemTypeConstants.Rod: return new RodGenerator();
+                case ItemTypeConstants.Rod: return new RodGenerator(typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator);
                 case ItemTypeConstants.Staff: return new StaffGenerator();
                 case ItemTypeConstants.Wand: return new WandGenerator(percentileSelector, chargesGenerator);

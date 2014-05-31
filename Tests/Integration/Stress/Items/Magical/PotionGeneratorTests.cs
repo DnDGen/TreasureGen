@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -36,6 +37,34 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(potion.Quantity, Is.EqualTo(1));
             Assert.That(potion.Traits, Is.Empty);
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
+        }
+
+        [Test]
+        public void CursesHappen()
+        {
+            Item potion = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(potion.Magic.Curse) || potion.ItemType == ItemTypeConstants.SpecificCursedItem))
+            {
+                var power = GetNewPower(false);
+                potion = PotionGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(potion.Magic.Curse, Is.Not.Empty);
+        }
+
+        [Test]
+        public void SpecificCursesHappen()
+        {
+            Item potion = new Item();
+
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && potion.ItemType != ItemTypeConstants.SpecificCursedItem)
+            {
+                var power = GetNewPower(false);
+                potion = PotionGenerator.GenerateAtPower(power);
+            }
+
+            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
         }
     }
 }

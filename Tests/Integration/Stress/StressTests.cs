@@ -16,8 +16,9 @@ namespace EquipmentGen.Tests.Integration.Stress
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
+        protected const Int32 TimeLimitInSeconds = 1;
+
         private const Int32 ConfidentIterations = 1000000;
-        private const Int32 TimeLimitInSeconds = 1;
 
         private Int32 iterations;
 
@@ -51,7 +52,7 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected abstract void MakeAssertions();
 
-        private Boolean TestShouldKeepRunning()
+        protected Boolean TestShouldKeepRunning()
         {
             return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations < ConfidentIterations;
         }
