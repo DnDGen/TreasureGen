@@ -21,15 +21,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var power = Random.Next(2) == 0 ? PowerConstants.Medium : PowerConstants.Major;
+            var power = GetRodPower();
             var rod = RodGenerator.GenerateAtPower(power);
 
             if (rod.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
 
-            Assert.That(rod.Name, Is.StringStarting("Rod of "));
+            Assert.That(rod.Name, Is.Not.Empty);
             Assert.That(rod.Attributes, Is.Not.Null);
-            Assert.That(rod.Contents, Is.Empty);
+            Assert.That(rod.Contents, Is.Not.Null);
             Assert.That(rod.IsMagical, Is.True);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.Magic.Bonus, Is.EqualTo(0));
@@ -42,6 +42,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 Assert.That(rod.Magic.Charges, Is.GreaterThan(0));
         }
 
+        private String GetRodPower()
+        {
+            if (Random.Next(2) == 0)
+                return PowerConstants.Medium;
+
+            return PowerConstants.Major;
+        }
+
         [Test]
         public void IntelligenceHappens()
         {
@@ -49,11 +57,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && rod.Magic.Intelligence.Ego == 0)
             {
-                var power = Random.Next(2) == 0 ? PowerConstants.Medium : PowerConstants.Major;
+                var power = GetRodPower();
                 rod = RodGenerator.GenerateAtPower(power);
             }
 
             Assert.That(rod.Magic.Intelligence.Ego, Is.GreaterThan(0));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -63,11 +72,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(rod.Magic.Curse) || rod.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
-                var power = Random.Next(2) == 0 ? PowerConstants.Medium : PowerConstants.Major;
+                var power = GetRodPower();
                 rod = RodGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(rod.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(rod.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -77,11 +88,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && rod.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
-                var power = Random.Next(2) == 0 ? PowerConstants.Medium : PowerConstants.Major;
+                var power = GetRodPower();
                 rod = RodGenerator.GenerateAtPower(power);
             }
 
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -91,11 +103,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !rod.Traits.Any())
             {
-                var power = Random.Next(2) == 0 ? PowerConstants.Medium : PowerConstants.Major;
+                var power = GetRodPower();
                 rod = RodGenerator.GenerateAtPower(power);
             }
 
             Assert.That(rod.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

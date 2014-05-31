@@ -54,6 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(item.Magic.Intelligence.Ego, Is.GreaterThan(0));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -67,7 +68,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 item = WondrousItemGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(item.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(item.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -82,6 +85,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -96,6 +100,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(item.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

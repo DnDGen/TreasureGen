@@ -1,8 +1,8 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System.Linq;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
-using System.Linq;
 
 namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -37,12 +37,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Item armor = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Any())
-            {
-                var power = GetNewPower(false);
                 armor = MundaneArmorGenerator.Generate();
-            }
 
             Assert.That(armor.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

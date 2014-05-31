@@ -15,6 +15,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
@@ -24,7 +25,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             result = new TypeAndAmountPercentileResult();
-            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object);
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object,
+                mockChargesGenerator.Object, mockBooleanPercentileSelector.Object);
 
             result.Amount = "0";
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerRods")).Returns(result);
@@ -34,7 +37,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GenerateRod()
         {
             var rod = rodGenerator.GenerateAtPower("power");
-            Assert.That(rod.Name, Is.StringStarting("Rod of "));
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.IsMagical, Is.True);
         }
@@ -46,17 +48,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GetAbilityFromSelector()
+        public void GetNameFromSelector()
         {
-            result.Type = "rod ability";
+            result.Type = "rod of ability";
             var rod = rodGenerator.GenerateAtPower("power");
-            Assert.That(rod.Name, Is.EqualTo("Rod of rod ability"));
+            Assert.That(rod.Name, Is.EqualTo(result.Type));
         }
 
         [Test]
         public void GetAttributesFromSelector()
         {
-            result.Type = "rod ability";
+            result.Type = "rod of ability";
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockAttributesSelector.Setup(s => s.SelectFrom("RodAttributes", result.Type)).Returns(attributes);
 
@@ -67,9 +69,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetChargesIfCharged()
         {
-            result.Type = "rod ability";
+            result.Type = "rod of ability";
             var attributes = new[] { AttributeConstants.Charged };
-            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", result.Type)).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RodAttributes", result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(9266);
 
             var rod = rodGenerator.GenerateAtPower("power");
@@ -81,7 +83,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             result.Type = "rod ability";
             var attributes = new[] { "new attribute" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("RingAttributes", result.Type)).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("RodAttributes", result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(9266);
 
             var rod = rodGenerator.GenerateAtPower("power");
@@ -94,6 +96,37 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result.Amount = "9266";
             var rod = rodGenerator.GenerateAtPower("power");
             Assert.That(rod.Magic.Bonus, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void RodOfAbsorptionContainsLevelsIfSelectorSaysSo()
+        {
+            result.Type = "Rod of absorption";
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(p => p.SelectFrom("RodAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type + " (max)")).Returns(50);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("RodOfAbsorptionContainsSpellLevels")).Returns(true);
+
+            var rod = rodGenerator.GenerateAtPower("power");
+            Assert.That(rod.Magic.Charges, Is.EqualTo(42));
+            Assert.That(rod.Contents, Contains.Item("4 spell levels"));
+            Assert.That(rod.Contents.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void RodOfAbsorptionDoesNotContainLevelsIfSelectorSaysSo()
+        {
+            result.Type = "Rod of absorption";
+            var attributes = new[] { AttributeConstants.Charged };
+            mockAttributesSelector.Setup(p => p.SelectFrom("RodAttributes", result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type + " (max)")).Returns(50);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("RodOfAbsorptionContainsSpellLevels")).Returns(false);
+
+            var rod = rodGenerator.GenerateAtPower("power");
+            Assert.That(rod.Magic.Charges, Is.EqualTo(42));
+            Assert.That(rod.Contents, Is.Empty);
         }
     }
 }

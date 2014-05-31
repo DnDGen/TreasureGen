@@ -46,7 +46,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 scroll = ScrollGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(scroll.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(scroll.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -61,6 +63,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

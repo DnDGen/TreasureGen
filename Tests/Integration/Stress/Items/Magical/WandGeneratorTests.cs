@@ -53,7 +53,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 wand = WandGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(wand.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(wand.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -68,6 +70,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -82,6 +85,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(wand.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

@@ -54,6 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(ring.Magic.Intelligence.Ego, Is.GreaterThan(0));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -67,7 +68,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 ring = RingGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(ring.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(ring.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -82,6 +85,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -96,6 +100,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(ring.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

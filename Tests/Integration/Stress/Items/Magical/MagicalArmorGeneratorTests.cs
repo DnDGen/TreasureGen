@@ -38,6 +38,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             if (armor.IsMagical)
                 Assert.That(armor.Magic.Bonus, Is.GreaterThan(0));
+            else
+                Assert.That(armor.Magic.Bonus, Is.EqualTo(0));
         }
 
         [Test]
@@ -52,6 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(armor.Magic.Intelligence.Ego, Is.GreaterThan(0));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -65,7 +68,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 armor = MagicalArmorGenerator.GenerateAtPower(power);
             }
 
+            Assert.That(armor.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(armor.Magic.Curse, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -80,6 +85,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
 
         [Test]
@@ -94,6 +100,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(armor.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }

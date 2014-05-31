@@ -38,12 +38,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Item weapon = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !weapon.Traits.Any())
-            {
-                var power = GetNewPower(false);
                 weapon = MundaneWeaponGenerator.Generate();
-            }
 
             Assert.That(weapon.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }
 }
