@@ -22,7 +22,6 @@ namespace EquipmentGen.Generators.Items.Mundane
             specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
 
             var materials = TraitConstants.GetSpecialMaterials();
-
             foreach (var material in materials)
             {
                 var attributeRequirements = attributesSelector.SelectFrom("SpecialMaterials", material);
