@@ -73,6 +73,7 @@
     <Compile Include="Items\Magical\RodGeneratorTests.cs" />
     <Compile Include="Items\Magical\ScrollGeneratorTests.cs" />
     <Compile Include="Items\Magical\SpecificGearGeneratorTests.cs" />
+    <Compile Include="Items\Magical\StaffGeneratorTests.cs" />
     <Compile Include="Items\Magical\WandGeneratorTests.cs" />
     <Compile Include="RuntimeFactories\MagicalItemGeneratorFactoryTests.cs" />
     <Compile Include="RuntimeFactories\MundaneItemGeneratorFactoryTests.cs" />

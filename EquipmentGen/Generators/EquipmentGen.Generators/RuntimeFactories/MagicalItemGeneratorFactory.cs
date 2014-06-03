@@ -69,7 +69,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
                 case ItemTypeConstants.Ring: return new RingGenerator(percentileSelector, attributesSelector, spellGenerator, chargesGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Rod: return new RodGenerator(typeAndAmountPercentileSelector, attributesSelector, chargesGenerator, booleanPercentileSelector);
                 case ItemTypeConstants.Scroll: return new ScrollGenerator(dice, spellGenerator);
-                case ItemTypeConstants.Staff: return new StaffGenerator();
+                case ItemTypeConstants.Staff: return new StaffGenerator(percentileSelector, chargesGenerator, attributesSelector);
                 case ItemTypeConstants.Wand: return new WandGenerator(percentileSelector, chargesGenerator);
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, attributesSelector, chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector, specialAbilitiesGenerator, specificGearGenerator);
