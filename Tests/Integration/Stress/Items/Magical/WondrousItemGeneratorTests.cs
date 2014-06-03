@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -12,6 +13,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.WondrousItem)]
         public IMagicalItemGenerator WondrousItemGenerator { get; set; }
+
+        private IEnumerable<String> materials;
+
+        [SetUp]
+        public void Setup()
+        {
+            materials = TraitConstants.GetSpecialMaterials();
+        }
 
         [Test]
         public void StressedWondrousItemGenerator()
@@ -40,12 +49,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 Assert.That(item.Magic.Charges, Is.GreaterThan(0));
+
+            var itemMaterials = item.Traits.Intersect(materials);
+            Assert.That(itemMaterials, Is.Empty);
         }
 
         [Test]
         public void IntelligenceHappens()
         {
-            Item item = new Item();
+            var item = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && item.Magic.Intelligence.Ego == 0)
             {
@@ -60,7 +72,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void CursesHappen()
         {
-            Item item = new Item();
+            var item = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(item.Magic.Curse) || item.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -76,7 +88,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item item = new Item();
+            var item = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && item.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -91,15 +103,32 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void TraitsHappen()
         {
-            Item item = new Item();
+            var item = new Item();
 
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !item.Traits.Any())
+            do
             {
                 var power = GetNewPower(false);
                 item = WondrousItemGenerator.GenerateAtPower(power);
-            }
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !item.Traits.Any());
 
             Assert.That(item.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var item = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                item = WondrousItemGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && item.Traits.Any() && item.Magic.Curse.Any() && item.Magic.Intelligence.Ego > 0);
+
+            Assert.That(item.Traits, Is.Empty);
+            Assert.That(item.Magic.Curse, Is.Empty);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

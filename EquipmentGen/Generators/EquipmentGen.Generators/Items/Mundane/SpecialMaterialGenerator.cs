@@ -21,7 +21,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
 
-            var materials = attributesSelector.SelectFrom("SpecialMaterials", "SpecialMaterials");
+            var materials = TraitConstants.GetSpecialMaterials();
 
             foreach (var material in materials)
             {
@@ -43,7 +43,8 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         private Boolean AttributesAllowForSpecialMaterials(IEnumerable<String> attributes)
         {
-            return GetAllowedMaterials(attributes).Any();
+            var allowedMaterials = GetAllowedMaterials(attributes);
+            return allowedMaterials.Any();
         }
 
         private Boolean TraitsAllowForSpecialMaterials(IEnumerable<String> attributes, IEnumerable<String> traits)
@@ -65,7 +66,8 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         private IEnumerable<String> GetAllowedMaterials(IEnumerable<String> attributes)
         {
-            return specialMaterialAttributes.Where(kvp => kvp.Value.All(v => attributes.Contains(v))).Select(kvp => kvp.Key);
+            var allowedMaterialEntries = specialMaterialAttributes.Where(kvp => kvp.Value.Intersect(attributes).Count() == kvp.Value.Count());
+            return allowedMaterialEntries.Select(kvp => kvp.Key);
         }
 
         public String GenerateFor(String itemType, IEnumerable<String> attributes, IEnumerable<String> traits)

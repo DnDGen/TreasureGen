@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -33,12 +34,17 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Contents, Is.Not.Empty);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Magic.Bonus, Is.EqualTo(0));
+            Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
+            Assert.That(scroll.Magic.Curse, Is.Not.Null);
+            Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0));
+            Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
         }
 
         [Test]
         public void CursesHappen()
         {
-            Item scroll = new Item();
+            var scroll = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(scroll.Magic.Curse) || scroll.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -54,7 +60,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item scroll = new Item();
+            var scroll = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && scroll.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -63,6 +69,21 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var scroll = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                scroll = ScrollGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && scroll.Magic.Curse.Any());
+
+            Assert.That(scroll.Magic.Curse, Is.Empty);
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

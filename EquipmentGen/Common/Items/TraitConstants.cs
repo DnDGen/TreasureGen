@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EquipmentGen.Common.Items
 {
@@ -15,5 +16,18 @@ namespace EquipmentGen.Common.Items
         public const String AlchemicalSilver = "Alchemical silver";
         public const String Markings = "Markings provide a clue to its function";
         public const String ShedsLight = "Sheds light";
+
+        public static IEnumerable<String> GetSpecialMaterials()
+        {
+            return new[]
+            {
+                Darkwood,
+                Adamantine,
+                Dragonhide,
+                ColdIron,
+                Mithral,
+                AlchemicalSilver
+            };
+        }
     }
 }

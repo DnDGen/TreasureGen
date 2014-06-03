@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -42,7 +43,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void CursesHappen()
         {
-            Item potion = new Item();
+            var potion = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(potion.Magic.Curse) || potion.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -58,7 +59,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item potion = new Item();
+            var potion = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && potion.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -67,6 +68,21 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             }
 
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var potion = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                potion = PotionGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && potion.Magic.Curse.Any());
+
+            Assert.That(potion.Magic.Curse, Is.Empty);
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

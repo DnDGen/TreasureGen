@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
@@ -11,6 +13,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     {
         [Inject, Named(ItemTypeConstants.Armor)]
         public IMundaneItemGenerator MundaneArmorGenerator { get; set; }
+
+        private IEnumerable<String> materials;
+
+        [SetUp]
+        public void Setup()
+        {
+            materials = TraitConstants.GetSpecialMaterials();
+        }
 
         [Test]
         public void StressedMundaneArmorGenerator()
@@ -34,12 +44,26 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void SpecialMaterialsHappen()
         {
-            Item armor = new Item();
+            var armor = new Item();
 
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Any())
-                armor = MundaneArmorGenerator.Generate();
+            do armor = MundaneArmorGenerator.Generate();
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Intersect(materials).Any());
 
-            Assert.That(armor.Traits, Is.Not.Empty);
+            var weaponMaterials = armor.Traits.Intersect(materials);
+            Assert.That(weaponMaterials, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var armor = new Item();
+
+            do armor = MundaneArmorGenerator.Generate();
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && armor.Traits.Intersect(materials).Any());
+
+            var weaponMaterials = armor.Traits.Intersect(materials);
+            Assert.That(weaponMaterials, Is.Empty);
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

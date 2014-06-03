@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -12,6 +13,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Armor)]
         public IMagicalItemGenerator MagicalArmorGenerator { get; set; }
+
+        private IEnumerable<String> materials;
+
+        [SetUp]
+        public void Setup()
+        {
+            materials = TraitConstants.GetSpecialMaterials();
+        }
 
         [Test]
         public void StressedMagicalArmorGenerator()
@@ -45,7 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void IntelligenceHappens()
         {
-            Item armor = new Item();
+            var armor = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && armor.Magic.Intelligence.Ego == 0)
             {
@@ -60,7 +69,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void CursesHappen()
         {
-            Item armor = new Item();
+            var armor = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(armor.Magic.Curse) || armor.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -76,7 +85,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item armor = new Item();
+            var armor = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && armor.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -91,15 +100,49 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void TraitsHappen()
         {
-            Item armor = new Item();
+            var armor = new Item();
 
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Any())
+            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Except(materials).Any())
             {
                 var power = GetNewPower(false);
                 armor = MagicalArmorGenerator.GenerateAtPower(power);
             }
 
-            Assert.That(armor.Traits, Is.Not.Empty);
+            var traits = armor.Traits.Except(materials);
+            Assert.That(traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void SpecialMaterialsHappen()
+        {
+            var armor = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                armor = MagicalArmorGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Intersect(materials).Any());
+
+            var weaponMaterials = armor.Traits.Intersect(materials);
+            Assert.That(weaponMaterials, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var armor = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                armor = MagicalArmorGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && armor.Traits.Any() && armor.Magic.Curse.Any() && armor.Magic.Intelligence.Ego > 0);
+
+            Assert.That(armor.Traits, Is.Empty);
+            Assert.That(armor.Magic.Curse, Is.Empty);
+            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

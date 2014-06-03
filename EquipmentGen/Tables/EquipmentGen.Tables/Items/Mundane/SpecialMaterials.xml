@@ -2,18 +2,9 @@
 
 <attributes>
     <object>
-        <name>SpecialMaterials</name>
-        <attribute>Adamantine</attribute>
-        <attribute>Alchemical silver</attribute>
-        <attribute>Cold iron</attribute>
-        <attribute>Darkwood</attribute>
-        <attribute>Mithral</attribute>
-        <attribute>Dragonhide</attribute>
+        <name>Adamantine</name>
+        <attribute>Metal</attribute>
     </object>
-  <object>
-    <name>Adamantine</name>
-      <attribute>Metal</attribute>
-  </object>
     <object>
         <name>Dragonhide</name>
         <attribute>Armor</attribute>

@@ -19,34 +19,32 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
-        private List<String> materials;
         private List<String> material1Attributes;
         private List<String> material2Attributes;
+        private List<String> otherMaterialAttributes;
         private List<String> traits;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<IDice>();
-            materials = new List<String>() { "material 1", "material 2" };
             material1Attributes = new List<String>() { "type 1", "type 2" };
             material2Attributes = new List<String>() { "type 3", "type 2" };
+            otherMaterialAttributes = new List<String>() { "type 3", "type 2", "other attribute" };
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             traits = new List<String>();
-
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials")).Returns(materials);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[0])).Returns(material1Attributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", materials[1])).Returns(material2Attributes);
-
             specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
+
+            mockAttributesSelector.Setup(s => s.SelectFrom("SpecialMaterials", It.IsAny<String>())).Returns(otherMaterialAttributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Mithral)).Returns(material1Attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Adamantine)).Returns(material2Attributes);
         }
 
         [Test]
         public void CacheMaterialsAndAttributeRequirementsOnConstruction()
         {
-            mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", "SpecialMaterials"), Times.Once);
-            foreach (var material in materials)
+            foreach (var material in TraitConstants.GetSpecialMaterials())
                 mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", material), Times.Once);
 
             mockAttributesSelector.ResetCalls();
@@ -111,7 +109,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DoesNotHaveSpecialMaterialIfAlreadyHasASpecialMaterial()
         {
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
-            traits.Add(materials[0]);
+            traits.Add(TraitConstants.ColdIron);
 
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(ItemTypeConstants.Armor, material1Attributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
@@ -131,7 +129,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void HaveSpecialMaterialIfDoubleWeaponAndAlreadyHasOneSpecialMaterial()
         {
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
-            traits.Add(materials[0]);
+            traits.Add(TraitConstants.ColdIron);
             material1Attributes.Add(AttributeConstants.DoubleWeapon);
             var inputAttributes = material1Attributes.Union(material2Attributes);
 
@@ -143,8 +141,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasTwoSpecialMaterials()
         {
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
-            traits.Add(materials[0]);
-            traits.Add(materials[1]);
+            traits.Add(TraitConstants.ColdIron);
+            traits.Add(TraitConstants.Darkwood);
             material1Attributes.Add(AttributeConstants.DoubleWeapon);
 
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(ItemTypeConstants.Armor, material1Attributes, traits);
@@ -155,7 +153,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasAllAvailableMaterials()
         {
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
-            traits.Add(materials[0]);
+            traits.Add(TraitConstants.Mithral);
             material1Attributes.Add(AttributeConstants.DoubleWeapon);
 
             var hasSpecialMaterial = specialMaterialsGenerator.HasSpecialMaterial(ItemTypeConstants.Armor, material1Attributes, traits);
@@ -178,7 +176,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateForTraitsThrowsExceptionIfNoMatchingMaterialsLeft()
         {
-            traits.Add(materials[0]);
+            traits.Add(TraitConstants.Mithral);
             Assert.That(() => specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, material1Attributes, traits), Throws.ArgumentException);
         }
 
@@ -186,10 +184,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GenerateForAttributesGetsMaterialThatMatchesAttributes()
         {
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, material1Attributes, traits);
-            Assert.That(material, Is.EqualTo(materials[0]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, material2Attributes, traits);
-            Assert.That(material, Is.EqualTo(materials[1]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
         }
 
         [Test]
@@ -197,18 +195,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         {
             var inputAttributes = material1Attributes.Union(new[] { "other type" });
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(materials[0]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
         }
 
         [Test]
         public void DoNotAllowMaterialsAlreadyListedInTraits()
         {
-            traits.Add(materials[0]);
+            traits.Add(TraitConstants.Mithral);
             material1Attributes.Add(AttributeConstants.DoubleWeapon);
             var inputAttributes = material1Attributes.Union(material2Attributes);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(materials[1]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
         }
 
         [Test]
@@ -218,7 +216,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var inputAttributes = material1Attributes.Union(material2Attributes);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(materials[0]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
         }
 
         [Test]
@@ -228,12 +226,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(0);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(materials[0]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
 
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(materials[1]));
+            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
         }
     }
 }

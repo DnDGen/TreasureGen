@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -12,6 +13,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Rod)]
         public IMagicalItemGenerator RodGenerator { get; set; }
+
+        private IEnumerable<String> materials;
+
+        [SetUp]
+        public void Setup()
+        {
+            materials = TraitConstants.GetSpecialMaterials();
+        }
 
         [Test]
         public void StressedRodGenerator()
@@ -40,6 +49,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
                 Assert.That(rod.Magic.Charges, Is.GreaterThan(0));
+
+            var rodMaterials = rod.Traits.Intersect(materials);
+            Assert.That(rodMaterials, Is.Empty);
         }
 
         private String GetRodPower()
@@ -53,7 +65,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void IntelligenceHappens()
         {
-            Item rod = new Item();
+            var rod = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && rod.Magic.Intelligence.Ego == 0)
             {
@@ -68,7 +80,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void CursesHappen()
         {
-            Item rod = new Item();
+            var rod = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(rod.Magic.Curse) || rod.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -84,7 +96,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item rod = new Item();
+            var rod = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && rod.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -99,15 +111,32 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void TraitsHappen()
         {
-            Item rod = new Item();
+            var rod = new Item();
 
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !rod.Traits.Any())
+            do
             {
-                var power = GetRodPower();
+                var power = GetNewPower(false);
                 rod = RodGenerator.GenerateAtPower(power);
-            }
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !rod.Traits.Any());
 
             Assert.That(rod.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var rod = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                rod = RodGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && rod.Traits.Any() && rod.Magic.Curse.Any() && rod.Magic.Intelligence.Ego > 0);
+
+            Assert.That(rod.Traits, Is.Empty);
+            Assert.That(rod.Magic.Curse, Is.Empty);
+            Assert.That(rod.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

@@ -28,13 +28,13 @@ namespace EquipmentGen.Tests.Integration.Stress
         }
 
         [SetUp]
-        public void Setup()
+        public void StressSetup()
         {
             Stopwatch.Start();
         }
 
         [TearDown]
-        public void TearDown()
+        public void StressTearDown()
         {
             Stopwatch.Reset();
         }

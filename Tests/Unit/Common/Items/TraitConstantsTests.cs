@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -21,6 +22,19 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void SpecialMaterialsContainAllSpecialMaterials()
+        {
+            var materials = TraitConstants.GetSpecialMaterials();
+            Assert.That(materials, Contains.Item(TraitConstants.Mithral));
+            Assert.That(materials, Contains.Item(TraitConstants.Adamantine));
+            Assert.That(materials, Contains.Item(TraitConstants.AlchemicalSilver));
+            Assert.That(materials, Contains.Item(TraitConstants.Darkwood));
+            Assert.That(materials, Contains.Item(TraitConstants.ColdIron));
+            Assert.That(materials, Contains.Item(TraitConstants.Dragonhide));
+            Assert.That(materials.Count(), Is.EqualTo(6));
         }
     }
 }

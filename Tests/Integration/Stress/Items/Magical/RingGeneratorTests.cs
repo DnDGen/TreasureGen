@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -12,6 +13,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Ring)]
         public IMagicalItemGenerator RingGenerator { get; set; }
+
+        private IEnumerable<String> materials;
+
+        [SetUp]
+        public void Setup()
+        {
+            materials = TraitConstants.GetSpecialMaterials();
+        }
 
         [Test]
         public void StressedRingGenerator()
@@ -40,12 +49,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 Assert.That(ring.Magic.Charges, Is.GreaterThan(0));
+
+            var itemMaterials = ring.Traits.Intersect(materials);
+            Assert.That(itemMaterials, Is.Empty);
         }
 
         [Test]
         public void IntelligenceHappens()
         {
-            Item ring = new Item();
+            var ring = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.Magic.Intelligence.Ego == 0)
             {
@@ -60,7 +72,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void CursesHappen()
         {
-            Item ring = new Item();
+            var ring = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(ring.Magic.Curse) || ring.ItemType == ItemTypeConstants.SpecificCursedItem))
             {
@@ -76,7 +88,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void SpecificCursesHappen()
         {
-            Item ring = new Item();
+            var ring = new Item();
 
             while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.ItemType != ItemTypeConstants.SpecificCursedItem)
             {
@@ -91,15 +103,32 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void TraitsHappen()
         {
-            Item ring = new Item();
+            var ring = new Item();
 
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !ring.Traits.Any())
+            do
             {
                 var power = GetNewPower(false);
                 ring = RingGenerator.GenerateAtPower(power);
-            }
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !ring.Traits.Any());
 
             Assert.That(ring.Traits, Is.Not.Empty);
+            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+        }
+
+        [Test]
+        public void NoDecorationsHappen()
+        {
+            var ring = new Item();
+
+            do
+            {
+                var power = GetNewPower(false);
+                ring = RingGenerator.GenerateAtPower(power);
+            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.Traits.Any() && ring.Magic.Curse.Any() && ring.Magic.Intelligence.Ego > 0);
+
+            Assert.That(ring.Traits, Is.Empty);
+            Assert.That(ring.Magic.Curse, Is.Empty);
+            Assert.That(ring.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
         }
     }

@@ -20,12 +20,6 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
         [TestCase(TraitConstants.AlchemicalSilver, AttributeConstants.Metal,
                                                    ItemTypeConstants.Weapon)]
         [TestCase(TraitConstants.Darkwood, AttributeConstants.Wood)]
-        [TestCase("SpecialMaterials", TraitConstants.Mithral,
-                                      TraitConstants.Adamantine,
-                                      TraitConstants.AlchemicalSilver,
-                                      TraitConstants.Darkwood,
-                                      TraitConstants.ColdIron,
-                                      TraitConstants.Dragonhide)]
         public void Attributes(String name, params String[] attributes)
         {
             AssertAttributes(name, attributes);
