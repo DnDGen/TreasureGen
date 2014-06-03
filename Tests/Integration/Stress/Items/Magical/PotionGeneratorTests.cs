@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using EquipmentGen.Common.Items;
+﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -8,25 +6,13 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public class PotionGeneratorTests : StressTests
+    public class PotionGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Potion)]
         public IMagicalItemGenerator PotionGenerator { get; set; }
 
-        [Test]
-        public void StressedPotionGenerator()
+        protected override void MakeAssertionsAgainst(Item potion)
         {
-            StressGenerator();
-        }
-
-        protected override void MakeAssertions()
-        {
-            var power = GetNewPower(false);
-            var potion = PotionGenerator.GenerateAtPower(power);
-
-            if (potion.ItemType == ItemTypeConstants.SpecificCursedItem)
-                return;
-
             Assert.That(potion.Name, Is.StringStarting("Potion of ").Or.StringStarting("Oil of "));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.Contents, Is.Empty);
@@ -40,50 +26,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
         }
 
-        [Test]
-        public void CursesHappen()
+        protected override Item GenerateItem()
         {
-            var potion = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(potion.Magic.Curse) || potion.ItemType == ItemTypeConstants.SpecificCursedItem))
-            {
-                var power = GetNewPower(false);
-                potion = PotionGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(potion.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.That(potion.Magic.Curse, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void SpecificCursesHappen()
-        {
-            var potion = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && potion.ItemType != ItemTypeConstants.SpecificCursedItem)
-            {
-                var power = GetNewPower(false);
-                potion = PotionGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void NoDecorationsHappen()
-        {
-            var potion = new Item();
-
-            do
-            {
-                var power = GetNewPower(false);
-                potion = PotionGenerator.GenerateAtPower(power);
-            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && potion.Magic.Curse.Any());
-
-            Assert.That(potion.Magic.Curse, Is.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            var power = GetNewPower();
+            return PotionGenerator.GenerateAtPower(power);
         }
     }
 }

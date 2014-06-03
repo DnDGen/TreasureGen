@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -9,33 +7,13 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public class RingGeneratorTests : StressTests
+    public class RingGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Ring)]
         public IMagicalItemGenerator RingGenerator { get; set; }
 
-        private IEnumerable<String> materials;
-
-        [SetUp]
-        public void Setup()
+        protected override void MakeAssertionsAgainst(Item ring)
         {
-            materials = TraitConstants.GetSpecialMaterials();
-        }
-
-        [Test]
-        public void StressedRingGenerator()
-        {
-            StressGenerator();
-        }
-
-        protected override void MakeAssertions()
-        {
-            var power = GetNewPower(false);
-            var ring = RingGenerator.GenerateAtPower(power);
-
-            if (ring.ItemType == ItemTypeConstants.SpecificCursedItem)
-                return;
-
             Assert.That(ring.Name, Is.StringStarting("Ring of "));
             Assert.That(ring.Traits, Is.Not.Null);
             Assert.That(ring.Attributes, Is.Not.Null);
@@ -54,82 +32,22 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(itemMaterials, Is.Empty);
         }
 
+        protected override Item GenerateItem()
+        {
+            var power = GetNewPower();
+            return RingGenerator.GenerateAtPower(power);
+        }
+
         [Test]
         public void IntelligenceHappens()
         {
-            var ring = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.Magic.Intelligence.Ego == 0)
-            {
-                var power = GetNewPower(false);
-                ring = RingGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(ring.Magic.Intelligence.Ego, Is.GreaterThan(0));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void CursesHappen()
-        {
-            var ring = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(ring.Magic.Curse) || ring.ItemType == ItemTypeConstants.SpecificCursedItem))
-            {
-                var power = GetNewPower(false);
-                ring = RingGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(ring.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.That(ring.Magic.Curse, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void SpecificCursesHappen()
-        {
-            var ring = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.ItemType != ItemTypeConstants.SpecificCursedItem)
-            {
-                var power = GetNewPower(false);
-                ring = RingGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            AssertIntelligenceHappens();
         }
 
         [Test]
         public void TraitsHappen()
         {
-            var ring = new Item();
-
-            do
-            {
-                var power = GetNewPower(false);
-                ring = RingGenerator.GenerateAtPower(power);
-            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !ring.Traits.Any());
-
-            Assert.That(ring.Traits, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void NoDecorationsHappen()
-        {
-            var ring = new Item();
-
-            do
-            {
-                var power = GetNewPower(false);
-                ring = RingGenerator.GenerateAtPower(power);
-            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && ring.Traits.Any() && ring.Magic.Curse.Any() && ring.Magic.Intelligence.Ego > 0);
-
-            Assert.That(ring.Traits, Is.Empty);
-            Assert.That(ring.Magic.Curse, Is.Empty);
-            Assert.That(ring.Magic.Intelligence.Ego, Is.EqualTo(0));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            AssertTraitsHappen();
         }
     }
 }

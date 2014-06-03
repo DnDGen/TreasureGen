@@ -9,28 +9,14 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
-    public class MundaneArmorGeneratorTests : StressTests
+    public class MundaneArmorGeneratorTests : MundaneItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Armor)]
         public IMundaneItemGenerator MundaneArmorGenerator { get; set; }
 
-        private IEnumerable<String> materials;
-
-        [SetUp]
-        public void Setup()
-        {
-            materials = TraitConstants.GetSpecialMaterials();
-        }
-
-        [Test]
-        public void StressedMundaneArmorGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
-            var armor = MundaneArmorGenerator.Generate();
+            var armor = GenerateItem();
 
             Assert.That(armor.Name, Is.Not.Empty);
             Assert.That(armor.Traits, Is.Not.Null);
@@ -44,27 +30,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void SpecialMaterialsHappen()
         {
-            var armor = new Item();
-
-            do armor = MundaneArmorGenerator.Generate();
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !armor.Traits.Intersect(materials).Any());
-
-            var weaponMaterials = armor.Traits.Intersect(materials);
-            Assert.That(weaponMaterials, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            AssertSpecialMaterialsHappen();
         }
 
-        [Test]
-        public void NoDecorationsHappen()
+        protected override Item GenerateItem()
         {
-            var armor = new Item();
-
-            do armor = MundaneArmorGenerator.Generate();
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && armor.Traits.Intersect(materials).Any());
-
-            var weaponMaterials = armor.Traits.Intersect(materials);
-            Assert.That(weaponMaterials, Is.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            return MundaneArmorGenerator.Generate();
         }
     }
 }

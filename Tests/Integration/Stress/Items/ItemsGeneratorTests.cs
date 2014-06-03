@@ -10,12 +10,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items
         [Inject]
         public IItemsGenerator ItemsGenerator { get; set; }
 
-        [Test]
-        public void StressedItemsGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
             var level = GetNewLevel();

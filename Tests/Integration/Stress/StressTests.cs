@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Tests.Integration.Common;
 using Ninject;
@@ -16,20 +17,25 @@ namespace EquipmentGen.Tests.Integration.Stress
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        protected const Int32 TimeLimitInSeconds = 1;
+        protected String type;
 
+        private const Int32 TimeLimitInSeconds = 1;
         private const Int32 ConfidentIterations = 1000000;
 
         private Int32 iterations;
 
         public StressTests()
         {
-            iterations = 0;
+            var classType = GetType();
+            var classTypeString = Convert.ToString(classType);
+            var segments = classTypeString.Split('.');
+            type = segments.Last();
         }
 
         [SetUp]
         public void StressSetup()
         {
+            iterations = 0;
             Stopwatch.Start();
         }
 
@@ -39,29 +45,25 @@ namespace EquipmentGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
-        protected void StressGenerator()
+        [Test]
+        public void StressGenerator()
         {
-            do
-            {
-                MakeAssertions();
-                iterations++;
-            } while (TestShouldKeepRunning());
+            do MakeAssertions();
+            while (TestShouldKeepRunning());
 
-            Assert.Pass("Iterations: {0}", iterations);
+            AssertIterations();
         }
 
         protected abstract void MakeAssertions();
 
         protected Boolean TestShouldKeepRunning()
         {
-            return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations < ConfidentIterations;
+            return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations++ < ConfidentIterations;
         }
 
-        [Test, TestFixtureTearDown]
-        public void GeneratorWasStressed()
+        protected void AssertIterations()
         {
-            var type = GetType();
-            Assert.That(iterations, Is.GreaterThan(0), type.Name);
+            Assert.Pass("Type: {0}\nIterations: {1}", type, iterations);
         }
 
         protected Int32 GetNewLevel()
@@ -69,15 +71,20 @@ namespace EquipmentGen.Tests.Integration.Stress
             return Random.Next(1, 21);
         }
 
-        protected String GetNewPower(Boolean allowMundane)
+        protected String GetNewPower(Boolean allowMundane = false, Boolean allowMinor = true)
         {
-            var limit = allowMundane ? 4 : 3;
+            var limit = 2;
+
+            if (allowMundane)
+                limit = 4;
+            else if (allowMinor)
+                limit = 3;
 
             switch (Random.Next(limit))
             {
-                case 0: return PowerConstants.Minor;
+                case 0: return PowerConstants.Major;
                 case 1: return PowerConstants.Medium;
-                case 2: return PowerConstants.Major;
+                case 2: return PowerConstants.Minor;
                 case 3: return PowerConstants.Mundane;
                 default: throw new ArgumentOutOfRangeException();
             }

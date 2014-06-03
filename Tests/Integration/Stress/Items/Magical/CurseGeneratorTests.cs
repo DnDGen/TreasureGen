@@ -11,12 +11,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ICurseGenerator CurseGenerator { get; set; }
 
-        [Test]
-        public void StressedCurseGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
             var curse = CurseGenerator.GenerateCurse();

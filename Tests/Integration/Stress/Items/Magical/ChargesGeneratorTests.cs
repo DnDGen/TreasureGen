@@ -19,11 +19,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         private Dictionary<String, IEnumerable<String>> table;
 
-        [Test]
-        public void StressedChargesGenerator()
+        [SetUp]
+        public void Setup()
         {
             table = AttributesMapper.Map("ChargeLimits");
-            StressGenerator();
         }
 
         protected override void MakeAssertions()

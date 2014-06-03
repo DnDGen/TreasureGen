@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -9,33 +8,13 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public class WandGeneratorTests : StressTests
+    public class WandGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Wand)]
         public IMagicalItemGenerator WandGenerator { get; set; }
 
-        private IEnumerable<String> materials;
-
-        [SetUp]
-        public void Setup()
+        protected override void MakeAssertionsAgainst(Item wand)
         {
-            materials = TraitConstants.GetSpecialMaterials();
-        }
-
-        [Test]
-        public void StressedWandGenerator()
-        {
-            StressGenerator();
-        }
-
-        protected override void MakeAssertions()
-        {
-            var power = GetNewPower(false);
-            var wand = WandGenerator.GenerateAtPower(power);
-
-            if (wand.ItemType == ItemTypeConstants.SpecificCursedItem)
-                return;
-
             Assert.That(wand.Name, Is.StringStarting("Wand of"));
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -54,67 +33,16 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(itemMaterials, Is.Empty);
         }
 
-        [Test]
-        public void CursesHappen()
+        protected override Item GenerateItem()
         {
-            var wand = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && (String.IsNullOrEmpty(wand.Magic.Curse) || wand.ItemType == ItemTypeConstants.SpecificCursedItem))
-            {
-                var power = GetNewPower(false);
-                wand = WandGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(wand.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.That(wand.Magic.Curse, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void SpecificCursesHappen()
-        {
-            var wand = new Item();
-
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && wand.ItemType != ItemTypeConstants.SpecificCursedItem)
-            {
-                var power = GetNewPower(false);
-                wand = WandGenerator.GenerateAtPower(power);
-            }
-
-            Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            var power = GetNewPower();
+            return WandGenerator.GenerateAtPower(power);
         }
 
         [Test]
         public void TraitsHappen()
         {
-            var wand = new Item();
-
-            do
-            {
-                var power = GetNewPower(false);
-                wand = WandGenerator.GenerateAtPower(power);
-            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !wand.Traits.Any());
-
-            Assert.That(wand.Traits, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
-        }
-
-        [Test]
-        public void NoDecorationsHappen()
-        {
-            var wand = new Item();
-
-            do
-            {
-                var power = GetNewPower(false);
-                wand = WandGenerator.GenerateAtPower(power);
-            } while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && wand.Traits.Any() && wand.Magic.Curse.Any() && wand.Magic.Intelligence.Ego > 0);
-
-            Assert.That(wand.Traits, Is.Empty);
-            Assert.That(wand.Magic.Curse, Is.Empty);
-            Assert.That(wand.Magic.Intelligence.Ego, Is.EqualTo(0));
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            AssertTraitsHappen();
         }
     }
 }

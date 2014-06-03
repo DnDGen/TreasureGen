@@ -9,28 +9,14 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
-    public class MundaneWeaponGeneratorTests : StressTests
+    public class MundaneWeaponGeneratorTests : MundaneItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Weapon)]
         public IMundaneItemGenerator MundaneWeaponGenerator { get; set; }
 
-        private IEnumerable<String> materials;
-
-        [SetUp]
-        public void Setup()
-        {
-            materials = TraitConstants.GetSpecialMaterials();
-        }
-
-        [Test]
-        public void StressedMundaneWeaponGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
-            var weapon = MundaneWeaponGenerator.Generate();
+            var weapon = GenerateItem();
 
             Assert.That(weapon.Name, Is.Not.Empty);
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -42,30 +28,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(weapon.Contents, Is.Empty);
         }
 
-        [Test]
-        public void SpecialMaterialsHappen()
+        protected override Item GenerateItem()
         {
-            var weapon = new Item();
-
-            do weapon = MundaneWeaponGenerator.Generate();
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && !weapon.Traits.Intersect(materials).Any());
-
-            var weaponMaterials = weapon.Traits.Intersect(materials);
-            Assert.That(weaponMaterials, Is.Not.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            return MundaneWeaponGenerator.Generate();
         }
 
         [Test]
-        public void NoDecorationsHappen()
+        public void SpecialMaterialsHappen()
         {
-            var weapon = new Item();
-
-            do weapon = MundaneWeaponGenerator.Generate();
-            while (Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && weapon.Traits.Intersect(materials).Any());
-
-            var weaponMaterials = weapon.Traits.Intersect(materials);
-            Assert.That(weaponMaterials, Is.Empty);
-            Assert.Pass("Milliseconds: {0}", Stopwatch.ElapsedMilliseconds);
+            AssertSpecialMaterialsHappen();
         }
     }
 }

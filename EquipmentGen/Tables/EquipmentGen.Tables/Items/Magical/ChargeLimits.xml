@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
-  <object>
-    <name>Bracelet of friends</name>
-    <attribute>1</attribute>
-    <attribute>4</attribute>
-  </object>
+    <object>
+        <name>Bracelet of friends</name>
+        <attribute>1</attribute>
+        <attribute>4</attribute>
+    </object>
     <object>
         <name>Brooch of shielding</name>
         <attribute>1</attribute>
         <attribute>101</attribute>
     </object>
-  <object>
-    <name>Chime of opening</name>
-    <attribute>1</attribute>
-    <attribute>10</attribute>
-  </object>
+    <object>
+        <name>Chime of opening</name>
+        <attribute>1</attribute>
+        <attribute>10</attribute>
+    </object>
     <object>
         <name>Deck of illusions</name>
         <attribute>14</attribute>
@@ -115,5 +115,20 @@
         <name>Robe of bones</name>
         <attribute>1</attribute>
         <attribute>12</attribute>
+    </object>
+    <object>
+        <name>Rod of absorption</name>
+        <attribute>1</attribute>
+        <attribute>50</attribute>
+    </object>
+    <object>
+        <name>Rod of absorption (max)</name>
+        <attribute>50</attribute>
+        <attribute>50</attribute>
+    </object>
+    <object>
+        <name>Rod of rulership</name>
+        <attribute>1</attribute>
+        <attribute>500</attribute>
     </object>
 </percentile>

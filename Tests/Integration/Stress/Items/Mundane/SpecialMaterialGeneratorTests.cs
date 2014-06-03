@@ -18,12 +18,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.Armor)]
         public IMagicalItemGenerator ArmorGenerator { get; set; }
 
-        [Test]
-        public void StressedSpecialMaterialGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
             var item = GenerateItem();

@@ -15,12 +15,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpecialAbilitiesGenerator AbilitiesGenerator { get; set; }
 
-        [Test]
-        public void StressedIntelligenceGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
             var itemType = GetNewGearItemType();

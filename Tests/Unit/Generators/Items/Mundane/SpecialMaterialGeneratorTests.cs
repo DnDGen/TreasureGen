@@ -34,11 +34,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             traits = new List<String>();
-            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
 
             mockAttributesSelector.Setup(s => s.SelectFrom("SpecialMaterials", It.IsAny<String>())).Returns(otherMaterialAttributes);
             mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Mithral)).Returns(material1Attributes);
             mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Adamantine)).Returns(material2Attributes);
+
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
@@ -216,7 +217,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var inputAttributes = material1Attributes.Union(material2Attributes);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
+            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
         }
 
         [Test]
@@ -226,12 +227,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(0);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
+            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
 
             mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
-            Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
+            Assert.That(material, Is.EqualTo(TraitConstants.Mithral));
         }
     }
 }

@@ -6,20 +6,14 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
-    public class AlchemicalItemGeneratorTests : StressTests
+    public class AlchemicalItemGeneratorTests : MundaneItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.AlchemicalItem)]
         public IMundaneItemGenerator AlchemicalItemGenerator { get; set; }
 
-        [Test]
-        public void StressedAlchemicalItemGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
-            var item = AlchemicalItemGenerator.Generate();
+            var item = GenerateItem();
 
             Assert.That(item.Name, Is.Not.Empty);
             Assert.That(item.Quantity, Is.GreaterThan(0));
@@ -28,6 +22,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.Traits, Is.Empty);
             Assert.That(item.Contents, Is.Empty);
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
+        }
+
+        protected override Item GenerateItem()
+        {
+            return AlchemicalItemGenerator.Generate();
         }
     }
 }

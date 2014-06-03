@@ -35,6 +35,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase("Necklace of fireballs type VI", 1, 9)]
         [TestCase("Necklace of fireballs type VII", 1, 9)]
         [TestCase("Robe of bones", 1, 12)]
+        [TestCase("Rod of absorption", 1, 50)]
+        [TestCase("Rod of absorption (max)", 50, 50)]
+        [TestCase("Rod of rulership", 1, 500)]
         public void Attributes(String name, Int32 min, Int32 max)
         {
             var attributes = new[] { min.ToString(), max.ToString() };

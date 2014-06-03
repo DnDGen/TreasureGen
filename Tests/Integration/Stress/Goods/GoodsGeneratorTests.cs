@@ -10,12 +10,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
         [Inject]
         public IGoodsGenerator GoodsGenerator { get; set; }
 
-        [Test]
-        public void StressedGoodsGenerator()
-        {
-            StressGenerator();
-        }
-
         protected override void MakeAssertions()
         {
             var level = GetNewLevel();
