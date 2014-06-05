@@ -23,22 +23,22 @@
     </object>
     <object>
         <lower>51</lower>
-        <content>Defeat/slay DesignatedFoe</content>
+        <content>Defeat/slay DESIGNATEDFOE</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>Defend DesignatedFoe</content>
+        <content>Defend DESIGNATEDFOE</content>
         <upper>70</upper>
     </object>
     <object>
         <lower>71</lower>
-        <content>Defeat/slay the servants of a specific diety</content>
+        <content>Defeat/slay the servants of a specific deity</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Defend the servants of a specific diety</content>
+        <content>Defend the servants of a specific deity</content>
         <upper>90</upper>
     </object>
     <object>

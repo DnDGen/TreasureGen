@@ -19,8 +19,8 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected String type;
 
-        private const Int32 TimeLimitInSeconds = 1;
         private const Int32 ConfidentIterations = 1000000;
+        private const Int32 TimeLimitInSeconds = 1;
 
         private Int32 iterations;
 
@@ -58,12 +58,14 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected Boolean TestShouldKeepRunning()
         {
-            return Stopwatch.Elapsed.Seconds < TimeLimitInSeconds && iterations++ < ConfidentIterations;
+            iterations++;
+            return Stopwatch.Elapsed.TotalSeconds < TimeLimitInSeconds && iterations < ConfidentIterations;
         }
 
         protected void AssertIterations()
         {
-            Assert.Pass("Type: {0}\nIterations: {1}", type, iterations);
+            Assert.That(iterations, Is.GreaterThan(0));
+            Assert.Pass("Type: {0}\nIterations: {1}\nTime: {2:hh\\:mm\\:ss}", type, iterations, Stopwatch.Elapsed);
         }
 
         protected Int32 GetNewLevel()

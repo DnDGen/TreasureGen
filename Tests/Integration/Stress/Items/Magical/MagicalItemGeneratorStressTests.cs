@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
+using Ninject;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
@@ -9,12 +10,31 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public abstract class MagicalItemGeneratorStressTests : StressTests
     {
+        [Inject]
+        public InterestCalculator InterestCalculator { get; set; }
+        [Inject]
+        public InterestFormatter InterestFormatter { get; set; }
+
         protected IEnumerable<String> materials;
+
+        private Item mostInterestingItem;
+        private Int32 mostInterestingScore;
 
         [SetUp]
         public void MundaneItemGeneratorStressSetup()
         {
             materials = TraitConstants.GetSpecialMaterials();
+            mostInterestingScore = 0;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (mostInterestingItem != null)
+            {
+                var output = InterestFormatter.MakeOutput(mostInterestingItem);
+                Assert.Pass(output);
+            }
         }
 
         protected override void MakeAssertions()
@@ -25,6 +45,13 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 return;
 
             MakeAssertionsAgainst(item);
+
+            var score = InterestCalculator.CalculateInterest(item);
+            if (score > mostInterestingScore)
+            {
+                mostInterestingScore = score;
+                mostInterestingItem = item;
+            }
         }
 
         protected abstract Item GenerateItem();
