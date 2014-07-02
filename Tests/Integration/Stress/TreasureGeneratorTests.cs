@@ -15,7 +15,7 @@ namespace EquipmentGen.Tests.Integration.Stress
             var level = GetNewLevel();
             var treasure = TreasureGenerator.GenerateAtLevel(level);
 
-            Assert.That(treasure.Coin.Currency, Is.Not.Null);
+            Assert.That(treasure.Coin.Currency, Is.Not.Null, "currency");
             Assert.That(treasure.Coin.Quantity, Is.AtLeast(0));
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
             Assert.That(treasure.Items, Is.Not.Null, "items");

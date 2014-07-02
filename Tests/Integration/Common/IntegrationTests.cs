@@ -24,6 +24,23 @@ namespace EquipmentGen.Tests.Integration.Common
             kernel.Inject(this);
         }
 
+        //The commented-out code below is for troubleshooting issues with the bindings and injecting,
+        //sicne the SetUp fail message just says that the setup failed, instead of showing the specific ninject issue
+
+        //[SetUp]
+        //public void IntegrationTestsSetup()
+        //{
+        //    kernel = new StandardKernel();
+
+        //    var equipmentGenModuleLoader = new EquipmentGenModuleLoader();
+        //    equipmentGenModuleLoader.LoadModules(kernel);
+
+        //    var d20DiceModuleLoader = new D20DiceModuleLoader();
+        //    d20DiceModuleLoader.LoadModules(kernel);
+
+        //    kernel.Inject(this);
+        //}
+
         protected T GetNewInstanceOf<T>()
         {
             return kernel.Get<T>();

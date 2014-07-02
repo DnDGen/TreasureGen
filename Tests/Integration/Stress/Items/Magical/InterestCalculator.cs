@@ -12,7 +12,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             total += item.Contents.Count;
             total += item.Magic.Bonus;
-            total += item.Magic.Charges;
+
+            var charged = item.Magic.Charges > 0;
+            total += Convert.ToInt32(charged);
             total += Convert.ToInt32(item.Magic.Curse.Any());
             total += item.Magic.Intelligence.Ego;
             total += item.Magic.SpecialAbilities.Count();

@@ -17,19 +17,30 @@ namespace EquipmentGen.Tests.Integration.Stress
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        protected String type;
+        protected readonly String type;
 
         private const Int32 ConfidentIterations = 1000000;
+
+#if STRESS
+        private const Int32 TimeLimitInSeconds = 60;
+#else
         private const Int32 TimeLimitInSeconds = 1;
+#endif
 
         private Int32 iterations;
 
         public StressTests()
         {
+            type = GetTestType();
+        }
+
+        private String GetTestType()
+        {
             var classType = GetType();
             var classTypeString = Convert.ToString(classType);
             var segments = classTypeString.Split('.');
-            type = segments.Last();
+
+            return segments.Last();
         }
 
         [SetUp]
