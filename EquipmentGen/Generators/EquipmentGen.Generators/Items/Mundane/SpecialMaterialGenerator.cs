@@ -49,12 +49,11 @@ namespace EquipmentGen.Generators.Items.Mundane
         private Boolean TraitsAllowForSpecialMaterials(IEnumerable<String> attributes, IEnumerable<String> traits)
         {
             var numberOfMaterialsAlreadyHad = specialMaterialAttributes.Keys.Intersect(traits).Count();
-            var numberOfAllowedMaterials = GetAllowedMaterials(attributes).Count();
-
-            if (numberOfAllowedMaterials <= numberOfMaterialsAlreadyHad)
+            if (numberOfMaterialsAlreadyHad > 1)
                 return false;
 
-            if (numberOfMaterialsAlreadyHad > 1)
+            var numberOfAllowedMaterials = GetAllowedMaterials(attributes).Count();
+            if (numberOfAllowedMaterials <= numberOfMaterialsAlreadyHad)
                 return false;
 
             if (numberOfMaterialsAlreadyHad > 0)
@@ -83,9 +82,6 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             var filteredSpecialMaterials = GetAllowedMaterials(attributesWithType);
             var allowedSpecialMaterials = filteredSpecialMaterials.Except(traits);
-
-            if (!allowedSpecialMaterials.Any())
-                throw new ArgumentException(String.Join(",", attributesWithType.Union(traits)));
 
             if (allowedSpecialMaterials.Count() == 1)
                 return allowedSpecialMaterials.First();
