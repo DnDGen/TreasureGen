@@ -52,12 +52,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Trove.FLEE.0.9.26.0\lib\net20\Ciloci.Flee.dll</HintPath>
     </Reference>
-    <Reference Include="D20Dice, Version=1.0.5267.24678, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="D20Dice, Version=1.0.5350.19212, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\D20Dice.6.2\lib\D20Dice.dll</HintPath>
+      <HintPath>..\..\..\packages\D20Dice.7.1\lib\D20Dice.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1408.717, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Moq.4.2.1408.0717\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>

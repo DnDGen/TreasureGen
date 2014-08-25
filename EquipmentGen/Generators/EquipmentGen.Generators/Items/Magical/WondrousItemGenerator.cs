@@ -91,8 +91,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var roll = String.Format("1d{0}-1", fullContents.Count);
-                var index = dice.Roll(roll);
+                var index = dice.RollIndex(fullContents.Count);
 
                 contents.Add(fullContents[index]);
                 fullContents.RemoveAt(index);

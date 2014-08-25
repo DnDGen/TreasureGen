@@ -41,8 +41,7 @@ namespace EquipmentGen.Generators.Goods
             {
                 var valueRoll = percentileSelector.SelectFrom(valueTableName);
                 var descriptions = attributesSelector.SelectFrom(descriptionTableName, valueRoll);
-                var descriptionIndexRoll = String.Format("1d{0}-1", descriptions.Count());
-                var descriptionIndex = dice.Roll(descriptionIndexRoll);
+                var descriptionIndex = dice.RollIndex(descriptions.Count());
 
                 var good = new Good();
                 good.Description = descriptions.ElementAt(descriptionIndex);

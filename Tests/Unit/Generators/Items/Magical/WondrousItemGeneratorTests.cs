@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
@@ -234,9 +233,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(cards);
-            mockDice.Setup(d => d.Roll("1d4-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d3-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(3)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(2)).Returns(1);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -253,10 +252,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(spheres);
-            mockDice.Setup(d => d.Roll("1d5-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d4-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d3-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(5)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(3)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(2)).Returns(1);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -274,10 +273,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(items);
-            mockDice.Setup(d => d.Roll("1d6-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d5-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d4-1")).Returns(0);
-            mockDice.Setup(d => d.Roll("1d3-1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(6)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(5)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
+            mockDice.Setup(d => d.RollIndex(3)).Returns(1);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));

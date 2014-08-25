@@ -91,7 +91,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Goods
         [Test]
         public void DescriptionDeterminedByValueResult()
         {
-            mockDice.SetupSequence(d => d.Roll("1d2-1")).Returns(0).Returns(1);
+            mockDice.SetupSequence(d => d.RollIndex(2)).Returns(0).Returns(1);
 
             var good = generator.GenerateAtLevel(1);
             var firstGood = good.First();

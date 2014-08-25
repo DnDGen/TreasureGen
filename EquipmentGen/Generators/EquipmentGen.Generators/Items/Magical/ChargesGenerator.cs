@@ -35,9 +35,8 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var rangeAttributesResult = rangeAttributesSelector.SelectFrom("ChargeLimits", name);
             var die = rangeAttributesResult.Maximum - rangeAttributesResult.Minimum + 1;
-            var toRoll = String.Format("1d{0}", die);
 
-            return dice.Roll(toRoll) + rangeAttributesResult.Minimum - 1;
+            return dice.RollIndex(die) + rangeAttributesResult.Minimum;
         }
 
         private Int32 PercentileCharges()

@@ -224,12 +224,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void IfMultipleMatchingMaterials_RollsToDetermineWhichOne()
         {
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
-            mockDice.Setup(d => d.Roll("1d2-1")).Returns(0);
+            mockDice.Setup(d => d.RollIndex(2)).Returns(0);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.Adamantine));
 
-            mockDice.Setup(d => d.Roll("1d2-1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(2)).Returns(1);
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.Mithral));

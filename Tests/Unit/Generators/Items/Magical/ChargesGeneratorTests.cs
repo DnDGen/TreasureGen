@@ -243,7 +243,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result.Minimum = 66;
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "name")).Returns(result);
-            mockDice.Setup(d => d.Roll("1d27")).Returns(9266);
+            mockDice.Setup(d => d.RollIndex(27)).Returns(9265);
 
             var charges = generator.GenerateFor(String.Empty, "name");
             Assert.That(charges, Is.EqualTo(9331));
@@ -261,8 +261,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Deck of illusions")).Returns(result);
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
-            mockDice.Setup(d => d.Roll("1d27")).Returns(9266);
-            mockDice.Setup(d => d.Roll("1d1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(27)).Returns(9265);
+            mockDice.Setup(d => d.RollIndex(1)).Returns(0);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(true);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
@@ -281,8 +281,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Deck of illusions")).Returns(result);
             mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
-            mockDice.Setup(d => d.Roll("1d27")).Returns(9266);
-            mockDice.Setup(d => d.Roll("1d1")).Returns(1);
+            mockDice.Setup(d => d.RollIndex(27)).Returns(9265);
+            mockDice.Setup(d => d.RollIndex(1)).Returns(0);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(false);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
