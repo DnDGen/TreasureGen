@@ -23,6 +23,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockDice = new Mock<IDice>();
             ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
+
+            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(0);
         }
 
         [Test]
@@ -135,7 +137,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [TestCase(100, 50)]
         public void QuantityRoll(Int32 roll, Int32 quantity)
         {
-            mockDice.Setup(d => d.Percentile(1)).Returns(roll);
+            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(roll);
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Quantity, Is.EqualTo(quantity));
         }

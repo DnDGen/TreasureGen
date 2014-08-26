@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
 
             result = new TypeAndAmountPercentileResult();
             result.Type = "armor type";
-            result.Amount = "9266";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(result);
         }
 
@@ -80,7 +80,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var specificResult = new TypeAndAmountPercentileResult();
             specificResult.Type = "SpecificArmor";
-            specificResult.Amount = "0";
+            specificResult.Amount = 0;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(specificResult);
 
             var specificArmor = new Item();
@@ -95,7 +95,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
-            abilityResult.Amount = "90210";
+            abilityResult.Amount = 90210;
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors"))
                 .Returns(abilityResult).Returns(result);
 

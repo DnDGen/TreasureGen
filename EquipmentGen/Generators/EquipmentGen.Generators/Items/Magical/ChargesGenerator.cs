@@ -33,15 +33,15 @@ namespace EquipmentGen.Generators.Items.Magical
                     name = "Full deck of illusions";
             }
 
-            var rangeAttributesResult = rangeAttributesSelector.SelectFrom("ChargeLimits", name);
-            var die = rangeAttributesResult.Maximum - rangeAttributesResult.Minimum + 1;
+            var result = rangeAttributesSelector.SelectFrom("ChargeLimits", name);
+            var die = result.Maximum - result.Minimum + 1;
 
-            return dice.RollIndex(die) + rangeAttributesResult.Minimum;
+            return dice.Roll().d(die) - 1 + result.Minimum;
         }
 
         private Int32 PercentileCharges()
         {
-            var roll = dice.Percentile();
+            var roll = dice.Roll().Percentile();
             return Math.Max(roll / 2, 1);
         }
     }

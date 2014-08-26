@@ -118,7 +118,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockDice.Setup(d => d.d4(1)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d4()).Returns(9266);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
 
             var weapon = weaponGenerator.GenerateAtPower("power");
@@ -136,7 +136,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
                 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockDice.Setup(d => d.d4(1)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d4()).Returns(9266);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
 
             var weapon = weaponGenerator.GenerateAtPower("power");

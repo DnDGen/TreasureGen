@@ -41,9 +41,9 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             switch (power)
             {
-                case PowerConstants.Minor: return dice.d3();
-                case PowerConstants.Medium: return dice.d4();
-                case PowerConstants.Major: return dice.d6();
+                case PowerConstants.Minor: return dice.Roll().d3();
+                case PowerConstants.Medium: return dice.Roll().d4();
+                case PowerConstants.Major: return dice.Roll().d6();
                 default: throw new ArgumentException();
             }
         }

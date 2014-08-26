@@ -37,7 +37,7 @@ namespace EquipmentGen.Generators.Items.Magical
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
             item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", item.Name);
-            item.Magic.Bonus = Convert.ToInt32(result.Amount);
+            item.Magic.Bonus = result.Amount;
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
@@ -91,7 +91,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var index = dice.RollIndex(fullContents.Count);
+                var index = dice.Roll().d(fullContents.Count) - 1;
 
                 contents.Add(fullContents[index]);
                 fullContents.RemoveAt(index);
@@ -117,7 +117,7 @@ namespace EquipmentGen.Generators.Items.Magical
         private IEnumerable<String> GenerateExtraItemsInRobeOfUsefulItems()
         {
             var extraItems = new List<String>();
-            var quantity = dice.d4(4);
+            var quantity = dice.Roll(4).d4();
 
             while (quantity-- > 0)
             {

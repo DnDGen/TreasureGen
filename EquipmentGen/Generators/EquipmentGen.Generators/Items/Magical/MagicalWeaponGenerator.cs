@@ -74,7 +74,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 if (shouldStoreSpell)
                 {
                     var spellType = spellGenerator.GenerateType();
-                    var level = dice.d4() - 1;
+                    var level = dice.Roll().d4() - 1;
                     var spell = spellGenerator.Generate(spellType, level);
 
                     weapon.Contents.Add(spell);

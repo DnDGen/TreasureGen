@@ -86,8 +86,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             if (allowedSpecialMaterials.Count() == 1)
                 return allowedSpecialMaterials.First();
 
-            var index = dice.RollIndex(allowedSpecialMaterials.Count());
-
+            var index = dice.Roll().d(allowedSpecialMaterials.Count()) - 1;
             return allowedSpecialMaterials.ElementAt(index);
         }
     }

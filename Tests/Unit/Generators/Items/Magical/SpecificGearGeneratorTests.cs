@@ -36,7 +36,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result = new TypeAndAmountPercentileResult();
 
             result.Type = "specific gear";
-            result.Amount = "0";
+            result.Amount = 0;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
 
             generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object
@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var newResult = new TypeAndAmountPercentileResult();
             newResult.Type = "new specific gear";
-            newResult.Amount = "42";
+            newResult.Amount = 42;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerSpecific gear type")).Returns(newResult);
 
             var gear = generator.GenerateFrom("power", "Specific gear type");

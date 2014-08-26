@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
 
             result.Type = "wondrous item";
-            result.Amount = "0";
+            result.Amount = 0;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerWondrousItems")).Returns(result);
         }
 
@@ -88,7 +88,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetBonus()
         {
-            result.Amount = "90210";
+            result.Amount = 90210;
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Magic.Bonus, Is.EqualTo(90210));
         }
@@ -152,6 +152,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsBaseItemsAdded()
         {
+            mockDice.Setup(d => d.Roll(4).d4()).Returns(0);
             result.Type = "Robe of useful items";
             var items = new[] { "item 1", "item 1", "item 2", "item 2", "item 3", "item 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(items);
@@ -166,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsExtraItemsDetermined()
         {
             result.Type = "Robe of useful items";
-            mockDice.Setup(d => d.d4(4)).Returns(2);
+            mockDice.Setup(d => d.Roll(4).d4()).Returns(2);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom("RobeOfUsefulItemsExtraItems")).Returns("item 1").Returns("item 2");
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
@@ -179,7 +180,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsExtraItemsScrollDetermined()
         {
             result.Type = "Robe of useful items";
-            mockDice.Setup(d => d.d4(4)).Returns(1);
+            mockDice.Setup(d => d.Roll(4).d4()).Returns(1);
             mockPercentileSelector.Setup(p => p.SelectFrom("RobeOfUsefulItemsExtraItems")).Returns("Scroll");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
@@ -233,9 +234,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(cards);
-            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(3)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(2)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(3)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(2)).Returns(2);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -252,10 +253,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(spheres);
-            mockDice.Setup(d => d.RollIndex(5)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(3)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(2)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(5)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(3)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(2)).Returns(2);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -273,10 +274,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom("WondrousItemContents", result.Type)).Returns(items);
-            mockDice.Setup(d => d.RollIndex(6)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(5)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(4)).Returns(0);
-            mockDice.Setup(d => d.RollIndex(3)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(6)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(5)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(3)).Returns(2);
 
             var item = wondrousItemGenerator.GenerateAtPower("power");
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -304,7 +305,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Contents, Contains.Item("undead 3"));
             Assert.That(item.Contents.Count(c => c == "undead 3"), Is.EqualTo(2));
             Assert.That(item.Contents.Count, Is.EqualTo(6));
-            mockDice.Verify(d => d.Roll(It.IsAny<String>()), Times.Never);
+            mockDice.Verify(d => d.Roll(It.IsAny<Int32>()).d(It.IsAny<Int32>()), Times.Never);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
             result = new TypeAndAmountPercentileResult();
 
             result.Type = "coin type";
-            result.Amount = "92d66";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
 
         }
@@ -50,13 +50,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         }
 
         [Test]
-        public void RollCurrencyAmount()
+        public void GetCurrencyAmount()
         {
-            mockDice.Setup(d => d.Roll(result.Amount)).Returns(42);
-
             var coin = generator.GenerateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(result.Type));
-            Assert.That(coin.Quantity, Is.EqualTo(42));
+            Assert.That(coin.Quantity, Is.EqualTo(9266));
         }
     }
 }

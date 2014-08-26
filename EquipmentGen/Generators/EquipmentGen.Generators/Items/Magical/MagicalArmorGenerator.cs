@@ -43,7 +43,7 @@ namespace EquipmentGen.Generators.Items.Magical
             armor.ItemType = ItemTypeConstants.Armor;
             armor.Name = percentileSelector.SelectFrom(tableName);
             armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
-            armor.Magic.Bonus = Convert.ToInt32(result.Amount);
+            armor.Magic.Bonus = result.Amount;
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount);
 
             return armor;

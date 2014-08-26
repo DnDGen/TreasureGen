@@ -29,7 +29,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object,
                 mockChargesGenerator.Object, mockBooleanPercentileSelector.Object);
 
-            result.Amount = "0";
+            result.Amount = 0;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerRods")).Returns(result);
         }
 
@@ -93,7 +93,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetBonus()
         {
-            result.Amount = "9266";
+            result.Amount = 9266;
             var rod = rodGenerator.GenerateAtPower("power");
             Assert.That(rod.Magic.Bonus, Is.EqualTo(9266));
         }

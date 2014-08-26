@@ -48,12 +48,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ciloci.Flee">
-      <HintPath>..\..\..\packages\Trove.FLEE.0.9.26.0\lib\net20\Ciloci.Flee.dll</HintPath>
-    </Reference>
-    <Reference Include="D20Dice, Version=1.0.5350.19212, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="D20Dice, Version=1.0.5350.36368, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\D20Dice.7.1\lib\D20Dice.dll</HintPath>
+      <HintPath>..\..\..\packages\D20Dice.8.0\lib\D20Dice.dll</HintPath>
     </Reference>
     <Reference Include="D20Dice.Bootstrap">
       <HintPath>..\..\..\packages\D20Dice.Bootstrap.6.2\lib\D20Dice.Bootstrap.dll</HintPath>

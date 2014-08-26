@@ -34,7 +34,7 @@ namespace EquipmentGen.Generators.Items.Magical
             rod.ItemType = ItemTypeConstants.Rod;
             rod.Name = result.Type;
             rod.IsMagical = true;
-            rod.Magic.Bonus = Convert.ToInt32(result.Amount);
+            rod.Magic.Bonus = result.Amount;
             rod.Attributes = attributesSelector.SelectFrom("RodAttributes", rod.Name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))

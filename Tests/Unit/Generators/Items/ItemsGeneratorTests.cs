@@ -40,9 +40,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             mockMundaneItemGenerator = new Mock<IMundaneItemGenerator>();
 
             result.Type = "power";
-            result.Amount = "9266";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
-            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Returns(9266);
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(ItemTypeConstants.WondrousItem);
 
             var dummyMagicalMock = new Mock<IMagicalItemGenerator>();
@@ -53,8 +53,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             dummyMundaneMock.Setup(m => m.Generate()).Returns(item);
             mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf(It.IsAny<String>())).Returns(dummyMundaneMock.Object);
 
-            itemsGenerator = new ItemsGenerator(mockTypeAndAmountPercentileSelector.Object, mockMundaneItemGeneratorFactory.Object, mockPercentileSelector.Object,
-                mockMagicalItemGeneratorFactory.Object, mockDice.Object);
+            itemsGenerator = new ItemsGenerator(mockTypeAndAmountPercentileSelector.Object, mockMundaneItemGeneratorFactory.Object, mockPercentileSelector.Object, mockMagicalItemGeneratorFactory.Object);
         }
 
         [Test]
@@ -82,8 +81,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void ReturnItems()
         {
             result.Type = PowerConstants.Mundane;
-            result.Amount = "2";
-            mockDice.Setup(d => d.Roll(result.Amount)).Returns(2);
+            result.Amount = 2;
+            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Returns(2);
 
             var firstItem = new Item();
             var secondItem = new Item();
@@ -100,8 +99,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void IfSelectorReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
         {
             result.Type = String.Empty;
-            result.Amount = String.Empty;
-            mockDice.Setup(d => d.Roll(String.Empty)).Throws(new Exception());
+            result.Amount = 0;
+            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Throws(new Exception());
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items, Is.Empty);
@@ -111,7 +110,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void GetMundaneItemsFromMundaneItemGenerator()
         {
             result.Type = PowerConstants.Mundane;
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
+            result.Amount = 1;
 
             var mundaneItem = new Item();
             mockPercentileSelector.Setup(p => p.SelectFrom("MundaneItems")).Returns("mundane item type");
@@ -127,7 +126,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         public void GetMagicalItemsFromMagicalItemGenerator()
         {
             result.Type = "power";
-            mockDice.Setup(d => d.Roll(It.IsAny<String>())).Returns(1);
+            result.Amount = 1;
 
             var magicalItem = new Item();
             mockPercentileSelector.Setup(p => p.SelectFrom("powerItems")).Returns("magic item type");

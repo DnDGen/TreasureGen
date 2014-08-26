@@ -66,6 +66,7 @@
     <Compile Include="IAttributesSelector.cs" />
     <Compile Include="Objects\IntelligenceAttributesResult.cs" />
     <Compile Include="Objects\RangeAttributesResult.cs" />
+    <Compile Include="Objects\RollResult.cs" />
     <Compile Include="Objects\SpecialAbilityAttributesResult.cs" />
     <Compile Include="Objects\TypeAndAmountPercentileResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

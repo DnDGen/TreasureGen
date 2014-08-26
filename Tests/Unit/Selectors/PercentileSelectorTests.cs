@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         public void RollPercentile()
         {
             table.Add(9266, "9266 content");
-            mockDice.Setup(d => d.Percentile(1)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(9266);
 
             var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[9266]));
@@ -46,7 +46,7 @@ namespace EquipmentGen.Tests.Unit.Selectors
         {
             table.Add(42, "other content");
             table.Add(9266, "9266 content");
-            mockDice.SetupSequence(d => d.Percentile(1)).Returns(42).Returns(9266);
+            mockDice.SetupSequence(d => d.Roll(1).Percentile()).Returns(42).Returns(9266);
 
             var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[42]));

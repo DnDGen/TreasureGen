@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
@@ -14,32 +13,27 @@ namespace EquipmentGen.Generators.Items
         private IPercentileSelector percentileSelector;
         private IMundaneItemGeneratorFactory mundaneItemGeneratorFactory;
         private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
-        private IDice dice;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory,
-            IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory, IDice dice)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;
             this.percentileSelector = percentileSelector;
             this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
-            this.dice = dice;
         }
 
         public IEnumerable<Item> GenerateAtLevel(Int32 level)
         {
             var tableName = String.Format("Level{0}Items", level);
-            var typeAndAmountResult = typeAndAmountPercentileSelector.SelectFrom(tableName);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var items = new List<Item>();
 
-            if (String.IsNullOrEmpty(typeAndAmountResult.Type))
+            if (String.IsNullOrEmpty(result.Type))
                 return items;
 
-            var amount = dice.Roll(typeAndAmountResult.Amount);
-
-            while (amount-- > 0)
+            while (result.Amount-- > 0)
             {
-                var item = GenerateAtPower(typeAndAmountResult.Type);
+                var item = GenerateAtPower(result.Type);
                 items.Add(item);
             }
 

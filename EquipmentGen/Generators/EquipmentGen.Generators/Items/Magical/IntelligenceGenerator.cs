@@ -65,7 +65,7 @@ namespace EquipmentGen.Generators.Items.Magical
             foreach (var ability in magic.SpecialAbilities)
                 intelligence.Ego += ability.BonusEquivalent;
 
-            switch (dice.d3())
+            switch (dice.Roll().d3())
             {
                 case 1: intelligence.CharismaStat = 10; break;
                 case 2: intelligence.IntelligenceStat = 10; break;
@@ -104,7 +104,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
 
-            if (dice.d4() <= intelligenceAttributesResult.GreaterPowersCount)
+            if (dice.Roll().d4() <= intelligenceAttributesResult.GreaterPowersCount)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes");

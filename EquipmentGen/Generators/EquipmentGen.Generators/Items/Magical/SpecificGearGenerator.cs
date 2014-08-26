@@ -36,7 +36,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var gear = new Item();
             gear.Name = result.Type;
-            gear.Magic.Bonus = Convert.ToInt32(result.Amount);
+            gear.Magic.Bonus = result.Amount;
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
             if (itemType == ItemTypeConstants.Armor || itemType == AttributeConstants.Shield)

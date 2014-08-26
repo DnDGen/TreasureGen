@@ -20,7 +20,7 @@ namespace EquipmentGen.Selectors
 
         public String SelectFrom(String tableName)
         {
-            var roll = dice.Percentile();
+            var roll = dice.Roll().Percentile();
             var table = percentileMapper.Map(tableName);
             return table[roll];
         }

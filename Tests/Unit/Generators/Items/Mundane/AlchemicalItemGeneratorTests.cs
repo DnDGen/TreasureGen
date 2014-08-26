@@ -29,9 +29,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetItemAndQuantityFromSelector()
         {
             result.Type = "alchemical item";
-            result.Amount = "amount";
+            result.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems")).Returns(result);
-            mockDice.Setup(d => d.Roll(result.Amount)).Returns(9266);
 
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));

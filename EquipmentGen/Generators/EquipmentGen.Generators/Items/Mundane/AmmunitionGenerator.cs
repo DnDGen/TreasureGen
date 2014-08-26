@@ -22,7 +22,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Percentile();
+            var roll = dice.Roll().Percentile();
 
             var ammunition = new Item();
             ammunition.Name = percentileSelector.SelectFrom("Ammunitions");

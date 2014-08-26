@@ -31,7 +31,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", result.Type);
-            ring.Magic.Bonus = Convert.ToInt32(result.Amount);
+            ring.Magic.Bonus = result.Amount;
             ring.IsMagical = true;
             ring.Attributes = attributesSelector.SelectFrom("RingAttributes", result.Type);
             ring.ItemType = ItemTypeConstants.Ring;

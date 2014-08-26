@@ -43,15 +43,16 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             var mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
-            result.Type = String.Empty;
-            result.Amount = "0";
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
-            mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result.Amount);
+            mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns("0");
 
             factory = new MagicalItemGeneratorFactory(mockPercentileSelector.Object, mockTraitsGenerator.Object, mockIntelligenceGenerator.Object,
                 mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object, mockMaterialGenerator.Object, mockTraitsGenerator.Object,
                 mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockCurseGenerator.Object, mockTypeAndAmountPercentileSelector.Object,
                 mockSpecificGearGenerator.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
+
+            var mockPartialRoll = new Mock<IPartialRoll>();
+            mockDice.Setup(d => d.Roll(It.IsAny<Int32>())).Returns(mockPartialRoll.Object);
         }
 
         [TestCase(ItemTypeConstants.Armor)]

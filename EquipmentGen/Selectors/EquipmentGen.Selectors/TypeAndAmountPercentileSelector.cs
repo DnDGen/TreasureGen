@@ -1,16 +1,20 @@
 ﻿using System;
+using D20Dice;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using System.Linq;
 
 namespace EquipmentGen.Selectors
 {
     public class TypeAndAmountPercentileSelector : ITypeAndAmountPercentileSelector
     {
         private IPercentileSelector percentileSelector;
+        private IDice dice;
 
-        public TypeAndAmountPercentileSelector(IPercentileSelector percentileSelector)
+        public TypeAndAmountPercentileSelector(IPercentileSelector percentileSelector, IDice dice)
         {
             this.percentileSelector = percentileSelector;
+            this.dice = dice;
         }
 
         public TypeAndAmountPercentileResult SelectFrom(String tableName)
@@ -30,7 +34,27 @@ namespace EquipmentGen.Selectors
             var parsedResult = percentileResult.Split(',');
 
             result.Type = parsedResult[0];
-            result.Amount = parsedResult[1];
+
+            var amount = parsedResult[1].Split('d', '*');
+
+            if (amount.Length == 1)
+            {
+                result.Amount = Convert.ToInt32(amount[0]);
+            }
+            else if (amount.Length == 2)
+            {
+                var quantity = Convert.ToInt32(amount[0]);
+                var die = Convert.ToInt32(amount[1]);
+                result.Amount = dice.Roll(quantity).d(die);
+            }
+            else
+            {
+                var quantity = Convert.ToInt32(amount[0]);
+                var die = Convert.ToInt32(amount[1]);
+                var multiplier = Convert.ToInt32(amount[2]);
+
+                result.Amount = dice.Roll(quantity).d(die) * multiplier;
+            }
 
             return result;
         }

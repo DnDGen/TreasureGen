@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result = new TypeAndAmountPercentileResult();
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
-            result.Amount = "0";
+            result.Amount = 0;
 
             potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object);
         }
@@ -46,7 +46,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var newResult = new TypeAndAmountPercentileResult();
             newResult.Type = "potion";
-            newResult.Amount = "9266";
+            newResult.Amount = 9266;
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerPotions")).Returns(newResult);
 

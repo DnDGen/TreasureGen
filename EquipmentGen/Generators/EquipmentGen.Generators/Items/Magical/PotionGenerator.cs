@@ -1,5 +1,4 @@
 ﻿using System;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -25,7 +24,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             potion.Name = result.Type;
             potion.ItemType = ItemTypeConstants.Potion;
-            potion.Magic.Bonus = Convert.ToInt32(result.Amount);
+            potion.Magic.Bonus = result.Amount;
             potion.IsMagical = true;
             potion.Attributes = new[] { AttributeConstants.OneTimeUse };
 

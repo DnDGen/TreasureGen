@@ -37,7 +37,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
 
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
-            result.Amount = "0";
+            result.Amount = 0;
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var newResult = new TypeAndAmountPercentileResult();
             newResult.Type = "ring ability";
-            newResult.Amount = "0";
+            newResult.Amount = 0;
 
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerRings")).Returns(newResult);
 
@@ -314,7 +314,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetBonus()
         {
             result.Type = "ring ability";
-            result.Amount = "9266";
+            result.Amount = 9266;
 
             var ring = ringGenerator.GenerateAtPower("power");
             Assert.That(ring.Name, Is.EqualTo("Ring of ring ability"));

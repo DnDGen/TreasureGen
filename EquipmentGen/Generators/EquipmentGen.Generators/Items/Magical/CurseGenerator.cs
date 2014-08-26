@@ -42,7 +42,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetIntermittentFunctioning()
         {
-            var roll = dice.d3();
+            var roll = dice.Roll().d3();
 
             if (roll == 1)
                 return "Unreliable";
@@ -78,7 +78,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetSituationWithGender(String situation)
         {
-            var roll = dice.d2();
+            var roll = dice.Roll().d2();
 
             if (roll == 1)
                 return situation.Replace("GENDER", "male");
