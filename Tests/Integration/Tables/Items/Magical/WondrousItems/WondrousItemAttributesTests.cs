@@ -265,9 +265,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Bottle of air")]
         [TestCase("Bag of holding type III")]
         [TestCase("Periapt of health")]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

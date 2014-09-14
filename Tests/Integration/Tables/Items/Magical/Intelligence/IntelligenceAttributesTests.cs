@@ -19,10 +19,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("17", "120 ft. darkvision and hearing", 3, 1)]
         [TestCase("18", "120 ft. darkvision, blindsense, and hearing", 3, 2)]
         [TestCase("19", "120 ft. darkvision, blindsense, and hearing", 4, 3)]
-        public void Attributes(String strength, String senses, Int32 lesserPowersCount, Int32 greaterPowersCount)
+        public void OrderedAttributes(String strength, String senses, Int32 lesserPowersCount, Int32 greaterPowersCount)
         {
-            var attributes = new[] { senses, lesserPowersCount.ToString(), greaterPowersCount.ToString() };
-            AssertAttributes(strength, attributes);
+            var attributes = new[]
+            {
+                senses, 
+                Convert.ToString(lesserPowersCount),
+                Convert.ToString(greaterPowersCount) 
+            };
+
+            OrderedAttributes(strength, attributes);
         }
     }
 }

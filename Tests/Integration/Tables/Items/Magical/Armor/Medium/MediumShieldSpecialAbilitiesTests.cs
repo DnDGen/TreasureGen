@@ -27,16 +27,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
         [TestCase(SpecialAbilityConstants.GhostTouchArmor, 80, 85)]
         [TestCase(SpecialAbilityConstants.ModerateFortification, 86, 95)]
         [TestCase(SpecialAbilityConstants.SpellResistance15, 96, 98)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase(SpecialAbilityConstants.Wild, 99)]
         [TestCase("BonusSpecialAbility", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

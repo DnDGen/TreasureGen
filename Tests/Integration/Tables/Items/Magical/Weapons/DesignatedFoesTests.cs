@@ -19,9 +19,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
         [TestCase("Earth-outsider", 77)]
         [TestCase("Fire-outsider", 81)]
         [TestCase("Water-outsider", 88)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
 
         [TestCase("Aberration", 1, 5)]
@@ -47,9 +47,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
         [TestCase("Plant", 89, 90)]
         [TestCase("Undead", 91, 98)]
         [TestCase("Vermin", 99, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

@@ -13,9 +13,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 
         [TestCase("Balor", 1, 50)]
         [TestCase("Pit fiend", 51, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

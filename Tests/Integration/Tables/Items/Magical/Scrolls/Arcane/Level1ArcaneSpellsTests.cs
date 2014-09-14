@@ -50,18 +50,18 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("True strike", 94, 95)]
         [TestCase("Unseen servant", 97, 98)]
         [TestCase("Ventriloquism", 99, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Lesser confusion", 20)]
         [TestCase("Cure light wounds", 21)]
         [TestCase("Feather fall", 41)]
         [TestCase("Undetectable alignment", 96)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

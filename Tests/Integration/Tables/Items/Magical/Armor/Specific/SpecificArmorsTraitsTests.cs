@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -25,9 +24,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.ChainShirt, TraitConstants.Mithral)]
         [TestCase(ArmorConstants.FullPlate, TraitConstants.Dragonhide)]
         [TestCase(ArmorConstants.Breastplate, TraitConstants.Adamantine)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

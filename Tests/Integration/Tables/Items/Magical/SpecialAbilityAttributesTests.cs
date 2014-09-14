@@ -85,16 +85,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.Blinding, 1, SpecialAbilityConstants.Blinding, 0)]
         [TestCase(SpecialAbilityConstants.Animated, 2, SpecialAbilityConstants.Animated, 0)]
         [TestCase(SpecialAbilityConstants.Reflecting, 5, SpecialAbilityConstants.Reflecting, 0)]
-        public void Attributes(String name, Int32 bonusEquivalent, String baseName, Int32 strength)
+        public void OrderedAttributes(String name, Int32 bonusEquivalent, String baseName, Int32 strength)
         {
             var attributes = new[]
             {
+                Convert.ToString(bonusEquivalent),
                 baseName,
-                bonusEquivalent.ToString(),
-                strength.ToString()
+                Convert.ToString(strength)
             };
 
-            AssertAttributes(name, attributes);
+            base.OrderedAttributes(name, attributes);
         }
     }
 }

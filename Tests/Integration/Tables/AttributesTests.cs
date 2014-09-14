@@ -2,27 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables
 {
     [TestFixture]
-    public abstract class AttributesTests : IntegrationTests
+    public abstract class AttributesTests : TableTests
     {
         [Inject]
         public IAttributesMapper AttributesMapper { get; set; }
 
-        protected abstract String tableName { get; }
-
         private Dictionary<String, IEnumerable<String>> table;
-        private List<String> testedNames;
-
-        public AttributesTests()
-        {
-            testedNames = new List<String>();
-        }
 
         [SetUp]
         public void Setup()
@@ -30,20 +21,8 @@ namespace EquipmentGen.Tests.Integration.Tables
             table = AttributesMapper.Map(tableName);
         }
 
-        [Test, TestFixtureTearDown]
-        public void AllNamesTested()
+        public virtual void Attributes(String name, params String[] attributes)
         {
-            var missingNames = table.Keys.Except(testedNames);
-            Assert.That(missingNames, Is.Empty, tableName);
-        }
-
-        protected void AssertAttributes(String name, IEnumerable<String> attributes)
-        {
-            var testedBefore = testedNames.Contains(name);
-            Assert.That(testedBefore, Is.False);
-
-            testedNames.Add(name);
-
             Assert.That(table.Keys, Contains.Item(name), tableName);
 
             foreach (var attribute in attributes)
@@ -57,6 +36,21 @@ namespace EquipmentGen.Tests.Integration.Tables
 
             var extraAttributes = table[name].Except(attributes);
             Assert.That(extraAttributes, Is.Empty);
+        }
+
+        public virtual void OrderedAttributes(String name, params String[] attributes)
+        {
+            Assert.That(table.Keys, Contains.Item(name), tableName);
+            var count = attributes.Count();
+
+            for (var i = 0; i < count; i++)
+            {
+                var expected = attributes.ElementAt(i);
+                var actual = table[name].ElementAt(i);
+                Assert.That(actual, Is.EqualTo(expected));
+            }
+
+            Assert.That(table[name].Count(), Is.EqualTo(count));
         }
     }
 }

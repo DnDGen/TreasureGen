@@ -34,9 +34,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(SpecialAbilityConstants.SpellResistance17, 85, 86)]
         [TestCase(SpecialAbilityConstants.HeavyFortification, 88, 91)]
         [TestCase(SpecialAbilityConstants.Reflecting, 92, 93)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase(SpecialAbilityConstants.Wild, 59)]
@@ -48,9 +48,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(SpecialAbilityConstants.GreaterFireResistance, 98)]
         [TestCase(SpecialAbilityConstants.GreaterSonicResistance, 99)]
         [TestCase("BonusSpecialAbility", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

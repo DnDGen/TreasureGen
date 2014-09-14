@@ -28,9 +28,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Item can cast 15d6 Greater Shout 3/day", 88, 92)]
         [TestCase("Item can use Waves of Exhaustion", 93, 98)]
         [TestCase("Item can use True Resurrection on wielder 1/month", 99, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

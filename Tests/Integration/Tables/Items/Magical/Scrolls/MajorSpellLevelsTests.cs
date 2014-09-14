@@ -17,9 +17,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls
         [TestCase("7", 71, 85)]
         [TestCase("8", 86, 95)]
         [TestCase("9", 96, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

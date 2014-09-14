@@ -33,16 +33,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Sunbeam", 86, 90)]
         [TestCase("Transmute metal to wood", 93, 97)]
         [TestCase("Word of chaos", 98, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Symbol of stunning", 91)]
         [TestCase("Symbol of weakness", 92)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

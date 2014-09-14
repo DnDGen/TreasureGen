@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -86,20 +85,13 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                                                     "9d6",
                                                     "9d6",
                                                     "10d6")]
-        //HACK: Have to make this separate - too many attributes for NUnit to handle as test name
-        //Also, can't let the submethod just be a test - the test asserting that all names are tested
-        //won't register the Deck of illusions unless it is a test case for this method
-        [TestCase("Deck of illusions")]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            if (attributes.Any())
-                AssertAttributes(name, attributes);
-            else
-                DeckOfIllusionsContents();
+            base.Attributes(name, attributes);
         }
 
         //HACK: have to make this separate - too many attributes for NUnit to handle as test name
-        //[Test]
+        [Test]
         public void DeckOfIllusionsContents()
         {
             var attributes = new[]
@@ -140,7 +132,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                     "Joker"
                 };
 
-            AssertAttributes("Deck of illusions", attributes);
+            Attributes("Deck of illusions", attributes);
         }
     }
 }

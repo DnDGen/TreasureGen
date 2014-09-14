@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
@@ -23,9 +19,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
         [TestCase("Illumination", 76, 90)]
         [TestCase("Frost", 91, 95)]
         [TestCase("Defense", 96, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

@@ -79,9 +79,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
                               "brown diamond",
                               "blue diamond",
                               "jacinth")]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

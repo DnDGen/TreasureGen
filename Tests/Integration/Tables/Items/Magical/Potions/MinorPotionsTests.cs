@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
 {
     [TestFixture]
-    public class MinorPotionsTests : PercentileTests
+    public class MinorPotionsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -42,10 +42,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of remove paralysis", 0, 92, 93)]
         [TestCase("Potion of resist ENERGY 10", 0, 94, 96)]
         [TestCase("Potion of spider climb", 0, 98, 99)]
-        public void Percentile(String name, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(name, amount, lower, upper);
         }
 
         [TestCase("Oil of magic stone", 0, 26)]
@@ -60,10 +59,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of misdirection", 0, 87)]
         [TestCase("Potion of shield of faith", 3, 97)]
         [TestCase("Potion of undetectable alignment", 0, 100)]
-        public void Percentile(String name, Int32 bonus, Int32 roll)
+        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 roll)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, roll);
+            base.TypeAndAmountPercentile(name, amount, roll);
         }
     }
 }

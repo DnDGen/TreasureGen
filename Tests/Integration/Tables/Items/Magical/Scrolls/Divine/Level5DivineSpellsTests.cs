@@ -42,9 +42,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Wall of fire", 92, 94)]
         [TestCase("Wall of stone", 95, 97)]
         [TestCase("Wall of thorns", 98, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Awaken", 6)]
@@ -53,9 +53,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Mark of justice", 53)]
         [TestCase("Symbol of pain", 78)]
         [TestCase("Symbol of sleep", 79)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

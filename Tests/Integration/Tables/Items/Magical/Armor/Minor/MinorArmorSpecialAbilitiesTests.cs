@@ -18,18 +18,18 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
         [TestCase(SpecialAbilityConstants.Shadow, 53, 72)]
         [TestCase(SpecialAbilityConstants.SilentMoves, 73, 92)]
         [TestCase(SpecialAbilityConstants.SpellResistance13, 93, 96)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase(SpecialAbilityConstants.ImprovedSlick, 97)]
         [TestCase(SpecialAbilityConstants.ImprovedShadow, 98)]
         [TestCase(SpecialAbilityConstants.ImprovedSilentMoves, 99)]
         [TestCase("BonusSpecialAbility", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

@@ -43,17 +43,17 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Sympathy", 93, 94)]
         [TestCase("Temporal stasis", 95, 98)]
         [TestCase("Trap the soul", 99, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Clone", 13)]
         [TestCase("Symbol of death", 91)]
         [TestCase("Symbol of insanity", 92)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

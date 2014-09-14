@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class IsRingIntelligentTests : PercentileTests
+    public class IsRingIntelligentTests : BooleanPercentileTests
     {
         protected override String tableName
         {
@@ -12,17 +12,15 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         }
 
         [TestCase(false, 2, 100)]
-        public void Percentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
         {
-            var content = Convert.ToString(isTrue);
-            AssertPercentile(content, lower, upper);
+            base.BooleanPercentile(isTrue, lower, upper);
         }
 
         [TestCase(true, 1)]
-        public void Percentile(Boolean isTrue, Int32 roll)
+        public override void BooleanPercentile(Boolean isTrue, Int32 roll)
         {
-            var content = Convert.ToString(isTrue);
-            AssertPercentile(content, roll);
+            base.BooleanPercentile(isTrue, roll);
         }
     }
 }

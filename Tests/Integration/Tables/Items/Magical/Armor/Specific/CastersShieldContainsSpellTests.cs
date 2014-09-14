@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
-    public class CastersShieldContainsSpellTests : PercentileTests
+    public class CastersShieldContainsSpellTests : BooleanPercentileTests
     {
         protected override String tableName
         {
@@ -13,10 +13,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 
         [TestCase(false, 1, 50)]
         [TestCase(true, 51, 100)]
-        public void Percentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
         {
-            var content = Convert.ToString(isTrue);
-            AssertPercentile(content, lower, upper);
+            base.BooleanPercentile(isTrue, lower, upper);
         }
     }
 }

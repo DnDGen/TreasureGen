@@ -15,9 +15,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
         [TestCase(TraitConstants.ShedsLight, 1, 30)]
         [TestCase(TraitConstants.Markings, 31, 45)]
         [TestCase(EmptyContent, 46, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

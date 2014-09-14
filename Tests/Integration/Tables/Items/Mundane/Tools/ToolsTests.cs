@@ -31,9 +31,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
         [TestCase("Magnifying glass", 82, 88)]
         [TestCase("Masterwork musical instrument", 89, 95)]
         [TestCase("Masterwork thieves' tools", 96, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

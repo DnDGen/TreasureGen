@@ -44,9 +44,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
         [TestCase("Wall of fire", 83, 86)]
         [TestCase("Wall of ice", 87, 90)]
         [TestCase("Restoration", 98, 99)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Heightened charm person (3rd-level spell)", 8)]
@@ -61,9 +61,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
         [TestCase("Order's wrath (8th)", 96)]
         [TestCase("Unholy blight (8th)", 97)]
         [TestCase("Stoneskin", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

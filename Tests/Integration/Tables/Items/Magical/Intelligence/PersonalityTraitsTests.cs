@@ -111,9 +111,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Prefers members of one class over all others", 98)]
         [TestCase("Jokester", 99)]
         [TestCase("No sense of humor", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

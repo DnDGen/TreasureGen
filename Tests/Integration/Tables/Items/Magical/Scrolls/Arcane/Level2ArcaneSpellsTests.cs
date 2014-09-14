@@ -39,9 +39,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Tasha's hideous laughter", 96)]
         [TestCase("Touch of idiocy", 97)]
         [TestCase("Whispering wind", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
 
         [TestCase("Bear's endurance", 4, 6)]
@@ -74,9 +74,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Summon monster II", 92, 93)]
         [TestCase("Summon swarm", 94, 95)]
         [TestCase("Web", 98, 99)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

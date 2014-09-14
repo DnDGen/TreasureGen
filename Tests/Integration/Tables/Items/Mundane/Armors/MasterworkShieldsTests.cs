@@ -17,9 +17,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.LightSteelShield, 41, 60)]
         [TestCase(ArmorConstants.HeavyWoodenShield, 61, 83)]
         [TestCase(ArmorConstants.HeavySteelShield, 84, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

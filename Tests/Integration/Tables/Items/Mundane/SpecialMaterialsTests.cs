@@ -20,9 +20,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
         [TestCase(TraitConstants.AlchemicalSilver, AttributeConstants.Metal,
                                                    ItemTypeConstants.Weapon)]
         [TestCase(TraitConstants.Darkwood, AttributeConstants.Wood)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

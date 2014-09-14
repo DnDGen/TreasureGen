@@ -13,9 +13,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
 
         [TestCase("SpecificWeapons", 50, 63)]
         [TestCase("SpecialAbility", 64, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase(3, 1, 20)]
@@ -24,7 +24,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
         public void Percentile(Int32 bonus, Int32 lower, Int32 upper)
         {
             var content = Convert.ToString(bonus);
-            AssertPercentile(content, lower, upper);
+            Percentile(content, lower, upper);
         }
     }
 }

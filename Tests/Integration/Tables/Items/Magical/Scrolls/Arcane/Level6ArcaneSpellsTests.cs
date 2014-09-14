@@ -46,9 +46,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Undeath to death", 94, 95)]
         [TestCase("Veil", 96, 97)]
         [TestCase("Wall of iron", 98, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Animate objects", 6)]
@@ -64,9 +64,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Symbol of fear", 86)]
         [TestCase("Symbol of persuasion", 87)]
         [TestCase("Sympathetic vibration", 88)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

@@ -21,15 +21,15 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
         [TestCase(SpecialAbilityConstants.Shock, 69, 83)]
         [TestCase(SpecialAbilityConstants.Seeking, 84, 93)]
         [TestCase(SpecialAbilityConstants.Thundering, 94, 99)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("BonusSpecialAbility", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

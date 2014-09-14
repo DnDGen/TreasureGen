@@ -36,9 +36,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
         [TestCase(SpecialAbilityConstants.Unholy, 91, 93)]
         [TestCase(SpecialAbilityConstants.Wounding, 94, 95)]
         [TestCase("BonusSpecialAbility", 96, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

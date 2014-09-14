@@ -29,15 +29,15 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Summon monster IX", 84, 89)]
         [TestCase("Summon nature's ally IX", 90, 95)]
         [TestCase("Sympathy", 96, 99)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("True resurrection", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

@@ -1,15 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EquipmentGen.Common;
+using EquipmentGen.Common.Goods;
 using EquipmentGen.Common.Items;
 
 namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 {
     public class InterestFormatter
     {
-        public String MakeOutput(Item item)
+        public String MakeOutput(Treasure treasure)
         {
-            var output = String.Format("Most interesting item: {0}", item.Name);
+            var output = "Most interesting treasure:";
+            output += AddOutput("Coin Type", treasure.Coin.Currency);
+            output += AddOutput("Coin Amount", treasure.Coin.Quantity);
+            output += AddOutput("Goods", treasure.Goods);
+            output += AddOutput("Items", treasure.Items);
+
+            return output;
+        }
+
+        private String AddOutput(String title, IEnumerable<Good> values)
+        {
+            if (!values.Any())
+                return String.Empty;
+
+            var output = String.Format("\n{0}:", title);
+            foreach (var value in values)
+                output += String.Format("\n\t{0} ({1})", value.Description, value.ValueInGold);
+
+            return output;
+        }
+
+        private String AddOutput(String title, IEnumerable<Item> values)
+        {
+            if (!values.Any())
+                return String.Empty;
+
+            var output = String.Format("\n{0}:", title);
+            foreach (var value in values)
+                output += String.Format("\n\t{0}", AddOutput(value));
+
+            return output;
+        }
+
+        private String AddOutput(Item item)
+        {
+            var output = String.Format("Name: {0}", item.Name);
             output += AddOutput("Contents", item.Contents);
             output += AddOutput("Bonus", item.Magic.Bonus);
             output += AddOutput("Charges", item.Magic.Charges);
@@ -32,6 +69,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             return output;
         }
 
+        public String MakeOutput(Item item)
+        {
+            var output = "Most interesting item:";
+            output += AddOutput(item);
+
+            return output;
+        }
+
         private String AddOutput(String title, Int32 value)
         {
             if (value > 0)
@@ -50,30 +95,26 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         private String AddOutput(String title, IEnumerable<String> values)
         {
-            if (values.Any())
-            {
-                var output = String.Format("\n{0}:", title);
-                foreach (var value in values)
-                    output += String.Format("\n\t{0}", value);
+            if (!values.Any())
+                return String.Empty;
 
-                return output;
-            }
+            var output = String.Format("\n{0}:", title);
+            foreach (var value in values)
+                output += String.Format("\n\t{0}", value);
 
-            return String.Empty;
+            return output;
         }
 
         private String AddOutput(String title, IEnumerable<SpecialAbility> values)
         {
-            if (values.Any())
-            {
-                var output = String.Format("\n{0}:", title);
-                foreach (var value in values)
-                    output += String.Format("\n\t{0}", value.Name);
+            if (!values.Any())
+                return String.Empty;
 
-                return output;
-            }
+            var output = String.Format("\n{0}:", title);
+            foreach (var value in values)
+                output += String.Format("\n\t{0}", value.Name);
 
-            return String.Empty;
+            return output;
         }
     }
 }

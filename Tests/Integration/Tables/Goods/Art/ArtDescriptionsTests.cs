@@ -41,9 +41,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
                               "jeweled electrum ring")]
         [TestCase("2d6*1000", "gold and ruby ring",
                               "gold cup set with emeralds")]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
 {
     [TestFixture]
-    public class MajorSpecificWeaponsTests : PercentileTests
+    public class MajorSpecificWeaponsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -33,17 +33,15 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
         [TestCase(WeaponConstants.MaceOfSmiting, 3, 92, 95)]
         [TestCase(WeaponConstants.LuckBlade2, 2, 96, 97)]
         [TestCase(WeaponConstants.HolyAvenger, 2, 98, 99)]
-        public void Percentile(String weapon, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", weapon, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
 
         [TestCase(WeaponConstants.LuckBlade3, 2, 100)]
-        public void Percentile(String weapon, Int32 bonus, Int32 roll)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 roll)
         {
-            var content = String.Format("{0},{1}", weapon, bonus);
-            AssertPercentile(content, roll);
+            base.TypeAndAmountPercentile(type, amount, roll);
         }
     }
 }

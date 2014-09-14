@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
-    public class MediumWondrousItemsTests : PercentileTests
+    public class MediumWondrousItemsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -111,10 +111,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Tome of clear thought", 1, 98)]
         [TestCase("Tome of leadership and influence", 1, 99)]
         [TestCase("Tome of understanding", 1, 100)]
-        public void Percentile(String name, Int32 bonus, Int32 roll)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 roll)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, roll);
+            base.TypeAndAmountPercentile(type, amount, roll);
         }
     }
 }

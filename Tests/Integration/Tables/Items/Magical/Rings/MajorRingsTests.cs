@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
 {
     [TestFixture]
-    public class MajorRingsTests : PercentileTests
+    public class MajorRingsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -33,10 +33,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
         [TestCase("Regeneration", 0, 87, 88)]
         [TestCase("Spell turning", 0, 90, 92)]
         [TestCase("Wizardry (IV)", 0, 93, 94)]
-        public void Percentile(String name, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
 
         [TestCase("Three wishes", 0, 89)]
@@ -46,10 +45,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
         [TestCase("Elemental command (fire)", 0, 98)]
         [TestCase("Elemental command (water)", 0, 99)]
         [TestCase("Major spell storing", 0, 100)]
-        public void Percentile(String name, Int32 bonus, Int32 roll)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 roll)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, roll);
+            base.TypeAndAmountPercentile(type, amount, roll);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -47,9 +46,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.LuckBlade2)]
         [TestCase(WeaponConstants.HolyAvenger)]
         [TestCase(WeaponConstants.LuckBlade3)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

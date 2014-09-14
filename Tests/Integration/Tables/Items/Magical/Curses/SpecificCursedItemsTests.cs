@@ -33,9 +33,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Periapt of foul rotting", 86, 88)]
         [TestCase("Berserking sword", 89, 92)]
         [TestCase("Boots of dancing", 93, 96)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Helm of opposite alignment", 55)]
@@ -45,9 +45,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Necklace of strangulation", 98)]
         [TestCase("Cloak of poisonousness", 99)]
         [TestCase("Scarab of death", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase(ItemTypeConstants.Staff, 66, 68)]
         [TestCase(ItemTypeConstants.Wand, 69, 83)]
         [TestCase(ItemTypeConstants.WondrousItem, 84, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

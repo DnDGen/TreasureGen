@@ -180,9 +180,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                               AttributeConstants.NotBludgeoning,
                                               AttributeConstants.Melee,
                                               AttributeConstants.Metal)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

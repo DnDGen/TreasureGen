@@ -80,9 +80,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,
                                       AttributeConstants.Specific)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

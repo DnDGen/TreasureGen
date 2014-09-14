@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -42,9 +41,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.BandedMail, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.HalfPlate, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
-        public void Attributes(String name, params String[] attributes)
+        public override void Attributes(String name, params String[] attributes)
         {
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

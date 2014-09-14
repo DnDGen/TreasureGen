@@ -46,15 +46,15 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
         [TestCase("Silence", 92, 94)]
         [TestCase("Summon monster II", 95, 97)]
         [TestCase("Web", 98, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Magic missile (5th)", 37)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

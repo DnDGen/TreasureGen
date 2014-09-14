@@ -14,9 +14,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
 
         [TestCase(TraitConstants.Markings, 1, 30)]
         [TestCase(EmptyContent, 31, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

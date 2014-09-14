@@ -34,9 +34,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Character must make a Fortitude save (DC 20) each day or take 1 point of Constitution damage", 81, 85)]
         [TestCase("Character must make a Fortitude save (DC 20) each day or take 1 point of Strength damage", 86, 90)]
         [TestCase("Character must make a Fortitude save (DC 20) each day or take 1 point of Dexterity damage", 91, 95)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Character is afflicted with a random disease that cannot be cured", 35)]
@@ -47,9 +47,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Character cannot cast divine spells", 98)]
         [TestCase("Character cannot cast any spells", 99)]
         [TestCase("Item casts Harm on the wielder 1/day", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

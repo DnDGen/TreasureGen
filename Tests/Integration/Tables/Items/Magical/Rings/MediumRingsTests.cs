@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
 {
     [TestFixture]
-    public class MediumRingsTests : PercentileTests
+    public class MediumRingsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -31,10 +31,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
         [TestCase("X-ray vision", 0, 91, 93)]
         [TestCase("Blinking", 0, 94, 97)]
         [TestCase("Major ENERGY resistance", 0, 98, 100)]
-        public void Percentile(String name, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
     }
 }

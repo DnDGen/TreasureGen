@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
 {
     [TestFixture]
-    public class MediumPotionsTests : PercentileTests
+    public class MediumPotionsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -39,10 +39,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of protection from ENERGY", 0, 89, 91)]
         [TestCase("Potion of rage", 0, 92, 93)]
         [TestCase("Potion of water breathing", 0, 98, 99)]
-        public void Percentile(String name, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(name, amount, lower, upper);
         }
 
         [TestCase("Potion of reduce person", 0, 5)]
@@ -70,10 +69,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase("Potion of remove disease", 0, 96)]
         [TestCase("Potion of tongues", 0, 97)]
         [TestCase("Potion of water walk", 0, 100)]
-        public void Percentile(String name, Int32 bonus, Int32 roll)
+        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 roll)
         {
-            var content = String.Format("{0},{1}", name, bonus);
-            AssertPercentile(content, roll);
+            base.TypeAndAmountPercentile(name, amount, roll);
         }
     }
 }

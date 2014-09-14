@@ -1,4 +1,7 @@
-﻿using EquipmentGen.Generators.Interfaces;
+﻿using System;
+using EquipmentGen.Common;
+using EquipmentGen.Generators.Interfaces;
+using EquipmentGen.Tests.Integration.Stress.Items.Magical;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,6 +12,29 @@ namespace EquipmentGen.Tests.Integration.Stress
     {
         [Inject]
         public ITreasureGenerator TreasureGenerator { get; set; }
+        [Inject]
+        public InterestCalculator InterestCalculator { get; set; }
+        [Inject]
+        public InterestFormatter InterestFormatter { get; set; }
+
+        private Treasure mostInterestingTreasure;
+        private Int32 mostInterestingScore;
+
+        [SetUp]
+        public void Setup()
+        {
+            mostInterestingScore = 0;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (mostInterestingTreasure != null)
+            {
+                var output = InterestFormatter.MakeOutput(mostInterestingTreasure);
+                Assert.Pass(output);
+            }
+        }
 
         protected override void MakeAssertions()
         {
@@ -19,6 +45,16 @@ namespace EquipmentGen.Tests.Integration.Stress
             Assert.That(treasure.Coin.Quantity, Is.AtLeast(0));
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
             Assert.That(treasure.Items, Is.Not.Null, "items");
+
+            var score = 0;
+            foreach (var item in treasure.Items)
+                score += InterestCalculator.CalculateInterest(item);
+
+            if (score > mostInterestingScore)
+            {
+                mostInterestingScore = score;
+                mostInterestingTreasure = treasure;
+            }
         }
     }
 }

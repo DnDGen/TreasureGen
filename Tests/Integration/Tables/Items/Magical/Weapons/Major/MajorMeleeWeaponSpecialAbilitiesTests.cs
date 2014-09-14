@@ -37,9 +37,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
         [TestCase(SpecialAbilityConstants.Dancing, 87, 88)]
         [TestCase(SpecialAbilityConstants.Vorpal, 89, 90)]
         [TestCase("BonusSpecialAbility", 91, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

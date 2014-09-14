@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
 {
     [TestFixture]
-    public class MajorSpecificArmorsTests : PercentileTests
+    public class MajorSpecificArmorsTests : TypeAndAmountPercentileTests
     {
         protected override String tableName
         {
@@ -20,10 +20,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(ArmorConstants.BreastplateOfCommand, 2, 61, 75)]
         [TestCase(ArmorConstants.FullPlateOfSpeed, 1, 76, 90)]
         [TestCase(ArmorConstants.DemonArmor, 4, 91, 100)]
-        public void Percentile(String armor, Int32 bonus, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
         {
-            var content = String.Format("{0},{1}", armor, bonus);
-            AssertPercentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
     }
 }

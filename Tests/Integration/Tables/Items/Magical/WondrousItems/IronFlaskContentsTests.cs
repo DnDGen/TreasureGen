@@ -22,9 +22,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Adult tojanida", 79, 82)]
         [TestCase("Chaos beast", 83, 84)]
         [TestCase("Formian taskmaster", 85, 86)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Vrock", 87)]
@@ -41,9 +41,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Elder arrowhawk", 98)]
         [TestCase("Rakshasa", 99)]
         [TestCase("BalorOrPitFiend", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

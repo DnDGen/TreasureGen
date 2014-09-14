@@ -40,9 +40,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Undeath to death", 92, 94)]
         [TestCase("Windwalk", 95, 97)]
         [TestCase("Word of recall", 98, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Create undead", 25)]
@@ -52,9 +52,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Liveoak", 62)]
         [TestCase("Symbol of fear", 87)]
         [TestCase("Symbol of persuasion", 88)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

@@ -72,28 +72,18 @@ namespace EquipmentGen.Generators.Items.Magical
                 case 3: intelligence.WisdomStat = 10; break;
             }
 
-            if (intelligence.CharismaStat == 0)
-                intelligence.CharismaStat = highStat;
-
-            if (intelligence.IntelligenceStat == 0)
-                intelligence.IntelligenceStat = highStat;
-
-            if (intelligence.WisdomStat == 0)
-                intelligence.WisdomStat = highStat;
+            intelligence.CharismaStat = SetHighStat(highStat, intelligence.CharismaStat);
+            intelligence.IntelligenceStat = SetHighStat(highStat, intelligence.IntelligenceStat);
+            intelligence.WisdomStat = SetHighStat(highStat, intelligence.WisdomStat);
 
             intelligence.Communication = attributesSelector.SelectFrom("IntelligenceCommunication", highStatResult);
 
             if (intelligence.Communication.Contains("Speech"))
                 intelligence.Languages = GenerateLanguages(intelligence.IntelligenceStat);
 
-            if (intelligence.Communication.Contains("Read"))
-                intelligence.Ego++;
-
-            if (intelligence.Communication.Contains("Read magic"))
-                intelligence.Ego++;
-
-            if (intelligence.Communication.Contains("Telepathy"))
-                intelligence.Ego++;
+            intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Read");
+            intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Read magic");
+            intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Telepathy");
 
             var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom("IntelligenceAttributes", highStatResult);
             intelligence.Senses = intelligenceAttributesResult.Senses;
@@ -125,6 +115,22 @@ namespace EquipmentGen.Generators.Items.Magical
             intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits");
 
             return intelligence;
+        }
+
+        private Int32 BoostEgoByCommunication(IEnumerable<String> communication, String communicationType)
+        {
+            if (communication.Contains(communicationType))
+                return 1;
+
+            return 0;
+        }
+
+        private Int32 SetHighStat(Int32 highStat, Int32 stat)
+        {
+            if (stat == 0)
+                return highStat;
+
+            return stat;
         }
 
         private List<String> GenerateLanguages(Int32 intelligenceStat)

@@ -25,9 +25,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Read magic", 80, 86)]
         [TestCase("Resistance", 87, 93)]
         [TestCase("Virtue", 94, 100)]
-        public void Level0DivineSpellsPercentile(String spell, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(spell, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

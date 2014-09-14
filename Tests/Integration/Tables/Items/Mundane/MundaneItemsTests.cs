@@ -16,9 +16,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
         [TestCase(ItemTypeConstants.Armor, 18, 50)]
         [TestCase(ItemTypeConstants.Weapon, 51, 83)]
         [TestCase(ItemTypeConstants.Tool, 84, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
     }
 }

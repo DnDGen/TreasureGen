@@ -48,9 +48,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Vampiric touch", 94, 95)]
         [TestCase("Water breathing", 96, 98)]
         [TestCase("Wind wall", 99, 100)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("Cure serious wounds", 7)]
@@ -63,9 +63,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Sepia snake sigil", 78)]
         [TestCase("Shrink item", 79)]
         [TestCase("Speak with animals", 84)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }

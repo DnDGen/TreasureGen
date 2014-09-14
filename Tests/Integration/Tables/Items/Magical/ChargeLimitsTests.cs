@@ -41,7 +41,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         public void Attributes(String name, Int32 min, Int32 max)
         {
             var attributes = new[] { min.ToString(), max.ToString() };
-            AssertAttributes(name, attributes);
+            base.Attributes(name, attributes);
         }
     }
 }

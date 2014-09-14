@@ -28,16 +28,16 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("In the hands of a spellcaster", 86, 90)]
         [TestCase("In the hands of a ALIGNMENT creature", 91, 95)]
         [TestCase("On nonholy days or during particular astrological events", 97, 99)]
-        public void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(String content, Int32 lower, Int32 upper)
         {
-            AssertPercentile(content, lower, upper);
+            base.Percentile(content, lower, upper);
         }
 
         [TestCase("In the hands of a GENDER", 96)]
         [TestCase("More than 100 miles from a particular site", 100)]
-        public void Percentile(String content, Int32 roll)
+        public override void Percentile(String content, Int32 roll)
         {
-            AssertPercentile(content, roll);
+            base.Percentile(content, roll);
         }
     }
 }
