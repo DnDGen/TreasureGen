@@ -111,7 +111,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             intelligence.Ego += greaterPowers.Count * 2;
             intelligence.Powers.AddRange(greaterPowers);
-            intelligence.Alignment = percentileSelector.SelectFrom("IntelligenceAlignments");
+            intelligence.Alignment = GetAlignment(magic.SpecialAbilities);
             intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits");
 
             return intelligence;
@@ -175,6 +175,34 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var category = percentileSelector.SelectFrom("KnowledgeCategories");
             return String.Format("{0} ({1})", power, category);
+        }
+
+        private String GetAlignment(IEnumerable<SpecialAbility> specialAbilities)
+        {
+            String alignment;
+            var abilityNames = specialAbilities.Select(a => a.Name);
+
+            do alignment = percentileSelector.SelectFrom("IntelligenceAlignments");
+            while (!AlignmentIsAllowed(alignment, abilityNames));
+
+            return alignment;
+        }
+
+        private Boolean AlignmentIsAllowed(String alignment, IEnumerable<String> abilityNames)
+        {
+            if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith("Lawful"))
+                return false;
+
+            if (abilityNames.Contains(SpecialAbilityConstants.Axiomatic) && alignment.StartsWith("Chaotic"))
+                return false;
+
+            if (abilityNames.Contains(SpecialAbilityConstants.Holy) && alignment.EndsWith("Evil"))
+                return false;
+
+            if (abilityNames.Contains(SpecialAbilityConstants.Unholy) && alignment.EndsWith("Good"))
+                return false;
+
+            return true;
         }
     }
 }

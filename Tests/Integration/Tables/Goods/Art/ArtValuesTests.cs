@@ -27,7 +27,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
             TypeAndAmountPercentile(value, value, lower, upper);
         }
 
-        [TestCase("2d6*1000,2d6*1000", 100)]
+        [TestCase("2d6*1000", 100)]
         public void TypeAndAmountPercentile(String value, Int32 roll)
         {
             TypeAndAmountPercentile(value, value, roll);

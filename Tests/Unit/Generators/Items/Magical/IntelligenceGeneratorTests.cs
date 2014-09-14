@@ -411,6 +411,114 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
+        [TestCase("Chaotic")]
+        public void NonAxiomaticAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns(alignment + " alignment").Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
+        }
+
+        [TestCase("Neutral")]
+        [TestCase("Lawful")]
+        [TestCase("True")]
+        public void AxiomaticAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns(alignment + " alignment").Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
+        }
+
+        [TestCase("Lawful")]
+        public void NonAnarchicAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Anarchic };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns(alignment + " alignment").Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
+        }
+
+        [TestCase("Neutral")]
+        [TestCase("Chaotic")]
+        [TestCase("True")]
+        public void AnarchicAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Anarchic };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns(alignment + " alignment").Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
+        }
+
+        [TestCase("Evil")]
+        public void NonHolyAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment " + alignment).Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
+        }
+
+        [TestCase("Neutral")]
+        [TestCase("Good")]
+        public void HolyAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment " + alignment).Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment " + alignment));
+        }
+
+        [TestCase("Good")]
+        public void NonUnholyAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment " + alignment).Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
+        }
+
+        [TestCase("Neutral")]
+        [TestCase("Evil")]
+        public void UnholyAlignments(String alignment)
+        {
+            var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
+            magic.SpecialAbilities = new[] { ability };
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment " + alignment).Returns("alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment " + alignment));
+        }
+
+        [Test]
+        public void ItemsWithSpecificAlignmentHaveMatchingAlignment()
+        {
+            Assert.Fail();
+        }
+
         [Test]
         public void EgoIncludesMagicBonus()
         {
