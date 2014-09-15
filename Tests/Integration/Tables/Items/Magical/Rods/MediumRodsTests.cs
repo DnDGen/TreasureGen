@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
             get { return "MediumRods"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Rod of lesser metamagic: Enlarge", 0, 1, 7)]
         [TestCase("Rod of lesser metamagic: Extend", 0, 8, 14)]
         [TestCase("Rod of lesser metamagic: Silent", 0, 15, 21)]

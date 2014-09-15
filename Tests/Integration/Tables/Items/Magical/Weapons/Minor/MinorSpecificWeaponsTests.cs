@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
             get { return "MinorSpecificWeapons"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(WeaponConstants.SleepArrow, 1, 1, 15)]
         [TestCase(WeaponConstants.ScreamingBolt, 2, 16, 25)]
         [TestCase(WeaponConstants.SilverDagger, 0, 26, 45)]

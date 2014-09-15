@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -15,6 +16,30 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpecialAbilitiesGenerator AbilitiesGenerator { get; set; }
 
+        private IEnumerable<String> alignments;
+        private IEnumerable<String> armorNames;
+        private IEnumerable<String> weaponNames;
+
+        [SetUp]
+        public void Setup()
+        {
+            alignments = new[]
+                {
+                    "Lawful good",
+                    "Neutral good",
+                    "Chaotic good",
+                    "Lawful neutral",
+                    "True neutral",
+                    "Chaotic neutral",
+                    "Lawful evil",
+                    "Neutral evil",
+                    "Chaotic evil",
+                };
+
+            armorNames = ArmorConstants.GetAllArmors();
+            weaponNames = WeaponConstants.GetAllWeapons();
+        }
+
         [TestCase("Intelligence generator")]
         public override void Stress(String thingToStress)
         {
@@ -28,24 +53,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower(false);
             var quantity = Random.Next(10) + 1;
 
-            var magic = new Magic();
-            magic.Bonus = Random.Next(5) + 1;
-            magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, magic.Bonus, quantity);
+            var item = new Item();
+            item.Name = GetItemName(itemType);
+            item.Magic.Bonus = Random.Next(5) + 1;
+            item.Magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, item.Magic.Bonus, quantity);
 
-            var intelligence = IntelligenceGenerator.GenerateFor(magic);
-
-            var alignments = new[]
-                {
-                    "Lawful good",
-                    "Neutral good",
-                    "Chaotic good",
-                    "Lawful neutral",
-                    "True neutral",
-                    "Chaotic neutral",
-                    "Lawful evil",
-                    "Neutral evil",
-                    "Chaotic evil",
-                };
+            var intelligence = IntelligenceGenerator.GenerateFor(item);
 
             Assert.That(alignments, Contains.Item(intelligence.Alignment));
             Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
@@ -63,6 +76,32 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 Assert.That(intelligence.Languages, Contains.Item("Common"));
             else
                 Assert.That(intelligence.Languages, Is.Empty);
+        }
+
+        private String GetItemName(String itemType)
+        {
+            if (itemType == ItemTypeConstants.Armor)
+                return GetArmorName();
+
+            return GetWeaponName();
+        }
+
+        private String GetArmorName()
+        {
+            var index = Random.Next(armorNames.Count());
+            return armorNames.ElementAt(index);
+        }
+
+        private String GetWeaponName()
+        {
+            var index = Random.Next(weaponNames.Count());
+            return weaponNames.ElementAt(index);
+        }
+
+        [Test]
+        public void SpecialPurposeHappens()
+        {
+            Assert.Fail();
         }
     }
 }

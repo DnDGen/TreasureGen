@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "Curses"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Delusion", 1, 15)]
         [TestCase("Opposite effect or target", 16, 35)]
         [TestCase("Intermittent Functioning", 36, 45)]

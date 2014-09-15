@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
             get { return "MajorWeapons"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("SpecificWeapons", 50, 63)]
         [TestCase("SpecialAbility", 64, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

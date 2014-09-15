@@ -52,7 +52,7 @@ namespace EquipmentGen.Generators.Items.Magical
             throw new ArgumentException();
         }
 
-        public Intelligence GenerateFor(Magic magic)
+        public Intelligence GenerateFor(Item item)
         {
             var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats");
             var highStat = Convert.ToInt32(highStatResult);
@@ -60,9 +60,9 @@ namespace EquipmentGen.Generators.Items.Magical
             var intelligence = new Intelligence();
             //dividing and multiplying by 2 so that integer division rounds down odd numbers
             intelligence.Ego += (highStat - 10) / 2 * 2;
-            intelligence.Ego += magic.Bonus;
+            intelligence.Ego += item.Magic.Bonus;
 
-            foreach (var ability in magic.SpecialAbilities)
+            foreach (var ability in item.Magic.SpecialAbilities)
                 intelligence.Ego += ability.BonusEquivalent;
 
             switch (dice.Roll().d3())
@@ -111,7 +111,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             intelligence.Ego += greaterPowers.Count * 2;
             intelligence.Powers.AddRange(greaterPowers);
-            intelligence.Alignment = GetAlignment(magic.SpecialAbilities);
+            intelligence.Alignment = GetAlignment(item.Name, item.Magic.SpecialAbilities);
             intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits");
 
             return intelligence;
@@ -177,18 +177,29 @@ namespace EquipmentGen.Generators.Items.Magical
             return String.Format("{0} ({1})", power, category);
         }
 
-        private String GetAlignment(IEnumerable<SpecialAbility> specialAbilities)
+        private String GetAlignment(String itemName, IEnumerable<SpecialAbility> specialAbilities)
         {
             String alignment;
             var abilityNames = specialAbilities.Select(a => a.Name);
+            var specificAlignmentRequirement = GetSpecificAlignmentRequirement(itemName);
 
             do alignment = percentileSelector.SelectFrom("IntelligenceAlignments");
-            while (!AlignmentIsAllowed(alignment, abilityNames));
+            while (!AlignmentIsAllowed(alignment, abilityNames, specificAlignmentRequirement));
 
             return alignment;
         }
 
-        private Boolean AlignmentIsAllowed(String alignment, IEnumerable<String> abilityNames)
+        private String GetSpecificAlignmentRequirement(String itemName)
+        {
+            var itemsWithSpecificAlignments = attributesSelector.SelectFrom("ItemAlignmentRequirements", "Items");
+
+            if (itemsWithSpecificAlignments.Contains(itemName))
+                return attributesSelector.SelectFrom("ItemAlignmentRequirements", itemName).Single();
+
+            return String.Empty;
+        }
+
+        private Boolean AlignmentIsAllowed(String alignment, IEnumerable<String> abilityNames, String specificAlignmentRequirement)
         {
             if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith("Lawful"))
                 return false;
@@ -202,7 +213,9 @@ namespace EquipmentGen.Generators.Items.Magical
             if (abilityNames.Contains(SpecialAbilityConstants.Unholy) && alignment.EndsWith("Good"))
                 return false;
 
-            return true;
+            return alignment == specificAlignmentRequirement
+                || alignment.StartsWith(specificAlignmentRequirement)
+                || alignment.EndsWith(specificAlignmentRequirement);
         }
     }
 }

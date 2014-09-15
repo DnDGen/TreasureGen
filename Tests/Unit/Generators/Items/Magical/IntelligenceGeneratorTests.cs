@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -22,8 +21,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IIntelligenceAttributesSelector> mockIntelligenceAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private List<String> attributes;
-        private Magic magic;
         private IntelligenceAttributesResult intelligenceAttributesResult;
+        private Item item;
 
         [SetUp]
         public void Setup()
@@ -35,7 +34,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             intelligenceAttributesResult = new IntelligenceAttributesResult();
             attributes = new List<String>();
-            magic = new Magic();
+            item = new Item();
 
             var fillerValues = new[] { "0" };
             mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
@@ -133,7 +132,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnIntelligence()
         {
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence, Is.Not.Null);
         }
 
@@ -143,7 +142,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d3()).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("42");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.CharismaStat, Is.EqualTo(10));
             Assert.That(intelligence.IntelligenceStat, Is.EqualTo(42));
             Assert.That(intelligence.WisdomStat, Is.EqualTo(42));
@@ -155,7 +154,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("42");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.CharismaStat, Is.EqualTo(42));
             Assert.That(intelligence.IntelligenceStat, Is.EqualTo(10));
             Assert.That(intelligence.WisdomStat, Is.EqualTo(42));
@@ -167,7 +166,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d3()).Returns(3);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("42");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.CharismaStat, Is.EqualTo(42));
             Assert.That(intelligence.IntelligenceStat, Is.EqualTo(42));
             Assert.That(intelligence.WisdomStat, Is.EqualTo(10));
@@ -180,7 +179,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("9266");
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "9266")).Returns(attributes);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Communication, Is.EqualTo(attributes));
         }
 
@@ -191,7 +190,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("10");
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "10")).Returns(attributes);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Languages, Contains.Item("Common"));
         }
 
@@ -203,7 +202,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "14")).Returns(attributes);
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("Languages")).Returns("english").Returns("german");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Languages, Contains.Item("Common"));
             Assert.That(intelligence.Languages, Contains.Item("english"));
             Assert.That(intelligence.Languages, Contains.Item("german"));
@@ -219,7 +218,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("Languages")).Returns("english").Returns("english")
                 .Returns("german");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Languages, Contains.Item("Common"));
             Assert.That(intelligence.Languages, Contains.Item("english"));
             Assert.That(intelligence.Languages, Contains.Item("german"));
@@ -230,7 +229,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetSensesFromAttributesSelector()
         {
             intelligenceAttributesResult.Senses = "sensy";
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Senses, Is.EqualTo(intelligenceAttributesResult.Senses));
         }
 
@@ -240,7 +239,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("power 1").Returns("power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
         }
 
@@ -251,7 +250,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("power 1").Returns("power 1")
                 .Returns("power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Contains.Item("power 1"));
             Assert.That(intelligence.Powers, Contains.Item("power 2"));
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -263,7 +262,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers")).Returns("power 1").Returns("power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
         }
 
@@ -274,7 +273,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers")).Returns("power 1").Returns("power 1")
                 .Returns("power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Contains.Item("power 1"));
             Assert.That(intelligence.Powers, Contains.Item("power 2"));
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -289,7 +288,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes")).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceDedicatedPowers")).Returns("dedicated power");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Is.Empty);
             Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose"));
             Assert.That(intelligence.DedicatedPower, Is.EqualTo("dedicated power"));
@@ -307,7 +306,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             {
                 mockDice.Setup(d => d.Roll(1).d4()).Returns(roll);
 
-                var intelligence = intelligenceGenerator.GenerateFor(magic);
+                var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power"));
                 Assert.That(intelligence.Powers.Count, Is.EqualTo(1));
                 Assert.That(intelligence.SpecialPurpose, Is.Empty);
@@ -328,7 +327,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 mockDice.Setup(d => d.Roll(1).d4()).Returns(roll);
 
-                var intelligence = intelligenceGenerator.GenerateFor(magic);
+                var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
                 Assert.That(intelligence.Powers.Count, Is.EqualTo(1));
                 Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose"));
@@ -349,7 +348,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 mockDice.Setup(d => d.Roll(1).d4()).Returns(roll);
 
-                var intelligence = intelligenceGenerator.GenerateFor(magic);
+                var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
                 Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
                 Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -371,7 +370,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 mockDice.Setup(d => d.Roll(1).d4()).Returns(roll);
 
-                var intelligence = intelligenceGenerator.GenerateFor(magic);
+                var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
                 Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
                 Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -393,7 +392,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
                 mockDice.Setup(d => d.Roll(1).d4()).Returns(roll);
 
-                var intelligence = intelligenceGenerator.GenerateFor(magic);
+                var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
                 Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
                 Assert.That(intelligence.Powers, Contains.Item("greater power 3"));
@@ -408,7 +407,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceAlignments")).Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
@@ -416,11 +415,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void NonAxiomaticAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns(alignment + " alignment").Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
@@ -430,11 +429,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void AxiomaticAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns(alignment + " alignment").Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
         }
 
@@ -442,11 +441,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void NonAnarchicAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Anarchic };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns(alignment + " alignment").Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
@@ -456,11 +455,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void AnarchicAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Anarchic };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns(alignment + " alignment").Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
         }
 
@@ -468,11 +467,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void NonHolyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment " + alignment).Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
@@ -481,11 +480,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void HolyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment " + alignment).Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment " + alignment));
         }
 
@@ -493,11 +492,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void NonUnholyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment " + alignment).Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
@@ -506,74 +505,78 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void UnholyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment " + alignment).Returns("alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment " + alignment));
         }
 
         [Test]
         public void ItemWithSpecificAlignmentHasMatchingAlignment()
         {
+            item.Name = "item name";
             mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
-                .Returns(new[] { "item name", "other item name" });
+                .Returns(new[] { item.Name, "other item name" });
             var alignment = "specific alignment";
-            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment").Returns(alignment);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo(alignment));
         }
 
         [Test]
         public void ItemWithNoSpecificAlignmentHasAnyAlignment()
         {
-            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items")).Returns(Enumerable.Empty<String>());
-            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { "specific" });
+            item.Name = "item name";
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items")).Returns(new[] { "other item name" });
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", item.Name)).Returns(new[] { "specific" });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment").Returns("specific alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
         [Test]
         public void ItemWithSpecificAlignmentBeginningHasMatchingAlignment()
         {
+            item.Name = "item name";
             mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
-                .Returns(new[] { "item name", "other item name" });
+                .Returns(new[] { item.Name, "other item name" });
             var alignment = "specific";
-            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment").Returns("specific alignment");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("specific alignment"));
         }
 
         [Test]
         public void ItemWithSpecificAlignmentEndingHasMatchingAlignment()
         {
+            item.Name = "item name";
             mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
-                .Returns(new[] { "item name", "other item name" });
+                .Returns(new[] { item.Name, "other item name" });
             var alignment = "ending";
-            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
                 .Returns("alignment").Returns("specific alignment ending");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("specific alignment ending"));
         }
 
         [Test]
         public void EgoIncludesMagicBonus()
         {
-            magic.Bonus = 9266;
+            item.Magic.Bonus = 9266;
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(9266));
         }
 
@@ -582,9 +585,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var ability = new SpecialAbility();
             ability.BonusEquivalent = 9266;
-            magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[] { ability };
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(9266));
         }
 
@@ -594,7 +597,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.LesserPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("power 1").Returns("power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(2));
         }
 
@@ -604,7 +607,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.GreaterPowersCount = 2;
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceGreaterPowers")).Returns("greater power 1").Returns("greater power 2");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(4));
         }
 
@@ -617,7 +620,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes")).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceDedicatedPowers")).Returns("dedicated power");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(4));
         }
 
@@ -627,7 +630,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "Telepathy" };
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "10")).Returns(attributes);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
         }
 
@@ -637,7 +640,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "Read" };
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "10")).Returns(attributes);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
         }
 
@@ -647,7 +650,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "Read magic" };
             mockAttributesSelector.Setup(s => s.SelectFrom("IntelligenceCommunication", "10")).Returns(attributes);
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
         }
 
@@ -656,7 +659,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("19");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(8));
         }
 
@@ -675,10 +678,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("power 1").Returns("power 2");
             var ability = new SpecialAbility();
             ability.BonusEquivalent = 92;
-            magic.SpecialAbilities = new[] { ability };
-            magic.Bonus = 66;
+            item.Magic.SpecialAbilities = new[] { ability };
+            item.Magic.Bonus = 66;
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(177));
         }
 
@@ -686,7 +689,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void IntelligenceHasPersonality()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom("PersonalityTraits")).Returns("personality");
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Personality, Is.EqualTo("personality"));
         }
 
@@ -697,7 +700,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("this ability has Knowledge");
             mockPercentileSelector.Setup(s => s.SelectFrom("KnowledgeCategories")).Returns("category");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
         }
 
@@ -708,7 +711,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("this ability has Knowledge");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("KnowledgeCategories")).Returns("category").Returns("other category");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
             Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (other category)"));
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -721,7 +724,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceLesserPowers")).Returns("this ability has Knowledge");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom("KnowledgeCategories")).Returns("category").Returns("category").Returns("other category");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
             Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (other category)"));
             Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
@@ -736,7 +739,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceSpecialPurposes")).Returns("purpose has DESIGNATEDFOE");
             mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes")).Returns("foe");
 
-            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose has foe"));
         }
     }

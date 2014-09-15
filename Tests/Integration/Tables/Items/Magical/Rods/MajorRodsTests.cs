@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
             get { return "MajorRods"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Rod of cancellation", 0, 1, 4)]
         [TestCase("Rod of metamagic: Enlarge", 0, 5, 6)]
         [TestCase("Rod of metamagic: Extend", 0, 7, 8)]

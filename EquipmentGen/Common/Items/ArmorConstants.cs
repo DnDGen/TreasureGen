@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EquipmentGen.Common.Items
 {
@@ -36,5 +37,13 @@ namespace EquipmentGen.Common.Items
         public const String LionsShield = "Lion's shield";
         public const String WingedShield = "Winged shield";
         public const String AbsorbingShield = "Absorbing shield";
+
+        public static IEnumerable<String> GetAllArmors()
+        {
+            return new[]
+            {
+                PaddedArmor
+            };
+        }
     }
 }

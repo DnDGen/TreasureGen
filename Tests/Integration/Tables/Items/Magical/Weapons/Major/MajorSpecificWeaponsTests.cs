@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
             get { return "MajorSpecificWeapons"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(WeaponConstants.AssassinsDagger, 2, 1, 4)]
         [TestCase(WeaponConstants.ShiftersSorrow, 1, 5, 7)]
         [TestCase(WeaponConstants.TridentOfFishCommand, 1, 8, 9)]

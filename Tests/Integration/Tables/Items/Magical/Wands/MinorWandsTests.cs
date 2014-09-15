@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
             get { return "MinorWands"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Detect magic", 1, 2)]
         [TestCase("Light", 3, 4)]
         [TestCase("Burning hands", 5, 7)]

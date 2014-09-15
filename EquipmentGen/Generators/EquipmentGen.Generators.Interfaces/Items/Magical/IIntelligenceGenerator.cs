@@ -7,6 +7,6 @@ namespace EquipmentGen.Generators.Interfaces.Items.Magical
     public interface IIntelligenceGenerator
     {
         Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Boolean isMagical);
-        Intelligence GenerateFor(Magic magic);
+        Intelligence GenerateFor(Item item);
     }
 }

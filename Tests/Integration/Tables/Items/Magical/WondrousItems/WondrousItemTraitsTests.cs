@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "WondrousItemTraits"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(TraitConstants.Markings, 1, 30)]
         [TestCase(EmptyContent, 31, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

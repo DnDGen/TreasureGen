@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
             get { return "MediumSpecificWeapons"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(WeaponConstants.JavelinOfLightning, 0, 1, 9)]
         [TestCase(WeaponConstants.SlayingArrow, 1, 10, 15)]
         [TestCase(WeaponConstants.Dagger, 0, 16, 24)]

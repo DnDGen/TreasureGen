@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Wands
             get { return "MediumWands"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Magic missile (5th)", 1, 3)]
         [TestCase("Bear's endurance", 4, 7)]
         [TestCase("Bull's strength", 8, 11)]

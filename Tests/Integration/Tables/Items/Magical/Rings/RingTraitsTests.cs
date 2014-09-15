@@ -18,5 +18,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
         {
             base.Percentile(content, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

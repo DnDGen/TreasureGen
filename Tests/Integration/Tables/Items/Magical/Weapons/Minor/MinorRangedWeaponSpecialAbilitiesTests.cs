@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
             get { return "MinorRangedWeaponSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.Bane, 1, 12)]
         [TestCase(SpecialAbilityConstants.Distance, 13, 25)]
         [TestCase(SpecialAbilityConstants.Flaming, 26, 40)]

@@ -42,21 +42,39 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void IntelligenceHappens()
+        public override void IntelligenceHappens()
         {
-            AssertIntelligenceHappens();
+            base.IntelligenceHappens();
         }
 
         [Test]
-        public void TraitsHappen()
+        public override void TraitsHappen()
         {
-            AssertTraitsHappen();
+            base.TraitsHappen();
         }
 
         [Test]
-        public void SpecialMaterialsHappen()
+        public override void SpecialMaterialsHappen()
         {
-            AssertSpecialMaterialsHappen();
+            base.SpecialMaterialsHappen();
+        }
+
+        [Test]
+        public override void CursesHappen()
+        {
+            AssertCursesHappen();
+        }
+
+        [Test]
+        public override void SpecificCursesHappen()
+        {
+            AssertSpecificCursesHappen();
+        }
+
+        [Test]
+        public override void NoDecorationsHappen()
+        {
+            AssertNoDecorationsHappen();
         }
     }
 }

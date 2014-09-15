@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 
         protected abstract Item GenerateItem();
 
-        protected void AssertSpecialMaterialsHappen()
+        public virtual void SpecialMaterialsHappen()
         {
             var item = new Item();
 

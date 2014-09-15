@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
             get { return "MinorItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ItemTypeConstants.Armor, 1, 4)]
         [TestCase(ItemTypeConstants.Weapon, 5, 9)]
         [TestCase(ItemTypeConstants.Potion, 10, 44)]

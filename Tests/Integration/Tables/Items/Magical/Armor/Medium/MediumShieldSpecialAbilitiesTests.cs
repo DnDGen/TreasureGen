@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
             get { return "MediumShieldSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.ArrowCatching, 1, 10)]
         [TestCase(SpecialAbilityConstants.Bashing, 11, 20)]
         [TestCase(SpecialAbilityConstants.Blinding, 21, 25)]

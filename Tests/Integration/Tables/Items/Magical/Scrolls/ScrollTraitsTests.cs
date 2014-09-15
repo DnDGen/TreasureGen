@@ -16,5 +16,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls
         {
             base.Percentile(content, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

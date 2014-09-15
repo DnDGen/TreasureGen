@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
             get { return "MajorPotions"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Potion of blur", 0, 1, 2)]
         [TestCase("Potion of cure moderate wounds", 0, 3, 7)]
         [TestCase("Potion of darkvision", 0, 8, 9)]

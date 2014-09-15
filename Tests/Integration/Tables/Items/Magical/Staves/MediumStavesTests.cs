@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
             get { return "MediumStaves"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Charming", 1, 15)]
         [TestCase("Fire", 16, 30)]
         [TestCase("Swarming insects", 31, 40)]

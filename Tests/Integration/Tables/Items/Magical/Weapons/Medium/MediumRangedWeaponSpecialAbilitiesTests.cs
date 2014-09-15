@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
             get { return "MediumRangedWeaponSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.Bane, 1, 8)]
         [TestCase(SpecialAbilityConstants.Distance, 9, 16)]
         [TestCase(SpecialAbilityConstants.Flaming, 17, 28)]

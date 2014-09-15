@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
             get { return "MeleeWeaponTraits"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(TraitConstants.ShedsLight, 1, 30)]
         [TestCase(TraitConstants.Markings, 31, 45)]
         [TestCase(EmptyContent, 46, 100)]

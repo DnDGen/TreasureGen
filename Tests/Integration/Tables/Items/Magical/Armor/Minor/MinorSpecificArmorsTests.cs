@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
             get { return "MinorSpecificArmors"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ArmorConstants.ChainShirt, 0, 1, 50)]
         [TestCase(ArmorConstants.FullPlate, 0, 51, 80)]
         [TestCase(ArmorConstants.ElvenChain, 0, 81, 100)]

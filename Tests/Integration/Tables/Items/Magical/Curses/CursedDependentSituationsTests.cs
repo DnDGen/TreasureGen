@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "CursedDependentSituations"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Temperature below freezing", 1, 3)]
         [TestCase("Temperature above freezing", 4, 5)]
         [TestCase("During the day", 6, 10)]

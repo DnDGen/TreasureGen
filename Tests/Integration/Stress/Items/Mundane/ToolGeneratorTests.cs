@@ -35,5 +35,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         {
             return ToolGenerator.Generate();
         }
+
+        [Test]
+        public override void NoDecorationsHappen()
+        {
+            AssertNoDecorationsHappen();
+        }
     }
 }

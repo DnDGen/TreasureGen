@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
             get { return "MundaneItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ItemTypeConstants.AlchemicalItem, 1, 17)]
         [TestCase(ItemTypeConstants.Armor, 18, 50)]
         [TestCase(ItemTypeConstants.Weapon, 51, 83)]

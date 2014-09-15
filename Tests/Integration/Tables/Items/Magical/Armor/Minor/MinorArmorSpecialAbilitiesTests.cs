@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
             get { return "MinorArmorSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.Glamered, 1, 25)]
         [TestCase(SpecialAbilityConstants.LightFortification, 26, 32)]
         [TestCase(SpecialAbilityConstants.Slick, 33, 52)]

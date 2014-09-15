@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "CurseDrawbacks"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Character's hair grows 1 inch longer. Only happens once.", 1, 4)]
         [TestCase("Character HEIGHTs 1/2 inch. Only happens once.", 5, 9)]
         [TestCase("Temperature around item is 10 degrees cooler than normal", 10, 13)]

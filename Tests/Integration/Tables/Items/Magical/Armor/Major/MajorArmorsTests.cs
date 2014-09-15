@@ -25,5 +25,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

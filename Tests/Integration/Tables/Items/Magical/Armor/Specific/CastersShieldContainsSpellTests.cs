@@ -17,5 +17,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
             get { return "MajorSpecificShields"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ArmorConstants.CastersShield, 1, 1, 20)]
         [TestCase(ArmorConstants.SpinedShield, 1, 21, 40)]
         [TestCase(ArmorConstants.LionsShield, 2, 41, 60)]

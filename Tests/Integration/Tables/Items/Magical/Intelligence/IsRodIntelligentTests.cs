@@ -22,5 +22,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         {
             base.BooleanPercentile(isTrue, roll);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

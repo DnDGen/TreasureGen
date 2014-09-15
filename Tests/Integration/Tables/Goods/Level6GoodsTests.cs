@@ -24,5 +24,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

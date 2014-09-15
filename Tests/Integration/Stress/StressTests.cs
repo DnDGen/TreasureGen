@@ -106,22 +106,18 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected String GetNewGearItemType()
         {
-            switch (Random.Next(2))
-            {
-                case 0: return ItemTypeConstants.Armor;
-                case 1: return ItemTypeConstants.Weapon;
-                default: throw new ArgumentOutOfRangeException();
-            }
+            if (Random.Next(2) == 0)
+                return ItemTypeConstants.Armor;
+
+            return ItemTypeConstants.Weapon;
         }
 
         protected IEnumerable<String> GetNewAttributesForGear(String itemType, Boolean forceMaterials)
         {
             if (itemType == ItemTypeConstants.Weapon)
                 return GenerateWeaponAttributes(forceMaterials);
-            else if (itemType == ItemTypeConstants.Armor)
-                return GenerateArmorAttributes(forceMaterials);
 
-            throw new ArgumentOutOfRangeException();
+            return GenerateArmorAttributes(forceMaterials);
         }
 
         private IEnumerable<String> GenerateArmorAttributes(Boolean forceMaterials)

@@ -43,5 +43,11 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         {
             Assert.That(constant, Is.EqualTo(value));
         }
+
+        [Test]
+        public void AllArmors()
+        {
+            Assert.Fail();
+        }
     }
 }

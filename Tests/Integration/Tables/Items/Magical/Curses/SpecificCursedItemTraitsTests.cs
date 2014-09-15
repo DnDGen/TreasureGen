@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "SpecificCursedItemTraits"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(EmptyContent, 1, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {

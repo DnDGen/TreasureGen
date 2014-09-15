@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
             get { return "MajorShieldSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.ArrowCatching, 1, 5)]
         [TestCase(SpecialAbilityConstants.Bashing, 6, 8)]
         [TestCase(SpecialAbilityConstants.Blinding, 9, 10)]

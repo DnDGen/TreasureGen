@@ -17,5 +17,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

@@ -38,9 +38,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void SpecialMaterialsHappen()
+        public override void SpecialMaterialsHappen()
         {
-            AssertSpecialMaterialsHappen();
+            base.SpecialMaterialsHappen();
+        }
+
+        [Test]
+        public override void NoDecorationsHappen()
+        {
+            AssertNoDecorationsHappen();
         }
     }
 }

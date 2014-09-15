@@ -38,5 +38,23 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var power = GetNewPower();
             return PotionGenerator.GenerateAtPower(power);
         }
+
+        [Test]
+        public override void CursesHappen()
+        {
+            AssertCursesHappen();
+        }
+
+        [Test]
+        public override void SpecificCursesHappen()
+        {
+            AssertSpecificCursesHappen();
+        }
+
+        [Test]
+        public override void NoDecorationsHappen()
+        {
+            AssertNoDecorationsHappen();
+        }
     }
 }

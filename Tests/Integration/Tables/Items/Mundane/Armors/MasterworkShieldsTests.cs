@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
             get { return "MasterworkShields"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ArmorConstants.Buckler, 1, 17)]
         [TestCase(ArmorConstants.LightWoodenShield, 18, 40)]
         [TestCase(ArmorConstants.LightSteelShield, 41, 60)]

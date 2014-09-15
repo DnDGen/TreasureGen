@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "RobeOfUsefulItemsExtraItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Bag of 100 gold pieces", 1, 8)]
         [TestCase("Silver coffer (6 in, by 6 in, by 1 ft.) (500gp value)", 9, 15)]
         [TestCase("Iron door (up to 10 ft. wide and 10 ft. high and barred on one side - must be placed upright, attaches and hinges itself)", 16, 22)]

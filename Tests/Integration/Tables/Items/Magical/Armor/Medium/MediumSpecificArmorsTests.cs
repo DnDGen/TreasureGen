@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
             get { return "MediumSpecificArmors"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ArmorConstants.ChainShirt, 0, 1, 25)]
         [TestCase(ArmorConstants.FullPlate, 0, 26, 45)]
         [TestCase(ArmorConstants.ElvenChain, 0, 46, 57)]

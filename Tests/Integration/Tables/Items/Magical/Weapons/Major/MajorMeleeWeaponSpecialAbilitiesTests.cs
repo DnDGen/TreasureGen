@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
             get { return "MajorMeleeWeaponSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.Bane, 1, 3)]
         [TestCase(SpecialAbilityConstants.Flaming, 4, 6)]
         [TestCase(SpecialAbilityConstants.Frost, 7, 9)]

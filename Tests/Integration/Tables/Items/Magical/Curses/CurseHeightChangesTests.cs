@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "CurseHeightChanges"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("shrink", 1, 50)]
         [TestCase("grow", 51, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

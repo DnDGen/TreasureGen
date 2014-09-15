@@ -19,5 +19,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
         {
             base.Percentile(content, lower, upper);
         }
+
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
     }
 }

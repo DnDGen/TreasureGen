@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
             get { return "MajorRangedWeaponSpecialAbilities"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(SpecialAbilityConstants.Bane, 1, 4)]
         [TestCase(SpecialAbilityConstants.Distance, 5, 8)]
         [TestCase(SpecialAbilityConstants.Flaming, 9, 12)]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EquipmentGen.Common.Items
 {
@@ -109,5 +110,13 @@ namespace EquipmentGen.Common.Items
         public const String Shatterspike = "Shatterspike";
         public const String DaggerOfVenom = "Dagger of venom";
         public const String TridentOfWarning = "Trident of warning";
+
+        public static IEnumerable<String> GetAllWeapons()
+        {
+            return new[]
+            {
+                Dagger
+            };
+        }
     }
 }

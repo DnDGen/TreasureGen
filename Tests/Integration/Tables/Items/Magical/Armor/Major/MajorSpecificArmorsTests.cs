@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
             get { return "MajorSpecificArmors"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(ArmorConstants.Breastplate, 0, 1, 10)]
         [TestCase(ArmorConstants.DwarvenPlate, 0, 11, 20)]
         [TestCase(ArmorConstants.BandedMailOfLuck, 3, 21, 32)]
