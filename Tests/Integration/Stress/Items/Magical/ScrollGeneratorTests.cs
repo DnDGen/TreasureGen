@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -10,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Scroll)]
         public IMagicalItemGenerator ScrollGenerator { get; set; }
+
+        [TestCase("Scroll generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertionsAgainst(Item scroll)
         {

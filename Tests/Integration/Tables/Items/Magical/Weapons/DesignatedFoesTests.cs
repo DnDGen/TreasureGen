@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
             get { return "DesignatedFoes"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Aquatic-humanoid", 40)]
         [TestCase("Gnoll", 45)]
         [TestCase("Gnome", 46)]

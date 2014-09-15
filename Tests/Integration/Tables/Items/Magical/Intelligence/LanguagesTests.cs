@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "Languages"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Abyssal", 1, 5)]
         [TestCase("Aquan", 6, 10)]
         [TestCase("Auran", 11, 15)]

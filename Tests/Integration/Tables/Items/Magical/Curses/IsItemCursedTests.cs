@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "IsItemCursed"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(true, 1, 5)]
         [TestCase(false, 6, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)

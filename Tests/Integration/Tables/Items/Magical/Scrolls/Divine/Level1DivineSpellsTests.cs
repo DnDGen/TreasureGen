@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
             get { return "Level1DivineSpells"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Alarm", 1)]
         [TestCase("Bless weapon", 10)]
         public override void Percentile(String content, Int32 roll)

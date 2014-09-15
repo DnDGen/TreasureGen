@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
@@ -13,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     {
         [Inject, Named(ItemTypeConstants.Weapon)]
         public IMundaneItemGenerator MundaneWeaponGenerator { get; set; }
+
+        [TestCase("Mundane weapon generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertions()
         {

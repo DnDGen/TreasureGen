@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Wand)]
         public IMagicalItemGenerator WandGenerator { get; set; }
 
+        [TestCase("Wand generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override void MakeAssertionsAgainst(Item wand)
         {
             Assert.That(wand.Name, Is.StringStarting("Wand of"));

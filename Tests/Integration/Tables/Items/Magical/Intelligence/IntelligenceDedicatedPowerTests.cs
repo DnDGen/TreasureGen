@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceDedicatedPowers"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Item can use Ice Storm", 1, 6)]
         [TestCase("Item can use Confusion", 7, 12)]
         [TestCase("Item can use Phantasmal Killer", 13, 17)]

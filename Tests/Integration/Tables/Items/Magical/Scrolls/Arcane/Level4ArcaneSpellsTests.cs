@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
             get { return "Level4ArcaneSpells"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Animate dead", 1, 2)]
         [TestCase("Arcane eye", 3, 5)]
         [TestCase("Bestow curse", 6, 7)]

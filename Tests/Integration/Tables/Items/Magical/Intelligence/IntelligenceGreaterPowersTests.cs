@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceGreaterPowers"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Item can detect opposing alignment at will", 1, 6)]
         [TestCase("Item can Detect Undead at will", 7, 10)]
         [TestCase("Item can Cause Fear in an enemy at will", 11, 13)]

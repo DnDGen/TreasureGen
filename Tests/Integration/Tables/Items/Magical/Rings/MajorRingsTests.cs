@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
             get { return "MajorRings"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Minor ENERGY resistance", 0, 1, 2)]
         [TestCase("Protection", 3, 3, 7)]
         [TestCase("Minor spell storing", 0, 8, 10)]

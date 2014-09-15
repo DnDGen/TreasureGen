@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "BalorOrPitFiend"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Balor", 1, 50)]
         [TestCase("Pit fiend", 51, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
             get { return "ProtectionAlignments"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Chaos", 1, 25)]
         [TestCase("Law", 26, 50)]
         [TestCase("Good", 51, 75)]

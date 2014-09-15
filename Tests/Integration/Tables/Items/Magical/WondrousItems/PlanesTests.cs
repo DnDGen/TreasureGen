@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "Planes"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Material Plane", 1, 5)]
         [TestCase("Ethereal Plane", 6, 10)]
         [TestCase("Plane of Shadow", 11, 15)]

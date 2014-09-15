@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -514,9 +515,57 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ItemsWithSpecificAlignmentHaveMatchingAlignment()
+        public void ItemWithSpecificAlignmentHasMatchingAlignment()
         {
-            Assert.Fail();
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
+                .Returns(new[] { "item name", "other item name" });
+            var alignment = "specific alignment";
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment").Returns(alignment);
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo(alignment));
+        }
+
+        [Test]
+        public void ItemWithNoSpecificAlignmentHasAnyAlignment()
+        {
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items")).Returns(Enumerable.Empty<String>());
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { "specific" });
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment").Returns("specific alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
+        }
+
+        [Test]
+        public void ItemWithSpecificAlignmentBeginningHasMatchingAlignment()
+        {
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
+                .Returns(new[] { "item name", "other item name" });
+            var alignment = "specific";
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment").Returns("specific alignment");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("specific alignment"));
+        }
+
+        [Test]
+        public void ItemWithSpecificAlignmentEndingHasMatchingAlignment()
+        {
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "Items"))
+                .Returns(new[] { "item name", "other item name" });
+            var alignment = "ending";
+            mockAttributesSelector.Setup(s => s.SelectFrom("ItemAlignmentRequirements", "item name")).Returns(new[] { alignment });
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom("IntelligenceAlignments"))
+                .Returns("alignment").Returns("specific alignment ending");
+
+            var intelligence = intelligenceGenerator.GenerateFor(magic);
+            Assert.That(intelligence.Alignment, Is.EqualTo("specific alignment ending"));
         }
 
         [Test]

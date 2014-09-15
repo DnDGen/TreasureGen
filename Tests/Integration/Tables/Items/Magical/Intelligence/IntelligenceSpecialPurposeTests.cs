@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceSpecialPurposes"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Defeat/slay diametrically opposed alignment", 1, 20)]
         [TestCase("Defeat/slay arcane spellcasters (including spellcasting monsters and those that use spell-like abilities)", 21, 30)]
         [TestCase("Defeat/slay divine spellcasters (including divine entities and servitors)", 31, 40)]

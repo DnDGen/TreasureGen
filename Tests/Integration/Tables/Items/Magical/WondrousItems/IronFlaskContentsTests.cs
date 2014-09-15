@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "IronFlaskContents"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(EmptyContent, 1, 50)]
         [TestCase("Large air elemental", 51, 54)]
         [TestCase("Arrowhawk", 55, 58)]

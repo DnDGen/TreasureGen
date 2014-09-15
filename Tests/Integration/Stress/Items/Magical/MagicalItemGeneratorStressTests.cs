@@ -57,7 +57,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         protected abstract Item GenerateItem();
         protected abstract void MakeAssertionsAgainst(Item item);
 
-        protected void AssertIntelligenceHappens()
+        public virtual void IntelligenceHappens()
         {
             var item = new Item();
 
@@ -68,8 +68,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        [Test]
-        public void CursesHappen()
+        public abstract void CursesHappen();
+
+        protected void AssertCursesHappen()
         {
             var item = new Item();
 
@@ -81,8 +82,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        [Test]
-        public void SpecificCursesHappen()
+        public abstract void SpecificCursesHappen();
+
+        protected void AssertSpecificCursesHappen()
         {
             var item = new Item();
 
@@ -93,7 +95,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        protected void AssertTraitsHappen()
+        public virtual void TraitsHappen()
         {
             var item = new Item();
 
@@ -105,7 +107,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        protected void AssertSpecialMaterialsHappen()
+        public virtual void SpecialMaterialsHappen()
         {
             var item = new Item();
 
@@ -117,8 +119,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        [Test]
-        public void NoDecorationsHappen()
+        public abstract void NoDecorationsHappen();
+
+        protected void AssertNoDecorationsHappen()
         {
             var item = new Item();
 

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "MajorWondrousItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Dimensional shackles", 0, 1)]
         [TestCase("Obsidian steed figurine of wondrous power", 0, 2)]
         [TestCase("Drums of panic", 0, 3)]

@@ -22,8 +22,9 @@ namespace EquipmentGen.Tests.Integration.Tables
             table = PercentileMapper.Map(tableName);
         }
 
-        [Test]
-        public void TableIsComplete()
+        public abstract void TableIsComplete();
+
+        protected void AssertTableIsComplete()
         {
             for (var roll = 100; roll > 0; roll--)
                 Assert.That(table.Keys, Contains.Item(roll), tableName);

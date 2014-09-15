@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls
             get { return "MajorSpellLevels"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("4", 1, 5)]
         [TestCase("5", 6, 50)]
         [TestCase("6", 51, 70)]

@@ -31,8 +31,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             AssertIterations();
         }
 
-        [Test]
-        public void NoDecorationsHappen()
+        public abstract void NoDecorationsHappen();
+
+        public void AssertNoDecorationsHappen()
         {
             var item = new Item();
 

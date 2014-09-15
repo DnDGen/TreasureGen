@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -11,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.WondrousItem)]
         public IMagicalItemGenerator WondrousItemGenerator { get; set; }
+
+        [TestCase("Wondrous item generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override Item GenerateItem()
         {

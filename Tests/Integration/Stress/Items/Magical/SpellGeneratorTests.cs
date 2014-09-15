@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpellGenerator SpellGenerator { get; set; }
 
+        [TestCase("Spell generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override void MakeAssertions()
         {
             var spellType = SpellGenerator.GenerateType();

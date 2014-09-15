@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
@@ -10,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
     {
         [Inject, Named(ItemTypeConstants.AlchemicalItem)]
         public IMundaneItemGenerator AlchemicalItemGenerator { get; set; }
+
+        [TestCase("Alchemical item generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertions()
         {

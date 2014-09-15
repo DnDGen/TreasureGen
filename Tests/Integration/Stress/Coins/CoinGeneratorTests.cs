@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Generators.Interfaces.Coins;
+﻿using System;
+using EquipmentGen.Generators.Interfaces.Coins;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,6 +10,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
     {
         [Inject]
         public ICoinGenerator CoinGenerator { get; set; }
+
+        [TestCase("Coin generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertions()
         {

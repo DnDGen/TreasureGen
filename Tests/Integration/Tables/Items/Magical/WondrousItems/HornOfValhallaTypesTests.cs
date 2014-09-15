@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "HornOfValhallaTypes"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Silver", 1, 40)]
         [TestCase("Brass", 41, 75)]
         [TestCase("Bronze", 76, 90)]

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "KnowledgeCategories"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Arcana", 1, 10)]
         [TestCase("Architecture", 11, 20)]
         [TestCase("Dungeoneering", 21, 30)]

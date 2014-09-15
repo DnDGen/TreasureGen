@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Alchemical
             get { return "AlchemicalItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Alchemist's fire", "1d4", 1, 12)]
         [TestCase("Acid", "2d4", 13, 24)]
         [TestCase("Smokestick", "1d4", 25, 36)]

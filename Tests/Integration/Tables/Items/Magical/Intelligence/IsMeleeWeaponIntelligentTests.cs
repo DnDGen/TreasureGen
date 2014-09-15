@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IsMeleeWeaponIntelligent"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(true, 1, 15)]
         [TestCase(false, 16, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)

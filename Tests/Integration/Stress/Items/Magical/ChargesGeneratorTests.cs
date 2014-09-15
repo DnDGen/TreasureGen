@@ -17,6 +17,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public IAttributesMapper AttributesMapper { get; set; }
 
+        [TestCase("Charges generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         private Dictionary<String, IEnumerable<String>> table;
 
         [SetUp]

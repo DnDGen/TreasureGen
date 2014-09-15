@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "MediumWondrousItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Boots of levitation", 0, 1)]
         [TestCase("Harp of charming", 0, 2)]
         [TestCase("Amulet of natural armor", 2, 3)]

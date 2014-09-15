@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
             get { return "GemValues"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("4d4", 1, 25)]
         [TestCase("2d4*10", 26, 50)]
         [TestCase("4d4*10", 51, 70)]

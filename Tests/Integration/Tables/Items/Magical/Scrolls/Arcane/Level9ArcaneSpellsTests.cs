@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
             get { return "Level9ArcaneSpells"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Astral projection", 1, 3)]
         [TestCase("Bigby's crushing hand", 4, 7)]
         [TestCase("Dominate monster", 8, 12)]

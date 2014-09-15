@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
             get { return "MediumRings"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Counterspells", 0, 1, 5)]
         [TestCase("Mind shielding", 0, 6, 8)]
         [TestCase("Protection", 2, 9, 18)]

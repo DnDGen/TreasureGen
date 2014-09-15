@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public ISpecificGearGenerator SpecificGearGenerator { get; set; }
 
+        [TestCase("Specific gear generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override void MakeAssertions()
         {
             var power = GetNewPower(false);

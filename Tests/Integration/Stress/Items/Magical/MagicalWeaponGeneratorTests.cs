@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Weapon)]
         public IMagicalItemGenerator MagicalWeaponGenerator { get; set; }
 
+        [TestCase("Magical weapon generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override void MakeAssertionsAgainst(Item weapon)
         {
             Assert.That(weapon.Name, Is.Not.Empty);

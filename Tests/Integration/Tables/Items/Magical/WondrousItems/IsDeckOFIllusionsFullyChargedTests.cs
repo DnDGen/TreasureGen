@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "IsDeckOfIllusionsFullyCharged"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(true, 1, 90)]
         [TestCase(false, 91, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)

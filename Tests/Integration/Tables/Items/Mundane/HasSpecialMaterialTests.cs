@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
             get { return "HasSpecialMaterial"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(false, 1, 95)]
         [TestCase(true, 96, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
             get { return "SpecificCursedItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Incense of obsession", 1, 5)]
         [TestCase("Ring of clumsiness", 6, 15)]
         [TestCase("Amulet of inescapable location", 16, 20)]

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceLesserPowers"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Item can Bless its allies 3/day", 1, 5)]
         [TestCase("Item can use Faerie Fire 3/day", 6, 10)]
         [TestCase("Item can cast Minor Image 1/day", 11, 13)]

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
             get { return "Elements"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Acid", 1, 20)]
         [TestCase("Cold", 21, 40)]
         [TestCase("Electricity", 41, 60)]

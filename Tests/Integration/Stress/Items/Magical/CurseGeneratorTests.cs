@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Common.Items;
+﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -10,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject]
         public ICurseGenerator CurseGenerator { get; set; }
+
+        [TestCase("Curse generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertions()
         {

@@ -36,6 +36,12 @@ namespace EquipmentGen.Tests.Integration.Stress
             }
         }
 
+        [TestCase("Treasure generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override void MakeAssertions()
         {
             var level = GetNewLevel();

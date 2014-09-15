@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceStrongStats"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("12", 1, 34)]
         [TestCase("13", 35, 59)]
         [TestCase("14", 60, 79)]

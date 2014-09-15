@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
             get { return "WeaponTypes"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("CommonMelee", 1, 70)]
         [TestCase("Uncommon", 71, 80)]
         [TestCase("CommonRanged", 81, 100)]

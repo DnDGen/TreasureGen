@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "PersonalityTraits"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Distinctive groove", 1)]
         [TestCase("Chipped", 2)]
         [TestCase("Small part broken off", 3)]

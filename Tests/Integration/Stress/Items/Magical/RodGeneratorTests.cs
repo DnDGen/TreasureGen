@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -11,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Rod)]
         public IMagicalItemGenerator RodGenerator { get; set; }
+
+        [TestCase("Rod generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertionsAgainst(Item rod)
         {

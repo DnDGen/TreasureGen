@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Generators.Interfaces.Items;
+﻿using System;
+using EquipmentGen.Generators.Interfaces.Items;
 using Ninject;
 using NUnit.Framework;
 
@@ -9,6 +10,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items
     {
         [Inject]
         public IItemsGenerator ItemsGenerator { get; set; }
+
+        [TestCase("Items generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
 
         protected override void MakeAssertions()
         {

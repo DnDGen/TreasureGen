@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return "MinorWondrousItems"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Quaal's anchor feather token", 0, 1)]
         [TestCase("Universal solvent", 0, 2)]
         [TestCase("Elixer of love", 0, 3)]

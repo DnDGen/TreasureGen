@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
             get { return "MinorPotions"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Potion of cure light wounds", 0, 1, 10)]
         [TestCase("Potion of endure elements", 0, 11, 13)]
         [TestCase("Potion of hide from animals", 0, 14, 15)]

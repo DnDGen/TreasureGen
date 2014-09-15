@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
             get { return "ArtValues"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("1d10*10", 1, 10)]
         [TestCase("3d6*10", 11, 25)]
         [TestCase("1d6*100", 26, 40)]

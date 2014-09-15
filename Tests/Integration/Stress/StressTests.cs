@@ -56,8 +56,9 @@ namespace EquipmentGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
-        [Test]
-        public void StressGenerator()
+        public abstract void Stress(String thingToStress);
+
+        protected void Stress()
         {
             do MakeAssertions();
             while (TestShouldKeepRunning());

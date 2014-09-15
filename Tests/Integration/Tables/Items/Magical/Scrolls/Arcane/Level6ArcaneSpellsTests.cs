@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
             get { return "Level6ArcaneSpells"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Acid fog", 1, 2)]
         [TestCase("Analyze dweomer", 3, 5)]
         [TestCase("Antimagic field", 7, 9)]

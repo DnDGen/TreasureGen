@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
             get { return "MundaneWeapons"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("CommonMelee", 1, 50)]
         [TestCase("Uncommon", 51, 70)]
         [TestCase("CommonRanged", 71, 100)]

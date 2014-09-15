@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Staff)]
         public IMagicalItemGenerator StaffGenerator { get; set; }
 
+        [TestCase("Staff generator")]
+        public override void Stress(String thingToStress)
+        {
+            Stress();
+        }
+
         protected override Item GenerateItem()
         {
             var power = GetNewPower(allowMinor: false);

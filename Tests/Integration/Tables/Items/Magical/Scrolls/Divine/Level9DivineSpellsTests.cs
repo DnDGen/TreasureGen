@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
             get { return "Level9DivineSpells"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Antipathy", 1, 4)]
         [TestCase("Astral projection", 5, 7)]
         [TestCase("Elemental swarm", 8, 13)]

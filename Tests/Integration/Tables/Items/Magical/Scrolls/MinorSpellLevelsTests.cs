@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls
             get { return "MinorSpellLevels"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("0", 1, 5)]
         [TestCase("1", 6, 50)]
         [TestCase("2", 51, 95)]

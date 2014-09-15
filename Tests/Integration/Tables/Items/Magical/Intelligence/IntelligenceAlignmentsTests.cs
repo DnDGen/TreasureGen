@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IntelligenceAlignments"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase("Chaotic good", 1, 5)]
         [TestCase("Chaotic neutral", 6, 15)]
         [TestCase("Chaotic evil", 16, 20)]

@@ -11,6 +11,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return "IsWondrousItemIntelligent"; }
         }
 
+        [Test]
+        public override void TableIsComplete()
+        {
+            AssertTableIsComplete();
+        }
+
         [TestCase(false, 2, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
         {
