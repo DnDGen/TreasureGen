@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         [Test]
         public void DoNotGetSpecialMaterial()
         {
-            mockMaterialGenerator.Setup(g => g.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+            mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns("special material");
@@ -51,7 +51,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         [Test]
         public void GetSpecialMaterial()
         {
-            mockMaterialGenerator.SetupSequence(g => g.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+            mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns("special material");
@@ -64,7 +64,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         [Test]
         public void GetMultipleSpecialMaterials()
         {
-            mockMaterialGenerator.SetupSequence(g => g.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+            mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(true).Returns(true).Returns(false);
             mockMaterialGenerator.SetupSequence(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns("special material 1").Returns("special material 2").Returns("special material 3");
@@ -80,7 +80,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         {
             item.Attributes = new[] { AttributeConstants.Metal };
 
-            mockMaterialGenerator.SetupSequence(g => g.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+            mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(TraitConstants.Dragonhide);
@@ -96,7 +96,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         {
             item.Attributes = new[] { AttributeConstants.Wood };
 
-            mockMaterialGenerator.SetupSequence(g => g.HasSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+            mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
                 .Returns(TraitConstants.Dragonhide);

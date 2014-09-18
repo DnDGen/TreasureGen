@@ -20,7 +20,7 @@ namespace EquipmentGen.Generators.Decorators
             var item = innerGenerator.GenerateAtPower(power);
 
             if (intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
-                item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item.Magic);
+                item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item);
 
             return item;
         }

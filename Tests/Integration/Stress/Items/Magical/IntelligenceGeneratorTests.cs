@@ -48,17 +48,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var itemType = GetNewGearItemType();
-            var attributes = GetNewAttributesForGear(itemType, false);
-            var power = GetNewPower(false);
-            var quantity = Random.Next(10) + 1;
-
-            var item = new Item();
-            item.Name = GetItemName(itemType);
-            item.Magic.Bonus = Random.Next(5) + 1;
-            item.Magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, item.Magic.Bonus, quantity);
-
-            var intelligence = IntelligenceGenerator.GenerateFor(item);
+            var intelligence = GenerateIntelligence();
 
             Assert.That(alignments, Contains.Item(intelligence.Alignment));
             Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
@@ -71,37 +61,82 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(intelligence.SpecialPurpose, Is.Not.Null);
             Assert.That(intelligence.WisdomStat, Is.InRange<Int32>(10, 19));
             Assert.That(intelligence.Personality, Is.Not.Null);
-
-            if (intelligence.Communication.Contains("Speech"))
-                Assert.That(intelligence.Languages, Contains.Item("Common"));
-            else
-                Assert.That(intelligence.Languages, Is.Empty);
         }
 
-        private String GetItemName(String itemType)
+        private Intelligence GenerateIntelligence()
         {
+            var itemType = GetNewGearItemType();
+            var attributes = GetNewAttributesForGear(itemType, false);
+            var power = GetNewPower(false);
+            var quantity = Random.Next(10) + 1;
+
+            var item = new Item();
+
             if (itemType == ItemTypeConstants.Armor)
-                return GetArmorName();
+                item.Name = GetNameFrom(armorNames);
+            else
+                item.Name = GetNameFrom(weaponNames);
 
-            return GetWeaponName();
+            item.Magic.Bonus = Random.Next(5) + 1;
+            item.Magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, item.Magic.Bonus, quantity);
+
+            return IntelligenceGenerator.GenerateFor(item);
         }
 
-        private String GetArmorName()
+        private String GetNameFrom(IEnumerable<String> names)
         {
-            var index = Random.Next(armorNames.Count());
-            return armorNames.ElementAt(index);
-        }
-
-        private String GetWeaponName()
-        {
-            var index = Random.Next(weaponNames.Count());
-            return weaponNames.ElementAt(index);
+            var index = Random.Next(names.Count());
+            return names.ElementAt(index);
         }
 
         [Test]
         public void SpecialPurposeHappens()
         {
-            Assert.Fail();
+            Intelligence intelligence;
+
+            do intelligence = GenerateIntelligence();
+            while (TestShouldKeepRunning() && String.IsNullOrEmpty(intelligence.SpecialPurpose));
+
+            Assert.That(intelligence.SpecialPurpose, Is.Not.Empty);
+            Assert.That(intelligence.DedicatedPower, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void SpecialPurposeDoesNotHappen()
+        {
+            Intelligence intelligence;
+
+            do intelligence = GenerateIntelligence();
+            while (TestShouldKeepRunning() && !String.IsNullOrEmpty(intelligence.SpecialPurpose));
+
+            Assert.That(intelligence.SpecialPurpose, Is.Empty);
+            Assert.That(intelligence.DedicatedPower, Is.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void LanguagesHappen()
+        {
+            Intelligence intelligence;
+
+            do intelligence = GenerateIntelligence();
+            while (TestShouldKeepRunning() && !intelligence.Languages.Any());
+
+            Assert.That(intelligence.Languages, Contains.Item("Common"));
+            AssertIterations();
+        }
+
+        [Test]
+        public void LanguagesDoNotHappen()
+        {
+            Intelligence intelligence;
+
+            do intelligence = GenerateIntelligence();
+            while (TestShouldKeepRunning() && intelligence.Languages.Any());
+
+            Assert.That(intelligence.Languages, Is.Empty);
+            AssertIterations();
         }
     }
 }

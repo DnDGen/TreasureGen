@@ -34,15 +34,38 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(wondrousItem.IsMagical, Is.True);
             Assert.That(wondrousItem.Contents, Is.Not.Null);
             Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
-            Assert.That(wondrousItem.Magic.Bonus, Is.AtLeast(0));
-            Assert.That(wondrousItem.Magic.Charges, Is.AtLeast(0));
+            Assert.That(wondrousItem.Magic.Bonus, Is.Not.Negative);
+            Assert.That(wondrousItem.Magic.Charges, Is.Not.Negative);
             Assert.That(wondrousItem.Magic.SpecialAbilities, Is.Empty);
-
-            if (wondrousItem.Attributes.Contains(AttributeConstants.Charged))
-                Assert.That(wondrousItem.Magic.Charges, Is.GreaterThan(0));
 
             var itemMaterials = wondrousItem.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Empty);
+        }
+
+        [Test]
+        public void ChargesHappen()
+        {
+            Item wondrousItem;
+
+            do wondrousItem = GenerateItem();
+            while (TestShouldKeepRunning() && !wondrousItem.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(wondrousItem.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(wondrousItem.Magic.Charges, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ChargesDoNotHappen()
+        {
+            Item wondrousItem;
+
+            do wondrousItem = GenerateItem();
+            while (TestShouldKeepRunning() && wondrousItem.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(wondrousItem.Attributes, Is.Not.Contains(AttributeConstants.Charged));
+            Assert.That(wondrousItem.Magic.Charges, Is.EqualTo(0));
+            AssertIterations();
         }
 
         [Test]

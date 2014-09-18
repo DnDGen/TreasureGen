@@ -19,19 +19,13 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var result = percentileSelector.SelectFrom("MundaneArmors");
-            var armor = new Item();
 
             if (result == TraitConstants.Darkwood)
-            {
-                var tableName = String.Format("{0}Shields", result);
-                armor.Name = percentileSelector.SelectFrom(tableName);
-                armor.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", armor.Name);
-                armor.Traits.Add(result);
-                armor.ItemType = ItemTypeConstants.Armor;
+                return GenerateDarkwoodShield();
 
-                return armor;
-            }
-            else if (result == TraitConstants.Masterwork)
+            var armor = new Item();
+
+            if (result == TraitConstants.Masterwork)
             {
                 var tableName = String.Format("{0}Shields", result);
                 armor.Name = percentileSelector.SelectFrom(tableName);
@@ -52,6 +46,21 @@ namespace EquipmentGen.Generators.Items.Mundane
             armor.Traits.Add(size);
 
             return armor;
+        }
+
+        private Item GenerateDarkwoodShield()
+        {
+            var shield = new Item();
+
+            shield.Name = percentileSelector.SelectFrom("DarkwoodShields");
+            shield.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", shield.Name);
+            shield.Traits.Add(TraitConstants.Darkwood);
+            shield.ItemType = ItemTypeConstants.Armor;
+
+            var size = percentileSelector.SelectFrom("ArmorSizes");
+            shield.Traits.Add(size);
+
+            return shield;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             var quantity = Random.Next(10) + 1;
             var abilities = SpecialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, bonus, quantity);
 
-            Assert.That(abilities.Count(), Is.AtLeast(1));
+            Assert.That(abilities.Count(), Is.Positive);
 
             var sum = abilities.Sum(a => a.BonusEquivalent);
             Assert.That(sum + bonus, Is.AtMost(10));

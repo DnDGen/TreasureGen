@@ -55,7 +55,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var generator = factory.CreateGeneratorOf(itemType);
             var item = generator.Generate();
 
-            mockMaterialGenerator.Verify(g => g.HasSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
+            mockMaterialGenerator.Verify(g => g.CanHaveSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
                 Times.Once);
         }
 

@@ -26,27 +26,178 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
             Assert.That(weapon.Contents, Is.Not.Null);
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
-
-            if (weapon.IsMagical && !weapon.Attributes.Contains(AttributeConstants.Specific))
-                Assert.That(weapon.Magic.Bonus, Is.GreaterThan(0), weapon.Name);
-
-            if (weapon.Attributes.Contains(AttributeConstants.Ammunition))
-                Assert.That(weapon.Quantity, Is.InRange<Int32>(1, 50));
-            else
-                Assert.That(weapon.Quantity, Is.EqualTo(1));
-
             Assert.That(weapon.Traits, Is.Not.Null);
-            Assert.That(weapon.Magic.Charges, Is.AtLeast(0));
+            Assert.That(weapon.Magic.Charges, Is.Not.Negative);
             Assert.That(weapon.Magic.SpecialAbilities, Is.Not.Null);
-
-            if (weapon.Attributes.Contains(AttributeConstants.Charged))
-                Assert.That(weapon.Magic.Charges, Is.GreaterThan(0));
         }
 
         protected override Item GenerateItem()
         {
             var power = GetNewPower();
             return MagicalWeaponGenerator.GenerateAtPower(power);
+        }
+
+        [Test]
+        public void SpecificWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && !weapon.Attributes.Contains(AttributeConstants.Specific));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
+            AssertIterations();
+        }
+
+        [Test]
+        public void SpecificWeaponDoesNotHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Attributes.Contains(AttributeConstants.Specific));
+
+            Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Specific));
+            AssertIterations();
+        }
+
+        [Test]
+        public void AmmunitionHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && !weapon.Attributes.Contains(AttributeConstants.Ammunition));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Ammunition));
+            Assert.That(weapon.Quantity, Is.InRange<Int32>(1, 50));
+            AssertIterations();
+        }
+
+        [Test]
+        public void MultipleAmmunitionHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Quantity == 1);
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Ammunition));
+            Assert.That(weapon.Quantity, Is.InRange<Int32>(2, 50));
+            AssertIterations();
+        }
+
+        [Test]
+        public void AmmunitionDoesNotHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Attributes.Contains(AttributeConstants.Ammunition));
+
+            Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Ammunition));
+            Assert.That(weapon.Quantity, Is.EqualTo(1));
+            AssertIterations();
+        }
+
+        [Test]
+        public void ChargesHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && !weapon.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(weapon.Magic.Charges, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ChargesDoNotHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Charged));
+            Assert.That(weapon.Magic.Charges, Is.EqualTo(0));
+            AssertIterations();
+        }
+
+        [Test]
+        public void MagicalWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && (weapon.IsMagical == false || weapon.Attributes.Contains(AttributeConstants.Specific)));
+
+            Assert.That(weapon.IsMagical, Is.True);
+            Assert.That(weapon.Magic.Bonus, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void MundaneWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.IsMagical);
+
+            Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.Magic.Bonus, Is.EqualTo(0));
+            AssertIterations();
+        }
+
+        [Test]
+        public void SpecialAbilitiesHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && !weapon.Magic.SpecialAbilities.Any());
+
+            Assert.That(weapon.Magic.SpecialAbilities, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void SpecialAbilitiesDoNotHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Magic.SpecialAbilities.Any());
+
+            Assert.That(weapon.Magic.SpecialAbilities, Is.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && !weapon.Contents.Any());
+
+            Assert.That(weapon.Contents, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsDoNotHappen()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && weapon.Contents.Any());
+
+            Assert.That(weapon.Contents, Is.Empty);
+            AssertIterations();
         }
 
         [Test]

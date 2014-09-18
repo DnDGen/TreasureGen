@@ -22,11 +22,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
+            var traits = GenerateTraits();
+            Assert.That(traits, Is.Not.Null);
+        }
+
+        private IEnumerable<String> GenerateTraits()
+        {
             var itemType = GetNewMagicalItemType();
             var attributes = GetNewAttributesFor(itemType);
-            var traits = TraitsGenerator.GenerateFor(itemType, attributes);
-
-            Assert.That(traits, Is.Not.Null);
+            return TraitsGenerator.GenerateFor(itemType, attributes);
         }
 
         private String GetNewMagicalItemType()
@@ -50,7 +54,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 return GetNewAttributesForGear(itemType, false);
 
             var quantity = Random.Next(5);
-            var attributes = new List<String>();
+            var attributes = new HashSet<String>();
 
             while (quantity-- > 0)
             {
@@ -64,7 +68,31 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 }
             }
 
-            return attributes.Distinct();
+            return attributes;
+        }
+
+        [Test]
+        public void TraitsHappen()
+        {
+            IEnumerable<String> traits;
+
+            do traits = GenerateTraits();
+            while (TestShouldKeepRunning() && !traits.Any());
+
+            Assert.That(traits, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void TraitsDoNotHappen()
+        {
+            IEnumerable<String> traits;
+
+            do traits = GenerateTraits();
+            while (TestShouldKeepRunning() && traits.Any());
+
+            Assert.That(traits, Is.Empty);
+            AssertIterations();
         }
     }
 }

@@ -20,9 +20,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var power = GetNewPower(false);
-            var specificGearType = GetNewSpecificGearType();
-            var gear = SpecificGearGenerator.GenerateFrom(power, specificGearType);
+            var gear = GenerateSpecificGear();
 
             if (gear.ItemType == ItemTypeConstants.SpecificCursedItem)
                 return;
@@ -33,15 +31,18 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(gear.Traits, Is.Not.Null);
             Assert.That(gear.Contents, Is.Not.Null);
             Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor).Or.EqualTo(ItemTypeConstants.Weapon));
-
-            if (!gear.IsMagical)
-                return;
-
-            Assert.That(gear.Magic.Bonus, Is.AtLeast(0), gear.Name);
-            Assert.That(gear.Magic.Charges, Is.AtLeast(0));
+            Assert.That(gear.Magic.Bonus, Is.Not.Negative, gear.Name);
+            Assert.That(gear.Magic.Charges, Is.Not.Negative);
             Assert.That(gear.Magic.Curse, Is.Not.Null);
             Assert.That(gear.Magic.SpecialAbilities, Is.Not.Null);
             Assert.That(gear.Magic.Intelligence, Is.Not.Null);
+        }
+
+        private Item GenerateSpecificGear()
+        {
+            var power = GetNewPower(false);
+            var specificGearType = GetNewSpecificGearType();
+            return SpecificGearGenerator.GenerateFrom(power, specificGearType);
         }
 
         private String GetNewSpecificGearType()
@@ -53,6 +54,30 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
                 case 2: return "SpecificWeapons";
                 default: throw new ArgumentOutOfRangeException();
             }
+        }
+
+        [Test]
+        public void MagicalGearHappens()
+        {
+            Item gear;
+
+            do gear = GenerateSpecificGear();
+            while (TestShouldKeepRunning() && gear.IsMagical == false);
+
+            Assert.That(gear.IsMagical, Is.True);
+            AssertIterations();
+        }
+
+        [Test]
+        public void MundaneGearHappens()
+        {
+            Item gear;
+
+            do gear = GenerateSpecificGear();
+            while (TestShouldKeepRunning() && gear.IsMagical);
+
+            Assert.That(gear.IsMagical, Is.False);
+            AssertIterations();
         }
     }
 }

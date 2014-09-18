@@ -41,6 +41,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d4()).Returns(4);
             mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceStrongStats")).Returns("10");
             mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom("IntelligenceAttributes", It.IsAny<String>())).Returns(intelligenceAttributesResult);
+            mockPercentileSelector.Setup(s => s.SelectFrom("IntelligenceAlignments")).Returns(String.Empty);
 
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
                 mockAttributesSelector.Object, mockIntelligenceAttributesSelector.Object, mockBooleanPercentileSelector.Object);

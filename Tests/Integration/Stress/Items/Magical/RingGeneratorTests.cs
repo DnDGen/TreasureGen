@@ -28,12 +28,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.Contents, Is.Not.Null);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
-            Assert.That(ring.Magic.Bonus, Is.AtLeast(0));
-            Assert.That(ring.Magic.Charges, Is.AtLeast(0));
+            Assert.That(ring.Magic.Bonus, Is.Not.Negative);
+            Assert.That(ring.Magic.Charges, Is.Not.Negative);
             Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
-
-            if (ring.Attributes.Contains(AttributeConstants.Charged))
-                Assert.That(ring.Magic.Charges, Is.GreaterThan(0));
 
             var itemMaterials = ring.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Empty);
@@ -43,6 +40,56 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var power = GetNewPower();
             return RingGenerator.GenerateAtPower(power);
+        }
+
+        [Test]
+        public void ChargesHappen()
+        {
+            Item ring;
+
+            do ring = GenerateItem();
+            while (TestShouldKeepRunning() && !ring.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(ring.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(ring.Magic.Charges, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ChargesDoNotHappen()
+        {
+            Item ring;
+
+            do ring = GenerateItem();
+            while (TestShouldKeepRunning() && ring.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(ring.Attributes, Is.Not.Contains(AttributeConstants.Charged));
+            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsHappen()
+        {
+            Item ring;
+
+            do ring = GenerateItem();
+            while (TestShouldKeepRunning() && !ring.Contents.Any());
+
+            Assert.That(ring.Contents, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsDoNotHappen()
+        {
+            Item ring;
+
+            do ring = GenerateItem();
+            while (TestShouldKeepRunning() && ring.Contents.Any());
+
+            Assert.That(ring.Contents, Is.Empty);
+            AssertIterations();
         }
 
         [Test]

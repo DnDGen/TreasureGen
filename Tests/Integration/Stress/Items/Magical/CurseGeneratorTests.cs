@@ -31,7 +31,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(cursedItem.IsMagical, Is.True);
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
             Assert.That(cursedItem.Quantity, Is.EqualTo(1));
-            Assert.That(cursedItem.Traits, Is.Not.Null);
+            Assert.That(cursedItem.Traits, Is.Empty);
             Assert.That(cursedItem.Contents, Is.Empty);
             Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
         }

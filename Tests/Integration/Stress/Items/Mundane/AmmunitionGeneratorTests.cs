@@ -31,5 +31,17 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ranged));
             Assert.That(ammunition.Contents, Is.Empty);
         }
+
+        [Test]
+        public void MultipleAmmunitionHappens()
+        {
+            Item ammunition;
+
+            do ammunition = AmmunitionGenerator.Generate();
+            while (TestShouldKeepRunning() && ammunition.Quantity == 1);
+
+            Assert.That(ammunition.Quantity, Is.InRange<Int32>(2, 50));
+            AssertIterations();
+        }
     }
 }

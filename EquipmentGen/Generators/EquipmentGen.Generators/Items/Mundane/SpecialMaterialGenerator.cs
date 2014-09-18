@@ -29,7 +29,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             }
         }
 
-        public Boolean HasSpecialMaterial(String itemType, IEnumerable<String> attributes, IEnumerable<String> traits)
+        public Boolean CanHaveSpecialMaterial(String itemType, IEnumerable<String> attributes, IEnumerable<String> traits)
         {
             if (itemType != ItemTypeConstants.Weapon && itemType != ItemTypeConstants.Armor)
                 return false;

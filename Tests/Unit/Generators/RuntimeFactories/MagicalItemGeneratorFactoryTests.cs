@@ -87,7 +87,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
 
             mockIntelligenceGenerator.Verify(g => g.IsIntelligent(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<Boolean>()), Times.Once, itemType);
             mockCurseGenerator.Verify(g => g.HasCurse(It.IsAny<Boolean>()), Times.Once, itemType);
-            mockMaterialGenerator.Verify(g => g.HasSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
+            mockMaterialGenerator.Verify(g => g.CanHaveSpecialMaterial(itemType, It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()),
                 Times.Once, itemType);
             mockTraitsGenerator.Verify(g => g.GenerateFor(itemType, It.IsAny<IEnumerable<String>>()), Times.Once, itemType);
         }

@@ -32,9 +32,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(rod.Quantity, Is.EqualTo(1));
             Assert.That(rod.Traits, Is.Not.Null);
 
-            if (rod.Attributes.Contains(AttributeConstants.Charged))
-                Assert.That(rod.Magic.Charges, Is.GreaterThan(0));
-
             var rodMaterials = rod.Traits.Intersect(materials);
             Assert.That(rodMaterials, Is.Empty);
         }
@@ -43,6 +40,56 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var power = GetNewPower(allowMinor: false);
             return RodGenerator.GenerateAtPower(power);
+        }
+
+        [Test]
+        public void ChargesHappen()
+        {
+            Item rod;
+
+            do rod = GenerateItem();
+            while (TestShouldKeepRunning() && !rod.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(rod.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(rod.Magic.Charges, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ChargesDoNotHappen()
+        {
+            Item rod;
+
+            do rod = GenerateItem();
+            while (TestShouldKeepRunning() && rod.Attributes.Contains(AttributeConstants.Charged));
+
+            Assert.That(rod.Attributes, Is.Not.Contains(AttributeConstants.Charged));
+            Assert.That(rod.Magic.Charges, Is.EqualTo(0));
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsHappen()
+        {
+            Item rod;
+
+            do rod = GenerateItem();
+            while (TestShouldKeepRunning() && !rod.Contents.Any());
+
+            Assert.That(rod.Contents, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void ContentsDoNotHappen()
+        {
+            Item rod;
+
+            do rod = GenerateItem();
+            while (TestShouldKeepRunning() && rod.Contents.Any());
+
+            Assert.That(rod.Contents, Is.Empty);
+            AssertIterations();
         }
 
         [Test]

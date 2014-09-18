@@ -21,7 +21,7 @@ namespace EquipmentGen.Generators.Decorators
         {
             var item = innerGenerator.GenerateAtPower(power);
 
-            while (specialMaterialGenerator.HasSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
+            while (specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 item.Traits.Add(material);

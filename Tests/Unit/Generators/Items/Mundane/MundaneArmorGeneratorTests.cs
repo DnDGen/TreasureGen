@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
@@ -104,6 +102,20 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GetSizesForDarkwoodShields()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(TraitConstants.Darkwood);
+            mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields")).Returns("big shield");
+            mockPercentileSelector.Setup(p => p.SelectFrom("ArmorSizes")).Returns("armor size");
+
+            var armor = mundaneArmorGenerator.Generate();
+            Assert.That(armor.Name, Is.EqualTo("big shield"));
+            Assert.That(armor.Traits, Contains.Item("armor size"));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Darkwood));
+            Assert.That(armor.Traits.Count(), Is.EqualTo(2));
         }
     }
 }

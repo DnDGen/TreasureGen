@@ -42,7 +42,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
             var intelligence = new Intelligence();
             intelligence.Ego = 9266;
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(innerItem.ItemType, innerItem.Attributes, It.IsAny<Boolean>())).Returns(false);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Item>())).Returns(intelligence);
 
             var item = intelligenceDecorator.GenerateAtPower("power");
             Assert.That(item, Is.EqualTo(innerItem));
@@ -55,7 +55,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         {
             var intelligence = new Intelligence();
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(innerItem.ItemType, innerItem.Attributes, It.IsAny<Boolean>())).Returns(true);
-            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Magic>())).Returns(intelligence);
+            mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Item>())).Returns(intelligence);
 
             var item = intelligenceDecorator.GenerateAtPower("power");
             Assert.That(item, Is.EqualTo(innerItem));

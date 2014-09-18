@@ -152,7 +152,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.LightFlail));
             Assert.That(weapons, Contains.Item(WeaponConstants.Gauntlet));
             Assert.That(weapons, Contains.Item(WeaponConstants.SpikedGauntlet));
-            Assert.That(weapons, Contains.Item(WeaponConstants.Glaive,));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Glaive));
             Assert.That(weapons, Contains.Item(WeaponConstants.Greatclub));
             Assert.That(weapons, Contains.Item(WeaponConstants.Guisarme));
             Assert.That(weapons, Contains.Item(WeaponConstants.Halberd));
@@ -198,17 +198,17 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus4Longbow));
             Assert.That(weapons, Contains.Item(WeaponConstants.SleepArrow));
             Assert.That(weapons, Contains.Item(WeaponConstants.ScreamingBolt));
-            Assert.That(weapons, Contains.Item(WeaponConstants.SilverDagger));
+            Assert.That(weapons, Is.Not.Contains(WeaponConstants.SilverDagger));
             Assert.That(weapons, Contains.Item(WeaponConstants.JavelinOfLightning));
             Assert.That(weapons, Contains.Item(WeaponConstants.SlayingArrow));
             Assert.That(weapons, Contains.Item(WeaponConstants.AssassinsDagger));
             Assert.That(weapons, Contains.Item(WeaponConstants.ShiftersSorrow));
             Assert.That(weapons, Contains.Item(WeaponConstants.TridentOfFishCommand));
             Assert.That(weapons, Contains.Item(WeaponConstants.FlameTongue));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LuckBlade0));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LuckBlade1));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LuckBlade2));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LuckBlade3));
+            Assert.That(weapons, Is.Not.Contains(WeaponConstants.LuckBlade0));
+            Assert.That(weapons, Is.Not.Contains(WeaponConstants.LuckBlade1));
+            Assert.That(weapons, Is.Not.Contains(WeaponConstants.LuckBlade2));
+            Assert.That(weapons, Is.Not.Contains(WeaponConstants.LuckBlade3));
             Assert.That(weapons, Contains.Item(WeaponConstants.SwordOfSubtlety));
             Assert.That(weapons, Contains.Item(WeaponConstants.SwordOfThePlanes));
             Assert.That(weapons, Contains.Item(WeaponConstants.NineLivesStealer));
@@ -228,7 +228,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Shatterspike));
             Assert.That(weapons, Contains.Item(WeaponConstants.DaggerOfVenom));
             Assert.That(weapons, Contains.Item(WeaponConstants.TridentOfWarning));
-            Assert.That(weapons.Count(), Is.EqualTo(80));
+            Assert.That(weapons.Count(), Is.EqualTo(100));
         }
     }
 }

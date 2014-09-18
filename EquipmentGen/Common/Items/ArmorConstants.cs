@@ -42,7 +42,38 @@ namespace EquipmentGen.Common.Items
         {
             return new[]
             {
-                PaddedArmor
+                PaddedArmor,
+                LeatherArmor,
+                StuddedLeatherArmor,
+                ChainShirt,
+                HideArmor,
+                ScaleMail,
+                Chainmail,
+                Breastplate,
+                SplintMail,
+                BandedMail,
+                HalfPlate,
+                FullPlate,
+                Buckler,
+                LightWoodenShield,
+                LightSteelShield,
+                HeavyWoodenShield,
+                HeavySteelShield,
+                TowerShield,
+                ElvenChain,
+                RhinoHide,
+                DwarvenPlate,
+                BandedMailOfLuck,
+                CelestialArmor,
+                PlateArmorOfTheDeep, 
+                BreastplateOfCommand,
+                FullPlateOfSpeed,
+                DemonArmor,
+                CastersShield,
+                SpinedShield,
+                LionsShield,
+                WingedShield,
+                AbsorbingShield
             };
         }
     }

@@ -23,23 +23,23 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
             var armor = GenerateItem();
 
             Assert.That(armor.Name, Is.Not.Empty);
-            Assert.That(armor.Traits, Is.Not.Null);
+            Assert.That(armor.Traits, Contains.Item("Small").Or.Contains("Medium"));
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
-            Assert.That(armor.Attributes, Is.Not.Null);
+            Assert.That(armor.Attributes, Is.Not.Null, armor.Name);
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.IsMagical, Is.False);
             Assert.That(armor.Contents, Is.Empty);
+        }
+
+        protected override Item GenerateItem()
+        {
+            return MundaneArmorGenerator.Generate();
         }
 
         [Test]
         public override void SpecialMaterialsHappen()
         {
             base.SpecialMaterialsHappen();
-        }
-
-        protected override Item GenerateItem()
-        {
-            return MundaneArmorGenerator.Generate();
         }
 
         [Test]

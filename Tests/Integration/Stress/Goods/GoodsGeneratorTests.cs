@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using EquipmentGen.Common.Goods;
 using EquipmentGen.Generators.Interfaces.Goods;
 using Ninject;
 using NUnit.Framework;
@@ -19,16 +22,45 @@ namespace EquipmentGen.Tests.Integration.Stress.Coins
 
         protected override void MakeAssertions()
         {
-            var level = GetNewLevel();
-            var goods = GoodsGenerator.GenerateAtLevel(level);
+            var goods = GenerateGoods();
 
             Assert.That(goods, Is.Not.Null);
 
             foreach (var good in goods)
             {
                 Assert.That(good.Description, Is.Not.Empty);
-                Assert.That(good.ValueInGold, Is.GreaterThanOrEqualTo(0));
+                Assert.That(good.ValueInGold, Is.Positive);
             }
+        }
+
+        private IEnumerable<Good> GenerateGoods()
+        {
+            var level = GetNewLevel();
+            return GoodsGenerator.GenerateAtLevel(level);
+        }
+
+        [Test]
+        public void GoodsHappen()
+        {
+            IEnumerable<Good> goods;
+
+            do goods = GenerateGoods();
+            while (TestShouldKeepRunning() && !goods.Any());
+
+            Assert.That(goods, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
+        public void GoodsDoNotHappen()
+        {
+            IEnumerable<Good> goods;
+
+            do goods = GenerateGoods();
+            while (TestShouldKeepRunning() && goods.Any());
+
+            Assert.That(goods, Is.Empty);
+            AssertIterations();
         }
     }
 }

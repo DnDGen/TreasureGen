@@ -26,8 +26,15 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
 
         protected override void MakeAssertions()
         {
-            var item = GenerateItem();
-            var hasSpecialMaterial = SpecialMaterialGenerator.HasSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
+            Boolean hasSpecialMaterial;
+            Item item;
+
+            do
+            {
+                item = GenerateItem();
+                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
+            }
+            while (TestShouldKeepRunning() && !hasSpecialMaterial);
 
             if (hasSpecialMaterial)
             {
@@ -46,6 +53,36 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
                 case ItemTypeConstants.Weapon: return WeaponGenerator.Generate();
                 default: throw new ArgumentOutOfRangeException();
             }
+        }
+
+        [Test]
+        public void SpecialMaterialHappens()
+        {
+            Boolean hasSpecialMaterial;
+
+            do
+            {
+                var item = GenerateItem();
+                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
+            }
+            while (TestShouldKeepRunning() && !hasSpecialMaterial);
+
+            Assert.That(hasSpecialMaterial, Is.True);
+        }
+
+        [Test]
+        public void SpecialMaterialDoesNotHappen()
+        {
+            Boolean hasSpecialMaterial;
+
+            do
+            {
+                var item = GenerateItem();
+                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
+            }
+            while (TestShouldKeepRunning() && hasSpecialMaterial);
+
+            Assert.That(hasSpecialMaterial, Is.False);
         }
     }
 }
