@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Integration.Bootstrap", "Tests\Integration\Bootstrap\EquipmentGen.Tests.Integration.Bootstrap.csproj", "{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentGen.Tests.Unit.Tables", "Tests\Unit\Tables\EquipmentGen.Tests.Unit.Tables.csproj", "{BBBA778C-15A0-4729-8568-F3B508A631B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,14 @@ Global
 		{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}.Run Tests - Quick|Any CPU.Build.0 = Run Tests - Quick|Any CPU
 		{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}.Run Tests - Stress|Any CPU.ActiveCfg = Run Tests - Stress|Any CPU
 		{87AC49FF-B578-4FC3-8A1E-242B6CF0E760}.Run Tests - Stress|Any CPU.Build.0 = Run Tests - Stress|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Run Tests - Quick|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Run Tests - Quick|Any CPU.Build.0 = Release|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Run Tests - Stress|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBA778C-15A0-4729-8568-F3B508A631B5}.Run Tests - Stress|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -243,5 +253,6 @@ Global
 		{7465D5B6-F877-4FE0-84C6-D0992694A2DC} = {0EFB5BFE-4767-4108-8827-F56462CBAD40}
 		{A53AB08B-6155-4F91-8F83-384265F58530} = {CE6C1C33-CE08-46F3-B586-E78A1A7A7866}
 		{87AC49FF-B578-4FC3-8A1E-242B6CF0E760} = {CE6C1C33-CE08-46F3-B586-E78A1A7A7866}
+		{BBBA778C-15A0-4729-8568-F3B508A631B5} = {0EFB5BFE-4767-4108-8827-F56462CBAD40}
 	EndGlobalSection
 EndGlobal
