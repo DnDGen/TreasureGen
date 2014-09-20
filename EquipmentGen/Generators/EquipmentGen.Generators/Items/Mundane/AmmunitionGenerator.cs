@@ -3,6 +3,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
@@ -25,9 +26,9 @@ namespace EquipmentGen.Generators.Items.Mundane
             var roll = dice.Roll().Percentile();
 
             var ammunition = new Item();
-            ammunition.Name = percentileSelector.SelectFrom("Ammunitions");
+            ammunition.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions);
             ammunition.Quantity = Math.Max(1, roll / 2);
-            ammunition.Attributes = attributesSelector.SelectFrom("AmmunitionAttributes", ammunition.Name);
+            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, ammunition.Name);
             ammunition.ItemType = ItemTypeConstants.Weapon;
 
             return ammunition;

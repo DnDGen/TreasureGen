@@ -5,6 +5,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -29,14 +30,14 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateAtPower(String power)
         {
-            var tablename = String.Format("{0}WondrousItems", power);
+            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             var item = new Item();
             item.Name = result.Type;
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
-            item.Attributes = attributesSelector.SelectFrom("WondrousItemAttributes", item.Name);
+            item.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, item.Name);
             item.Magic.Bonus = result.Amount;
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
@@ -44,22 +45,22 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (item.Name == "Horn of Valhalla")
             {
-                var hornType = percentileSelector.SelectFrom("HornOfValhallaTypes");
+                var hornType = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
                 item.Name = String.Format("{0} {1}", hornType, item.Name);
             }
             else if (item.Name == "Iron flask")
             {
-                var contents = percentileSelector.SelectFrom("IronFlaskContents");
+                var contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents);
 
-                if (contents == "BalorOrPitFiend")
-                    contents = percentileSelector.SelectFrom("BalorOrPitFiend");
+                if (contents == TableNameConstants.Percentiles.Set.BalorOrPitFiend)
+                    contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
 
                 if (!String.IsNullOrEmpty(contents))
                     item.Contents.Add(contents);
             }
             else if (item.Name == "Robe of useful items")
             {
-                var baseItems = attributesSelector.SelectFrom("WondrousItemContents", item.Name);
+                var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, item.Name);
                 item.Contents.AddRange(baseItems);
 
                 var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
@@ -82,7 +83,7 @@ namespace EquipmentGen.Generators.Items.Magical
         private IEnumerable<String> GetPartialContents(String name)
         {
             var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
-            var fullContents = attributesSelector.SelectFrom("WondrousItemContents", name).ToList();
+            var fullContents = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, name).ToList();
 
             if (quantity >= fullContents.Count)
                 return fullContents;
@@ -121,7 +122,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var item = percentileSelector.SelectFrom("RobeOfUsefulItemsExtraItems");
+                var item = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems);
 
                 if (item == ItemTypeConstants.Scroll)
                 {
@@ -140,15 +141,13 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private IEnumerable<String> GeneratePlanesForCubicGate()
         {
-            var planes = new List<String>();
+            var planes = new HashSet<String>();
             planes.Add("Material plane");
 
             while (planes.Count < 6)
             {
-                var plane = percentileSelector.SelectFrom("Planes");
-
-                if (!planes.Contains(plane))
-                    planes.Add(plane);
+                var plane = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Planes);
+                planes.Add(plane);
             }
 
             return planes;

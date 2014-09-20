@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -17,6 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<ISpecialMaterialGenerator> mockMaterialsGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
+        private String expectedTableName;
 
         [SetUp]
         public void Setup()
@@ -27,8 +28,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object);
 
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneWeapons")).Returns("weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom("weapon typeWeapons")).Returns("weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("weapon type");
+            expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("weapon name");
         }
 
         [Test]
@@ -36,19 +38,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         {
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
-        }
-
-        [Test]
-        public void GetWeaponTypeFromPercentileSelector()
-        {
-            mundaneWeaponGenerator.Generate();
-            mockPercentileSelector.Verify(p => p.SelectFrom("MundaneWeapons"), Times.Once);
-        }
-
-        [Test]
-        public void GetNameFromType()
-        {
-            var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Name, Is.EqualTo("weapon name"));
         }
 
@@ -56,7 +45,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetAmmunition()
         {
             var ammo = new Item();
-            mockPercentileSelector.Setup(p => p.SelectFrom("weapon typeWeapons")).Returns(AttributeConstants.Ammunition);
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
             mockAmmunitionGenerator.Setup(p => p.Generate()).Returns(ammo);
 
             var weapon = mundaneWeaponGenerator.Generate();
@@ -67,7 +56,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
+            var expectedAttributesName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockAttributesSelector.Setup(p => p.SelectFrom(expectedAttributesName, "weapon name")).Returns(attributes);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));

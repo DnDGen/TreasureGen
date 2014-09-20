@@ -6,6 +6,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -35,9 +36,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector = new Mock<IAttributesSelector>();
             traits = new List<String>();
 
-            mockAttributesSelector.Setup(s => s.SelectFrom("SpecialMaterials", It.IsAny<String>())).Returns(otherMaterialAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Mithral)).Returns(mithralAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom("SpecialMaterials", TraitConstants.Adamantine)).Returns(adamantineAttributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, It.IsAny<String>())).Returns(otherMaterialAttributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Mithral)).Returns(mithralAttributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Adamantine)).Returns(adamantineAttributes);
 
             specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
@@ -46,10 +47,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void CacheMaterialsAndAttributeRequirementsOnConstruction()
         {
             foreach (var material in TraitConstants.GetSpecialMaterials())
-                mockAttributesSelector.Verify(p => p.SelectFrom("SpecialMaterials", material), Times.Once);
+                mockAttributesSelector.Verify(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, material), Times.Once);
 
             mockAttributesSelector.ResetCalls();
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
 
             specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, mithralAttributes, traits);
@@ -60,7 +61,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void ArmorHasSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -68,7 +69,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void WeaponHasSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Weapon, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -76,7 +77,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void NotWeaponOrArmor_DoesNotHaveSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial("item type", mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
         }
@@ -84,7 +85,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetTrueFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -92,7 +93,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetFalseFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(false);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
         }
@@ -100,7 +101,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void HasSpecialMaterialReturnsFalseIfGivenAttributesDoNotMatchAnySpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var newAttributes = new[] { "other type", "type 2" };
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, newAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
@@ -109,7 +110,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfAlreadyHasASpecialMaterial()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.ColdIron);
 
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
@@ -119,7 +120,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void IgnoreNonMaterialTraits()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add("not a material trait");
 
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
@@ -129,7 +130,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void HaveSpecialMaterialIfDoubleWeaponAndAlreadyHasOneSpecialMaterial()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.ColdIron);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
@@ -141,7 +142,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasTwoSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.ColdIron);
             traits.Add(TraitConstants.Darkwood);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
@@ -153,7 +154,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasAllAvailableMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("HasSpecialMaterial")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.Mithral);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
 

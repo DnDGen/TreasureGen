@@ -2,6 +2,7 @@
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
@@ -18,7 +19,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var result = percentileSelector.SelectFrom("MundaneArmors");
+            var result = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
 
             if (result == TraitConstants.Darkwood)
                 return GenerateDarkwoodShield();
@@ -27,8 +28,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             if (result == TraitConstants.Masterwork)
             {
-                var tableName = String.Format("{0}Shields", result);
-                armor.Name = percentileSelector.SelectFrom(tableName);
+                armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MasterworkShields);
                 armor.Traits.Add(result);
             }
             else
@@ -36,13 +36,14 @@ namespace EquipmentGen.Generators.Items.Mundane
                 armor.Name = result;
             }
 
-            armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.ItemType = ItemTypeConstants.Armor;
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, armor.ItemType);
+            armor.Attributes = attributesSelector.SelectFrom(tableName, armor.Name);
 
             if (armor.Name == ArmorConstants.StuddedLeatherArmor)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            var size = percentileSelector.SelectFrom("ArmorSizes");
+            var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ArmorSizes);
             armor.Traits.Add(size);
 
             return armor;
@@ -52,12 +53,13 @@ namespace EquipmentGen.Generators.Items.Mundane
         {
             var shield = new Item();
 
-            shield.Name = percentileSelector.SelectFrom("DarkwoodShields");
-            shield.Attributes = attributesSelector.SelectFrom("SpecificShieldsAttributes", shield.Name);
+            shield.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields);
+
+            shield.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificShieldsAttributes, shield.Name);
             shield.Traits.Add(TraitConstants.Darkwood);
             shield.ItemType = ItemTypeConstants.Armor;
 
-            var size = percentileSelector.SelectFrom("ArmorSizes");
+            var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ArmorSizes);
             shield.Traits.Add(size);
 
             return shield;

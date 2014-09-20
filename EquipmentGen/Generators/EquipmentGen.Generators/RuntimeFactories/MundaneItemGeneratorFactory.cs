@@ -43,7 +43,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
             {
                 case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector);
                 case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector);
-                case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector, dice);
+                case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
                 default: throw new ArgumentException(itemType);
             }

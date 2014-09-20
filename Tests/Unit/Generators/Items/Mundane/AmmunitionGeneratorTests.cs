@@ -1,8 +1,10 @@
 ﻿using System;
 using D20Dice;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -28,11 +30,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GetNameAndQuantityFromSelector()
+        public void GenerateAmmunition()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("Ammunitions")).Returns("ammunition name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("ammunition name");
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Name, Is.EqualTo("ammunition name"));
+            Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
         }
 
         [TestCase(1, 1)]
@@ -135,7 +138,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [TestCase(98, 49)]
         [TestCase(99, 49)]
         [TestCase(100, 50)]
-        public void QuantityRoll(Int32 roll, Int32 quantity)
+        public void AmmunitionQuantityRoll(Int32 roll, Int32 quantity)
         {
             mockDice.Setup(d => d.Roll(1).Percentile()).Returns(roll);
             var ammunition = ammunitionGenerator.Generate();
@@ -145,9 +148,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetAttributesFromSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("Ammunitions")).Returns("ammunition name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("ammunition name");
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("AmmunitionAttributes", "ammunition name")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, "ammunition name")).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));

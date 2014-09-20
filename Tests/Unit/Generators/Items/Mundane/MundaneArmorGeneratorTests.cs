@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -22,7 +24,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object);
 
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns("armor type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns("armor type");
         }
 
         [Test]
@@ -42,7 +44,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void SetMasterworkTraitIfTypeIsStuddedLeatherArmor()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(ArmorConstants.StuddedLeatherArmor);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(ArmorConstants.StuddedLeatherArmor);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo(ArmorConstants.StuddedLeatherArmor));
@@ -52,8 +54,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetShieldTypeIfResultIsDarkwood()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(TraitConstants.Darkwood);
-            mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields")).Returns("big shield");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(TraitConstants.Darkwood);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields)).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -63,8 +65,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetShieldTypeIfResultIsMasterworkShield()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(TraitConstants.Masterwork);
-            mockPercentileSelector.Setup(p => p.SelectFrom("MasterworkShields")).Returns("big shield");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(TraitConstants.Masterwork);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MasterworkShields)).Returns("big shield");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -75,7 +77,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorAttributes", "armor type")).Returns(attributes);
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, "armor type")).Returns(attributes);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
@@ -84,7 +87,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateSizeFromPercentileSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("ArmorSizes")).Returns("armor size");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.ArmorSizes)).Returns("armor size");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item("armor size"));
@@ -94,10 +97,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetAttributesForDarkwoodShields()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(TraitConstants.Darkwood);
-            mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields")).Returns("big shield");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(TraitConstants.Darkwood);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields)).Returns("big shield");
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom("SpecificShieldsAttributes", "big shield")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificShieldsAttributes, "big shield")).Returns(attributes);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -107,9 +110,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetSizesForDarkwoodShields()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("MundaneArmors")).Returns(TraitConstants.Darkwood);
-            mockPercentileSelector.Setup(p => p.SelectFrom("DarkwoodShields")).Returns("big shield");
-            mockPercentileSelector.Setup(p => p.SelectFrom("ArmorSizes")).Returns("armor size");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(TraitConstants.Darkwood);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields)).Returns("big shield");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.ArmorSizes)).Returns("armor size");
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));

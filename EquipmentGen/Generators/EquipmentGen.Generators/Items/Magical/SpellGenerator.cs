@@ -1,6 +1,7 @@
 ﻿using System;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -15,19 +16,19 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public String GenerateType()
         {
-            return percentileSelector.SelectFrom("SpellTypes");
+            return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpellTypes);
         }
 
         public Int32 GenerateLevel(String power)
         {
-            var tableName = String.Format("{0}SpellLevels", power);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpellLevels, power);
             var level = percentileSelector.SelectFrom(tableName);
             return Convert.ToInt32(level);
         }
 
         public String Generate(String spellType, Int32 level)
         {
-            var tableName = String.Format("Level{0}{1}Spells", level, spellType);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, level, spellType);
             return percentileSelector.SelectFrom(tableName);
         }
     }

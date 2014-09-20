@@ -1,6 +1,8 @@
-﻿using EquipmentGen.Generators.Interfaces.Items.Magical;
+﻿using System;
+using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -11,26 +13,29 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
     {
         private ISpellGenerator generator;
         private Mock<IPercentileSelector> mockPercentileSelector;
+        private String power;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             generator = new SpellGenerator(mockPercentileSelector.Object);
+            power = "power";
         }
 
         [Test]
         public void ReturnSpellLevel()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("powerSpellLevels")).Returns("9266");
-            var level = generator.GenerateLevel("power");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpellLevels, power);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("9266");
+            var level = generator.GenerateLevel(power);
             Assert.That(level, Is.EqualTo(9266));
         }
 
         [Test]
         public void ReturnSpellType()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("SpellTypes")).Returns("spell type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.SpellTypes)).Returns("spell type");
             var type = generator.GenerateType();
             Assert.That(type, Is.EqualTo("spell type"));
         }
@@ -38,7 +43,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ReturnSpell()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("Level9266spell typeSpells")).Returns("this is my spell");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 9266, "spell type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("this is my spell");
             var spell = generator.Generate("spell type", 9266);
             Assert.That(spell, Is.EqualTo("this is my spell"));
         }

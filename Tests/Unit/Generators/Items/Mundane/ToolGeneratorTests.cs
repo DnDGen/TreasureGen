@@ -1,6 +1,8 @@
-﻿using EquipmentGen.Generators.Interfaces.Items.Mundane;
+﻿using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -20,18 +22,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void ToolGeneratorReturnsTool()
+        public void GenerateTool()
         {
-            var tool = generator.Generate();
-            Assert.That(tool, Is.Not.Null);
-        }
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools)).Returns("tool");
 
-        [Test]
-        public void ToolGeneratorSetsToolNameByPercentileResult()
-        {
-            mockPercentileSelector.Setup(p => p.SelectFrom("Tools")).Returns("tool");
             var tool = generator.Generate();
             Assert.That(tool.Name, Is.EqualTo("tool"));
+            Assert.That(tool.Attributes, Is.Empty);
+            Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
+            Assert.That(tool.IsMagical, Is.False);
+            Assert.That(tool.Contents, Is.Empty);
+            Assert.That(tool.Quantity, Is.EqualTo(1));
+            Assert.That(tool.Traits, Is.Empty);
         }
     }
 }

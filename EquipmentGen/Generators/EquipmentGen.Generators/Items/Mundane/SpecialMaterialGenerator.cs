@@ -5,6 +5,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
@@ -24,7 +25,7 @@ namespace EquipmentGen.Generators.Items.Mundane
             var materials = TraitConstants.GetSpecialMaterials();
             foreach (var material in materials)
             {
-                var attributeRequirements = attributesSelector.SelectFrom("SpecialMaterials", material);
+                var attributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, material);
                 specialMaterialAttributes.Add(material, attributeRequirements);
             }
         }
@@ -35,7 +36,7 @@ namespace EquipmentGen.Generators.Items.Mundane
                 return false;
 
             var attributesWithType = attributes.Union(new[] { itemType });
-            return booleanPercentileSelector.SelectFrom("HasSpecialMaterial")
+            return booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)
                    && AttributesAllowForSpecialMaterials(attributesWithType)
                    && TraitsAllowForSpecialMaterials(attributesWithType, traits);
         }

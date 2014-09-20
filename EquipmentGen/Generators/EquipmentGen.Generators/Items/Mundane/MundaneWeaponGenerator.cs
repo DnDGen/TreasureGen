@@ -2,6 +2,7 @@
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
@@ -20,13 +21,13 @@ namespace EquipmentGen.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var type = percentileSelector.SelectFrom("MundaneWeapons");
-            var tableName = String.Format("{0}Weapons", type);
-
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var weaponName = percentileSelector.SelectFrom(tableName);
+
             var weapon = new Item();
 
-            if (weaponName == "Ammunition")
+            if (weaponName == AttributeConstants.Ammunition)
             {
                 weapon = ammunitionGenerator.Generate();
             }
@@ -34,7 +35,8 @@ namespace EquipmentGen.Generators.Items.Mundane
             {
                 weapon.Name = weaponName;
                 weapon.ItemType = ItemTypeConstants.Weapon;
-                weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
+                tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = attributesSelector.SelectFrom(tableName, weapon.Name);
             }
 
             weapon.Traits.Add(TraitConstants.Masterwork);

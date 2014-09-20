@@ -1,7 +1,7 @@
-﻿using D20Dice;
-using EquipmentGen.Common.Items;
+﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Mundane
 {
@@ -17,7 +17,7 @@ namespace EquipmentGen.Generators.Items.Mundane
         public Item Generate()
         {
             var tool = new Item();
-            tool.Name = percentileSelector.SelectFrom("Tools");
+            tool.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Tools);
             tool.ItemType = ItemTypeConstants.Tool;
 
             return tool;

@@ -4,6 +4,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.RuntimeFactories.Interfaces;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items
 {
@@ -24,7 +25,7 @@ namespace EquipmentGen.Generators.Items
 
         public IEnumerable<Item> GenerateAtLevel(Int32 level)
         {
-            var tableName = String.Format("Level{0}Items", level);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var items = new List<Item>();
 
@@ -50,7 +51,7 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMundaneItem()
         {
-            var tableName = String.Format("{0}Items", PowerConstants.Mundane);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Mundane, "Item");
             var itemType = percentileSelector.SelectFrom(tableName);
             var generator = mundaneItemGeneratorFactory.CreateGeneratorOf(itemType);
 
@@ -59,7 +60,7 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMagicalItemAtPower(String power)
         {
-            var tableName = String.Format("{0}Items", power);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, "Item");
             var itemType = percentileSelector.SelectFrom(tableName);
             var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(itemType);
 

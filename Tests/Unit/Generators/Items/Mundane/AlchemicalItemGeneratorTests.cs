@@ -1,8 +1,9 @@
-﻿using D20Dice;
+﻿using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -13,28 +14,27 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
     {
         private IMundaneItemGenerator generator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IDice> mockDice;
         private TypeAndAmountPercentileResult result;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockDice = new Mock<IDice>();
-            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
+            generator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object);
             result = new TypeAndAmountPercentileResult();
         }
 
         [Test]
-        public void GetItemAndQuantityFromSelector()
+        public void GenerateAlchemicalItem()
         {
             result.Type = "alchemical item";
             result.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("AlchemicalItems")).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems)).Returns(result);
 
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
     }
 }

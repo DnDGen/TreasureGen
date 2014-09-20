@@ -5,6 +5,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -16,13 +17,16 @@ namespace EquipmentGen.Generators.Items.Magical
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private IDice dice;
 
-        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
+            IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.dice = dice;
         }
 
         public IEnumerable<SpecialAbility> GenerateFor(String itemType, IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
@@ -30,9 +34,9 @@ namespace EquipmentGen.Generators.Items.Magical
             if (magicalBonus <= 0)
                 return Enumerable.Empty<SpecialAbility>();
 
-            var tableName = GetTableName(itemType, attributes, power);
+            var tableNames = GetTableNames(itemType, attributes, power);
             var bonusSum = magicalBonus;
-            var availableAbilities = GetAvailableAbilities(tableName, bonusSum, attributes);
+            var availableAbilities = GetAvailableAbilities(tableNames, bonusSum, attributes);
             var abilities = new List<SpecialAbility>();
 
             while (quantity > 0 && availableAbilities.Count > 0)
@@ -48,7 +52,7 @@ namespace EquipmentGen.Generators.Items.Magical
                     continue;
                 }
 
-                var ability = GenerateAbilityFrom(availableAbilities, tableName);
+                var ability = GenerateAbilityFrom(availableAbilities, tableNames);
                 if (ability.Name == "BonusSpecialAbility")
                 {
                     quantity++;
@@ -77,46 +81,54 @@ namespace EquipmentGen.Generators.Items.Magical
             return abilities;
         }
 
-        private String GetTableName(String itemType, IEnumerable<String> attributes, String power)
+        private IEnumerable<String> GetTableNames(String itemType, IEnumerable<String> attributes, String power)
         {
-            if (itemType == ItemTypeConstants.Weapon)
-            {
-                if (attributes.Contains(AttributeConstants.Melee))
-                    return String.Format("{0}MeleeWeaponSpecialAbilities", power);
-                else if (attributes.Contains(AttributeConstants.Ranged))
-                    return String.Format("{0}RangedWeaponSpecialAbilities", power);
+            var tableNames = new List<String>();
 
-                var attributesString = String.Join(",", attributes);
-                var attributeMessage = String.Format("invalid attributes for special abilities: {0}, {1}", itemType, attributesString);
-                throw new ArgumentException(attributeMessage);
+            if (attributes.Contains(AttributeConstants.Melee))
+            {
+                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
+                tableNames.Add(tableName);
             }
 
-            if (itemType == ItemTypeConstants.Armor)
+            if (attributes.Contains(AttributeConstants.Ranged))
             {
-                if (attributes.Contains(AttributeConstants.Shield))
-                    return String.Format("{0}ShieldSpecialAbilities", power);
-
-                return String.Format("{0}ArmorSpecialAbilities", power);
+                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
+                tableNames.Add(tableName);
             }
 
-            var itemTypeMessage = String.Format("invalid item type for special abilities: {0}", itemType);
-            throw new ArgumentException(itemTypeMessage);
+            if (attributes.Contains(AttributeConstants.Shield))
+            {
+                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
+                tableNames.Add(tableName);
+            }
+            else if (itemType == ItemTypeConstants.Armor)
+            {
+                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
+                tableNames.Add(tableName);
+            }
+
+            return tableNames;
         }
 
-        private List<SpecialAbility> GetAvailableAbilities(String tableName, Int32 bonus, IEnumerable<String> attributes)
+        private List<SpecialAbility> GetAvailableAbilities(IEnumerable<String> tableNames, Int32 bonus, IEnumerable<String> attributes)
         {
-            var abilityNames = percentileSelector.SelectAllFrom(tableName);
             var availableAbilities = new List<SpecialAbility>();
 
-            foreach (var abilityName in abilityNames)
+            foreach (var tableName in tableNames)
             {
-                if (abilityName == "BonusSpecialAbility")
-                    continue;
+                var abilityNames = percentileSelector.SelectAllFrom(tableName);
 
-                var ability = GetSpecialAbility(abilityName);
+                foreach (var abilityName in abilityNames)
+                {
+                    if (abilityName == "BonusSpecialAbility")
+                        continue;
 
-                if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
-                    availableAbilities.Add(ability);
+                    var ability = GetSpecialAbility(abilityName);
+
+                    if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
+                        availableAbilities.Add(ability);
+                }
             }
 
             return availableAbilities;
@@ -125,11 +137,11 @@ namespace EquipmentGen.Generators.Items.Magical
         private SpecialAbility GetSpecialAbility(String abilityName)
         {
             var ability = new SpecialAbility();
-            var abilityResult = specialAbilityAttributesSelector.SelectFrom("SpecialAbilityAttributes", abilityName);
+            var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, abilityName);
 
             ability.Name = abilityName;
             ability.BaseName = abilityResult.BaseName;
-            ability.AttributeRequirements = attributesSelector.SelectFrom("SpecialAbilityAttributeRequirements", ability.BaseName);
+            ability.AttributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
             ability.BonusEquivalent = abilityResult.BonusEquivalent;
             ability.Strength = abilityResult.Strength;
 
@@ -165,12 +177,15 @@ namespace EquipmentGen.Generators.Items.Magical
             return strongestAbilities;
         }
 
-        private SpecialAbility GenerateAbilityFrom(IEnumerable<SpecialAbility> availableAbilities, String tableName)
+        private SpecialAbility GenerateAbilityFrom(IEnumerable<SpecialAbility> availableAbilities, IEnumerable<String> tableNames)
         {
             var abilityName = String.Empty;
 
             do
             {
+                var index = dice.Roll().d(tableNames.Count()) - 1;
+                var tableName = tableNames.ElementAt(index);
+
                 abilityName = percentileSelector.SelectFrom(tableName);
 
                 if (abilityName == "BonusSpecialAbility")
@@ -188,7 +203,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (ability.BaseName != "Bane")
                 return ability.Name;
 
-            var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
+            var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
             return String.Format("{0}bane", designatedFoe);
         }
     }

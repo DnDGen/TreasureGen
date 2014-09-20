@@ -3,6 +3,7 @@ using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -24,7 +25,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staves");
 
-            var tablename = String.Format("{0}Staves", power);
+            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
             var staffPower = percentileSelector.SelectFrom(tablename);
 
             var staff = new Item();
@@ -33,12 +34,13 @@ namespace EquipmentGen.Generators.Items.Magical
             staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, staffPower);
             staff.Attributes = new[] { AttributeConstants.OneTimeUse, AttributeConstants.Charged };
 
-            if (staffPower == "Power")
-            {
-                staff.Magic.Bonus = 2;
-                var quarterstaffAttributes = attributesSelector.SelectFrom("WeaponAttributes", WeaponConstants.Quarterstaff);
-                staff.Attributes = staff.Attributes.Union(quarterstaffAttributes);
-            }
+            if (staffPower != "Power")
+                return staff;
+
+            staff.Magic.Bonus = 2;
+            tablename = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            var quarterstaffAttributes = attributesSelector.SelectFrom(tablename, WeaponConstants.Quarterstaff);
+            staff.Attributes = staff.Attributes.Union(quarterstaffAttributes);
 
             return staff;
         }

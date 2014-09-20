@@ -108,6 +108,10 @@
       <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
       <Name>EquipmentGen.Selectors.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Tables\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EquipmentGen.Generators.Interfaces\EquipmentGen.Generators.Interfaces.csproj">
       <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
       <Name>EquipmentGen.Generators.Interfaces</Name>
