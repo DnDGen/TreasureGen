@@ -5,6 +5,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -34,31 +35,22 @@ namespace EquipmentGen.Generators.Items.Magical
             if (attributes.Contains(AttributeConstants.OneTimeUse) || attributes.Contains(AttributeConstants.Ammunition))
                 return false;
 
-            if (itemType == ItemTypeConstants.Weapon)
-                itemType = GetWeaponType(attributes);
-
-            var tableName = String.Format("Is{0}Intelligent", itemType);
-            return booleanPercentileSelector.SelectFrom(tableName);
-        }
-
-        private String GetWeaponType(IEnumerable<String> attributes)
-        {
             if (attributes.Contains(AttributeConstants.Melee))
-                return AttributeConstants.Melee + ItemTypeConstants.Weapon;
+                itemType = AttributeConstants.Melee;
+            else if (attributes.Contains(AttributeConstants.Ranged))
+                itemType = AttributeConstants.Ranged;
 
-            if (attributes.Contains(AttributeConstants.Ranged))
-                return AttributeConstants.Ranged + ItemTypeConstants.Weapon;
-
-            throw new ArgumentException();
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            return booleanPercentileSelector.SelectFrom(tableName);
         }
 
         public Intelligence GenerateFor(Item item)
         {
-            var highStatResult = percentileSelector.SelectFrom("IntelligenceStrongStats");
+            var highStatResult = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats);
             var highStat = Convert.ToInt32(highStatResult);
 
             var intelligence = new Intelligence();
-            //dividing and multiplying by 2 so that integer division rounds down odd numbers
+            //INFO: dividing and multiplying by 2 so that integer division rounds down odd numbers
             intelligence.Ego += (highStat - 10) / 2 * 2;
             intelligence.Ego += item.Magic.Bonus;
 
@@ -76,7 +68,7 @@ namespace EquipmentGen.Generators.Items.Magical
             intelligence.IntelligenceStat = SetHighStat(highStat, intelligence.IntelligenceStat);
             intelligence.WisdomStat = SetHighStat(highStat, intelligence.WisdomStat);
 
-            intelligence.Communication = attributesSelector.SelectFrom("IntelligenceCommunication", highStatResult);
+            intelligence.Communication = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, highStatResult);
 
             if (intelligence.Communication.Contains("Speech"))
                 intelligence.Languages = GenerateLanguages(intelligence.IntelligenceStat);
@@ -85,7 +77,7 @@ namespace EquipmentGen.Generators.Items.Magical
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Read magic");
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Telepathy");
 
-            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom("IntelligenceAttributes", highStatResult);
+            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceAttributes, highStatResult);
             intelligence.Senses = intelligenceAttributesResult.Senses;
 
             var lesserPowers = GeneratePowers("Lesser", intelligenceAttributesResult.LesserPowersCount);
@@ -94,35 +86,34 @@ namespace EquipmentGen.Generators.Items.Magical
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
 
-            if (dice.Roll().d4() <= intelligenceAttributesResult.GreaterPowersCount)
+            var roll = dice.Roll().d4();
+            if (roll <= intelligenceAttributesResult.GreaterPowersCount)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
-                intelligence.SpecialPurpose = percentileSelector.SelectFrom("IntelligenceSpecialPurposes");
+                intelligence.SpecialPurpose = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes);
 
                 if (intelligence.SpecialPurpose.Contains("DESIGNATEDFOE"))
                 {
-                    var designatedFoe = percentileSelector.SelectFrom("DesignatedFoes");
+                    var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
                     intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DESIGNATEDFOE", designatedFoe);
                 }
 
-                intelligence.DedicatedPower = percentileSelector.SelectFrom("IntelligenceDedicatedPowers");
+                intelligence.DedicatedPower = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers);
                 intelligence.Ego += 4;
             }
 
             intelligence.Ego += greaterPowers.Count * 2;
             intelligence.Powers.AddRange(greaterPowers);
             intelligence.Alignment = GetAlignment(item.Name, item.Magic.SpecialAbilities);
-            intelligence.Personality = percentileSelector.SelectFrom("PersonalityTraits");
+            intelligence.Personality = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.PersonalityTraits);
 
             return intelligence;
         }
 
         private Int32 BoostEgoByCommunication(IEnumerable<String> communication, String communicationType)
         {
-            if (communication.Contains(communicationType))
-                return 1;
-
-            return 0;
+            var containsCommunicationType = communication.Contains(communicationType);
+            return Convert.ToInt32(containsCommunicationType);
         }
 
         private Int32 SetHighStat(Int32 highStat, Int32 stat)
@@ -136,7 +127,7 @@ namespace EquipmentGen.Generators.Items.Magical
         private List<String> GenerateLanguages(Int32 intelligenceStat)
         {
             var modifier = (intelligenceStat - 10) / 2;
-            var languages = GetNonDuplicateList("Languages", modifier);
+            var languages = GetNonDuplicateList(TableNameConstants.Percentiles.Set.Languages, modifier);
             languages.Add("Common");
 
             return languages;
@@ -144,7 +135,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private List<String> GeneratePowers(String strength, Int32 count)
         {
-            var tableName = String.Format("Intelligence{0}Powers", strength);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, strength);
             return GetNonDuplicateList(tableName, count);
         }
 
@@ -173,7 +164,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetKnowledgeCategory(String power)
         {
-            var category = percentileSelector.SelectFrom("KnowledgeCategories");
+            var category = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.KnowledgeCategories);
             return String.Format("{0} ({1})", power, category);
         }
 
@@ -183,7 +174,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var abilityNames = specialAbilities.Select(a => a.Name);
             var specificAlignmentRequirement = GetSpecificAlignmentRequirement(itemName);
 
-            do alignment = percentileSelector.SelectFrom("IntelligenceAlignments");
+            do alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
             while (!AlignmentIsAllowed(alignment, abilityNames, specificAlignmentRequirement));
 
             return alignment;
@@ -191,10 +182,10 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetSpecificAlignmentRequirement(String itemName)
         {
-            var itemsWithSpecificAlignments = attributesSelector.SelectFrom("ItemAlignmentRequirements", "Items");
+            var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items");
 
             if (itemsWithSpecificAlignments.Contains(itemName))
-                return attributesSelector.SelectFrom("ItemAlignmentRequirements", itemName).Single();
+                return attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, itemName).Single();
 
             return String.Empty;
         }

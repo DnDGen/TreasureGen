@@ -73,7 +73,7 @@ namespace EquipmentGen.Generators.RuntimeFactories
                 case ItemTypeConstants.Wand: return new WandGenerator(percentileSelector, chargesGenerator);
                 case ItemTypeConstants.WondrousItem: return new WondrousItemGenerator(percentileSelector, attributesSelector, chargesGenerator, dice, spellGenerator, typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Armor: return new MagicalArmorGenerator(typeAndAmountPercentileSelector, percentileSelector, attributesSelector, specialAbilitiesGenerator, specificGearGenerator);
-                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator(attributesSelector, percentileSelector, ammunitionGenerator, specialAbilitiesGenerator, specificGearGenerator, booleanPercentileSelector, spellGenerator, dice);
+                case ItemTypeConstants.Weapon: return new MagicalWeaponGenerator(attributesSelector, percentileSelector, ammunitionGenerator, specialAbilitiesGenerator, specificGearGenerator, booleanPercentileSelector, spellGenerator);
                 default: throw new ArgumentException(itemType);
             }
         }

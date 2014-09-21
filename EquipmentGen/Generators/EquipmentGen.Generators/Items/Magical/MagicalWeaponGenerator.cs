@@ -5,6 +5,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -17,9 +18,8 @@ namespace EquipmentGen.Generators.Items.Magical
         private ISpecificGearGenerator specificGearGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpellGenerator spellGenerator;
-        private IDice dice;
 
-        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, IDice dice)
+        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
@@ -28,12 +28,11 @@ namespace EquipmentGen.Generators.Items.Magical
             this.specificGearGenerator = specificGearGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.spellGenerator = spellGenerator;
-            this.dice = dice;
         }
 
         public Item GenerateAtPower(String power)
         {
-            var tablename = String.Format("{0}Weapons", power);
+            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             var bonus = percentileSelector.SelectFrom(tablename);
             var specialAbilitiesCount = 0;
 
@@ -43,11 +42,11 @@ namespace EquipmentGen.Generators.Items.Magical
                 bonus = percentileSelector.SelectFrom(tablename);
             }
 
-            if (bonus == "SpecificWeapons")
+            if (bonus == ItemTypeConstants.Weapon)
                 return specificGearGenerator.GenerateFrom(power, bonus);
 
-            var type = percentileSelector.SelectFrom("WeaponTypes");
-            tablename = String.Format("{0}Weapons", type);
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes);
+            tablename = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var name = percentileSelector.SelectFrom(tablename);
 
             var weapon = new Item();
@@ -60,21 +59,22 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Name = name;
-                weapon.Attributes = attributesSelector.SelectFrom("WeaponAttributes", weapon.Name);
+
+                tablename = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = attributesSelector.SelectFrom(tablename, weapon.Name);
             }
 
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
-            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon.ItemType, weapon.Attributes, power, weapon.Magic.Bonus,
-                specialAbilitiesCount);
+            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon.ItemType, weapon.Attributes, power, weapon.Magic.Bonus, specialAbilitiesCount);
 
             if (weapon.Magic.SpecialAbilities.Any(a => a.Name == SpecialAbilityConstants.SpellStoring))
             {
-                var shouldStoreSpell = booleanPercentileSelector.SelectFrom("SpellStoringContainsSpell");
+                var shouldStoreSpell = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
 
                 if (shouldStoreSpell)
                 {
                     var spellType = spellGenerator.GenerateType();
-                    var level = dice.Roll().d4() - 1;
+                    var level = spellGenerator.GenerateLevel(PowerConstants.Minor);
                     var spell = spellGenerator.Generate(spellType, level);
 
                     weapon.Contents.Add(spell);

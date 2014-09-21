@@ -5,6 +5,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -16,6 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private IMagicalItemTraitsGenerator generator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private List<String> attributes;
+        private String itemType;
 
         [SetUp]
         public void Setup()
@@ -23,20 +25,22 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             generator = new MagicalItemTraitsGenerator(mockPercentileSelector.Object);
             attributes = new List<String>();
+            itemType = "item type";
         }
 
         [Test]
-        public void ReturnTraits()
+        public void GenerateTraits()
         {
-            var traits = generator.GenerateFor("item type", attributes);
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Is.Not.Null);
         }
 
         [Test]
         public void GetTraitsFromPercentileSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns("trait");
-            var traits = generator.GenerateFor("item type", attributes);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
         }
@@ -45,9 +49,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void IMeleefWeapon_GetMeleeTraits()
         {
             attributes.Add(AttributeConstants.Melee);
-            mockPercentileSelector.Setup(p => p.SelectFrom("MeleeWeaponTraits")).Returns("trait");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
 
-            var traits = generator.GenerateFor(ItemTypeConstants.Weapon, attributes);
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
         }
@@ -56,9 +61,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void IfRangedWeapon_GetRangedTraits()
         {
             attributes.Add(AttributeConstants.Ranged);
-            mockPercentileSelector.Setup(p => p.SelectFrom("RangedWeaponTraits")).Returns("trait");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Ranged);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
 
-            var traits = generator.GenerateFor(ItemTypeConstants.Weapon, attributes);
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
         }
@@ -68,24 +74,21 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Melee);
             attributes.Add(AttributeConstants.Ranged);
-            mockPercentileSelector.Setup(p => p.SelectFrom("MeleeWeaponTraits")).Returns("trait");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
 
-            var traits = generator.GenerateFor(ItemTypeConstants.Weapon, attributes);
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
         }
 
         [Test]
-        public void IfWeaponNotMeleeNorRanged_ThrowException()
-        {
-            Assert.That(() => generator.GenerateFor(ItemTypeConstants.Weapon, attributes), Throws.ArgumentException);
-        }
-
-        [Test]
         public void SplitsCommaDelimitedTraits()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns("trait,other trait");
-            var traits = generator.GenerateFor("item type", attributes);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait,other trait");
+
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits, Contains.Item("other trait"));
             Assert.That(traits.Count(), Is.EqualTo(2));
@@ -94,8 +97,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotAddEmptyTrait()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("item typeTraits")).Returns(String.Empty);
-            var traits = generator.GenerateFor("item type", attributes);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(String.Empty);
+
+            var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Is.Empty);
         }
     }

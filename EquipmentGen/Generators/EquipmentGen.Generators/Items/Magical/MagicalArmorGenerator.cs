@@ -2,6 +2,7 @@
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -24,26 +25,28 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateAtPower(String power)
         {
-            var tableName = String.Format("{0}Armors", power);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var abilityCount = 0;
 
             while (result.Type == "SpecialAbility")
             {
-                abilityCount += Convert.ToInt32(result.Amount);
+                abilityCount += result.Amount;
                 result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             }
 
-            if (result.Type.StartsWith("Specific", StringComparison.InvariantCultureIgnoreCase))
+            if (result.Amount == 0)
                 return specificGearGenerator.GenerateFrom(power, result.Type);
-
-            tableName = String.Format("{0}Types", result.Type);
 
             var armor = new Item();
             armor.ItemType = ItemTypeConstants.Armor;
-            armor.Name = percentileSelector.SelectFrom(tableName);
-            armor.Attributes = attributesSelector.SelectFrom("ArmorAttributes", armor.Name);
             armor.Magic.Bonus = result.Amount;
+
+            tableName = String.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
+            armor.Name = percentileSelector.SelectFrom(tableName);
+
+            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, armor.ItemType);
+            armor.Attributes = attributesSelector.SelectFrom(tableName, armor.Name);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount);
 
             return armor;

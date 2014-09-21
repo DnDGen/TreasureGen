@@ -1,9 +1,9 @@
-﻿using System;
-using D20Dice;
+﻿using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -30,7 +30,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NotCursedIfNoMagic()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
             var cursed = curseGenerator.HasCurse(false);
             Assert.That(cursed, Is.False);
         }
@@ -38,7 +38,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NotCursedIfSelectorSaySo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed")).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(false);
             var cursed = curseGenerator.HasCurse(true);
             Assert.That(cursed, Is.False);
         }
@@ -46,7 +46,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CursedIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsItemCursed")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
             var cursed = curseGenerator.HasCurse(true);
             Assert.That(cursed, Is.True);
         }
@@ -54,7 +54,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateCurseGetsFromPercentileSelector()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("curse");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("curse");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("curse"));
@@ -63,7 +63,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_1OnD3IsUnreliable()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();
@@ -73,9 +73,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_2OnD3IsDependent()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations")).Returns("situation");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation)"));
@@ -84,10 +84,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_GetDesignatedFoe()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations")).Returns("situation with DESIGNATEDFOE");
-            mockPercentileSelector.Setup(s => s.SelectFrom("DesignatedFoes")).Returns("creature type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with DESIGNATEDFOE");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("creature type");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with creature type)"));
@@ -96,10 +96,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_GetAlignment()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations")).Returns("situation with ALIGNMENT");
-            mockPercentileSelector.Setup(s => s.SelectFrom("ProtectionAlignments")).Returns("neutral");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with ALIGNMENT");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments)).Returns("neutral");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with neutral)"));
@@ -108,9 +108,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_GetMale()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations")).Returns("situation with GENDER");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with GENDER");
             mockDice.Setup(d => d.Roll(1).d2()).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();
@@ -120,9 +120,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_GetFemale()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom("CursedDependentSituations")).Returns("situation with GENDER");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with GENDER");
             mockDice.Setup(d => d.Roll(1).d2()).Returns(2);
 
             var curse = curseGenerator.GenerateCurse();
@@ -132,7 +132,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfIntermittentFunctioning_3OnD3IsUncontrolled()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Intermittent Functioning");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
             mockDice.Setup(d => d.Roll(1).d3()).Returns(3);
 
             var curse = curseGenerator.GenerateCurse();
@@ -142,8 +142,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfDrawback_GetDrawback()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Drawback");
-            mockPercentileSelector.Setup(s => s.SelectFrom("CurseDrawbacks")).Returns("cursed drawback");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Drawback");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks)).Returns("cursed drawback");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("cursed drawback"));
@@ -152,9 +152,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfDrawback_GetShrinkOrGrows()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("Curses")).Returns("Drawback");
-            mockPercentileSelector.Setup(s => s.SelectFrom("CurseDrawbacks")).Returns("drawback with HEIGHTs");
-            mockPercentileSelector.Setup(s => s.SelectFrom("CurseHeightChanges")).Returns("grow");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Drawback");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks)).Returns("drawback with HEIGHTs");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CurseHeightChanges)).Returns("grow");
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("drawback with grows"));
@@ -163,7 +163,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetSpecificCursedItem()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("SpecificCursedItems")).Returns("specific cursed item");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));

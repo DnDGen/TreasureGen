@@ -4,6 +4,7 @@ using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -26,15 +27,17 @@ namespace EquipmentGen.Generators.Items.Magical
 
         public Item GenerateAtPower(String power)
         {
-            var tableName = String.Format("{0}Rings", power);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var ring = new Item();
             ring.Name = String.Format("Ring of {0}", result.Type);
             ring.Magic.Bonus = result.Amount;
             ring.IsMagical = true;
-            ring.Attributes = attributesSelector.SelectFrom("RingAttributes", result.Type);
             ring.ItemType = ItemTypeConstants.Ring;
+
+            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ring.ItemType);
+            ring.Attributes = attributesSelector.SelectFrom(tableName, result.Type);
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, result.Type);
@@ -66,7 +69,7 @@ namespace EquipmentGen.Generators.Items.Magical
             }
             else if (result.Type.Contains("ENERGY"))
             {
-                var element = percentileSelector.SelectFrom("Elements");
+                var element = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Elements);
                 ring.Name = ring.Name.Replace("ENERGY", element);
             }
 

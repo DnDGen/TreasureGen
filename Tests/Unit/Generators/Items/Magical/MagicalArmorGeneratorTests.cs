@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -21,6 +21,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
         private TypeAndAmountPercentileResult result;
+        private String power;
 
         [SetUp]
         public void Setup()
@@ -36,13 +37,16 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             result = new TypeAndAmountPercentileResult();
             result.Type = "armor type";
             result.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(result);
+            power = "power";
+
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(result);
         }
 
         [Test]
         public void GetArmor()
         {
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Quantity, Is.EqualTo(1));
         }
@@ -50,43 +54,43 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         [Test]
         public void GetBonusFromSelector()
         {
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor.Magic.Bonus, Is.EqualTo(9266));
         }
 
         [Test]
         public void GetNameFromPercentileSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types")).Returns("armor name");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
 
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor.Name, Is.EqualTo("armor name"));
         }
 
         [Test]
         public void GetAttributesFromSelector()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(result.Type + "Types")).Returns("armor name");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
 
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("ArmorAttributes", "armor name")).Returns(attributes);
+            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, "armor name")).Returns(attributes);
 
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
         }
 
         [Test]
-        public void GetSpecificItemsFromGenerator()
+        public void GetSpecificArmorsFromGenerator()
         {
-            var specificResult = new TypeAndAmountPercentileResult();
-            specificResult.Type = "SpecificArmor";
-            specificResult.Amount = 0;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom("powerArmors")).Returns(specificResult);
+            result.Amount = 0;
 
             var specificArmor = new Item();
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", specificResult.Type)).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(power, result.Type)).Returns(specificArmor);
 
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor, Is.EqualTo(specificArmor));
         }
 
@@ -95,15 +99,19 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
         {
             var abilityResult = new TypeAndAmountPercentileResult();
             abilityResult.Type = "SpecialAbility";
-            abilityResult.Amount = 90210;
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom("powerArmors"))
-                .Returns(abilityResult).Returns(result);
+            abilityResult.Amount = 1;
+
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
+            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns(abilityResult).Returns(abilityResult).Returns(result);
+
+            var attributes = new[] { "type 1", "type 2" };
+            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<String>())).Returns(attributes);
 
             var abilities = new[] { new SpecialAbility() };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Armor, It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(), 90210))
-                .Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Armor, attributes, power, 9266, 2)).Returns(abilities);
 
-            var armor = magicalArmorGenerator.GenerateAtPower("power");
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
             Assert.That(armor.Magic.SpecialAbilities, Is.EqualTo(abilities));
         }
     }

@@ -3,6 +3,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -24,15 +25,15 @@ namespace EquipmentGen.Generators.Items.Magical
             if (!isMagical)
                 return false;
 
-            return booleanPercentileSelector.SelectFrom("IsItemCursed");
+            return booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
         public String GenerateCurse()
         {
-            var curse = percentileSelector.SelectFrom("Curses");
+            var curse = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Curses);
 
             if (curse == "Intermittent Functioning")
-                return String.Format("{0} (Dependent: {1})", curse, GetIntermittentFunctioning());
+                return String.Format("{0} ({1})", curse, GetIntermittentFunctioning());
 
             if (curse == "Drawback")
                 return GetDrawback();
@@ -50,7 +51,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (roll == 3)
                 return "Uncontrolled";
 
-            var situation = percentileSelector.SelectFrom("CursedDependentSituations");
+            var situation = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations);
 
             if (situation.Contains("DESIGNATEDFOE"))
                 situation = GetSituationWithDesignatedFoe(situation);
@@ -61,18 +62,18 @@ namespace EquipmentGen.Generators.Items.Magical
             if (situation.Contains("GENDER"))
                 situation = GetSituationWithGender(situation);
 
-            return situation;
+            return String.Format("Dependent: {0}", situation);
         }
 
         private String GetSituationWithDesignatedFoe(String situation)
         {
-            var foe = percentileSelector.SelectFrom("DesignatedFoes");
+            var foe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
             return situation.Replace("DESIGNATEDFOE", foe);
         }
 
         private String GetSituationWithAlignment(String situation)
         {
-            var alignment = percentileSelector.SelectFrom("ProtectionAlignments");
+            var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments);
             return situation.Replace("ALIGNMENT", alignment);
         }
 
@@ -88,7 +89,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetDrawback()
         {
-            var drawback = percentileSelector.SelectFrom("CurseDrawbacks");
+            var drawback = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);
 
             if (drawback.Contains("HEIGHT"))
                 return GetDrawbackWithHeight(drawback);
@@ -98,7 +99,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private String GetDrawbackWithHeight(String drawback)
         {
-            var change = percentileSelector.SelectFrom("CurseHeightChanges");
+            var change = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseHeightChanges);
             return drawback.Replace("HEIGHT", change);
         }
 
@@ -106,7 +107,7 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var specificCursedItem = new Item();
             specificCursedItem.ItemType = ItemTypeConstants.SpecificCursedItem;
-            specificCursedItem.Name = percentileSelector.SelectFrom("SpecificCursedItems");
+            specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             specificCursedItem.Magic.Curse = "This is a specific cursed item";
             specificCursedItem.Attributes = new[] { AttributeConstants.Specific };
 

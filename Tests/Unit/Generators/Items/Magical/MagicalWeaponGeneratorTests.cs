@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Interfaces.Items.Mundane;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpellGenerator> mockSpellGenerator;
-        private Mock<IDice> mockDice;
+        private String power;
 
         [SetUp]
         public void Setup()
@@ -36,17 +36,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockDice = new Mock<IDice>();
-            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object, mockDice.Object);
+            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object);
 
-            mockPercentileSelector.Setup(s => s.SelectFrom("WeaponTypes")).Returns("weapon type");
-            mockPercentileSelector.Setup(s => s.SelectFrom("weapon typeWeapons")).Returns("weapon name");
+            power = "power";
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes)).Returns("weapon type");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("weapon name");
         }
 
         [Test]
         public void GenerateWeapon()
         {
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.AtLeast(1));
             Assert.That(weapon.Name, Is.EqualTo("weapon name"));
@@ -55,8 +56,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetBonusFromSelector()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("powerWeapons")).Returns("9266");
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("9266");
+
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Magic.Bonus, Is.EqualTo(9266));
         }
 
@@ -64,82 +67,89 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom("WeaponAttributes", "weapon name")).Returns(attributes);
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
         }
 
         [Test]
         public void GetSpecificItemsFromGenerator()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("powerWeapons")).Returns("SpecificWeapons");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Item();
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom("power", "SpecificWeapons")).Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(power, ItemTypeConstants.Weapon)).Returns(specificWeapon);
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon, Is.EqualTo(specificWeapon));
         }
 
         [Test]
         public void GetSpecialAbilitiesFromGenerator()
         {
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom("powerWeapons")).Returns("SpecialAbility").Returns("SpecialAbility").Returns("0");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var attributes = new[] { "type 1", "type 2" };
+            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
 
             var abilities = new[] { new SpecialAbility() };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(),
-                2)).Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes, power, 9266, 2)).Returns(abilities);
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
         }
 
         [Test]
         public void GetAmmunition()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom("weapon typeWeapons")).Returns(AttributeConstants.Ammunition);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(AttributeConstants.Ammunition);
 
             var ammo = new Item();
             mockAmmunitionGenerator.Setup(g => g.Generate()).Returns(ammo);
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon, Is.EqualTo(ammo));
         }
 
         [Test]
         public void SpellStoringWeaponHasSpellIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("SpellStoringContainsSpell")).Returns(true);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom("powerWeapons")).Returns("SpecialAbility").Returns("0");
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(true);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("0");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(),
-                1)).Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), power, It.IsAny<Int32>(), 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockDice.Setup(d => d.Roll(1).d4()).Returns(9266);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Contents, Contains.Item("spell"));
         }
 
         [Test]
         public void SpellStoringWeaponDoesNotHaveSpellIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("SpellStoringContainsSpell")).Returns(false);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom("powerWeapons")).Returns("SpecialAbility").Returns("0");
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(false);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("0");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), "power", It.IsAny<Int32>(),
-                1)).Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), power, It.IsAny<Int32>(), 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockDice.Setup(d => d.Roll(1).d4()).Returns(9266);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 9265)).Returns("spell");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var weapon = weaponGenerator.GenerateAtPower("power");
+            var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Contents, Is.Empty);
         }
     }

@@ -8,6 +8,9 @@ namespace EquipmentGen.Tables.Interfaces
         {
             public static class Formattable
             {
+                public const String ARMORTYPETypes = "{0}Types";
+                public const String IntelligencePOWERPowers = "Intelligence{0}Powers";
+                public const String IsITEMTYPEIntelligent = "Is{0}Intelligent";
                 public const String ITEMTYPETraits = "{0}Traits";
                 public const String LevelXCoins = "Level{0}Coins";
                 public const String LevelXGoods = "Level{0}Goods";
@@ -45,6 +48,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String IsDeckOfIllusionsFullyCharged = "IsDeckOfIllusionsFullyCharged";
                 public const String IsItemCursed = "IsItemCursed";
                 public const String KnowledgeCategories = "KnowledgeCategories";
+                public const String Languages = "Languages";
                 public const String MasterworkShields = "MasterworkShields";
                 public const String MeleeWeaponTraits = "MeleeWeaponTraits";
                 public const String MundaneArmors = "MundaneArmors";

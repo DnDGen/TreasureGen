@@ -26,10 +26,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ReturnScroll()
+        public void GenerateScroll()
         {
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.IsMagical, Is.True);
+            Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
         }
 
         [Test]
@@ -94,20 +96,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             mockSpellGenerator.Verify(g => g.GenerateLevel(PowerConstants.Minor), Times.Exactly(9266));
             mockSpellGenerator.Verify(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>()), Times.Exactly(9266));
-        }
-
-        [Test]
-        public void ScrollsAreMagical()
-        {
-            var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.IsMagical, Is.True);
-        }
-
-        [Test]
-        public void ScrollsAreOneTimeUseItems()
-        {
-            var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
         }
     }
 }

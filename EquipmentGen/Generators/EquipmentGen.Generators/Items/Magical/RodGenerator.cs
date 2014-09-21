@@ -3,6 +3,7 @@ using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -27,7 +28,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
 
-            var tablename = String.Format("{0}Rods", power);
+            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             var rod = new Item();
@@ -35,14 +36,15 @@ namespace EquipmentGen.Generators.Items.Magical
             rod.Name = result.Type;
             rod.IsMagical = true;
             rod.Magic.Bonus = result.Amount;
-            rod.Attributes = attributesSelector.SelectFrom("RodAttributes", rod.Name);
+            tablename = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, rod.ItemType);
+            rod.Attributes = attributesSelector.SelectFrom(tablename, rod.Name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
                 rod.Magic.Charges = chargesGenerator.GenerateFor(rod.ItemType, rod.Name);
 
             if (rod.Name == "Rod of absorption")
             {
-                var containsSpellLevels = booleanPercentileSelector.SelectFrom("RodOfAbsorptionContainsSpellLevels");
+                var containsSpellLevels = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
                     var maxCharges = chargesGenerator.GenerateFor(rod.ItemType, "Rod of absorption (max)");

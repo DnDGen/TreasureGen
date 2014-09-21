@@ -3,6 +3,7 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -33,18 +34,18 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private TypeAndAmountPercentileResult GetResult(String power)
         {
-            var tableName = String.Format("{0}Potions", power);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             if (result.Type.Contains("ALIGNMENT"))
             {
-                var alignment = percentileSelector.SelectFrom("ProtectionAlignments");
+                var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments);
                 result.Type = result.Type.Replace("ALIGNMENT", alignment);
             }
 
             if (result.Type.Contains("ENERGY"))
             {
-                var energy = percentileSelector.SelectFrom("Elements");
+                var energy = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Elements);
                 result.Type = result.Type.Replace("ENERGY", energy);
             }
 

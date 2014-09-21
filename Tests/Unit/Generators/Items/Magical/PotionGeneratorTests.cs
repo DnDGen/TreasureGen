@@ -4,6 +4,7 @@ using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -16,6 +17,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private TypeAndAmountPercentileResult result;
+        private String power;
 
         [SetUp]
         public void Setup()
@@ -26,15 +28,15 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
             result.Amount = 0;
+            power = "power";
 
             potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object);
         }
 
         [Test]
-        public void ReturnPotion()
+        public void GeneratePotion()
         {
-            var potion = potionGenerator.GenerateAtPower("power");
-            Assert.That(potion, Is.Not.Null);
+            var potion = potionGenerator.GenerateAtPower(power);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Quantity, Is.EqualTo(1));
@@ -48,11 +50,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             newResult.Type = "potion";
             newResult.Amount = 9266;
 
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom("powerPotions")).Returns(newResult);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
 
-            var potion = potionGenerator.GenerateAtPower("power");
+            var potion = potionGenerator.GenerateAtPower(power);
             Assert.That(potion.Name, Is.EqualTo(newResult.Type));
-            Assert.That(potion.Magic.Bonus, Is.EqualTo(Convert.ToInt32(newResult.Amount)));
+            Assert.That(potion.Magic.Bonus, Is.EqualTo(newResult.Amount));
 
         }
 
@@ -60,9 +63,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void AlignmentIsGenerated()
         {
             result.Type = "potion of ALIGNMENT";
-            mockPercentileSelector.Setup(s => s.SelectFrom("ProtectionAlignments")).Returns("an alignment");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments)).Returns("an alignment");
 
-            var potion = potionGenerator.GenerateAtPower("power");
+            var potion = potionGenerator.GenerateAtPower(power);
             Assert.That(potion.Name, Is.EqualTo("potion of an alignment"));
         }
 
@@ -70,9 +73,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void EnergyIsGenerated()
         {
             result.Type = "potion of ENERGY";
-            mockPercentileSelector.Setup(s => s.SelectFrom("Elements")).Returns("an element");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Elements)).Returns("an element");
 
-            var potion = potionGenerator.GenerateAtPower("power");
+            var potion = potionGenerator.GenerateAtPower(power);
             Assert.That(potion.Name, Is.EqualTo("potion of an element"));
         }
     }
