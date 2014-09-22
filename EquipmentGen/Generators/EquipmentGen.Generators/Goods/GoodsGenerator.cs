@@ -5,6 +5,7 @@ using D20Dice;
 using EquipmentGen.Common.Goods;
 using EquipmentGen.Generators.Interfaces.Goods;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Goods
 {
@@ -24,15 +25,15 @@ namespace EquipmentGen.Generators.Goods
 
         public IEnumerable<Good> GenerateAtLevel(Int32 level)
         {
-            var tableName = String.Format("Level{0}Goods", level);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             if (String.IsNullOrEmpty(result.Type))
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
-            var valueTableName = String.Format("{0}Values", result.Type);
-            var descriptionTableName = String.Format("{0}Descriptions", result.Type);
+            var valueTableName = String.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, result.Type);
+            var descriptionTableName = String.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, result.Type);
 
             while (result.Amount-- > 0)
             {

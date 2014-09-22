@@ -5,6 +5,7 @@ using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -242,7 +243,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             result.Maximum = 92;
             result.Minimum = 66;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "name")).Returns(result);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "name")).Returns(result);
             mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
 
             var charges = generator.GenerateFor(String.Empty, "name");
@@ -250,7 +251,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ForDeckOfIllusions_ReturnFull()
+        public void GenerateFullDeckOfIllusions()
         {
             var result = new RangeAttributesResult();
             result.Maximum = 92;
@@ -259,18 +260,18 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             fullResult.Maximum = 34;
             fullResult.Minimum = 34;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Deck of illusions")).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Deck of illusions")).Returns(result);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Full deck of illusions")).Returns(fullResult);
             mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
             mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
             Assert.That(charges, Is.EqualTo(34));
         }
 
         [Test]
-        public void ForDeckOfIllusions_ReturnNotFull()
+        public void GeneratePartiallyFullDeckOfIllusions()
         {
             var result = new RangeAttributesResult();
             result.Maximum = 92;
@@ -279,11 +280,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             fullResult.Maximum = 34;
             fullResult.Minimum = 34;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Deck of illusions")).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom("ChargeLimits", "Full deck of illusions")).Returns(fullResult);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Deck of illusions")).Returns(result);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Full deck of illusions")).Returns(fullResult);
             mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
             mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom("IsDeckOfIllusionsFullyCharged")).Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
 
             var charges = generator.GenerateFor(String.Empty, "Deck of illusions");
             Assert.That(charges, Is.EqualTo(9331));

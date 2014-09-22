@@ -9,6 +9,7 @@ namespace EquipmentGen.Tables.Interfaces
             public static class Formattable
             {
                 public const String ARMORTYPETypes = "{0}Types";
+                public const String GOODTYPEValues = "{0}Values";
                 public const String IntelligencePOWERPowers = "Intelligence{0}Powers";
                 public const String IsITEMTYPEIntelligent = "Is{0}Intelligent";
                 public const String ITEMTYPETraits = "{0}Traits";
@@ -71,6 +72,7 @@ namespace EquipmentGen.Tables.Interfaces
         {
             public static class Formattable
             {
+                public const String GOODTYPEDescriptions = "{0}Descriptions";
                 public const String ITEMTYPEAttributes = "{0}Attributes";
                 public const String ITEMTYPESpecialAbilities = "{0}SpecialAbilities";
                 public const String ITEMTYPETraits = "{0}Traits";

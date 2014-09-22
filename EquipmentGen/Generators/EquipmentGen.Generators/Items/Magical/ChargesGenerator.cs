@@ -3,6 +3,7 @@ using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Items.Magical
 {
@@ -27,13 +28,13 @@ namespace EquipmentGen.Generators.Items.Magical
 
             if (name == "Deck of illusions")
             {
-                var isFullyCharged = booleanPercentileSelector.SelectFrom("IsDeckOfIllusionsFullyCharged");
+                var isFullyCharged = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
 
                 if (isFullyCharged)
                     name = "Full deck of illusions";
             }
 
-            var result = rangeAttributesSelector.SelectFrom("ChargeLimits", name);
+            var result = rangeAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, name);
             var die = result.Maximum - result.Minimum + 1;
 
             return dice.Roll().d(die) - 1 + result.Minimum;

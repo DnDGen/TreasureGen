@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
     {
         protected override String tableName
         {
-            get { return "Ammunitions"; }
+            get { return TableNameConstants.Percentiles.Set.Ammunitions; }
         }
 
         [TestCase(WeaponConstants.Arrow, 1, 50)]

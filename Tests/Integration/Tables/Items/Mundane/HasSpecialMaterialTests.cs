@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
     {
         protected override String tableName
         {
-            get { return "HasSpecialMaterial"; }
+            get { return TableNameConstants.Percentiles.Set.HasSpecialMaterial; }
         }
 
         [Test]

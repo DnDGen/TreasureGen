@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
     {
         protected override String tableName
         {
-            get { return "ArmorSizes"; }
+            get { return TableNameConstants.Percentiles.Set.ArmorSizes; }
         }
 
         [TestCase(TraitConstants.Small, 1, 10)]

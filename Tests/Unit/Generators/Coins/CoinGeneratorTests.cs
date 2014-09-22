@@ -4,6 +4,7 @@ using EquipmentGen.Generators.Coins;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Selectors.Interfaces;
 using EquipmentGen.Selectors.Interfaces.Objects;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -35,8 +36,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Coins
         [Test]
         public void ReturnCoinFromSelector()
         {
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1);
             generator.GenerateAtLevel(1);
-            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom("Level1Coins"), Times.Once);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(tableName), Times.Once);
         }
 
         [Test]

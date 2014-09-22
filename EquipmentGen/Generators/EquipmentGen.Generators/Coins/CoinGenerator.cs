@@ -3,6 +3,7 @@ using D20Dice;
 using EquipmentGen.Common.Coins;
 using EquipmentGen.Generators.Interfaces.Coins;
 using EquipmentGen.Selectors.Interfaces;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Coins
 {
@@ -19,7 +20,7 @@ namespace EquipmentGen.Generators.Coins
 
         public Coin GenerateAtLevel(Int32 level)
         {
-            var tableName = String.Format("Level{0}Coins", level);
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var coin = new Coin();
 

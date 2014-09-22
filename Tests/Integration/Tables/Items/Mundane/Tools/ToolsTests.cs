@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
     {
         protected override String tableName
         {
-            get { return "Tools"; }
+            get { return TableNameConstants.Percentiles.Set.Tools; }
         }
 
         [TestCase("Empty backpack", 1, 3)]

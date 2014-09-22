@@ -7,6 +7,7 @@ namespace EquipmentGen.Tests.Unit.Tables
     [TestFixture]
     public class TableNameConstantsTests
     {
+        [TestCase(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, "{0}Descriptions")]
         [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, "{0}Attributes")]
         [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPESpecialAbilities, "{0}SpecialAbilities")]
         [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPETraits, "{0}Traits")]
@@ -25,6 +26,7 @@ namespace EquipmentGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Attributes.Set.SpecificShieldsAttributes, "SpecificShieldsAttributes")]
         [TestCase(TableNameConstants.Attributes.Set.WondrousItemContents, "WondrousItemContents")]
         [TestCase(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "{0}Types")]
+        [TestCase(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, "{0}Values")]
         [TestCase(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Intelligence{0}Powers")]
         [TestCase(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, "Is{0}Intelligent")]
         [TestCase(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "{0}Traits")]

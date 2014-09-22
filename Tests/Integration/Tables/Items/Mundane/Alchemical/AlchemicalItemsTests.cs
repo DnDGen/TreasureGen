@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Alchemical
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Alchemical
     {
         protected override String tableName
         {
-            get { return "AlchemicalItems"; }
+            get { return TableNameConstants.Percentiles.Set.AlchemicalItems; }
         }
 
         [Test]
