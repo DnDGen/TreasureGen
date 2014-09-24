@@ -1,15 +1,16 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
 {
     [TestFixture]
-    public class RangedWeaponTraitsTests : PercentileTests
+    public class RangedTraitsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "RangedWeaponTraits"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Ranged); }
         }
 
         [TestCase(TraitConstants.Markings, 1, 20)]

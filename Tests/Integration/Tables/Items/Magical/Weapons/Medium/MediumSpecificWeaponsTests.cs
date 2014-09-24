@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
     {
         protected override String tableName
         {
-            get { return "MediumSpecificWeapons"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Weapon); }
         }
 
         [Test]

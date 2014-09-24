@@ -51,7 +51,7 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMundaneItem()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Mundane, "Item");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane);
             var itemType = percentileSelector.SelectFrom(tableName);
             var generator = mundaneItemGeneratorFactory.CreateGeneratorOf(itemType);
 
@@ -60,7 +60,7 @@ namespace EquipmentGen.Generators.Items
 
         private Item GenerateMagicalItemAtPower(String power)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, "Item");
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERItems, power);
             var itemType = percentileSelector.SelectFrom(tableName);
             var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(itemType);
 

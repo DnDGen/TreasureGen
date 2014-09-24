@@ -34,6 +34,7 @@ namespace EquipmentGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXGoods, "Level{0}Goods")]
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXItems, "Level{0}Items")]
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, "Level{0}{1}Spells")]
+        [TestCase(TableNameConstants.Percentiles.Formattable.POWERItems, "{0}Items")]
         [TestCase(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "{0}{1}s")]
         [TestCase(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, "{0}{1}SpecialAbilities")]
         [TestCase(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "{0}Specific{1}s")]

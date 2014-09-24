@@ -1,15 +1,16 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
 {
     [TestFixture]
-    public class MediumMeleeWeaponSpecialAbilitiesTests : PercentileTests
+    public class MediumMeleeSpecialAbilitiesTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MediumMeleeWeaponSpecialAbilities"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, PowerConstants.Medium, AttributeConstants.Melee); }
         }
 
         [Test]

@@ -1,15 +1,16 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
 {
     [TestFixture]
-    public class MediumRangedWeaponSpecialAbilitiesTests : PercentileTests
+    public class MediumRangedSpecialAbilitiesTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MediumRangedWeaponSpecialAbilities"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, PowerConstants.Medium, AttributeConstants.Ranged); }
         }
 
         [Test]

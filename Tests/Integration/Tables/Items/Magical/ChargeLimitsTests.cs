@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
     {
         protected override String tableName
         {
-            get { return "ChargeLimits"; }
+            get { return TableNameConstants.Attributes.Set.ChargeLimits; }
         }
 
         [TestCase("Bracelet of friends", 1, 4)]

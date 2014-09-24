@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
     {
         protected override String tableName
         {
-            get { return "DesignatedFoes"; }
+            get { return TableNameConstants.Percentiles.Set.DesignatedFoes; }
         }
 
         [Test]

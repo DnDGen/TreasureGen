@@ -17,6 +17,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String LevelXGoods = "Level{0}Goods";
                 public const String LevelXItems = "Level{0}Items";
                 public const String LevelXSPELLTYPESpells = "Level{0}{1}Spells";
+                public const String POWERItems = "{0}Items";
                 public const String POWERITEMTYPEs = "{0}{1}s";
                 public const String POWERATTRIBUTESpecialAbilities = "{0}{1}SpecialAbilities";
                 public const String POWERSpecificITEMTYPEs = "{0}Specific{1}s";

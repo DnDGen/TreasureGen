@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
     {
         protected override String tableName
         {
-            get { return "MinorWeapons"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Weapon); }
         }
 
         [Test]
@@ -17,7 +19,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
             AssertTableIsComplete();
         }
 
-        [TestCase("SpecificWeapons", 86, 90)]
+        [TestCase(ItemTypeConstants.Weapon, 86, 90)]
         [TestCase("SpecialAbility", 91, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {

@@ -1,15 +1,16 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
 {
     [TestFixture]
-    public class MinorRangedWeaponSpecialAbilitiesTests : PercentileTests
+    public class MinorRangedSpecialAbilitiesTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MinorRangedWeaponSpecialAbilities"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, PowerConstants.Minor, AttributeConstants.Ranged); }
         }
 
         [Test]

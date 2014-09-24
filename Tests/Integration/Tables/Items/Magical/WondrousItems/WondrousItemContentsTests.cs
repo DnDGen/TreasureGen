@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
     {
         protected override String tableName
         {
-            get { return "WondrousItemContents"; }
+            get { return TableNameConstants.Attributes.Set.WondrousItemContents; }
         }
 
         [TestCase("Robe of useful items", WeaponConstants.Dagger,

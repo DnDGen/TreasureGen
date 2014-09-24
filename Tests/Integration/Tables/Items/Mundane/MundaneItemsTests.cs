@@ -10,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Mundane, "Item"); }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane); }
         }
 
         [Test]

@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
     {
         protected override String tableName
         {
-            get { return "SpecificWeaponsAttributes"; }
+            get { return String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon); }
         }
 
         [TestCase(WeaponConstants.SleepArrow, AttributeConstants.Ammunition,

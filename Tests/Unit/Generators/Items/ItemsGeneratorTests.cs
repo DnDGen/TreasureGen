@@ -115,7 +115,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             result.Amount = 1;
 
             var mundaneItem = new Item();
-            var expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, result.Type, "Item");
+            var expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERItems, result.Type);
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("mundane item type");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMagicalItemGenerator.Object);
             mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("mundane item type")).Returns(mockMundaneItemGenerator.Object);
@@ -132,7 +132,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items
             result.Amount = 1;
 
             var magicalItem = new Item();
-            var expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, result.Type, "Item");
+            var expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERItems, result.Type);
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("magic item type");
             mockMagicalItemGeneratorFactory.Setup(f => f.CreateGeneratorOf("magic item type")).Returns(mockMagicalItemGenerator.Object);
             mockMagicalItemGenerator.Setup(g => g.GenerateAtPower(result.Type)).Returns(magicalItem);

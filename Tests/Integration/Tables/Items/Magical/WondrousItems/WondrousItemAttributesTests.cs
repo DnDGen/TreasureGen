@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
     {
         protected override String tableName
         {
-            get { return "WondrousItemAttributes"; }
+            get { return String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem); }
         }
 
         [TestCase("Bead of force", AttributeConstants.OneTimeUse)]

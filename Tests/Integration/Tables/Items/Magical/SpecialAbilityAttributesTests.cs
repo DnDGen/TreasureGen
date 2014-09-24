@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
     {
         protected override String tableName
         {
-            get { return "SpecialAbilityAttributes"; }
+            get { return TableNameConstants.Attributes.Set.SpecialAbilityAttributes; }
         }
 
         [TestCase(SpecialAbilityConstants.Glamered, 0, SpecialAbilityConstants.Glamered, 0)]
