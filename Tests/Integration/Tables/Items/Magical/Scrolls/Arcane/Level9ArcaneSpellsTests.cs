@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
     {
         protected override String tableName
         {
-            get { return "Level9ArcaneSpells"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 9, "Arcane"); }
         }
 
         [Test]

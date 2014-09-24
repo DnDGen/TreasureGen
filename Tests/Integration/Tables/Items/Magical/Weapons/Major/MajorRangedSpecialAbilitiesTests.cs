@@ -1,15 +1,16 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
 {
     [TestFixture]
-    public class MajorRangedWeaponSpecialAbilitiesTests : PercentileTests
+    public class MajorRangedSpecialAbilitiesTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MajorRangedWeaponSpecialAbilities"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, PowerConstants.Major, AttributeConstants.Ranged); }
         }
 
         [Test]

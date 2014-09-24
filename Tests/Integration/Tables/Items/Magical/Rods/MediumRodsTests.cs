@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
     {
         protected override String tableName
         {
-            get { return "MediumRods"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod); }
         }
 
         [Test]

@@ -1,14 +1,16 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
 {
     [TestFixture]
-    public class MajorStavesTests : PercentileTests
+    public class MajorStaffsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return "MajorStaves"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Staff); }
         }
 
         [Test]

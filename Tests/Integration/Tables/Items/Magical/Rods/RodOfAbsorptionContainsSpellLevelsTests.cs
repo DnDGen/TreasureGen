@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
     {
         protected override String tableName
         {
-            get { return "RodOfAbsorptionContainsSpellLevels"; }
+            get { return TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels; }
         }
 
         [TestCase(false, 1, 70)]

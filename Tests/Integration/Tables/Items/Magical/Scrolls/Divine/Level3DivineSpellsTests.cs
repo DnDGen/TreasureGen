@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
     {
         protected override String tableName
         {
-            get { return "Level3DivineSpells"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 3, "Divine"); }
         }
 
         [Test]

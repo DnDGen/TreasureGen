@@ -172,5 +172,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(cursedItem.Attributes, Contains.Item(AttributeConstants.Specific));
         }
+
+        [Test]
+        public void SpecificCursedItemsHaveAppropriateItemType()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void SpecificCursedItemsHaveAppropriateAttributes()
+        {
+            Assert.Fail();
+        }
     }
 }

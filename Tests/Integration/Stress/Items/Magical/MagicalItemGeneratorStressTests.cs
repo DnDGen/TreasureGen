@@ -15,6 +15,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Inject]
         public InterestFormatter InterestFormatter { get; set; }
 
+        protected abstract String itemType { get; }
         protected IEnumerable<String> materials;
 
         private Item mostInterestingItem;
@@ -41,7 +42,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = GenerateItem();
 
-            if (item.ItemType == ItemTypeConstants.SpecificCursedItem)
+            //INFO: This is in case the generator produces a specific cursed item
+            if (item.ItemType != itemType)
                 return;
 
             MakeAssertionsAgainst(item);
@@ -93,6 +95,34 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem), type);
             AssertIterations();
+        }
+
+        public abstract void SpecificCursedItemsAreIntelligent();
+
+        protected void AssertSpecificCursedItemsAreIntelligent()
+        {
+            Assert.Fail();
+        }
+
+        public abstract void SpecificCursedItemsHaveTraits();
+
+        protected void AssertSpecificCursedItemsHaveTraits()
+        {
+            Assert.Fail();
+        }
+
+        public abstract void SpecificCursedItemsHaveSpecialMaterials();
+
+        protected void AssertSpecificCursedItemsHaveSpecialMaterials()
+        {
+            Assert.Fail();
+        }
+
+        public abstract void SpecificCursedItemsAreNotDecorated();
+
+        protected void AssertSpecificCursedItemsAreNotDecorated()
+        {
+            Assert.Fail();
         }
 
         public virtual void TraitsHappen()
