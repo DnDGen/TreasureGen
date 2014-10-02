@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
     {
         protected override String tableName
         {
-            get { return "SpecificArmorsSpecialAbilities"; }
+            get { return String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Armor); }
         }
 
         [TestCase(ArmorConstants.BandedMailOfLuck)]

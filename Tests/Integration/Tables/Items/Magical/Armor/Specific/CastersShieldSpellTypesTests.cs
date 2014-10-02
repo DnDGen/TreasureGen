@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
     {
         protected override String tableName
         {
-            get { return "CastersShieldSpellTypes"; }
+            get { return TableNameConstants.Percentiles.Set.CastersShieldSpellTypes; }
         }
 
         [TestCase("Divine", 1, 80)]
