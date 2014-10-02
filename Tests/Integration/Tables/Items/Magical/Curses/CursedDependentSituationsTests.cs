@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
     {
         protected override String tableName
         {
-            get { return "CursedDependentSituations"; }
+            get { return TableNameConstants.Percentiles.Set.CursedDependentSituations; }
         }
 
         [Test]

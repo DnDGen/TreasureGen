@@ -690,11 +690,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Curses\SpecificCursedItemTraits.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Scrolls\ScrollTraits.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -91,7 +91,6 @@
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
-    <Compile Include="Items\Magical\Curses\SpecificCursedItemTraitsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRodIntelligentTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
