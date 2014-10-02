@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rings
     {
         protected override String tableName
         {
-            get { return "RingTraits"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, ItemTypeConstants.Ring); }
         }
 
         [TestCase(TraitConstants.Markings, 1, 30)]
