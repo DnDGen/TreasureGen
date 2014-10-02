@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
     {
         protected override String tableName
         {
-            get { return "MajorPotions"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion); }
         }
 
         [Test]
