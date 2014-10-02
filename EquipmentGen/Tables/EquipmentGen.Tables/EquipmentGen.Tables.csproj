@@ -613,9 +613,6 @@
     <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IsShieldIntelligent.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\Specific\CastersShieldContainsSpell.xml" />
   </ItemGroup>
   <ItemGroup>

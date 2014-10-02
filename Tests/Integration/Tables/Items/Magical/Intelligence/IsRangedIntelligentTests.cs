@@ -1,14 +1,16 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class IsRangedWeaponIntelligentTests : BooleanPercentileTests
+    public class IsRangedIntelligentTests : BooleanPercentileTests
     {
         protected override String tableName
         {
-            get { return "IsRangedWeaponIntelligent"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Ranged); }
         }
 
         [Test]

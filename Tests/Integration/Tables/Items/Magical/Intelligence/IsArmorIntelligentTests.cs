@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
     {
         protected override String tableName
         {
-            get { return "IsArmorIntelligent"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, ItemTypeConstants.Armor); }
         }
 
         [Test]

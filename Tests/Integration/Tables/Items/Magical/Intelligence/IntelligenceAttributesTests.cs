@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
     {
         protected override String tableName
         {
-            get { return "IntelligenceAttributes"; }
+            get { return TableNameConstants.Attributes.Set.IntelligenceAttributes; }
         }
 
         [TestCase("12", "30 ft. vision and hearing", 1, 0)]

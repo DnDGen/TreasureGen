@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
@@ -8,7 +9,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
     {
         protected override String tableName
         {
-            get { return "IntelligenceAlignments"; }
+            get { return TableNameConstants.Percentiles.Set.IntelligenceAlignments; }
         }
 
         [Test]

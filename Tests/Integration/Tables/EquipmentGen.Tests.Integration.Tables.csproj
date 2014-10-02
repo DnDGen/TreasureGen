@@ -122,11 +122,10 @@
     <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceSpecialPurposeTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceStrongStatTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IsRangedWeaponIntelligentTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IsRangedIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRingIntelligentTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IsShieldIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsArmorIntelligentTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IsMeleeWeaponIntelligentTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IsMeleeIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsWondrousItemIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\KnowledgeCategoriesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\LanguagesTests.cs" />
