@@ -61,12 +61,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void BagOfDevouringIsNotIntelligent()
-        {
-            Assert.Fail();
-        }
-
-        [Test]
         public void DetermineNotIntelligentFromBooleanSelector()
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);

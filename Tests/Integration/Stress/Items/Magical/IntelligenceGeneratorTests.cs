@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Generators.Interfaces.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
@@ -15,6 +16,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         public IIntelligenceGenerator IntelligenceGenerator { get; set; }
         [Inject]
         public ISpecialAbilitiesGenerator AbilitiesGenerator { get; set; }
+        [Inject]
+        public IItemsGenerator ItemsGenerator { get; set; }
 
         private IEnumerable<String> alignments;
         private IEnumerable<String> armorNames;
@@ -65,28 +68,19 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         private Intelligence GenerateIntelligence()
         {
-            var itemType = GetNewGearItemType();
-            var attributes = GetNewAttributesForGear(itemType, false);
-            var power = GetNewPower(false);
-            var quantity = Random.Next(10) + 1;
+            Item intelligentItem = null;
 
-            var item = new Item();
+            do
+            {
+                var level = GetNewLevel();
+                var items = ItemsGenerator.GenerateAtLevel(level);
 
-            if (itemType == ItemTypeConstants.Armor)
-                item.Name = GetNameFrom(armorNames);
-            else
-                item.Name = GetNameFrom(weaponNames);
+                foreach (var item in items)
+                    if (IntelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
+                        intelligentItem = item;
+            } while (intelligentItem == null);
 
-            item.Magic.Bonus = Random.Next(5) + 1;
-            item.Magic.SpecialAbilities = AbilitiesGenerator.GenerateFor(itemType, attributes, power, item.Magic.Bonus, quantity);
-
-            return IntelligenceGenerator.GenerateFor(item);
-        }
-
-        private String GetNameFrom(IEnumerable<String> names)
-        {
-            var index = Random.Next(names.Count());
-            return names.ElementAt(index);
+            return IntelligenceGenerator.GenerateFor(intelligentItem);
         }
 
         [Test]
