@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
     {
         protected override String tableName
         {
-            get { return "MediumArmors"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Armor); }
         }
 
         [Test]
@@ -26,8 +27,8 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
         [TestCase(ItemTypeConstants.Armor, 3, 41, 50)]
         [TestCase(AttributeConstants.Shield, 4, 51, 55)]
         [TestCase(ItemTypeConstants.Armor, 4, 56, 57)]
-        [TestCase("SpecificArmors", 0, 58, 60)]
-        [TestCase("SpecificShields", 0, 61, 63)]
+        [TestCase(ItemTypeConstants.Armor, 0, 58, 60)]
+        [TestCase(AttributeConstants.Shield, 0, 61, 63)]
         [TestCase("SpecialAbility", 1, 64, 100)]
         public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
         {
