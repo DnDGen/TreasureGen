@@ -92,6 +92,7 @@
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRodIntelligentTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\ItemAlignmentRequirementsTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\PotionTraitsTests.cs" />
@@ -100,8 +101,8 @@
     <Compile Include="Items\Magical\Rods\RodAttributesTests.cs" />
     <Compile Include="Items\Magical\Rods\RodOfAbsorptionContainsSpellLevelsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\ScrollTraitsTests.cs" />
-    <Compile Include="Items\Magical\Staves\MajorStaffsTests.cs" />
-    <Compile Include="Items\Magical\Staves\MediumStaffsTests.cs" />
+    <Compile Include="Items\Magical\Staffs\MajorStaffsTests.cs" />
+    <Compile Include="Items\Magical\Staffs\MediumStaffsTests.cs" />
     <Compile Include="Items\Magical\Wands\MajorWandsTests.cs" />
     <Compile Include="Items\Magical\Wands\MediumWandsTests.cs" />
     <Compile Include="Items\Magical\Wands\MinorWandsTests.cs" />
@@ -261,7 +262,7 @@
     <Compile Include="Items\Magical\Scrolls\SpellTypesTests.cs" />
     <Compile Include="Items\Magical\SpecialAbilityAttributeRequirementsTests.cs" />
     <Compile Include="Items\Magical\SpecialAbilityAttributesTests.cs" />
-    <Compile Include="Items\Magical\Staves\StaffTraitsTests.cs" />
+    <Compile Include="Items\Magical\Staffs\StaffTraitsTests.cs" />
     <Compile Include="Items\Magical\Wands\WandTraitsTests.cs" />
     <Compile Include="Items\Magical\Weapons\DesignatedFoesTests.cs" />
     <Compile Include="Items\Magical\Weapons\Major\MajorMeleeSpecialAbilitiesTests.cs" />
