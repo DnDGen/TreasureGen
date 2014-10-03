@@ -55,7 +55,7 @@ namespace EquipmentGen.Generators.Items.Mundane
 
             shield.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields);
 
-            shield.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificShieldsAttributes, shield.Name);
+            shield.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificShieldAttributes, shield.Name);
             shield.Traits.Add(TraitConstants.Darkwood);
             shield.ItemType = ItemTypeConstants.Armor;
 

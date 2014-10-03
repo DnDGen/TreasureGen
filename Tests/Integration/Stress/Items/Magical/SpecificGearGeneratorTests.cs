@@ -46,10 +46,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             switch (Random.Next(3))
             {
-                case 0: return "SpecificArmors";
-                case 1: return "SpecificShields";
-                case 2: return "SpecificWeapons";
-                default: throw new ArgumentOutOfRangeException();
+                case 0: return ItemTypeConstants.Armor;
+                case 1: return AttributeConstants.Shield;
+                default: return ItemTypeConstants.Weapon;
             }
         }
 

@@ -333,13 +333,25 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CandleOfInvocationGetsAlignment()
         {
-            Assert.Fail();
+            result.Type = "Candle of invocation";
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns("alignment");
+
+            var item = wondrousItemGenerator.GenerateAtPower(power);
+            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Traits, Contains.Item("alignment"));
+            Assert.That(item.Traits.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void RobeOfTheArchmagiGetsAlignment()
         {
-            Assert.Fail();
+            result.Type = "Robe of the archmagi";
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors)).Returns("color (alignment)");
+
+            var item = wondrousItemGenerator.GenerateAtPower(power);
+            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Traits, Contains.Item("color (alignment)"));
+            Assert.That(item.Traits.Count, Is.EqualTo(1));
         }
     }
 }

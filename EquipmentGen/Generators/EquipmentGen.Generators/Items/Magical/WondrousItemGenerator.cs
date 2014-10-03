@@ -73,6 +73,16 @@ namespace EquipmentGen.Generators.Items.Magical
                 var planes = GeneratePlanesForCubicGate();
                 item.Contents.AddRange(planes);
             }
+            else if (item.Name == "Candle of invocation")
+            {
+                var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
+                item.Traits.Add(alignment);
+            }
+            else if (item.Name == "Robe of the archmagi")
+            {
+                var color = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
+                item.Traits.Add(color);
+            }
             else if (ItemHasPartialContents(item.Name))
             {
                 var partialContents = GetPartialContents(item.Name);

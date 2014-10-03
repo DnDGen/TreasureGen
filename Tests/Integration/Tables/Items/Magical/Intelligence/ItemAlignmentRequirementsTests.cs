@@ -13,38 +13,6 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return TableNameConstants.Attributes.Set.ItemAlignmentRequirements; }
         }
 
-        [TestCase("Items",
-            ArmorConstants.CelestialArmor,
-            ArmorConstants.DemonArmor,
-            WeaponConstants.AssassinsDagger,
-            WeaponConstants.HolyAvenger,
-            WeaponConstants.NineLivesStealer,
-            WeaponConstants.SunBlade,
-            "Rod of the python",
-            "Rod of the viper",
-            "Chaos diamond",
-            "Darkskull",
-            "Amulet of inescapable location",
-            "Armor of arrow attraction",
-            "Armor of rage",
-            "Boots of dancing",
-            "Bracers of defenselessness",
-            "Broom of animated attack",
-            "Cloak of poisonousness",
-            "Crystal hypnosis ball",
-            "Gauntlets of fumbling",
-            "Mace of blood",
-            "Medallion of thought projection",
-            "Necklace of strangulation",
-            "Periapt of foul rotting",
-            "Robe of powerlessness",
-            "Robe of vermin",
-            "Ring of clumsiness",
-            "Scarab of death",
-            "Cursed backbiter spear",
-            "Stone of weight",
-            "Vacuous grimoire",
-            "Cursed -2 sword")]
         [TestCase(ArmorConstants.CelestialArmor, "good")]
         [TestCase(ArmorConstants.DemonArmor, "evil")]
         [TestCase(WeaponConstants.AssassinsDagger, "evil")]
@@ -79,6 +47,47 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);
+        }
+
+        [Test]
+        public void ItemsWithAlignmentRequirements()
+        {
+            var items = new[]
+            {
+                ArmorConstants.CelestialArmor,
+                ArmorConstants.DemonArmor,
+                WeaponConstants.AssassinsDagger,
+                WeaponConstants.HolyAvenger,
+                WeaponConstants.NineLivesStealer,
+                WeaponConstants.SunBlade,
+                "Rod of the python",
+                "Rod of the viper",
+                "Chaos diamond",
+                "Darkskull",
+                "Amulet of inescapable location",
+                "Armor of arrow attraction",
+                "Armor of rage",
+                "Boots of dancing",
+                "Bracers of defenselessness",
+                "Broom of animated attack",
+                "Cloak of poisonousness",
+                "Crystal hypnosis ball",
+                "Gauntlets of fumbling",
+                "Mace of blood",
+                "Medallion of thought projection",
+                "Necklace of strangulation",
+                "Periapt of foul rotting",
+                "Robe of powerlessness",
+                "Robe of vermin",
+                "Ring of clumsiness",
+                "Scarab of death",
+                "Cursed backbiter spear",
+                "Stone of weight",
+                "Vacuous grimoire",
+                "Cursed -2 sword"
+            };
+
+            base.Attributes("Items", items);
         }
     }
 }

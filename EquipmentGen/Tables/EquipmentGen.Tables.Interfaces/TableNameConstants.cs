@@ -59,6 +59,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String Planes = "Planes";
                 public const String ProtectionAlignments = "ProtectionAlignments";
                 public const String RangedWeaponTraits = "RangedWeaponTraits";
+                public const String RobeOfTheArchmagiColors = "RobeOfTheArchmagiColors";
                 public const String RobeOfUsefulItemsExtraItems = "RobeOfUsefulItemsExtraItems";
                 public const String RodOfAbsorptionContainsSpellLevels = "RodOfAbsorptionContainsSpellLevels";
                 public const String SpecificCursedItems = "SpecificCursedItems";
@@ -95,7 +96,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String SpecialMaterials = "SpecialMaterials";
                 public const String SpecificCursedItemItemTypes = "SpecificCursedItemItemTypes";
                 public const String SpecificCursedItemAttributes = "SpecificCursedItemAttributes";
-                public const String SpecificShieldsAttributes = "SpecificShieldsAttributes";
+                public const String SpecificShieldAttributes = "SpecificShieldAttributes";
                 public const String WondrousItemContents = "WondrousItemContents";
             }
         }
