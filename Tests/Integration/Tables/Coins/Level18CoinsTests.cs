@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Coins;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Coins
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Coins
     {
         protected override String tableName
         {
-            get { return "Level18Coins"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 18); }
         }
 
         [TestCase(EmptyContent, 1, 2)]
