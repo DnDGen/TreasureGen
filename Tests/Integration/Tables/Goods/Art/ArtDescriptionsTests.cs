@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Goods;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
     {
         protected override String tableName
         {
-            get { return "ArtDescriptions"; }
+            get { return String.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, GoodsConstants.Art); }
         }
 
         [TestCase("1d10*10", "silver ewer",

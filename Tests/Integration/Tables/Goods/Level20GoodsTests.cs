@@ -1,5 +1,6 @@
 ﻿using System;
 using EquipmentGen.Common.Goods;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods
@@ -9,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods
     {
         protected override String tableName
         {
-            get { return "Level20Goods"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, 20); }
         }
 
         [TestCase(EmptyContent, 1, 2)]

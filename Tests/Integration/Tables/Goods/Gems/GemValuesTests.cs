@@ -1,4 +1,6 @@
 ﻿using System;
+using EquipmentGen.Common.Goods;
+using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
@@ -8,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
     {
         protected override String tableName
         {
-            get { return "GemValues"; }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, GoodsConstants.Gem); }
         }
 
         [Test]
