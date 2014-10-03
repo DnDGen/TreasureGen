@@ -23,7 +23,7 @@
     </object>
     <object>
         <lower>63</lower>
-        <content>SpecificWeapons</content>
+        <content>Weapon</content>
         <upper>68</upper>
     </object>
     <object>

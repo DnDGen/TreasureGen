@@ -76,10 +76,9 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && (String.IsNullOrEmpty(item.Magic.Curse) || item.ItemType == ItemTypeConstants.SpecificCursedItem))
+            while (TestShouldKeepRunning() && (String.IsNullOrEmpty(item.Magic.Curse) || item.Magic.Curse == "This is a specific cursed item"))
                 item = GenerateItem();
 
-            Assert.That(item.ItemType, Is.Not.EqualTo(ItemTypeConstants.SpecificCursedItem), type);
             Assert.That(item.Magic.Curse, Is.Not.Empty, type);
             AssertIterations();
         }
@@ -90,10 +89,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && item.ItemType != ItemTypeConstants.SpecificCursedItem)
+            while (TestShouldKeepRunning() && item.Magic.Curse != "This is a specific cursed item")
                 item = GenerateItem();
 
-            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem), type);
+            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
             AssertIterations();
         }
 
@@ -101,28 +100,59 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected void AssertSpecificCursedItemsAreIntelligent()
         {
-            Assert.Fail();
+            var item = new Item();
+
+            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Magic.Intelligence.Ego == 0))
+                item = GenerateItem();
+
+            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsHaveTraits();
 
         protected void AssertSpecificCursedItemsHaveTraits()
         {
-            Assert.Fail();
+            var item = new Item();
+
+            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item") || !item.Traits.Except(materials).Any())
+                item = GenerateItem();
+
+            var traits = item.Traits.Except(materials);
+            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(traits, Is.Not.Empty, type);
+            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsHaveSpecialMaterials();
 
         protected void AssertSpecificCursedItemsHaveSpecialMaterials()
         {
-            Assert.Fail();
+            var item = new Item();
+
+            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || !item.Traits.Intersect(materials).Any()))
+                item = GenerateItem();
+
+            var itemMaterials = item.Traits.Intersect(materials);
+            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(itemMaterials, Is.Not.Empty, type);
+            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsAreNotDecorated();
 
         protected void AssertSpecificCursedItemsAreNotDecorated()
         {
-            Assert.Fail();
+            var item = new Item();
+
+            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Traits.Any() || item.Magic.Curse.Any() || item.Magic.Intelligence.Ego > 0))
+                item = GenerateItem();
+
+            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(item.Traits, Is.Empty, type);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), type);
+            AssertIterations();
         }
 
         public virtual void TraitsHappen()

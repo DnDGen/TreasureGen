@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(cursedItem.Quantity, Is.EqualTo(1));
             Assert.That(cursedItem.Traits, Is.Empty);
             Assert.That(cursedItem.Contents, Is.Empty);
-            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.Not.Empty);
         }
     }
 }

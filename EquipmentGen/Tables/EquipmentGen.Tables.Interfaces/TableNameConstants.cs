@@ -93,6 +93,8 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String SpecialAbilityAttributes = "SpecialAbilityAttributes";
                 public const String SpecialAbilityAttributeRequirements = "SpecialAbilityAttributeRequirements";
                 public const String SpecialMaterials = "SpecialMaterials";
+                public const String SpecificCursedItemItemTypes = "SpecificCursedItemItemTypes";
+                public const String SpecificCursedItemAttributes = "SpecificCursedItemAttributes";
                 public const String SpecificShieldsAttributes = "SpecificShieldsAttributes";
                 public const String WondrousItemContents = "WondrousItemContents";
             }

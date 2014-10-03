@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using D20Dice;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
@@ -12,12 +13,15 @@ namespace EquipmentGen.Generators.Items.Magical
         private IDice dice;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private IAttributesSelector attributesSelector;
 
-        public CurseGenerator(IDice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public CurseGenerator(IDice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector,
+            IAttributesSelector attributesSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.attributesSelector = attributesSelector;
         }
 
         public Boolean HasCurse(Boolean isMagical)
@@ -106,10 +110,10 @@ namespace EquipmentGen.Generators.Items.Magical
         public Item GenerateSpecificCursedItem()
         {
             var specificCursedItem = new Item();
-            specificCursedItem.ItemType = ItemTypeConstants.SpecificCursedItem;
             specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             specificCursedItem.Magic.Curse = "This is a specific cursed item";
-            specificCursedItem.Attributes = new[] { AttributeConstants.Specific };
+            specificCursedItem.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
+            specificCursedItem.ItemType = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).First();
 
             return specificCursedItem;
         }

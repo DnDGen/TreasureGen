@@ -358,7 +358,7 @@
     <EmbeddedResource Include="Items\Magical\SpecialAbilityAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Staves\StaffTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Staffs\StaffTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Wands\WandTraits.xml" />
@@ -367,28 +367,28 @@
     <EmbeddedResource Include="Items\Magical\Weapons\DesignatedFoes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorMeleeWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorMeleeSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorRangedWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorRangedSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumMeleeWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumMeleeSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumRangedWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumRangedSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\MeleeWeaponTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\MeleeTraits.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorMeleeWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorMeleeSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorSpecificWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\RangedWeaponTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\RangedTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\WondrousItems\MajorWondrousItems.xml" />
@@ -577,13 +577,13 @@
     <EmbeddedResource Include="Items\Magical\Armor\Minor\MinorSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorRangedWeaponSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Minor\MinorRangedSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\Minor\MinorSpecificShields.xml" />
@@ -592,7 +592,7 @@
     <EmbeddedResource Include="Items\Magical\Weapons\Major\MajorSpecificWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\WondrousItems\IsDeckOfIllusionsFullyCharged.xml" />
@@ -601,16 +601,16 @@
     <EmbeddedResource Include="Items\Magical\Curses\IsItemCursed.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IsArmorIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldsTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificShieldTraits.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Armor\Specific\CastersShieldContainsSpell.xml" />
@@ -619,7 +619,7 @@
     <EmbeddedResource Include="Items\Magical\Armor\Specific\CastersShieldSpellTypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorsTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Armor\Specific\SpecificArmorTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Intelligence\IsRingIntelligent.xml" />
@@ -628,25 +628,25 @@
     <EmbeddedResource Include="Items\Magical\Intelligence\IsWondrousItemIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponsSpecialAbilities.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponSpecialAbilities.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Weapons\Medium\MediumSpecificWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponsAttributes.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponsTraits.xml" />
+    <EmbeddedResource Include="Items\Magical\Weapons\Specific\SpecificWeaponTraits.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IsMeleeWeaponIntelligent.xml" />
+    <EmbeddedResource Include="Items\Magical\Intelligence\IsMeleeIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\WondrousItems\WondrousItemContents.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Intelligence\IsRangedWeaponIntelligent.xml" />
+    <EmbeddedResource Include="Items\Magical\Intelligence\IsRangedIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Potions\MinorPotions.xml" />
@@ -719,10 +719,10 @@
     <EmbeddedResource Include="Items\Magical\Rods\RodOfAbsorptionContainsSpellLevels.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Staves\MediumStaves.xml" />
+    <EmbeddedResource Include="Items\Magical\Staffs\MediumStaffs.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Staves\MajorStaves.xml" />
+    <EmbeddedResource Include="Items\Magical\Staffs\MajorStaffs.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

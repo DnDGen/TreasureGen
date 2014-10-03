@@ -16,6 +16,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         private Mock<IDice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<IAttributesSelector> mockAttributesSelector;
 
         [SetUp]
         public void Setup()
@@ -23,8 +24,10 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<IDice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockAttributesSelector = new Mock<IAttributesSelector>();
 
-            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object);
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object,
+                mockAttributesSelector.Object);
         }
 
         [Test]
@@ -67,7 +70,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d3()).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: Unreliable)"));
+            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Unreliable)"));
         }
 
         [Test]
@@ -136,7 +139,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d3()).Returns(3);
 
             var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: Uncontrolled)"));
+            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Uncontrolled)"));
         }
 
         [Test]
@@ -169,20 +172,34 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.IsMagical, Is.True);
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
-            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.SpecificCursedItem));
             Assert.That(cursedItem.Attributes, Contains.Item(AttributeConstants.Specific));
         }
 
         [Test]
         public void SpecificCursedItemsHaveAppropriateItemType()
         {
-            Assert.Fail();
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
+
+            var itemType = new[] { "item type" };
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "specific cursed item"))
+                .Returns(itemType);
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem();
+            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
         }
 
         [Test]
         public void SpecificCursedItemsHaveAppropriateAttributes()
         {
-            Assert.Fail();
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "specific cursed item"))
+                .Returns(attributes);
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem();
+            foreach (var attribute in attributes)
+                Assert.That(cursedItem.Attributes, Contains.Item(attribute));
         }
     }
 }

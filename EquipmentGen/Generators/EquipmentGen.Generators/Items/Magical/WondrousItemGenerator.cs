@@ -37,7 +37,9 @@ namespace EquipmentGen.Generators.Items.Magical
             item.Name = result.Type;
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
-            item.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, item.Name);
+
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, item.ItemType);
+            item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
             item.Magic.Bonus = result.Amount;
 
             if (item.Attributes.Contains(AttributeConstants.Charged))

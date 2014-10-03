@@ -116,7 +116,6 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
-        [TestCase(ItemTypeConstants.SpecificCursedItem)]
         [TestCase(ItemTypeConstants.Tool)]
         [TestCase("item type")]
         public void InvalidItemType(String itemType)

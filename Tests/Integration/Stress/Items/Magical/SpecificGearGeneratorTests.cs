@@ -22,9 +22,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var gear = GenerateSpecificGear();
 
-            if (gear.ItemType == ItemTypeConstants.SpecificCursedItem)
-                return;
-
             Assert.That(gear.Name, Is.Not.Empty);
             Assert.That(gear.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(gear.Quantity, Is.EqualTo(1));

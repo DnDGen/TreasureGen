@@ -65,7 +65,6 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
         [TestCase(ItemTypeConstants.Scroll)]
         [TestCase(ItemTypeConstants.Staff)]
         [TestCase(ItemTypeConstants.Wand)]
-        [TestCase(ItemTypeConstants.SpecificCursedItem)]
         [TestCase(ItemTypeConstants.WondrousItem)]
         [TestCase("item type")]
         public void InvalidItemType(String itemType)

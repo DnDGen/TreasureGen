@@ -61,6 +61,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void BagOfDevouringIsNotIntelligent()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
         public void DetermineNotIntelligentFromBooleanSelector()
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
@@ -584,6 +590,12 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo("specific alignment ending"));
+        }
+
+        [Test]
+        public void ItemWithAlignmentUsesThatAsAlignmentRequirement()
+        {
+            Assert.Fail();
         }
 
         [Test]

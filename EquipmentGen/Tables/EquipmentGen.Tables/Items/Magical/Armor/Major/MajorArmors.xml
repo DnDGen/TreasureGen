@@ -33,12 +33,12 @@
     </object>
     <object>
         <lower>58</lower>
-        <content>SpecificArmors,0</content>
+        <content>Armor,0</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>SpecificShields,0</content>
+        <content>Shield,0</content>
         <upper>63</upper>
     </object>
     <object>

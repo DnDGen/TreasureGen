@@ -329,5 +329,17 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Contents.Count, Is.EqualTo(6));
             mockDice.Verify(d => d.Roll(It.IsAny<Int32>()).d(It.IsAny<Int32>()), Times.Never);
         }
+
+        [Test]
+        public void CandleOfInvocationGetsAlignment()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void RobeOfTheArchmagiGetsAlignment()
+        {
+            Assert.Fail();
+        }
     }
 }

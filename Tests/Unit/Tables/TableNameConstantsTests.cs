@@ -23,6 +23,8 @@ namespace EquipmentGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "SpecialAbilityAttributeRequirements")]
         [TestCase(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, "SpecialAbilityAttributes")]
         [TestCase(TableNameConstants.Attributes.Set.SpecialMaterials, "SpecialMaterials")]
+        [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "SpecificCursedItemItemTypes")]
+        [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "SpecificCursedItemAttributes")]
         [TestCase(TableNameConstants.Attributes.Set.SpecificShieldsAttributes, "SpecificShieldsAttributes")]
         [TestCase(TableNameConstants.Attributes.Set.WondrousItemContents, "WondrousItemContents")]
         [TestCase(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "{0}Types")]
