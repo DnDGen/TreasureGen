@@ -19,6 +19,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Stress();
         }
 
+        protected override String itemType
+        {
+            get { return ItemTypeConstants.Wand; }
+        }
+
         protected override void MakeAssertionsAgainst(Item wand)
         {
             Assert.That(wand.Name, Is.StringStarting("Wand of"));
@@ -67,6 +72,30 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         public override void NoDecorationsHappen()
         {
             AssertNoDecorationsHappen();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsAreIntelligent()
+        {
+            AssertSpecificCursedItemsAreIntelligent();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsHaveTraits()
+        {
+            AssertSpecificCursedItemsHaveTraits();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsHaveSpecialMaterials()
+        {
+            AssertSpecificCursedItemsHaveSpecialMaterials();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsAreNotDecorated()
+        {
+            AssertSpecificCursedItemsAreNotDecorated();
         }
     }
 }

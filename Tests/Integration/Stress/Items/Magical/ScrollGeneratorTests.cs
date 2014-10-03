@@ -18,6 +18,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Stress();
         }
 
+        protected override String itemType
+        {
+            get { return ItemTypeConstants.Scroll; }
+        }
+
         protected override void MakeAssertionsAgainst(Item scroll)
         {
             Assert.That(scroll.Name, Is.EqualTo("Divine scroll").Or.EqualTo("Arcane scroll"));
@@ -56,6 +61,30 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         public override void NoDecorationsHappen()
         {
             AssertNoDecorationsHappen();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsAreIntelligent()
+        {
+            AssertSpecificCursedItemsAreIntelligent();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsHaveTraits()
+        {
+            AssertSpecificCursedItemsHaveTraits();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsHaveSpecialMaterials()
+        {
+            AssertSpecificCursedItemsHaveSpecialMaterials();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsAreNotDecorated()
+        {
+            AssertSpecificCursedItemsAreNotDecorated();
         }
     }
 }
