@@ -40,6 +40,8 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(ArmorConstants.LionsShield, "Lion's shield")]
         [TestCase(ArmorConstants.WingedShield, "Winged shield")]
         [TestCase(ArmorConstants.AbsorbingShield, "Absorbing shield")]
+        [TestCase(ArmorConstants.ArmorOfRage, "Armor of rage")]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction, "Armor of arrow attraction")]
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
@@ -82,7 +84,9 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             Assert.That(armors, Contains.Item(ArmorConstants.LionsShield));
             Assert.That(armors, Contains.Item(ArmorConstants.WingedShield));
             Assert.That(armors, Contains.Item(ArmorConstants.AbsorbingShield));
-            Assert.That(armors.Count(), Is.EqualTo(32));
+            Assert.That(armors, Contains.Item(ArmorConstants.ArmorOfRage));
+            Assert.That(armors, Contains.Item(ArmorConstants.ArmorOfArrowAttraction));
+            Assert.That(armors.Count(), Is.EqualTo(34));
         }
     }
 }

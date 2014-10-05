@@ -26,12 +26,12 @@ namespace EquipmentGen.Generators.Items.Magical
             if (itemType == ItemTypeConstants.Wand || itemType == ItemTypeConstants.Staff)
                 return PercentileCharges();
 
-            if (name == "Deck of illusions")
+            if (name == WondrousItemConstants.DeckOfIllusions)
             {
                 var isFullyCharged = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
 
                 if (isFullyCharged)
-                    name = "Full deck of illusions";
+                    name = WondrousItemConstants.FullDeckOfIllusions;
             }
 
             var result = rangeAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, name);

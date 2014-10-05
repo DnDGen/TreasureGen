@@ -13,40 +13,52 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return TableNameConstants.Attributes.Set.ItemAlignmentRequirements; }
         }
 
-        [TestCase(ArmorConstants.CelestialArmor, "good")]
-        [TestCase(ArmorConstants.DemonArmor, "evil")]
-        [TestCase(WeaponConstants.AssassinsDagger, "evil")]
-        [TestCase(WeaponConstants.HolyAvenger, "Lawful good")]
-        [TestCase(WeaponConstants.NineLivesStealer, "evil")]
-        [TestCase(WeaponConstants.SunBlade, "good")]
-        [TestCase("Rod of the python", "good")]
-        [TestCase("Rod of the viper", "evil")]
-        [TestCase("Chaos diamond", "Chaotic")]
-        [TestCase("Darkskull", "evil")]
-        [TestCase("Amulet of inescapable location", "evil")]
-        [TestCase("Armor of arrow attraction", "evil")]
-        [TestCase("Armor of rage", "evil")]
-        [TestCase("Boots of dancing", "evil")]
-        [TestCase("Bracers of defenselessness", "evil")]
-        [TestCase("Broom of animated attack", "evil")]
-        [TestCase("Cloak of poisonousness", "evil")]
-        [TestCase("Crystal hypnosis ball", "evil")]
-        [TestCase("Gauntlets of fumbling", "evil")]
-        [TestCase("Mace of blood", "Chaotic evil")]
-        [TestCase("Medallion of thought projection", "evil")]
-        [TestCase("Necklace of strangulation", "evil")]
-        [TestCase("Periapt of foul rotting", "evil")]
-        [TestCase("Robe of powerlessness", "evil")]
-        [TestCase("Robe of vermin", "evil")]
-        [TestCase("Ring of clumsiness", "evil")]
-        [TestCase("Scarab of death", "evil")]
-        [TestCase("Cursed backbiter spear", "evil")]
-        [TestCase("Stone of weight", "evil")]
-        [TestCase("Vacuous grimoire", "evil")]
-        [TestCase("Cursed -2 sword", "evil")]
+        [TestCase(ArmorConstants.CelestialArmor, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(ArmorConstants.DemonArmor, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WeaponConstants.AssassinsDagger, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WeaponConstants.NineLivesStealer, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WeaponConstants.SunBlade, IntelligenceAlignmentConstants.Good)]
+        [TestCase("Rod of the python", IntelligenceAlignmentConstants.Good)]
+        [TestCase("Rod of the viper", IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.ChaosDiamond, IntelligenceAlignmentConstants.Chaotic)]
+        [TestCase(WondrousItemConstants.Darkskull, IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Amulet of inescapable location", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Armor of arrow attraction", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Armor of rage", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Boots of dancing", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Bracers of defenselessness", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Broom of animated attack", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Cloak of poisonousness", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Crystal hypnosis ball", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Gauntlets of fumbling", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Medallion of thought projection", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Necklace of strangulation", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Periapt of foul rotting", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Robe of powerlessness", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Robe of vermin", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Ring of clumsiness", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Scarab of death", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Cursed backbiter spear", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Stone of weight", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Vacuous grimoire", IntelligenceAlignmentConstants.Evil)]
+        [TestCase("Cursed -2 sword", IntelligenceAlignmentConstants.Evil)]
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);
+        }
+
+        [Test]
+        public void HolyAvengerAlignmentRequirement()
+        {
+            var attributes = new[] { IntelligenceAlignmentConstants.LawfulGood };
+            base.Attributes(WeaponConstants.HolyAvenger, attributes);
+        }
+
+        [Test]
+        public void MaceOfBloodAlignmentRequirement()
+        {
+            var attributes = new[] { IntelligenceAlignmentConstants.ChaoticEvil };
+            base.Attributes("Mace of blood", attributes);
         }
 
         [Test]
@@ -62,8 +74,8 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
                 WeaponConstants.SunBlade,
                 "Rod of the python",
                 "Rod of the viper",
-                "Chaos diamond",
-                "Darkskull",
+                WondrousItemConstants.ChaosDiamond,
+                WondrousItemConstants.Darkskull,
                 "Amulet of inescapable location",
                 "Armor of arrow attraction",
                 "Armor of rage",

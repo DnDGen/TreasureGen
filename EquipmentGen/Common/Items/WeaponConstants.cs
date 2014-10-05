@@ -110,6 +110,11 @@ namespace EquipmentGen.Common.Items
         public const String Shatterspike = "Shatterspike";
         public const String DaggerOfVenom = "Dagger of venom";
         public const String TridentOfWarning = "Trident of warning";
+        public const String CursedMinus2Sword = "Cursed -2 sword";
+        public const String CursedBackbiterSpear = "Cursed backbiter spear";
+        public const String NetOfSnaring = "Net of snaring";
+        public const String MaceOfBlood = "Mace of blood";
+        public const String BerserkingSword = "Berserking sword";
 
         public static IEnumerable<String> GetAllWeapons()
         {
@@ -214,7 +219,12 @@ namespace EquipmentGen.Common.Items
                 GreaterSlayingArrow,
                 Shatterspike,
                 DaggerOfVenom,
-                TridentOfWarning
+                TridentOfWarning,
+                CursedMinus2Sword,
+                CursedBackbiterSpear,
+                NetOfSnaring,
+                MaceOfBlood ,
+                BerserkingSword
             };
         }
     }

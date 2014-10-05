@@ -25,7 +25,6 @@ namespace EquipmentGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Attributes.Set.SpecialMaterials, "SpecialMaterials")]
         [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "SpecificCursedItemItemTypes")]
         [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "SpecificCursedItemAttributes")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecificShieldAttributes, "SpecificShieldAttributes")]
         [TestCase(TableNameConstants.Attributes.Set.WondrousItemContents, "WondrousItemContents")]
         [TestCase(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "{0}Types")]
         [TestCase(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, "{0}Values")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
@@ -18,18 +19,58 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             AssertTableIsComplete();
         }
 
-        [TestCase("Chaotic good", 1, 5)]
-        [TestCase("Chaotic neutral", 6, 15)]
-        [TestCase("Chaotic evil", 16, 20)]
-        [TestCase("Neutral evil", 21, 25)]
-        [TestCase("Lawful evil", 26, 30)]
-        [TestCase("Lawful good", 31, 55)]
-        [TestCase("Lawful neutral", 56, 60)]
-        [TestCase("Neutral good", 61, 80)]
-        [TestCase("True neutral", 81, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        [Test]
+        public void ChaoticGoodPercentile()
         {
-            base.Percentile(content, lower, upper);
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticGood, 1, 5);
+        }
+
+        [Test]
+        public void ChaoticNeutralPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticNeutral, 6, 15);
+        }
+
+        [Test]
+        public void ChaoticEvilPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticGood, 16, 20);
+        }
+
+        [Test]
+        public void NeutralEvilPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.NeutralEvil, 21, 25);
+        }
+
+        [Test]
+        public void LawfulEvilPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.LawfulEvil, 26, 30);
+        }
+
+        [Test]
+        public void LawfulGoodPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.LawfulGood, 31, 55);
+        }
+
+        [Test]
+        public void LawfulNeutralPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.LawfulNeutral, 56, 60);
+        }
+
+        [Test]
+        public void NeutralGoodPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.NeutralGood, 61, 80);
+        }
+
+        [Test]
+        public void TrueNeutralPercentile()
+        {
+            base.Percentile(IntelligenceAlignmentConstants.TrueNeutral, 81, 100);
         }
     }
 }

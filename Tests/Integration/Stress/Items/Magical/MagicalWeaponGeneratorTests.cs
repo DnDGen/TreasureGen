@@ -55,6 +55,46 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
+        public void UndecoratedSpecificWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Intelligence.Ego > 0 || !String.IsNullOrEmpty(weapon.Magic.Curse)));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
+            Assert.That(weapon.Magic.Curse, Is.Empty);
+            Assert.That(weapon.Magic.Intelligence.Ego, Is.EqualTo(0));
+            AssertIterations();
+        }
+
+        [Test]
+        public void IntelligentSpecificWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Intelligence.Ego == 0));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
+            Assert.That(weapon.Magic.Intelligence.Ego, Is.Positive);
+            AssertIterations();
+        }
+
+        [Test]
+        public void CursedSpecificWeaponHappens()
+        {
+            Item weapon;
+
+            do weapon = GenerateItem();
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || String.IsNullOrEmpty(weapon.Magic.Curse)));
+
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
+            Assert.That(weapon.Magic.Curse, Is.Not.Empty);
+            AssertIterations();
+        }
+
+        [Test]
         public void SpecificWeaponDoesNotHappen()
         {
             Item weapon;

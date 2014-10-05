@@ -1,6 +1,7 @@
 ﻿using System;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Tables.Interfaces;
 
 namespace EquipmentGen.Generators.Decorators
 {
@@ -22,7 +23,7 @@ namespace EquipmentGen.Generators.Decorators
             if (curseGenerator.HasCurse(item.IsMagical))
             {
                 var curse = curseGenerator.GenerateCurse();
-                if (curse == "SpecificCursedItem")
+                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
                     return curseGenerator.GenerateSpecificCursedItem();
 
                 item.Magic.Curse = curse;

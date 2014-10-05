@@ -37,6 +37,8 @@ namespace EquipmentGen.Common.Items
         public const String LionsShield = "Lion's shield";
         public const String WingedShield = "Winged shield";
         public const String AbsorbingShield = "Absorbing shield";
+        public const String ArmorOfRage = "Armor of rage";
+        public const String ArmorOfArrowAttraction = "Armor of arrow attraction";
 
         public static IEnumerable<String> GetAllArmors()
         {
@@ -73,7 +75,9 @@ namespace EquipmentGen.Common.Items
                 SpinedShield,
                 LionsShield,
                 WingedShield,
-                AbsorbingShield
+                AbsorbingShield,
+                ArmorOfArrowAttraction,
+                ArmorOfRage
             };
         }
     }

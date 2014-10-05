@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
-    public class SpecificShieldsAttributesTests : AttributesTests
+    public class SpecificShieldAttributesTests : AttributesTests
     {
         protected override String tableName
         {

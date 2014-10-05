@@ -70,15 +70,20 @@
     <Compile Include="Goods\GoodTests.cs" />
     <Compile Include="Items\ArmorConstantsTests.cs" />
     <Compile Include="Items\AttributeConstantsTests.cs" />
+    <Compile Include="Items\CurseConstantsTests.cs" />
+    <Compile Include="Items\IntelligenceAlignmentConstantsTests.cs" />
     <Compile Include="Items\IntelligenceTests.cs" />
     <Compile Include="Items\ItemTests.cs" />
     <Compile Include="Items\ItemTypeConstantsTests.cs" />
     <Compile Include="Items\MagicTests.cs" />
     <Compile Include="Items\PowerConstantsTests.cs" />
+    <Compile Include="Items\RingConstantsTests.cs" />
+    <Compile Include="Items\RodConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityTests.cs" />
     <Compile Include="Items\TraitConstantsTests.cs" />
     <Compile Include="Items\WeaponConstantsTests.cs" />
+    <Compile Include="Items\WondrousItemConstantsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreasureTests.cs" />
   </ItemGroup>

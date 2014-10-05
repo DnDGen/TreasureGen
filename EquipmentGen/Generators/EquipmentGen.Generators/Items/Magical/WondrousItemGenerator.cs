@@ -45,51 +45,60 @@ namespace EquipmentGen.Generators.Items.Magical
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
 
-            if (item.Name == "Horn of Valhalla")
-            {
-                var hornType = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
-                item.Name = String.Format("{0} {1}", hornType, item.Name);
-            }
-            else if (item.Name == "Iron flask")
-            {
-                var contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents);
+            var trait = GetTraitFor(item.Name);
+            if (!String.IsNullOrEmpty(trait))
+                item.Traits.Add(trait);
 
-                if (contents == TableNameConstants.Percentiles.Set.BalorOrPitFiend)
-                    contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
-
-                if (!String.IsNullOrEmpty(contents))
-                    item.Contents.Add(contents);
-            }
-            else if (item.Name == "Robe of useful items")
-            {
-                var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, item.Name);
-                item.Contents.AddRange(baseItems);
-
-                var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
-                item.Contents.AddRange(extraItems);
-            }
-            else if (item.Name == "Cubic gate")
-            {
-                var planes = GeneratePlanesForCubicGate();
-                item.Contents.AddRange(planes);
-            }
-            else if (item.Name == "Candle of invocation")
-            {
-                var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
-                item.Traits.Add(alignment);
-            }
-            else if (item.Name == "Robe of the archmagi")
-            {
-                var color = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
-                item.Traits.Add(color);
-            }
-            else if (ItemHasPartialContents(item.Name))
-            {
-                var partialContents = GetPartialContents(item.Name);
-                item.Contents.AddRange(partialContents);
-            }
+            var contents = GetContentsFor(item.Name);
+            item.Contents.AddRange(contents);
 
             return item;
+        }
+
+        private String GetTraitFor(String name)
+        {
+            switch (name)
+            {
+                case WondrousItemConstants.HornOfValhalla: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
+                case WondrousItemConstants.CandleOfInvocation: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
+                case WondrousItemConstants.RobeOfTheArchmagi: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
+                default: return String.Empty;
+            }
+        }
+
+        private IEnumerable<String> GetContentsFor(String name)
+        {
+            switch (name)
+            {
+                case WondrousItemConstants.IronFlask: return GetIronFlaskContents();
+                case WondrousItemConstants.RobeOfUsefulItems: return GetRobeOfUsefulItemsItems();
+                case WondrousItemConstants.CubicGate: return GeneratePlanesForCubicGate();
+            }
+
+            if (ItemHasPartialContents(name))
+                return GetPartialContents(name);
+
+            return Enumerable.Empty<String>();
+        }
+
+        private IEnumerable<String> GetIronFlaskContents()
+        {
+            var contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents);
+
+            if (String.IsNullOrEmpty(contents))
+                return Enumerable.Empty<String>();
+
+            if (contents == TableNameConstants.Percentiles.Set.BalorOrPitFiend)
+                contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
+
+            return new[] { contents };
+        }
+
+        private IEnumerable<String> GetRobeOfUsefulItemsItems()
+        {
+            var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
+            var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
+            return baseItems.Union(extraItems);
         }
 
         private IEnumerable<String> GetPartialContents(String name)
@@ -115,13 +124,13 @@ namespace EquipmentGen.Generators.Items.Magical
 
         private Boolean ItemHasPartialContents(String name)
         {
-            if (name == "Robe of bones")
+            if (name == WondrousItemConstants.RobeOfBones)
                 return true;
 
-            if (name.StartsWith("Necklace of fireballs"))
+            if (name.StartsWith(WondrousItemConstants.NecklaceOfFireballs))
                 return true;
 
-            if (name == "Deck of illusions")
+            if (name == WondrousItemConstants.DeckOfIllusions)
                 return true;
 
             return false;

@@ -2,6 +2,7 @@
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Decorators;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
+using EquipmentGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -58,7 +59,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         {
             var specificCursedItem = new Item();
             mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("SpecificCursedItem");
+            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem()).Returns(specificCursedItem);
 
             var item = decorator.GenerateAtPower("power");

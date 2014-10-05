@@ -100,7 +100,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(TraitConstants.Darkwood);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields)).Returns("big shield");
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificShieldAttributes, "big shield")).Returns(attributes);
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, AttributeConstants.Shield);
+            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "big shield")).Returns(attributes);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));

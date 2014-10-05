@@ -24,7 +24,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase("Requirement", 46, 60)]
         [TestCase("Drawback", 61, 75)]
         [TestCase("Completely different effect", 76, 90)]
-        [TestCase("SpecificCursedItem", 91, 100)]
+        [TestCase(TableNameConstants.Percentiles.Set.SpecificCursedItems, 91, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {
             base.Percentile(content, lower, upper);
