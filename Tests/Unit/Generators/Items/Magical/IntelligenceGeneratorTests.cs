@@ -426,7 +426,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
-        [TestCase("Chaotic")]
+        [TestCase(IntelligenceAlignmentConstants.Chaotic)]
         public void NonAxiomaticAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic };
@@ -438,8 +438,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
-        [TestCase("Neutral")]
-        [TestCase("Lawful")]
+        [TestCase(IntelligenceAlignmentConstants.Neutral)]
+        [TestCase(IntelligenceAlignmentConstants.Lawful)]
         [TestCase("True")]
         public void AxiomaticAlignments(String alignment)
         {
@@ -452,7 +452,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
         }
 
-        [TestCase("Lawful")]
+        [TestCase(IntelligenceAlignmentConstants.Lawful)]
         public void NonAnarchicAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Anarchic };
@@ -464,8 +464,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
-        [TestCase("Neutral")]
-        [TestCase("Chaotic")]
+        [TestCase(IntelligenceAlignmentConstants.Neutral)]
+        [TestCase(IntelligenceAlignmentConstants.Chaotic)]
         [TestCase("True")]
         public void AnarchicAlignments(String alignment)
         {
@@ -478,7 +478,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo(alignment + " alignment"));
         }
 
-        [TestCase("Evil")]
+        [TestCase(IntelligenceAlignmentConstants.Evil)]
         public void NonHolyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
@@ -490,8 +490,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
-        [TestCase("Neutral")]
-        [TestCase("Good")]
+        [TestCase(IntelligenceAlignmentConstants.Neutral)]
+        [TestCase(IntelligenceAlignmentConstants.Good)]
         public void HolyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Holy };
@@ -503,7 +503,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment " + alignment));
         }
 
-        [TestCase("Good")]
+        [TestCase(IntelligenceAlignmentConstants.Good)]
         public void NonUnholyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
@@ -515,8 +515,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Alignment, Is.EqualTo("alignment"));
         }
 
-        [TestCase("Neutral")]
-        [TestCase("Evil")]
+        [TestCase(IntelligenceAlignmentConstants.Neutral)]
+        [TestCase(IntelligenceAlignmentConstants.Evil)]
         public void UnholyAlignments(String alignment)
         {
             var ability = new SpecialAbility { Name = SpecialAbilityConstants.Unholy };
@@ -589,7 +589,25 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ItemWithAlignmentUsesThatAsAlignmentRequirement()
         {
-            Assert.Fail();
+            var trait = String.Format("trait ({0})", IntelligenceAlignmentConstants.ChaoticNeutral);
+            item.Traits.Add(trait);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns("alignment").Returns(IntelligenceAlignmentConstants.ChaoticNeutral);
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo(IntelligenceAlignmentConstants.ChaoticNeutral));
+        }
+
+        [Test]
+        public void ItemWithPartialAlignmentUsesThatAsAlignmentRequirement()
+        {
+            var trait = String.Format("trait ({0})", IntelligenceAlignmentConstants.Chaotic);
+            item.Traits.Add(trait);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns("alignment").Returns(IntelligenceAlignmentConstants.ChaoticNeutral);
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo(IntelligenceAlignmentConstants.ChaoticNeutral));
         }
 
         [Test]
@@ -604,9 +622,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EgoIncludesSpecialAbilityBonuses()
         {
-            var ability = new SpecialAbility();
-            ability.BonusEquivalent = 9266;
-            item.Magic.SpecialAbilities = new[] { ability };
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { BonusEquivalent = 9200 },
+                new SpecialAbility { BonusEquivalent = 66 }
+            };
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(9266));
@@ -678,13 +698,22 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(intelligence.Ego, Is.EqualTo(1));
         }
 
-        [Test]
-        public void EgoIncludesStatBonuses()
+        [TestCase(10, 0)]
+        [TestCase(11, 0)]
+        [TestCase(12, 2)]
+        [TestCase(13, 2)]
+        [TestCase(14, 4)]
+        [TestCase(15, 4)]
+        [TestCase(16, 6)]
+        [TestCase(17, 6)]
+        [TestCase(18, 8)]
+        [TestCase(19, 8)]
+        [TestCase(20, 10)]
+        public void EgoIncludesStatBonuses(Int32 strongStat, Int32 egoBonus)
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("19");
-
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns(strongStat.ToString());
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Ego, Is.EqualTo(8));
+            Assert.That(intelligence.Ego, Is.EqualTo(egoBonus));
         }
 
         [Test]

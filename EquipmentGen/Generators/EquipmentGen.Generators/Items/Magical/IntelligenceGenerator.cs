@@ -50,8 +50,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var highStat = Convert.ToInt32(highStatResult);
 
             var intelligence = new Intelligence();
-            //INFO: dividing and multiplying by 2 so that integer division rounds down odd numbers
-            intelligence.Ego += (highStat - 10) / 2 * 2;
+            intelligence.Ego += highStat - 10 - highStat % 2;
             intelligence.Ego += item.Magic.Bonus;
 
             foreach (var ability in item.Magic.SpecialAbilities)

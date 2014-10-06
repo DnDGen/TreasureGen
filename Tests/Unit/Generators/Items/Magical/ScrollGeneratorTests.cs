@@ -30,6 +30,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
         }
@@ -42,7 +43,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Name, Is.EqualTo("spell type scroll"));
+            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Traits, Contains.Item("spell type"));
             Assert.That(scroll.Contents, Contains.Item("spell (9266)"));
         }
 
