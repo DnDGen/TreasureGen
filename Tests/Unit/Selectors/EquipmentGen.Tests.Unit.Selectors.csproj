@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AttributesSelectorTests.cs" />
     <Compile Include="BooleanPercentileSelectorTests.cs" />
+    <Compile Include="Decorators\ReplacePercentileSelectorDecorator.cs" />
     <Compile Include="IntelligenceAttributesSelectorTests.cs" />
     <Compile Include="PercentileSelectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

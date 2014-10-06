@@ -12,6 +12,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(RingConstants.ChameleonPower, "Ring of Chameleon power")]
         [TestCase(RingConstants.Climbing, "Ring of Climbing")]
         [TestCase(RingConstants.Climbing_Improved, "Ring of Improved climbing")]
+        [TestCase(RingConstants.Clumsiness, "Ring of Clumsiness")]
         [TestCase(RingConstants.Counterspells, "Ring of Counterspells")]
         [TestCase(RingConstants.DjinniCalling, "Ring of Djinni calling")]
         [TestCase(RingConstants.ElementalCommand_Air, "Ring of Elemental command (air)")]

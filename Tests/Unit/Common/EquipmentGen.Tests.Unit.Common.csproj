@@ -76,11 +76,13 @@
     <Compile Include="Items\ItemTests.cs" />
     <Compile Include="Items\ItemTypeConstantsTests.cs" />
     <Compile Include="Items\MagicTests.cs" />
+    <Compile Include="Items\PotionConstantsTests.cs" />
     <Compile Include="Items\PowerConstantsTests.cs" />
     <Compile Include="Items\RingConstantsTests.cs" />
     <Compile Include="Items\RodConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityConstantsTests.cs" />
     <Compile Include="Items\SpecialAbilityTests.cs" />
+    <Compile Include="Items\StaffConstantsTests.cs" />
     <Compile Include="Items\TraitConstantsTests.cs" />
     <Compile Include="Items\WeaponConstantsTests.cs" />
     <Compile Include="Items\WondrousItemConstantsTests.cs" />

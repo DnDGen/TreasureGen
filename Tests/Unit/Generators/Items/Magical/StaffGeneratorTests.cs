@@ -33,7 +33,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void GenerateStaff()
         {
             var staff = staffGenerator.GenerateAtPower(power);
-            Assert.That(staff.Name, Is.StringStarting("Staff of "));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -52,8 +51,9 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("staffiness");
+
             var staff = staffGenerator.GenerateAtPower(power);
-            Assert.That(staff.Name, Is.EqualTo("Staff of staffiness"));
+            Assert.That(staff.Name, Is.EqualTo("staffiness"));
         }
 
         [Test]
@@ -71,7 +71,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void StaffOfPowerHasBonusOf2()
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("Power");
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(StaffConstants.Power);
+
             var staff = staffGenerator.GenerateAtPower(power);
             Assert.That(staff.Magic.Bonus, Is.EqualTo(2));
         }
@@ -80,7 +81,8 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         public void StaffOfPowerHasQuarterstaffAttributes()
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("Power");
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(StaffConstants.Power);
+
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockAttributesSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.Quarterstaff)).Returns(attributes);

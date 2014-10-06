@@ -26,15 +26,15 @@ namespace EquipmentGen.Generators.Items.Magical
                 throw new ArgumentException("Cannot generate minor staves");
 
             var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-            var staffPower = percentileSelector.SelectFrom(tablename);
+            var staffName = percentileSelector.SelectFrom(tablename);
 
             var staff = new Item();
-            staff.Name = String.Format("Staff of {0}", staffPower);
+            staff.Name = staffName;
             staff.ItemType = ItemTypeConstants.Staff;
-            staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, staffPower);
+            staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, staffName);
             staff.Attributes = new[] { AttributeConstants.OneTimeUse, AttributeConstants.Charged };
 
-            if (staffPower != "Power")
+            if (staffName != StaffConstants.Power)
                 return staff;
 
             staff.Magic.Bonus = 2;

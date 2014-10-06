@@ -20,7 +20,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         }
 
         [TestCase(WondrousItemConstants.IncenseOfObsession, 1, 5)]
-        [TestCase(RingConstants"Ring of clumsiness", 6, 15)]
+        [TestCase(RingConstants.Clumsiness, 6, 15)]
         [TestCase(WondrousItemConstants.AmuletOfInescapableLocation, 16, 20)]
         [TestCase(WondrousItemConstants.StoneOfWeight_Loadstone, 21, 25)]
         [TestCase(WondrousItemConstants.BracersOfDefenselessness, 26, 30)]
@@ -30,7 +30,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WondrousItemConstants.MedallionOfThoughtProjection, 44, 46)]
         [TestCase(WondrousItemConstants.FlaskOfCurses, 47, 52)]
         [TestCase(WondrousItemConstants.DustOfSneezingAndChoking, 53, 54)]
-        [TestCase(PotionConstants"Potion of poison", 56, 60)]
+        [TestCase(PotionConstants.Poison, 56, 60)]
         [TestCase(WondrousItemConstants.RobeOfPowerlessness, 62, 63)]
         [TestCase(WeaponConstants.CursedBackbiterSpear, 65, 68)]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction, 69, 70)]

@@ -22,26 +22,26 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Rod of the viper", IntelligenceAlignmentConstants.Evil)]
         [TestCase(WondrousItemConstants.ChaosDiamond, IntelligenceAlignmentConstants.Chaotic)]
         [TestCase(WondrousItemConstants.Darkskull, IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Amulet of inescapable location", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Armor of arrow attraction", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Armor of rage", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Boots of dancing", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Bracers of defenselessness", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Broom of animated attack", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Cloak of poisonousness", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Crystal hypnosis ball", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Gauntlets of fumbling", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Medallion of thought projection", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Necklace of strangulation", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Periapt of foul rotting", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Robe of powerlessness", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Robe of vermin", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Ring of clumsiness", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Scarab of death", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Cursed backbiter spear", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Stone of weight", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Vacuous grimoire", IntelligenceAlignmentConstants.Evil)]
-        [TestCase("Cursed -2 sword", IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.AmuletOfInescapableLocation, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(ArmorConstants.ArmorOfRage, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.BootsOfDancing, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.BracersOfDefenselessness, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.BroomOfAnimatedAttack, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.CloakOfPoisonousness, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.CrystalBall_Hypnosis, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.GauntletsOfFumbling, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.MedallionOfThoughtProjection, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.NecklaceOfStrangulation, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.PeriaptOfFoulRotting, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.RobeOfPowerlessness, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.RobeOfVermin, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(RingConstants.Clumsiness, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.ScarabOfDeath, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.StoneOfWeight_Loadstone, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WondrousItemConstants.VacousGrimoire, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(WeaponConstants.CursedMinus2Sword, IntelligenceAlignmentConstants.Evil)]
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);
@@ -58,7 +58,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         public void MaceOfBloodAlignmentRequirement()
         {
             var attributes = new[] { IntelligenceAlignmentConstants.ChaoticEvil };
-            base.Attributes("Mace of blood", attributes);
+            base.Attributes(WeaponConstants.MaceOfBlood, attributes);
         }
 
         [Test]
@@ -76,27 +76,27 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
                 "Rod of the viper",
                 WondrousItemConstants.ChaosDiamond,
                 WondrousItemConstants.Darkskull,
-                "Amulet of inescapable location",
-                "Armor of arrow attraction",
-                "Armor of rage",
-                "Boots of dancing",
-                "Bracers of defenselessness",
-                "Broom of animated attack",
-                "Cloak of poisonousness",
-                "Crystal hypnosis ball",
-                "Gauntlets of fumbling",
-                "Mace of blood",
-                "Medallion of thought projection",
-                "Necklace of strangulation",
-                "Periapt of foul rotting",
-                "Robe of powerlessness",
-                "Robe of vermin",
-                "Ring of clumsiness",
-                "Scarab of death",
-                "Cursed backbiter spear",
-                "Stone of weight",
-                "Vacuous grimoire",
-                "Cursed -2 sword"
+                WondrousItemConstants.AmuletOfInescapableLocation,
+                ArmorConstants.ArmorOfArrowAttraction,
+                ArmorConstants.ArmorOfRage,
+                WondrousItemConstants.BootsOfDancing,
+                WondrousItemConstants.BracersOfDefenselessness,
+                WondrousItemConstants.BroomOfAnimatedAttack,
+                WondrousItemConstants.CloakOfPoisonousness,
+                WondrousItemConstants.CrystalBall_Hypnosis,
+                WondrousItemConstants.GauntletsOfFumbling,
+                WeaponConstants.MaceOfBlood,
+                WondrousItemConstants.MedallionOfThoughtProjection,
+                WondrousItemConstants.NecklaceOfStrangulation,
+                WondrousItemConstants.PeriaptOfFoulRotting,
+                WondrousItemConstants.RobeOfPowerlessness,
+                WondrousItemConstants.RobeOfVermin,
+                RingConstants.Clumsiness,
+                WondrousItemConstants.ScarabOfDeath,
+                WeaponConstants.CursedBackbiterSpear,
+                WondrousItemConstants.StoneOfWeight_Loadstone,
+                WondrousItemConstants.VacousGrimoire,
+                WeaponConstants.CursedMinus2Sword
             };
 
             base.Attributes("Items", items);

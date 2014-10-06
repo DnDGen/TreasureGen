@@ -9,6 +9,7 @@ namespace EquipmentGen.Common.Items
         public const String ChameleonPower = "Ring of Chameleon power";
         public const String Climbing = "Ring of Climbing";
         public const String Climbing_Improved = "Ring of Improved climbing";
+        public const String Clumsiness = "Ring of Clumsiness";
         public const String Counterspells = "Ring of Counterspells";
         public const String DjinniCalling = "Ring of Djinni calling";
         public const String ElementalCommand_Air = "Ring of Elemental command (air)";

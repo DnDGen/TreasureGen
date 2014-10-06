@@ -69,10 +69,12 @@
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemTypeConstants.cs" />
     <Compile Include="Items\Magic.cs" />
+    <Compile Include="Items\PotionConstants.cs" />
     <Compile Include="Items\PowerConstants.cs" />
     <Compile Include="Items\RingConstants.cs" />
     <Compile Include="Items\SpecialAbility.cs" />
     <Compile Include="Items\SpecialAbilityConstants.cs" />
+    <Compile Include="Items\StaffConstants.cs" />
     <Compile Include="Items\TraitConstants.cs" />
     <Compile Include="Items\WeaponConstants.cs" />
     <Compile Include="Items\WondrousItemConstants.cs" />

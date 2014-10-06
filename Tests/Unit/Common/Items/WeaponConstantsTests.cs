@@ -234,7 +234,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.DaggerOfVenom));
             Assert.That(weapons, Contains.Item(WeaponConstants.TridentOfWarning));
             Assert.That(weapons, Contains.Item(WeaponConstants.CursedBackbiterSpear));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CursedMinus2Sword);
+            Assert.That(weapons, Contains.Item(WeaponConstants.CursedMinus2Sword));
             Assert.That(weapons, Contains.Item(WeaponConstants.NetOfSnaring));
             Assert.That(weapons, Contains.Item(WeaponConstants.MaceOfBlood));
             Assert.That(weapons, Contains.Item(WeaponConstants.BerserkingSword));

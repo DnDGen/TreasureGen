@@ -19,14 +19,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
             AssertTableIsComplete();
         }
 
-        [TestCase("Charming", 1, 15)]
-        [TestCase("Fire", 16, 30)]
-        [TestCase("Swarming insects", 31, 40)]
-        [TestCase("Healing", 41, 60)]
-        [TestCase("Size alteration", 61, 75)]
-        [TestCase("Illumination", 76, 90)]
-        [TestCase("Frost", 91, 95)]
-        [TestCase("Defense", 96, 100)]
+        [TestCase(StaffConstants.Charming, 1, 15)]
+        [TestCase(StaffConstants.Fire, 16, 30)]
+        [TestCase(StaffConstants.SwarmingInsects, 31, 40)]
+        [TestCase(StaffConstants.Healing, 41, 60)]
+        [TestCase(StaffConstants.SizeAlteration, 61, 75)]
+        [TestCase(StaffConstants.Illumination, 76, 90)]
+        [TestCase(StaffConstants.Frost, 91, 95)]
+        [TestCase(StaffConstants.Defense, 96, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {
             base.Percentile(content, lower, upper);
