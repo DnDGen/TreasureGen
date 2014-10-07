@@ -22,7 +22,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.DimensionalShackles, 0, 1)]
         [TestCase(WondrousItemConstants.FigurineOfWondrousPower_ObsidianSteed, 0, 2)]
         [TestCase(WondrousItemConstants.DrumsOfPanic, 0, 3)]
-        [TestCase(WondrousItemConstants.IounStone_Orange, 0, 4)]
+        [TestCase(WondrousItemConstants.IounStone_OrangePrism, 0, 4)]
         [TestCase(WondrousItemConstants.IounStone_PaleGreenPrism, 0, 5)]
         [TestCase(WondrousItemConstants.LanternOfRevealing, 0, 6)]
         [TestCase(WondrousItemConstants.RobeOfBlending, 0, 7)]

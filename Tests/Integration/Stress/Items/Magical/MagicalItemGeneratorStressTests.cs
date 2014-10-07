@@ -110,47 +110,16 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             AssertIterations();
         }
 
-        public abstract void SpecificCursedItemsHaveTraits();
-
-        protected void AssertSpecificCursedItemsHaveTraits()
-        {
-            var item = new Item();
-
-            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item") || !item.Traits.Except(materials).Any())
-                item = GenerateItem();
-
-            var traits = item.Traits.Except(materials);
-            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
-            Assert.That(traits, Is.Not.Empty, type);
-            AssertIterations();
-        }
-
-        public abstract void SpecificCursedItemsHaveSpecialMaterials();
-
-        protected void AssertSpecificCursedItemsHaveSpecialMaterials()
-        {
-            var item = new Item();
-
-            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || !item.Traits.Intersect(materials).Any()))
-                item = GenerateItem();
-
-            var itemMaterials = item.Traits.Intersect(materials);
-            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
-            Assert.That(itemMaterials, Is.Not.Empty, type);
-            AssertIterations();
-        }
-
         public abstract void SpecificCursedItemsAreNotDecorated();
 
         protected void AssertSpecificCursedItemsAreNotDecorated()
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Traits.Any() || item.Magic.Curse.Any() || item.Magic.Intelligence.Ego > 0))
+            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Magic.Intelligence.Ego > 0))
                 item = GenerateItem();
 
             Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
-            Assert.That(item.Traits, Is.Empty, type);
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), type);
             AssertIterations();
         }

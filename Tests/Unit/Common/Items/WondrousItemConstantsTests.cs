@@ -150,7 +150,7 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         [TestCase(WondrousItemConstants.IounStone_IncandescentBlueSphere, "Incandescent blue sphere ioun stone")]
         [TestCase(WondrousItemConstants.IounStone_IridescentSpindle, "Iridescent spindle ioun stone")]
         [TestCase(WondrousItemConstants.IounStone_LavenderAndGreenEllipsoid, "Lavender and green ellipsoid ioun stone")]
-        [TestCase(WondrousItemConstants.IounStone_Orange, "Orange ioun stone")]
+        [TestCase(WondrousItemConstants.IounStone_OrangePrism, "Orange ioun stone")]
         [TestCase(WondrousItemConstants.IounStone_PaleBlueRhomboid, "Pale blue rhomboid ioun stone")]
         [TestCase(WondrousItemConstants.IounStone_PaleGreenPrism, "Pale green prism ioun stone")]
         [TestCase(WondrousItemConstants.IounStone_PaleLavenderEllipsoid, "Pale lavender ellipsoid ioun stone")]
