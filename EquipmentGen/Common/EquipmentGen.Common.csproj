@@ -72,6 +72,7 @@
     <Compile Include="Items\PotionConstants.cs" />
     <Compile Include="Items\PowerConstants.cs" />
     <Compile Include="Items\RingConstants.cs" />
+    <Compile Include="Items\RodConstants.cs" />
     <Compile Include="Items\SpecialAbility.cs" />
     <Compile Include="Items\SpecialAbilityConstants.cs" />
     <Compile Include="Items\StaffConstants.cs" />

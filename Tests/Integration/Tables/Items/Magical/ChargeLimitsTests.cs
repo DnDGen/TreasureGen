@@ -36,9 +36,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_VI, 1, 9)]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_VII, 1, 9)]
         [TestCase(WondrousItemConstants.RobeOfBones, 1, 12)]
-        [TestCase("Rod of absorption", 1, 50)]
-        [TestCase("Rod of absorption (max)", 50, 50)]
-        [TestCase("Rod of rulership", 1, 500)]
+        [TestCase(RodConstants.Absorption, 1, 50)]
+        [TestCase(RodConstants.FullAbsorption, 50, 50)]
+        [TestCase(RodConstants.Rulership, 1, 500)]
         public void Attributes(String name, Int32 min, Int32 max)
         {
             var attributes = new[] { min.ToString(), max.ToString() };

@@ -13,70 +13,70 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
             get { return String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod); }
         }
 
-        [TestCase("Rod of lesser metamagic: Enlarge")]
-        [TestCase("Rod of lesser metamagic: Extend")]
-        [TestCase("Rod of lesser metamagic: Silent")]
-        [TestCase("Rod of lesser metamagic: Empower")]
-        [TestCase("Rod of lesser metamagic: Maximize")]
-        [TestCase("Rod of lesser metamagic: Quicken")]
-        [TestCase("Rod of metamagic: Enlarge")]
-        [TestCase("Rod of metamagic: Extend")]
-        [TestCase("Rod of metamagic: Silent")]
-        [TestCase("Rod of metamagic: Empower")]
-        [TestCase("Rod of metamagic: Maximize")]
-        [TestCase("Rod of metamagic: Quicken")]
-        [TestCase("Rod of greater metamagic: Enlarge")]
-        [TestCase("Rod of greater metamagic: Extend")]
-        [TestCase("Rod of greater metamagic: Silent")]
-        [TestCase("Rod of greater metamagic: Empower")]
-        [TestCase("Rod of greater metamagic: Maximize")]
-        [TestCase("Rod of greater metamagic: Quicken")]
-        [TestCase("Immovable rod")]
-        [TestCase("Rod of metal and mineral detection")]
-        [TestCase("Rod of cancellation")]
-        [TestCase("Rod of wonder")]
-        [TestCase("Rod of the python", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.Metamagic_Enlarge_Lesser)]
+        [TestCase(RodConstants.Metamagic_Extend_Lesser)]
+        [TestCase(RodConstants.Metamagic_Silent_Lesser)]
+        [TestCase(RodConstants.Metamagic_Empower_Lesser)]
+        [TestCase(RodConstants.Metamagic_Maximize_Lesser)]
+        [TestCase(RodConstants.Metamagic_Quicken_Lesser)]
+        [TestCase(RodConstants.Metamagic_Enlarge)]
+        [TestCase(RodConstants.Metamagic_Extend)]
+        [TestCase(RodConstants.Metamagic_Silent)]
+        [TestCase(RodConstants.Metamagic_Empower)]
+        [TestCase(RodConstants.Metamagic_Maximize)]
+        [TestCase(RodConstants.Metamagic_Quicken)]
+        [TestCase(RodConstants.Metamagic_Enlarge_Greater)]
+        [TestCase(RodConstants.Metamagic_Extend_Greater)]
+        [TestCase(RodConstants.Metamagic_Silent_Greater)]
+        [TestCase(RodConstants.Metamagic_Empower_Greater)]
+        [TestCase(RodConstants.Metamagic_Maximize_Greater)]
+        [TestCase(RodConstants.Metamagic_Quicken_Greater)]
+        [TestCase(RodConstants.ImmovableRod)]
+        [TestCase(RodConstants.MetalAndMineralDetection)]
+        [TestCase(RodConstants.Cancellation)]
+        [TestCase(RodConstants.Wonder)]
+        [TestCase(RodConstants.Python, AttributeConstants.Bludgeoning,
                                        AttributeConstants.DoubleWeapon,
                                        AttributeConstants.Common,
                                        AttributeConstants.Melee,
                                        AttributeConstants.Wood,
                                        AttributeConstants.Specific)]
-        [TestCase("Rod of the viper", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.Viper, AttributeConstants.Bludgeoning,
                                       AttributeConstants.Common,
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,
                                       AttributeConstants.Specific)]
-        [TestCase("Rod of flame extinguishing")]
-        [TestCase("Rod of enemy detection")]
-        [TestCase("Rod of splendor")]
-        [TestCase("Rod of withering", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.FlameExtinguishing)]
+        [TestCase(RodConstants.EnemyDetection)]
+        [TestCase(RodConstants.Splendor)]
+        [TestCase(RodConstants.Withering, AttributeConstants.Bludgeoning,
                                       AttributeConstants.Common,
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,
                                       AttributeConstants.Specific)]
-        [TestCase("Rod of thunder and lightning", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.ThunderAndLightning, AttributeConstants.Bludgeoning,
                                                   AttributeConstants.Common,
                                                   AttributeConstants.Melee,
                                                   AttributeConstants.Metal,
                                                   AttributeConstants.Specific)]
-        [TestCase("Rod of negation")]
-        [TestCase("Rod of flailing", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.Negation)]
+        [TestCase(RodConstants.Flailing, AttributeConstants.Bludgeoning,
                                      AttributeConstants.DoubleWeapon,
                                      AttributeConstants.Melee,
                                      AttributeConstants.Metal,
                                      AttributeConstants.Specific,
                                      AttributeConstants.Uncommon)]
-        [TestCase("Rod of absorption", AttributeConstants.Charged,
+        [TestCase(RodConstants.Absorption, AttributeConstants.Charged,
                                        AttributeConstants.OneTimeUse)]
-        [TestCase("Rod of rulership", AttributeConstants.Charged,
+        [TestCase(RodConstants.Rulership, AttributeConstants.Charged,
                                       AttributeConstants.OneTimeUse)]
-        [TestCase("Rod of security")]
-        [TestCase("Rod of lordly might", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.Security)]
+        [TestCase(RodConstants.LordlyMight, AttributeConstants.Bludgeoning,
                                          AttributeConstants.Common,
                                          AttributeConstants.Melee,
                                          AttributeConstants.Metal,
                                          AttributeConstants.Specific)]
-        [TestCase("Rod of alertness", AttributeConstants.Bludgeoning,
+        [TestCase(RodConstants.Alertness, AttributeConstants.Bludgeoning,
                                       AttributeConstants.Common,
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,

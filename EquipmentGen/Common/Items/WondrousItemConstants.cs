@@ -127,7 +127,7 @@ namespace EquipmentGen.Common.Items
         public const String GolembaneScarab = "Golembane scarab";
         public const String GolemManual_Clay = "Clay golem manual";
         public const String GolemManual_Flesh = "Flesh golem manual";
-        public const String GolemManual_GreaterStone = "Greater stone golem manual";
+        public const String GolemManual_Stone_Greater = "Greater stone golem manual";
         public const String GolemManual_Iron = "Iron golem manual";
         public const String GolemManual_Stone = "Stone golem manual";
         public const String HandOfGlory = "Hand of glory";
@@ -159,7 +159,7 @@ namespace EquipmentGen.Common.Items
         public const String IounStone_IncandescentBlueSphere = "Incandescent blue sphere ioun stone";
         public const String IounStone_IridescentSpindle = "Iridescent spindle ioun stone";
         public const String IounStone_LavenderAndGreenEllipsoid = "Lavender and green ellipsoid ioun stone";
-        public const String IounStone_Orange = "Orange ioun stone";
+        public const String IounStone_OrangePrism = "Orange prism ioun stone";
         public const String IounStone_PaleBlueRhomboid = "Pale blue rhomboid ioun stone";
         public const String IounStone_PaleGreenPrism = "Pale green prism ioun stone";
         public const String IounStone_PaleLavenderEllipsoid = "Pale lavender ellipsoid ioun stone";
@@ -222,7 +222,7 @@ namespace EquipmentGen.Common.Items
         public const String PipesOfHaunting = "Pipes of haunting";
         public const String PipesOfPain = "Pipes of pain";
         public const String PipesOfSounding = "Pipes of sounding";
-        public const String PipesOfTheSewer = "Pipes of the sewers";
+        public const String PipesOfTheSewers = "Pipes of the sewers";
         public const String PortableHole = "Portable hole";
         public const String QuaalsFeatherToken_Anchor = "Quaal's anchor feather token";
         public const String QuaalsFeatherToken_Bird = "Quaal's bird feather token";
@@ -253,7 +253,7 @@ namespace EquipmentGen.Common.Items
         public const String StoneHorse_Courser = "Courser stone horse";
         public const String StoneHorse_Destrier = "Destrier stone horse";
         public const String StoneOfAlarm = "Stone of alarm";
-        public const String StoneOfControllinfEarthElementals = "Stone of controlling earth elementals";
+        public const String StoneOfControllingEarthElementals = "Stone of controlling earth elementals";
         public const String StoneOfGoodLuck_Luckstone = "Stone of good luck (luckstone)";
         public const String StoneOfWeight_Loadstone = "Stone of weight (loadstone)";
         public const String StoneSalve = "Stone salve";

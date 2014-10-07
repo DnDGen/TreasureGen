@@ -44,7 +44,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.PhylacteryOfFaithfulness, 0, 23)]
         [TestCase(WondrousItemConstants.SalveOfSlipperiness, 0, 24)]
         [TestCase(WondrousItemConstants.ElixerOfFireBreath, 0, 25)]
-        [TestCase(WondrousItemConstants.PipesOfTheSewer, 0, 26)]
+        [TestCase(WondrousItemConstants.PipesOfTheSewers, 0, 26)]
         [TestCase(WondrousItemConstants.DustOfIllusion, 0, 27)]
         [TestCase(WondrousItemConstants.GogglesOfMinuteSeeing, 0, 28)]
         [TestCase(WondrousItemConstants.BroochOfShielding, 0, 29)]

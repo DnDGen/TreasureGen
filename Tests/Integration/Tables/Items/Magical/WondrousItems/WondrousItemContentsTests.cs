@@ -13,7 +13,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
             get { return TableNameConstants.Attributes.Set.WondrousItemContents; }
         }
 
-        [TestCase("Robe of useful items", WeaponConstants.Dagger,
+        [TestCase(WondrousItemConstants.RobeOfUsefulItems, WeaponConstants.Dagger,
                                           WeaponConstants.Dagger,
                                           "Bullseye lantern (filled and lit)",
                                           "Bullseye lantern (filled and lit)",
@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                                           "50-foot hempen rope",
                                           "Sack",
                                           "Sack")]
-        [TestCase("Robe of bones", "Small goblin skeleton",
+        [TestCase(WondrousItemConstants.RobeOfBones, "Small goblin skeleton",
                                    "Small goblin skeleton",
                                    "Medium human commoner skeleton",
                                    "Medium human commoner skeleton",
@@ -37,22 +37,22 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                                    "Medium human commoner zombie",
                                    "Medium wolf zombie",
                                    "Medium wolf zombie")]
-        [TestCase("Necklace of fireballs type I", "3d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_I, "3d6",
                                                   "3d6",
                                                   "5d6")]
-        [TestCase("Necklace of fireballs type II", "2d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_II, "2d6",
                                                    "2d6",
                                                    "4d6",
                                                    "4d6",
                                                    "6d6")]
-        [TestCase("Necklace of fireballs type III", "3d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_III, "3d6",
                                                     "3d6",
                                                     "3d6",
                                                     "3d6",
                                                     "5d6",
                                                     "5d6",
                                                     "7d6")]
-        [TestCase("Necklace of fireballs type IV", "2d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_IV, "2d6",
                                                    "2d6",
                                                    "2d6",
                                                    "2d6",
@@ -61,14 +61,14 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                                                    "6d6",
                                                    "6d6",
                                                    "8d6")]
-        [TestCase("Necklace of fireballs type V", "3d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_V, "3d6",
                                                   "3d6",
                                                   "5d6",
                                                   "5d6",
                                                   "7d6",
                                                   "7d6",
                                                   "9d6")]
-        [TestCase("Necklace of fireballs type VI", "4d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_VI, "4d6",
                                                    "4d6",
                                                    "4d6",
                                                    "4d6",
@@ -77,7 +77,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                                                    "8d6",
                                                    "8d6",
                                                    "10d6")]
-        [TestCase("Necklace of fireballs type VII", "3d6",
+        [TestCase(WondrousItemConstants.NecklaceOfFireballs_VII, "3d6",
                                                     "3d6",
                                                     "5d6",
                                                     "5d6",
@@ -133,7 +133,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                     "Joker"
                 };
 
-            Attributes("Deck of illusions", attributes);
+            Attributes(WondrousItemConstants.DeckOfIllusions, attributes);
         }
     }
 }

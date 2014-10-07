@@ -18,8 +18,8 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase(WeaponConstants.AssassinsDagger, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WeaponConstants.NineLivesStealer, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WeaponConstants.SunBlade, IntelligenceAlignmentConstants.Good)]
-        [TestCase("Rod of the python", IntelligenceAlignmentConstants.Good)]
-        [TestCase("Rod of the viper", IntelligenceAlignmentConstants.Evil)]
+        [TestCase(RodConstants.Python, IntelligenceAlignmentConstants.Good)]
+        [TestCase(RodConstants.Viper, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WondrousItemConstants.ChaosDiamond, IntelligenceAlignmentConstants.Chaotic)]
         [TestCase(WondrousItemConstants.Darkskull, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WondrousItemConstants.AmuletOfInescapableLocation, IntelligenceAlignmentConstants.Evil)]
@@ -72,8 +72,8 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
                 WeaponConstants.HolyAvenger,
                 WeaponConstants.NineLivesStealer,
                 WeaponConstants.SunBlade,
-                "Rod of the python",
-                "Rod of the viper",
+                RodConstants.Python,
+                RodConstants.Viper,
                 WondrousItemConstants.ChaosDiamond,
                 WondrousItemConstants.Darkskull,
                 WondrousItemConstants.AmuletOfInescapableLocation,
