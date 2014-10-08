@@ -13,7 +13,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return TableNameConstants.Attributes.Set.ItemAlignmentRequirements; }
         }
 
-        [TestCase(ArmorConstants.CelestialArmor, IntelligenceAlignmentConstants.Evil)]
+        [TestCase(ArmorConstants.CelestialArmor, IntelligenceAlignmentConstants.Good)]
         [TestCase(ArmorConstants.DemonArmor, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WeaponConstants.AssassinsDagger, IntelligenceAlignmentConstants.Evil)]
         [TestCase(WeaponConstants.NineLivesStealer, IntelligenceAlignmentConstants.Evil)]

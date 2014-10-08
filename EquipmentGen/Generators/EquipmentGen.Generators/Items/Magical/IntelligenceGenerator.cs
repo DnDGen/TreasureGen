@@ -103,7 +103,7 @@ namespace EquipmentGen.Generators.Items.Magical
 
             intelligence.Ego += greaterPowers.Count * 2;
             intelligence.Powers.AddRange(greaterPowers);
-            intelligence.Alignment = GetAlignment(item.Name, item.Magic.SpecialAbilities);
+            intelligence.Alignment = GetAlignment(item);
             intelligence.Personality = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.PersonalityTraits);
 
             return intelligence;
@@ -167,11 +167,11 @@ namespace EquipmentGen.Generators.Items.Magical
             return String.Format("{0} ({1})", power, category);
         }
 
-        private String GetAlignment(String itemName, IEnumerable<SpecialAbility> specialAbilities)
+        private String GetAlignment(Item item)
         {
             String alignment;
-            var abilityNames = specialAbilities.Select(a => a.Name);
-            var specificAlignmentRequirement = GetSpecificAlignmentRequirement(itemName);
+            var abilityNames = item.Magic.SpecialAbilities.Select(a => a.Name);
+            var specificAlignmentRequirement = GetSpecificAlignmentRequirement(item);
 
             do alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
             while (!AlignmentIsAllowed(alignment, abilityNames, specificAlignmentRequirement));
@@ -179,33 +179,54 @@ namespace EquipmentGen.Generators.Items.Magical
             return alignment;
         }
 
-        private String GetSpecificAlignmentRequirement(String itemName)
+        private String GetSpecificAlignmentRequirement(Item item)
         {
             var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items");
 
-            if (itemsWithSpecificAlignments.Contains(itemName))
-                return attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, itemName).Single();
+            if (itemsWithSpecificAlignments.Contains(item.Name))
+                return attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name).Single();
+
+            var alignments = IntelligenceAlignmentConstants.GetAllAlignments();
+            var requirements = alignments.Where(a => item.Traits.Any(t => t.Contains(a)));
+
+            if (requirements.Any())
+                //INFO: If there is more than 1 alignment requirement in the traits, then there is a problem
+                return requirements.Single();
+
+            alignments = IntelligenceAlignmentConstants.GetAllPartialAlignments();
+            requirements = alignments.Where(a => item.Traits.Any(t => t.Contains(a)));
+
+            if (requirements.Any())
+                //INFO: If there is more than 1 partial alignment requirement in the traits, then there is a problem
+                //i.e., they either conflict or should have been a full alignment requriement
+                return requirements.Single();
 
             return String.Empty;
         }
 
         private Boolean AlignmentIsAllowed(String alignment, IEnumerable<String> abilityNames, String specificAlignmentRequirement)
         {
-            if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith("Lawful"))
+            if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith(IntelligenceAlignmentConstants.Lawful))
                 return false;
 
-            if (abilityNames.Contains(SpecialAbilityConstants.Axiomatic) && alignment.StartsWith("Chaotic"))
+            if (abilityNames.Contains(SpecialAbilityConstants.Axiomatic) && alignment.StartsWith(IntelligenceAlignmentConstants.Chaotic))
                 return false;
 
-            if (abilityNames.Contains(SpecialAbilityConstants.Holy) && alignment.EndsWith("Evil"))
+            if (abilityNames.Contains(SpecialAbilityConstants.Holy) && alignment.EndsWith(IntelligenceAlignmentConstants.Evil))
                 return false;
 
-            if (abilityNames.Contains(SpecialAbilityConstants.Unholy) && alignment.EndsWith("Good"))
+            if (abilityNames.Contains(SpecialAbilityConstants.Unholy) && alignment.EndsWith(IntelligenceAlignmentConstants.Good))
                 return false;
 
-            return alignment == specificAlignmentRequirement
-                || alignment.StartsWith(specificAlignmentRequirement)
-                || alignment.EndsWith(specificAlignmentRequirement);
+            return alignment == specificAlignmentRequirement || PartialAlignmentRequirementMet(alignment, specificAlignmentRequirement);
+        }
+
+        private Boolean PartialAlignmentRequirementMet(String alignment, String specificAlignmentRequirement)
+        {
+            if (specificAlignmentRequirement == IntelligenceAlignmentConstants.Neutral)
+                return alignment.EndsWith(specificAlignmentRequirement);
+
+            return alignment.StartsWith(specificAlignmentRequirement) || alignment.EndsWith(specificAlignmentRequirement);
         }
     }
 }

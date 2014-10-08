@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EquipmentGen.Common.Items
 {
@@ -53,6 +54,34 @@ namespace EquipmentGen.Common.Items
         public static String ChaoticEvil
         {
             get { return String.Format("{0} {1}", Chaotic, Evil); }
+        }
+
+        public static IEnumerable<String> GetAllAlignments()
+        {
+            return new[]
+            {
+                LawfulGood,
+                NeutralGood,
+                ChaoticGood,
+                LawfulNeutral,
+                TrueNeutral,
+                ChaoticNeutral,
+                LawfulEvil,
+                NeutralEvil,
+                ChaoticEvil
+            };
+        }
+
+        public static IEnumerable<String> GetAllPartialAlignments()
+        {
+            return new[]
+            {
+                Lawful,
+                Chaotic,
+                Evil,
+                Good,
+                Neutral
+            };
         }
     }
 }

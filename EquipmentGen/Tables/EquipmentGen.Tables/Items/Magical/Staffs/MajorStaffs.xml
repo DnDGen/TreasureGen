@@ -3,107 +3,107 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Charming</content>
+        <content>Staff of Charming</content>
         <upper>3</upper>
     </object>
     <object>
         <lower>4</lower>
-        <content>Fire</content>
+        <content>Staff of Fire</content>
         <upper>9</upper>
     </object>
     <object>
         <lower>10</lower>
-        <content>Swarming insects</content>
+        <content>Staff of Swarming insects</content>
         <upper>11</upper>
     </object>
     <object>
         <lower>12</lower>
-        <content>Healing</content>
+        <content>Staff of Healing</content>
         <upper>17</upper>
     </object>
     <object>
         <lower>18</lower>
-        <content>Size alteration</content>
+        <content>Staff of Size alteration</content>
         <upper>19</upper>
     </object>
     <object>
         <lower>20</lower>
-        <content>Illumination</content>
+        <content>Staff of Illumination</content>
         <upper>24</upper>
     </object>
     <object>
         <lower>25</lower>
-        <content>Frost</content>
+        <content>Staff of Frost</content>
         <upper>31</upper>
     </object>
     <object>
         <lower>32</lower>
-        <content>Defense</content>
+        <content>Staff of Defense</content>
         <upper>38</upper>
     </object>
     <object>
         <lower>39</lower>
-        <content>Abjuration</content>
+        <content>Staff of Abjuration</content>
         <upper>43</upper>
     </object>
     <object>
         <lower>44</lower>
-        <content>Conjuration</content>
+        <content>Staff of Conjuration</content>
         <upper>48</upper>
     </object>
     <object>
         <lower>49</lower>
-        <content>Enchantment</content>
+        <content>Staff of Enchantment</content>
         <upper>53</upper>
     </object>
     <object>
         <lower>54</lower>
-        <content>Evocation</content>
+        <content>Staff of Evocation</content>
         <upper>58</upper>
     </object>
     <object>
         <lower>59</lower>
-        <content>Illusion</content>
+        <content>Staff of Illusion</content>
         <upper>63</upper>
     </object>
     <object>
         <lower>64</lower>
-        <content>Necromancy</content>
+        <content>Staff of Necromancy</content>
         <upper>68</upper>
     </object>
     <object>
         <lower>69</lower>
-        <content>Transmutation</content>
+        <content>Staff of Transmutation</content>
         <upper>73</upper>
     </object>
     <object>
         <lower>74</lower>
-        <content>Divination</content>
+        <content>Staff of Divination</content>
         <upper>77</upper>
     </object>
     <object>
         <lower>78</lower>
-        <content>Earth and stone</content>
+        <content>Staff of Earth and stone</content>
         <upper>82</upper>
     </object>
     <object>
         <lower>83</lower>
-        <content>Woodlands</content>
+        <content>Staff of Woodlands</content>
         <upper>87</upper>
     </object>
     <object>
         <lower>88</lower>
-        <content>Life</content>
+        <content>Staff of Life</content>
         <upper>92</upper>
     </object>
     <object>
         <lower>93</lower>
-        <content>Passage</content>
+        <content>Staff of Passage</content>
         <upper>97</upper>
     </object>
     <object>
         <lower>98</lower>
-        <content>Power</content>
+        <content>Staff of Power</content>
         <upper>100</upper>
     </object>
 </percentile>

@@ -34,7 +34,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [Test]
         public void ChaoticEvilPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.ChaoticGood, 16, 20);
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticEvil, 16, 20);
         }
 
         [Test]

@@ -33,7 +33,7 @@
     </object>
     <object>
         <lower>91</lower>
-        <content>SpecificCursedItem</content>
+        <content>SpecificCursedItems</content>
         <upper>100</upper>
     </object>
 </percentile>

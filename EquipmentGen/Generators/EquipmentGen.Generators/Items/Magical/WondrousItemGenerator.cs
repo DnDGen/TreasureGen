@@ -98,7 +98,13 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
             var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
-            return baseItems.Union(extraItems);
+
+            //INFO: Can't do Union because it will deduplicate the allowed duplicate items
+            var items = new List<String>();
+            items.AddRange(baseItems);
+            items.AddRange(extraItems);
+
+            return items;
         }
 
         private IEnumerable<String> GetPartialContents(String name)

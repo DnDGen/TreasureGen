@@ -111,7 +111,7 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var specificCursedItem = new Item();
             specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            specificCursedItem.Magic.Curse = "This is a specific cursed item";
+            specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
             specificCursedItem.ItemType = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
             specificCursedItem.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 

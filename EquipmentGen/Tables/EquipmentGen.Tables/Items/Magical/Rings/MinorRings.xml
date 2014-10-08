@@ -3,77 +3,77 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Protection,1</content>
+        <content>Ring of Protection,1</content>
         <upper>18</upper>
     </object>
     <object>
         <lower>19</lower>
-        <content>Feather falling,0</content>
+        <content>Ring of Feather falling,0</content>
         <upper>28</upper>
     </object>
     <object>
         <lower>29</lower>
-        <content>Sustenance,0</content>
+        <content>Ring of Sustenance,0</content>
         <upper>36</upper>
     </object>
     <object>
         <lower>37</lower>
-        <content>Climbing,0</content>
+        <content>Ring of Climbing,0</content>
         <upper>44</upper>
     </object>
     <object>
         <lower>45</lower>
-        <content>Jumping,0</content>
+        <content>Ring of Jumping,0</content>
         <upper>52</upper>
     </object>
     <object>
         <lower>53</lower>
-        <content>Swimming,0</content>
+        <content>Ring of Swimming,0</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>Counterspells,0</content>
+        <content>Ring of Counterspells,0</content>
         <upper>70</upper>
     </object>
     <object>
         <lower>71</lower>
-        <content>Mind shielding,0</content>
+        <content>Ring of Mind shielding,0</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Protection,2</content>
+        <content>Ring of Protection,2</content>
         <upper>80</upper>
     </object>
     <object>
         <lower>81</lower>
-        <content>Force shield,0</content>
+        <content>Ring of Force shield,0</content>
         <upper>85</upper>
     </object>
     <object>
         <lower>86</lower>
-        <content>Ram,0</content>
+        <content>Ring of Ram,0</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Animal friendship,0</content>
+        <content>Ring of Animal friendship,0</content>
         <upper>93</upper>
     </object>
     <object>
         <lower>94</lower>
-        <content>Minor ENERGY resistance,0</content>
+        <content>Ring of Minor ENERGY resistance,0</content>
         <upper>96</upper>
     </object>
     <object>
         <lower>97</lower>
-        <content>Chameleon power,0</content>
+        <content>Ring of Chameleon power,0</content>
         <upper>98</upper>
     </object>
     <object>
         <lower>99</lower>
-        <content>Water walking,0</content>
+        <content>Ring of Water walking,0</content>
         <upper>100</upper>
     </object>
 </percentile>

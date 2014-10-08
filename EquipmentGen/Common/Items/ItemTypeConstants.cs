@@ -15,5 +15,6 @@ namespace EquipmentGen.Common.Items
         public const String Staff = "Staff";
         public const String Wand = "Wand";
         public const String WondrousItem = "WondrousItem";
+        public const String LivingCreature = "LivingCreature";
     }
 }

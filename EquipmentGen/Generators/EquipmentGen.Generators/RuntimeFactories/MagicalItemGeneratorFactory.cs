@@ -52,8 +52,8 @@ namespace EquipmentGen.Generators.RuntimeFactories
         public IMagicalItemGenerator CreateGeneratorOf(String itemType)
         {
             var generator = GetGenerator(itemType);
-            generator = new MagicalItemGeneratorIntelligenceDecorator(generator, intelligenceGenerator);
             generator = new MagicalItemGeneratorCurseDecorator(generator, curseGenerator);
+            generator = new MagicalItemGeneratorIntelligenceDecorator(generator, intelligenceGenerator);
             generator = new MagicalItemGeneratorMundaneProxy(generator);
             generator = new MagicalItemGeneratorSpecialMaterialDecorator(generator, specialMaterialGenerator);
             generator = new MagicalItemGeneratorTraitsDecorator(generator, magicalItemTraitsGenerator);

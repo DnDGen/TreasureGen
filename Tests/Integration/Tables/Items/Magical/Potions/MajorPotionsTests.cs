@@ -10,7 +10,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion); }
+            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion); }
         }
 
         [Test]

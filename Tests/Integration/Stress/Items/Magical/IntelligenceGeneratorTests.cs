@@ -26,19 +26,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [SetUp]
         public void Setup()
         {
-            alignments = new[]
-                {
-                    "Lawful good",
-                    "Neutral good",
-                    "Chaotic good",
-                    "Lawful neutral",
-                    "True neutral",
-                    "Chaotic neutral",
-                    "Lawful evil",
-                    "Neutral evil",
-                    "Chaotic evil",
-                };
-
+            alignments = IntelligenceAlignmentConstants.GetAllAlignments();
             armorNames = ArmorConstants.GetAllArmors();
             weaponNames = WeaponConstants.GetAllWeapons();
         }

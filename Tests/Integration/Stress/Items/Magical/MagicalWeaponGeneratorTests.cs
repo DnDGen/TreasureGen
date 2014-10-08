@@ -48,7 +48,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item weapon;
 
             do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && !weapon.Attributes.Contains(AttributeConstants.Specific));
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             AssertIterations();
@@ -74,7 +74,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item weapon;
 
             do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Intelligence.Ego == 0));
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Intelligence.Ego == 0 || weapon.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Intelligence.Ego, Is.Positive);
@@ -87,7 +87,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item weapon;
 
             do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || String.IsNullOrEmpty(weapon.Magic.Curse)));
+            while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || String.IsNullOrEmpty(weapon.Magic.Curse) || weapon.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Curse, Is.Not.Empty);
@@ -142,32 +142,6 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Ammunition));
             Assert.That(weapon.Quantity, Is.EqualTo(1));
-            AssertIterations();
-        }
-
-        [Test]
-        public void ChargesHappen()
-        {
-            Item weapon;
-
-            do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && !weapon.Attributes.Contains(AttributeConstants.Charged));
-
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Charged));
-            Assert.That(weapon.Magic.Charges, Is.Positive);
-            AssertIterations();
-        }
-
-        [Test]
-        public void ChargesDoNotHappen()
-        {
-            Item weapon;
-
-            do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && weapon.Attributes.Contains(AttributeConstants.Charged));
-
-            Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Charged));
-            Assert.That(weapon.Magic.Charges, Is.EqualTo(0));
             AssertIterations();
         }
 

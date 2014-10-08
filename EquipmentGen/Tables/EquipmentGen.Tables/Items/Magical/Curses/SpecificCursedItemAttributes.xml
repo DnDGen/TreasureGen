@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <name>Incense of obsession</name>
+        <attribute>Specific</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Ring of Clumsiness</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Amulet of inescapable location</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Stone of weight (loadstone)</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Bracers of defenselessness</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Gauntlets of fumbling</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Cursed -2 sword</name>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Slashing</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Armor of rage</name>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Medallion of thought projection</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Flask of curses</name>
+        <attribute>Specific</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Dust of sneezing and choking</name>
+        <attribute>Specific</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Helm of opposite alignment</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Potion of poison</name>
+        <attribute>Specific</attribute>
+        <attribute>One-time use</attribute>
+    </object>
+    <object>
+        <name>Broom of animated attack</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Robe of powerlessness</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Vacuous grimoire</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Cursed backbiter spear</name>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+        <attribute>Not bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Armor of arrow attraction</name>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+    </object>
+    <object>
+        <name>Net of snaring</name>
+        <attribute>Specific</attribute>
+        <attribute>Ranged</attribute>
+        <attribute>Thrown</attribute>
+    </object>
+    <object>
+        <name>Bag of devouring</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Mace of blood</name>
+        <attribute>Specific</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Bludgeoning</attribute>
+    </object>
+    <object>
+        <name>Robe of vermin</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Periapt of foul rotting</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Berserking sword</name>
+        <attribute>Specific</attribute>
+        <attribute>Metal</attribute>
+        <attribute>Melee</attribute>
+        <attribute>Not bludgeoning</attribute>
+        <attribute>Slashing</attribute>
+    </object>
+    <object>
+        <name>Boots of dancing</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Crystal hypnosis ball</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Necklace of strangulation</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Cloak of poisonousness</name>
+        <attribute>Specific</attribute>
+    </object>
+    <object>
+        <name>Scarab of death</name>
+        <attribute>Specific</attribute>
+    </object>
+</percentile>

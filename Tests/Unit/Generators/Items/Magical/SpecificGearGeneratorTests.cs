@@ -155,7 +155,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", "specific gear")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, "specific gear")).Returns(9266);
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(9266));
@@ -167,7 +167,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "not charged" };
             var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(" gear type", "specific gear")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, "specific gear")).Returns(9266);
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));

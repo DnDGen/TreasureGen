@@ -20,10 +20,11 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
-            scroll.Name = String.Format("{0} scroll", spellType);
+            scroll.Name = ItemTypeConstants.Scroll;
             scroll.IsMagical = true;
             scroll.Attributes = new[] { AttributeConstants.OneTimeUse };
             scroll.ItemType = ItemTypeConstants.Scroll;
+            scroll.Traits.Add(spellType);
 
             var quantity = GetQuantity(power);
             while (quantity-- > 0)

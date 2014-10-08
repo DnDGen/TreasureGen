@@ -91,7 +91,10 @@
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
-    <Compile Include="Items\Magical\Curses\SpecificCursedItemItemTypeTests.cs" />
+    <Compile Include="Items\Magical\Curses\LivingCreatureTraitsTests.cs" />
+    <Compile Include="Items\Magical\Curses\SpecificCursedItemAttributesTests.cs" />
+    <Compile Include="Items\Magical\Curses\SpecificCursedItemItemTypesTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IsLivingCreatureIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRodIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\ItemAlignmentRequirementsTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Items\Magical\Weapons\Minor\MinorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\SpellStoringContainsSpellTests.cs" />
     <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
+    <Compile Include="Items\Magical\WondrousItems\RobeOfTheArchmagiColorsTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
     <Compile Include="Items\Magical\Curses\IsItemCursedTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemsTests.cs" />

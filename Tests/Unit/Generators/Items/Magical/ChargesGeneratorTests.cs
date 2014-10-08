@@ -261,7 +261,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             fullResult.Minimum = 34;
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Full deck of illusions")).Returns(fullResult);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
             mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
             mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
@@ -281,7 +281,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             fullResult.Minimum = 34;
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "Full deck of illusions")).Returns(fullResult);
+            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
             mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
             mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);

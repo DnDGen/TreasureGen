@@ -32,7 +32,7 @@
         <attribute>5</attribute>
     </object>
     <object>
-        <name>Ram</name>
+        <name>Ring of Ram</name>
         <attribute>1</attribute>
         <attribute>50</attribute>
     </object>
@@ -42,7 +42,7 @@
         <attribute>12</attribute>
     </object>
     <object>
-        <name>Three wishes</name>
+        <name>Ring of Three wishes</name>
         <attribute>1</attribute>
         <attribute>3</attribute>
     </object>
@@ -72,7 +72,7 @@
         <attribute>3</attribute>
     </object>
     <object>
-        <name>Full deck of illusions</name>
+        <name>Deck of illusions (max)</name>
         <attribute>34</attribute>
         <attribute>34</attribute>
     </object>

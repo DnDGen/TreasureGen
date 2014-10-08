@@ -28,44 +28,44 @@
         <attribute>Periapt of foul rotting</attribute>
         <attribute>Robe of powerlessness</attribute>
         <attribute>Robe of vermin</attribute>
-        <attribute>Ring of clumsiness</attribute>
+        <attribute>Ring of Clumsiness</attribute>
         <attribute>Scarab of death</attribute>
         <attribute>Cursed backbiter spear</attribute>
-        <attribute>Stone of weight</attribute>
+        <attribute>Stone of weight (loadstone)</attribute>
         <attribute>Vacuous grimoire</attribute>
         <attribute>Cursed -2 sword</attribute>
     </object>
     <object>
         <name>Celestial armor</name>
-        <attribute>good</attribute>
+        <attribute>Good</attribute>
     </object>
     <object>
         <name>Demon armor</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Assassin's dagger</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Holy avenger</name>
-        <attribute>Lawful good</attribute>
+        <attribute>Lawful Good</attribute>
     </object>
     <object>
         <name>Nine lives stealer</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Sun blade</name>
-        <attribute>good</attribute>
+        <attribute>Good</attribute>
     </object>
     <object>
         <name>Rod of the python</name>
-        <attribute>good</attribute>
+        <attribute>Good</attribute>
     </object>
     <object>
         <name>Rod of the viper</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Chaos diamond</name>
@@ -73,90 +73,90 @@
     </object>
     <object>
         <name>Darkskull</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Amulet of inescapable location</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Armor of arrow attraction</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Armor of rage</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Boots of dancing</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Bracers of defenselessness</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Broom of animated attack</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Cloak of poisonousness</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Crystal hypnosis ball</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Gauntlets of fumbling</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Mace of blood</name>
-        <attribute>Chaotic evil</attribute>
+        <attribute>Chaotic Evil</attribute>
     </object>
     <object>
         <name>Medallion of thought projection</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Necklace of strangulation</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Periapt of foul rotting</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Robe of powerlessness</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Robe of vermin</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
-        <name>Ring of clumsiness</name>
-        <attribute>evil</attribute>
+        <name>Ring of Clumsiness</name>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Scarab of death</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Cursed backbiter spear</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Cursed -2 sword</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
     <object>
-        <name>Stone of weight</name>
-        <attribute>evil</attribute>
+        <name>Stone of weight (loadstone)</name>
+        <attribute>Evil</attribute>
     </object>
     <object>
         <name>Vacuous grimoire</name>
-        <attribute>evil</attribute>
+        <attribute>Evil</attribute>
     </object>
 </attributes>

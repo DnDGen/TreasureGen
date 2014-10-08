@@ -1,4 +1,5 @@
 ﻿using D20Dice;
+using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using EquipmentGen.Generators.Items.Magical;
 using EquipmentGen.Selectors.Interfaces;
@@ -167,35 +168,20 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
 
-            var cursedItem = curseGenerator.GenerateSpecificCursedItem();
-            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
-            Assert.That(cursedItem.IsMagical, Is.True);
-            Assert.That(cursedItem.Magic.Curse, Is.EqualTo("This is a specific cursed item"));
-        }
-
-        [Test]
-        public void SpecificCursedItemsHaveAppropriateItemType()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
-
             var itemType = new[] { "item type" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "specific cursed item"))
                 .Returns(itemType);
-
-            var cursedItem = curseGenerator.GenerateSpecificCursedItem();
-            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
-        }
-
-        [Test]
-        public void SpecificCursedItemsHaveAppropriateAttributes()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "specific cursed item"))
                 .Returns(attributes);
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem();
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
+
             foreach (var attribute in attributes)
                 Assert.That(cursedItem.Attributes, Contains.Item(attribute));
         }

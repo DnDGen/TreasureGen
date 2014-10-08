@@ -43,6 +43,7 @@ namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             var mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
+            result.Amount = 1;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
             mockPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns("0");
 

@@ -587,7 +587,41 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ItemWithAlignmentUsesThatAsAlignmentRequirement()
+        public void ItemWithPartOfAlignmentAsTraitUsesThatAsAlignmentRequirement()
+        {
+            item.Traits.Add(IntelligenceAlignmentConstants.Good);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns("alignment Evil").Returns("alignment Good");
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment Good"));
+        }
+
+        [Test]
+        public void ItemWithPartOfAlignmentAsPartOfTraitUsesThatAsAlignmentRequirement()
+        {
+            var trait = String.Format("trait ({0})", IntelligenceAlignmentConstants.Good);
+            item.Traits.Add(trait);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns("alignment Evil").Returns("alignment Good");
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo("alignment Good"));
+        }
+
+        [Test]
+        public void ItemWithAlignmentAsTraitUsesThatAsAlignmentRequirement()
+        {
+            item.Traits.Add(IntelligenceAlignmentConstants.ChaoticNeutral);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns("alignment").Returns(IntelligenceAlignmentConstants.ChaoticNeutral);
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo(IntelligenceAlignmentConstants.ChaoticNeutral));
+        }
+
+        [Test]
+        public void ItemWithAlignmentAsPartOfTraitUsesThatAsAlignmentRequirement()
         {
             var trait = String.Format("trait ({0})", IntelligenceAlignmentConstants.ChaoticNeutral);
             item.Traits.Add(trait);
@@ -599,12 +633,11 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void ItemWithPartialAlignmentUsesThatAsAlignmentRequirement()
+        public void OnlyAlignmentsEndingInNeutralMatchNeutralRequirement()
         {
-            var trait = String.Format("trait ({0})", IntelligenceAlignmentConstants.Chaotic);
-            item.Traits.Add(trait);
+            item.Traits.Add(IntelligenceAlignmentConstants.Neutral);
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
-                .Returns("alignment").Returns(IntelligenceAlignmentConstants.ChaoticNeutral);
+                .Returns(IntelligenceAlignmentConstants.NeutralEvil).Returns(IntelligenceAlignmentConstants.ChaoticNeutral);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Alignment, Is.EqualTo(IntelligenceAlignmentConstants.ChaoticNeutral));

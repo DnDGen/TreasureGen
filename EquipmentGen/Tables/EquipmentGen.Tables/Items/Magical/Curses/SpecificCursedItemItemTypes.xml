@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+    <object>
+        <name>Incense of obsession</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Ring of Clumsiness</name>
+        <attribute>Ring</attribute>
+    </object>
+    <object>
+        <name>Amulet of inescapable location</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Stone of weight (loadstone)</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Bracers of defenselessness</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Gauntlets of fumbling</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Cursed -2 sword</name>
+        <attribute>Weapon</attribute>
+    </object>
+    <object>
+        <name>Armor of rage</name>
+        <attribute>Armor</attribute>
+    </object>
+    <object>
+        <name>Medallion of thought projection</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Flask of curses</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Dust of sneezing and choking</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Helm of opposite alignment</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Potion of poison</name>
+        <attribute>Potion</attribute>
+    </object>
+    <object>
+        <name>Broom of animated attack</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Robe of powerlessness</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Vacuous grimoire</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Cursed backbiter spear</name>
+        <attribute>Weapon</attribute>
+    </object>
+    <object>
+        <name>Armor of arrow attraction</name>
+        <attribute>Armor</attribute>
+    </object>
+    <object>
+        <name>Net of snaring</name>
+        <attribute>Weapon</attribute>
+    </object>
+    <object>
+        <name>Bag of devouring</name>
+        <attribute>LivingCreature</attribute>
+    </object>
+    <object>
+        <name>Mace of blood</name>
+        <attribute>Weapon</attribute>
+    </object>
+    <object>
+        <name>Robe of vermin</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Periapt of foul rotting</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Berserking sword</name>
+        <attribute>Weapon</attribute>
+    </object>
+    <object>
+        <name>Boots of dancing</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Crystal hypnosis ball</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Necklace of strangulation</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Cloak of poisonousness</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+    <object>
+        <name>Scarab of death</name>
+        <attribute>WondrousItem</attribute>
+    </object>
+</percentile>

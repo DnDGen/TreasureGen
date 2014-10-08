@@ -3,147 +3,147 @@
 <percentile>
   <object>
     <lower>1</lower>
-    <content>Minor ENERGY resistance,0</content>
+    <content>Ring of Minor ENERGY resistance,0</content>
     <upper>2</upper>
   </object>
   <object>
     <lower>3</lower>
-    <content>Protection,3</content>
+    <content>Ring of Protection,3</content>
     <upper>7</upper>
   </object>
   <object>
     <lower>8</lower>
-    <content>Minor spell storing,0</content>
+    <content>Ring of Minor spell storing,0</content>
     <upper>10</upper>
   </object>
   <object>
     <lower>11</lower>
-    <content>Invisibility,0</content>
+    <content>Ring of Invisibility,0</content>
     <upper>15</upper>
   </object>
   <object>
     <lower>16</lower>
-    <content>Wizardry (I),0</content>
+    <content>Ring of Wizardry (I),0</content>
     <upper>19</upper>
   </object>
   <object>
     <lower>20</lower>
-    <content>Evasion,0</content>
+    <content>Ring of Evasion,0</content>
     <upper>25</upper>
   </object>
   <object>
     <lower>26</lower>
-    <content>X-ray vision,0</content>
+    <content>Ring of X-ray vision,0</content>
     <upper>28</upper>
   </object>
   <object>
     <lower>29</lower>
-    <content>Blinking,0</content>
+    <content>Ring of Blinking,0</content>
     <upper>32</upper>
   </object>
   <object>
     <lower>33</lower>
-    <content>Major ENERGY resistance,0</content>
+    <content>Ring of Major ENERGY resistance,0</content>
     <upper>39</upper>
   </object>
   <object>
     <lower>40</lower>
-    <content>Protection,4</content>
+    <content>Ring of Protection,4</content>
     <upper>49</upper>
   </object>
   <object>
     <lower>50</lower>
-    <content>Wizardry (II),0</content>
+    <content>Ring of Wizardry (II),0</content>
     <upper>55</upper>
   </object>
   <object>
     <lower>56</lower>
-    <content>Freedom of movement,0</content>
+    <content>Ring of Freedom of movement,0</content>
     <upper>60</upper>
   </object>
   <object>
     <lower>61</lower>
-    <content>Greater ENERGY resistance,0</content>
+    <content>Ring of Greater ENERGY resistance,0</content>
     <upper>63</upper>
   </object>
   <object>
     <lower>64</lower>
-    <content>Friend shield (pair),0</content>
+    <content>Ring of Friend shield (pair),0</content>
     <upper>65</upper>
   </object>
   <object>
     <lower>66</lower>
-    <content>Protection,5</content>
+    <content>Ring of Protection,5</content>
     <upper>70</upper>
   </object>
   <object>
     <lower>71</lower>
-    <content>Shooting stars,0</content>
+    <content>Ring of Shooting stars,0</content>
     <upper>74</upper>
   </object>
   <object>
     <lower>75</lower>
-    <content>Spell storing,0</content>
+    <content>Ring of Spell storing,0</content>
     <upper>79</upper>
   </object>
   <object>
     <lower>80</lower>
-    <content>Wizardry (III),0</content>
+    <content>Ring of Wizardry (III),0</content>
     <upper>83</upper>
   </object>
   <object>
     <lower>84</lower>
-    <content>Telekinesis,0</content>
+    <content>Ring of Telekinesis,0</content>
     <upper>86</upper>
   </object>
   <object>
     <lower>87</lower>
-    <content>Regeneration,0</content>
+    <content>Ring of Regeneration,0</content>
     <upper>88</upper>
   </object>
   <object>
     <lower>89</lower>
-    <content>Three wishes,0</content>
+    <content>Ring of Three wishes,0</content>
     <upper>89</upper>
   </object>
   <object>
     <lower>90</lower>
-    <content>Spell turning,0</content>
+    <content>Ring of Spell turning,0</content>
     <upper>92</upper>
   </object>
   <object>
     <lower>93</lower>
-    <content>Wizardry (IV),0</content>
+    <content>Ring of Wizardry (IV),0</content>
     <upper>94</upper>
   </object>
     <object>
         <lower>95</lower>
-        <content>Djinni calling,0</content>
+        <content>Ring of Djinni calling,0</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>Elemental command (air),0</content>
+        <content>Ring of Elemental command (air),0</content>
         <upper>96</upper>
     </object>
     <object>
         <lower>97</lower>
-        <content>Elemental command (earth),0</content>
+        <content>Ring of Elemental command (earth),0</content>
         <upper>97</upper>
     </object>
     <object>
         <lower>98</lower>
-        <content>Elemental command (fire),0</content>
+        <content>Ring of Elemental command (fire),0</content>
         <upper>98</upper>
     </object>
     <object>
         <lower>99</lower>
-        <content>Elemental command (water),0</content>
+        <content>Ring of Elemental command (water),0</content>
         <upper>99</upper>
     </object>
     <object>
         <lower>100</lower>
-        <content>Major spell storing,0</content>
+        <content>Ring of Major spell storing,0</content>
         <upper>100</upper>
     </object>
 </percentile>

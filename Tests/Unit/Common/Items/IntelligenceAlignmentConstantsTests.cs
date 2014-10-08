@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using NUnit.Framework;
 
@@ -69,6 +70,36 @@ namespace EquipmentGen.Tests.Unit.Common.Items
         public void ChaoticEvilConstant()
         {
             Assert.That(IntelligenceAlignmentConstants.ChaoticEvil, Is.EqualTo("Chaotic Evil"));
+        }
+
+        [Test]
+        public void AllAlignments()
+        {
+            var alignments = IntelligenceAlignmentConstants.GetAllAlignments();
+
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.ChaoticEvil));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.ChaoticGood));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.ChaoticNeutral));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.LawfulEvil));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.LawfulGood));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.LawfulNeutral));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.NeutralEvil));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.NeutralGood));
+            Assert.That(alignments, Contains.Item(IntelligenceAlignmentConstants.TrueNeutral));
+            Assert.That(alignments.Count(), Is.EqualTo(9));
+        }
+
+        [Test]
+        public void AllPartialAlignments()
+        {
+            var partialAlignments = IntelligenceAlignmentConstants.GetAllPartialAlignments();
+
+            Assert.That(partialAlignments, Contains.Item(IntelligenceAlignmentConstants.Chaotic));
+            Assert.That(partialAlignments, Contains.Item(IntelligenceAlignmentConstants.Evil));
+            Assert.That(partialAlignments, Contains.Item(IntelligenceAlignmentConstants.Good));
+            Assert.That(partialAlignments, Contains.Item(IntelligenceAlignmentConstants.Lawful));
+            Assert.That(partialAlignments, Contains.Item(IntelligenceAlignmentConstants.Neutral));
+            Assert.That(partialAlignments.Count(), Is.EqualTo(5));
         }
     }
 }

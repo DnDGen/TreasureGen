@@ -31,7 +31,7 @@ namespace EquipmentGen.Generators.Items.Magical
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var ring = new Item();
-            ring.Name = String.Format("Ring of {0}", result.Type);
+            ring.Name = result.Type;
             ring.Magic.Bonus = result.Amount;
             ring.IsMagical = true;
             ring.ItemType = ItemTypeConstants.Ring;
@@ -42,7 +42,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, result.Type);
 
-            if (result.Type.Contains("Counterspells"))
+            if (ring.Name == RingConstants.Counterspells)
             {
                 var level = spellGenerator.GenerateLevel(power);
                 if (level <= 6)
@@ -52,22 +52,22 @@ namespace EquipmentGen.Generators.Items.Magical
                     ring.Contents.Add(spell);
                 }
             }
-            else if (result.Type.Contains("Minor spell storing"))
+            else if (ring.Name == RingConstants.SpellStoring_Minor)
             {
                 var spells = GenerateSpells(power, 3);
                 ring.Contents.AddRange(spells);
             }
-            else if (result.Type.Contains("Major spell storing"))
+            else if (ring.Name == RingConstants.SpellStoring_Major)
             {
                 var spells = GenerateSpells(power, 10);
                 ring.Contents.AddRange(spells);
             }
-            else if (result.Type.Contains("Spell storing"))
+            else if (ring.Name == RingConstants.SpellStoring)
             {
                 var spells = GenerateSpells(power, 5);
                 ring.Contents.AddRange(spells);
             }
-            else if (result.Type.Contains("ENERGY"))
+            else if (ring.Name.Contains("ENERGY"))
             {
                 var element = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Elements);
                 ring.Name = ring.Name.Replace("ENERGY", element);

@@ -76,7 +76,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && (String.IsNullOrEmpty(item.Magic.Curse) || item.Magic.Curse == "This is a specific cursed item"))
+            while (TestShouldKeepRunning() && (String.IsNullOrEmpty(item.Magic.Curse) || item.Magic.Curse == CurseConstants.SpecificCursedItem))
                 item = GenerateItem();
 
             Assert.That(item.Magic.Curse, Is.Not.Empty, type);
@@ -89,10 +89,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && item.Magic.Curse != "This is a specific cursed item")
+            while (TestShouldKeepRunning() && item.Magic.Curse != CurseConstants.SpecificCursedItem)
                 item = GenerateItem();
 
-            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
             AssertIterations();
         }
 
@@ -102,10 +102,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Magic.Intelligence.Ego == 0))
+            while (TestShouldKeepRunning() && (item.Magic.Curse != CurseConstants.SpecificCursedItem || item.Magic.Intelligence.Ego == 0))
                 item = GenerateItem();
 
-            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
             Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
             AssertIterations();
         }
@@ -116,10 +116,10 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var item = new Item();
 
-            while (TestShouldKeepRunning() && (item.Magic.Curse != "This is a specific cursed item" || item.Magic.Intelligence.Ego > 0))
+            while (TestShouldKeepRunning() && (item.Magic.Curse != CurseConstants.SpecificCursedItem || item.Magic.Intelligence.Ego > 0))
                 item = GenerateItem();
 
-            Assert.That(item.Magic.Curse, Is.EqualTo("This is a specific cursed item"), type);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), type);
             AssertIterations();
         }

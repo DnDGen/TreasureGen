@@ -26,14 +26,14 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertionsAgainst(Item armor)
         {
-            Assert.That(armor.Name, Is.Not.Empty);
-            Assert.That(armor.Traits, Is.Not.Null);
-            Assert.That(armor.Attributes, Is.Not.Empty);
-            Assert.That(armor.Quantity, Is.EqualTo(1));
-            Assert.That(armor.Contents, Is.Not.Null);
-            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
-            Assert.That(armor.Magic.Charges, Is.EqualTo(0));
-            Assert.That(armor.Magic.SpecialAbilities, Is.Not.Null);
+            Assert.That(armor.Name, Is.Not.Empty, armor.Name);
+            Assert.That(armor.Traits, Is.Not.Null, armor.Name);
+            Assert.That(armor.Attributes, Is.Not.Empty, armor.Name);
+            Assert.That(armor.Quantity, Is.EqualTo(1), armor.Name);
+            Assert.That(armor.Contents, Is.Not.Null, armor.Name);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
+            Assert.That(armor.Magic.Charges, Is.EqualTo(0), armor.Name);
+            Assert.That(armor.Magic.SpecialAbilities, Is.Not.Null, armor.Name);
         }
 
         protected override Item GenerateItem()
@@ -122,7 +122,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item armor;
 
             do armor = GenerateItem();
-            while (TestShouldKeepRunning() && !armor.Attributes.Contains(AttributeConstants.Specific));
+            while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || armor.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             AssertIterations();
@@ -148,7 +148,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item armor;
 
             do armor = GenerateItem();
-            while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || armor.Magic.Intelligence.Ego == 0));
+            while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || armor.Magic.Intelligence.Ego == 0 || armor.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(armor.Magic.Intelligence.Ego, Is.Positive);
@@ -161,7 +161,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Item armor;
 
             do armor = GenerateItem();
-            while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || String.IsNullOrEmpty(armor.Magic.Curse)));
+            while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || String.IsNullOrEmpty(armor.Magic.Curse) || armor.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(armor.Magic.Curse, Is.Not.Empty);

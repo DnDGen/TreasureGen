@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EquipmentGen.Common.Items;
 using EquipmentGen.Generators.Interfaces.Items.Magical;
 using Ninject;
@@ -25,9 +26,11 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertionsAgainst(Item scroll)
         {
-            Assert.That(scroll.Name, Is.EqualTo("Divine scroll").Or.EqualTo("Arcane scroll"));
-            Assert.That(scroll.Traits, Is.Empty);
+            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Traits, Contains.Item("Arcane").Or.Contains("Divine"));
+            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
             Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Attributes.Count(), Is.EqualTo(1));
             Assert.That(scroll.Quantity, Is.EqualTo(1));
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Contents, Is.Not.Empty);
@@ -60,7 +63,16 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public override void NoDecorationsHappen()
         {
-            AssertNoDecorationsHappen();
+            var scroll = new Item();
+
+            do scroll = GenerateItem();
+            while (TestShouldKeepRunning() && (scroll.Traits.Any(t => t != "Arcane" && t != "Divine") || scroll.Magic.Curse.Any() || scroll.Magic.Intelligence.Ego > 0));
+
+            Assert.That(scroll.Traits, Contains.Item("Arcane").Or.Contains("Divine"));
+            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
+            Assert.That(scroll.Magic.Curse, Is.Empty, type);
+            Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0), type);
+            AssertIterations();
         }
 
         [Test]
