@@ -58,25 +58,5 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             Assert.That(potion.Magic.Bonus, Is.EqualTo(newResult.Amount));
 
         }
-
-        [Test]
-        public void AlignmentIsGenerated()
-        {
-            result.Type = "potion of ALIGNMENT";
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments)).Returns("an alignment");
-
-            var potion = potionGenerator.GenerateAtPower(power);
-            Assert.That(potion.Name, Is.EqualTo("potion of an alignment"));
-        }
-
-        [Test]
-        public void EnergyIsGenerated()
-        {
-            result.Type = "potion of ENERGY";
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Elements)).Returns("an element");
-
-            var potion = potionGenerator.GenerateAtPower(power);
-            Assert.That(potion.Name, Is.EqualTo("potion of an element"));
-        }
     }
 }

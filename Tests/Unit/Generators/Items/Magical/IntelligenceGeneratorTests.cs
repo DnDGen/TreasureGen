@@ -783,59 +783,5 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Personality, Is.EqualTo("personality"));
         }
-
-        [Test]
-        public void ChooseCategoryForRanksInKnowledge()
-        {
-            intelligenceAttributesResult.LesserPowersCount = 1;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("this ability has Knowledge");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.KnowledgeCategories)).Returns("category");
-
-            var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
-        }
-
-        [Test]
-        public void CanHaveRanksInDifferentKnowledge()
-        {
-            intelligenceAttributesResult.LesserPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("this ability has Knowledge");
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.KnowledgeCategories)).Returns("category").Returns("other category");
-
-            var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
-            Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (other category)"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void CannotHaveDuplicateKnowledgeCategories()
-        {
-            intelligenceAttributesResult.LesserPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("this ability has Knowledge");
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.KnowledgeCategories)).Returns("category").Returns("category").Returns("other category");
-
-            var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (category)"));
-            Assert.That(intelligence.Powers, Contains.Item("this ability has Knowledge (other category)"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void DesignatedFoesDetermined()
-        {
-            intelligenceAttributesResult.GreaterPowersCount = 1;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("greater power");
-            mockDice.Setup(d => d.Roll(1).d4()).Returns(1);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes)).Returns("purpose has DESIGNATEDFOE");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
-
-            var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose has foe"));
-        }
     }
 }

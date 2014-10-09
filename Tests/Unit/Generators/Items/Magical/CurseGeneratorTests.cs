@@ -85,54 +85,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void IfIntermittentFunctioning_GetDesignatedFoe()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with DESIGNATEDFOE");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("creature type");
-
-            var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with creature type)"));
-        }
-
-        [Test]
-        public void IfIntermittentFunctioning_GetAlignment()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with ALIGNMENT");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments)).Returns("neutral");
-
-            var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with neutral)"));
-        }
-
-        [Test]
-        public void IfIntermittentFunctioning_GetMale()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with GENDER");
-            mockDice.Setup(d => d.Roll(1).d2()).Returns(1);
-
-            var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with male)"));
-        }
-
-        [Test]
-        public void IfIntermittentFunctioning_GetFemale()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(2);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation with GENDER");
-            mockDice.Setup(d => d.Roll(1).d2()).Returns(2);
-
-            var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("Intermittent Functioning (Dependent: situation with female)"));
-        }
-
-        [Test]
         public void IfIntermittentFunctioning_3OnD3IsUncontrolled()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
@@ -150,17 +102,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("cursed drawback"));
-        }
-
-        [Test]
-        public void IfDrawback_GetShrinkOrGrows()
-        {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Drawback");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks)).Returns("drawback with HEIGHTs");
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CurseHeightChanges)).Returns("grow");
-
-            var curse = curseGenerator.GenerateCurse();
-            Assert.That(curse, Is.EqualTo("drawback with grows"));
         }
 
         [Test]

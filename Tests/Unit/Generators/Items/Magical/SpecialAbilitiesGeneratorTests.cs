@@ -332,19 +332,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void BaneAbilityGetsDesignatedFoe()
-        {
-            CreateSpecialAbility("Bane");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<String>())).Returns("Bane");
-            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
-
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, 1, 1);
-            var ability = abilities.First();
-            Assert.That(ability.BaseName, Is.EqualTo("Bane"));
-            Assert.That(ability.Name, Is.EqualTo("foebane"));
-        }
-
-        [Test]
         public void StopIfAllPossibleAbilitiesAcquired()
         {
             CreateSpecialAbility("ability");

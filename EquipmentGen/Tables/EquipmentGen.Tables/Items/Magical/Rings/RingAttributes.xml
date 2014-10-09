@@ -54,7 +54,19 @@
         <name>Ring of Water walking</name>
     </object>
     <object>
-        <name>Ring of Minor ENERGY resistance</name>
+        <name>Ring of Minor Acid resistance</name>
+    </object>
+    <object>
+        <name>Ring of Minor Cold resistance</name>
+    </object>
+    <object>
+        <name>Ring of Minor Electricity resistance</name>
+    </object>
+    <object>
+        <name>Ring of Minor Fire resistance</name>
+    </object>
+    <object>
+        <name>Ring of Minor Sonic resistance</name>
     </object>
     <object>
         <name>Ring of Minor spell storing</name>
@@ -75,7 +87,19 @@
         <name>Ring of Blinking</name>
     </object>
     <object>
-        <name>Ring of Major ENERGY resistance</name>
+        <name>Ring of Major Acid resistance</name>
+    </object>
+    <object>
+        <name>Ring of Major Cold resistance</name>
+    </object>
+    <object>
+        <name>Ring of Major Electricity resistance</name>
+    </object>
+    <object>
+        <name>Ring of Major Fire resistance</name>
+    </object>
+    <object>
+        <name>Ring of Major Sonic resistance</name>
     </object>
     <object>
         <name>Ring of Wizardry (II)</name>
@@ -84,7 +108,19 @@
         <name>Ring of Freedom of movement</name>
     </object>
     <object>
-        <name>Ring of Greater ENERGY resistance</name>
+        <name>Ring of Greater Acid resistance</name>
+    </object>
+    <object>
+        <name>Ring of Greater Cold resistance</name>
+    </object>
+    <object>
+        <name>Ring of Greater Electricity resistance</name>
+    </object>
+    <object>
+        <name>Ring of Greater Fire resistance</name>
+    </object>
+    <object>
+        <name>Ring of Greater Sonic resistance</name>
     </object>
     <object>
         <name>Ring of Friend shield (pair)</name>

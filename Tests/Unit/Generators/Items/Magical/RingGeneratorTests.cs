@@ -70,16 +70,6 @@ namespace EquipmentGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void EnergyIsGenerated()
-        {
-            result.Type = "ENERGY resistance";
-            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Elements)).Returns("element");
-
-            var ring = ringGenerator.GenerateAtPower(power);
-            Assert.That(ring.Name, Is.EqualTo("element resistance"));
-        }
-
-        [Test]
         public void GetChargesIfCharged()
         {
             result.Type = "ring ability";

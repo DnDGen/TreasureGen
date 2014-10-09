@@ -50,8 +50,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             do armor = GenerateItem();
             while (TestShouldKeepRunning() && armor.IsMagical == false);
 
-            Assert.That(armor.IsMagical, Is.True);
-            Assert.That(armor.Magic.Bonus, Is.Positive);
+            Assert.That(armor.IsMagical, Is.True, armor.Name);
+            Assert.That(armor.Magic.Bonus, Is.Positive, armor.Name);
             AssertIterations();
         }
 

@@ -91,6 +91,7 @@
     <Compile Include="Items\Magical\Curses\CurseDrawbacksTests.cs" />
     <Compile Include="Items\Magical\Curses\CurseHeightChangesTests.cs" />
     <Compile Include="Items\Magical\Curses\CursesTests.cs" />
+    <Compile Include="Items\Magical\Curses\GenderTests.cs" />
     <Compile Include="Items\Magical\Curses\LivingCreatureTraitsTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemAttributesTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemItemTypesTests.cs" />
