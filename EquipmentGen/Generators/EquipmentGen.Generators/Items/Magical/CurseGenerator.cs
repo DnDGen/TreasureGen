@@ -36,11 +36,11 @@ namespace EquipmentGen.Generators.Items.Magical
         {
             var curse = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Curses);
 
-            if (curse == "Intermittent Functioning")
+            if (curse == CurseConstants.Intermittent)
                 return String.Format("{0} ({1})", curse, GetIntermittentFunctioning());
 
-            if (curse == "Drawback")
-                return GetDrawback();
+            if (curse == CurseConstants.Drawback)
+                return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);
 
             return curse;
         }
@@ -56,55 +56,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 return "Uncontrolled";
 
             var situation = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations);
-
-            if (situation.Contains("DESIGNATEDFOE"))
-                situation = GetSituationWithDesignatedFoe(situation);
-
-            if (situation.Contains("ALIGNMENT"))
-                situation = GetSituationWithAlignment(situation);
-
-            if (situation.Contains("GENDER"))
-                situation = GetSituationWithGender(situation);
-
             return String.Format("Dependent: {0}", situation);
-        }
-
-        private String GetSituationWithDesignatedFoe(String situation)
-        {
-            var foe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
-            return situation.Replace("DESIGNATEDFOE", foe);
-        }
-
-        private String GetSituationWithAlignment(String situation)
-        {
-            var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments);
-            return situation.Replace("ALIGNMENT", alignment);
-        }
-
-        private String GetSituationWithGender(String situation)
-        {
-            var roll = dice.Roll().d2();
-
-            if (roll == 1)
-                return situation.Replace("GENDER", "male");
-
-            return situation.Replace("GENDER", "female");
-        }
-
-        private String GetDrawback()
-        {
-            var drawback = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);
-
-            if (drawback.Contains("HEIGHT"))
-                return GetDrawbackWithHeight(drawback);
-
-            return drawback;
-        }
-
-        private String GetDrawbackWithHeight(String drawback)
-        {
-            var change = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseHeightChanges);
-            return drawback.Replace("HEIGHT", change);
         }
 
         public Item GenerateSpecificCursedItem()

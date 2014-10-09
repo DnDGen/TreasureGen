@@ -168,10 +168,7 @@ namespace EquipmentGen.Generators.Items.Magical
                 var max = availableAbilities.Where(a => a.BaseName == ability.BaseName).Max(a => a.Strength);
 
                 if (ability.Strength == max)
-                {
-                    ability.Name = GetModifiedName(ability);
                     strongestAbilities.Add(ability);
-                }
             }
 
             return strongestAbilities;
@@ -192,19 +189,7 @@ namespace EquipmentGen.Generators.Items.Magical
                     return new SpecialAbility { Name = abilityName };
             } while (!availableAbilities.Any(a => a.Name == abilityName));
 
-            var ability = availableAbilities.First(a => a.Name == abilityName);
-            ability.Name = GetModifiedName(ability);
-
-            return ability;
-        }
-
-        private String GetModifiedName(SpecialAbility ability)
-        {
-            if (ability.BaseName != "Bane")
-                return ability.Name;
-
-            var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
-            return String.Format("{0}bane", designatedFoe);
+            return availableAbilities.First(a => a.Name == abilityName);
         }
     }
 }

@@ -67,11 +67,6 @@ namespace EquipmentGen.Generators.Items.Magical
                 var spells = GenerateSpells(power, 5);
                 ring.Contents.AddRange(spells);
             }
-            else if (ring.Name.Contains("ENERGY"))
-            {
-                var element = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Elements);
-                ring.Name = ring.Name.Replace("ENERGY", element);
-            }
 
             return ring;
         }

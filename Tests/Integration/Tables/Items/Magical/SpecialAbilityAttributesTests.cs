@@ -31,7 +31,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.GreaterSonicResistance, 0, SpecialAbilityConstants.SonicResistance, 3)]
         [TestCase(SpecialAbilityConstants.Anarchic, 2, SpecialAbilityConstants.Anarchic, 0)]
         [TestCase(SpecialAbilityConstants.Axiomatic, 2, SpecialAbilityConstants.Axiomatic, 0)]
-        [TestCase(SpecialAbilityConstants.Bane, 1, SpecialAbilityConstants.Bane, 0)]
+        [TestCase(SpecialAbilityConstants.DESIGNATEDFOEbane, 1, SpecialAbilityConstants.Bane, 0)]
         [TestCase(SpecialAbilityConstants.Distance, 1, SpecialAbilityConstants.Distance, 0)]
         [TestCase(SpecialAbilityConstants.Flaming, 1, SpecialAbilityConstants.Flaming, 1)]
         [TestCase(SpecialAbilityConstants.Frost, 1, SpecialAbilityConstants.Frost, 1)]

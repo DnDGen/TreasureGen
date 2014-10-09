@@ -25,7 +25,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Item can use Detect Magic at will", 21, 25)]
         [TestCase("Item has 10 ranks in Intimidate", 26, 31)]
         [TestCase("Item has 10 ranks in Decipher Script", 32, 33)]
-        [TestCase("Item has 10 ranks in Knowledge", 34, 36)]
+        [TestCase("Item has 10 ranks in Knowledge (KNOWLEDGECATEGORY)", 34, 36)]
         [TestCase("Item has 10 ranks in Search", 37, 40)]
         [TestCase("Item has 10 ranks in Spot", 41, 45)]
         [TestCase("Item has 10 ranks in Listen", 46, 50)]

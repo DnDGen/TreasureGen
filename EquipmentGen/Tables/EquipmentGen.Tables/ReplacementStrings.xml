@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+    <object>
+        <name>ReplacementStrings</name>
+        <attribute>DESIGNATEDFOE</attribute>
+        <attribute>GENDER</attribute>
+        <attribute>HEIGHT</attribute>
+        <attribute>KNOWLEDGECATEGORIES</attribute>
+        <attribute>ENERGY</attribute>
+        <attribute>PROTECTIONALIGNMENT</attribute>
+    </object>
+    <object>
+        <name>DESIGNATEDFOE</name>
+        <attribute>DesignatedFoes</attribute>
+    </object>
+    <object>
+        <name>GENDER</name>
+        <attribute>Gender</attribute>
+    </object>
+    <object>
+        <name>HEIGHT</name>
+        <attribute>CurseHeightChanges</attribute>
+    </object>
+    <object>
+        <name>KNOWLEDGECATEGORIES</name>
+        <attribute>KnowledgeCategories</attribute>
+    </object>
+    <object>
+        <name>ENERGY</name>
+        <attribute>Elements</attribute>
+    </object>
+    <object>
+        <name>PROTECTIONALIGNMENT</name>
+        <attribute>ProtectionAlignments</attribute>
+    </object>
+</attributes>

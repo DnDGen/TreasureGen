@@ -1,4 +1,5 @@
-﻿using EquipmentGen.Selectors.Interfaces;
+﻿using EquipmentGen.Selectors.Decorators;
+using EquipmentGen.Selectors.Interfaces;
 using NUnit.Framework;
 
 namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
@@ -16,6 +17,13 @@ namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
         public void PercentileSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<IPercentileSelector>();
+        }
+
+        [Test]
+        public void PercentileSelectorHasReplacementDecorator()
+        {
+            var selector = GetNewInstanceOf<IPercentileSelector>();
+            Assert.That(selector, Is.InstanceOf<ReplacePercentileSelectorDecorator>());
         }
 
         [Test]

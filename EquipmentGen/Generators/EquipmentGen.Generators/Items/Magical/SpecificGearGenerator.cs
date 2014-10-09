@@ -54,7 +54,7 @@ namespace EquipmentGen.Generators.Items.Magical
             if (gear.Attributes.Contains(AttributeConstants.Charged))
                 gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, gear.Name);
 
-            if (gear.Name == "Javelin of lightning")
+            if (gear.Name == WeaponConstants.JavelinOfLightning)
             {
                 gear.IsMagical = true;
             }

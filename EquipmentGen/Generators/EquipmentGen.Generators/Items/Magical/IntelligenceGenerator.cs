@@ -90,13 +90,6 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes);
-
-                if (intelligence.SpecialPurpose.Contains("DESIGNATEDFOE"))
-                {
-                    var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
-                    intelligence.SpecialPurpose = intelligence.SpecialPurpose.Replace("DESIGNATEDFOE", designatedFoe);
-                }
-
                 intelligence.DedicatedPower = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers);
                 intelligence.Ego += 4;
             }
@@ -146,9 +139,6 @@ namespace EquipmentGen.Generators.Items.Magical
             {
                 var result = percentileSelector.SelectFrom(tableName);
 
-                if (result.Contains("Knowledge"))
-                    result = GetKnowledgeCategory(result);
-
                 if (result.Equals("Common", StringComparison.InvariantCultureIgnoreCase))
                     continue;
 
@@ -159,12 +149,6 @@ namespace EquipmentGen.Generators.Items.Magical
             }
 
             return list;
-        }
-
-        private String GetKnowledgeCategory(String power)
-        {
-            var category = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.KnowledgeCategories);
-            return String.Format("{0} ({1})", power, category);
         }
 
         private String GetAlignment(Item item)

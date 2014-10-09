@@ -42,12 +42,12 @@ namespace EquipmentGen.Generators.Items.Magical
             if (rod.Attributes.Contains(AttributeConstants.Charged))
                 rod.Magic.Charges = chargesGenerator.GenerateFor(rod.ItemType, rod.Name);
 
-            if (rod.Name == "Rod of absorption")
+            if (rod.Name == RodConstants.Absorption)
             {
                 var containsSpellLevels = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
-                    var maxCharges = chargesGenerator.GenerateFor(rod.ItemType, "Rod of absorption (max)");
+                    var maxCharges = chargesGenerator.GenerateFor(rod.ItemType, RodConstants.FullAbsorption);
                     var containedSpellLevels = (maxCharges - rod.Magic.Charges) / 2;
                     var containedSpellLevelsString = String.Format("{0} spell levels", containedSpellLevels);
                     rod.Contents.Add(containedSpellLevelsString);

@@ -35,21 +35,7 @@ namespace EquipmentGen.Generators.Items.Magical
         private TypeAndAmountPercentileResult GetResult(String power)
         {
             var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
-
-            if (result.Type.Contains("ALIGNMENT"))
-            {
-                var alignment = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.ProtectionAlignments);
-                result.Type = result.Type.Replace("ALIGNMENT", alignment);
-            }
-
-            if (result.Type.Contains("ENERGY"))
-            {
-                var energy = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Elements);
-                result.Type = result.Type.Replace("ENERGY", energy);
-            }
-
-            return result;
+            return typeAndAmountPercentileSelector.SelectFrom(tableName);
         }
     }
 }

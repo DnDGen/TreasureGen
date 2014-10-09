@@ -19,7 +19,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
             AssertTableIsComplete();
         }
 
-        [TestCase(SpecialAbilityConstants.Bane, 1, 4)]
+        [TestCase(SpecialAbilityConstants.DESIGNATEDFOEbane, 1, 4)]
         [TestCase(SpecialAbilityConstants.Distance, 5, 8)]
         [TestCase(SpecialAbilityConstants.Flaming, 9, 12)]
         [TestCase(SpecialAbilityConstants.Frost, 13, 16)]

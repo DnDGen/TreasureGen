@@ -51,6 +51,7 @@ namespace EquipmentGen.Common.Items
         public const String Blinding = "Blinding";
         public const String Animated = "Animated";
         public const String Bane = "Bane";
+        public const String DESIGNATEDFOEbane = "DESIGNATEDFOEbane";
         public const String Reflecting = "Reflecting";
         public const String Distance = "Distance";
         public const String Flaming = "Flaming";

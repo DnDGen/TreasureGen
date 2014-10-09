@@ -40,6 +40,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String DarkwoodShields = "DarkwoodShields";
                 public const String DesignatedFoes = "DesignatedFoes";
                 public const String Elements = "Elements";
+                public const String Gender = "Gender";
                 public const String HasSpecialMaterial = "HasSpecialMaterial";
                 public const String HornOfValhallaTypes = "HornOfValhallaTypes";
                 public const String IntelligenceAlignments = "IntelligenceAlignments";
@@ -91,6 +92,7 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String IntelligenceAttributes = "IntelligenceAttributes";
                 public const String IntelligenceCommunication = "IntelligenceCommunication";
                 public const String ItemAlignmentRequirements = "ItemAlignmentRequirements";
+                public const String ReplacementStrings = "ReplacementStrings";
                 public const String SpecialAbilityAttributes = "SpecialAbilityAttributes";
                 public const String SpecialAbilityAttributeRequirements = "SpecialAbilityAttributeRequirements";
                 public const String SpecialMaterials = "SpecialMaterials";

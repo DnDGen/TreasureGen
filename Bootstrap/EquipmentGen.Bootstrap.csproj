@@ -48,6 +48,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="D20Dice, Version=1.0.5350.36368, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\D20Dice.8.0\lib\D20Dice.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -62,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Factories\Mappers\AttributesMapperFactory.cs" />
     <Compile Include="Factories\Mappers\PercentileMapperFactory.cs" />
+    <Compile Include="Factories\Selectors\PercentileSelectorFactory.cs" />
     <Compile Include="Modules\GeneratorsModule.cs" />
     <Compile Include="Modules\TablesModule.cs" />
     <Compile Include="Modules\SelectorsModule.cs" />
