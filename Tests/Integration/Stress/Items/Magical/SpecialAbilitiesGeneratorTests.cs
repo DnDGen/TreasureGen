@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             var itemType = GetNewGearItemType();
             var attributes = GetNewAttributesForGear(itemType, false);
-            var power = GetNewPower(false);
+            var power = GetNewPower();
             var bonus = Random.Next(5) + 1;
             var quantity = Random.Next(10) + 1;
             var abilities = SpecialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, bonus, quantity);

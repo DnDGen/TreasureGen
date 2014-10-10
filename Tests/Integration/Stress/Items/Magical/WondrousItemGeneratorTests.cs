@@ -114,5 +114,17 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
         {
             AssertSpecificCursedItemsAreNotDecorated();
         }
+
+        [Test]
+        public override void SpecificCursedItemsHaveTraits()
+        {
+            AssertSpecificCursedItemsHaveTraits();
+        }
+
+        [Test]
+        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        {
+            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+        }
     }
 }

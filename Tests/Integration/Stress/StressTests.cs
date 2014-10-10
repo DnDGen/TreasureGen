@@ -24,7 +24,7 @@ namespace EquipmentGen.Tests.Integration.Stress
 #if STRESS
         private const Int32 TimeLimitInSeconds = 60;
 #else
-        private const Int32 TimeLimitInSeconds = 1;
+        private const Int32 TimeLimitInSeconds = 5;
 #endif
 
         private Int32 iterations;
@@ -76,8 +76,7 @@ namespace EquipmentGen.Tests.Integration.Stress
 
         protected void AssertIterations()
         {
-            Assert.That(iterations, Is.GreaterThan(0));
-            Assert.Pass("Type: {0}\nIterations: {1}\nTime: {2:hh\\:mm\\:ss}", type, iterations, Stopwatch.Elapsed);
+            Assert.That(iterations, Is.Positive);
         }
 
         protected Int32 GetNewLevel()
@@ -85,22 +84,17 @@ namespace EquipmentGen.Tests.Integration.Stress
             return Random.Next(1, 21);
         }
 
-        protected String GetNewPower(Boolean allowMundane = false, Boolean allowMinor = true)
+        protected String GetNewPower(Boolean allowMinor = true)
         {
             var limit = 2;
-
-            if (allowMundane)
-                limit = 4;
-            else if (allowMinor)
+            if (allowMinor)
                 limit = 3;
 
             switch (Random.Next(limit))
             {
                 case 0: return PowerConstants.Major;
                 case 1: return PowerConstants.Medium;
-                case 2: return PowerConstants.Minor;
-                case 3: return PowerConstants.Mundane;
-                default: throw new ArgumentOutOfRangeException();
+                default: return PowerConstants.Minor;
             }
         }
 
@@ -115,12 +109,12 @@ namespace EquipmentGen.Tests.Integration.Stress
         protected IEnumerable<String> GetNewAttributesForGear(String itemType, Boolean forceMaterials)
         {
             if (itemType == ItemTypeConstants.Weapon)
-                return GenerateWeaponAttributes(forceMaterials);
+                return GenerateWeaponAttributes();
 
-            return GenerateArmorAttributes(forceMaterials);
+            return GenerateArmorAttributes();
         }
 
-        private IEnumerable<String> GenerateArmorAttributes(Boolean forceMaterials)
+        private IEnumerable<String> GenerateArmorAttributes()
         {
             var attributes = new List<String>();
 
@@ -138,16 +132,13 @@ namespace EquipmentGen.Tests.Integration.Stress
             {
                 case 0: attributes.Add(AttributeConstants.Metal); break;
                 case 1: attributes.Add(AttributeConstants.Wood); break;
-                case 2:
-                    if (forceMaterials)
-                        attributes.Add(AttributeConstants.Metal);
-                    break;
+                case 2: break;
             }
 
             return attributes;
         }
 
-        private IEnumerable<String> GenerateWeaponAttributes(Boolean forceMaterials)
+        private IEnumerable<String> GenerateWeaponAttributes()
         {
             var attributes = new List<String>();
 
@@ -169,10 +160,7 @@ namespace EquipmentGen.Tests.Integration.Stress
                     attributes.Add(AttributeConstants.Metal);
                     attributes.Add(AttributeConstants.Wood);
                     break;
-                case 3:
-                    if (forceMaterials)
-                        attributes.Add(AttributeConstants.Metal);
-                    break;
+                case 3: break;
             }
 
             if (attributes.Contains(AttributeConstants.Melee) && Random.Next(2) > 0)

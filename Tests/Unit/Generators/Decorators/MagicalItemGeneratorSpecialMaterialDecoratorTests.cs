@@ -36,6 +36,20 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
         }
 
         [Test]
+        public void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        {
+            item.Magic.Curse = CurseConstants.SpecificCursedItem;
+
+            mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+                .Returns(true);
+            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
+                .Returns("special material");
+
+            var decoratedItem = decorator.GenerateAtPower("power");
+            Assert.That(decoratedItem.Traits, Is.Empty);
+        }
+
+        [Test]
         public void DoNotGetSpecialMaterial()
         {
             mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<String>(), It.IsAny<IEnumerable<String>>(), It.IsAny<IEnumerable<String>>()))
@@ -44,8 +58,7 @@ namespace EquipmentGen.Tests.Unit.Generators.Decorators
                 .Returns("special material");
 
             var decoratedItem = decorator.GenerateAtPower("power");
-            Assert.That(decoratedItem.Traits, Is.Not.Contains("special material"));
-            Assert.That(decoratedItem.Traits.Count, Is.EqualTo(0));
+            Assert.That(decoratedItem.Traits, Is.Empty);
         }
 
         [Test]

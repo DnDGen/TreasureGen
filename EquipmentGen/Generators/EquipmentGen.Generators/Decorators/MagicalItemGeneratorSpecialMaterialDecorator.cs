@@ -21,6 +21,9 @@ namespace EquipmentGen.Generators.Decorators
         {
             var item = innerGenerator.GenerateAtPower(power);
 
+            if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+                return item;
+
             while (specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);

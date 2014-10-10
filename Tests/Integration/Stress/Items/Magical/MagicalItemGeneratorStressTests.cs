@@ -105,8 +105,44 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             do item = GenerateItem();
             while (TestShouldKeepRunning() && (item.Magic.Curse != CurseConstants.SpecificCursedItem || item.Magic.Intelligence.Ego == 0));
 
-            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
-            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive, item.Name);
+            AssertIterations();
+        }
+
+        public abstract void SpecificCursedItemsHaveTraits();
+
+        protected void AssertSpecificCursedItemsHaveTraits()
+        {
+            var item = new Item();
+
+            do item = GenerateItem();
+            while (TestShouldKeepRunning() && (item.Magic.Curse != CurseConstants.SpecificCursedItem || !item.Traits.Except(materials).Any()));
+
+            var traits = item.Traits.Except(materials);
+            Assert.That(traits, Is.Not.Empty, item.Name);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
+            AssertIterations();
+        }
+
+        public abstract void SpecificCursedItemsDoNotHaveSpecialMaterials();
+
+        protected void AssertSpecificCursedItemsDoNotHaveSpecialMaterials()
+        {
+            var item = new Item();
+
+            do
+            {
+                item = GenerateItem();
+                if (item.Magic.Curse != CurseConstants.SpecificCursedItem)
+                    continue;
+
+                var itemMaterials = item.Traits.Intersect(materials);
+                Assert.That(itemMaterials, Is.Empty, item.Name);
+                Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
+            }
+            while (TestShouldKeepRunning());
+
             AssertIterations();
         }
 
@@ -119,8 +155,8 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             do item = GenerateItem();
             while (TestShouldKeepRunning() && (item.Magic.Curse != CurseConstants.SpecificCursedItem || item.Magic.Intelligence.Ego > 0));
 
-            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
-            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), type);
+            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), item.Name);
             AssertIterations();
         }
 

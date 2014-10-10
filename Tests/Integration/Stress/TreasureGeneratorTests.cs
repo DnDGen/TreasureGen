@@ -29,11 +29,8 @@ namespace EquipmentGen.Tests.Integration.Stress
         [TearDown]
         public void TearDown()
         {
-            if (mostInterestingTreasure != null)
-            {
-                var output = InterestFormatter.MakeOutput(mostInterestingTreasure);
-                Assert.Pass(output);
-            }
+            var output = InterestFormatter.MakeOutput(mostInterestingTreasure);
+            Assert.Pass(output);
         }
 
         [TestCase("Treasure generator")]
