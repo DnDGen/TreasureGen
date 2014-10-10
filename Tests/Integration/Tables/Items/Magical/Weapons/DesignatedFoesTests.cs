@@ -45,7 +45,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
         [TestCase("Reptilian-humanoid", 55, 57)]
         [TestCase("Orc", 58, 60)]
         [TestCase("Magical-beast", 61, 65)]
-        [TestCase("Mounstrous-humanoid", 66, 70)]
+        [TestCase("Monstrous-humanoid", 66, 70)]
         [TestCase("Ooze", 71, 72)]
         [TestCase("Chaotic-outsider", 74, 76)]
         [TestCase("Evil-outsider", 78, 80)]
