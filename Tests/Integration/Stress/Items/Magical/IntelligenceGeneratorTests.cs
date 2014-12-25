@@ -120,5 +120,24 @@ namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
             Assert.That(intelligence.Languages, Is.Empty);
             AssertIterations();
         }
+
+        [Test]
+        public void KnowledgeCategoriesAreFilled()
+        {
+            Intelligence intelligence;
+
+            do intelligence = GenerateIntelligence();
+            while (TestShouldKeepRunning() && !intelligence.Powers.Any(p => p.Contains("Knowledge")));
+
+            var knowledgePowers = intelligence.Powers.Where(p => p.Contains("Knowledge"));
+            foreach (var knowledgePower in knowledgePowers)
+            {
+                Assert.That(knowledgePower, Is.Not.Contains("KNOWLEDGECATEGORIES"));
+                Assert.That(knowledgePower, Is.Not.Contains("KNOWLEDGECATEGORY"));
+                Assert.That(knowledgePower, Is.Not.Contains("KNOWLEDGE"));
+            }
+
+            AssertIterations();
+        }
     }
 }
