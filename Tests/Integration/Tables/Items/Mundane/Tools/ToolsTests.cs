@@ -42,5 +42,11 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
         {
             AssertTableIsComplete();
         }
+
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
     }
 }

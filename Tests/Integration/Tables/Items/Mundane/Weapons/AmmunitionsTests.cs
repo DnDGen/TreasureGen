@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
             get { return TableNameConstants.Percentiles.Set.Ammunitions; }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(WeaponConstants.Arrow, 1, 50)]
         [TestCase(WeaponConstants.CrossbowBolt, 51, 80)]
         [TestCase(WeaponConstants.SlingBullet, 81, 100)]

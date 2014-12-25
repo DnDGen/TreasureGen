@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
             get { return String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, ItemTypeConstants.Rod); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(false, 2, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
         {

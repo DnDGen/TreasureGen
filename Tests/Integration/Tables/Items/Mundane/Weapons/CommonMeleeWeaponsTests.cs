@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
             get { return String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "CommonMelee"); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(WeaponConstants.Dagger, 1, 4)]
         [TestCase(WeaponConstants.Greataxe, 5, 14)]
         [TestCase(WeaponConstants.Greatsword, 15, 24)]

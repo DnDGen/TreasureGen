@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Coins
             get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 18); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(EmptyContent, 1, 2)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {

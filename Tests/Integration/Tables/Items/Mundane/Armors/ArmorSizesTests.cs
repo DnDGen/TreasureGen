@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Armors
             get { return TableNameConstants.Percentiles.Set.ArmorSizes; }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(TraitConstants.Small, 1, 10)]
         [TestCase(TraitConstants.Medium, 11, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

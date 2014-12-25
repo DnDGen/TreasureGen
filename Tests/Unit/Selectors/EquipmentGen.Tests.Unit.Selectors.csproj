@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="AttributesSelectorTests.cs" />
     <Compile Include="BooleanPercentileSelectorTests.cs" />
+    <Compile Include="Decorators\ReplacementStringConstantsTests.cs" />
     <Compile Include="Decorators\ReplacePercentileSelectorDecoratorTests.cs" />
     <Compile Include="IntelligenceAttributesSelectorTests.cs" />
     <Compile Include="PercentileSelectorTests.cs" />

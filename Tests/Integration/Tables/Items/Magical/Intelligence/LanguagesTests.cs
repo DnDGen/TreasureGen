@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         }
 
         [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
+        [Test]
         public override void TableIsComplete()
         {
             AssertTableIsComplete();

@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Weapons
             get { return String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "CommonRanged"); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(AttributeConstants.Ammunition, 1, 10)]
         [TestCase(WeaponConstants.ThrowingAxe, 11, 15)]
         [TestCase(WeaponConstants.HeavyCrossbow, 16, 25)]

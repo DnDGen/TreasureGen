@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Staves
             get { return String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, ItemTypeConstants.Staff); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(TraitConstants.Markings, 1, 30)]
         [TestCase(EmptyContent, 31, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

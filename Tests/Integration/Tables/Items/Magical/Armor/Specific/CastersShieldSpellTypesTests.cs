@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
             get { return TableNameConstants.Percentiles.Set.CastersShieldSpellTypes; }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase("Divine", 1, 80)]
         [TestCase("Arcane", 81, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)

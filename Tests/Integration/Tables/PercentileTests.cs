@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using EquipmentGen.Mappers.Interfaces;
+using EquipmentGen.Selectors.Decorators;
 using Ninject;
 using NUnit.Framework;
 
@@ -15,6 +18,14 @@ namespace EquipmentGen.Tests.Integration.Tables
         protected const String EmptyContent = "";
 
         private Dictionary<Int32, String> table;
+        private Regex allCapsRegex;
+        private readonly IEnumerable<String> replacementStrings;
+
+        public PercentileTests()
+        {
+            allCapsRegex = new Regex("[A-Z][A-Z]+");
+            replacementStrings = ReplacementStringConstants.GetAll();
+        }
 
         [SetUp]
         public void Setup()
@@ -30,6 +41,19 @@ namespace EquipmentGen.Tests.Integration.Tables
                 Assert.That(table.Keys, Contains.Item(roll), tableName);
 
             Assert.That(table.Keys.Count, Is.EqualTo(100), tableName);
+        }
+
+        public abstract void ReplacementStringsAreValid();
+
+        protected void AssertReplacementStringsAreValid()
+        {
+            var distinctValues = table.Values.Distinct();
+            foreach (var value in distinctValues)
+            {
+                var matches = allCapsRegex.Matches(value);
+                foreach (var match in matches)
+                    Assert.That(replacementStrings, Contains.Item(match));
+            }
         }
 
         public virtual void Percentile(String content, Int32 lower, Int32 upper)

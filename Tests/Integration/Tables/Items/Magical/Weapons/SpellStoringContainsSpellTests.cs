@@ -12,6 +12,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Weapons
             get { return TableNameConstants.Percentiles.Set.SpellStoringContainsSpell; }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(true, 1, 50)]
         [TestCase(false, 51, 100)]
         public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)

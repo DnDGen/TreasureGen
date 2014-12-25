@@ -14,6 +14,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         }
 
         [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
+        [Test]
         public override void TableIsComplete()
         {
             AssertTableIsComplete();

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="AttributesSelector.cs" />
     <Compile Include="BooleanPercentileSelector.cs" />
+    <Compile Include="Decorators\ReplacementStringConstants.cs" />
     <Compile Include="Decorators\ReplacePercentileSelectorDecorator.cs" />
     <Compile Include="IntelligenceAttributesSelector.cs" />
     <Compile Include="PercentileSelector.cs" />

@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor.Major
             get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, PowerConstants.Major, ItemTypeConstants.Armor); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(SpecialAbilityConstants.Glamered, 1, 3)]
         [TestCase(SpecialAbilityConstants.ImprovedSlick, 5, 7)]
         [TestCase(SpecialAbilityConstants.ImprovedShadow, 8, 10)]

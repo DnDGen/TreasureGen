@@ -13,6 +13,12 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Armor
             get { return String.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, ItemTypeConstants.Armor); }
         }
 
+        [Test]
+        public override void ReplacementStringsAreValid()
+        {
+            AssertReplacementStringsAreValid();
+        }
+
         [TestCase(ArmorConstants.PaddedArmor, 1)]
         [TestCase(ArmorConstants.LeatherArmor, 2)]
         [TestCase(ArmorConstants.ScaleMail, 43)]

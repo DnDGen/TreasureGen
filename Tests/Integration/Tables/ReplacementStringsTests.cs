@@ -1,4 +1,5 @@
 ﻿using System;
+using EquipmentGen.Selectors.Decorators;
 using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
@@ -13,23 +14,23 @@ namespace EquipmentGen.Tests.Integration.Tables
         }
 
         [TestCase(TableNameConstants.Attributes.Set.ReplacementStrings,
-            "DESIGNATEDFOE",
-            "GENDER",
-            "HEIGHT",
-            "KNOWLEDGECATEGORIES",
-            "ENERGY",
-            "PROTECTIONALIGNMENT")]
-        [TestCase("DESIGNATEDFOE",
+            ReplacementStringConstants.DesignatedFoe,
+            ReplacementStringConstants.Gender,
+            ReplacementStringConstants.Height,
+            ReplacementStringConstants.KnowledgeCategory,
+            ReplacementStringConstants.Energy,
+            ReplacementStringConstants.ProtectionAlignment)]
+        [TestCase(ReplacementStringConstants.DesignatedFoe,
             TableNameConstants.Percentiles.Set.DesignatedFoes)]
-        [TestCase("GENDER",
+        [TestCase(ReplacementStringConstants.Gender,
             TableNameConstants.Percentiles.Set.Gender)]
-        [TestCase("HEIGHT",
+        [TestCase(ReplacementStringConstants.Height,
             TableNameConstants.Percentiles.Set.CurseHeightChanges)]
-        [TestCase("KNOWLEDGECATEGORIES",
+        [TestCase(ReplacementStringConstants.KnowledgeCategory,
             TableNameConstants.Percentiles.Set.KnowledgeCategories)]
-        [TestCase("ENERGY",
+        [TestCase(ReplacementStringConstants.Energy,
             TableNameConstants.Percentiles.Set.Elements)]
-        [TestCase("PROTECTIONALIGNMENT",
+        [TestCase(ReplacementStringConstants.ProtectionAlignment,
             TableNameConstants.Percentiles.Set.ProtectionAlignments)]
         public override void Attributes(String name, params String[] attributes)
         {

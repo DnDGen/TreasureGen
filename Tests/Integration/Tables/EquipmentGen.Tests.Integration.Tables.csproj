@@ -317,6 +317,10 @@
       <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
       <Name>EquipmentGen.Mappers.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EquipmentGen\Selectors\EquipmentGen.Selectors\EquipmentGen.Selectors.csproj">
+      <Project>{a40b2852-673a-46bf-b4d5-8ce52efedf35}</Project>
+      <Name>EquipmentGen.Selectors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EquipmentGen\Tables\EquipmentGen.Tables.Interfaces\EquipmentGen.Tables.Interfaces.csproj">
       <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
       <Name>EquipmentGen.Tables.Interfaces</Name>
