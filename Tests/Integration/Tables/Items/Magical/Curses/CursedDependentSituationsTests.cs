@@ -40,7 +40,8 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(CurseConstants.Dependent.CloseToDivine, 73, 80)]
         [TestCase(CurseConstants.Dependent.HandsOfNonspellcaster, 81, 85)]
         [TestCase(CurseConstants.Dependent.HandsOfSpellcaster, 86, 90)]
-        [TestCase(CurseConstants.Dependent.HandsOfALIGNMENT, 91, 95)]
+        [TestCase(CurseConstants.Dependent.HandsOfPARTIALALIGNMENT, 91, 93)]
+        [TestCase(CurseConstants.Dependent.HandsOfFULLALIGNMENT, 94, 95)]
         [TestCase(CurseConstants.Dependent.NonholyDays, 97, 99)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {

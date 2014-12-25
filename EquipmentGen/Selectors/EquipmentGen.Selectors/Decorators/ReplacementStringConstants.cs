@@ -10,7 +10,8 @@ namespace EquipmentGen.Selectors.Decorators
         public const String Height = "HEIGHT";
         public const String KnowledgeCategory = "KNOWLEDGECATEGORY";
         public const String Energy = "ENERGY";
-        public const String ProtectionAlignment = "PROTECTIONALIGNMENT";
+        public const String PartialAlignment = "PARTIALALIGNMENT";
+        public const String FullAlignment = "FULLALIGNMENT";
 
         public static IEnumerable<String> GetAll()
         {
@@ -21,7 +22,8 @@ namespace EquipmentGen.Selectors.Decorators
                 Height,
                 KnowledgeCategory,
                 Energy,
-                ProtectionAlignment
+                PartialAlignment,
+                FullAlignment
             };
         }
     }

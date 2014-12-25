@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
-  <object>
-    <lower>1</lower>
-    <content>Temperature below freezing</content>
-    <upper>3</upper>
-  </object>
+    <object>
+        <lower>1</lower>
+        <content>Temperature below freezing</content>
+        <upper>3</upper>
+    </object>
     <object>
         <lower>4</lower>
         <content>Temperature above freezing</content>
@@ -78,7 +78,12 @@
     </object>
     <object>
         <lower>91</lower>
-        <content>In the hands of a ALIGNMENT creature</content>
+        <content>In the hands of a PARTIALALIGNMENT creature</content>
+        <upper>93</upper>
+    </object>
+    <object>
+        <lower>94</lower>
+        <content>In the hands of a FULLALIGNMENT creature</content>
         <upper>95</upper>
     </object>
     <object>

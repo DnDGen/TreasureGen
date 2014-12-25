@@ -58,7 +58,8 @@ namespace EquipmentGen.Tables.Interfaces
                 public const String MundaneWeapons = "MundaneWeapons";
                 public const String PersonalityTraits = "PersonalityTraits";
                 public const String Planes = "Planes";
-                public const String ProtectionAlignments = "ProtectionAlignments";
+                public const String PartialAlignments = "PartialAlignments";
+                public const String FullAlignments = "FullAlignments";
                 public const String RangedWeaponTraits = "RangedWeaponTraits";
                 public const String RobeOfTheArchmagiColors = "RobeOfTheArchmagiColors";
                 public const String RobeOfUsefulItemsExtraItems = "RobeOfUsefulItemsExtraItems";

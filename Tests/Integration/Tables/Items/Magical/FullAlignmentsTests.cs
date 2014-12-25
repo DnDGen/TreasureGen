@@ -3,14 +3,14 @@ using EquipmentGen.Common.Items;
 using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
-    public class IntelligenceAlignmentsTests : PercentileTests
+    public class FullAlignmentsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Percentiles.Set.IntelligenceAlignments; }
+            get { return TableNameConstants.Percentiles.Set.FullAlignments; }
         }
 
         [Test]
@@ -29,63 +29,63 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [Test]
         public void ChaoticGoodPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.ChaoticGood, 1, 5);
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticGood, 1, 11);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void ChaoticNeutralPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.ChaoticNeutral, 6, 15);
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticNeutral, 12, 22);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void ChaoticEvilPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.ChaoticEvil, 16, 20);
+            base.Percentile(IntelligenceAlignmentConstants.ChaoticEvil, 23, 33);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void NeutralEvilPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.NeutralEvil, 21, 25);
+            base.Percentile(IntelligenceAlignmentConstants.NeutralEvil, 34, 44);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void LawfulEvilPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.LawfulEvil, 26, 30);
+            base.Percentile(IntelligenceAlignmentConstants.LawfulEvil, 45, 55);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void LawfulGoodPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.LawfulGood, 31, 55);
+            base.Percentile(IntelligenceAlignmentConstants.LawfulGood, 56, 67);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void LawfulNeutralPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.LawfulNeutral, 56, 60);
+            base.Percentile(IntelligenceAlignmentConstants.LawfulNeutral, 68, 78);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void NeutralGoodPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.NeutralGood, 61, 80);
+            base.Percentile(IntelligenceAlignmentConstants.NeutralGood, 79, 89);
         }
 
         //INFO: Doing this because the full alignment constants are static properties, not constants
         [Test]
         public void TrueNeutralPercentile()
         {
-            base.Percentile(IntelligenceAlignmentConstants.TrueNeutral, 81, 100);
+            base.Percentile(IntelligenceAlignmentConstants.TrueNeutral, 90, 100);
         }
     }
 }

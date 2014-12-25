@@ -6,9 +6,10 @@
         <attribute>DESIGNATEDFOE</attribute>
         <attribute>GENDER</attribute>
         <attribute>HEIGHT</attribute>
-        <attribute>KNOWLEDGECATEGORIES</attribute>
+        <attribute>KNOWLEDGECATEGORY</attribute>
         <attribute>ENERGY</attribute>
-        <attribute>PROTECTIONALIGNMENT</attribute>
+        <attribute>PARTIALALIGNMENT</attribute>
+        <attribute>FULLALIGNMENT</attribute>
     </object>
     <object>
         <name>DESIGNATEDFOE</name>
@@ -23,7 +24,7 @@
         <attribute>CurseHeightChanges</attribute>
     </object>
     <object>
-        <name>KNOWLEDGECATEGORIES</name>
+        <name>KNOWLEDGECATEGORY</name>
         <attribute>KnowledgeCategories</attribute>
     </object>
     <object>
@@ -31,7 +32,11 @@
         <attribute>Elements</attribute>
     </object>
     <object>
-        <name>PROTECTIONALIGNMENT</name>
-        <attribute>ProtectionAlignments</attribute>
+        <name>PARTIALALIGNMENT</name>
+        <attribute>PartialAlignments</attribute>
+    </object>
+    <object>
+        <name>FULLALIGNMENT</name>
+        <attribute>FullAlignments</attribute>
     </object>
 </attributes>

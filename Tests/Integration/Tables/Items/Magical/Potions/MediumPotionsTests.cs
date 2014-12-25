@@ -77,7 +77,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase(PotionConstants.Daylight, 0, 61)]
         [TestCase(PotionConstants.FlameArrow, 0, 65)]
         [TestCase(PotionConstants.GaseousForm, 0, 69)]
-        [TestCase(PotionConstants.MagicCircleAgainstALIGNMENT, 0, 81)]
+        [TestCase(PotionConstants.MagicCircleAgainstPARTIALALIGNMENT, 0, 81)]
         [TestCase(PotionConstants.RemoveBlindnessDeafness, 0, 94)]
         [TestCase(PotionConstants.RemoveCurse, 0, 95)]
         [TestCase(PotionConstants.RemoveDisease, 0, 96)]

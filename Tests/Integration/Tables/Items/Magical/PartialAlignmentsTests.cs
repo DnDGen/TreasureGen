@@ -2,14 +2,14 @@
 using EquipmentGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
+namespace EquipmentGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
-    public class ProtectionAlignmentsTests : PercentileTests
+    public class PartialAlignmentsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Percentiles.Set.ProtectionAlignments; }
+            get { return TableNameConstants.Percentiles.Set.PartialAlignments; }
         }
 
         [Test]

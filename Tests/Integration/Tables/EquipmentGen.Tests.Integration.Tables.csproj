@@ -57,8 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
@@ -98,6 +99,7 @@
     <Compile Include="Items\Magical\Intelligence\IsLivingCreatureIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRodIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\ItemAlignmentRequirementsTests.cs" />
+    <Compile Include="Items\Magical\FullAlignmentsTests.cs" />
     <Compile Include="Items\Magical\Potions\MajorPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\MediumPotionsTests.cs" />
     <Compile Include="Items\Magical\Potions\PotionTraitsTests.cs" />
@@ -137,7 +139,7 @@
     <Compile Include="Items\Magical\Intelligence\LanguagesTests.cs" />
     <Compile Include="Items\Magical\Intelligence\PersonalityTraitsTests.cs" />
     <Compile Include="Items\Magical\Potions\MinorPotionsTests.cs" />
-    <Compile Include="Items\Magical\Potions\ProtectionAlignmentsTests.cs" />
+    <Compile Include="Items\Magical\PartialAlignmentsTests.cs" />
     <Compile Include="Items\Magical\Rings\ElementsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level0ArcaneSpellsTests.cs" />
     <Compile Include="Items\Magical\Scrolls\Arcane\Level4ArcaneSpellsTests.cs" />
@@ -337,7 +339,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

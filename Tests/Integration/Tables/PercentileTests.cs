@@ -23,7 +23,7 @@ namespace EquipmentGen.Tests.Integration.Tables
 
         public PercentileTests()
         {
-            allCapsRegex = new Regex("[A-Z][A-Z]+");
+            allCapsRegex = new Regex("[A-Z]{4}[A-Z]+");
             replacementStrings = ReplacementStringConstants.GetAll();
         }
 
@@ -49,11 +49,14 @@ namespace EquipmentGen.Tests.Integration.Tables
         {
             var distinctValues = table.Values.Distinct();
             foreach (var value in distinctValues)
-            {
-                var matches = allCapsRegex.Matches(value);
-                foreach (var match in matches)
-                    Assert.That(replacementStrings, Contains.Item(match));
-            }
+                AssertValidReplacementStrings(value);
+        }
+
+        private void AssertValidReplacementStrings(String value)
+        {
+            var matches = allCapsRegex.Matches(value);
+            foreach (var match in matches)
+                Assert.That(replacementStrings, Contains.Item(match.ToString()));
         }
 
         public virtual void Percentile(String content, Int32 lower, Int32 upper)

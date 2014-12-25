@@ -29,7 +29,8 @@ namespace EquipmentGen.Common.Items
             public const String CloseToDivine = "Within 10 feet of a divine spellcaster";
             public const String HandsOfNonspellcaster = "In the hands of a nonspellcaster";
             public const String HandsOfSpellcaster = "In the hands of a spellcaster";
-            public const String HandsOfALIGNMENT = "In the hands of a ALIGNMENT creature";
+            public const String HandsOfPARTIALALIGNMENT = "In the hands of a PARTIALALIGNMENT creature";
+            public const String HandsOfFULLALIGNMENT = "In the hands of a FULLALIGNMENT creature";
             public const String NonholyDays = "On nonholy days or during particular astrological events";
             public const String HandsOfGENDER = "In the hands of a GENDER";
             public const String MilesFromSite = "More than 100 miles from a particular site";

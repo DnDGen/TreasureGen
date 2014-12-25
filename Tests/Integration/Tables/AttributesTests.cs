@@ -35,7 +35,7 @@ namespace EquipmentGen.Tests.Integration.Tables
             }
 
             var extraAttributes = table[name].Except(attributes);
-            Assert.That(extraAttributes, Is.Empty);
+            Assert.That(extraAttributes, Is.Empty, "Extra attributes");
         }
 
         public virtual void OrderedAttributes(String name, params String[] attributes)

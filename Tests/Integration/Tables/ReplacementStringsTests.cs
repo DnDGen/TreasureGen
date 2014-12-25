@@ -19,7 +19,8 @@ namespace EquipmentGen.Tests.Integration.Tables
             ReplacementStringConstants.Height,
             ReplacementStringConstants.KnowledgeCategory,
             ReplacementStringConstants.Energy,
-            ReplacementStringConstants.ProtectionAlignment)]
+            ReplacementStringConstants.PartialAlignment,
+            ReplacementStringConstants.FullAlignment)]
         [TestCase(ReplacementStringConstants.DesignatedFoe,
             TableNameConstants.Percentiles.Set.DesignatedFoes)]
         [TestCase(ReplacementStringConstants.Gender,
@@ -30,8 +31,10 @@ namespace EquipmentGen.Tests.Integration.Tables
             TableNameConstants.Percentiles.Set.KnowledgeCategories)]
         [TestCase(ReplacementStringConstants.Energy,
             TableNameConstants.Percentiles.Set.Elements)]
-        [TestCase(ReplacementStringConstants.ProtectionAlignment,
-            TableNameConstants.Percentiles.Set.ProtectionAlignments)]
+        [TestCase(ReplacementStringConstants.PartialAlignment,
+            TableNameConstants.Percentiles.Set.PartialAlignments)]
+        [TestCase(ReplacementStringConstants.FullAlignment,
+            TableNameConstants.Percentiles.Set.FullAlignments)]
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);

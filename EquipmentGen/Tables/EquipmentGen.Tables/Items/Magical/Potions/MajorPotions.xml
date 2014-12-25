@@ -108,7 +108,7 @@
     </object>
     <object>
         <lower>47</lower>
-        <content>Potion of magic circle against ALIGNMENT,0</content>
+        <content>Potion of magic circle against PARTIALALIGNMENT,0</content>
         <upper>47</upper>
     </object>
     <object>

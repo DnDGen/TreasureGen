@@ -652,7 +652,7 @@
     <EmbeddedResource Include="Items\Magical\Potions\MinorPotions.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Magical\Potions\ProtectionAlignments.xml" />
+    <EmbeddedResource Include="Items\Magical\PartialAlignments.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Mundane\HasSpecialMaterial.xml" />
@@ -749,6 +749,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Items\Magical\Curses\Gender.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Items\Magical\FullAlignments.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

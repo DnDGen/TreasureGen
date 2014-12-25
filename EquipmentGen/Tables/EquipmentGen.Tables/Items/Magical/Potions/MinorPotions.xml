@@ -53,7 +53,7 @@
     </object>
     <object>
         <lower>31</lower>
-        <content>Potion of protection from ALIGNMENT,0</content>
+        <content>Potion of protection from PARTIALALIGNMENT,0</content>
         <upper>32</upper>
     </object>
     <object>

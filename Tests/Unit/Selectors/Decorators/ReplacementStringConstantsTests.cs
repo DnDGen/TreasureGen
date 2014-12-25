@@ -13,7 +13,8 @@ namespace EquipmentGen.Tests.Unit.Selectors.Decorators
         [TestCase(ReplacementStringConstants.Gender, "GENDER")]
         [TestCase(ReplacementStringConstants.Height, "HEIGHT")]
         [TestCase(ReplacementStringConstants.KnowledgeCategory, "KNOWLEDGECATEGORY")]
-        [TestCase(ReplacementStringConstants.ProtectionAlignment, "PROTECTIONALIGNMENT")]
+        [TestCase(ReplacementStringConstants.PartialAlignment, "PARTIALALIGNMENT")]
+        [TestCase(ReplacementStringConstants.FullAlignment, "FULLALIGNMENT")]
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
@@ -29,8 +30,9 @@ namespace EquipmentGen.Tests.Unit.Selectors.Decorators
             Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.Gender));
             Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.Height));
             Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.KnowledgeCategory));
-            Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.ProtectionAlignment));
-            Assert.That(replacementStrings.Count(), Is.EqualTo(6));
+            Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.PartialAlignment));
+            Assert.That(replacementStrings, Contains.Item(ReplacementStringConstants.FullAlignment));
+            Assert.That(replacementStrings.Count(), Is.EqualTo(7));
         }
     }
 }

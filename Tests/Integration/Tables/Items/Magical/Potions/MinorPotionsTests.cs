@@ -33,7 +33,7 @@ namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase(PotionConstants.MageArmor, 0, 20, 22)]
         [TestCase(PotionConstants.MagicFang, 0, 23, 25)]
         [TestCase(PotionConstants.MagicWeapon, 0, 27, 29)]
-        [TestCase(PotionConstants.ProtectionFromALIGNMENT, 0, 31, 32)]
+        [TestCase(PotionConstants.ProtectionFromPARTIALALIGNMENT, 0, 31, 32)]
         [TestCase(PotionConstants.RemoveFear, 0, 33, 34)]
         [TestCase(PotionConstants.ShieldOfFaith, 2, 36, 38)]
         [TestCase(PotionConstants.BlessWeapon, 0, 40, 41)]

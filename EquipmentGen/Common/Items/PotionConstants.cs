@@ -38,7 +38,7 @@ namespace EquipmentGen.Common.Items
         public const String Levitate_Oil = "Oil of levitate";
         public const String Levitate_Potion = "Potion of levitate";
         public const String MageArmor = "Potion of mage armor";
-        public const String MagicCircleAgainstALIGNMENT = "Potion of magic circle against ALIGNMENT";
+        public const String MagicCircleAgainstPARTIALALIGNMENT = "Potion of magic circle against PARTIALALIGNMENT";
         public const String MagicFang = "Potion of magic fang";
         public const String MagicFang_Greater = "Potion of greater magic fang";
         public const String MagicStone = "Oil of magic stone";
@@ -51,7 +51,7 @@ namespace EquipmentGen.Common.Items
         public const String OwlsWisdom = "Potion of owl's wisdom";
         public const String PassWithoutTrace = "Potion of pass without trace";
         public const String Poison = "Potion of poison";
-        public const String ProtectionFromALIGNMENT = "Potion of protection from ALIGNMENT";
+        public const String ProtectionFromPARTIALALIGNMENT = "Potion of protection from PARTIALALIGNMENT";
         public const String ProtectionFromArrows_10 = "Potion of protection from arrows 10/magic";
         public const String ProtectionFromArrows_15 = "Potion of protection from arrows 15/magic";
         public const String ProtectionFromENERGY = "Potion of protection from ENERGY";

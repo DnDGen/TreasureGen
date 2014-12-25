@@ -36,9 +36,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
         [TestCase("1d4*1000", 86, 90)]
         [TestCase("1d6*1000", 91, 95)]
         [TestCase("2d4*1000", 96, 99)]
-        public void TypeAndAmountPercentile(String value, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String value, Int32 lower, Int32 upper)
         {
-            TypeAndAmountPercentile(value, value, lower, upper);
+            base.TypeAndAmountPercentile(value, value, lower, upper);
         }
 
         [TestCase("2d6*1000", 100)]

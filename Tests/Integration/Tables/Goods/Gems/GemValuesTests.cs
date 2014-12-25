@@ -30,9 +30,9 @@ namespace EquipmentGen.Tests.Integration.Tables.Goods.Gems
         [TestCase("4d4*10", 51, 70)]
         [TestCase("2d4*100", 71, 90)]
         [TestCase("4d4*100", 91, 99)]
-        public void TypeAndAmountPercentile(String value, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(String value, Int32 lower, Int32 upper)
         {
-            TypeAndAmountPercentile(value, value, lower, upper);
+            base.TypeAndAmountPercentile(value, value, lower, upper);
         }
 
         [TestCase("2d4*1000", 100)]
