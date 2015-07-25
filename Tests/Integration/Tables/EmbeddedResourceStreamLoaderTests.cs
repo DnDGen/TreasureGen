@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tables;
 using TreasureGen.Tests.Integration.Common;
-using Ninject;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables
 {
@@ -61,7 +61,7 @@ namespace TreasureGen.Tests.Integration.Tables
         [Test]
         public void ThrowErrorIfFileIsNotFormattedCorrectly()
         {
-            Assert.That(() => StreamLoader.LoadFor("invalid filename"), Throws.ArgumentException.With.Message.EqualTo("\"invalid filename\" is not a valid file"));
+            Assert.That(() => StreamLoader.LoadFor("Coins"), Throws.ArgumentException.With.Message.EqualTo("\"Coins\" is not a valid file"));
         }
 
         [Test]

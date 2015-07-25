@@ -1,7 +1,7 @@
-﻿using System;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
+using System;
+using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {

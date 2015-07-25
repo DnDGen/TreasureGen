@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TreasureGen.Tables.Interfaces
+namespace TreasureGen.Tables
 {
     public static class TableNameConstants
     {

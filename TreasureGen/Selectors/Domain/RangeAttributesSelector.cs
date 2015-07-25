@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
+using TreasureGen.Selectors.Results;
 
-namespace TreasureGen.Selectors
+namespace TreasureGen.Selectors.Domain
 {
     public class RangeAttributesSelector : IRangeAttributesSelector
     {

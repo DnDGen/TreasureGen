@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Goods;
-using TreasureGen.Generators.Interfaces.Goods;
-using Ninject;
-using NUnit.Framework;
+using TreasureGen.Generators.Goods;
 
 namespace TreasureGen.Tests.Integration.Stress.Coins
 {

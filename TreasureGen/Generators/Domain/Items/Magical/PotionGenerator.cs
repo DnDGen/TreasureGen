@@ -1,9 +1,9 @@
 ﻿using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Magical;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Results;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {

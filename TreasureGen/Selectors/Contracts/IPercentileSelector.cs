@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TreasureGen.Selectors.Interfaces
+namespace TreasureGen.Selectors
 {
     public interface IPercentileSelector
     {

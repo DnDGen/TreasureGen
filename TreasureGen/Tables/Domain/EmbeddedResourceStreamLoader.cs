@@ -2,9 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using TreasureGen.Tables.Interfaces;
 
-namespace TreasureGen.Tables
+namespace TreasureGen.Tables.Domain
 {
     public class EmbeddedResourceStreamLoader : IStreamLoader
     {

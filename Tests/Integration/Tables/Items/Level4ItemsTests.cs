@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
-using TreasureGen.Tables.Interfaces;
-using NUnit.Framework;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items
 {

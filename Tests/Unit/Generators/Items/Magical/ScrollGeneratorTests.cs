@@ -1,10 +1,10 @@
-﻿using System;
-using D20Dice;
-using TreasureGen.Common.Items;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using TreasureGen.Generators.Items.Magical;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Domain.Items.Magical;
+using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {

@@ -1,7 +1,6 @@
 ﻿using System;
-using TreasureGen.Selectors.Interfaces;
 
-namespace TreasureGen.Selectors
+namespace TreasureGen.Selectors.Domain
 {
     public class BooleanPercentileSelector : IBooleanPercentileSelector
     {

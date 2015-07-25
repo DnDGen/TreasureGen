@@ -1,8 +1,8 @@
-﻿using System;
-using TreasureGen.Common.Items;
-using TreasureGen.Generators.Interfaces.Items.Mundane;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
+using System;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Items.Mundane;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {

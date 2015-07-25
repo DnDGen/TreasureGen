@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using TreasureGen.Common.Items;
-using TreasureGen.Generators.Domain.RuntimeFactories.Interfaces;
+using TreasureGen.Generators.Domain.RuntimeFactories;
 using TreasureGen.Generators.Items;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items
 {

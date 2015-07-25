@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Mappers;
 
-namespace TreasureGen.Selectors
+namespace TreasureGen.Selectors.Domain
 {
     public class AttributesSelector : IAttributesSelector
     {

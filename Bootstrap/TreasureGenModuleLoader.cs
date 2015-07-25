@@ -1,9 +1,9 @@
-﻿using EquipmentGen.Bootstrap.Modules;
-using Ninject;
+﻿using Ninject;
+using TreasureGen.Bootstrap.Modules;
 
-namespace EquipmentGen.Bootstrap
+namespace TreasureGen.Bootstrap
 {
-    public class EquipmentGenModuleLoader
+    public class TreasureGenModuleLoader
     {
         public void LoadModules(IKernel kernel)
         {

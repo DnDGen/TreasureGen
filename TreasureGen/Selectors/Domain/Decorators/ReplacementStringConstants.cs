@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TreasureGen.Selectors.Decorators
+namespace TreasureGen.Selectors.Domain.Decorators
 {
     public static class ReplacementStringConstants
     {
@@ -15,7 +15,7 @@ namespace TreasureGen.Selectors.Decorators
 
         public static IEnumerable<String> GetAll()
         {
-            return new[] 
+            return new[]
             {
                 DesignatedFoe,
                 Gender,

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Mappers.Percentile;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using TreasureGen.Mappers;
+using TreasureGen.Mappers.Domain.Percentile;
 
 namespace TreasureGen.Tests.Unit.Mappers.Percentile
 {

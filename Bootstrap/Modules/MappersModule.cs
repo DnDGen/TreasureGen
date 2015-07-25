@@ -1,18 +1,16 @@
-﻿using EquipmentGen.Bootstrap.Factories.Mappers;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Tables.Interfaces;
-using Ninject;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using TreasureGen.Bootstrap.Factories.Mappers;
+using TreasureGen.Mappers;
 
-namespace EquipmentGen.Bootstrap.Modules
+namespace TreasureGen.Bootstrap.Modules
 {
     public class MappersModule : NinjectModule
     {
         public override void Load()
         {
-            Bind<IPercentileMapper>().ToMethod(c => PercentileMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
+            Bind<IPercentileMapper>().ToMethod(c => PercentileMapperFactory.CreateWith(c.Kernel))
                 .InSingletonScope();
-            Bind<IAttributesMapper>().ToMethod(c => AttributesMapperFactory.CreateWith(c.Kernel.Get<IStreamLoader>()))
+            Bind<IAttributesMapper>().ToMethod(c => AttributesMapperFactory.CreateWith(c.Kernel))
                 .InSingletonScope();
         }
     }

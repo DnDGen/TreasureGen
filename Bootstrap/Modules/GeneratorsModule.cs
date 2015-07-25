@@ -1,22 +1,22 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Generators;
-using EquipmentGen.Generators.Coins;
-using EquipmentGen.Generators.Goods;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Generators.Interfaces.Coins;
-using EquipmentGen.Generators.Interfaces.Goods;
-using EquipmentGen.Generators.Interfaces.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Items;
-using EquipmentGen.Generators.Items.Magical;
-using EquipmentGen.Generators.Items.Mundane;
-using EquipmentGen.Generators.RuntimeFactories;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using Ninject;
+﻿using Ninject;
 using Ninject.Modules;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Generators.Domain;
+using TreasureGen.Generators.Domain.Coins;
+using TreasureGen.Generators.Domain.Goods;
+using TreasureGen.Generators.Domain.Items;
+using TreasureGen.Generators.Domain.Items.Magical;
+using TreasureGen.Generators.Domain.Items.Mundane;
+using TreasureGen.Generators.Domain.RuntimeFactories;
+using TreasureGen.Generators.Domain.RuntimeFactories.Domain;
+using TreasureGen.Generators.Goods;
+using TreasureGen.Generators.Items;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Generators.Items.Mundane;
 
-namespace EquipmentGen.Bootstrap.Modules
+namespace TreasureGen.Bootstrap.Modules
 {
     public class GeneratorsModule : NinjectModule
     {

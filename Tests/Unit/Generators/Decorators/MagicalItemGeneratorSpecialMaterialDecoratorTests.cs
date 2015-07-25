@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Moq;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using TreasureGen.Common.Items;
-using TreasureGen.Generators.Decorators;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using TreasureGen.Generators.Interfaces.Items.Mundane;
-using Moq;
-using NUnit.Framework;
+using TreasureGen.Generators.Domain.Decorators;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Generators.Items.Mundane;
 
 namespace TreasureGen.Tests.Unit.Generators.Decorators
 {

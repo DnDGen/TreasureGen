@@ -1,9 +1,8 @@
-﻿using System;
-using D20Dice;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
+﻿using RollGen;
+using System;
+using TreasureGen.Selectors.Results;
 
-namespace TreasureGen.Selectors
+namespace TreasureGen.Selectors.Domain
 {
     public class TypeAndAmountPercentileSelector : ITypeAndAmountPercentileSelector
     {

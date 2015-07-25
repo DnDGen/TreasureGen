@@ -7,10 +7,11 @@
     <ProjectGuid>{74AAA5DD-7DE2-4BBD-BED1-829B26F0D4EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EquipmentGen.Mappers</RootNamespace>
-    <AssemblyName>EquipmentGen.Mappers</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TreasureGen.Mappers.Domain</RootNamespace>
+    <AssemblyName>TreasureGen.Mappers.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

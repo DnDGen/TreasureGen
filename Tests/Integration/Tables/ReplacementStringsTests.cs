@@ -1,7 +1,7 @@
-﻿using System;
-using TreasureGen.Selectors.Decorators;
-using TreasureGen.Tables.Interfaces;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
+using TreasureGen.Selectors.Domain.Decorators;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables
 {

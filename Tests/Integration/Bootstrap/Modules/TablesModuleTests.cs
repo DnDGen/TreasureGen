@@ -1,5 +1,5 @@
-﻿using TreasureGen.Tables.Interfaces;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {

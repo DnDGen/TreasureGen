@@ -1,13 +1,13 @@
-﻿using TreasureGen.Common.Items;
-using TreasureGen.Generators.Decorators;
-using TreasureGen.Generators.Interfaces;
-using TreasureGen.Generators.Interfaces.Coins;
-using TreasureGen.Generators.Interfaces.Goods;
-using TreasureGen.Generators.Interfaces.Items;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using TreasureGen.Generators.Interfaces.Items.Mundane;
-using TreasureGen.Generators.RuntimeFactories.Interfaces;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Generators.Domain.Decorators;
+using TreasureGen.Generators.Domain.RuntimeFactories;
+using TreasureGen.Generators.Goods;
+using TreasureGen.Generators.Items;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Generators.Items.Mundane;
 
 namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {

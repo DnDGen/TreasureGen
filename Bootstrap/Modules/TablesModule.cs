@@ -1,8 +1,8 @@
-﻿using EquipmentGen.Tables;
-using EquipmentGen.Tables.Interfaces;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using TreasureGen.Tables;
+using TreasureGen.Tables.Domain;
 
-namespace EquipmentGen.Bootstrap.Modules
+namespace TreasureGen.Bootstrap.Modules
 {
     public class TablesModule : NinjectModule
     {

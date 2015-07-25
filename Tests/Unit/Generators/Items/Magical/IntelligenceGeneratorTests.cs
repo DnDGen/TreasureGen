@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using D20Dice;
-using TreasureGen.Common.Items;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using TreasureGen.Generators.Items.Magical;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
-using TreasureGen.Tables.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using System.Collections.Generic;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Domain.Items.Magical;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Results;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {

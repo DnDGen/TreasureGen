@@ -1,7 +1,7 @@
-﻿using TreasureGen.Mappers.Attributes;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Mappers.Percentile;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TreasureGen.Mappers;
+using TreasureGen.Mappers.Domain.Attributes;
+using TreasureGen.Mappers.Domain.Percentile;
 
 namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {

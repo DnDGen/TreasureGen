@@ -1,7 +1,7 @@
 ﻿using System;
-using TreasureGen.Selectors.Interfaces.Objects;
+using TreasureGen.Selectors.Results;
 
-namespace TreasureGen.Selectors.Interfaces
+namespace TreasureGen.Selectors
 {
     public interface IIntelligenceAttributesSelector
     {

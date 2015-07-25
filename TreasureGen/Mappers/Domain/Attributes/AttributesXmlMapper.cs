@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tables;
 
-namespace TreasureGen.Mappers.Attributes
+namespace TreasureGen.Mappers.Domain.Attributes
 {
     public class AttributesXmlMapper : IAttributesMapper
     {

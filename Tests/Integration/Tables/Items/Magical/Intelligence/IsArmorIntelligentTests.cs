@@ -1,6 +1,6 @@
 ﻿using System;
 using TreasureGen.Common.Items;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tables;
 using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence

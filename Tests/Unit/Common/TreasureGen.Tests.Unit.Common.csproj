@@ -7,10 +7,11 @@
     <ProjectGuid>{28C8919C-6D51-4E5D-8214-DA6E35F9FDEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EquipmentGen.Tests.Unit.Common</RootNamespace>
-    <AssemblyName>EquipmentGen.Tests.Unit.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TreasureGen.Tests.Unit.Common</RootNamespace>
+    <AssemblyName>TreasureGen.Tests.Unit.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

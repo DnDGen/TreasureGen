@@ -1,9 +1,9 @@
-﻿using System;
-using TreasureGen.Common;
-using TreasureGen.Generators.Interfaces;
-using TreasureGen.Tests.Integration.Stress.Items.Magical;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
+using System;
+using TreasureGen.Common;
+using TreasureGen.Generators;
+using TreasureGen.Tests.Integration.Stress.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Stress
 {

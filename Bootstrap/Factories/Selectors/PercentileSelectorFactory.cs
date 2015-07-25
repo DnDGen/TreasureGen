@@ -1,15 +1,20 @@
-﻿using D20Dice;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Selectors;
-using EquipmentGen.Selectors.Decorators;
-using EquipmentGen.Selectors.Interfaces;
+﻿using Ninject;
+using RollGen;
+using TreasureGen.Mappers;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Domain;
+using TreasureGen.Selectors.Domain.Decorators;
 
-namespace EquipmentGen.Bootstrap.Factories.Selectors
+namespace TreasureGen.Bootstrap.Factories.Selectors
 {
     public static class PercentileSelectorFactory
     {
-        public static IPercentileSelector CreateWith(IPercentileMapper percentileMapper, IDice dice, IAttributesSelector attributesSelector)
+        public static IPercentileSelector CreateWith(IKernel kernel)
         {
+            var percentileMapper = kernel.Get<IPercentileMapper>();
+            var dice = kernel.Get<IDice>();
+            var attributesSelector = kernel.Get<IAttributesSelector>();
+
             IPercentileSelector selector = new PercentileSelector(percentileMapper, dice);
             selector = new ReplacePercentileSelectorDecorator(selector, attributesSelector);
 

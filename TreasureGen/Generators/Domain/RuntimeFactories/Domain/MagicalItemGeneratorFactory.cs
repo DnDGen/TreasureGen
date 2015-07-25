@@ -3,12 +3,11 @@ using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Domain.Decorators;
 using TreasureGen.Generators.Domain.Items.Magical;
-using TreasureGen.Generators.Domain.RuntimeFactories.Interfaces;
 using TreasureGen.Generators.Items.Magical;
 using TreasureGen.Generators.Items.Mundane;
-using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Selectors;
 
-namespace TreasureGen.Generators.Domain.RuntimeFactories
+namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
 {
     public class MagicalItemGeneratorFactory : IMagicalItemGeneratorFactory
     {

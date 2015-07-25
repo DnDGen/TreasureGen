@@ -1,11 +1,10 @@
-﻿using System;
+﻿using RollGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Mappers;
 
-namespace TreasureGen.Selectors
+namespace TreasureGen.Selectors.Domain
 {
     public class PercentileSelector : IPercentileSelector
     {

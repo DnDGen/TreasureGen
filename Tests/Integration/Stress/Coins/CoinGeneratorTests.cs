@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Linq;
 using TreasureGen.Common.Coins;
-using TreasureGen.Generators.Interfaces.Coins;
-using Ninject;
-using NUnit.Framework;
+using TreasureGen.Generators.Coins;
 
 namespace TreasureGen.Tests.Integration.Stress.Coins
 {

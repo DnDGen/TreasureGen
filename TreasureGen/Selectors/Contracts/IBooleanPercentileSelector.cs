@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TreasureGen.Selectors.Interfaces
+namespace TreasureGen.Selectors
 {
     public interface IBooleanPercentileSelector
     {

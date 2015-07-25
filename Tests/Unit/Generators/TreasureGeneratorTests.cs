@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using D20Dice;
+﻿using Moq;
+using NUnit.Framework;
+using RollGen;
+using System.Collections.Generic;
 using TreasureGen.Common.Coins;
 using TreasureGen.Common.Goods;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators;
-using TreasureGen.Generators.Interfaces;
-using TreasureGen.Generators.Interfaces.Coins;
-using TreasureGen.Generators.Interfaces.Goods;
-using TreasureGen.Generators.Interfaces.Items;
-using Moq;
-using NUnit.Framework;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Generators.Domain;
+using TreasureGen.Generators.Goods;
+using TreasureGen.Generators.Items;
 
 namespace TreasureGen.Tests.Unit.Generators
 {

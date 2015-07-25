@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Selectors.Decorators;
-using Ninject;
-using NUnit.Framework;
+using TreasureGen.Mappers;
+using TreasureGen.Selectors.Domain.Decorators;
 
 namespace TreasureGen.Tests.Integration.Tables
 {

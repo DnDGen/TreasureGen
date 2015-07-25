@@ -68,10 +68,10 @@
     <Compile Include="Decorators\MagicalItemGeneratorTraitsDecorator.cs" />
     <Compile Include="Decorators\MagicalItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Decorators\MundaneItemGeneratorSpecialMaterialDecorator.cs" />
-    <Compile Include="RuntimeFactories\Interfaces\IMagicalItemGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\Interfaces\IMundaneItemGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\MagicalItemGeneratorFactory.cs" />
-    <Compile Include="RuntimeFactories\MundaneItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\IMagicalItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\IMundaneItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\Domain\MagicalItemGeneratorFactory.cs" />
+    <Compile Include="RuntimeFactories\Domain\MundaneItemGeneratorFactory.cs" />
     <Compile Include="Items\Mundane\AlchemicalItemGenerator.cs" />
     <Compile Include="Items\Mundane\AmmunitionGenerator.cs" />
     <Compile Include="Items\Magical\ChargesGenerator.cs" />

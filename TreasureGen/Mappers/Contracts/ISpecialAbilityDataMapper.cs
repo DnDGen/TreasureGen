@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using TreasureGen.Mappers.Objects;
+using TreasureGen.Mappers.Models;
 
-namespace TreasureGen.Mappers.Interfaces
+namespace TreasureGen.Mappers
 {
     public interface ISpecialAbilityDataMapper
     {
-        Dictionary<String, SpecialAbilityDataObject> Map(String tableName);
+        Dictionary<String, SpecialAbilityDataModel> Map(String tableName);
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using D20Dice;
-using TreasureGen.Generators.Coins;
-using TreasureGen.Generators.Interfaces.Coins;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
-using TreasureGen.Tables.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Generators.Domain.Coins;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Results;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Coins
 {

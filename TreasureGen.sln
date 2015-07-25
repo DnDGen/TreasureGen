@@ -10,9 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{CE6C1C33-CE08-46F3-B586-E78A1A7A7866}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{D0DD065C-41CB-4719-A714-D7E2075E9405}"
-	ProjectSection(SolutionItems) = preProject
-		Bootstrap\TreasureGen.Bootstrap.csproj = Bootstrap\TreasureGen.Bootstrap.csproj
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TreasureGen", "TreasureGen", "{2D573A45-87BD-4DEE-AD45-312FA5154F17}"
 EndProject
@@ -63,6 +60,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Tables", "TreasureGen\Tables\Contracts\TreasureGen.Tables.csproj", "{C9FBE7DF-A7C5-4274-B7B5-B8C4C9E5001D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Tables.Domain", "TreasureGen\Tables\Domain\TreasureGen.Tables.Domain.csproj", "{B404A5BF-02DE-400E-9DAD-5CAFBC72A926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Bootstrap", "Bootstrap\TreasureGen.Bootstrap.csproj", "{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -216,6 +215,14 @@ Global
 		{B404A5BF-02DE-400E-9DAD-5CAFBC72A926}.Run Tests - Quick|Any CPU.Build.0 = Run Tests - Quick|Any CPU
 		{B404A5BF-02DE-400E-9DAD-5CAFBC72A926}.Run Tests - Stress|Any CPU.ActiveCfg = Run Tests - Stress|Any CPU
 		{B404A5BF-02DE-400E-9DAD-5CAFBC72A926}.Run Tests - Stress|Any CPU.Build.0 = Run Tests - Stress|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Run Tests - Quick|Any CPU.ActiveCfg = Run Tests - Quick|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Run Tests - Quick|Any CPU.Build.0 = Run Tests - Quick|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Run Tests - Stress|Any CPU.ActiveCfg = Run Tests - Stress|Any CPU
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858}.Run Tests - Stress|Any CPU.Build.0 = Run Tests - Stress|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,5 +253,6 @@ Global
 		{A40B2852-673A-46BF-B4D5-8CE52EFEDF35} = {315F508C-8A60-45B8-A79C-67952B6403A2}
 		{C9FBE7DF-A7C5-4274-B7B5-B8C4C9E5001D} = {CE6FD47F-6B05-4E7F-98E6-B501C81AF79E}
 		{B404A5BF-02DE-400E-9DAD-5CAFBC72A926} = {CE6FD47F-6B05-4E7F-98E6-B501C81AF79E}
+		{EE68FAEB-1D40-447F-9BCD-93D1FFDFE858} = {D0DD065C-41CB-4719-A714-D7E2075E9405}
 	EndGlobalSection
 EndGlobal

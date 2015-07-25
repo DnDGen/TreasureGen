@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TreasureGen.Mappers.Interfaces;
 
-namespace TreasureGen.Mappers.Percentile
+namespace TreasureGen.Mappers.Domain.Percentile
 {
     public class PercentileMapperCachingProxy : IPercentileMapper
     {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TreasureGen.Mappers.Interfaces;
 
-namespace TreasureGen.Mappers.Attributes
+namespace TreasureGen.Mappers.Domain.Attributes
 {
     public class AttributesMapperCachingProxy : IAttributesMapper
     {

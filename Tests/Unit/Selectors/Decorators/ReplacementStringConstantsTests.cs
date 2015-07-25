@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Linq;
-using TreasureGen.Selectors.Decorators;
-using NUnit.Framework;
+using TreasureGen.Selectors.Domain.Decorators;
 
 namespace TreasureGen.Tests.Unit.Selectors.Decorators
 {

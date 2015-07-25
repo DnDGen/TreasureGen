@@ -7,10 +7,11 @@
     <ProjectGuid>{C9FBE7DF-A7C5-4274-B7B5-B8C4C9E5001D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EquipmentGen.Tables.Interfaces</RootNamespace>
-    <AssemblyName>EquipmentGen.Tables.Interfaces</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TreasureGen.Tables</RootNamespace>
+    <AssemblyName>TreasureGen.Tables</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Mundane;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Mundane
 {

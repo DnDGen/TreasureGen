@@ -1,6 +1,6 @@
-﻿using TreasureGen.Selectors.Decorators;
-using TreasureGen.Selectors.Interfaces;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Domain.Decorators;
 
 namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {

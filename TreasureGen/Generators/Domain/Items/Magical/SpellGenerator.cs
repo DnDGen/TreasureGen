@@ -1,7 +1,7 @@
 ﻿using System;
 using TreasureGen.Generators.Items.Magical;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {

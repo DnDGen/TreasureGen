@@ -1,6 +1,6 @@
-﻿using System;
-using TreasureGen.Tables.Interfaces;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Tables
 {

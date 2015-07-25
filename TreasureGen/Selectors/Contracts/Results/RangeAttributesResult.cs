@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TreasureGen.Selectors.Interfaces.Objects
+namespace TreasureGen.Selectors.Results
 {
     public class RangeAttributesResult
     {

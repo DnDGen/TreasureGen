@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TreasureGen.Mappers.Interfaces
+namespace TreasureGen.Mappers
 {
     public interface IPercentileMapper
     {

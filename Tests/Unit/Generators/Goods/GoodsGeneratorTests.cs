@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using D20Dice;
-using TreasureGen.Generators.Goods;
-using TreasureGen.Generators.Interfaces.Goods;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Selectors.Interfaces.Objects;
-using TreasureGen.Tables.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using System.Linq;
+using TreasureGen.Generators.Domain.Goods;
+using TreasureGen.Generators.Goods;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Results;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Goods
 {

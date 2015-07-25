@@ -1,8 +1,8 @@
-﻿using System;
-using TreasureGen.Selectors;
-using TreasureGen.Selectors.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Domain;
 
 namespace TreasureGen.Tests.Unit.Selectors
 {

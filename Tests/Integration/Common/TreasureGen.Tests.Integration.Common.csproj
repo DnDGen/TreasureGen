@@ -6,9 +6,9 @@
     <ProjectGuid>{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EquipmentGen.Tests.Integration.Common</RootNamespace>
-    <AssemblyName>EquipmentGen.Tests.Integration.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TreasureGen.Tests.Integration.Common</RootNamespace>
+    <AssemblyName>TreasureGen.Tests.Integration.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,41 +89,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Bootstrap\EquipmentGen.Bootstrap.csproj">
-      <Project>{ee68faeb-1d40-447f-9bcd-93d1ffdfe858}</Project>
-      <Name>EquipmentGen.Bootstrap</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Common\TreasureGen.Common.csproj">
-      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
-      <Name>EquipmentGen.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Generators\Contracts\TreasureGen.Generators.csproj">
-      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
-      <Name>EquipmentGen.Generators.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Generators\Domain\TreasureGen.Generators.Domain.csproj">
-      <Project>{187f1421-35eb-4050-879a-4aa77e89615b}</Project>
-      <Name>EquipmentGen.Generators</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Mappers\Contracts\TreasureGen.Mappers.csproj">
-      <Project>{baef420b-4690-4946-b2fc-c9d9cfe35338}</Project>
-      <Name>EquipmentGen.Mappers.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Mappers\Domain\TreasureGen.Mappers.Domain.csproj">
-      <Project>{74aaa5dd-7de2-4bbd-bed1-829b26f0d4eb}</Project>
-      <Name>EquipmentGen.Mappers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Selectors\Contracts\TreasureGen.Selectors.csproj">
-      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
-      <Name>EquipmentGen.Selectors.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TreasureGen\Tables\Contracts\TreasureGen.Tables.csproj">
-      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
-      <Name>EquipmentGen.Tables.Interfaces</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\..\Bootstrap\TreasureGen.Bootstrap.csproj">
+      <Project>{ee68faeb-1d40-447f-9bcd-93d1ffdfe858}</Project>
+      <Name>TreasureGen.Bootstrap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
-using TreasureGen.Generators.Interfaces.Items.Magical;
-using TreasureGen.Mappers.Interfaces;
-using Ninject;
-using NUnit.Framework;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Mappers;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace TreasureGen.Tables.Interfaces
+namespace TreasureGen.Tables
 {
     public interface IStreamLoader
     {

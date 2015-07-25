@@ -2,8 +2,8 @@
 using System;
 using TreasureGen.Common.Coins;
 using TreasureGen.Generators.Coins;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Coins
 {

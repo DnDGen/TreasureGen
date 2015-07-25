@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tables;
 
-namespace TreasureGen.Selectors.Decorators
+namespace TreasureGen.Selectors.Domain.Decorators
 {
     public class ReplacePercentileSelectorDecorator : IPercentileSelector
     {

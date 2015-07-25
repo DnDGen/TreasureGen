@@ -1,6 +1,6 @@
 ﻿using System;
 using TreasureGen.Common.Goods;
-using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tables;
 using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Goods

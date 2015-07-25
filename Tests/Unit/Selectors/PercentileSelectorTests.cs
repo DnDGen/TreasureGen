@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Moq;
+using NUnit.Framework;
+using RollGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using D20Dice;
-using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Mappers;
 using TreasureGen.Selectors;
-using TreasureGen.Selectors.Interfaces;
-using Moq;
-using NUnit.Framework;
+using TreasureGen.Selectors.Domain;
 
 namespace TreasureGen.Tests.Unit.Selectors
 {

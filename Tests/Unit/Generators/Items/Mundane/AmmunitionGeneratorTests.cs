@@ -1,12 +1,12 @@
-﻿using System;
-using D20Dice;
-using TreasureGen.Common.Items;
-using TreasureGen.Generators.Interfaces.Items.Mundane;
-using TreasureGen.Generators.Items.Mundane;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Domain.Items.Mundane;
+using TreasureGen.Generators.Items.Mundane;
+using TreasureGen.Selectors;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 {

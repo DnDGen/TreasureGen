@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Moq;
+using NUnit.Framework;
+using System;
 using System.IO;
 using System.Linq;
-using TreasureGen.Mappers.Attributes;
-using TreasureGen.Mappers.Interfaces;
-using TreasureGen.Tables.Interfaces;
-using Moq;
-using NUnit.Framework;
+using TreasureGen.Mappers;
+using TreasureGen.Mappers.Domain.Attributes;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Mappers.Attributes
 {

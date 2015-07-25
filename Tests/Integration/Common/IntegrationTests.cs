@@ -1,8 +1,8 @@
-﻿using System;
-using D20Dice.Bootstrap;
-using TreasureGen.Bootstrap;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
+using RollGen.Bootstrap;
+using System;
+using TreasureGen.Bootstrap;
 
 namespace TreasureGen.Tests.Integration.Common
 {
@@ -15,10 +15,10 @@ namespace TreasureGen.Tests.Integration.Common
         {
             kernel = new StandardKernel();
 
-            var equipmentGenModuleLoader = new EquipmentGenModuleLoader();
+            var equipmentGenModuleLoader = new TreasureGenModuleLoader();
             equipmentGenModuleLoader.LoadModules(kernel);
 
-            var d20DiceModuleLoader = new D20DiceModuleLoader();
+            var d20DiceModuleLoader = new RollGenModuleLoader();
             d20DiceModuleLoader.LoadModules(kernel);
 
             kernel.Inject(this);

@@ -1,13 +1,16 @@
-﻿using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Percentile;
-using EquipmentGen.Tables.Interfaces;
+﻿using Ninject;
+using TreasureGen.Mappers;
+using TreasureGen.Mappers.Domain.Percentile;
+using TreasureGen.Tables;
 
-namespace EquipmentGen.Bootstrap.Factories.Mappers
+namespace TreasureGen.Bootstrap.Factories.Mappers
 {
     public static class PercentileMapperFactory
     {
-        public static IPercentileMapper CreateWith(IStreamLoader streamLoader)
+        public static IPercentileMapper CreateWith(IKernel kernel)
         {
+            var streamLoader = kernel.Get<IStreamLoader>();
+
             IPercentileMapper mapper = new PercentileXmlMapper(streamLoader);
             mapper = new PercentileMapperCachingProxy(mapper);
 

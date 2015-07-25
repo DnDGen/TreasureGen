@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using TreasureGen.Selectors.Decorators;
-using TreasureGen.Selectors.Interfaces;
-using TreasureGen.Tables.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System.Linq;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Domain.Decorators;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Selectors.Decorators
 {

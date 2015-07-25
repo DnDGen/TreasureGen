@@ -1,9 +1,9 @@
-﻿using System;
-using D20Dice;
-using TreasureGen.Selectors;
-using TreasureGen.Selectors.Interfaces;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using RollGen;
+using System;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Domain;
 
 namespace TreasureGen.Tests.Unit.Selectors
 {
