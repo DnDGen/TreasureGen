@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
+namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
 {
     [TestFixture]
     public class MajorRodsTests : TypeAndAmountPercentileTests

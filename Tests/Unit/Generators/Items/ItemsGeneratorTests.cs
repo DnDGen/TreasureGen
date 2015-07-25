@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
 using D20Dice;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Items;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Interfaces.Objects;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items;
+using TreasureGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Generators.Interfaces.Items.Mundane;
+using TreasureGen.Generators.Items;
+using TreasureGen.Generators.RuntimeFactories.Interfaces;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Selectors.Interfaces.Objects;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Items
+namespace TreasureGen.Tests.Unit.Generators.Items
 {
     [TestFixture]
     public class ItemsGeneratorTests

@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Magical.Rods
+namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
 {
     [TestFixture]
     public class RodOfAbsorptionContainsSpellLevelsTests : BooleanPercentileTests

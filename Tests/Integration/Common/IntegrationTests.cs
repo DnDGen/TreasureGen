@@ -1,10 +1,10 @@
 ﻿using System;
 using D20Dice.Bootstrap;
-using EquipmentGen.Bootstrap;
+using TreasureGen.Bootstrap;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Common
+namespace TreasureGen.Tests.Integration.Common
 {
     [TestFixture]
     public abstract class IntegrationTests

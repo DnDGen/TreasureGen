@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Tables
+namespace TreasureGen.Tests.Unit.Tables
 {
     [TestFixture]
     public class TableNameConstantsTests

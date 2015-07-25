@@ -1,12 +1,12 @@
 ﻿using System;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Decorators;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Decorators;
+using TreasureGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Decorators
+namespace TreasureGen.Tests.Unit.Generators.Decorators
 {
     [TestFixture]
     public class MagicalItemGeneratorCurseDecoratorTests

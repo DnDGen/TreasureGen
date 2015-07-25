@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Common.Goods;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Goods;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Goods
+namespace TreasureGen.Tests.Integration.Tables.Goods
 {
     [TestFixture]
     public class Level13GoodsTests : TypeAndAmountPercentileTests

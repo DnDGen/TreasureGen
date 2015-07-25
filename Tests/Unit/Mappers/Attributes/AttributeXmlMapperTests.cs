@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using EquipmentGen.Mappers.Attributes;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Mappers.Attributes;
+using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Mappers.Attributes
+namespace TreasureGen.Tests.Unit.Mappers.Attributes
 {
     [TestFixture]
     public class AttributeXmlMapperTests

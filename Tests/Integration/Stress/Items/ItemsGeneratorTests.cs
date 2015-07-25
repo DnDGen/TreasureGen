@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items
+namespace TreasureGen.Tests.Integration.Stress.Items
 {
     [TestFixture]
     public class ItemsGeneratorTests : StressTests

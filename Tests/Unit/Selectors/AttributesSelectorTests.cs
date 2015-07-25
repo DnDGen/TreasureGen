@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Selectors;
-using EquipmentGen.Selectors.Interfaces;
+using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Selectors
+namespace TreasureGen.Tests.Unit.Selectors
 {
     [TestFixture]
     public class AttributesSelectorTests

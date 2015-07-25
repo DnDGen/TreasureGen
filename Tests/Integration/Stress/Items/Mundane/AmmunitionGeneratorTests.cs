@@ -1,10 +1,10 @@
 ﻿using System;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Items.Mundane;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Items.Mundane;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
+namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
     public class AmmunitionGeneratorTests : StressTests

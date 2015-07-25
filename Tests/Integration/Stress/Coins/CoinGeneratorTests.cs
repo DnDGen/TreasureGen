@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Common.Coins;
-using EquipmentGen.Generators.Interfaces.Coins;
+using TreasureGen.Common.Coins;
+using TreasureGen.Generators.Interfaces.Coins;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Coins
+namespace TreasureGen.Tests.Integration.Stress.Coins
 {
     [TestFixture]
     public class CoinGeneratorTests : StressTests

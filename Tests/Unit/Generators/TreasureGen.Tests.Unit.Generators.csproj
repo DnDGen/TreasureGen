@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0BB94F05-80BC-4B42-A035-26A97B45B5A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EquipmentGen.Tests.Unit.Generators</RootNamespace>
+    <AssemblyName>EquipmentGen.Tests.Unit.Generators</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Run Tests - Quick|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Run Tests - Quick\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Run Tests - Stress|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Run Tests - Stress\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1507.118, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RollGen, Version=1.0.5683.31166, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\D20Dice.9.0\lib\RollGen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decorators\MagicalItemGeneratorCurseDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorMundaneProxyTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorTraitsDecoratorTests.cs" />
+    <Compile Include="Decorators\MundaneItemGeneratorSpecialMaterialDecoratorTests.cs" />
+    <Compile Include="Decorators\MagicalItemGeneratorSpecialMaterialDecoratorTests.cs" />
+    <Compile Include="Items\Magical\ChargesGeneratorTests.cs" />
+    <Compile Include="Items\Magical\CurseGeneratorTests.cs" />
+    <Compile Include="Items\Magical\IntelligenceGeneratorTests.cs" />
+    <Compile Include="Items\Magical\MagicalWeaponGeneratorTests.cs" />
+    <Compile Include="Items\Magical\PotionGeneratorTests.cs" />
+    <Compile Include="Items\Magical\RodGeneratorTests.cs" />
+    <Compile Include="Items\Magical\ScrollGeneratorTests.cs" />
+    <Compile Include="Items\Magical\SpecificGearGeneratorTests.cs" />
+    <Compile Include="Items\Magical\StaffGeneratorTests.cs" />
+    <Compile Include="Items\Magical\WandGeneratorTests.cs" />
+    <Compile Include="RuntimeFactories\MagicalItemGeneratorFactoryTests.cs" />
+    <Compile Include="RuntimeFactories\MundaneItemGeneratorFactoryTests.cs" />
+    <Compile Include="Items\Mundane\AlchemicalItemGeneratorTests.cs" />
+    <Compile Include="Items\Mundane\AmmunitionGeneratorTests.cs" />
+    <Compile Include="Coins\CoinGeneratorTests.cs" />
+    <Compile Include="Goods\GoodsGeneratorTests.cs" />
+    <Compile Include="Items\ItemsGeneratorTests.cs" />
+    <Compile Include="Items\Magical\MagicalArmorGeneratorTests.cs" />
+    <Compile Include="Items\Magical\MagicalItemTraitsGeneratorTests.cs" />
+    <Compile Include="Items\Mundane\MundaneArmorGeneratorTests.cs" />
+    <Compile Include="Items\Mundane\MundaneWeaponGeneratorTests.cs" />
+    <Compile Include="Items\Magical\RingGeneratorTests.cs" />
+    <Compile Include="Items\Magical\SpecialAbilitiesGeneratorTests.cs" />
+    <Compile Include="Items\Mundane\SpecialMaterialGeneratorTests.cs" />
+    <Compile Include="Items\Magical\SpellGeneratorTests.cs" />
+    <Compile Include="Items\Mundane\ToolGeneratorTests.cs" />
+    <Compile Include="TreasureGeneratorTests.cs" />
+    <Compile Include="Items\Magical\WondrousItemGeneratorTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\TreasureGen\Common\TreasureGen.Common.csproj">
+      <Project>{f8cfc34b-c195-4eb8-9d0f-1019ddbc60b5}</Project>
+      <Name>EquipmentGen.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TreasureGen\Generators\Contracts\TreasureGen.Generators.csproj">
+      <Project>{83967dec-4cf8-41bb-8310-1fc881eccc18}</Project>
+      <Name>EquipmentGen.Generators.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TreasureGen\Generators\Domain\TreasureGen.Generators.Domain.csproj">
+      <Project>{187f1421-35eb-4050-879a-4aa77e89615b}</Project>
+      <Name>EquipmentGen.Generators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TreasureGen\Selectors\Contracts\TreasureGen.Selectors.csproj">
+      <Project>{7c866a48-9753-4a52-b77d-e6e3b3329d40}</Project>
+      <Name>EquipmentGen.Selectors.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TreasureGen\Tables\Contracts\TreasureGen.Tables.csproj">
+      <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
+      <Name>EquipmentGen.Tables.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

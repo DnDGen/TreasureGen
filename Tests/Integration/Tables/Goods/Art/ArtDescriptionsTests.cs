@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Common.Goods;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Goods;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Goods.Art
+namespace TreasureGen.Tests.Integration.Tables.Goods.Art
 {
     [TestFixture]
     public class ArtDescriptionsTests : AttributesTests

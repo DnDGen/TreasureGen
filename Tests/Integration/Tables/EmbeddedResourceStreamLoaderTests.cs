@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using EquipmentGen.Tables.Interfaces;
-using EquipmentGen.Tests.Integration.Common;
+using TreasureGen.Tables.Interfaces;
+using TreasureGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables
+namespace TreasureGen.Tests.Integration.Tables
 {
     [TestFixture]
     public class EmbeddedResourceStreamLoaderTests : IntegrationTests

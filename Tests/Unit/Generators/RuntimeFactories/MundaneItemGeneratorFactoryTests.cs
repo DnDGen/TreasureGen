@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using D20Dice;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.RuntimeFactories;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Interfaces.Objects;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items.Mundane;
+using TreasureGen.Generators.RuntimeFactories;
+using TreasureGen.Generators.RuntimeFactories.Interfaces;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Selectors.Interfaces.Objects;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.RuntimeFactories
+namespace TreasureGen.Tests.Unit.Generators.RuntimeFactories
 {
     [TestFixture]
     public class MundaneItemGeneratorFactoryTests

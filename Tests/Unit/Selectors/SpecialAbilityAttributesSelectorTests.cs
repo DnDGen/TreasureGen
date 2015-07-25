@@ -1,10 +1,10 @@
 ﻿using System;
-using EquipmentGen.Selectors;
-using EquipmentGen.Selectors.Interfaces;
+using TreasureGen.Selectors;
+using TreasureGen.Selectors.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Selectors
+namespace TreasureGen.Tests.Unit.Selectors
 {
     [TestFixture]
     public class SpecialAbilityAttributesSelectorTests

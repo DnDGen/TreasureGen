@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Decorators;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Decorators;
+using TreasureGen.Generators.Interfaces.Items.Mundane;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Decorators
+namespace TreasureGen.Tests.Unit.Generators.Decorators
 {
     [TestFixture]
     public class MudnaneItemGeneratorSpecialMaterialDecoratorTests

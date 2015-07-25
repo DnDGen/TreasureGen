@@ -1,9 +1,9 @@
-﻿using EquipmentGen.Mappers.Attributes;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Percentile;
+﻿using TreasureGen.Mappers.Attributes;
+using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Mappers.Percentile;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
+namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {
     [TestFixture]
     public class MappersModuleTests : BootstrapTests

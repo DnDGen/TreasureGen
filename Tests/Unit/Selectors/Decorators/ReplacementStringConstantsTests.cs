@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Selectors.Decorators;
+using TreasureGen.Selectors.Decorators;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Selectors.Decorators
+namespace TreasureGen.Tests.Unit.Selectors.Decorators
 {
     [TestFixture]
     public class ReplacementStringConstantsTests

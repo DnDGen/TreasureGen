@@ -1,15 +1,15 @@
-﻿using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Decorators;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Generators.Interfaces.Coins;
-using EquipmentGen.Generators.Interfaces.Goods;
-using EquipmentGen.Generators.Interfaces.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.RuntimeFactories.Interfaces;
+﻿using TreasureGen.Common.Items;
+using TreasureGen.Generators.Decorators;
+using TreasureGen.Generators.Interfaces;
+using TreasureGen.Generators.Interfaces.Coins;
+using TreasureGen.Generators.Interfaces.Goods;
+using TreasureGen.Generators.Interfaces.Items;
+using TreasureGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Generators.Interfaces.Items.Mundane;
+using TreasureGen.Generators.RuntimeFactories.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Bootstrap.Modules
+namespace TreasureGen.Tests.Integration.Bootstrap.Modules
 {
     [TestFixture]
     public class GeneratorsModuleTests : BootstrapTests

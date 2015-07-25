@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Mappers.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Mappers.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
+namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public class ChargesGeneratorTests : StressTests

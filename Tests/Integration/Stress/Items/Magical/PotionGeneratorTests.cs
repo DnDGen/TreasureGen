@@ -1,10 +1,10 @@
 ﻿using System;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items.Magical;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
+namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public class PotionGeneratorTests : MagicalItemGeneratorStressTests

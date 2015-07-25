@@ -1,14 +1,14 @@
 ﻿using System;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Magical;
-using EquipmentGen.Generators.Items.Magical;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Interfaces.Objects;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items.Magical;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Selectors.Interfaces.Objects;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Items
+namespace TreasureGen.Tests.Unit.Generators.Items
 {
     [TestFixture]
     public class MagicalArmorGeneratorTests

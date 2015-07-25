@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Mappers.Attributes;
-using EquipmentGen.Mappers.Interfaces;
+using TreasureGen.Mappers.Attributes;
+using TreasureGen.Mappers.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Mappers.Attributes
+namespace TreasureGen.Tests.Unit.Mappers.Attributes
 {
     [TestFixture]
     public class AttributeMapperCachingProxyTests

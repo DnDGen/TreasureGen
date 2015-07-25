@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Common.Items;
+using TreasureGen.Common.Items;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
+namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public abstract class MagicalItemGeneratorStressTests : StressTests

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Mappers.Percentile;
+using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Mappers.Percentile;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Mappers.Percentile
+namespace TreasureGen.Tests.Unit.Mappers.Percentile
 {
     [TestFixture]
     public class PercentileMapperCachingProxyTests

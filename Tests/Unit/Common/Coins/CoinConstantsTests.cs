@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Common.Coins;
+using TreasureGen.Common.Coins;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Common.Coins
+namespace TreasureGen.Tests.Unit.Common.Coins
 {
     [TestFixture]
     public class CoinConstantsTests

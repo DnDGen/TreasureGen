@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Tests.Integration.Common;
+using TreasureGen.Common.Items;
+using TreasureGen.Tests.Integration.Common;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress
+namespace TreasureGen.Tests.Integration.Stress
 {
     [TestFixture]
     public abstract class StressTests : IntegrationTests

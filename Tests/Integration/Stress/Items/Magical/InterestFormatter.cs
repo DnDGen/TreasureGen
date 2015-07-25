@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Common;
-using EquipmentGen.Common.Goods;
-using EquipmentGen.Common.Items;
+using TreasureGen.Common;
+using TreasureGen.Common.Goods;
+using TreasureGen.Common.Items;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
+namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     public class InterestFormatter
     {

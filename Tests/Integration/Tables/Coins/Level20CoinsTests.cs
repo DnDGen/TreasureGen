@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Common.Coins;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Coins;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Coins
+namespace TreasureGen.Tests.Integration.Tables.Coins
 {
     [TestFixture]
     public class Level20CoinsTests : TypeAndAmountPercentileTests

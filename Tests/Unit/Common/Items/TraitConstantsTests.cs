@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Common.Items;
+using TreasureGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Common.Items
+namespace TreasureGen.Tests.Unit.Common.Items
 {
     [TestFixture]
     public class TraitConstantsTests

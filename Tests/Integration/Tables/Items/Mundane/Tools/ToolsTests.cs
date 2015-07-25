@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables.Items.Mundane.Tools
+namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Tools
 {
     [TestFixture]
     public class ToolsTests : PercentileTests

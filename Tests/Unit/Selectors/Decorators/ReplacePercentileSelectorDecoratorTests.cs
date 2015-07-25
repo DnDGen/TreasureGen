@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using EquipmentGen.Selectors.Decorators;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Selectors.Decorators;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Selectors.Decorators
+namespace TreasureGen.Tests.Unit.Selectors.Decorators
 {
     [TestFixture]
     public class ReplacePercentileSelectorDecoratorTests

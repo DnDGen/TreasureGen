@@ -1,7 +1,7 @@
-﻿using EquipmentGen.Common.Goods;
+﻿using TreasureGen.Common.Goods;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Common.Goods
+namespace TreasureGen.Tests.Unit.Common.Goods
 {
     [TestFixture]
     public class GoodTests

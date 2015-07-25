@@ -1,8 +1,8 @@
 ﻿using System;
-using EquipmentGen.Tests.Integration.Common;
+using TreasureGen.Tests.Integration.Common;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Bootstrap
+namespace TreasureGen.Tests.Integration.Bootstrap
 {
     [TestFixture]
     public abstract class BootstrapTests : IntegrationTests

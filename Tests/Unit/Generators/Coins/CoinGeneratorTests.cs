@@ -1,14 +1,14 @@
 ﻿using System;
 using D20Dice;
-using EquipmentGen.Generators.Coins;
-using EquipmentGen.Generators.Interfaces.Coins;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Selectors.Interfaces.Objects;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Generators.Interfaces.Coins;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Selectors.Interfaces.Objects;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Coins
+namespace TreasureGen.Tests.Unit.Generators.Coins
 {
     [TestFixture]
     public class CoinGeneratorTests

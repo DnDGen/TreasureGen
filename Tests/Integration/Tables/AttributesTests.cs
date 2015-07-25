@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Mappers.Interfaces;
+using TreasureGen.Mappers.Interfaces;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables
+namespace TreasureGen.Tests.Integration.Tables
 {
     [TestFixture]
     public abstract class AttributesTests : TableTests

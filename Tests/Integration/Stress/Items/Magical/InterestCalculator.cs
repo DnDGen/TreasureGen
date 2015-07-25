@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Common.Items;
+using TreasureGen.Common.Items;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Magical
+namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     public class InterestCalculator
     {

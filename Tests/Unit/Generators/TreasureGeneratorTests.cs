@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using D20Dice;
-using EquipmentGen.Common.Coins;
-using EquipmentGen.Common.Goods;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators;
-using EquipmentGen.Generators.Interfaces;
-using EquipmentGen.Generators.Interfaces.Coins;
-using EquipmentGen.Generators.Interfaces.Goods;
-using EquipmentGen.Generators.Interfaces.Items;
+using TreasureGen.Common.Coins;
+using TreasureGen.Common.Goods;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators;
+using TreasureGen.Generators.Interfaces;
+using TreasureGen.Generators.Interfaces.Coins;
+using TreasureGen.Generators.Interfaces.Goods;
+using TreasureGen.Generators.Interfaces.Items;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators
+namespace TreasureGen.Tests.Unit.Generators
 {
     [TestFixture]
     public class TreasureGeneratorTests

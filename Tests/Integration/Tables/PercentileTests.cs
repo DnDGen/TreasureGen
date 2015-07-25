@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using EquipmentGen.Mappers.Interfaces;
-using EquipmentGen.Selectors.Decorators;
+using TreasureGen.Mappers.Interfaces;
+using TreasureGen.Selectors.Decorators;
 using Ninject;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables
+namespace TreasureGen.Tests.Integration.Tables
 {
     [TestFixture]
     public abstract class PercentileTests : TableTests

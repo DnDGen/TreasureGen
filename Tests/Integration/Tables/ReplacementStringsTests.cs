@@ -1,9 +1,9 @@
 ﻿using System;
-using EquipmentGen.Selectors.Decorators;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Selectors.Decorators;
+using TreasureGen.Tables.Interfaces;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Tables
+namespace TreasureGen.Tests.Integration.Tables
 {
     [TestFixture]
     public class ReplacementStringsTests : AttributesTests

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using EquipmentGen.Common.Items;
-using EquipmentGen.Generators.Interfaces.Items.Mundane;
-using EquipmentGen.Generators.Items.Mundane;
-using EquipmentGen.Selectors.Interfaces;
-using EquipmentGen.Tables.Interfaces;
+using TreasureGen.Common.Items;
+using TreasureGen.Generators.Interfaces.Items.Mundane;
+using TreasureGen.Generators.Items.Mundane;
+using TreasureGen.Selectors.Interfaces;
+using TreasureGen.Tables.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Unit.Generators.Items.Mundane
+namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 {
     [TestFixture]
     public class MundaneArmorGeneratorTests

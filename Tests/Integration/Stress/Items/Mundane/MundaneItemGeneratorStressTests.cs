@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentGen.Common.Items;
+using TreasureGen.Common.Items;
 using NUnit.Framework;
 
-namespace EquipmentGen.Tests.Integration.Stress.Items.Mundane
+namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
     public abstract class MundaneItemGeneratorStressTests : StressTests

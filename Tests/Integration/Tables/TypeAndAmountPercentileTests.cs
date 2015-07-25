@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EquipmentGen.Tests.Integration.Tables
+namespace TreasureGen.Tests.Integration.Tables
 {
     public abstract class TypeAndAmountPercentileTests : PercentileTests
     {
