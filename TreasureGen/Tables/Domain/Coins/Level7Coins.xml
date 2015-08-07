@@ -8,22 +8,22 @@
     </object>
   <object>
     <lower>12</lower>
-    <content>Copper,1d10*10000</content>
+    <content>Copper,10000d10</content>
     <upper>18</upper>
   </object>
   <object>
     <lower>19</lower>
-    <content>Silver,1d12*1000</content>
+    <content>Silver,1000d12</content>
     <upper>35</upper>
   </object>
   <object>
     <lower>36</lower>
-    <content>Gold,2d6*100</content>
+    <content>Gold,200d6</content>
     <upper>93</upper>
   </object>
   <object>
     <lower>94</lower>
-    <content>Platinum,3d4*10</content>
+    <content>Platinum,30d4</content>
     <upper>100</upper>
   </object>
 </percentile>

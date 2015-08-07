@@ -38,29 +38,14 @@ namespace TreasureGen.Selectors.Domain
 
         private Int32 GetAmount(String amountResult)
         {
-            var amount = amountResult.Split('d', '*');
-
-            switch (amount.Length)
-            {
-                case 1: return Convert.ToInt32(amount[0]);
-                case 2: return GetRoll(amount);
-                default: return GetRollWithMultiplier(amount);
-            }
-        }
-
-        private Int32 GetRoll(String[] amount)
-        {
+            var amount = amountResult.Split('d');
             var quantity = Convert.ToInt32(amount[0]);
-            var die = Convert.ToInt32(amount[1]);
+            var die = 1;
+
+            if (amount.Length > 1)
+                die = Convert.ToInt32(amount[1]);
+
             return dice.Roll(quantity).d(die);
-        }
-
-        private Int32 GetRollWithMultiplier(String[] amount)
-        {
-            var roll = GetRoll(amount);
-            var multiplier = Convert.ToInt32(amount[2]);
-
-            return roll * multiplier;
         }
     }
 }

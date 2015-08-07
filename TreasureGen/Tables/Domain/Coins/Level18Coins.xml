@@ -8,12 +8,12 @@
     </object>
   <object>
     <lower>3</lower>
-    <content>Gold,3d6*1000</content>
+    <content>Gold,3000d6</content>
     <upper>65</upper>
   </object>
   <object>
     <lower>66</lower>
-    <content>Platinum,5d4*100</content>
+    <content>Platinum,500d4</content>
     <upper>100</upper>
   </object>
 </percentile>

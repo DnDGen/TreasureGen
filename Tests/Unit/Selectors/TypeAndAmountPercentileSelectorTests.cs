@@ -13,7 +13,6 @@ namespace TreasureGen.Tests.Unit.Selectors
         private Mock<IPercentileSelector> mockPercentileSelector;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private Mock<IDice> mockDice;
-        private Mock<IPartialRoll> mockPartialRoll;
 
         [SetUp]
         public void Setup()
@@ -21,10 +20,9 @@ namespace TreasureGen.Tests.Unit.Selectors
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<IDice>();
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object, mockDice.Object);
-            mockPartialRoll = new Mock<IPartialRoll>();
 
-            mockDice.Setup(d => d.Roll(It.IsAny<Int32>())).Returns(mockPartialRoll.Object);
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2d3*4");
+            mockDice.Setup(d => d.Roll(It.IsAny<Int32>()).d(It.IsAny<Int32>())).Returns(1);
+            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2d3");
         }
 
         [Test]
@@ -54,30 +52,21 @@ namespace TreasureGen.Tests.Unit.Selectors
         [Test]
         public void RollAmount()
         {
+            mockDice.Setup(d => d.Roll(2).d(1)).Returns(9266);
             mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2");
+
             var result = typeAndAmountPercentileSelector.SelectFrom("table name");
-            Assert.That(result.Amount, Is.EqualTo(2));
+            Assert.That(result.Amount, Is.EqualTo(9266));
         }
 
         [Test]
         public void RollAmountWithQuantity()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2d3");
-            mockPartialRoll.Setup(r => r.d(3)).Returns(4);
+            mockDice.Setup(d => d.Roll(2).d(3)).Returns(9266);
 
             var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             mockDice.Verify(d => d.Roll(2), Times.Once);
-            Assert.That(result.Amount, Is.EqualTo(4));
-        }
-
-        [Test]
-        public void RollAmountWithQuantityAndMultiplier()
-        {
-            mockPartialRoll.Setup(r => r.d(3)).Returns(4);
-
-            var result = typeAndAmountPercentileSelector.SelectFrom("table name");
-            mockDice.Verify(d => d.Roll(2), Times.Once);
-            Assert.That(result.Amount, Is.EqualTo(16));
+            Assert.That(result.Amount, Is.EqualTo(9266));
         }
 
         [Test]

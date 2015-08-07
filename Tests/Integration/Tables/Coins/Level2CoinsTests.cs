@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Coins;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Coins
 {
@@ -25,10 +25,10 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase(CoinConstants.Copper, "1d10*1000", 14, 23)]
-        [TestCase(CoinConstants.Silver, "2d10*100", 24, 43)]
-        [TestCase(CoinConstants.Gold, "4d10*10", 44, 95)]
-        [TestCase(CoinConstants.Platinum, "2d8*10", 96, 100)]
+        [TestCase(CoinConstants.Copper, "1000d10", 14, 23)]
+        [TestCase(CoinConstants.Silver, "200d10", 24, 43)]
+        [TestCase(CoinConstants.Gold, "40d10", 44, 95)]
+        [TestCase(CoinConstants.Platinum, "20d8", 96, 100)]
         public override void TypeAndAmountPercentile(String type, String amount, Int32 lower, Int32 upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
