@@ -23,7 +23,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var weapon = GenerateItem();
 
             Assert.That(weapon.Name, Is.Not.Empty);
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.GreaterThan(0));
             Assert.That(weapon.IsMagical, Is.False);
@@ -41,6 +40,17 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public override void SpecialMaterialsHappen()
         {
             base.SpecialMaterialsHappen();
+        }
+
+        [Test]
+        public void MasterworkHappens()
+        {
+            var item = new Item();
+
+            do item = GenerateItem();
+            while (TestShouldKeepRunning() && item.Traits.Contains(TraitConstants.Masterwork) == false);
+
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), type);
         }
 
         [Test]

@@ -65,6 +65,7 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Set.IronFlaskContents, "IronFlaskContents")]
         [TestCase(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged, "IsDeckOfIllusionsFullyCharged")]
         [TestCase(TableNameConstants.Percentiles.Set.IsItemCursed, "IsItemCursed")]
+        [TestCase(TableNameConstants.Percentiles.Set.IsMasterwork, "IsMasterwork")]
         [TestCase(TableNameConstants.Percentiles.Set.KnowledgeCategories, "KnowledgeCategories")]
         [TestCase(TableNameConstants.Percentiles.Set.Languages, "Languages")]
         [TestCase(TableNameConstants.Percentiles.Set.MasterworkShields, "MasterworkShields")]

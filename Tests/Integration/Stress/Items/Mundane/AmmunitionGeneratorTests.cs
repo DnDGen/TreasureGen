@@ -41,7 +41,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             while (TestShouldKeepRunning() && ammunition.Quantity == 1);
 
             Assert.That(ammunition.Quantity, Is.InRange<Int32>(2, 50));
-            AssertIterations();
         }
     }
 }

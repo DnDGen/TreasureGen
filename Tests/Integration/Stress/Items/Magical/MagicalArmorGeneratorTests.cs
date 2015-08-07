@@ -52,7 +52,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(armor.IsMagical, Is.True, armor.Name);
             Assert.That(armor.Magic.Bonus, Is.Positive, armor.Name);
-            AssertIterations();
         }
 
         [Test]
@@ -65,7 +64,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(armor.IsMagical, Is.False);
             Assert.That(armor.Magic.Bonus, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]
@@ -77,7 +75,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !armor.Magic.SpecialAbilities.Any());
 
             Assert.That(armor.Magic.SpecialAbilities, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -89,7 +86,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && armor.Magic.SpecialAbilities.Any());
 
             Assert.That(armor.Magic.SpecialAbilities, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -101,7 +97,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !armor.Contents.Any());
 
             Assert.That(armor.Contents, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -113,7 +108,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && armor.Contents.Any());
 
             Assert.That(armor.Contents, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -125,7 +119,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && (!armor.Attributes.Contains(AttributeConstants.Specific) || armor.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
-            AssertIterations();
         }
 
         [Test]
@@ -139,7 +132,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(armor.Magic.Curse, Is.Empty);
             Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]
@@ -152,7 +144,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(armor.Magic.Intelligence.Ego, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -165,7 +156,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(armor.Magic.Curse, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -177,7 +167,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && armor.Attributes.Contains(AttributeConstants.Specific));
 
             Assert.That(armor.Attributes, Is.Not.Contains(AttributeConstants.Specific));
-            AssertIterations();
         }
 
         [Test]

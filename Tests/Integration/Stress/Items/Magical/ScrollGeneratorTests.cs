@@ -72,7 +72,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(scroll.Traits.Count, Is.EqualTo(1));
             Assert.That(scroll.Magic.Curse, Is.Empty, type);
             Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0), type);
-            AssertIterations();
         }
 
         [Test]

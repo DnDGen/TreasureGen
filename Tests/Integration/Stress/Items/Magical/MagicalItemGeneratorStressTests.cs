@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
-using Ninject;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -67,7 +67,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && item.Magic.Intelligence.Ego == 0);
 
             Assert.That(item.Magic.Intelligence.Ego, Is.GreaterThan(0), type);
-            AssertIterations();
         }
 
         public abstract void CursesHappen();
@@ -80,7 +79,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && (String.IsNullOrEmpty(item.Magic.Curse) || item.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(item.Magic.Curse, Is.Not.Empty, type);
-            AssertIterations();
         }
 
         public abstract void SpecificCursesHappen();
@@ -93,7 +91,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && item.Magic.Curse != CurseConstants.SpecificCursedItem);
 
             Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), type);
-            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsAreIntelligent();
@@ -107,7 +104,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
             Assert.That(item.Magic.Intelligence.Ego, Is.Positive, item.Name);
-            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsHaveTraits();
@@ -122,7 +118,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             var traits = item.Traits.Except(materials);
             Assert.That(traits, Is.Not.Empty, item.Name);
             Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
-            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsDoNotHaveSpecialMaterials();
@@ -142,8 +137,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
                 Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
             }
             while (TestShouldKeepRunning());
-
-            AssertIterations();
         }
 
         public abstract void SpecificCursedItemsAreNotDecorated();
@@ -157,7 +150,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), item.Name);
-            AssertIterations();
         }
 
         public virtual void TraitsHappen()
@@ -169,7 +161,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             var traits = item.Traits.Except(materials);
             Assert.That(traits, Is.Not.Empty, type);
-            AssertIterations();
         }
 
         public virtual void SpecialMaterialsHappen()
@@ -181,7 +172,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             var itemMaterials = item.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Not.Empty, type);
-            AssertIterations();
         }
 
         public abstract void NoDecorationsHappen();
@@ -196,7 +186,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(item.Traits, Is.Empty, type);
             Assert.That(item.Magic.Curse, Is.Empty, type);
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0), type);
-            AssertIterations();
         }
     }
 }

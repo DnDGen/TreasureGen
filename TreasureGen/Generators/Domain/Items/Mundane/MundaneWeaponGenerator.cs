@@ -11,12 +11,14 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
         private IPercentileSelector percentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
         private IAttributesSelector attributesSelector;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.attributesSelector = attributesSelector;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public Item Generate()
@@ -39,7 +41,9 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
                 weapon.Attributes = attributesSelector.SelectFrom(tableName, weapon.Name);
             }
 
-            weapon.Traits.Add(TraitConstants.Masterwork);
+            var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+            if (isMasterwork)
+                weapon.Traits.Add(TraitConstants.Masterwork);
 
             return weapon;
         }

@@ -50,6 +50,7 @@ namespace TreasureGen.Tables
                 public const String IronFlaskContents = "IronFlaskContents";
                 public const String IsDeckOfIllusionsFullyCharged = "IsDeckOfIllusionsFullyCharged";
                 public const String IsItemCursed = "IsItemCursed";
+                public const String IsMasterwork = "IsMasterwork";
                 public const String KnowledgeCategories = "KnowledgeCategories";
                 public const String Languages = "Languages";
                 public const String MasterworkShields = "MasterworkShields";

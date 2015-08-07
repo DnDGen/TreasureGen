@@ -61,7 +61,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && gear.IsMagical == false);
 
             Assert.That(gear.IsMagical, Is.True);
-            AssertIterations();
         }
 
         [Test]
@@ -73,7 +72,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && gear.IsMagical);
 
             Assert.That(gear.IsMagical, Is.False);
-            AssertIterations();
         }
     }
 }

@@ -28,9 +28,10 @@ namespace TreasureGen.Tests.Unit.Generators.RuntimeFactories
             var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             var result = new TypeAndAmountPercentileResult();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
+            var mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
             factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockMaterialGenerator.Object, mockAttributesSelector.Object,
-                mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAmmunitionGenerator.Object);
+                mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
         }

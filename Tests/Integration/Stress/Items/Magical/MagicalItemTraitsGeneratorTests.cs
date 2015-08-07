@@ -80,7 +80,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !traits.Any());
 
             Assert.That(traits, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -92,7 +91,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && traits.Any());
 
             Assert.That(traits, Is.Empty);
-            AssertIterations();
         }
     }
 }

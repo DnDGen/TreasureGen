@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -28,7 +28,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
             var itemMaterials = item.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Not.Empty, type);
-            AssertIterations();
         }
 
         public abstract void NoDecorationsHappen();
@@ -42,7 +41,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
             var itemMaterials = item.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Empty, type);
-            AssertIterations();
         }
     }
 }

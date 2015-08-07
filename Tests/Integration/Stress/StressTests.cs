@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Ninject;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Tests.Integration.Common;
-using Ninject;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Stress
 {
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.Stress
 
         private Int32 iterations;
 
-        public StressTests()
+        protected StressTests()
         {
             type = GetTestType();
         }
@@ -62,8 +62,6 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             do MakeAssertions();
             while (TestShouldKeepRunning());
-
-            AssertIterations();
         }
 
         protected abstract void MakeAssertions();
@@ -72,11 +70,6 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             iterations++;
             return Stopwatch.Elapsed.TotalSeconds < TimeLimitInSeconds && iterations < ConfidentIterations;
-        }
-
-        protected void AssertIterations()
-        {
-            Assert.That(iterations, Is.Positive);
         }
 
         protected Int32 GetNewLevel()

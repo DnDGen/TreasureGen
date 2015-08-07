@@ -15,18 +15,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private IMundaneItemGenerator mundaneWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
-        private Mock<ISpecialMaterialGenerator> mockMaterialsGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private String expectedTableName;
+        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
-            mockMaterialsGenerator = new Mock<ISpecialMaterialGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object);
+            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("weapon type");
             expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
@@ -37,8 +37,27 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void GenerateWeapon()
         {
             var weapon = mundaneWeaponGenerator.Generate();
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+        }
+
+        [Test]
+        public void GenerateMasterworkWeapon()
+        {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
+                .Returns(true);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GenerateNonMasterworkWeapon()
+        {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
+                .Returns(false);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon.Traits, Is.Not.Contains(TraitConstants.Masterwork));
         }
 
         [Test]

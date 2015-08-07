@@ -57,7 +57,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(wondrousItem.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(wondrousItem.Magic.Charges, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -70,7 +69,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(wondrousItem.Attributes, Is.Not.Contains(AttributeConstants.Charged));
             Assert.That(wondrousItem.Magic.Charges, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]

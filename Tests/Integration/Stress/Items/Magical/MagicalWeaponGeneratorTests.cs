@@ -51,7 +51,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && (!weapon.Attributes.Contains(AttributeConstants.Specific) || weapon.Magic.Curse == CurseConstants.SpecificCursedItem));
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
-            AssertIterations();
         }
 
         [Test]
@@ -65,7 +64,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Curse, Is.Empty);
             Assert.That(weapon.Magic.Intelligence.Ego, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]
@@ -78,7 +76,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Intelligence.Ego, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -91,7 +88,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Curse, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -103,7 +99,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && weapon.Attributes.Contains(AttributeConstants.Specific));
 
             Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Specific));
-            AssertIterations();
         }
 
         [Test]
@@ -116,7 +111,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Ammunition));
             Assert.That(weapon.Quantity, Is.InRange<Int32>(1, 50));
-            AssertIterations();
         }
 
         [Test]
@@ -129,7 +123,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Ammunition));
             Assert.That(weapon.Quantity, Is.InRange<Int32>(2, 50));
-            AssertIterations();
         }
 
         [Test]
@@ -142,7 +135,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.Attributes, Is.Not.Contains(AttributeConstants.Ammunition));
             Assert.That(weapon.Quantity, Is.EqualTo(1));
-            AssertIterations();
         }
 
         [Test]
@@ -155,7 +147,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.IsMagical, Is.True);
             Assert.That(weapon.Magic.Bonus, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -168,7 +159,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(weapon.IsMagical, Is.False);
             Assert.That(weapon.Magic.Bonus, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]
@@ -180,7 +170,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !weapon.Magic.SpecialAbilities.Any());
 
             Assert.That(weapon.Magic.SpecialAbilities, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -192,7 +181,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && weapon.Magic.SpecialAbilities.Any());
 
             Assert.That(weapon.Magic.SpecialAbilities, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -204,7 +192,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !weapon.Contents.Any());
 
             Assert.That(weapon.Contents, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -216,7 +203,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && weapon.Contents.Any());
 
             Assert.That(weapon.Contents, Is.Empty);
-            AssertIterations();
         }
 
         [Test]

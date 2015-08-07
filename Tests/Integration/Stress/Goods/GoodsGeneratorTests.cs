@@ -48,7 +48,6 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
             while (TestShouldKeepRunning() && !goods.Any());
 
             Assert.That(goods, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -60,7 +59,6 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
             while (TestShouldKeepRunning() && goods.Any());
 
             Assert.That(goods, Is.Empty);
-            AssertIterations();
         }
     }
 }

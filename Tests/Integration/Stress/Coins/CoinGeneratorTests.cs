@@ -43,7 +43,6 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
 
             Assert.That(coin.Currency, Is.Not.Empty);
             Assert.That(coin.Quantity, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -56,7 +55,6 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
 
             Assert.That(coin.Currency, Is.Empty);
             Assert.That(coin.Quantity, Is.EqualTo(0));
-            AssertIterations();
         }
     }
 }

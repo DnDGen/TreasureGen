@@ -20,15 +20,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         public IItemsGenerator ItemsGenerator { get; set; }
 
         private IEnumerable<String> alignments;
-        private IEnumerable<String> armorNames;
-        private IEnumerable<String> weaponNames;
 
         [SetUp]
         public void Setup()
         {
             alignments = IntelligenceAlignmentConstants.GetAllAlignments();
-            armorNames = ArmorConstants.GetAllArmors();
-            weaponNames = WeaponConstants.GetAllWeapons();
         }
 
         [TestCase("Intelligence generator")]
@@ -81,7 +77,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(intelligence.SpecialPurpose, Is.Not.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -94,7 +89,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(intelligence.SpecialPurpose, Is.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -106,7 +100,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !intelligence.Languages.Any());
 
             Assert.That(intelligence.Languages, Contains.Item("Common"));
-            AssertIterations();
         }
 
         [Test]
@@ -118,7 +111,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && intelligence.Languages.Any());
 
             Assert.That(intelligence.Languages, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -127,7 +119,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Intelligence intelligence;
 
             do intelligence = GenerateIntelligence();
-            while (TestShouldKeepRunning() && !intelligence.Powers.Any(p => p.Contains("Knowledge")));
+            while (TestShouldKeepRunning() && intelligence.Powers.Any(p => p.Contains("Knowledge")) == false);
 
             var knowledgePowers = intelligence.Powers.Where(p => p.Contains("Knowledge"));
             foreach (var knowledgePower in knowledgePowers)
@@ -136,8 +128,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
                 Assert.That(knowledgePower, Is.Not.Contains("KNOWLEDGECATEGORY"));
                 Assert.That(knowledgePower, Is.Not.Contains("KNOWLEDGE"));
             }
-
-            AssertIterations();
         }
     }
 }

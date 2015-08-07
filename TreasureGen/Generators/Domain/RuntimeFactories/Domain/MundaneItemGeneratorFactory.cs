@@ -16,9 +16,10 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
         private IDice dice;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
+        private IBooleanPercentileSelector booleanPercentileSelector;
 
         public MundaneItemGeneratorFactory(IPercentileSelector percentileSelector, ISpecialMaterialGenerator materialGenerator, IAttributesSelector attributesSelector,
-            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAmmunitionGenerator ammunitionGenerator)
+            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAmmunitionGenerator ammunitionGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.materialGenerator = materialGenerator;
@@ -26,6 +27,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
+            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public IMundaneItemGenerator CreateGeneratorOf(String itemType)
@@ -41,7 +43,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             switch (itemType)
             {
                 case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector);
-                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector);
+                case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector, booleanPercentileSelector);
                 case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
                 default: throw new ArgumentException(itemType);

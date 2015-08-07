@@ -57,7 +57,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(rod.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(rod.Magic.Charges, Is.Positive);
-            AssertIterations();
         }
 
         [Test]
@@ -70,7 +69,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(rod.Attributes, Is.Not.Contains(AttributeConstants.Charged));
             Assert.That(rod.Magic.Charges, Is.EqualTo(0));
-            AssertIterations();
         }
 
         [Test]
@@ -82,7 +80,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && !rod.Contents.Any());
 
             Assert.That(rod.Contents, Is.Not.Empty);
-            AssertIterations();
         }
 
         [Test]
@@ -94,7 +91,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && rod.Contents.Any());
 
             Assert.That(rod.Contents, Is.Empty);
-            AssertIterations();
         }
 
         [Test]
