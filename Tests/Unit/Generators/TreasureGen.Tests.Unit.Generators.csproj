@@ -57,8 +57,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RollGen, Version=1.0.5683.31166, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\D20Dice.9.0\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=1.0.5697.27803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\D20Dice.9.1\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

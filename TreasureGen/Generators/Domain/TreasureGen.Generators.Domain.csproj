@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TreasureGen.Generators.Domain</RootNamespace>
     <AssemblyName>TreasureGen.Generators.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -49,8 +49,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RollGen, Version=1.0.5683.31166, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\D20Dice.9.0\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=1.0.5697.27803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\D20Dice.9.1\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

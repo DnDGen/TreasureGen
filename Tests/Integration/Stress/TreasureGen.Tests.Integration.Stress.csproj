@@ -61,16 +61,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RollGen, Version=1.0.5683.31166, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\D20Dice.9.0\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=1.0.5697.27803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\D20Dice.9.1\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\D20Dice.Bootstrap.7.0\lib\RollGen.Bootstrap.dll</HintPath>
+      <HintPath>..\..\..\packages\D20Dice.Bootstrap.7.1\lib\RollGen.Bootstrap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RollGen.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\D20Dice.Bootstrap.7.0\lib\RollGen.Domain.dll</HintPath>
+      <HintPath>..\..\..\packages\D20Dice.Bootstrap.7.1\lib\RollGen.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
