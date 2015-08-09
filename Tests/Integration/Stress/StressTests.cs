@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Integration.Stress
 #if STRESS
         private const Int32 TimeLimitInSeconds = 60;
 #else
-        private const Int32 TimeLimitInSeconds = 5;
+        private const Int32 TimeLimitInSeconds = 10;
 #endif
 
         private Int32 iterations;

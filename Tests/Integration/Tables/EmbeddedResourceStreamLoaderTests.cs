@@ -24,16 +24,16 @@ namespace TreasureGen.Tests.Integration.Tables
                 Assert.That(table[i], Is.Empty);
 
             for (var i = 15; i <= 29; i++)
-                Assert.That(table[i], Is.EqualTo("Copper,1000d6"));
+                Assert.That(table[i], Is.EqualTo("Copper,1d5001+999"));
 
             for (var i = 30; i <= 52; i++)
-                Assert.That(table[i], Is.EqualTo("Silver,100d8"));
+                Assert.That(table[i], Is.EqualTo("Silver,1d701+99"));
 
             for (var i = 53; i <= 95; i++)
-                Assert.That(table[i], Is.EqualTo("Gold,20d8"));
+                Assert.That(table[i], Is.EqualTo("Gold,2d71+18"));
 
             for (var i = 96; i <= 100; i++)
-                Assert.That(table[i], Is.EqualTo("Platinum,10d4"));
+                Assert.That(table[i], Is.EqualTo("Platinum,1d31+9"));
         }
 
         private Dictionary<Int32, String> LoadStreamOf(String filename)

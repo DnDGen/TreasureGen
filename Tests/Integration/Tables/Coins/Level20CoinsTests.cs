@@ -25,8 +25,8 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase(CoinConstants.Gold, "4000d8", 3, 65)]
-        [TestCase(CoinConstants.Platinum, "400d10", 66, 100)]
+        [TestCase(CoinConstants.Gold, "4d7001+3996", 3, 65)]
+        [TestCase(CoinConstants.Platinum, "4d901+396", 66, 100)]
         public override void TypeAndAmountPercentile(String type, String amount, Int32 lower, Int32 upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);

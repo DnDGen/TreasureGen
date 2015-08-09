@@ -8,27 +8,27 @@
     </object>
     <object>
         <lower>26</lower>
-        <content>20d4,20d4</content>
+        <content>2d4*10,2d31+18</content>
         <upper>50</upper>
     </object>
     <object>
         <lower>51</lower>
-        <content>40d4,40d4</content>
+        <content>4d4*10,4d31+36</content>
         <upper>70</upper>
     </object>
     <object>
         <lower>71</lower>
-        <content>200d4,200d4</content>
+        <content>2d4*100,2d301+198</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>400d4,400d4</content>
+        <content>4d4*100,4d301+396</content>
         <upper>99</upper>
     </object>
     <object>
         <lower>100</lower>
-        <content>2000d4,2000d4</content>
+        <content>2d4*1000,2d3001+1998</content>
         <upper>100</upper>
     </object>
 </percentile>

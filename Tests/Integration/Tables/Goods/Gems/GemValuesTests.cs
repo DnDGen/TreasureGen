@@ -25,20 +25,20 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
             AssertTableIsComplete();
         }
 
-        [TestCase("4d4", 1, 25)]
-        [TestCase("20d4", 26, 50)]
-        [TestCase("40d4", 51, 70)]
-        [TestCase("200d4", 71, 90)]
-        [TestCase("400d4", 91, 99)]
-        public override void TypeAndAmountPercentile(String value, Int32 lower, Int32 upper)
+        [TestCase("4d4", "4d4", 1, 25)]
+        [TestCase("2d4*10", "2d31+18", 26, 50)]
+        [TestCase("4d4*10", "4d31+36", 51, 70)]
+        [TestCase("2d4*100", "2d301+198", 71, 90)]
+        [TestCase("4d4*100", "4d301+396", 91, 99)]
+        public override void TypeAndAmountPercentile(String type, String value, Int32 lower, Int32 upper)
         {
-            base.TypeAndAmountPercentile(value, value, lower, upper);
+            base.TypeAndAmountPercentile(type, value, lower, upper);
         }
 
-        [TestCase("2000d4", 100)]
-        public void TypeAndAmountPercentile(String value, Int32 roll)
+        [TestCase("2d4*1000", "2d3001+1998", 100)]
+        public override void TypeAndAmountPercentile(String type, String value, Int32 roll)
         {
-            TypeAndAmountPercentile(value, value, roll);
+            base.TypeAndAmountPercentile(type, value, roll);
         }
     }
 }

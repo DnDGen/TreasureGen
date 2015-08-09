@@ -3,62 +3,62 @@
 <percentile>
   <object>
     <lower>1</lower>
-    <content>10d10,10d10</content>
+    <content>1d10*10,1d91+9</content>
     <upper>10</upper>
   </object>
   <object>
     <lower>11</lower>
-    <content>30d6,30d6</content>
+    <content>3d6*10,3d51+27</content>
     <upper>25</upper>
   </object>
   <object>
     <lower>26</lower>
-    <content>100d6,100d6</content>
+    <content>1d6*100,1d501+99</content>
     <upper>40</upper>
   </object>
   <object>
     <lower>41</lower>
-    <content>100d10,100d10</content>
+    <content>1d10*100,1d901+99</content>
     <upper>50</upper>
   </object>
   <object>
     <lower>51</lower>
-    <content>200d6,200d6</content>
+    <content>2d6*100,2d501+198</content>
     <upper>60</upper>
   </object>
   <object>
     <lower>61</lower>
-    <content>300d6,300d6</content>
+    <content>3d6*100,3d501+297</content>
     <upper>70</upper>
   </object>
   <object>
     <lower>71</lower>
-    <content>400d6,400d6</content>
+    <content>4d6*100,4d501+396</content>
     <upper>80</upper>
   </object>
   <object>
     <lower>81</lower>
-    <content>500d6,500d6</content>
+    <content>5d6*100,5d501+495</content>
     <upper>85</upper>
   </object>
   <object>
     <lower>86</lower>
-    <content>1000d4,1000d4</content>
+    <content>1d4*1000,1d3001+999</content>
     <upper>90</upper>
   </object>
   <object>
     <lower>91</lower>
-    <content>1000d6,1000d6</content>
+    <content>1d6*1000,1d5001+999</content>
     <upper>95</upper>
   </object>
   <object>
     <lower>96</lower>
-    <content>2000d4,2000d4</content>
+    <content>2d4*1000,2d3001+1998</content>
     <upper>99</upper>
   </object>
   <object>
     <lower>100</lower>
-    <content>2000d6,2000d6</content>
+    <content>2d6*1000,2d5001+1998</content>
     <upper>100</upper>
   </object>
 </percentile>
