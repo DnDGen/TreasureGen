@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using RollGen;
 using System;
 using System.Collections.Generic;
 using TreasureGen.Common.Items;
@@ -18,12 +19,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
-        private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private String power;
+        private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -31,12 +32,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
-            mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object);
+            mockDice = new Mock<IDice>();
+            weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object, mockDice.Object);
 
             power = "power";
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes)).Returns("weapon type");
@@ -151,6 +152,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var weapon = weaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Contents, Is.Empty);
+        }
+
+        [Test]
+        public void ThrownWeaponReceivesQuantity()
+        {
+            mockAttributesSelector.Setup(
+                s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
+                .Returns(new[] { "other weapon", "weapon name" });
+            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+
+            var weapon = weaponGenerator.GenerateAtPower(power);
+            Assert.That(weapon.Quantity, Is.EqualTo(9266));
         }
     }
 }

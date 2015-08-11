@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Common.Items;
@@ -25,6 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private TypeAndAmountPercentileResult result;
         private String power;
         private String gearType;
+        private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -36,16 +38,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockDice = new Mock<IDice>();
+            generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
             result = new TypeAndAmountPercentileResult();
+
             power = "power";
             gearType = "gear type";
 
             result.Type = "specific gear";
             result.Amount = 0;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
-
-            generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object
-                , mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object);
         }
 
         [Test]
@@ -238,6 +240,31 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("Greater slaying arrow (foe)"));
+        }
+
+        [Test]
+        public void SpecificAmmunitionReceivesQuantity()
+        {
+            var attributes = new[] { "attribute 1", AttributeConstants.Ammunition };
+            var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
+
+            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+
+            var gear = generator.GenerateFrom(power, gearType);
+            Assert.That(gear.Quantity, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void SpecificThrownWeaponsReceiveQuantity()
+        {
+            mockAttributesSelector.Setup(
+                s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
+                .Returns(new[] { "other weapon", "specific gear" });
+            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+
+            var gear = generator.GenerateFrom(power, gearType);
+            Assert.That(gear.Quantity, Is.EqualTo(9266));
         }
     }
 }

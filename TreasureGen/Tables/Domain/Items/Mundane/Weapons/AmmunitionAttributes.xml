@@ -29,4 +29,12 @@
         <attribute>Metal</attribute>
         <attribute>Bludgeoning</attribute>
     </object>
+  <object>
+    <name>Thrown</name>
+    <attribute>Dart</attribute>
+    <attribute>Javelin</attribute>
+    <attribute>Javelin of lightning</attribute>
+    <attribute>Throwing axe</attribute>
+    <attribute>Shuriken</attribute>
+  </object>
 </attributes>

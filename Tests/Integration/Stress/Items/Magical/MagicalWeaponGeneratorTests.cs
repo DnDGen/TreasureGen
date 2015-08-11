@@ -114,18 +114,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void MultipleAmmunitionHappens()
-        {
-            Item weapon;
-
-            do weapon = GenerateItem();
-            while (TestShouldKeepRunning() && weapon.Quantity == 1);
-
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Ammunition));
-            Assert.That(weapon.Quantity, Is.InRange<Int32>(2, 50));
-        }
-
-        [Test]
         public void AmmunitionDoesNotHappen()
         {
             Item weapon;

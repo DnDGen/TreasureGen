@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -32,6 +32,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                                                AttributeConstants.Ammunition,
                                                AttributeConstants.Metal,
                                                AttributeConstants.Bludgeoning)]
+        [TestCase(AttributeConstants.Thrown,
+            WeaponConstants.Dart,
+            WeaponConstants.Javelin,
+            WeaponConstants.JavelinOfLightning,
+            WeaponConstants.Shuriken,
+            WeaponConstants.ThrowingAxe)]
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);

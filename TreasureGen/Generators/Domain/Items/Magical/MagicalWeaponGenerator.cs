@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RollGen;
+using System;
 using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Magical;
@@ -17,8 +18,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private ISpecificGearGenerator specificGearGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpellGenerator spellGenerator;
+        private IDice dice;
 
-        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator)
+        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, IDice dice)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;
@@ -27,6 +29,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.specificGearGenerator = specificGearGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.spellGenerator = spellGenerator;
+            this.dice = dice;
         }
 
         public Item GenerateAtPower(String power)
@@ -79,6 +82,10 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                     weapon.Contents.Add(spell);
                 }
             }
+
+            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
+            if (thrownWeapons.Contains(weapon.Name))
+                weapon.Quantity = dice.Roll().d20();
 
             return weapon;
         }

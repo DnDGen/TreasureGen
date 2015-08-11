@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             Assert.That(gear.Name, Is.Not.Empty);
             Assert.That(gear.Attributes, Contains.Item(AttributeConstants.Specific));
-            Assert.That(gear.Quantity, Is.EqualTo(1));
+            Assert.That(gear.Quantity, Is.InRange<Int32>(1, 20));
             Assert.That(gear.Traits, Is.Not.Null);
             Assert.That(gear.Contents, Is.Not.Null);
             Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor).Or.EqualTo(ItemTypeConstants.Weapon));

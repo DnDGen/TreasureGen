@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RollGen;
+using System;
+using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Mundane;
 using TreasureGen.Selectors;
@@ -12,13 +14,15 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
         private IAmmunitionGenerator ammunitionGenerator;
         private IAttributesSelector attributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private IDice dice;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.attributesSelector = attributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.dice = dice;
         }
 
         public Item Generate()
@@ -44,6 +48,10 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 weapon.Traits.Add(TraitConstants.Masterwork);
+
+            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
+            if (thrownWeapons.Contains(weapon.Name))
+                weapon.Quantity = dice.Roll().d20();
 
             return weapon;
         }

@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using RollGen;
 using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Domain.Items.Mundane;
@@ -18,6 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<IAttributesSelector> mockAttributesSelector;
         private String expectedTableName;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<IDice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -26,7 +28,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
+            mockDice = new Mock<IDice>();
+            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("weapon type");
             expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
@@ -80,6 +83,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void ThrownWeaponReceivesQuantity()
+        {
+            mockAttributesSelector.Setup(
+                s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
+                .Returns(new[] { "other weapon", "weapon name" });
+            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon.Quantity, Is.EqualTo(9266));
         }
     }
 }

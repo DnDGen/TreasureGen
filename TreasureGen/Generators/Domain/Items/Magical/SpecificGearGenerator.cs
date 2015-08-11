@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RollGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
@@ -17,8 +18,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private IPercentileSelector percentileSelector;
         private ISpellGenerator spellGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private IDice dice;
 
-        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.attributesSelector = attributesSelector;
@@ -27,6 +29,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.percentileSelector = percentileSelector;
             this.spellGenerator = spellGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.dice = dice;
         }
 
         public Item GenerateFrom(String power, String specificGearType)
@@ -73,8 +76,19 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             }
 
             gear.Name = RenameGear(gear.Name);
+            gear.Quantity = GetQuantity(gear);
 
             return gear;
+        }
+
+        private Int32 GetQuantity(Item gear)
+        {
+            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
+
+            if (gear.Attributes.Contains(AttributeConstants.Ammunition) == false && thrownWeapons.Contains(gear.Name) == false)
+                return 1;
+
+            return dice.Roll().d20();
         }
 
         private String RenameGear(String oldName)
