@@ -78,6 +78,13 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             gear.Name = RenameGear(gear.Name);
             gear.Quantity = GetQuantity(gear);
 
+            if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
+            {
+                var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
+                var trait = String.Format("Designated Foe: {0}", designatedFoe);
+                gear.Traits.Add(trait);
+            }
+
             return gear;
         }
 
@@ -93,12 +100,6 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 
         private String RenameGear(String oldName)
         {
-            if (oldName == WeaponConstants.SlayingArrow || oldName == WeaponConstants.GreaterSlayingArrow)
-            {
-                var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
-                return String.Format("{0} ({1})", oldName, designatedFoe);
-            }
-
             switch (oldName)
             {
                 case WeaponConstants.SilverDagger: return WeaponConstants.Dagger;
