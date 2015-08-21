@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -118,10 +118,16 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                                                 AttributeConstants.Uncommon,
                                                 AttributeConstants.Ranged,
                                                 AttributeConstants.NotBludgeoning)]
-        [TestCase(WeaponConstants.RepeatingCrossbow, AttributeConstants.Metal,
-                                                     AttributeConstants.Uncommon,
-                                                     AttributeConstants.Ranged,
-                                                     AttributeConstants.NotBludgeoning)]
+        [TestCase(WeaponConstants.HeavyRepeatingCrossbow,
+            AttributeConstants.Metal,
+            AttributeConstants.Uncommon,
+            AttributeConstants.Ranged,
+            AttributeConstants.NotBludgeoning)]
+        [TestCase(WeaponConstants.LightRepeatingCrossbow,
+            AttributeConstants.Metal,
+            AttributeConstants.Uncommon,
+            AttributeConstants.Ranged,
+            AttributeConstants.NotBludgeoning)]
         [TestCase(WeaponConstants.PunchingDagger, AttributeConstants.Metal,
                                                   AttributeConstants.Uncommon,
                                                   AttributeConstants.Melee,

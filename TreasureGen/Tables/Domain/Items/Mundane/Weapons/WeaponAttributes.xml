@@ -176,6 +176,13 @@
         <attribute>Melee</attribute>
         <attribute>Not bludgeoning</attribute>
     </object>
+  <object>
+    <name>Heavy repeating crossbow</name>
+    <attribute>Metal</attribute>
+    <attribute>Uncommon</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Not bludgeoning</attribute>
+  </object>
     <object>
         <name>Kama</name>
         <attribute>Metal</attribute>
@@ -231,6 +238,13 @@
         <attribute>Melee</attribute>
         <attribute>Not bludgeoning</attribute>
     </object>
+  <object>
+    <name>Light repeating crossbow</name>
+    <attribute>Metal</attribute>
+    <attribute>Uncommon</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Not bludgeoning</attribute>
+  </object>
     <object>
         <name>Longspear</name>
         <attribute>Metal</attribute>
@@ -305,13 +319,6 @@
         <attribute>Metal</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
-    </object>
-    <object>
-        <name>Repeating crossbow</name>
-        <attribute>Metal</attribute>
-        <attribute>Uncommon</attribute>
-        <attribute>Ranged</attribute>
         <attribute>Not bludgeoning</attribute>
     </object>
     <object>

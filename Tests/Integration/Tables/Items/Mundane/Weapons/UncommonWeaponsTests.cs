@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -30,7 +30,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.SpikedChain, 8, 10)]
         [TestCase(WeaponConstants.Club, 11, 12)]
         [TestCase(WeaponConstants.HandCrossbow, 13, 16)]
-        [TestCase(WeaponConstants.RepeatingCrossbow, 17, 19)]
+        [TestCase(WeaponConstants.LightRepeatingCrossbow, 17, 18)]
         [TestCase(WeaponConstants.PunchingDagger, 20, 21)]
         [TestCase(WeaponConstants.Falchion, 22, 23)]
         [TestCase(WeaponConstants.DireFlail, 24, 26)]
@@ -66,6 +66,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {
             base.Percentile(content, lower, upper);
+        }
+
+        [TestCase(WeaponConstants.HeavyRepeatingCrossbow, 19)]
+        public override void Percentile(String content, Int32 roll)
+        {
+            base.Percentile(content, roll);
         }
     }
 }

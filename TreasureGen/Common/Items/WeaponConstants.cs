@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TreasureGen.Common.Items
 {
@@ -26,7 +25,8 @@ namespace TreasureGen.Common.Items
         public const String SpikedChain = "Spiked chain";
         public const String Club = "Club";
         public const String HandCrossbow = "Hand crossbow";
-        public const String RepeatingCrossbow = "Repeating crossbow";
+        public const String HeavyRepeatingCrossbow = "Heavy repeating crossbow";
+        public const String LightRepeatingCrossbow = "Light repeating crossbow";
         public const String PunchingDagger = "Punching dagger";
         public const String Falchion = "Falchion";
         public const String DireFlail = "Dire flail";
@@ -115,117 +115,5 @@ namespace TreasureGen.Common.Items
         public const String NetOfSnaring = "Net of snaring";
         public const String MaceOfBlood = "Mace of blood";
         public const String BerserkingSword = "Berserking sword";
-
-        public static IEnumerable<String> GetAllWeapons()
-        {
-            return new[]
-            {
-                Dagger,
-                Greataxe,
-                Greatsword,
-                Kama,
-                Longsword,
-                LightMace,
-                HeavyMace,
-                Nunchaku,
-                Quarterstaff,
-                Rapier,
-                Scimitar,
-                Shortspear,
-                Siangham,
-                BastardSword,
-                ShortSword,
-                DwarvenWaraxe,
-                OrcDoubleAxe,
-                Battleaxe,
-                SpikedChain,
-                Club,
-                HandCrossbow,
-                RepeatingCrossbow,
-                PunchingDagger,
-                Falchion,
-                DireFlail,
-                HeavyFlail,
-                LightFlail,
-                Gauntlet,
-                SpikedGauntlet,
-                Glaive,
-                Greatclub,
-                Guisarme,
-                Halberd,
-                Halfspear,
-                GnomeHookedHammer,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                Lance,
-                Longspear,
-                Morningstar,
-                Net,
-                HeavyPick,
-                LightPick,
-                Ranseur,
-                Sap,
-                Scythe,
-                Shuriken,
-                Sickle,
-                TwoBladedSword,
-                Trident,
-                DwarvenUrgrosh,
-                Warhammer,
-                Whip,
-                Arrow,
-                CrossbowBolt,
-                SlingBullet,
-                ThrowingAxe,
-                HeavyCrossbow,
-                LightCrossbow,
-                Dart,
-                Javelin,
-                Shortbow,
-                CompositePlus0Shortbow,
-                CompositePlus1Shortbow,
-                CompositePlus2Shortbow,
-                Sling,
-                Longbow,
-                CompositePlus0Longbow,
-                CompositePlus1Longbow, 
-                CompositePlus2Longbow, 
-                CompositePlus3Longbow, 
-                CompositePlus4Longbow, 
-                SleepArrow,
-                ScreamingBolt,
-                JavelinOfLightning,
-                SlayingArrow,
-                AssassinsDagger,
-                ShiftersSorrow,
-                TridentOfFishCommand,
-                FlameTongue,
-                SwordOfSubtlety,
-                SwordOfThePlanes,
-                NineLivesStealer,
-                SwordOfLifeStealing,
-                Oathbow,
-                MaceOfTerror,
-                LifeDrinker,
-                SylvanScimitar,
-                RapierOfPuncturing,
-                SunBlade,
-                FrostBrand,
-                DwarvenThrower,
-                MaceOfSmiting,
-                HolyAvenger,
-                LuckBlade,
-                GreaterSlayingArrow,
-                Shatterspike,
-                DaggerOfVenom,
-                TridentOfWarning,
-                CursedMinus2Sword,
-                CursedBackbiterSpear,
-                NetOfSnaring,
-                MaceOfBlood ,
-                BerserkingSword
-            };
-        }
     }
 }

@@ -28,9 +28,14 @@
     </object>
     <object>
         <lower>17</lower>
-        <content>Repeating crossbow</content>
-        <upper>19</upper>
+        <content>Light repeating crossbow</content>
+        <upper>18</upper>
     </object>
+  <object>
+    <lower>19</lower>
+    <content>Heavy repeating crossbow</content>
+    <upper>19</upper>
+  </object>
     <object>
         <lower>20</lower>
         <content>Punching dagger</content>
