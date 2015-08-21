@@ -229,7 +229,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
             var gear = generator.GenerateFrom(power, gearType);
-            Assert.That(gear.Name, Is.EqualTo("Slaying arrow (foe)"));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
+            Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
 
         [Test]
@@ -239,7 +240,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
             var gear = generator.GenerateFrom(power, gearType);
-            Assert.That(gear.Name, Is.EqualTo("Greater slaying arrow (foe)"));
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
+            Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
 
         [Test]

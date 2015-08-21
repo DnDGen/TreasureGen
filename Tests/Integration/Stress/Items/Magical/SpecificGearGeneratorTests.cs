@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Magical;
 
@@ -72,6 +73,42 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             while (TestShouldKeepRunning() && gear.IsMagical);
 
             Assert.That(gear.IsMagical, Is.False);
+        }
+
+        [Test]
+        public void SlayingArrowHappens()
+        {
+            Item gear;
+
+            do
+            {
+                var power = GetNewPower(false);
+                gear = SpecificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
+            }
+            while (TestShouldKeepRunning() && gear.Name != WeaponConstants.SlayingArrow);
+
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
+
+            var containDesignatedFoe = gear.Traits.Any(t => t.StartsWith("Designated Foe: "));
+            Assert.That(containDesignatedFoe, Is.True);
+        }
+
+        [Test]
+        public void GreaterSlayingArrowHappens()
+        {
+            Item gear;
+
+            do
+            {
+                var power = GetNewPower(false);
+                gear = SpecificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
+            }
+            while (TestShouldKeepRunning() && gear.Name != WeaponConstants.GreaterSlayingArrow);
+
+            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
+
+            var containDesignatedFoe = gear.Traits.Any(t => t.StartsWith("Designated Foe: "));
+            Assert.That(containDesignatedFoe, Is.True);
         }
     }
 }
