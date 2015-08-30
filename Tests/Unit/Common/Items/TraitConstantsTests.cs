@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Linq;
 using TreasureGen.Common.Items;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Unit.Common.Items
 {
@@ -12,6 +12,7 @@ namespace TreasureGen.Tests.Unit.Common.Items
         [TestCase(TraitConstants.Darkwood, "Darkwood")]
         [TestCase(TraitConstants.Small, "Small")]
         [TestCase(TraitConstants.Medium, "Medium")]
+        [TestCase(TraitConstants.Large, "Large")]
         [TestCase(TraitConstants.Adamantine, "Adamantine")]
         [TestCase(TraitConstants.Dragonhide, "Dragonhide")]
         [TestCase(TraitConstants.ColdIron, "Cold iron")]

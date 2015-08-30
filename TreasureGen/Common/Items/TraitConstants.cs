@@ -9,6 +9,7 @@ namespace TreasureGen.Common.Items
         public const String Darkwood = "Darkwood";
         public const String Small = "Small";
         public const String Medium = "Medium";
+        public const String Large = "Large";
         public const String Adamantine = "Adamantine";
         public const String Dragonhide = "Dragonhide";
         public const String ColdIron = "Cold iron";

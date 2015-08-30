@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
 {
@@ -20,7 +20,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
         }
 
         [TestCase(TraitConstants.Small, 1, 10)]
-        [TestCase(TraitConstants.Medium, 11, 100)]
+        [TestCase(TraitConstants.Medium, 11, 90)]
+        [TestCase(TraitConstants.Large, 91, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {
             base.Percentile(content, lower, upper);

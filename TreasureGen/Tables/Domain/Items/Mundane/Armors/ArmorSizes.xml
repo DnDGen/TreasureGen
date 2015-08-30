@@ -9,6 +9,11 @@
     <object>
         <lower>11</lower>
         <content>Medium</content>
-        <upper>100</upper>
+        <upper>90</upper>
     </object>
+  <object>
+    <lower>91</lower>
+    <content>Large</content>
+    <upper>100</upper>
+  </object>
 </percentile>
