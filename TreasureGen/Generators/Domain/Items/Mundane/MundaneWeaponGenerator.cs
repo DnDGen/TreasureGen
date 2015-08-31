@@ -53,6 +53,9 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             if (thrownWeapons.Contains(weapon.Name))
                 weapon.Quantity = dice.Roll().d20();
 
+            var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            weapon.Traits.Add(size);
+
             return weapon;
         }
     }

@@ -23,7 +23,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var armor = GenerateItem();
 
             Assert.That(armor.Name, Is.Not.Empty);
-            Assert.That(armor.Traits, Contains.Item("Small").Or.Contains("Medium"));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Small)
+                .Or.Contains(TraitConstants.Medium)
+                .Or.Contains(TraitConstants.Large));
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
             Assert.That(armor.Attributes, Is.Not.Null, armor.Name);
             Assert.That(armor.Quantity, Is.EqualTo(1));

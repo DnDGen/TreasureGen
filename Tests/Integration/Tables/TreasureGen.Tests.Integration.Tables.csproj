@@ -301,14 +301,14 @@
     <Compile Include="Items\Mundane\Alchemical\AlchemicalItemsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\AmmunitionAttributesTests.cs" />
     <Compile Include="Items\Mundane\Weapons\AmmunitionsTests.cs" />
-    <Compile Include="Items\Mundane\Armors\ArmorSizesTests.cs" />
+    <Compile Include="Items\Mundane\MundaneGearSizesTests.cs" />
     <Compile Include="Items\Mundane\Weapons\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\CommonRangedWeaponsTests.cs" />
     <Compile Include="Items\Mundane\Armors\DarkwoodShieldsTests.cs" />
     <Compile Include="Items\Mundane\Armors\MasterworkShieldsTests.cs" />
     <Compile Include="Items\Mundane\Armors\MundaneArmorsTests.cs" />
     <Compile Include="Items\Mundane\MundaneItemsTests.cs" />
-    <Compile Include="Items\Mundane\Weapons\IsMasterworkTests.cs" />
+    <Compile Include="Items\Mundane\IsMasterworkTests.cs" />
     <Compile Include="Items\Mundane\Weapons\MundaneWeaponsTests.cs" />
     <Compile Include="Items\Mundane\SpecialMaterialsTests.cs" />
     <Compile Include="Items\Mundane\Tools\ToolsTests.cs" />

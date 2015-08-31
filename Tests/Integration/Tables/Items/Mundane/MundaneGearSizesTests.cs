@@ -3,14 +3,14 @@ using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
 
-namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
+namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
 {
     [TestFixture]
-    public class ArmorSizesTests : PercentileTests
+    public class MundaneGearSizesTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Percentiles.Set.ArmorSizes; }
+            get { return TableNameConstants.Percentiles.Set.MundaneGearSizes; }
         }
 
         [Test]

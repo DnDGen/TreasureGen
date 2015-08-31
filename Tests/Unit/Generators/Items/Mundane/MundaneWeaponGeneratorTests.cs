@@ -64,6 +64,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
+        public void GetWeaponSize()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
+                .Returns("size");
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon.Traits, Contains.Item("size"));
+        }
+
+        [Test]
         public void GetAmmunition()
         {
             var ammo = new Item();
@@ -72,6 +82,51 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon, Is.EqualTo(ammo));
+        }
+
+        [Test]
+        public void GetMasterworkAmmunition()
+        {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
+                .Returns(true);
+
+            var ammo = new Item();
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
+            mockAmmunitionGenerator.Setup(p => p.Generate()).Returns(ammo);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon, Is.EqualTo(ammo));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GetNonMasterworkAmmunition()
+        {
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
+                .Returns(false);
+
+            var ammo = new Item();
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
+            mockAmmunitionGenerator.Setup(p => p.Generate()).Returns(ammo);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon, Is.EqualTo(ammo));
+            Assert.That(weapon.Traits, Is.Not.Contains(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GetAmmunitionSize()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
+                .Returns("size");
+
+            var ammo = new Item();
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
+            mockAmmunitionGenerator.Setup(p => p.Generate()).Returns(ammo);
+
+            var weapon = mundaneWeaponGenerator.Generate();
+            Assert.That(weapon, Is.EqualTo(ammo));
+            Assert.That(weapon.Traits, Contains.Item("size"));
         }
 
         [Test]

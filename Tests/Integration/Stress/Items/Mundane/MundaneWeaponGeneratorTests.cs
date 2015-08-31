@@ -26,9 +26,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.GreaterThan(0));
             Assert.That(weapon.IsMagical, Is.False);
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon));
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common)
+                .Or.Contains(AttributeConstants.Uncommon));
+            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee)
+                .Or.Contains(AttributeConstants.Ranged));
             Assert.That(weapon.Contents, Is.Empty);
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Small)
+                .Or.Contains(TraitConstants.Medium)
+                .Or.Contains(TraitConstants.Large));
         }
 
         protected override Item GenerateItem()

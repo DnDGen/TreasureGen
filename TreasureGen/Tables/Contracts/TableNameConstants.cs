@@ -29,7 +29,6 @@ namespace TreasureGen.Tables
             {
                 public const String AlchemicalItems = "AlchemicalItems";
                 public const String Ammunitions = "Ammunitions";
-                public const String ArmorSizes = "ArmorSizes";
                 public const String BalorOrPitFiend = "BalorOrPitFiend";
                 public const String CastersShieldContainsSpell = "CastersShieldContainsSpell";
                 public const String CastersShieldSpellTypes = "CastersShieldSpellTypes";
@@ -53,9 +52,10 @@ namespace TreasureGen.Tables
                 public const String IsMasterwork = "IsMasterwork";
                 public const String KnowledgeCategories = "KnowledgeCategories";
                 public const String Languages = "Languages";
-                public const String MasterworkShields = "MasterworkShields";
+                public const String MundaneShields = "MundaneShields";
                 public const String MeleeWeaponTraits = "MeleeWeaponTraits";
                 public const String MundaneArmors = "MundaneArmors";
+                public const String MundaneGearSizes = "MundaneGearSizes";
                 public const String MundaneWeapons = "MundaneWeapons";
                 public const String PersonalityTraits = "PersonalityTraits";
                 public const String Planes = "Planes";

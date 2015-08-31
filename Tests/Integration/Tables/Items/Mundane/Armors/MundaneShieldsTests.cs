@@ -1,16 +1,16 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
 {
     [TestFixture]
-    public class MasterworkShieldsTests : PercentileTests
+    public class MundaneShieldsTests : PercentileTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Percentiles.Set.MasterworkShields; }
+            get { return TableNameConstants.Percentiles.Set.MundaneShields; }
         }
 
         [Test]

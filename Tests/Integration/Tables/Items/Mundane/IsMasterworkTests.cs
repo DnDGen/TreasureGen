@@ -2,7 +2,7 @@
 using System;
 using TreasureGen.Tables;
 
-namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
+namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
 {
     [TestFixture]
     public class IsMasterworkTests : BooleanPercentileTests

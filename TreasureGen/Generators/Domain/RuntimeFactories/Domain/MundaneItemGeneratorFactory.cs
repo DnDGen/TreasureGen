@@ -42,7 +42,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
         {
             switch (itemType)
             {
-                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector);
+                case ItemTypeConstants.Armor: return new MundaneArmorGenerator(percentileSelector, attributesSelector, booleanPercentileSelector);
                 case ItemTypeConstants.Weapon: return new MundaneWeaponGenerator(percentileSelector, ammunitionGenerator, attributesSelector, booleanPercentileSelector, dice);
                 case ItemTypeConstants.AlchemicalItem: return new AlchemicalItemGenerator(typeAndAmountPercentileSelector);
                 case ItemTypeConstants.Tool: return new ToolGenerator(percentileSelector);
