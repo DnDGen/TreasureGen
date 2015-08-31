@@ -46,7 +46,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             gearType = "gear type";
 
             result.Type = "specific gear";
-            result.Amount = 0;
+            result.Amount = 1;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
         }
 
@@ -78,6 +78,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.Magic.Bonus, Is.EqualTo(42));
+        }
+
+        [Test]
+        public void GetMundaneGearNameAndBonusFromSelector()
+        {
+            var newResult = new TypeAndAmountPercentileResult();
+            newResult.Type = "new specific gear";
+            newResult.Amount = 0;
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+
+            var gear = generator.GenerateFrom(power, gearType);
+            Assert.That(gear.Name, Is.EqualTo("new specific gear"));
+            Assert.That(gear.IsMagical, Is.False);
         }
 
         [Test]
@@ -267,6 +281,42 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void NonMagicalGearGetsSize()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
+                .Returns("size");
+
+            var newResult = new TypeAndAmountPercentileResult();
+            newResult.Type = "new specific gear";
+            newResult.Amount = 0;
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+
+            var gear = generator.GenerateFrom(power, gearType);
+            Assert.That(gear.Name, Is.EqualTo("new specific gear"));
+            Assert.That(gear.IsMagical, Is.False);
+            Assert.That(gear.Traits, Contains.Item("size"));
+        }
+
+        [Test]
+        public void MagicalGearDoesNotGetSize()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
+                .Returns("size");
+
+            var newResult = new TypeAndAmountPercentileResult();
+            newResult.Type = "new specific gear";
+            newResult.Amount = 1;
+            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+
+            var gear = generator.GenerateFrom(power, gearType);
+            Assert.That(gear.Name, Is.EqualTo("new specific gear"));
+            Assert.That(gear.IsMagical, Is.True);
+            Assert.That(gear.Traits, Is.Not.Contains("size"));
         }
     }
 }

@@ -85,6 +85,12 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 gear.Traits.Add(trait);
             }
 
+            if (gear.IsMagical == false)
+            {
+                var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+                gear.Traits.Add(size);
+            }
+
             return gear;
         }
 

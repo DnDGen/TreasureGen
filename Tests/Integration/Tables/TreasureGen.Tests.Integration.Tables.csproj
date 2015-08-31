@@ -305,7 +305,7 @@
     <Compile Include="Items\Mundane\Weapons\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\CommonRangedWeaponsTests.cs" />
     <Compile Include="Items\Mundane\Armors\DarkwoodShieldsTests.cs" />
-    <Compile Include="Items\Mundane\Armors\MasterworkShieldsTests.cs" />
+    <Compile Include="Items\Mundane\Armors\MundaneShieldsTests.cs" />
     <Compile Include="Items\Mundane\Armors\MundaneArmorsTests.cs" />
     <Compile Include="Items\Mundane\MundaneItemsTests.cs" />
     <Compile Include="Items\Mundane\IsMasterworkTests.cs" />
