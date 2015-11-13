@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
@@ -61,7 +61,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WeaponConstants.NetOfSnaring,
             AttributeConstants.Specific,
             AttributeConstants.Ranged,
-            AttributeConstants.Thrown)]
+            AttributeConstants.Thrown,
+            AttributeConstants.TwoHanded)]
         [TestCase(WondrousItemConstants.BagOfDevouring,
             AttributeConstants.Specific)]
         [TestCase(WeaponConstants.MaceOfBlood,
@@ -77,7 +78,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.NotBludgeoning,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Slashing,
+            AttributeConstants.TwoHanded)]
         [TestCase(WondrousItemConstants.BootsOfDancing,
             AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.HelmOfOppositeAlignment,

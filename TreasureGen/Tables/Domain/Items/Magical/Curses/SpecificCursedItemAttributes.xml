@@ -93,6 +93,7 @@
         <attribute>Specific</attribute>
         <attribute>Ranged</attribute>
         <attribute>Thrown</attribute>
+      <attribute>Two-Handed</attribute>
     </object>
     <object>
         <name>Bag of devouring</name>
@@ -119,6 +120,7 @@
         <attribute>Melee</attribute>
         <attribute>Not bludgeoning</attribute>
         <attribute>Slashing</attribute>
+      <attribute>Two-Handed</attribute>
     </object>
     <object>
         <name>Boots of dancing</name>
