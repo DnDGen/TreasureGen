@@ -78,6 +78,7 @@
       <attribute>Not bludgeoning</attribute>
       <attribute>Metal</attribute>
       <attribute>Melee</attribute>
+    <attribute>Two-Handed</attribute>
   </object>
     <object>
         <name>Greater slaying arrow</name>
@@ -112,6 +113,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
+      <attribute>Two-Handed</attribute>
     </object>
     <object>
         <name>Longsword</name>
@@ -189,6 +191,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Wood</attribute>
         <attribute>Ranged</attribute>
+      <attribute>Two-Handed</attribute>
     </object>
     <object>
         <name>Shifter's sorrow</name>
@@ -198,6 +201,7 @@
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
         <attribute>Double weapon</attribute>
+      <attribute>Two-Handed</attribute>
     </object>
     <object>
         <name>Slaying arrow</name>

@@ -4217,7 +4217,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}})">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock. Use
-			in conjuntion with the default <see cref="F:Moq.MockBehavior.Loose"/>.
+			in conjunction with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><example group="verification">
 			This example assumes that the mock has been used, and later we want to verify that a given
 			invocation with specific parameters was performed:
@@ -4233,7 +4233,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}},Moq.Times)">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock. Use
-			in conjuntion with the default <see cref="F:Moq.MockBehavior.Loose"/>.
+			in conjunction with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
 			<paramref name="times"/>.
@@ -4242,7 +4242,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}},System.Func{Moq.Times})">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock. Use
-			in conjuntion with the default <see cref="F:Moq.MockBehavior.Loose"/>.
+			in conjunction with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
 			<paramref name="times"/>.
@@ -4251,7 +4251,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}},System.String)">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock,
-			specifying a failure error message. Use in conjuntion with the default
+			specifying a failure error message. Use in conjunction with the default
 			<see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><example group="verification">
 			This example assumes that the mock has been used, and later we want to verify that a given
@@ -4268,7 +4268,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}},Moq.Times,System.String)">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock,
-			specifying a failure error message. Use in conjuntion with the default
+			specifying a failure error message. Use in conjunction with the default
 			<see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
@@ -4278,7 +4278,7 @@
         <member name="M:Moq.Mock`1.Verify(System.Linq.Expressions.Expression{System.Action{`0}},System.Func{Moq.Times},System.String)">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock,
-			specifying a failure error message. Use in conjuntion with the default
+			specifying a failure error message. Use in conjunction with the default
 			<see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
@@ -4288,7 +4288,7 @@
         <member name="M:Moq.Mock`1.Verify``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
 			Verifies that a specific invocation matching the given expression was performed on the mock. Use
-			in conjuntion with the default <see cref="F:Moq.MockBehavior.Loose"/>.
+			in conjunction with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><example group="verification">
 			This example assumes that the mock has been used, and later we want to verify that a given
 			invocation with specific parameters was performed:
@@ -4304,7 +4304,7 @@
         <member name="M:Moq.Mock`1.Verify``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},Moq.Times)">
             <summary>
 			Verifies that a specific invocation matching the given
-			expression was performed on the mock. Use in conjuntion
+			expression was performed on the mock. Use in conjunction
 			with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
@@ -4314,7 +4314,7 @@
         <member name="M:Moq.Mock`1.Verify``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Func{Moq.Times})">
             <summary>
 			Verifies that a specific invocation matching the given
-			expression was performed on the mock. Use in conjuntion
+			expression was performed on the mock. Use in conjunction
 			with the default <see cref="F:Moq.MockBehavior.Loose"/>.
 		</summary><exception cref="T:Moq.MockException">
 			The invocation was not call the times specified by
@@ -5537,7 +5537,7 @@
         <member name="M:Moq.Protected.IProtectedMock`1.Verify(System.String,Moq.Times,System.Object[])">
             <summary>
             Specifies a verify for a void method with the given <paramref name="methodName"/>,
-            optionally specifying arguments for the method call. Use in conjuntion with the default
+            optionally specifying arguments for the method call. Use in conjunction with the default
             <see cref="F:Moq.MockBehavior.Loose"/>.
             </summary>
             <exception cref="T:Moq.MockException">The invocation was not call the times specified by

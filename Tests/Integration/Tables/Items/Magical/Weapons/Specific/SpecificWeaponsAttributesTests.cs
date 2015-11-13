@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
@@ -81,12 +81,14 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                                    AttributeConstants.NotBludgeoning,
                                                    AttributeConstants.Melee,
                                                    AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.ShiftersSorrow, AttributeConstants.Slashing,
-                                                  AttributeConstants.Specific,
-                                                  AttributeConstants.NotBludgeoning,
-                                                  AttributeConstants.Melee,
-                                                  AttributeConstants.DoubleWeapon,
-                                                  AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.ShiftersSorrow,
+            AttributeConstants.Slashing,
+            AttributeConstants.Specific,
+            AttributeConstants.NotBludgeoning,
+            AttributeConstants.Melee,
+            AttributeConstants.DoubleWeapon,
+            AttributeConstants.Metal,
+            AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.TridentOfFishCommand, AttributeConstants.Specific,
                                                         AttributeConstants.NotBludgeoning,
                                                         AttributeConstants.Melee,
@@ -121,19 +123,23 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                                        AttributeConstants.NotBludgeoning,
                                                        AttributeConstants.Melee,
                                                        AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.Oathbow, AttributeConstants.Specific,
-                                           AttributeConstants.NotBludgeoning,
-                                           AttributeConstants.Ranged,
-                                           AttributeConstants.Wood)]
+        [TestCase(WeaponConstants.Oathbow,
+            AttributeConstants.Specific,
+            AttributeConstants.NotBludgeoning,
+            AttributeConstants.Ranged,
+            AttributeConstants.Wood,
+            AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.MaceOfTerror, AttributeConstants.Specific,
                                                 AttributeConstants.Bludgeoning,
                                                 AttributeConstants.Melee,
                                                 AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.LifeDrinker, AttributeConstants.Slashing,
-                                               AttributeConstants.Specific,
-                                               AttributeConstants.NotBludgeoning,
-                                               AttributeConstants.Melee,
-                                               AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.LifeDrinker,
+            AttributeConstants.Slashing,
+            AttributeConstants.Specific,
+            AttributeConstants.NotBludgeoning,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.SylvanScimitar, AttributeConstants.Slashing,
                                                   AttributeConstants.Specific,
                                                   AttributeConstants.NotBludgeoning,
@@ -148,11 +154,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                             AttributeConstants.NotBludgeoning,
                                             AttributeConstants.Melee,
                                             AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.FrostBrand, AttributeConstants.Slashing,
-                                              AttributeConstants.Specific,
-                                              AttributeConstants.NotBludgeoning,
-                                              AttributeConstants.Melee,
-                                              AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.FrostBrand,
+            AttributeConstants.Slashing,
+            AttributeConstants.Specific,
+            AttributeConstants.NotBludgeoning,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.DwarvenThrower, AttributeConstants.Specific,
                                                   AttributeConstants.Bludgeoning,
                                                   AttributeConstants.Melee,
