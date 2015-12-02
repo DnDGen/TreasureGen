@@ -10,7 +10,6 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, "{0}Descriptions")]
         [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, "{0}Attributes")]
         [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPESpecialAbilities, "{0}SpecialAbilities")]
-        [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPETraits, "{0}Traits")]
         [TestCase(TableNameConstants.Attributes.Formattable.POWERITEMTYPE, "{0}{1}")]
         [TestCase(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, "Specific{0}Attributes")]
         [TestCase(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, "Specific{0}SpecialAbilities")]
@@ -31,7 +30,6 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, "{0}Values")]
         [TestCase(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Intelligence{0}Powers")]
         [TestCase(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, "Is{0}Intelligent")]
-        [TestCase(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "{0}Traits")]
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXCoins, "Level{0}Coins")]
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXGoods, "Level{0}Goods")]
         [TestCase(TableNameConstants.Percentiles.Formattable.LevelXItems, "Level{0}Items")]
@@ -88,6 +86,18 @@ namespace TreasureGen.Tests.Unit.Tables
         public void Constant(String constant, String value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void PercentileItemTypeTraits()
+        {
+            Assert.That(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, Is.EqualTo("{0}Traits"));
+        }
+
+        [Test]
+        public void AttributeItemTypeTraits()
+        {
+            Assert.That(TableNameConstants.Attributes.Formattable.ITEMTYPETraits, Is.EqualTo("{0}Traits"));
         }
     }
 }

@@ -31,14 +31,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertionsAgainst(Item staff)
         {
-            Assert.That(staff.Name, Is.StringStarting("Staff of "));
+            Assert.That(staff.Name, Does.StartWith("Staff of "));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(staff.Contents, Is.Empty);
             Assert.That(staff.IsMagical, Is.True);
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Magic.Bonus, Is.Not.Negative);
-            Assert.That(staff.Magic.Charges, Is.InRange<Int32>(1, 50));
+            Assert.That(staff.Magic.Charges, Is.InRange(1, 50));
             Assert.That(staff.Magic.Curse, Is.Not.Null);
             Assert.That(staff.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.That(staff.Quantity, Is.EqualTo(1));

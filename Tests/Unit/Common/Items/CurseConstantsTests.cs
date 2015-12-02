@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Common.Items;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Unit.Common.Items
 {
@@ -36,8 +36,6 @@ namespace TreasureGen.Tests.Unit.Common.Items
         [TestCase(CurseConstants.Dependent.MilesFromSite, "More than 100 miles from a particular site")]
         [TestCase(CurseConstants.Drawbacks.HairGrows, "Character's hair grows 1 inch longer. Only happens once.")]
         [TestCase(CurseConstants.Drawbacks.HEIGHTChanges, "Character HEIGHTs 1/2 inch. Only happens once.")]
-        [TestCase(CurseConstants.Drawbacks.Cooler, "Temperature around item is 10 degrees cooler than normal")]
-        [TestCase(CurseConstants.Drawbacks.Warmer, "Temperature around item is 10 degrees warmer than normal")]
         [TestCase(CurseConstants.Drawbacks.HairColorChanges, "Character's hair color changes")]
         [TestCase(CurseConstants.Drawbacks.SkinColorChanges, "Character's skin color changes")]
         [TestCase(CurseConstants.Drawbacks.IdentifyingMark, "Character now bears an identifying mark (tattoo, weird glow, or the like)")]
@@ -51,12 +49,6 @@ namespace TreasureGen.Tests.Unit.Common.Items
         [TestCase(CurseConstants.Drawbacks.Stunned, "Character is stunned for 1d4 rounds once item function is finished (or randomly 1/day)")]
         [TestCase(CurseConstants.Drawbacks.BlurryVision, "Character's vision is blurry (-2 penalty on attack rolls, saves, and skill checks requiring vision)")]
         [TestCase(CurseConstants.Drawbacks.NegativeLevel_1, "Character gains one negative level")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Intelligence, "Character must make a Will save (DC 20) each day or take 1 point of Intelligence damage")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Wisdom, "Character must make a Will save (DC 20) each day or take 1 point of Wisdom damage")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Charisma, "Character must make a Will save (DC 20) each day or take 1 point of Charisma damage")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Constitution, "Character must make a Fortitude save (DC 20) each day or take 1 point of Constitution damage")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Strength, "Character must make a Fortitude save (DC 20) each day or take 1 point of Strength damage")]
-        [TestCase(CurseConstants.Drawbacks.StatDamage_Dexterity, "Character must make a Fortitude save (DC 20) each day or take 1 point of Dexterity damage")]
         [TestCase(CurseConstants.Drawbacks.Disease, "Character is afflicted with a random disease that cannot be cured")]
         [TestCase(CurseConstants.Drawbacks.Ridiculous, "Item looks ridiculous (garishly colored, silly shape, glows bright pink, etc.)")]
         [TestCase(CurseConstants.Drawbacks.NegativeLevel_2, "Character gains two negative levels")]
@@ -70,5 +62,52 @@ namespace TreasureGen.Tests.Unit.Common.Items
             Assert.That(constant, Is.EqualTo(value));
         }
 
+        [Test]
+        public void CoolerTemperatureConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.Cooler, Is.EqualTo("Temperature around item is 10 degrees cooler than normal"));
+        }
+
+        [Test]
+        public void WarmerTemperatureConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.Warmer, Is.EqualTo("Temperature around item is 10 degrees warmer than normal"));
+        }
+
+        [Test]
+        public void IntelligenceDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Intelligence, Is.EqualTo("Character must make a Will save (DC 20) each day or take 1 point of Intelligence damage"));
+        }
+
+        [Test]
+        public void WisdomDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Wisdom, Is.EqualTo("Character must make a Will save (DC 20) each day or take 1 point of Wisdom damage"));
+        }
+
+        [Test]
+        public void CharismaDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Charisma, Is.EqualTo("Character must make a Will save (DC 20) each day or take 1 point of Charisma damage"));
+        }
+
+        [Test]
+        public void StrengthDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Strength, Is.EqualTo("Character must make a Fortitude save (DC 20) each day or take 1 point of Strength damage"));
+        }
+
+        [Test]
+        public void ConstitutionDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Constitution, Is.EqualTo("Character must make a Fortitude save (DC 20) each day or take 1 point of Constitution damage"));
+        }
+
+        [Test]
+        public void DexterityDamageConstant()
+        {
+            Assert.That(CurseConstants.Drawbacks.StatDamage_Dexterity, Is.EqualTo("Character must make a Fortitude save (DC 20) each day or take 1 point of Dexterity damage"));
+        }
     }
 }

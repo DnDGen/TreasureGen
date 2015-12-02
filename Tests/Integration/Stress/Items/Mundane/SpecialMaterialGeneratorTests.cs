@@ -8,7 +8,7 @@ using TreasureGen.Generators.Items.Mundane;
 namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
-    public class SpecialMaterialGeneratorTests : StressTests
+    public class SpecialMaterialGeneratorTests : ItemTests
     {
         [Inject]
         public ISpecialMaterialGenerator SpecialMaterialGenerator { get; set; }
@@ -25,24 +25,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected override void MakeAssertions()
         {
-            Boolean hasSpecialMaterial;
-            Item item;
+            var item = Generate(i => SpecialMaterialGenerator.CanHaveSpecialMaterial(i.ItemType, i.Attributes, i.Traits));
 
-            do
-            {
-                item = GenerateItem();
-                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
-            }
-            while (TestShouldKeepRunning() && !hasSpecialMaterial);
-
-            if (hasSpecialMaterial)
-            {
-                var material = SpecialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
-                Assert.That(material, Is.Not.Empty);
-            }
+            var material = SpecialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
+            Assert.That(material, Is.Not.Empty);
         }
 
-        private Item GenerateItem()
+        protected override Item GenerateItem()
         {
             var itemType = GetNewGearItemType();
 
@@ -57,31 +46,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void SpecialMaterialHappens()
         {
-            Boolean hasSpecialMaterial;
-
-            do
-            {
-                var item = GenerateItem();
-                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
-            }
-            while (TestShouldKeepRunning() && !hasSpecialMaterial);
-
-            Assert.That(hasSpecialMaterial, Is.True);
+            GenerateOrFail(i => SpecialMaterialGenerator.CanHaveSpecialMaterial(i.ItemType, i.Attributes, i.Traits));
         }
 
         [Test]
         public void SpecialMaterialDoesNotHappen()
         {
-            Boolean hasSpecialMaterial;
-
-            do
-            {
-                var item = GenerateItem();
-                hasSpecialMaterial = SpecialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits);
-            }
-            while (TestShouldKeepRunning() && hasSpecialMaterial);
-
-            Assert.That(hasSpecialMaterial, Is.False);
+            GenerateOrFail(i => SpecialMaterialGenerator.CanHaveSpecialMaterial(i.ItemType, i.Attributes, i.Traits) == false);
         }
     }
 }

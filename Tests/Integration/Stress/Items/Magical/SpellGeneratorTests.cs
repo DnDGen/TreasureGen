@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             var power = GetNewPower(false);
             var level = SpellGenerator.GenerateLevel(power);
-            Assert.That(level, Is.InRange<Int32>(0, 9));
+            Assert.That(level, Is.InRange(0, 9));
 
             var spell = SpellGenerator.Generate(spellType, level);
             Assert.That(spell, Is.Not.Empty);

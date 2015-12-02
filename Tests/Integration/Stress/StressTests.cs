@@ -3,7 +3,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Tests.Integration.Common;
 
@@ -17,31 +16,15 @@ namespace TreasureGen.Tests.Integration.Stress
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        protected readonly String type;
-
         private const Int32 ConfidentIterations = 1000000;
 
 #if STRESS
-        private const Int32 TimeLimitInSeconds = 60;
+        private const Int32 TimeLimitInSeconds = 60 * 60 / 167;
 #else
         private const Int32 TimeLimitInSeconds = 1;
 #endif
 
         private Int32 iterations;
-
-        protected StressTests()
-        {
-            type = GetTestType();
-        }
-
-        private String GetTestType()
-        {
-            var classType = GetType();
-            var classTypeString = Convert.ToString(classType);
-            var segments = classTypeString.Split('.');
-
-            return segments.Last();
-        }
 
         [SetUp]
         public void StressSetup()
@@ -60,8 +43,16 @@ namespace TreasureGen.Tests.Integration.Stress
 
         protected void Stress()
         {
-            do MakeAssertions();
+            Stress(MakeAssertions);
+        }
+
+        protected void Stress(Action generate)
+        {
+            do generate();
             while (TestShouldKeepRunning());
+
+            if (Stopwatch.Elapsed.TotalSeconds > TimeLimitInSeconds + 2)
+                Assert.Fail("Something took way too long");
         }
 
         protected abstract void MakeAssertions();

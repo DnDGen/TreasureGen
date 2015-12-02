@@ -25,7 +25,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertionsAgainst(Item potion)
         {
-            Assert.That(potion.Name, Is.StringStarting("Potion of ").Or.StringStarting("Oil of "));
+            Assert.That(potion.Name, Does.StartWith("Potion of ").Or.StartWith("Oil of "));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.Contents, Is.Empty);
             Assert.That(potion.IsMagical, Is.True);

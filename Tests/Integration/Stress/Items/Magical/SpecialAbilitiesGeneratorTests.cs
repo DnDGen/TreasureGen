@@ -43,7 +43,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             foreach (var ability in abilities)
             {
                 Assert.That(ability.Name, Is.Not.Empty);
-                Assert.That(ability.BonusEquivalent, Is.InRange<Int32>(0, 5));
+                Assert.That(ability.BonusEquivalent, Is.InRange(0, 5));
                 Assert.That(ability.Strength, Is.Not.Negative);
                 Assert.That(ability.AttributeRequirements, Is.Not.Null);
                 Assert.That(ability.BaseName, Is.Not.Empty);

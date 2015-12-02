@@ -26,14 +26,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertionsAgainst(Item wand)
         {
-            Assert.That(wand.Name, Is.StringStarting("Wand of"));
+            Assert.That(wand.Name, Does.StartWith("Wand of"));
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(wand.Contents, Is.Empty);
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.Magic.Bonus, Is.EqualTo(0));
-            Assert.That(wand.Magic.Charges, Is.InRange<Int32>(1, 50));
+            Assert.That(wand.Magic.Charges, Is.InRange(1, 50));
             Assert.That(wand.Magic.Curse, Is.Not.Null);
             Assert.That(wand.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.That(wand.Magic.SpecialAbilities, Is.Empty);

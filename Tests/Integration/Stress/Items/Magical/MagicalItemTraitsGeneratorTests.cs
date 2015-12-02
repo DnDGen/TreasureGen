@@ -77,7 +77,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             IEnumerable<String> traits;
 
             do traits = GenerateTraits();
-            while (TestShouldKeepRunning() && !traits.Any());
+            while (TestShouldKeepRunning() && traits.Any() == false);
 
             Assert.That(traits, Is.Not.Empty);
         }

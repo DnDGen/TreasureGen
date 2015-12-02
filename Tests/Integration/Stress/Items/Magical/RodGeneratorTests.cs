@@ -50,47 +50,27 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void ChargesHappen()
         {
-            Item rod;
-
-            do rod = GenerateItem();
-            while (TestShouldKeepRunning() && !rod.Attributes.Contains(AttributeConstants.Charged));
-
-            Assert.That(rod.Attributes, Contains.Item(AttributeConstants.Charged));
+            var rod = GenerateOrFail(r => r.Attributes.Contains(AttributeConstants.Charged));
             Assert.That(rod.Magic.Charges, Is.Positive);
         }
 
         [Test]
         public void ChargesDoNotHappen()
         {
-            Item rod;
-
-            do rod = GenerateItem();
-            while (TestShouldKeepRunning() && rod.Attributes.Contains(AttributeConstants.Charged));
-
-            Assert.That(rod.Attributes, Is.Not.Contains(AttributeConstants.Charged));
+            var rod = GenerateOrFail(r => r.Attributes.Contains(AttributeConstants.Charged) == false);
             Assert.That(rod.Magic.Charges, Is.EqualTo(0));
         }
 
         [Test]
         public void ContentsHappen()
         {
-            Item rod;
-
-            do rod = GenerateItem();
-            while (TestShouldKeepRunning() && !rod.Contents.Any());
-
-            Assert.That(rod.Contents, Is.Not.Empty);
+            GenerateOrFail(r => r.Contents.Any());
         }
 
         [Test]
         public void ContentsDoNotHappen()
         {
-            Item rod;
-
-            do rod = GenerateItem();
-            while (TestShouldKeepRunning() && rod.Contents.Any());
-
-            Assert.That(rod.Contents, Is.Empty);
+            GenerateOrFail(r => r.Contents.Any() == false);
         }
 
         [Test]

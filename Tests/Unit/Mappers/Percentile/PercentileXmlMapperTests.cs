@@ -12,32 +12,33 @@ namespace TreasureGen.Tests.Unit.Mappers.Percentile
     [TestFixture]
     public class PercentileXmlMapperTests
     {
+        private const String tableName = "PercentileXmlMapperTests";
+
         private IPercentileMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String filename = "PercentileXmlMapperTests.xml";
+        private String fileName;
 
         [SetUp]
         public void Setup()
         {
-            MakeXmlFile();
-
             mockStreamLoader = new Mock<IStreamLoader>();
-            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(GetStream());
-
             mapper = new PercentileXmlMapper(mockStreamLoader.Object);
+
+            fileName = tableName + ".xml";
+            mockStreamLoader.Setup(l => l.LoadFor(fileName)).Returns(() => GetStream());
         }
 
         [Test]
         public void AppendXmlFileExtensionToTableName()
         {
-            mapper.Map(filename);
-            mockStreamLoader.Verify(l => l.LoadFor(filename + ".xml"), Times.Once);
+            mapper.Map(tableName);
+            mockStreamLoader.Verify(l => l.LoadFor(fileName), Times.Once);
         }
 
         [Test]
         public void LoadFromStream()
         {
-            var table = mapper.Map(filename);
+            var table = mapper.Map(tableName);
 
             Assert.That(table[1], Is.EqualTo("one through five"));
             Assert.That(table[2], Is.EqualTo("one through five"));
@@ -51,13 +52,32 @@ namespace TreasureGen.Tests.Unit.Mappers.Percentile
 
         private Stream GetStream()
         {
-            return new FileStream(filename, FileMode.Open);
-        }
+            var content = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+                            <percentile>
+                                <object>
+                                    <lower>1</lower>
+                                    <content>one through five</content>
+                                    <upper>5</upper>
+                                </object>
+                                <object>
+                                    <lower>6</lower>
+                                    <content>six only</content>
+                                    <upper>6</upper>
+                                </object>
+                                <object>
+                                    <lower>7</lower>
+                                    <content></content>
+                                    <upper>7</upper>
+                                </object>
+                            </percentile>";
 
-        private void MakeXmlFile()
-        {
-            var content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><percentile><object><lower>1</lower><content>one through five</content><upper>5</upper></object><object><lower>6</lower><content>six only</content><upper>6</upper></object><object><lower>7</lower><content></content><upper>7</upper></object></percentile>";
-            File.WriteAllText(filename, content);
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(content);
+            writer.Flush();
+            stream.Position = 0;
+
+            return stream;
         }
     }
 }

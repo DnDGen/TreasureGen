@@ -34,10 +34,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override void MakeAssertions()
         {
             var charges = ChargesGenerator.GenerateFor(ItemTypeConstants.Wand, String.Empty);
-            Assert.That(charges, Is.InRange<Int32>(1, 50));
+            Assert.That(charges, Is.InRange(1, 50));
 
             charges = ChargesGenerator.GenerateFor(ItemTypeConstants.Staff, String.Empty);
-            Assert.That(charges, Is.InRange<Int32>(1, 50));
+            Assert.That(charges, Is.InRange(1, 50));
 
             var name = GetRandomName();
             charges = ChargesGenerator.GenerateFor(String.Empty, name);
@@ -47,7 +47,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             if (name == "Deck of illusions")
                 max = 34;
 
-            Assert.That(charges, Is.InRange<Int32>(min, max));
+            Assert.That(charges, Is.InRange(min, max));
         }
 
         private String GetRandomName()

@@ -63,15 +63,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public override void NoDecorationsHappen()
         {
-            var scroll = new Item();
-
-            do scroll = GenerateItem();
-            while (TestShouldKeepRunning() && (scroll.Traits.Any(t => t != "Arcane" && t != "Divine") || scroll.Magic.Curse.Any() || scroll.Magic.Intelligence.Ego > 0));
-
-            Assert.That(scroll.Traits, Contains.Item("Arcane").Or.Contains("Divine"));
-            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
-            Assert.That(scroll.Magic.Curse, Is.Empty, type);
-            Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0), type);
+            GenerateOrFail(s => s.Traits.Count == 1 && s.Magic.Curse == String.Empty && s.Magic.Intelligence.Ego == 0);
         }
 
         [Test]

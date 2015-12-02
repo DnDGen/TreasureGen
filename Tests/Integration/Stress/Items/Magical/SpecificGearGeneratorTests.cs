@@ -1,14 +1,13 @@
 ﻿using Ninject;
 using NUnit.Framework;
 using System;
-using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public class SpecificGearGeneratorTests : StressTests
+    public class SpecificGearGeneratorTests : ItemTests
     {
         [Inject]
         public ISpecificGearGenerator SpecificGearGenerator { get; set; }
@@ -21,11 +20,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeAssertions()
         {
-            var gear = GenerateSpecificGear();
+            var gear = GenerateItem();
 
             Assert.That(gear.Name, Is.Not.Empty);
             Assert.That(gear.Attributes, Contains.Item(AttributeConstants.Specific));
-            Assert.That(gear.Quantity, Is.InRange<Int32>(1, 20));
+            Assert.That(gear.Quantity, Is.InRange(1, 20));
             Assert.That(gear.Traits, Is.Not.Null);
             Assert.That(gear.Contents, Is.Not.Null);
             Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor).Or.EqualTo(ItemTypeConstants.Weapon));
@@ -36,7 +35,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(gear.Magic.Intelligence, Is.Not.Null);
         }
 
-        private Item GenerateSpecificGear()
+        protected override Item GenerateItem()
         {
             var power = GetNewPower(false);
             var specificGearType = GetNewSpecificGearType();
@@ -56,59 +55,29 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void MagicalGearHappens()
         {
-            Item gear;
-
-            do gear = GenerateSpecificGear();
-            while (TestShouldKeepRunning() && gear.IsMagical == false);
-
-            Assert.That(gear.IsMagical, Is.True);
+            GenerateOrFail(g => g.IsMagical);
         }
 
         [Test]
         public void MundaneGearHappens()
         {
-            Item gear;
-
-            do gear = GenerateSpecificGear();
-            while (TestShouldKeepRunning() && gear.IsMagical);
-
-            Assert.That(gear.IsMagical, Is.False);
+            GenerateOrFail(g => g.IsMagical == false);
         }
 
         [Test]
         public void SlayingArrowHappens()
         {
-            Item gear;
-
-            do
-            {
-                var power = GetNewPower(false);
-                gear = SpecificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
-            }
-            while (TestShouldKeepRunning() && gear.Name != WeaponConstants.SlayingArrow);
-
-            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
-
-            var containDesignatedFoe = gear.Traits.Any(t => t.StartsWith("Designated Foe: "));
-            Assert.That(containDesignatedFoe, Is.True);
+            var slayingArrow = GenerateOrFail(g => g.ItemType == ItemTypeConstants.Weapon && g.Name == WeaponConstants.SlayingArrow);
+            Assert.That(slayingArrow.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
+            Assert.That(slayingArrow.Traits, Has.Some.StartsWith("Designated Foe: "));
         }
 
         [Test]
         public void GreaterSlayingArrowHappens()
         {
-            Item gear;
-
-            do
-            {
-                var power = GetNewPower(false);
-                gear = SpecificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
-            }
-            while (TestShouldKeepRunning() && gear.Name != WeaponConstants.GreaterSlayingArrow);
-
-            Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
-
-            var containDesignatedFoe = gear.Traits.Any(t => t.StartsWith("Designated Foe: "));
-            Assert.That(containDesignatedFoe, Is.True);
+            var slayingArrow = GenerateOrFail(g => g.ItemType == ItemTypeConstants.Weapon && g.Name == WeaponConstants.GreaterSlayingArrow);
+            Assert.That(slayingArrow.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
+            Assert.That(slayingArrow.Traits, Has.Some.StartsWith("Designated Foe: "));
         }
     }
 }

@@ -38,15 +38,15 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             var intelligence = GenerateIntelligence();
 
             Assert.That(alignments, Contains.Item(intelligence.Alignment));
-            Assert.That(intelligence.CharismaStat, Is.InRange<Int32>(10, 19));
+            Assert.That(intelligence.CharismaStat, Is.InRange(10, 19));
             Assert.That(intelligence.Communication, Is.Not.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Not.Null);
             Assert.That(intelligence.Ego, Is.GreaterThan(0));
-            Assert.That(intelligence.IntelligenceStat, Is.InRange<Int32>(10, 19));
+            Assert.That(intelligence.IntelligenceStat, Is.InRange(10, 19));
             Assert.That(intelligence.Powers, Is.Not.Empty);
             Assert.That(intelligence.Senses, Is.Not.Empty);
             Assert.That(intelligence.SpecialPurpose, Is.Not.Null);
-            Assert.That(intelligence.WisdomStat, Is.InRange<Int32>(10, 19));
+            Assert.That(intelligence.WisdomStat, Is.InRange(10, 19));
             Assert.That(intelligence.Personality, Is.Not.Null);
         }
 

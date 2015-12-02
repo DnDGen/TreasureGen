@@ -31,8 +31,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.BandedMail, 27, 34)]
         [TestCase(ArmorConstants.HalfPlate, 35, 54)]
         [TestCase(ArmorConstants.FullPlate, 55, 80)]
-        [TestCase(TraitConstants.Darkwood, 81, 90)]
-        [TestCase(AttributeConstants.Shield, 91, 100)]
+        [TestCase(AttributeConstants.Shield, 81, 100)]
         public override void Percentile(String content, Int32 lower, Int32 upper)
         {
             base.Percentile(content, lower, upper);

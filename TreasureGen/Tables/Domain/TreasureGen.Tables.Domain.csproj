@@ -422,9 +422,6 @@
     <EmbeddedResource Include="Items\Mundane\Weapons\CommonRangedWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Items\Mundane\Armors\DarkwoodShields.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Items\Mundane\Armors\MundaneShields.xml" />
   </ItemGroup>
   <ItemGroup>

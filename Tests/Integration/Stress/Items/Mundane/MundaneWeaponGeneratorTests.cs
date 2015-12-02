@@ -50,12 +50,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void MasterworkHappens()
         {
-            var item = new Item();
-
-            do item = GenerateItem();
-            while (TestShouldKeepRunning() && item.Traits.Contains(TraitConstants.Masterwork) == false);
-
-            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), type);
+            GenerateOrFail(w => w.Traits.Contains(TraitConstants.Masterwork));
         }
 
         [Test]

@@ -12,18 +12,19 @@ namespace TreasureGen.Tests.Unit.Mappers.Attributes
     [TestFixture]
     public class AttributeXmlMapperTests
     {
+        private const String tableName = "AttributeXmlMapperTests";
+
         private IAttributesMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
-        private const String tableName = "AttributeXmlMapperTests";
+        private String fileName;
 
         [SetUp]
         public void Setup()
         {
-            MakeXmlFile();
+            fileName = tableName + ".xml";
 
             mockStreamLoader = new Mock<IStreamLoader>();
-            var stream = GetStream();
-            mockStreamLoader.Setup(l => l.LoadFor(It.IsAny<String>())).Returns(stream);
+            mockStreamLoader.Setup(l => l.LoadFor(fileName)).Returns(() => GetStream());
 
             mapper = new AttributesXmlMapper(mockStreamLoader.Object);
         }
@@ -32,7 +33,7 @@ namespace TreasureGen.Tests.Unit.Mappers.Attributes
         public void AppendXmlFileExtensionToTableName()
         {
             mapper.Map(tableName);
-            mockStreamLoader.Verify(l => l.LoadFor(tableName + ".xml"), Times.Once);
+            mockStreamLoader.Verify(l => l.LoadFor(fileName), Times.Once);
         }
 
         [Test]
@@ -59,11 +60,6 @@ namespace TreasureGen.Tests.Unit.Mappers.Attributes
 
         private Stream GetStream()
         {
-            return new FileStream(tableName, FileMode.Open);
-        }
-
-        private void MakeXmlFile()
-        {
             var content = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
                             <attributes>
                                 <object>
@@ -82,7 +78,13 @@ namespace TreasureGen.Tests.Unit.Mappers.Attributes
                                 </object>
                             </attributes>";
 
-            File.WriteAllText(tableName, content);
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(content);
+            writer.Flush();
+            stream.Position = 0;
+
+            return stream;
         }
     }
 }

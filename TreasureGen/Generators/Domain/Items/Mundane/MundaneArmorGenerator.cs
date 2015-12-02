@@ -22,22 +22,11 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
 
         public Item Generate()
         {
-            var result = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
             var armor = new Item();
+            armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
 
-            if (result == TraitConstants.Darkwood)
-            {
-                armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DarkwoodShields);
-                armor.Traits.Add(TraitConstants.Darkwood);
-            }
-            else if (result == AttributeConstants.Shield)
-            {
+            if (armor.Name == AttributeConstants.Shield)
                 armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields);
-            }
-            else
-            {
-                armor.Name = result;
-            }
 
             armor.ItemType = ItemTypeConstants.Armor;
             var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, armor.ItemType);

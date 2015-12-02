@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Mundane;
 
@@ -48,6 +49,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public override void NoDecorationsHappen()
         {
             AssertNoDecorationsHappen();
+        }
+
+        [Test]
+        public void DarkwoodShieldsHappen()
+        {
+            GenerateOrFail(s => s.Traits.Contains(TraitConstants.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
         }
     }
 }

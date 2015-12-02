@@ -21,9 +21,17 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override void MakeAssertions()
         {
             var curse = CurseGenerator.GenerateCurse();
-
             Assert.That(curse, Is.Not.Empty);
+        }
 
+        [Test]
+        public void StressSpecificCursedItem()
+        {
+            Stress(AssertSpecificCursedItem);
+        }
+
+        private void AssertSpecificCursedItem()
+        {
             var cursedItem = CurseGenerator.GenerateSpecificCursedItem();
 
             Assert.That(cursedItem.Name, Is.Not.Empty);
