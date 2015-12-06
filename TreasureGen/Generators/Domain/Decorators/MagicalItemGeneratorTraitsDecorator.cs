@@ -18,6 +18,9 @@ namespace TreasureGen.Generators.Domain.Decorators
         public Item GenerateAtPower(String power)
         {
             var item = innerGenerator.GenerateAtPower(power);
+            if (item.IsMagical == false)
+                return item;
+
             var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
 
             item.Traits.AddRange(traits);

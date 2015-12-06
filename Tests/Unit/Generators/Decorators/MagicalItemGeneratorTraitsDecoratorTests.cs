@@ -25,6 +25,7 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
             decorator = new MagicalItemGeneratorTraitsDecorator(mockInnerGenerator.Object, mockTraitsGenerator.Object);
 
             item.ItemType = "item type";
+            item.IsMagical = true;
             mockInnerGenerator.Setup(g => g.GenerateAtPower("power")).Returns(item);
         }
 
@@ -43,9 +44,8 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
 
             var decoratedItem = decorator.GenerateAtPower("power");
 
-            foreach (var trait in traits)
-                Assert.That(decoratedItem.Traits, Contains.Item(trait));
-
+            Assert.That(decoratedItem.Traits, Is.SubsetOf(traits));
+            Assert.That(traits, Is.SubsetOf(decoratedItem.Traits));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(traits.Count()));
         }
 
@@ -85,6 +85,17 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
             var decoratedItem = decorator.GenerateAtPower("power");
             Assert.That(decoratedItem.Traits, Contains.Item("inner trait"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DoNotGetTraitsIfItemIsNotMagical()
+        {
+            item.IsMagical = false;
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateAtPower("power");
+            Assert.That(decoratedItem.Traits, Is.Empty);
         }
     }
 }
