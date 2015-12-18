@@ -9,16 +9,16 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class WondrousItemGenerator : IMagicalItemGenerator
+    public class WondrousItemGenerator : MagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
-        private IDice dice;
+        private Dice dice;
         private ISpellGenerator spellGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
-        public WondrousItemGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, IDice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public WondrousItemGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, Dice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;

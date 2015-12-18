@@ -41,27 +41,27 @@ namespace TreasureGen.Tests.Integration.Bootstrap.Modules
         [Test]
         public void AlchemicalItemGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
+            var generator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
             Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
         public void AlchemicalItemGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
+            AssertNotSingleton<MundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
         }
 
         [Test]
         public void ToolGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Tool);
+            var generator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Tool);
             Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
         public void ToolGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Tool);
+            AssertNotSingleton<MundaneItemGenerator>(ItemTypeConstants.Tool);
         }
 
         [Test]
@@ -127,144 +127,144 @@ namespace TreasureGen.Tests.Integration.Bootstrap.Modules
         [Test]
         public void MagicalArmorGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Armor);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Armor);
         }
 
         [Test]
         public void MagicalArmorGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Armor);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Armor);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void MagicalWeaponGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Weapon);
         }
 
         [Test]
         public void MagicalWeaponGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Weapon);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Weapon);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void PotionGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Potion);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Potion);
         }
 
         [Test]
         public void PotionGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Potion);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Potion);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void RingGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Ring);
         }
 
         [Test]
         public void RingGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Ring);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Ring);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void RodGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Rod);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Rod);
         }
 
         [Test]
         public void RodGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Rod);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Rod);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void ScrollGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Scroll);
         }
 
         [Test]
         public void ScrollGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Scroll);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Scroll);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void StaffGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Staff);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Staff);
         }
 
         [Test]
         public void StaffGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Staff);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Staff);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void WandGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.Wand);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.Wand);
         }
 
         [Test]
         public void WandGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.Wand);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.Wand);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void WondrousItemGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+            AssertNotSingleton<MagicalItemGenerator>(ItemTypeConstants.WondrousItem);
         }
 
         [Test]
         public void WondrousItemGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMagicalItemGenerator>(ItemTypeConstants.WondrousItem);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(ItemTypeConstants.WondrousItem);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorTraitsDecorator>());
         }
 
         [Test]
         public void MundaneArmorGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Armor);
+            var generator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Armor);
             Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
         public void MundaneArmorGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Armor);
+            AssertNotSingleton<MundaneItemGenerator>(ItemTypeConstants.Armor);
         }
 
         [Test]
         public void MundaneWeaponGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
+            var generator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
         [Test]
         public void MundaneWeaponGeneratorIsNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGenerator>(ItemTypeConstants.Weapon);
+            AssertNotSingleton<MundaneItemGenerator>(ItemTypeConstants.Weapon);
         }
 
         [Test]

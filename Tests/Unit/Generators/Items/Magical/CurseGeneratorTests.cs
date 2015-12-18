@@ -13,7 +13,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class CurseGeneratorTests
     {
         private ICurseGenerator curseGenerator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
@@ -21,7 +21,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();

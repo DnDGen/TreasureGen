@@ -6,7 +6,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Mundane
 {
-    public class MundaneArmorGenerator : IMundaneItemGenerator
+    public class MundaneArmorGenerator : MundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;

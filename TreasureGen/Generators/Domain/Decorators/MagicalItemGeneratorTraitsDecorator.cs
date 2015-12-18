@@ -4,12 +4,12 @@ using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Generators.Domain.Decorators
 {
-    public class MagicalItemGeneratorTraitsDecorator : IMagicalItemGenerator
+    public class MagicalItemGeneratorTraitsDecorator : MagicalItemGenerator
     {
-        private IMagicalItemGenerator innerGenerator;
+        private MagicalItemGenerator innerGenerator;
         private IMagicalItemTraitsGenerator traitsGenerator;
 
-        public MagicalItemGeneratorTraitsDecorator(IMagicalItemGenerator innerGenerator, IMagicalItemTraitsGenerator traitsGenerator)
+        public MagicalItemGeneratorTraitsDecorator(MagicalItemGenerator innerGenerator, IMagicalItemTraitsGenerator traitsGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.traitsGenerator = traitsGenerator;

@@ -13,9 +13,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Inject]
         public ISpecialMaterialGenerator SpecialMaterialGenerator { get; set; }
         [Inject, Named(ItemTypeConstants.Weapon)]
-        public IMundaneItemGenerator WeaponGenerator { get; set; }
+        public MundaneItemGenerator WeaponGenerator { get; set; }
         [Inject, Named(ItemTypeConstants.Armor)]
-        public IMagicalItemGenerator ArmorGenerator { get; set; }
+        public MagicalItemGenerator ArmorGenerator { get; set; }
 
         [TestCase("Special material generator")]
         public override void Stress(String thingToStress)

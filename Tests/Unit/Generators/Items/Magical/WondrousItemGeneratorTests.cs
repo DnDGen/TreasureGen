@@ -15,16 +15,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class WondrousItemGeneratorTests
     {
-        private IMagicalItemGenerator wondrousItemGenerator;
+        private MagicalItemGenerator wondrousItemGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private TypeAndAmountPercentileResult result;
-        private String power;
+        private string power;
 
         [SetUp]
         public void Setup()
@@ -34,7 +34,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
@@ -42,7 +42,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             power = "power";
             result.Type = "wondrous item";
             result.Amount = 0;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(result);
         }
 

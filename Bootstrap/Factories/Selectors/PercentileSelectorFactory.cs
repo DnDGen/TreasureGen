@@ -12,7 +12,7 @@ namespace TreasureGen.Bootstrap.Factories.Selectors
         public static IPercentileSelector CreateWith(IKernel kernel)
         {
             var percentileMapper = kernel.Get<IPercentileMapper>();
-            var dice = kernel.Get<IDice>();
+            var dice = kernel.Get<Dice>();
             var attributesSelector = kernel.Get<IAttributesSelector>();
 
             IPercentileSelector selector = new PercentileSelector(percentileMapper, dice);

@@ -14,7 +14,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
     [TestFixture]
     public class GoodsGeneratorTests
     {
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private IGoodsGenerator generator;
@@ -25,7 +25,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object);

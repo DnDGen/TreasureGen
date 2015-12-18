@@ -21,11 +21,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilityAttributesSelector;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
 
-        private List<String> attributes;
-        private List<String> names;
-        private String power;
+        private List<string> attributes;
+        private List<string> names;
+        private string power;
 
         [SetUp]
         public void Setup()
@@ -36,12 +36,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
-            mockDice = new Mock<IDice>();
-            names = new List<String>();
+            mockDice = new Mock<Dice>();
+            names = new List<string>();
             power = "power";
 
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<String>())).Returns(names);
-            mockDice.Setup(d => d.Roll(1).d(It.IsAny<Int32>())).Returns(1);
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(names);
+            mockDice.Setup(d => d.Roll(1).d(It.IsAny<int>())).Returns(1);
 
             specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object,
                 mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);

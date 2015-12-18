@@ -16,7 +16,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
         private IIntelligenceGenerator intelligenceGenerator;
         private IAttributesSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
-        private IDice dice;
+        private Dice dice;
         private ISpellGenerator spellGenerator;
         private ICurseGenerator curseGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
@@ -29,7 +29,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
         public MagicalItemGeneratorFactory(IPercentileSelector percentileSelector, IMagicalItemTraitsGenerator magicalItemTraitsGenerator,
             IIntelligenceGenerator intelligenceGenerator, IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecialMaterialGenerator specialMaterialGenerator, IMagicalItemTraitsGenerator magicItemTraitsGenerator, IChargesGenerator chargesGenerator,
-            IDice dice, ISpellGenerator spellGenerator, ICurseGenerator curseGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            Dice dice, ISpellGenerator spellGenerator, ICurseGenerator curseGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ISpecificGearGenerator specificGearGenerator, IAmmunitionGenerator ammunitionGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
@@ -48,7 +48,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
-        public IMagicalItemGenerator CreateGeneratorOf(String itemType)
+        public MagicalItemGenerator CreateGeneratorOf(String itemType)
         {
             var generator = GetGenerator(itemType);
             generator = new MagicalItemGeneratorCurseDecorator(generator, curseGenerator);
@@ -60,7 +60,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             return generator;
         }
 
-        private IMagicalItemGenerator GetGenerator(String itemType)
+        private MagicalItemGenerator GetGenerator(String itemType)
         {
             switch (itemType)
             {

@@ -38,20 +38,20 @@ namespace TreasureGen.Bootstrap.Modules
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
 
-            Bind<IMundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Tool)).Named(ItemTypeConstants.Tool);
-            Bind<IMundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.AlchemicalItem)).Named(ItemTypeConstants.AlchemicalItem);
-            Bind<IMundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
-            Bind<IMundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
+            Bind<MundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Tool)).Named(ItemTypeConstants.Tool);
+            Bind<MundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.AlchemicalItem)).Named(ItemTypeConstants.AlchemicalItem);
+            Bind<MundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
+            Bind<MundaneItemGenerator>().ToMethod(c => c.Kernel.Get<IMundaneItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
 
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Potion)).Named(ItemTypeConstants.Potion);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Ring)).Named(ItemTypeConstants.Ring);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Rod)).Named(ItemTypeConstants.Rod);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Scroll)).Named(ItemTypeConstants.Scroll);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Staff)).Named(ItemTypeConstants.Staff);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Wand)).Named(ItemTypeConstants.Wand);
-            Bind<IMagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.WondrousItem)).Named(ItemTypeConstants.WondrousItem);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Potion)).Named(ItemTypeConstants.Potion);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Ring)).Named(ItemTypeConstants.Ring);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Rod)).Named(ItemTypeConstants.Rod);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Scroll)).Named(ItemTypeConstants.Scroll);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Staff)).Named(ItemTypeConstants.Staff);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.Wand)).Named(ItemTypeConstants.Wand);
+            Bind<MagicalItemGenerator>().ToMethod(c => c.Kernel.Get<IMagicalItemGeneratorFactory>().CreateGeneratorOf(ItemTypeConstants.WondrousItem)).Named(ItemTypeConstants.WondrousItem);
         }
     }
 }

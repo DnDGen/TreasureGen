@@ -4,11 +4,11 @@ using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Generators.Domain.Decorators
 {
-    public class MagicalItemGeneratorMundaneProxy : IMagicalItemGenerator
+    public class MagicalItemGeneratorMundaneProxy : MagicalItemGenerator
     {
-        private IMagicalItemGenerator innerGenerator;
+        private MagicalItemGenerator innerGenerator;
 
-        public MagicalItemGeneratorMundaneProxy(IMagicalItemGenerator innerGenerator)
+        public MagicalItemGeneratorMundaneProxy(MagicalItemGenerator innerGenerator)
         {
             this.innerGenerator = innerGenerator;
         }

@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class MagicalWeaponGeneratorTests
     {
-        private IMagicalItemGenerator weaponGenerator;
+        private MagicalItemGenerator weaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
@@ -23,8 +23,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpellGenerator> mockSpellGenerator;
-        private String power;
-        private Mock<IDice> mockDice;
+        private string power;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -36,7 +36,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             weaponGenerator = new MagicalWeaponGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object, mockDice.Object);
 
             power = "power";

@@ -11,15 +11,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class ScrollGeneratorTests
     {
-        private IMagicalItemGenerator scrollGenerator;
+        private MagicalItemGenerator scrollGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
         {
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             scrollGenerator = new ScrollGenerator(mockDice.Object, mockSpellGenerator.Object);
 
             mockDice.Setup(d => d.Roll(1).d3()).Returns(1);

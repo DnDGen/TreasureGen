@@ -11,7 +11,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class ToolGeneratorTests
     {
-        private IMundaneItemGenerator generator;
+        private MundaneItemGenerator generator;
         private Mock<IPercentileSelector> mockPercentileSelector;
 
         [SetUp]

@@ -5,12 +5,12 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Decorators
 {
-    public class MagicalItemGeneratorCurseDecorator : IMagicalItemGenerator
+    public class MagicalItemGeneratorCurseDecorator : MagicalItemGenerator
     {
-        private IMagicalItemGenerator innerGenerator;
+        private MagicalItemGenerator innerGenerator;
         private ICurseGenerator curseGenerator;
 
-        public MagicalItemGeneratorCurseDecorator(IMagicalItemGenerator innerGenerator, ICurseGenerator curseGenerator)
+        public MagicalItemGeneratorCurseDecorator(MagicalItemGenerator innerGenerator, ICurseGenerator curseGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.curseGenerator = curseGenerator;

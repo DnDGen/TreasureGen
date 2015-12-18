@@ -13,13 +13,13 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
         private IPercentileSelector percentileSelector;
         private ISpecialMaterialGenerator materialGenerator;
         private IAttributesSelector attributesSelector;
-        private IDice dice;
+        private Dice dice;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
         public MundaneItemGeneratorFactory(IPercentileSelector percentileSelector, ISpecialMaterialGenerator materialGenerator, IAttributesSelector attributesSelector,
-            IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAmmunitionGenerator ammunitionGenerator, IBooleanPercentileSelector booleanPercentileSelector)
+            Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAmmunitionGenerator ammunitionGenerator, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.materialGenerator = materialGenerator;
@@ -30,7 +30,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
-        public IMundaneItemGenerator CreateGeneratorOf(String itemType)
+        public MundaneItemGenerator CreateGeneratorOf(String itemType)
         {
             var generator = GetGenerator(itemType);
             generator = new MundaneItemGeneratorSpecialMaterialDecorator(generator, materialGenerator);
@@ -38,7 +38,7 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories.Domain
             return generator;
         }
 
-        private IMundaneItemGenerator GetGenerator(String itemType)
+        private MundaneItemGenerator GetGenerator(String itemType)
         {
             switch (itemType)
             {

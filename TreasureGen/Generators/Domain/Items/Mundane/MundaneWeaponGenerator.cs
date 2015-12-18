@@ -8,15 +8,15 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Mundane
 {
-    public class MundaneWeaponGenerator : IMundaneItemGenerator
+    public class MundaneWeaponGenerator : MundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
         private IAttributesSelector attributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
-        private IDice dice;
+        private Dice dice;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;

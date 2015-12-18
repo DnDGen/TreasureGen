@@ -10,12 +10,12 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 {
     public class CurseGenerator : ICurseGenerator
     {
-        private IDice dice;
+        private Dice dice;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private IAttributesSelector attributesSelector;
 
-        public CurseGenerator(IDice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector,
+        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector,
             IAttributesSelector attributesSelector)
         {
             this.dice = dice;
@@ -26,10 +26,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 
         public Boolean HasCurse(Boolean isMagical)
         {
-            if (!isMagical)
-                return false;
-
-            return booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed);
+            return isMagical && booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
         public String GenerateCurse()

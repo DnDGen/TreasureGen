@@ -5,6 +5,6 @@ namespace TreasureGen.Generators.Domain.RuntimeFactories
 {
     public interface IMagicalItemGeneratorFactory
     {
-        IMagicalItemGenerator CreateGeneratorOf(String type);
+        MagicalItemGenerator CreateGeneratorOf(String type);
     }
 }

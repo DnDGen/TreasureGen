@@ -6,7 +6,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class MagicalArmorGenerator : IMagicalItemGenerator
+    public class MagicalArmorGenerator : MagicalItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;

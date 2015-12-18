@@ -5,7 +5,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Mundane
 {
-    public class AlchemicalItemGenerator : IMundaneItemGenerator
+    public class AlchemicalItemGenerator : MundaneItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 

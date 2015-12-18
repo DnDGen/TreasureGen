@@ -10,7 +10,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     public class PotionGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Potion)]
-        public IMagicalItemGenerator PotionGenerator { get; set; }
+        public MagicalItemGenerator PotionGenerator { get; set; }
 
         [TestCase("Potion generator")]
         public override void Stress(String thingToStress)

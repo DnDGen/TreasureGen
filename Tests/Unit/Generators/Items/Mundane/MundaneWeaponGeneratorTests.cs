@@ -13,13 +13,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class MundaneWeaponGeneratorTests
     {
-        private IMundaneItemGenerator mundaneWeaponGenerator;
+        private MundaneItemGenerator mundaneWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAmmunitionGenerator> mockAmmunitionGenerator;
         private Mock<IAttributesSelector> mockAttributesSelector;
-        private String expectedTableName;
+        private string expectedTableName;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -28,11 +28,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("weapon type");
-            expectedTableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("weapon name");
         }
 

@@ -24,9 +24,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private TypeAndAmountPercentileResult result;
-        private String power;
-        private String gearType;
-        private Mock<IDice> mockDice;
+        private string power;
+        private string gearType;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
@@ -38,7 +38,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
             result = new TypeAndAmountPercentileResult();
 
@@ -47,7 +47,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             result.Type = "specific gear";
             result.Amount = 1;
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<String>())).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(result);
         }
 
         [Test]

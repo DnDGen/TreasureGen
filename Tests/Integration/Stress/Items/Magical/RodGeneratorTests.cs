@@ -11,7 +11,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     public class RodGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Rod)]
-        public IMagicalItemGenerator RodGenerator { get; set; }
+        public MagicalItemGenerator RodGenerator { get; set; }
 
         [TestCase("Rod generator")]
         public override void Stress(String thingToStress)

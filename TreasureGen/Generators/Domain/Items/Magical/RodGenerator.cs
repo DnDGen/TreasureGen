@@ -7,7 +7,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class RodGenerator : IMagicalItemGenerator
+    public class RodGenerator : MagicalItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IAttributesSelector attributesSelector;

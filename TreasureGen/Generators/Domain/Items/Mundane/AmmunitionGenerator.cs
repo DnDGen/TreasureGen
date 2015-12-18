@@ -10,11 +10,10 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
     public class AmmunitionGenerator : IAmmunitionGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IDice dice;
+        private Dice dice;
         private IAttributesSelector attributesSelector;
 
-        public AmmunitionGenerator(IPercentileSelector percentileSelector, IDice dice,
-            IAttributesSelector attributesSelector)
+        public AmmunitionGenerator(IPercentileSelector percentileSelector, Dice dice, IAttributesSelector attributesSelector)
         {
             this.percentileSelector = percentileSelector;
             this.dice = dice;

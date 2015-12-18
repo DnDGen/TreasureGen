@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Unit.Generators.RuntimeFactories
             var mockPercentileSelector = new Mock<IPercentileSelector>();
             mockMaterialGenerator = new Mock<ISpecialMaterialGenerator>();
             var mockAttributesSelector = new Mock<IAttributesSelector>();
-            var mockDice = new Mock<IDice>();
+            var mockDice = new Mock<Dice>();
             var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             var result = new TypeAndAmountPercentileResult();
             var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();

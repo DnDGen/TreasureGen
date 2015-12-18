@@ -11,13 +11,13 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 {
     public class IntelligenceGenerator : IIntelligenceGenerator
     {
-        private IDice dice;
+        private Dice dice;
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;
         private IIntelligenceAttributesSelector intelligenceAttributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public IntelligenceGenerator(IDice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
+        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
             IIntelligenceAttributesSelector intelligenceAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;

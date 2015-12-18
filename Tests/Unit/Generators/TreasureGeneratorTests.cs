@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using RollGen;
 using System.Collections.Generic;
 using TreasureGen.Common.Coins;
 using TreasureGen.Common.Goods;
@@ -16,7 +15,6 @@ namespace TreasureGen.Tests.Unit.Generators
     [TestFixture]
     public class TreasureGeneratorTests
     {
-        private Mock<IDice> mockDice;
         private Mock<ICoinGenerator> mockCoinGenerator;
         private Mock<IGoodsGenerator> mockGoodsGenerator;
         private Mock<IItemsGenerator> mockItemsGenerator;
@@ -25,7 +23,6 @@ namespace TreasureGen.Tests.Unit.Generators
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
             mockCoinGenerator = new Mock<ICoinGenerator>();
             mockGoodsGenerator = new Mock<IGoodsGenerator>();
             mockItemsGenerator = new Mock<IItemsGenerator>();

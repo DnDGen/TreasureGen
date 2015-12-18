@@ -8,7 +8,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class RingGenerator : IMagicalItemGenerator
+    public class RingGenerator : MagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private IAttributesSelector attributesSelector;

@@ -9,7 +9,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class MagicalWeaponGenerator : IMagicalItemGenerator
+    public class MagicalWeaponGenerator : MagicalItemGenerator
     {
         private IAttributesSelector attributesSelector;
         private IPercentileSelector percentileSelector;
@@ -18,9 +18,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private ISpecificGearGenerator specificGearGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpellGenerator spellGenerator;
-        private IDice dice;
+        private Dice dice;
 
-        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, IDice dice)
+        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, Dice dice)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;

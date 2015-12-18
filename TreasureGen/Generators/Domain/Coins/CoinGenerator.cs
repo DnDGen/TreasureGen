@@ -10,9 +10,9 @@ namespace TreasureGen.Generators.Domain.Coins
     public class CoinGenerator : ICoinGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IDice dice;
+        private Dice dice;
 
-        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IDice dice)
+        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, Dice dice)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.dice = dice;

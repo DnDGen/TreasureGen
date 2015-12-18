@@ -16,35 +16,35 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class IntelligenceGeneratorTests
     {
         private IIntelligenceGenerator intelligenceGenerator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IIntelligenceAttributesSelector> mockIntelligenceAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private List<String> attributes;
+        private List<string> attributes;
         private IntelligenceAttributesResult intelligenceAttributesResult;
         private Item item;
-        private String itemType;
+        private string itemType;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockIntelligenceAttributesSelector = new Mock<IIntelligenceAttributesSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             intelligenceAttributesResult = new IntelligenceAttributesResult();
-            attributes = new List<String>();
+            attributes = new List<string>();
             item = new Item();
             itemType = "item type";
 
             var fillerValues = new[] { "0" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<String>(), It.IsAny<String>())).Returns(fillerValues);
+            mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(fillerValues);
             mockDice.Setup(d => d.Roll(1).d4()).Returns(4);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("10");
-            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceAttributes, It.IsAny<String>())).Returns(intelligenceAttributesResult);
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(String.Empty);
+            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceAttributes, It.IsAny<string>())).Returns(intelligenceAttributesResult);
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(string.Empty);
 
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
                 mockAttributesSelector.Object, mockIntelligenceAttributesSelector.Object, mockBooleanPercentileSelector.Object);

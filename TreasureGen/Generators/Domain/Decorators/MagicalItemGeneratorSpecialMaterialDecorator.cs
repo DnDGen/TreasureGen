@@ -6,12 +6,12 @@ using TreasureGen.Generators.Items.Mundane;
 
 namespace TreasureGen.Generators.Domain.Decorators
 {
-    public class MagicalItemGeneratorSpecialMaterialDecorator : IMagicalItemGenerator
+    public class MagicalItemGeneratorSpecialMaterialDecorator : MagicalItemGenerator
     {
-        private IMagicalItemGenerator innerGenerator;
+        private MagicalItemGenerator innerGenerator;
         private ISpecialMaterialGenerator specialMaterialGenerator;
 
-        public MagicalItemGeneratorSpecialMaterialDecorator(IMagicalItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
+        public MagicalItemGeneratorSpecialMaterialDecorator(MagicalItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;

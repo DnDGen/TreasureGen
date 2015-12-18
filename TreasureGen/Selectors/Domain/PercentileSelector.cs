@@ -9,9 +9,9 @@ namespace TreasureGen.Selectors.Domain
     public class PercentileSelector : IPercentileSelector
     {
         private IPercentileMapper percentileMapper;
-        private IDice dice;
+        private Dice dice;
 
-        public PercentileSelector(IPercentileMapper percentileMapper, IDice dice)
+        public PercentileSelector(IPercentileMapper percentileMapper, Dice dice)
         {
             this.percentileMapper = percentileMapper;
             this.dice = dice;

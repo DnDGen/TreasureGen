@@ -7,7 +7,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class StaffGenerator : IMagicalItemGenerator
+    public class StaffGenerator : MagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
         private IChargesGenerator chargesGenerator;

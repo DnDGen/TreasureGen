@@ -9,14 +9,14 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
     [TestFixture]
     public class MagicalItemGeneratorMundaneProxyTests
     {
-        private IMagicalItemGenerator mundaneProxy;
-        private Mock<IMagicalItemGenerator> mockInnerGenerator;
+        private MagicalItemGenerator mundaneProxy;
+        private Mock<MagicalItemGenerator> mockInnerGenerator;
         private Item innerItem;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerGenerator = new Mock<IMagicalItemGenerator>();
+            mockInnerGenerator = new Mock<MagicalItemGenerator>();
             mundaneProxy = new MagicalItemGeneratorMundaneProxy(mockInnerGenerator.Object);
             innerItem = new Item();
 

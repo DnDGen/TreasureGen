@@ -14,7 +14,7 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
     public class CoinGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private ICoinGenerator generator;
 
         private TypeAndAmountPercentileResult result;
@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
             result = new TypeAndAmountPercentileResult();

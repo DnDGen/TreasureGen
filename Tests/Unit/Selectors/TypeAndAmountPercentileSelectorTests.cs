@@ -12,17 +12,17 @@ namespace TreasureGen.Tests.Unit.Selectors
     {
         private Mock<IPercentileSelector> mockPercentileSelector;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object, mockDice.Object);
 
-            mockDice.Setup(d => d.Roll(It.IsAny<Int32>()).d(It.IsAny<Int32>())).Returns(1);
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2d3+90210");
+            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,amount");
+            mockDice.Setup(d => d.Roll("amount")).Returns(9266);
         }
 
         [Test]
@@ -52,32 +52,8 @@ namespace TreasureGen.Tests.Unit.Selectors
         [Test]
         public void RollAmount()
         {
-            mockDice.Setup(d => d.Roll(2).d(1)).Returns(9266);
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2");
-
             var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             Assert.That(result.Amount, Is.EqualTo(9266));
-        }
-
-        [Test]
-        public void RollAmountWithQuantity()
-        {
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,2d3");
-            mockDice.Setup(d => d.Roll(2).d(3)).Returns(9266);
-
-            var result = typeAndAmountPercentileSelector.SelectFrom("table name");
-            mockDice.Verify(d => d.Roll(2), Times.Once);
-            Assert.That(result.Amount, Is.EqualTo(9266));
-        }
-
-        [Test]
-        public void RollAmountWithAddedQuantity()
-        {
-            mockDice.Setup(d => d.Roll(2).d(3)).Returns(9266);
-
-            var result = typeAndAmountPercentileSelector.SelectFrom("table name");
-            mockDice.Verify(d => d.Roll(2), Times.Once);
-            Assert.That(result.Amount, Is.EqualTo(9266 + 90210));
         }
 
         [Test]

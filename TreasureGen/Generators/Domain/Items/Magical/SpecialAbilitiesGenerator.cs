@@ -17,10 +17,10 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
-        private IDice dice;
+        private Dice dice;
 
         public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
-            IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
+            IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.attributesSelector = attributesSelector;
             this.percentileSelector = percentileSelector;

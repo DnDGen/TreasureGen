@@ -16,27 +16,27 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     public class SpecialMaterialGeneratorTests
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
-        private List<String> mithralAttributes;
-        private List<String> adamantineAttributes;
-        private List<String> otherMaterialAttributes;
-        private List<String> traits;
+        private List<string> mithralAttributes;
+        private List<string> adamantineAttributes;
+        private List<string> otherMaterialAttributes;
+        private List<string> traits;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
-            mithralAttributes = new List<String>() { "type 1", "type 2" };
-            adamantineAttributes = new List<String>() { "type 3", "type 2" };
-            otherMaterialAttributes = new List<String>() { "type 3", "type 2", "other attribute" };
+            mockDice = new Mock<Dice>();
+            mithralAttributes = new List<string>() { "type 1", "type 2" };
+            adamantineAttributes = new List<string>() { "type 3", "type 2" };
+            otherMaterialAttributes = new List<string>() { "type 3", "type 2", "other attribute" };
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            traits = new List<String>();
+            traits = new List<string>();
 
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, It.IsAny<String>())).Returns(otherMaterialAttributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);
             mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Mithral)).Returns(mithralAttributes);
             mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Adamantine)).Returns(adamantineAttributes);
 

@@ -4,12 +4,12 @@ using TreasureGen.Generators.Items.Mundane;
 
 namespace TreasureGen.Generators.Domain.Decorators
 {
-    public class MundaneItemGeneratorSpecialMaterialDecorator : IMundaneItemGenerator
+    public class MundaneItemGeneratorSpecialMaterialDecorator : MundaneItemGenerator
     {
-        private IMundaneItemGenerator innerGenerator;
+        private MundaneItemGenerator innerGenerator;
         private ISpecialMaterialGenerator specialMaterialGenerator;
 
-        public MundaneItemGeneratorSpecialMaterialDecorator(IMundaneItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
+        public MundaneItemGeneratorSpecialMaterialDecorator(MundaneItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;

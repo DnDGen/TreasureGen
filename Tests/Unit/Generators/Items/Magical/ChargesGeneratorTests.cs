@@ -15,14 +15,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class ChargesGeneratorTests
     {
         private IChargesGenerator generator;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<IRangeAttributesSelector> mockRangeAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             mockRangeAttributesSelector = new Mock<IRangeAttributesSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 

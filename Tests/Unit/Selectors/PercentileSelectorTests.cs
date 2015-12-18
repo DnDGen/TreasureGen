@@ -18,14 +18,14 @@ namespace TreasureGen.Tests.Unit.Selectors
         private IPercentileSelector percentileSelector;
         private Dictionary<Int32, String> table;
         private Mock<IPercentileMapper> mockPercentileMapper;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
         {
             table = new Dictionary<Int32, String>();
             mockPercentileMapper = new Mock<IPercentileMapper>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             percentileSelector = new PercentileSelector(mockPercentileMapper.Object, mockDice.Object);
 
             mockPercentileMapper.Setup(p => p.Map(tableName)).Returns(table);

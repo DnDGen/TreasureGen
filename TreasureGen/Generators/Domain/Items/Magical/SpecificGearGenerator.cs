@@ -18,9 +18,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private IPercentileSelector percentileSelector;
         private ISpellGenerator spellGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
-        private IDice dice;
+        private Dice dice;
 
-        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, IDice dice)
+        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.attributesSelector = attributesSelector;

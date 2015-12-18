@@ -11,7 +11,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     public class ScrollGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Scroll)]
-        public IMagicalItemGenerator ScrollGenerator { get; set; }
+        public MagicalItemGenerator ScrollGenerator { get; set; }
 
         [TestCase("Scroll generator")]
         public override void Stress(String thingToStress)

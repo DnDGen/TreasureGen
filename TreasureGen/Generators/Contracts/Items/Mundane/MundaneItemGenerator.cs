@@ -2,7 +2,7 @@
 
 namespace TreasureGen.Generators.Items.Mundane
 {
-    public interface IMundaneItemGenerator
+    public interface MundaneItemGenerator
     {
         Item Generate();
     }

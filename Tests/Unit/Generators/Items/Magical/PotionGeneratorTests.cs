@@ -13,7 +13,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class PotionGeneratorTests
     {
-        private IMagicalItemGenerator potionGenerator;
+        private MagicalItemGenerator potionGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private TypeAndAmountPercentileResult result;

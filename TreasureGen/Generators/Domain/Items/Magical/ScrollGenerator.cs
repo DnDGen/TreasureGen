@@ -5,12 +5,12 @@ using TreasureGen.Generators.Items.Magical;
 
 namespace TreasureGen.Generators.Domain.Items.Magical
 {
-    public class ScrollGenerator : IMagicalItemGenerator
+    public class ScrollGenerator : MagicalItemGenerator
     {
-        private IDice dice;
+        private Dice dice;
         private ISpellGenerator spellGenerator;
 
-        public ScrollGenerator(IDice dice, ISpellGenerator spellGenerator)
+        public ScrollGenerator(Dice dice, ISpellGenerator spellGenerator)
         {
             this.dice = dice;
             this.spellGenerator = spellGenerator;

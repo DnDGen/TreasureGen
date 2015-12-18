@@ -12,10 +12,10 @@ namespace TreasureGen.Generators.Domain.Goods
     public class GoodsGenerator : IGoodsGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IDice dice;
+        private Dice dice;
         private IAttributesSelector attributesSelector;
 
-        public GoodsGenerator(IDice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+        public GoodsGenerator(Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IAttributesSelector attributesSelector)
         {
             this.dice = dice;

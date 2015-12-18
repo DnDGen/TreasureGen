@@ -11,7 +11,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
     public class MundaneArmorGeneratorTests : MundaneItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Armor)]
-        public IMundaneItemGenerator MundaneArmorGenerator { get; set; }
+        public MundaneItemGenerator MundaneArmorGenerator { get; set; }
 
         [TestCase("Mundane armor generator")]
         public override void Stress(String thingToStress)

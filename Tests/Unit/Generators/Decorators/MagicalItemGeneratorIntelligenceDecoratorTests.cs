@@ -10,16 +10,16 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
     [TestFixture]
     public class MagicalItemGeneratorIntelligenceDecoratorTests
     {
-        private IMagicalItemGenerator intelligenceDecorator;
+        private MagicalItemGenerator intelligenceDecorator;
         private Mock<IIntelligenceGenerator> mockIntelligenceGenerator;
-        private Mock<IMagicalItemGenerator> mockInnerGenerator;
+        private Mock<MagicalItemGenerator> mockInnerGenerator;
 
         private Item innerItem;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerGenerator = new Mock<IMagicalItemGenerator>();
+            mockInnerGenerator = new Mock<MagicalItemGenerator>();
             mockIntelligenceGenerator = new Mock<IIntelligenceGenerator>();
             intelligenceDecorator = new MagicalItemGeneratorIntelligenceDecorator(mockInnerGenerator.Object, mockIntelligenceGenerator.Object);
 

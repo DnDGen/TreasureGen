@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class WandGeneratorTests
     {
-        private IMagicalItemGenerator wandGenerator;
+        private MagicalItemGenerator wandGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private String power;

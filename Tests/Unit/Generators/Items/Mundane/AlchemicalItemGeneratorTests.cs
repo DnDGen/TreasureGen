@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class AlchemicalItemGeneratorTests
     {
-        private IMundaneItemGenerator generator;
+        private MundaneItemGenerator generator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private TypeAndAmountPercentileResult result;
 

@@ -9,11 +9,11 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 {
     public class ChargesGenerator : IChargesGenerator
     {
-        private IDice dice;
+        private Dice dice;
         private IRangeAttributesSelector rangeAttributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public ChargesGenerator(IDice dice, IRangeAttributesSelector rangeAttributesSelector,
+        public ChargesGenerator(Dice dice, IRangeAttributesSelector rangeAttributesSelector,
             IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;

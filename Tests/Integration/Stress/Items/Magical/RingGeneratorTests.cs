@@ -11,7 +11,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     public class RingGeneratorTests : MagicalItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Ring)]
-        public IMagicalItemGenerator RingGenerator { get; set; }
+        public MagicalItemGenerator RingGenerator { get; set; }
 
         [TestCase("Ring generator")]
         public override void Stress(String thingToStress)

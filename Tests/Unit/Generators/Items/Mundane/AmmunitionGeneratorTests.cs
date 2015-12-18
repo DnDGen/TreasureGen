@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     {
         private IAmmunitionGenerator ammunitionGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IDice> mockDice;
+        private Mock<Dice> mockDice;
         private Mock<IAttributesSelector> mockAttributesSelector;
 
         [SetUp]
@@ -23,7 +23,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockAttributesSelector = new Mock<IAttributesSelector>();
-            mockDice = new Mock<IDice>();
+            mockDice = new Mock<Dice>();
             ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
 
             mockDice.Setup(d => d.Roll(1).Percentile()).Returns(0);

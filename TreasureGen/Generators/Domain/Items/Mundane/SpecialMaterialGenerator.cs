@@ -11,11 +11,11 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
 {
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
-        private IDice dice;
+        private Dice dice;
         private Dictionary<String, IEnumerable<String>> specialMaterialAttributes;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public SpecialMaterialGenerator(IDice dice, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecialMaterialGenerator(Dice dice, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.booleanPercentileSelector = booleanPercentileSelector;

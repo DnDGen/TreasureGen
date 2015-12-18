@@ -11,15 +11,15 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
     [TestFixture]
     public class MagicalItemGeneratorCurseDecoratorTests
     {
-        private IMagicalItemGenerator decorator;
+        private MagicalItemGenerator decorator;
         private Mock<ICurseGenerator> mockCurseGenerator;
-        private Mock<IMagicalItemGenerator> mockInnerGenerator;
+        private Mock<MagicalItemGenerator> mockInnerGenerator;
         private Item innerItem;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerGenerator = new Mock<IMagicalItemGenerator>();
+            mockInnerGenerator = new Mock<MagicalItemGenerator>();
             mockCurseGenerator = new Mock<ICurseGenerator>();
             decorator = new MagicalItemGeneratorCurseDecorator(mockInnerGenerator.Object, mockCurseGenerator.Object);
             innerItem = new Item();
@@ -37,7 +37,7 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
         [Test]
         public void DoNotGetCurseIfNotCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = decorator.GenerateAtPower("power");
@@ -47,7 +47,7 @@ namespace TreasureGen.Tests.Unit.Generators.Decorators
         [Test]
         public void GetCurseIfCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<Boolean>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = decorator.GenerateAtPower("power");

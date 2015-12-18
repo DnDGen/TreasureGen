@@ -10,7 +10,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
     public class ToolGeneratorTests : MundaneItemGeneratorStressTests
     {
         [Inject, Named(ItemTypeConstants.Tool)]
-        public IMundaneItemGenerator ToolGenerator { get; set; }
+        public MundaneItemGenerator ToolGenerator { get; set; }
 
         [TestCase("Tool generator")]
         public override void Stress(String thingToStress)

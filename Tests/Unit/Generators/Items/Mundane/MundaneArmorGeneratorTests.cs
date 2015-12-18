@@ -13,7 +13,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class MundaneArmorGeneratorTests
     {
-        private IMundaneItemGenerator mundaneArmorGenerator;
+        private MundaneItemGenerator mundaneArmorGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IAttributesSelector> mockAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;

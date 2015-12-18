@@ -5,7 +5,7 @@ using TreasureGen.Tables;
 
 namespace TreasureGen.Generators.Domain.Items.Mundane
 {
-    public class ToolGenerator : IMundaneItemGenerator
+    public class ToolGenerator : MundaneItemGenerator
     {
         private IPercentileSelector percentileSelector;
 
