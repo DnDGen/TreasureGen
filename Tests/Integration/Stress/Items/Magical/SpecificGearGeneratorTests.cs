@@ -79,5 +79,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(slayingArrow.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
             Assert.That(slayingArrow.Traits, Has.Some.StartsWith("Designated Foe: "));
         }
+
+        [Test]
+        public void LuckBladeWithWishesOccurs()
+        {
+            var luckBlade = GenerateOrFail(g => g.ItemType == ItemTypeConstants.Weapon && g.Name == WeaponConstants.LuckBlade && g.Magic.Charges > 0);
+            Assert.That(luckBlade.Magic.Charges, Is.Positive);
+        }
     }
 }

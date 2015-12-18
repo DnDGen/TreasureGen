@@ -130,6 +130,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Luck blade (1 wish)</name>
@@ -138,6 +139,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Luck blade (2 wishes)</name>
@@ -146,6 +148,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Luck blade (3 wishes)</name>
@@ -154,6 +157,7 @@
         <attribute>Not bludgeoning</attribute>
         <attribute>Metal</attribute>
         <attribute>Melee</attribute>
+        <attribute>Charged</attribute>
     </object>
     <object>
         <name>Mace of smiting</name>

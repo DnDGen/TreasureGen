@@ -102,7 +102,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                               AttributeConstants.Specific,
                                               AttributeConstants.NotBludgeoning,
                                               AttributeConstants.Melee,
-                                              AttributeConstants.Metal)]
+                                              AttributeConstants.Metal,
+                                              AttributeConstants.Charged)]
         [TestCase(WeaponConstants.SwordOfSubtlety, AttributeConstants.Slashing,
                                                    AttributeConstants.Specific,
                                                    AttributeConstants.NotBludgeoning,
@@ -169,7 +170,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                               AttributeConstants.Specific,
                                               AttributeConstants.NotBludgeoning,
                                               AttributeConstants.Melee,
-                                              AttributeConstants.Metal)]
+                                              AttributeConstants.Metal,
+                                              AttributeConstants.Charged)]
         [TestCase(WeaponConstants.MaceOfSmiting, AttributeConstants.Specific,
                                                  AttributeConstants.Bludgeoning,
                                                  AttributeConstants.Melee,
@@ -178,7 +180,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                               AttributeConstants.Specific,
                                               AttributeConstants.NotBludgeoning,
                                               AttributeConstants.Melee,
-                                              AttributeConstants.Metal)]
+                                              AttributeConstants.Metal,
+                                              AttributeConstants.Charged)]
         [TestCase(WeaponConstants.HolyAvenger, AttributeConstants.Slashing,
                                                AttributeConstants.Specific,
                                                AttributeConstants.NotBludgeoning,
@@ -188,7 +191,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
                                               AttributeConstants.Specific,
                                               AttributeConstants.NotBludgeoning,
                                               AttributeConstants.Melee,
-                                              AttributeConstants.Metal)]
+                                              AttributeConstants.Metal,
+                                              AttributeConstants.Charged)]
         public override void Attributes(String name, params String[] attributes)
         {
             base.Attributes(name, attributes);
