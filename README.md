@@ -1,6 +1,40 @@
-TreasureGen
-============
+# TreasureGen
 
 Generate random Dungeons & Dragons treasure, equipment, and items
 
 [![Build status](https://ci.appveyor.com/api/projects/status/d5fyqe7id26yrwdf)](https://ci.appveyor.com/project/cidthecoatrack/treasuregen)
+
+### Use
+
+To use TreasureGen, simply generate from the generator you wish to use.  Levels are from 1 to 20, and powers can be Mundane, Minor, Medium, and Major.
+
+```C#
+var treasure = treasureGenerator.GenerateAtLevel(6);
+var mundaneArmor = mundaneArmorGenerator.Generate();
+var magicalWeapon = magicalWeaponGenerator.GenerateAtPower(PowerConstants.Major);
+```
+
+### Getting the Generators
+
+You can obtain generators from the bootstrapper project.  Because the generators are very complex and are decorated in various ways, there is not a (recommended) way to build these generator manually.  Please use the Bootstrapper package.  **Note:** if using the TreasureGen bootstrapper, be sure to also load modules for RollGen, as it is dependent on those modules
+
+```C#
+var kernel = new StandardKernel();
+var rollGenModuleLoader = new RollGenModuleLoader();
+var treasureGenModuleLoader = new TreasureGenModuleLoader();
+
+rollGenModuleLoader.LoadModules(kernel);
+treasureGenModuleLoader.LoadModules(kernel);
+```
+
+Your particular syntax for how the Ninject injection should work will depend on your project (class library, web site, etc.)
+
+### Installing TreasureGen
+
+The project is on [Nuget](https://www.nuget.org/packages/EquipmentGen). Install via the NuGet Package Manager.
+
+    PM > Install-Package EquipmentGen
+
+#### There's TreasureGen and TreasureGen.Bootstrap - which do I install?
+
+That depends on your project.  If you are making a library that will only **reference** TreasureGen, but does not expressly implement it (such as the CharacterGen project), then you only need the TreasureGen package.  If you actually want to run and implement the dice (such as on the DnDGenSite or in the tests for CharacterGen), then you need TreasureGen.Bootstrap, which will install TreasureGen as a dependency.
