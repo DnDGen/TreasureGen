@@ -3,6 +3,8 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using TreasureGen.Common.Items;
 using TreasureGen.Tests.Integration.Common;
 
@@ -16,15 +18,26 @@ namespace TreasureGen.Tests.Integration.Stress
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        private const Int32 ConfidentIterations = 1000000;
+        private const int ConfidentIterations = 1000000;
+        private const int TenMinutesInSeconds = 600;
+
+        private readonly int timeLimitInSeconds;
+
+        private int iterations;
+
+        public StressTests()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var types = assembly.GetTypes();
+            var methods = types.SelectMany(t => t.GetMethods());
+            var stressTestsCount = methods.Count(m => m.GetCustomAttributes<TestAttribute>(true).Any() || m.GetCustomAttributes<TestCaseAttribute>().Any());
 
 #if STRESS
-        private const Int32 TimeLimitInSeconds = 60 * 60 / 167;
+            timeLimitInSeconds = TenMinutesInSeconds / stressTestsCount;
 #else
-        private const Int32 TimeLimitInSeconds = 1;
+            timeLimitInSeconds = 1;
 #endif
-
-        private Int32 iterations;
+        }
 
         [SetUp]
         public void StressSetup()
@@ -39,7 +52,7 @@ namespace TreasureGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
-        public abstract void Stress(String thingToStress);
+        public abstract void Stress(string thingToStress);
 
         protected void Stress()
         {
@@ -51,24 +64,24 @@ namespace TreasureGen.Tests.Integration.Stress
             do generate();
             while (TestShouldKeepRunning());
 
-            if (Stopwatch.Elapsed.TotalSeconds > TimeLimitInSeconds + 2)
+            if (Stopwatch.Elapsed.TotalSeconds > timeLimitInSeconds + 2)
                 Assert.Fail("Something took way too long");
         }
 
         protected abstract void MakeAssertions();
 
-        protected Boolean TestShouldKeepRunning()
+        protected bool TestShouldKeepRunning()
         {
             iterations++;
-            return Stopwatch.Elapsed.TotalSeconds < TimeLimitInSeconds && iterations < ConfidentIterations;
+            return Stopwatch.Elapsed.TotalSeconds < timeLimitInSeconds && iterations < ConfidentIterations;
         }
 
-        protected Int32 GetNewLevel()
+        protected int GetNewLevel()
         {
             return Random.Next(1, 21);
         }
 
-        protected String GetNewPower(Boolean allowMinor = true)
+        protected string GetNewPower(bool allowMinor = true)
         {
             var limit = 2;
             if (allowMinor)
@@ -82,7 +95,7 @@ namespace TreasureGen.Tests.Integration.Stress
             }
         }
 
-        protected String GetNewGearItemType()
+        protected string GetNewGearItemType()
         {
             if (Random.Next(2) == 0)
                 return ItemTypeConstants.Armor;
@@ -90,7 +103,7 @@ namespace TreasureGen.Tests.Integration.Stress
             return ItemTypeConstants.Weapon;
         }
 
-        protected IEnumerable<String> GetNewAttributesForGear(String itemType, Boolean forceMaterials)
+        protected IEnumerable<string> GetNewAttributesForGear(string itemType, bool forceMaterials)
         {
             if (itemType == ItemTypeConstants.Weapon)
                 return GenerateWeaponAttributes();
@@ -98,9 +111,9 @@ namespace TreasureGen.Tests.Integration.Stress
             return GenerateArmorAttributes();
         }
 
-        private IEnumerable<String> GenerateArmorAttributes()
+        private IEnumerable<string> GenerateArmorAttributes()
         {
-            var attributes = new List<String>();
+            var attributes = new List<string>();
 
             switch (Random.Next(3))
             {
@@ -122,9 +135,9 @@ namespace TreasureGen.Tests.Integration.Stress
             return attributes;
         }
 
-        private IEnumerable<String> GenerateWeaponAttributes()
+        private IEnumerable<string> GenerateWeaponAttributes()
         {
-            var attributes = new List<String>();
+            var attributes = new List<string>();
 
             switch (Random.Next(3))
             {

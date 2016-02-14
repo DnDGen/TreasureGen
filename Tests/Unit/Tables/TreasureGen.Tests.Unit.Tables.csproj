@@ -35,6 +35,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stress|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Stress\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;STRESS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
@@ -57,7 +66,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\TreasureGen\Tables\Contracts\TreasureGen.Tables.csproj">
       <Project>{c9fbe7df-a7c5-4274-b7b5-b8c4c9e5001d}</Project>
-      <Name>EquipmentGen.Tables.Interfaces</Name>
+      <Name>TreasureGen.Tables</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
