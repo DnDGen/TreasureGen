@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Domain.Items.Magical;
 using TreasureGen.Generators.Items.Magical;
@@ -229,10 +228,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(ItemTypeConstants.Staff, 98, 49)]
         [TestCase(ItemTypeConstants.Staff, 99, 49)]
         [TestCase(ItemTypeConstants.Staff, 100, 50)]
-        public void ChargePercentileRoll(String itemType, Int32 roll, Int32 quantity)
+        public void ChargePercentileRoll(string itemType, int roll, int quantity)
         {
-            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(roll);
-            var charges = generator.GenerateFor(ItemTypeConstants.Staff, String.Empty);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { roll });
+            var charges = generator.GenerateFor(ItemTypeConstants.Staff, string.Empty);
             Assert.That(charges, Is.EqualTo(quantity));
         }
 
@@ -244,9 +243,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Minimum = 66;
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, "name")).Returns(result);
-            mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(27)).Returns(new[] { 9266 });
 
-            var charges = generator.GenerateFor(String.Empty, "name");
+            var charges = generator.GenerateFor(string.Empty, "name");
             Assert.That(charges, Is.EqualTo(9331));
         }
 
@@ -262,11 +261,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
-            mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
-            mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(27)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(1)).Returns(new[] { 1 });
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
 
-            var charges = generator.GenerateFor(String.Empty, WondrousItemConstants.DeckOfIllusions);
+            var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(34));
         }
 
@@ -282,11 +281,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
             mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
-            mockDice.Setup(d => d.Roll(1).d(27)).Returns(9266);
-            mockDice.Setup(d => d.Roll(1).d(1)).Returns(1);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(27)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(1)).Returns(new[] { 1 });
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
 
-            var charges = generator.GenerateFor(String.Empty, WondrousItemConstants.DeckOfIllusions);
+            var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(9331));
         }
     }

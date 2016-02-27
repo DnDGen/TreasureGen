@@ -1,6 +1,4 @@
-﻿using RollGen;
-using System;
-using TreasureGen.Common.Coins;
+﻿using TreasureGen.Common.Coins;
 using TreasureGen.Generators.Coins;
 using TreasureGen.Selectors;
 using TreasureGen.Tables;
@@ -10,21 +8,19 @@ namespace TreasureGen.Generators.Domain.Coins
     public class CoinGenerator : ICoinGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private Dice dice;
 
-        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, Dice dice)
+        public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.dice = dice;
         }
 
-        public Coin GenerateAtLevel(Int32 level)
+        public Coin GenerateAtLevel(int level)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var coin = new Coin();
 
-            if (String.IsNullOrEmpty(result.Type))
+            if (string.IsNullOrEmpty(result.Type))
                 return coin;
 
             coin.Currency = result.Type;

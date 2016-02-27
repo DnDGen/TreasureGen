@@ -43,7 +43,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             result.Type = "power";
             result.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(result);
-            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(result.Amount)).Returns(new[] { 9266 });
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(ItemTypeConstants.WondrousItem);
 
             var dummyMagicalMock = new Mock<MagicalItemGenerator>();
@@ -84,7 +84,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             result.Type = PowerConstants.Mundane;
             result.Amount = 2;
-            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Returns(2);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(result.Amount)).Returns(new[] { 2 });
 
             var firstItem = new Item();
             var secondItem = new Item();
@@ -102,7 +102,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             result.Type = string.Empty;
             result.Amount = 0;
-            mockDice.Setup(d => d.Roll(1).d(result.Amount)).Throws(new Exception());
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(result.Amount)).Throws(new Exception());
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items, Is.Empty);

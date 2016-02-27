@@ -161,7 +161,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsBaseItemsAdded()
         {
-            mockDice.Setup(d => d.Roll(4).d4()).Returns(0);
+            mockDice.Setup(d => d.Roll(4).IndividualRolls(4)).Returns(new[] { 0, 0, 0, 0 });
             result.Type = WondrousItemConstants.RobeOfUsefulItems;
             var items = new[] { "item 1", "item 1", "item 2", "item 2", "item 3", "item 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(items);
@@ -176,7 +176,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsExtraItemsDetermined()
         {
             result.Type = WondrousItemConstants.RobeOfUsefulItems;
-            mockDice.Setup(d => d.Roll(4).d4()).Returns(2);
+            mockDice.Setup(d => d.Roll(4).IndividualRolls(4)).Returns(new[] { 1, 0, 1, 0 });
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1").Returns("item 2");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -190,7 +190,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsCanHaveDuplicateExtraItems()
         {
             result.Type = WondrousItemConstants.RobeOfUsefulItems;
-            mockDice.Setup(d => d.Roll(4).d4()).Returns(2);
+            mockDice.Setup(d => d.Roll(4).IndividualRolls(4)).Returns(new[] { 0, 1, 0, 1 });
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -204,7 +204,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsExtraItemsScrollDetermined()
         {
             result.Type = WondrousItemConstants.RobeOfUsefulItems;
-            mockDice.Setup(d => d.Roll(4).d4()).Returns(1);
+            mockDice.Setup(d => d.Roll(4).IndividualRolls(4)).Returns(new[] { 0, 0, 1, 0 });
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("Scroll");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
@@ -258,9 +258,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(cards);
-            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(3)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(2)).Returns(2);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -277,10 +277,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(spheres);
-            mockDice.Setup(d => d.Roll(1).d(5)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(3)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(2)).Returns(2);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(5)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -298,10 +298,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(items);
-            mockDice.Setup(d => d.Roll(1).d(6)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(5)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(4)).Returns(1);
-            mockDice.Setup(d => d.Roll(1).d(3)).Returns(2);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(6)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(5)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 2 });
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -329,7 +329,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Contents, Contains.Item("undead 3"));
             Assert.That(item.Contents.Count(c => c == "undead 3"), Is.EqualTo(2));
             Assert.That(item.Contents.Count, Is.EqualTo(6));
-            mockDice.Verify(d => d.Roll(It.IsAny<Int32>()).d(It.IsAny<Int32>()), Times.Never);
+            mockDice.Verify(d => d.Roll(It.IsAny<int>()).IndividualRolls(It.IsAny<int>()), Times.Never);
         }
 
         [Test]

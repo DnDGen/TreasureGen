@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
@@ -32,9 +31,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.dice = dice;
         }
 
-        public Item GenerateFrom(String power, String specificGearType)
+        public Item GenerateFrom(string power, string specificGearType)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var gear = new Item();
@@ -47,10 +46,10 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             else
                 gear.ItemType = ItemTypeConstants.Armor;
 
-            tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, specificGearType);
+            tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, specificGearType);
             gear.Attributes = attributesSelector.SelectFrom(tableName, gear.Name);
 
-            tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, specificGearType);
+            tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, specificGearType);
             var traits = attributesSelector.SelectFrom(tableName, gear.Name);
             gear.Traits.AddRange(traits);
 
@@ -70,7 +69,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                     var spellType = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes);
                     var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
                     var spell = spellGenerator.Generate(spellType, spellLevel);
-                    var formattedSpell = String.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
+                    var formattedSpell = string.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
                     gear.Contents.Add(formattedSpell);
                 }
             }
@@ -81,7 +80,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
                 var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
-                var trait = String.Format("Designated Foe: {0}", designatedFoe);
+                var trait = string.Format("Designated Foe: {0}", designatedFoe);
                 gear.Traits.Add(trait);
             }
 
@@ -94,7 +93,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return gear;
         }
 
-        private Int32 GetQuantity(Item gear)
+        private int GetQuantity(Item gear)
         {
             var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
 
@@ -104,7 +103,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return dice.Roll().d20();
         }
 
-        private String RenameGear(String oldName)
+        private string RenameGear(string oldName)
         {
             switch (oldName)
             {
@@ -117,15 +116,15 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             }
         }
 
-        private IEnumerable<SpecialAbility> GetSpecialAbilities(String specificGearType, String name)
+        private IEnumerable<SpecialAbility> GetSpecialAbilities(string specificGearType, string name)
         {
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
+            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
             var abilityNames = attributesSelector.SelectFrom(tableName, name);
 
             return abilityNames.Select(n => ReconstituteAbility(n));
         }
 
-        private SpecialAbility ReconstituteAbility(String name)
+        private SpecialAbility ReconstituteAbility(string name)
         {
             var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, name);
             var ability = new SpecialAbility();

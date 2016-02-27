@@ -15,17 +15,17 @@ namespace TreasureGen.Selectors.Domain
             this.dice = dice;
         }
 
-        public TypeAndAmountPercentileResult SelectFrom(String tableName)
+        public TypeAndAmountPercentileResult SelectFrom(string tableName)
         {
             var percentileResult = percentileSelector.SelectFrom(tableName);
             var result = new TypeAndAmountPercentileResult();
 
-            if (String.IsNullOrEmpty(percentileResult))
+            if (string.IsNullOrEmpty(percentileResult))
                 return result;
 
             if (percentileResult.Contains(",") == false)
             {
-                var message = String.Format("Table {0} was not formatted for type and amount parsing", tableName);
+                var message = string.Format("Table {0} was not formatted for type and amount parsing", tableName);
                 throw new FormatException(message);
             }
 

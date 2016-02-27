@@ -146,7 +146,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector.Setup(
                 s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
                 .Returns(new[] { "other weapon", "weapon name" });
-            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(9266));

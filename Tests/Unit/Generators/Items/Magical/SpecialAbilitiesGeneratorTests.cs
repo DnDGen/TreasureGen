@@ -30,7 +30,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [SetUp]
         public void Setup()
         {
-            attributes = new List<String>();
+            attributes = new List<string>();
 
             mockAttributesSelector = new Mock<IAttributesSelector>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
@@ -41,7 +41,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             power = "power";
 
             mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(names);
-            mockDice.Setup(d => d.Roll(1).d(It.IsAny<int>())).Returns(1);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(It.IsAny<int>())).Returns(new[] { 1 });
 
             specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockAttributesSelector.Object, mockPercentileSelector.Object,
                 mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
@@ -138,9 +138,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributes.Add(AttributeConstants.Melee);
             attributes.Add(AttributeConstants.Ranged);
 
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
             mockPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[] { "melee ability" });
-            tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
             mockPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[] { "ranged ability" });
 
             var meleeResult = new SpecialAbilityAttributesResult();
@@ -153,7 +153,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, rangedResult.BaseName)).Returns(rangedResult);
             mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(attributes);
 
-            mockDice.SetupSequence(d => d.Roll(1).d(2)).Returns(1).Returns(2);
+            mockDice.SetupSequence(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 1 }).Returns(new[] { 2 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, 1, 2);
             var names = abilities.Select(a => a.Name);
@@ -168,7 +168,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("big ability", bonus: 2);
             CreateSpecialAbility("small ability", bonus: 1);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<String>())).Returns("big ability").Returns("small ability");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("big ability").Returns("small ability");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, 9, 1);
             var names = abilities.Select(a => a.Name);
@@ -276,7 +276,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 1");
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<String>())).Returns("ability 1").Returns("ability 1")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 1")
                 .Returns("ability 2");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, attributes, power, 1, 2);
@@ -291,7 +291,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<String>())).Returns("ability 1").Returns("ability 2");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
 
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "base ability 1")).Returns(new[] { "other type", "type 1" });
             mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "base ability 2")).Returns(attributes);

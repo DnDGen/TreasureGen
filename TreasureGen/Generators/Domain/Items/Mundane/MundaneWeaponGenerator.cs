@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Mundane;
@@ -28,7 +27,7 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
         public Item Generate()
         {
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var weaponName = percentileSelector.SelectFrom(tableName);
 
             var weapon = new Item();
@@ -41,7 +40,7 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             {
                 weapon.Name = weaponName;
                 weapon.ItemType = ItemTypeConstants.Weapon;
-                tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = attributesSelector.SelectFrom(tableName, weapon.Name);
             }
 

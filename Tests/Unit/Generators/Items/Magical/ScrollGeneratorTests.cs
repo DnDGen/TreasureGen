@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Domain.Items.Magical;
 using TreasureGen.Generators.Items.Magical;
@@ -22,7 +21,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<Dice>();
             scrollGenerator = new ScrollGenerator(mockDice.Object, mockSpellGenerator.Object);
 
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(1);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
         }
 
         [Test]
@@ -51,7 +50,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorScrollsHave1d3Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 9266 });
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
@@ -60,7 +59,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MediumScrollsHave1d4Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d4()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 9266 });
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Medium);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
@@ -69,7 +68,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MajorScrollsHave1d6Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d6()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(6)).Returns(new[] { 9266 });
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Major);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
@@ -84,7 +83,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateSpellTypeOnce()
         {
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 9266 });
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Once);
@@ -93,11 +92,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateLevelAndSpellEachTime()
         {
-            mockDice.Setup(d => d.Roll(1).d3()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 9266 });
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             mockSpellGenerator.Verify(g => g.GenerateLevel(PowerConstants.Minor), Times.Exactly(9266));
-            mockSpellGenerator.Verify(g => g.Generate(It.IsAny<String>(), It.IsAny<Int32>()), Times.Exactly(9266));
+            mockSpellGenerator.Verify(g => g.Generate(It.IsAny<string>(), It.IsAny<int>()), Times.Exactly(9266));
         }
     }
 }

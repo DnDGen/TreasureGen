@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Items;
@@ -28,9 +27,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
-        public Item GenerateAtPower(String power)
+        public Item GenerateAtPower(string power)
         {
-            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             var item = new Item();
@@ -38,7 +37,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
 
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, item.ItemType);
+            var tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, item.ItemType);
             item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
             item.Magic.Bonus = result.Amount;
 
@@ -46,7 +45,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
 
             var trait = GetTraitFor(item.Name);
-            if (!String.IsNullOrEmpty(trait))
+            if (!string.IsNullOrEmpty(trait))
                 item.Traits.Add(trait);
 
             var contents = GetContentsFor(item.Name);
@@ -55,18 +54,18 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return item;
         }
 
-        private String GetTraitFor(String name)
+        private string GetTraitFor(string name)
         {
             switch (name)
             {
                 case WondrousItemConstants.HornOfValhalla: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
                 case WondrousItemConstants.CandleOfInvocation: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
                 case WondrousItemConstants.RobeOfTheArchmagi: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
-                default: return String.Empty;
+                default: return string.Empty;
             }
         }
 
-        private IEnumerable<String> GetContentsFor(String name)
+        private IEnumerable<string> GetContentsFor(string name)
         {
             switch (name)
             {
@@ -78,15 +77,15 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             if (ItemHasPartialContents(name))
                 return GetPartialContents(name);
 
-            return Enumerable.Empty<String>();
+            return Enumerable.Empty<string>();
         }
 
-        private IEnumerable<String> GetIronFlaskContents()
+        private IEnumerable<string> GetIronFlaskContents()
         {
             var contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents);
 
-            if (String.IsNullOrEmpty(contents))
-                return Enumerable.Empty<String>();
+            if (string.IsNullOrEmpty(contents))
+                return Enumerable.Empty<string>();
 
             if (contents == TableNameConstants.Percentiles.Set.BalorOrPitFiend)
                 contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
@@ -94,20 +93,20 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return new[] { contents };
         }
 
-        private IEnumerable<String> GetRobeOfUsefulItemsItems()
+        private IEnumerable<string> GetRobeOfUsefulItemsItems()
         {
             var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
             var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
 
             //INFO: Can't do Union because it will deduplicate the allowed duplicate items
-            var items = new List<String>();
+            var items = new List<string>();
             items.AddRange(baseItems);
             items.AddRange(extraItems);
 
             return items;
         }
 
-        private IEnumerable<String> GetPartialContents(String name)
+        private IEnumerable<string> GetPartialContents(string name)
         {
             var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
             var fullContents = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, name).ToList();
@@ -115,7 +114,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             if (quantity >= fullContents.Count)
                 return fullContents;
 
-            var contents = new List<String>();
+            var contents = new List<string>();
 
             while (quantity-- > 0)
             {
@@ -128,7 +127,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return contents;
         }
 
-        private Boolean ItemHasPartialContents(String name)
+        private bool ItemHasPartialContents(string name)
         {
             if (name == WondrousItemConstants.RobeOfBones)
                 return true;
@@ -142,9 +141,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return false;
         }
 
-        private IEnumerable<String> GenerateExtraItemsInRobeOfUsefulItems()
+        private IEnumerable<string> GenerateExtraItemsInRobeOfUsefulItems()
         {
-            var extraItems = new List<String>();
+            var extraItems = new List<string>();
             var quantity = dice.Roll(4).d4();
 
             while (quantity-- > 0)
@@ -157,7 +156,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                     var level = spellGenerator.GenerateLevel(PowerConstants.Minor);
                     var spell = spellGenerator.Generate(spellType, level);
 
-                    item = String.Format("{0} scroll of {1} ({2})", spellType, spell, level);
+                    item = string.Format("{0} scroll of {1} ({2})", spellType, spell, level);
                 }
 
                 extraItems.Add(item);
@@ -166,9 +165,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return extraItems;
         }
 
-        private IEnumerable<String> GeneratePlanesForCubicGate()
+        private IEnumerable<string> GeneratePlanesForCubicGate()
         {
-            var planes = new HashSet<String>();
+            var planes = new HashSet<string>();
             planes.Add("Material plane");
 
             while (planes.Count < 6)

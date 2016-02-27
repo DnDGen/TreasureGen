@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Mappers;
@@ -17,14 +16,14 @@ namespace TreasureGen.Selectors.Domain
             this.dice = dice;
         }
 
-        public String SelectFrom(String tableName)
+        public string SelectFrom(string tableName)
         {
             var roll = dice.Roll().Percentile();
             var table = percentileMapper.Map(tableName);
             return table[roll];
         }
 
-        public IEnumerable<String> SelectAllFrom(String tableName)
+        public IEnumerable<string> SelectAllFrom(string tableName)
         {
             var table = percentileMapper.Map(tableName);
             return table.Values.Distinct();

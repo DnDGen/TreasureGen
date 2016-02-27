@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using System;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Domain.Items.Mundane;
 using TreasureGen.Generators.Items.Mundane;
@@ -26,7 +25,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockDice = new Mock<Dice>();
             ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
 
-            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(0);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { 0 });
         }
 
         [Test]
@@ -138,9 +137,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [TestCase(98, 49)]
         [TestCase(99, 49)]
         [TestCase(100, 50)]
-        public void AmmunitionQuantityRoll(Int32 roll, Int32 quantity)
+        public void AmmunitionQuantityRoll(int roll, int quantity)
         {
-            mockDice.Setup(d => d.Roll(1).Percentile()).Returns(roll);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { roll });
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Quantity, Is.EqualTo(quantity));
         }

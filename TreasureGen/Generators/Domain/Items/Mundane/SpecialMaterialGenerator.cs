@@ -12,7 +12,7 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
     public class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
         private Dice dice;
-        private Dictionary<String, IEnumerable<String>> specialMaterialAttributes;
+        private Dictionary<string, IEnumerable<string>> specialMaterialAttributes;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
         public SpecialMaterialGenerator(Dice dice, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
@@ -20,7 +20,7 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             this.dice = dice;
             this.booleanPercentileSelector = booleanPercentileSelector;
 
-            specialMaterialAttributes = new Dictionary<String, IEnumerable<String>>();
+            specialMaterialAttributes = new Dictionary<string, IEnumerable<string>>();
 
             var materials = TraitConstants.GetSpecialMaterials();
             foreach (var material in materials)
@@ -30,7 +30,7 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             }
         }
 
-        public Boolean CanHaveSpecialMaterial(String itemType, IEnumerable<String> attributes, IEnumerable<String> traits)
+        public bool CanHaveSpecialMaterial(string itemType, IEnumerable<string> attributes, IEnumerable<string> traits)
         {
             if (itemType != ItemTypeConstants.Weapon && itemType != ItemTypeConstants.Armor)
                 return false;
@@ -41,13 +41,13 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
                    && TraitsAllowForSpecialMaterials(attributesWithType, traits);
         }
 
-        private Boolean AttributesAllowForSpecialMaterials(IEnumerable<String> attributes)
+        private bool AttributesAllowForSpecialMaterials(IEnumerable<string> attributes)
         {
             var allowedMaterials = GetAllowedMaterials(attributes);
             return allowedMaterials.Any();
         }
 
-        private Boolean TraitsAllowForSpecialMaterials(IEnumerable<String> attributes, IEnumerable<String> traits)
+        private bool TraitsAllowForSpecialMaterials(IEnumerable<string> attributes, IEnumerable<string> traits)
         {
             var numberOfMaterialsAlreadyHad = specialMaterialAttributes.Keys.Intersect(traits).Count();
             if (numberOfMaterialsAlreadyHad > 1)
@@ -63,23 +63,23 @@ namespace TreasureGen.Generators.Domain.Items.Mundane
             return true;
         }
 
-        private IEnumerable<String> GetAllowedMaterials(IEnumerable<String> attributes)
+        private IEnumerable<string> GetAllowedMaterials(IEnumerable<string> attributes)
         {
             var allowedMaterialEntries = specialMaterialAttributes.Where(kvp => kvp.Value.Intersect(attributes).Count() == kvp.Value.Count());
             return allowedMaterialEntries.Select(kvp => kvp.Key);
         }
 
-        public String GenerateFor(String itemType, IEnumerable<String> attributes, IEnumerable<String> traits)
+        public string GenerateFor(string itemType, IEnumerable<string> attributes, IEnumerable<string> traits)
         {
             if (itemType != ItemTypeConstants.Weapon && itemType != ItemTypeConstants.Armor)
                 throw new ArgumentException(itemType);
 
             var attributesWithType = attributes.Union(new[] { itemType });
             if (!AttributesAllowForSpecialMaterials(attributesWithType))
-                throw new ArgumentException(String.Join(",", attributesWithType));
+                throw new ArgumentException(string.Join(",", attributesWithType));
 
             if (!TraitsAllowForSpecialMaterials(attributesWithType, traits))
-                throw new ArgumentException(String.Join(",", traits));
+                throw new ArgumentException(string.Join(",", traits));
 
             var filteredSpecialMaterials = GetAllowedMaterials(attributesWithType);
             var allowedSpecialMaterials = filteredSpecialMaterials.Except(traits);

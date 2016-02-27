@@ -1,5 +1,4 @@
-﻿using System;
-using TreasureGen.Common;
+﻿using TreasureGen.Common;
 using TreasureGen.Generators.Coins;
 using TreasureGen.Generators.Goods;
 using TreasureGen.Generators.Items;
@@ -19,7 +18,7 @@ namespace TreasureGen.Generators.Domain
             this.itemsFactory = itemsFactory;
         }
 
-        public Treasure GenerateAtLevel(Int32 level)
+        public Treasure GenerateAtLevel(int level)
         {
             var treasure = new Treasure();
 

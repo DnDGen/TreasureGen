@@ -11,7 +11,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
 {
     public class SpecialAbilitiesGenerator : ISpecialAbilitiesGenerator
     {
-        private const Int32 MaxBonus = 10;
+        private const int MaxBonus = 10;
 
         private IAttributesSelector attributesSelector;
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
@@ -29,7 +29,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.dice = dice;
         }
 
-        public IEnumerable<SpecialAbility> GenerateFor(String itemType, IEnumerable<String> attributes, String power, Int32 magicalBonus, Int32 quantity)
+        public IEnumerable<SpecialAbility> GenerateFor(string itemType, IEnumerable<string> attributes, string power, int magicalBonus, Int32 quantity)
         {
             if (magicalBonus <= 0)
                 return Enumerable.Empty<SpecialAbility>();
@@ -81,37 +81,37 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return abilities;
         }
 
-        private IEnumerable<String> GetTableNames(String itemType, IEnumerable<String> attributes, String power)
+        private IEnumerable<string> GetTableNames(string itemType, IEnumerable<string> attributes, string power)
         {
-            var tableNames = new List<String>();
+            var tableNames = new List<string>();
 
             if (attributes.Contains(AttributeConstants.Melee))
             {
-                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
+                var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
                 tableNames.Add(tableName);
             }
 
             if (attributes.Contains(AttributeConstants.Ranged))
             {
-                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
+                var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
                 tableNames.Add(tableName);
             }
 
             if (attributes.Contains(AttributeConstants.Shield))
             {
-                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
+                var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
                 tableNames.Add(tableName);
             }
             else if (itemType == ItemTypeConstants.Armor)
             {
-                var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
+                var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
                 tableNames.Add(tableName);
             }
 
             return tableNames;
         }
 
-        private List<SpecialAbility> GetAvailableAbilities(IEnumerable<String> tableNames, Int32 bonus, IEnumerable<String> attributes)
+        private List<SpecialAbility> GetAvailableAbilities(IEnumerable<string> tableNames, int bonus, IEnumerable<string> attributes)
         {
             var availableAbilities = new List<SpecialAbility>();
 
@@ -134,7 +134,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return availableAbilities;
         }
 
-        private SpecialAbility GetSpecialAbility(String abilityName)
+        private SpecialAbility GetSpecialAbility(string abilityName)
         {
             var ability = new SpecialAbility();
             var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, abilityName);
@@ -148,13 +148,13 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return ability;
         }
 
-        private Boolean AllAttributeRequirementsMet(IEnumerable<String> requirements, IEnumerable<String> attributes)
+        private bool AllAttributeRequirementsMet(IEnumerable<string> requirements, IEnumerable<string> attributes)
         {
             var missingRequirements = requirements.Except(attributes);
             return !missingRequirements.Any();
         }
 
-        private Boolean CanHaveAllAvailableAbilities(Int32 quantity, Int32 bonusSum, IEnumerable<SpecialAbility> availableAbilities)
+        private bool CanHaveAllAvailableAbilities(int quantity, int bonusSum, IEnumerable<SpecialAbility> availableAbilities)
         {
             return quantity >= availableAbilities.Count() && availableAbilities.Sum(a => a.BonusEquivalent) + bonusSum <= MaxBonus;
         }
@@ -174,9 +174,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return strongestAbilities;
         }
 
-        private SpecialAbility GenerateAbilityFrom(IEnumerable<SpecialAbility> availableAbilities, IEnumerable<String> tableNames)
+        private SpecialAbility GenerateAbilityFrom(IEnumerable<SpecialAbility> availableAbilities, IEnumerable<string> tableNames)
         {
-            var abilityName = String.Empty;
+            var abilityName = string.Empty;
 
             do
             {

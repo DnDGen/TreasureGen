@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Common.Goods;
@@ -23,17 +22,17 @@ namespace TreasureGen.Generators.Domain.Goods
             this.attributesSelector = attributesSelector;
         }
 
-        public IEnumerable<Good> GenerateAtLevel(Int32 level)
+        public IEnumerable<Good> GenerateAtLevel(int level)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
-            if (String.IsNullOrEmpty(result.Type))
+            if (string.IsNullOrEmpty(result.Type))
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
-            var valueTableName = String.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, result.Type);
-            var descriptionTableName = String.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, result.Type);
+            var valueTableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, result.Type);
+            var descriptionTableName = string.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, result.Type);
 
             while (result.Amount-- > 0)
             {

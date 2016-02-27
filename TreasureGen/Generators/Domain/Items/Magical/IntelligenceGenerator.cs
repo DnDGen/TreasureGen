@@ -27,7 +27,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
-        public Boolean IsIntelligent(String itemType, IEnumerable<String> attributes, Boolean isMagical)
+        public bool IsIntelligent(string itemType, IEnumerable<string> attributes, bool isMagical)
         {
             if (!isMagical)
                 return false;
@@ -40,7 +40,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             else if (attributes.Contains(AttributeConstants.Ranged))
                 itemType = AttributeConstants.Ranged;
 
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             return booleanPercentileSelector.SelectFrom(tableName);
         }
 
@@ -102,13 +102,13 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return intelligence;
         }
 
-        private Int32 BoostEgoByCommunication(IEnumerable<String> communication, String communicationType)
+        private int BoostEgoByCommunication(IEnumerable<string> communication, string communicationType)
         {
             var containsCommunicationType = communication.Contains(communicationType);
             return Convert.ToInt32(containsCommunicationType);
         }
 
-        private Int32 SetHighStat(Int32 highStat, Int32 stat)
+        private int SetHighStat(int highStat, int stat)
         {
             if (stat == 0)
                 return highStat;
@@ -116,7 +116,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return stat;
         }
 
-        private List<String> GenerateLanguages(Int32 intelligenceStat)
+        private List<string> GenerateLanguages(int intelligenceStat)
         {
             var modifier = (intelligenceStat - 10) / 2;
             var languages = GetNonDuplicateList(TableNameConstants.Percentiles.Set.Languages, modifier);
@@ -125,13 +125,13 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return languages;
         }
 
-        private List<String> GeneratePowers(String strength, Int32 count)
+        private List<string> GeneratePowers(string strength, int count)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, strength);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, strength);
             return GetNonDuplicateList(tableName, count);
         }
 
-        private List<String> GetNonDuplicateList(String tableName, Int32 quantity)
+        private List<string> GetNonDuplicateList(string tableName, int quantity)
         {
             var list = new List<String>();
 
@@ -151,9 +151,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return list;
         }
 
-        private String GetAlignment(Item item)
+        private string GetAlignment(Item item)
         {
-            String alignment;
+            string alignment;
             var abilityNames = item.Magic.SpecialAbilities.Select(a => a.Name);
             var specificAlignmentRequirement = GetSpecificAlignmentRequirement(item);
 
@@ -163,7 +163,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return alignment;
         }
 
-        private String GetSpecificAlignmentRequirement(Item item)
+        private string GetSpecificAlignmentRequirement(Item item)
         {
             var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items");
 
@@ -185,10 +185,10 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 //i.e., they either conflict or should have been a full alignment requriement
                 return requirements.Single();
 
-            return String.Empty;
+            return string.Empty;
         }
 
-        private Boolean AlignmentIsAllowed(String alignment, IEnumerable<String> abilityNames, String specificAlignmentRequirement)
+        private bool AlignmentIsAllowed(string alignment, IEnumerable<string> abilityNames, string specificAlignmentRequirement)
         {
             if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith(IntelligenceAlignmentConstants.Lawful))
                 return false;
@@ -205,7 +205,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return alignment == specificAlignmentRequirement || PartialAlignmentRequirementMet(alignment, specificAlignmentRequirement);
         }
 
-        private Boolean PartialAlignmentRequirementMet(String alignment, String specificAlignmentRequirement)
+        private bool PartialAlignmentRequirementMet(string alignment, string specificAlignmentRequirement)
         {
             if (specificAlignmentRequirement == IntelligenceAlignmentConstants.Neutral)
                 return alignment.EndsWith(specificAlignmentRequirement);

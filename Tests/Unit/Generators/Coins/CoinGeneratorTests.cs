@@ -1,7 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using RollGen;
-using System;
 using TreasureGen.Generators.Coins;
 using TreasureGen.Generators.Domain.Coins;
 using TreasureGen.Selectors;
@@ -14,7 +12,6 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
     public class CoinGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<Dice> mockDice;
         private ICoinGenerator generator;
 
         private TypeAndAmountPercentileResult result;
@@ -22,21 +19,20 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object, mockDice.Object);
+            generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object);
             result = new TypeAndAmountPercentileResult();
 
             result.Type = "coin type";
             result.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(result);
 
         }
 
         [Test]
         public void ReturnCoinFromSelector()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1);
             generator.GenerateAtLevel(1);
             mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(tableName), Times.Once);
         }
@@ -44,10 +40,10 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         [Test]
         public void CoinIsEmptyIfResultIsEmpty()
         {
-            result.Type = String.Empty;
+            result.Type = string.Empty;
 
             var coin = generator.GenerateAtLevel(1);
-            Assert.That(coin.Currency, Is.EqualTo(String.Empty));
+            Assert.That(coin.Currency, Is.EqualTo(string.Empty));
             Assert.That(coin.Quantity, Is.EqualTo(0));
         }
 

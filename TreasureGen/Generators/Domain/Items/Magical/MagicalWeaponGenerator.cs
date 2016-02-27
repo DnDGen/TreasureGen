@@ -32,9 +32,9 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.dice = dice;
         }
 
-        public Item GenerateAtPower(String power)
+        public Item GenerateAtPower(string power)
         {
-            var tablename = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             var bonus = percentileSelector.SelectFrom(tablename);
             var specialAbilitiesCount = 0;
 
@@ -48,7 +48,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 return specificGearGenerator.GenerateFrom(power, bonus);
 
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes);
-            tablename = String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            tablename = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var name = percentileSelector.SelectFrom(tablename);
 
             var weapon = new Item();
@@ -62,7 +62,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Name = name;
 
-                tablename = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                tablename = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = attributesSelector.SelectFrom(tablename, weapon.Name);
             }
 

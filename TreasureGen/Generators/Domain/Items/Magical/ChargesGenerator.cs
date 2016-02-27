@@ -13,15 +13,14 @@ namespace TreasureGen.Generators.Domain.Items.Magical
         private IRangeAttributesSelector rangeAttributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public ChargesGenerator(Dice dice, IRangeAttributesSelector rangeAttributesSelector,
-            IBooleanPercentileSelector booleanPercentileSelector)
+        public ChargesGenerator(Dice dice, IRangeAttributesSelector rangeAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.rangeAttributesSelector = rangeAttributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
-        public Int32 GenerateFor(String itemType, String name)
+        public int GenerateFor(string itemType, string name)
         {
             if (itemType == ItemTypeConstants.Wand || itemType == ItemTypeConstants.Staff)
                 return PercentileCharges();
@@ -40,7 +39,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return dice.Roll().d(die) - 1 + result.Minimum;
         }
 
-        private Int32 PercentileCharges()
+        private int PercentileCharges()
         {
             var roll = dice.Roll().Percentile();
             return Math.Max(roll / 2, 1);

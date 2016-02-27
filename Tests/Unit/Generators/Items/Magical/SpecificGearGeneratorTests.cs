@@ -265,7 +265,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
 
-            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
@@ -277,7 +277,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector.Setup(
                 s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
                 .Returns(new[] { "other weapon", "specific gear" });
-            mockDice.Setup(d => d.Roll(1).d20()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
 
             var gear = generator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));

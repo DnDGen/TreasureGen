@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Linq;
 using TreasureGen.Common.Items;
 using TreasureGen.Generators.Items.Magical;
@@ -24,17 +23,17 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             this.attributesSelector = attributesSelector;
         }
 
-        public Boolean HasCurse(Boolean isMagical)
+        public bool HasCurse(bool isMagical)
         {
             return isMagical && booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
-        public String GenerateCurse()
+        public string GenerateCurse()
         {
             var curse = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Curses);
 
             if (curse == CurseConstants.Intermittent)
-                return String.Format("{0} ({1})", curse, GetIntermittentFunctioning());
+                return string.Format("{0} ({1})", curse, GetIntermittentFunctioning());
 
             if (curse == CurseConstants.Drawback)
                 return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);
@@ -42,7 +41,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
             return curse;
         }
 
-        private String GetIntermittentFunctioning()
+        private string GetIntermittentFunctioning()
         {
             var roll = dice.Roll().d3();
 
@@ -53,7 +52,7 @@ namespace TreasureGen.Generators.Domain.Items.Magical
                 return "Uncontrolled";
 
             var situation = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations);
-            return String.Format("Dependent: {0}", situation);
+            return string.Format("Dependent: {0}", situation);
         }
 
         public Item GenerateSpecificCursedItem()
