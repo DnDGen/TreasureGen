@@ -20,6 +20,7 @@ namespace TreasureGen.Tests.Integration.Stress
 
         private const int ConfidentIterations = 1000000;
         private const int TenMinutesInSeconds = 600;
+        private const int TwoHoursInSeconds = 3600 * 2;
 
         private readonly int timeLimitInSeconds;
 
@@ -32,8 +33,9 @@ namespace TreasureGen.Tests.Integration.Stress
             var methods = types.SelectMany(t => t.GetMethods());
             var stressTestsCount = methods.Count(m => m.GetCustomAttributes<TestAttribute>(true).Any() || m.GetCustomAttributes<TestCaseAttribute>().Any());
 
+            var twoHourTimeLimitPerTest = TwoHoursInSeconds / stressTestsCount;
 #if STRESS
-            timeLimitInSeconds = TenMinutesInSeconds / stressTestsCount;
+            timeLimitInSeconds = Math.Min(twoHourTimeLimitPerTest, TenMinutesInSeconds - 10);
 #else
             timeLimitInSeconds = 1;
 #endif
@@ -63,6 +65,8 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             do generate();
             while (TestShouldKeepRunning());
+
+            Console.WriteLine($"Stress test complete after {Stopwatch.Elapsed} and {iterations} iterations");
 
             if (Stopwatch.Elapsed.TotalSeconds > timeLimitInSeconds + 2)
                 Assert.Fail("Something took way too long");
