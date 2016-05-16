@@ -1,5 +1,4 @@
 ﻿using Ninject.Modules;
-using TreasureGen.Domain.IoC.Providers;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 
@@ -16,7 +15,8 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IAttributesSelector>().To<AttributesSelector>();
             Bind<IBooleanPercentileSelector>().To<BooleanPercentileSelector>();
 
-            Bind<IPercentileSelector>().ToProvider<PercentileSelectorProvider>();
+            Bind<IPercentileSelector>().To<PercentileSelector>().WhenInjectedInto<ReplacePercentileSelectorDecorator>();
+            Bind<IPercentileSelector>().To<ReplacePercentileSelectorDecorator>();
         }
     }
 }

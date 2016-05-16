@@ -1,13 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
-using RollGen;
-using System;
 using System.Collections.Generic;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Items.Mundane;
-using TreasureGen.Domain.Selectors.Attributes;
-using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Items;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 {
@@ -15,24 +11,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     public class MundaneItemGeneratorFactoryTests
     {
         private IMundaneItemGeneratorFactory factory;
-        private Mock<ISpecialMaterialGenerator> mockMaterialGenerator;
+        private Dictionary<string, Mock<MundaneItemGenerator>> mockMundaneItemGenerators;
 
         [SetUp]
         public void Setup()
         {
-            var mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockMaterialGenerator = new Mock<ISpecialMaterialGenerator>();
-            var mockAttributesSelector = new Mock<IAttributesSelector>();
-            var mockDice = new Mock<Dice>();
-            var mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            var result = new TypeAndAmountPercentileResult();
-            var mockAmmunitionGenerator = new Mock<IAmmunitionGenerator>();
-            var mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockMundaneItemGenerators = new Dictionary<string, Mock<MundaneItemGenerator>>();
+            mockMundaneItemGenerators[ItemTypeConstants.Armor] = new Mock<MundaneItemGenerator>();
+            mockMundaneItemGenerators[ItemTypeConstants.AlchemicalItem] = new Mock<MundaneItemGenerator>();
+            mockMundaneItemGenerators[ItemTypeConstants.Tool] = new Mock<MundaneItemGenerator>();
+            mockMundaneItemGenerators[ItemTypeConstants.Weapon] = new Mock<MundaneItemGenerator>();
 
-            factory = new MundaneItemGeneratorFactory(mockPercentileSelector.Object, mockMaterialGenerator.Object, mockAttributesSelector.Object,
-                mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAmmunitionGenerator.Object, mockBooleanPercentileSelector.Object);
-
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(result);
+            factory = new MundaneItemGeneratorFactory(mockMundaneItemGenerators[ItemTypeConstants.Armor].Object, mockMundaneItemGenerators[ItemTypeConstants.Weapon].Object, mockMundaneItemGenerators[ItemTypeConstants.Tool].Object, mockMundaneItemGenerators[ItemTypeConstants.AlchemicalItem].Object);
         }
 
         [TestCase(ItemTypeConstants.Armor)]
@@ -42,21 +32,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void FactoryMakesGeneratorOf(string itemType)
         {
             var generator = factory.CreateGeneratorOf(itemType);
-            var item = generator.Generate();
-            Assert.That(item.ItemType, Is.EqualTo(itemType));
-        }
-
-        [TestCase(ItemTypeConstants.Armor)]
-        [TestCase(ItemTypeConstants.AlchemicalItem)]
-        [TestCase(ItemTypeConstants.Weapon)]
-        [TestCase(ItemTypeConstants.Tool)]
-        public void FactoryDecoratesGeneratorOf(string itemType)
-        {
-            var generator = factory.CreateGeneratorOf(itemType);
-            var item = generator.Generate();
-
-            mockMaterialGenerator.Verify(g => g.CanHaveSpecialMaterial(itemType, It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<String>>()),
-                Times.Once);
+            Assert.That(generator, Is.EqualTo(mockMundaneItemGenerators[itemType].Object));
         }
 
         [TestCase(ItemTypeConstants.Potion)]

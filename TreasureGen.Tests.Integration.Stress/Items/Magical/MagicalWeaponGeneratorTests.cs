@@ -90,7 +90,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         public void AmmunitionDoesNotHappen()
         {
             var weapon = GenerateOrFail(w => w.Attributes.Contains(AttributeConstants.Ammunition) == false);
-            Assert.That(weapon.Quantity, Is.EqualTo(1), weapon.Name);
+            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.Ammunition), weapon.Name);
         }
 
         [Test]

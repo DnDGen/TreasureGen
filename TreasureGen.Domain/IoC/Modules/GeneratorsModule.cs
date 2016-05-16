@@ -1,4 +1,8 @@
-﻿using Ninject.Modules;
+﻿using Ninject.Activation;
+using Ninject.Modules;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators;
 using TreasureGen.Domain.Generators.Coins;
@@ -27,29 +31,65 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IGoodsGenerator>().To<GoodsGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IItemsGenerator>().To<ItemsGenerator>();
-            Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
-            Bind<IMundaneItemGeneratorFactory>().To<MundaneItemGeneratorFactory>();
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
 
-            Bind<MundaneItemGenerator>().ToProvider(new MundaneItemGeneratorProvider(ItemTypeConstants.Tool)).Named(ItemTypeConstants.Tool);
-            Bind<MundaneItemGenerator>().ToProvider(new MundaneItemGeneratorProvider(ItemTypeConstants.AlchemicalItem)).Named(ItemTypeConstants.AlchemicalItem);
-            Bind<MundaneItemGenerator>().ToProvider(new MundaneItemGeneratorProvider(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
-            Bind<MundaneItemGenerator>().ToProvider(new MundaneItemGeneratorProvider(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
+            Bind<IMundaneItemGeneratorFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
+            Bind<IMagicalItemGeneratorFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();
 
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Armor)).Named(ItemTypeConstants.Armor);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Potion)).Named(ItemTypeConstants.Potion);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Ring)).Named(ItemTypeConstants.Ring);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Rod)).Named(ItemTypeConstants.Rod);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Scroll)).Named(ItemTypeConstants.Scroll);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Staff)).Named(ItemTypeConstants.Staff);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Wand)).Named(ItemTypeConstants.Wand);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.Weapon)).Named(ItemTypeConstants.Weapon);
-            Bind<MagicalItemGenerator>().ToProvider(new MagicalItemGeneratorProvider(ItemTypeConstants.WondrousItem)).Named(ItemTypeConstants.WondrousItem);
+            var decorators = new[]
+            {
+                typeof(MundaneItemGeneratorSpecialMaterialDecorator)
+            };
+
+            Decorate<MundaneItemGenerator, ToolGenerator>(ItemTypeConstants.Tool, decorators);
+            Decorate<MundaneItemGenerator, AlchemicalItemGenerator>(ItemTypeConstants.AlchemicalItem, decorators);
+            Decorate<MundaneItemGenerator, MundaneArmorGenerator>(ItemTypeConstants.Armor, decorators);
+            Decorate<MundaneItemGenerator, MundaneWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
+
+            decorators = new[]
+            {
+                typeof(MagicalItemGeneratorCurseDecorator),
+                typeof(MagicalItemGeneratorIntelligenceDecorator),
+                typeof(MagicalItemGeneratorMundaneProxy),
+                typeof(MagicalItemGeneratorSpecialMaterialDecorator),
+                typeof(MagicalItemGeneratorTraitsDecorator)
+            };
+
+            Decorate<MagicalItemGenerator, MagicalArmorGenerator>(ItemTypeConstants.Armor, decorators);
+            Decorate<MagicalItemGenerator, PotionGenerator>(ItemTypeConstants.Potion, decorators);
+            Decorate<MagicalItemGenerator, RingGenerator>(ItemTypeConstants.Ring, decorators);
+            Decorate<MagicalItemGenerator, RodGenerator>(ItemTypeConstants.Rod, decorators);
+            Decorate<MagicalItemGenerator, ScrollGenerator>(ItemTypeConstants.Scroll, decorators);
+            Decorate<MagicalItemGenerator, StaffGenerator>(ItemTypeConstants.Staff, decorators);
+            Decorate<MagicalItemGenerator, WandGenerator>(ItemTypeConstants.Wand, decorators);
+            Decorate<MagicalItemGenerator, MagicalWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
+            Decorate<MagicalItemGenerator, WondrousItemGenerator>(ItemTypeConstants.WondrousItem, decorators);
+        }
+
+        private void Decorate<S, T>(string name, params Type[] decorators)
+            where T : S
+        {
+            var allImplementations = new[] { typeof(T) }.Union(decorators);
+
+            foreach (var implementation in allImplementations)
+            {
+                Bind<S>().To(implementation).When(r => Need(implementation, r, name, allImplementations));
+            }
+
+            Bind<S>().To(allImplementations.Last()).Named(name);
+        }
+
+        private bool Need(Type implementation, IRequest request, string name, IEnumerable<Type> implementations)
+        {
+            var implementationsList = implementations.ToList();
+            var depth = implementationsList.Count - implementationsList.IndexOf(implementation);
+
+            return request.Depth == depth && request.ActiveBindings.Any(b => b.Metadata.Name == name);
         }
     }
 }

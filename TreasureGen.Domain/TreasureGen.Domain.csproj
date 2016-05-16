@@ -101,11 +101,8 @@
     <Compile Include="Generators\Items\Magical\IMagicalItemGeneratorFactory.cs" />
     <Compile Include="Generators\Items\Mundane\IMundaneItemGeneratorFactory.cs" />
     <Compile Include="Generators\TreasureGenerator.cs" />
-    <Compile Include="IoC\Providers\AttributesMapperProvider.cs" />
-    <Compile Include="IoC\Providers\MagicalItemGeneratorProvider.cs" />
-    <Compile Include="IoC\Providers\MundaneItemGeneratorProvider.cs" />
-    <Compile Include="IoC\Providers\PercentileMapperProvider.cs" />
-    <Compile Include="IoC\Providers\PercentileSelectorProvider.cs" />
+    <Compile Include="IoC\Providers\MagicalItemGeneratorFactoryProvider.cs" />
+    <Compile Include="IoC\Providers\MundaneItemGeneratorFactoryProvider.cs" />
     <Compile Include="IoC\Modules\GeneratorsModule.cs" />
     <Compile Include="IoC\Modules\MappersModule.cs" />
     <Compile Include="IoC\Modules\SelectorsModule.cs" />
