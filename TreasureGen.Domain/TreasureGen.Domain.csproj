@@ -1,0 +1,853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TreasureGen.Domain</RootNamespace>
+    <AssemblyName>TreasureGen.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Albatross.Expression, Version=1.1.5700.39687, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Albatross.Expression.1.1.5700.39687\lib\net40\Albatross.Expression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RollGen, Version=1.0.5900.36696, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\D20Dice.11.0\lib\RollGen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\D20Dice.Bootstrap.11.0.1\lib\RollGen.Bootstrap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RollGen.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\D20Dice.Bootstrap.11.0.1\lib\RollGen.Domain.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generators\Coins\CoinGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecorator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecorator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorMundaneProxy.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorSpecialMaterialDecorator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorTraitsDecorator.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorSpecialMaterialDecorator.cs" />
+    <Compile Include="Generators\Goods\GoodsGenerator.cs" />
+    <Compile Include="Generators\Items\ISpecificGearGenerator.cs" />
+    <Compile Include="Generators\Items\ItemsGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\ChargesGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\CurseGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\IChargesGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\ICurseGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\IIntelligenceGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\IMagicalItemTraitsGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\IntelligenceGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\ISpecialAbilitiesGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\ISpellGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalArmorGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemTraitsGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalWeaponGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\PotionGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\RingGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\RodGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\ScrollGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\SpecialAbilitiesGenerator.cs" />
+    <Compile Include="Generators\Items\SpecificGearGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\SpellGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\StaffGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\WandGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\WondrousItemGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\AlchemicalItemGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\AmmunitionGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\IAmmunitionGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\ISpecialMaterialGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneArmorGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneWeaponGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\SpecialMaterialGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\ToolGenerator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactory.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactory.cs" />
+    <Compile Include="Generators\Items\Magical\IMagicalItemGeneratorFactory.cs" />
+    <Compile Include="Generators\Items\Mundane\IMundaneItemGeneratorFactory.cs" />
+    <Compile Include="Generators\TreasureGenerator.cs" />
+    <Compile Include="IoC\Providers\AttributesMapperProvider.cs" />
+    <Compile Include="IoC\Providers\MagicalItemGeneratorProvider.cs" />
+    <Compile Include="IoC\Providers\MundaneItemGeneratorProvider.cs" />
+    <Compile Include="IoC\Providers\PercentileMapperProvider.cs" />
+    <Compile Include="IoC\Providers\PercentileSelectorProvider.cs" />
+    <Compile Include="IoC\Modules\GeneratorsModule.cs" />
+    <Compile Include="IoC\Modules\MappersModule.cs" />
+    <Compile Include="IoC\Modules\SelectorsModule.cs" />
+    <Compile Include="IoC\Modules\TablesModule.cs" />
+    <Compile Include="IoC\TreasureGenModuleLoader.cs" />
+    <Compile Include="Mappers\Attributes\AttributesMapperCachingProxy.cs" />
+    <Compile Include="Mappers\Attributes\AttributesXmlMapper.cs" />
+    <Compile Include="Mappers\Attributes\IAttributesMapper.cs" />
+    <Compile Include="Mappers\Percentile\IPercentileMapper.cs" />
+    <Compile Include="Mappers\Percentile\PercentileMapperCachingProxy.cs" />
+    <Compile Include="Mappers\Percentile\PercentileXmlMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selectors\Attributes\AttributesSelector.cs" />
+    <Compile Include="Selectors\Percentiles\BooleanPercentileSelector.cs" />
+    <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
+    <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecorator.cs" />
+    <Compile Include="Selectors\Attributes\IAttributesSelector.cs" />
+    <Compile Include="Selectors\Percentiles\IBooleanPercentileSelector.cs" />
+    <Compile Include="Selectors\Attributes\IIntelligenceAttributesSelector.cs" />
+    <Compile Include="Selectors\Attributes\IntelligenceAttributesSelector.cs" />
+    <Compile Include="Selectors\Percentiles\IPercentileSelector.cs" />
+    <Compile Include="Selectors\Attributes\IRangeAttributesSelector.cs" />
+    <Compile Include="Selectors\Attributes\ISpecialAbilityAttributesSelector.cs" />
+    <Compile Include="Selectors\Percentiles\ITypeAndAmountPercentileSelector.cs" />
+    <Compile Include="Selectors\Percentiles\PercentileSelector.cs" />
+    <Compile Include="Selectors\Attributes\RangeAttributesSelector.cs" />
+    <Compile Include="Selectors\Attributes\IntelligenceAttributesResult.cs" />
+    <Compile Include="Selectors\Attributes\RangeAttributesResult.cs" />
+    <Compile Include="Selectors\Attributes\SpecialAbilityAttributesResult.cs" />
+    <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileResult.cs" />
+    <Compile Include="Selectors\Attributes\SpecialAbilityAttributesSelector.cs" />
+    <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelector.cs" />
+    <Compile Include="Tables\EmbeddedResourceStreamLoader.cs" />
+    <Compile Include="Tables\IStreamLoader.cs" />
+    <Compile Include="Tables\TableNameConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level10Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level11Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level12Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level13Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level14Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level15Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level16Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level17Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level18Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level19Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level1Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level20Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level2Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level3Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level4Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level5Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level6Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level7Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level8Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level9Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Art\ArtDescriptions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Art\ArtValues.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Gems\GemDescriptions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Gems\GemValues.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level10Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level11Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level12Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level13Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level14Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level15Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level16Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level17Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level18Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level19Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level1Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level20Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level2Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level3Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level4Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level5Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level6Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level7Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level8Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level9Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level10Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level11Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level12Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level13Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level14Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level15Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level16Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level17Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level18Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level19Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level1Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level20Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level2Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level3Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level4Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level5Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level6Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level7Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level8Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level9Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\ArmorTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\ArmorTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorSpecificArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorSpecificShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumSpecificShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorSpecificArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorSpecificShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\ShieldTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\CastersShieldContainsSpell.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\CastersShieldSpellTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificArmorAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificArmorSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificArmorTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificShieldAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificShieldSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Specific\SpecificShieldTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\ChargeLimits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\CursedDependentSituations.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\CurseDrawbacks.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\CurseHeightChanges.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\Curses.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\Gender.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\IsItemCursed.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\LivingCreatureTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\FullAlignments.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceDedicatedPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceGreaterPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceLesserPowers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceSpecialPurposes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceStrongStats.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsArmorIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsLivingCreatureIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsMeleeIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRangedIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRingIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRodIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsWondrousItemIntelligent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\ItemAlignmentRequirements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\KnowledgeCategories.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\Languages.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\PersonalityTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\MajorItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\MediumItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\MinorItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\PartialAlignments.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Potions\MajorPotions.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Potions\MediumPotions.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Potions\MinorPotions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Potions\PotionTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\MajorRings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\MediumRings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\MinorRings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\RingAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rings\RingTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rods\MajorRods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rods\MediumRods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rods\RodAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rods\RodOfAbsorptionContainsSpellLevels.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Rods\RodTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level0ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level1ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level2ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level3ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level4ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level5ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level6ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level7ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level8ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Arcane\Level9ArcaneSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level0DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level1DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level2DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level3DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level4DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level5DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level6DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level7DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level8DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\Divine\Level9DivineSpells.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\MajorSpellLevels.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\MediumSpellLevels.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\MinorSpellLevels.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\ScrollTraits.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Scrolls\SpellTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\SpecialAbilityAttributeRequirements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\SpecialAbilityAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Staffs\MajorStaffs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Staffs\MediumStaffs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Staffs\StaffTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Wands\MajorWands.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Wands\MediumWands.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Wands\MinorWands.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Wands\WandTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\DesignatedFoes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorMeleeSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorRangedSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorSpecificWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Medium\MediumMeleeSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Medium\MediumRangedSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Medium\MediumSpecificWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Medium\MediumWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\MeleeTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Minor\MinorMeleeSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Minor\MinorRangedSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Minor\MinorSpecificWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Minor\MinorWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\RangedTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Specific\SpecificWeaponAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Specific\SpecificWeaponSpecialAbilities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\Specific\SpecificWeaponTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\SpellStoringContainsSpell.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\WeaponTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\BalorOrPitFiend.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\HornOfValhallaTypes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\IronFlaskContents.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\IsDeckOfIllusionsFullyCharged.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MajorWondrousItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MediumWondrousItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MinorWondrousItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\Planes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\RobeOfTheArchmagiColors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemContents.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemTraits.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Alchemical\AlchemicalItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Armors\ArmorAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Armors\MundaneArmors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Armors\MundaneShields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\HasSpecialMaterial.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\IsMasterwork.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\MundaneGearSizes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\MundaneItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\SpecialMaterials.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Tools\Tools.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\AmmunitionAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\Ammunitions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\CommonMeleeWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\CommonRangedWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\MundaneWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\UncommonWeapons.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\WeaponAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\ReplacementStrings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TreasureGen\TreasureGen.csproj">
+      <Project>{a8e27feb-c25e-4315-aace-7cd6f72e9fc9}</Project>
+      <Name>TreasureGen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8E27FEB-C25E-4315-AACE-7CD6F72E9FC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TreasureGen</RootNamespace>
+    <AssemblyName>TreasureGen</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Coins\Coin.cs" />
+    <Compile Include="Coins\CoinConstants.cs" />
+    <Compile Include="Coins\ICoinGenerator.cs" />
+    <Compile Include="Goods\Good.cs" />
+    <Compile Include="Goods\GoodsConstants.cs" />
+    <Compile Include="Goods\IGoodsGenerator.cs" />
+    <Compile Include="Items\ArmorConstants.cs" />
+    <Compile Include="Items\AttributeConstants.cs" />
+    <Compile Include="Items\Magical\CurseConstants.cs" />
+    <Compile Include="Items\IItemsGenerator.cs" />
+    <Compile Include="Items\Magical\Intelligence.cs" />
+    <Compile Include="Items\Magical\AlignmentConstants.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemTypeConstants.cs" />
+    <Compile Include="Items\Magical\Magic.cs" />
+    <Compile Include="Items\Magical\MagicalItemGenerator.cs" />
+    <Compile Include="Items\Mundane\MundaneItemGenerator.cs" />
+    <Compile Include="Items\Magical\PotionConstants.cs" />
+    <Compile Include="Items\PowerConstants.cs" />
+    <Compile Include="Items\Magical\RingConstants.cs" />
+    <Compile Include="Items\Magical\RodConstants.cs" />
+    <Compile Include="Items\Magical\SpecialAbility.cs" />
+    <Compile Include="Items\Magical\SpecialAbilityConstants.cs" />
+    <Compile Include="Items\Magical\StaffConstants.cs" />
+    <Compile Include="Items\TraitConstants.cs" />
+    <Compile Include="Items\WeaponConstants.cs" />
+    <Compile Include="Items\Magical\WondrousItemConstants.cs" />
+    <Compile Include="ITreasureGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Treasure.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
