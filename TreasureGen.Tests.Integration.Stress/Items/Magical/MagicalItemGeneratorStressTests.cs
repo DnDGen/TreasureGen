@@ -51,13 +51,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             GenerateOrFail(i => i.Magic.Curse == CurseConstants.SpecificCursedItem);
         }
 
-        public abstract void SpecificCursedItemsAreIntelligent();
-
-        protected void AssertSpecificCursedItemsAreIntelligent()
-        {
-            GenerateOrFail(i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Magic.Intelligence.Ego > 0);
-        }
-
         public abstract void SpecificCursedItemsHaveTraits();
 
         protected void AssertSpecificCursedItemsHaveTraits()

@@ -166,12 +166,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public override void SpecificCursedItemsAreIntelligent()
-        {
-            AssertSpecificCursedItemsAreIntelligent();
-        }
-
-        [Test]
         public override void SpecificCursedItemsAreNotDecorated()
         {
             AssertSpecificCursedItemsAreNotDecorated();

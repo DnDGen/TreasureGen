@@ -91,12 +91,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void IntelligentSpecificArmorHappens()
-        {
-            GenerateOrFail(a => a.Attributes.Contains(AttributeConstants.Specific) && a.Magic.Curse != CurseConstants.SpecificCursedItem && a.Magic.Intelligence.Ego > 0);
-        }
-
-        [Test]
         public void CursedSpecificArmorHappens()
         {
             GenerateOrFail(a => a.Attributes.Contains(AttributeConstants.Specific) && a.Magic.Curse != CurseConstants.SpecificCursedItem && a.Magic.Curse != String.Empty);
@@ -142,12 +136,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         public override void NoDecorationsHappen()
         {
             AssertNoDecorationsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsAreIntelligent()
-        {
-            AssertSpecificCursedItemsAreIntelligent();
         }
 
         [Test]
