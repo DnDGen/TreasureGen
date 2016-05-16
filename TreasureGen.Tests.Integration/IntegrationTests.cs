@@ -1,6 +1,6 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using RollGen.Bootstrap;
+using RollGen.Domain.Ioc;
 using TreasureGen.Domain.IoC;
 
 namespace TreasureGen.Tests.Integration
@@ -17,8 +17,8 @@ namespace TreasureGen.Tests.Integration
             var rollGenModuleLoader = new RollGenModuleLoader();
             rollGenModuleLoader.LoadModules(kernel);
 
-            var equipmentGenModuleLoader = new TreasureGenModuleLoader();
-            equipmentGenModuleLoader.LoadModules(kernel);
+            var treasureGenModuleLoader = new TreasureGenModuleLoader();
+            treasureGenModuleLoader.LoadModules(kernel);
         }
 
         [SetUp]

@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System;
 using System.Linq;
 using TreasureGen.Coins;
 
@@ -38,7 +37,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
             Coin coin;
 
             do coin = GenerateCoin();
-            while (TestShouldKeepRunning() && String.IsNullOrEmpty(coin.Currency));
+            while (TestShouldKeepRunning() && string.IsNullOrEmpty(coin.Currency));
 
             Assert.That(coin.Currency, Is.Not.Empty);
             Assert.That(coin.Quantity, Is.Positive);
