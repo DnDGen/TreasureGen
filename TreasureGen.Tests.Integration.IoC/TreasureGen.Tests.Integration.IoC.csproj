@@ -59,8 +59,8 @@
       <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen, Version=12.1.5980.28626, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.RollGen.12.1\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=12.1.5991.24748, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnDGen.RollGen.12.2\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -71,8 +71,8 @@
       <HintPath>..\packages\D20Dice.Bootstrap.11.0.1\lib\RollGen.Bootstrap.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen.Domain, Version=12.1.5980.28626, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.RollGen.Domain.12.1\lib\RollGen.Domain.dll</HintPath>
+    <Reference Include="RollGen.Domain, Version=12.1.5991.24748, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnDGen.RollGen.Domain.12.2\lib\RollGen.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
