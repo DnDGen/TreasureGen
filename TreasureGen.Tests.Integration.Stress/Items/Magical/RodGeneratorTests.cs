@@ -12,18 +12,18 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Rod)]
         public MagicalItemGenerator RodGenerator { get; set; }
 
-        [TestCase("Rod generator")]
-        public override void Stress(string thingToStress)
-        {
-            Stress();
-        }
-
         protected override string itemType
         {
             get { return ItemTypeConstants.Rod; }
         }
 
-        protected override void MakeAssertionsAgainst(Item rod)
+        [Test]
+        public void StressRod()
+        {
+            Stress(StressItem);
+        }
+
+        protected override void MakeSpecificAssertionsAgainst(Item rod)
         {
             Assert.That(rod.Name, Is.Not.Empty);
             Assert.That(rod.Attributes, Is.Not.Null);
@@ -49,27 +49,35 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void ChargesHappen()
         {
-            var rod = GenerateOrFail(r => r.Attributes.Contains(AttributeConstants.Charged));
+            var rod = GenerateOrFail(GenerateItem, r => r.ItemType == itemType && r.Attributes.Contains(AttributeConstants.Charged));
+            AssertItem(rod);
+            Assert.That(rod.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(rod.Magic.Charges, Is.Positive);
         }
 
         [Test]
         public void ChargesDoNotHappen()
         {
-            var rod = GenerateOrFail(r => r.Attributes.Contains(AttributeConstants.Charged) == false);
+            var rod = GenerateOrFail(GenerateItem, r => r.ItemType == itemType && r.Attributes.Contains(AttributeConstants.Charged) == false);
+            AssertItem(rod);
+            Assert.That(rod.Attributes, Is.All.Not.EqualTo(AttributeConstants.Charged));
             Assert.That(rod.Magic.Charges, Is.EqualTo(0));
         }
 
         [Test]
         public void ContentsHappen()
         {
-            GenerateOrFail(r => r.Contents.Any());
+            var rod = GenerateOrFail(GenerateItem, r => r.ItemType == itemType && r.Contents.Any());
+            AssertItem(rod);
+            Assert.That(rod.Contents, Is.Not.Empty);
         }
 
         [Test]
         public void ContentsDoNotHappen()
         {
-            GenerateOrFail(r => r.Contents.Any() == false);
+            var rod = GenerateOrFail(GenerateItem, r => r.ItemType == itemType && r.Contents.Any() == false);
+            AssertItem(rod);
+            Assert.That(rod.Contents, Is.Empty);
         }
 
         [Test]
@@ -103,21 +111,27 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public override void SpecificCursedItemsAreNotDecorated()
+        public override void SpecificCursedItemsWithTraitsHappen()
         {
-            AssertSpecificCursedItemsAreNotDecorated();
+            AssertSpecificCursedItemsWithTraitsHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsHaveTraits()
+        public override void SpecificCursedItemsWithIntelligenceHappen()
         {
-            AssertSpecificCursedItemsHaveTraits();
+            AssertSpecificCursedItemsWithIntelligenceHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        public override void SpecificCursedItemsWithNoDecorationHappen()
         {
-            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+            AssertSpecificCursedItemsWithNoDecorationHappen();
+        }
+
+        [Test]
+        public override void StressSpecificCursedItems()
+        {
+            base.StressSpecificCursedItems();
         }
     }
 }

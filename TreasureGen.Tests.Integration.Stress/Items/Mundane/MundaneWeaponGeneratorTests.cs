@@ -11,16 +11,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.Weapon)]
         public MundaneItemGenerator MundaneWeaponGenerator { get; set; }
 
-        [TestCase("Mundane weapon generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressWeapon()
         {
-            Stress();
+            Stress(StressItem);
         }
 
-        protected override void MakeAssertions()
+        protected override void MakeSpecificAssertionsAgainst(Item weapon)
         {
-            var weapon = GenerateItem();
-
             Assert.That(weapon.Name, Is.Not.Empty);
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.GreaterThan(0));
@@ -49,7 +47,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void MasterworkHappens()
         {
-            GenerateOrFail(w => w.Traits.Contains(TraitConstants.Masterwork));
+            var weapon = GenerateOrFail(GenerateItem, w => w.Traits.Contains(TraitConstants.Masterwork));
+            AssertItem(weapon);
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
         [Test]

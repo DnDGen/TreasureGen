@@ -11,18 +11,18 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Potion)]
         public MagicalItemGenerator PotionGenerator { get; set; }
 
-        [TestCase("Potion generator")]
-        public override void Stress(string thingToStress)
-        {
-            Stress();
-        }
-
         protected override string itemType
         {
             get { return ItemTypeConstants.Potion; }
         }
 
-        protected override void MakeAssertionsAgainst(Item potion)
+        [Test]
+        public void StressPotion()
+        {
+            Stress(StressItem);
+        }
+
+        protected override void MakeSpecificAssertionsAgainst(Item potion)
         {
             Assert.That(potion.Name, Does.StartWith("Potion of ").Or.StartWith("Oil of "));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -62,21 +62,27 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public override void SpecificCursedItemsAreNotDecorated()
+        public override void SpecificCursedItemsWithTraitsHappen()
         {
-            AssertSpecificCursedItemsAreNotDecorated();
+            AssertSpecificCursedItemsWithTraitsHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsHaveTraits()
+        public override void SpecificCursedItemsWithIntelligenceHappen()
         {
-            AssertSpecificCursedItemsHaveTraits();
+            AssertSpecificCursedItemsWithIntelligenceHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        public override void SpecificCursedItemsWithNoDecorationHappen()
         {
-            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+            AssertSpecificCursedItemsWithNoDecorationHappen();
+        }
+
+        [Test]
+        public override void StressSpecificCursedItems()
+        {
+            base.StressSpecificCursedItems();
         }
     }
 }

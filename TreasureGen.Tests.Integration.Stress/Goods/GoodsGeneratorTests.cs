@@ -12,13 +12,13 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Inject]
         public IGoodsGenerator GoodsGenerator { get; set; }
 
-        [TestCase("Goods generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressGoods()
         {
-            Stress();
+            Stress(AssertGoods);
         }
 
-        protected override void MakeAssertions()
+        private void AssertGoods()
         {
             var goods = GenerateGoods();
 
@@ -40,22 +40,14 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void GoodsHappen()
         {
-            IEnumerable<Good> goods;
-
-            do goods = GenerateGoods();
-            while (TestShouldKeepRunning() && !goods.Any());
-
+            var goods = GenerateOrFail(GenerateGoods, g => g.Any());
             Assert.That(goods, Is.Not.Empty);
         }
 
         [Test]
         public void GoodsDoNotHappen()
         {
-            IEnumerable<Good> goods;
-
-            do goods = GenerateGoods();
-            while (TestShouldKeepRunning() && goods.Any());
-
+            var goods = GenerateOrFail(GenerateGoods, g => !g.Any());
             Assert.That(goods, Is.Empty);
         }
     }

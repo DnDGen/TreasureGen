@@ -11,18 +11,16 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.AlchemicalItem)]
         public MundaneItemGenerator AlchemicalItemGenerator { get; set; }
 
-        [TestCase("Alchemical item generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressAlchemicalItem()
         {
-            Stress();
+            Stress(StressItem);
         }
 
-        protected override void MakeAssertions()
+        protected override void MakeSpecificAssertionsAgainst(Item item)
         {
-            var item = GenerateItem();
-
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.Quantity, Is.GreaterThan(0));
+            Assert.That(item.Quantity, Is.Positive);
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.Traits, Is.Empty);

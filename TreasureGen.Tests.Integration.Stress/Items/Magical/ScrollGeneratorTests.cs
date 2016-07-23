@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -13,18 +12,18 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Scroll)]
         public MagicalItemGenerator ScrollGenerator { get; set; }
 
-        [TestCase("Scroll generator")]
-        public override void Stress(string thingToStress)
-        {
-            Stress();
-        }
-
         protected override string itemType
         {
             get { return ItemTypeConstants.Scroll; }
         }
 
-        protected override void MakeAssertionsAgainst(Item scroll)
+        [Test]
+        public void StressScroll()
+        {
+            Stress(StressItem);
+        }
+
+        protected override void MakeSpecificAssertionsAgainst(Item scroll)
         {
             Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.Traits, Contains.Item("Arcane").Or.Contains("Divine"));
@@ -63,25 +62,36 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public override void NoDecorationsHappen()
         {
-            GenerateOrFail(s => s.Traits.Count == 1 && s.Magic.Curse == String.Empty && s.Magic.Intelligence.Ego == 0);
+            var scroll = GenerateOrFail(GenerateItem, s => s.ItemType == itemType && s.Traits.Count == 1 && s.Magic.Curse == string.Empty && s.Magic.Intelligence.Ego == 0);
+            AssertItem(scroll);
+            Assert.That(scroll.Magic.Curse, Is.Empty);
+            Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0));
+            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
+            Assert.That(scroll.Traits.Single(), Is.EqualTo("Arcane").Or.EqualTo("Divine"));
         }
 
         [Test]
-        public override void SpecificCursedItemsAreNotDecorated()
+        public override void SpecificCursedItemsWithTraitsHappen()
         {
-            AssertSpecificCursedItemsAreNotDecorated();
+            AssertSpecificCursedItemsWithTraitsHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsHaveTraits()
+        public override void SpecificCursedItemsWithIntelligenceHappen()
         {
-            AssertSpecificCursedItemsHaveTraits();
+            AssertSpecificCursedItemsWithIntelligenceHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        public override void SpecificCursedItemsWithNoDecorationHappen()
         {
-            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+            AssertSpecificCursedItemsWithNoDecorationHappen();
+        }
+
+        [Test]
+        public override void StressSpecificCursedItems()
+        {
+            base.StressSpecificCursedItems();
         }
     }
 }

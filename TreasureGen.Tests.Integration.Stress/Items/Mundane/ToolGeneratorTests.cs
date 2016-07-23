@@ -11,16 +11,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.Tool)]
         public MundaneItemGenerator ToolGenerator { get; set; }
 
-        [TestCase("Tool generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressTool()
         {
-            Stress();
+            Stress(StressItem);
         }
 
-        protected override void MakeAssertions()
+        protected override void MakeSpecificAssertionsAgainst(Item tool)
         {
-            var tool = GenerateItem();
-
             Assert.That(tool.Name, Is.Not.Empty);
             Assert.That(tool.Attributes, Is.Empty);
             Assert.That(tool.IsMagical, Is.False);

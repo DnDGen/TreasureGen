@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System.Linq;
 using TreasureGen.Coins;
 
 namespace TreasureGen.Tests.Integration.Stress.Coins
@@ -11,18 +10,18 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Inject]
         public ICoinGenerator CoinGenerator { get; set; }
 
-        [TestCase("Coin generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressCoins()
         {
-            Stress();
+            Stress(AssertCoins);
         }
 
-        protected override void MakeAssertions()
+        private void AssertCoins()
         {
             var coin = GenerateCoin();
 
             Assert.That(coin.Currency, Is.Not.Null);
-            Assert.That(coin.Quantity, Is.GreaterThanOrEqualTo(0));
+            Assert.That(coin.Quantity, Is.Not.Negative);
         }
 
         private Coin GenerateCoin()
@@ -34,11 +33,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void CurrencyHappens()
         {
-            Coin coin;
-
-            do coin = GenerateCoin();
-            while (TestShouldKeepRunning() && string.IsNullOrEmpty(coin.Currency));
-
+            var coin = GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency) == false);
             Assert.That(coin.Currency, Is.Not.Empty);
             Assert.That(coin.Quantity, Is.Positive);
         }
@@ -46,11 +41,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void CurrencyDoesNotHappen()
         {
-            Coin coin;
-
-            do coin = GenerateCoin();
-            while (TestShouldKeepRunning() && coin.Currency.Any());
-
+            var coin = GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency));
             Assert.That(coin.Currency, Is.Empty);
             Assert.That(coin.Quantity, Is.EqualTo(0));
         }

@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System;
 using TreasureGen.Generators;
 
 namespace TreasureGen.Tests.Integration.Stress
@@ -11,19 +10,19 @@ namespace TreasureGen.Tests.Integration.Stress
         [Inject]
         public ITreasureGenerator TreasureGenerator { get; set; }
 
-        [TestCase("Treasure generator")]
-        public override void Stress(String thingToStress)
+        [Test]
+        public void StressTreasure()
         {
-            Stress();
+            Stress(AssertTreasure);
         }
 
-        protected override void MakeAssertions()
+        private void AssertTreasure()
         {
             var level = GetNewLevel();
             var treasure = TreasureGenerator.GenerateAtLevel(level);
 
             Assert.That(treasure.Coin.Currency, Is.Not.Null, "currency");
-            Assert.That(treasure.Coin.Quantity, Is.AtLeast(0));
+            Assert.That(treasure.Coin.Quantity, Is.Not.Negative);
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
             Assert.That(treasure.Items, Is.Not.Null, "items");
         }

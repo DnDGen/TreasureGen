@@ -12,15 +12,15 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.WondrousItem)]
         public MagicalItemGenerator WondrousItemGenerator { get; set; }
 
-        [TestCase("Wondrous item generator")]
-        public override void Stress(string thingToStress)
-        {
-            Stress();
-        }
-
         protected override string itemType
         {
             get { return ItemTypeConstants.WondrousItem; }
+        }
+
+        [Test]
+        public void StressWondrousItem()
+        {
+            Stress(StressItem);
         }
 
         protected override Item GenerateItem()
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             return WondrousItemGenerator.GenerateAtPower(power);
         }
 
-        protected override void MakeAssertionsAgainst(Item wondrousItem)
+        protected override void MakeSpecificAssertionsAgainst(Item wondrousItem)
         {
             Assert.That(wondrousItem.Name, Is.Not.Empty);
             Assert.That(wondrousItem.Traits, Is.Not.Null);
@@ -49,14 +49,18 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void ChargesHappen()
         {
-            var item = GenerateOrFail(i => i.Attributes.Contains(AttributeConstants.Charged));
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Attributes.Contains(AttributeConstants.Charged));
+            AssertItem(item);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Charged));
             Assert.That(item.Magic.Charges, Is.Positive);
         }
 
         [Test]
         public void ChargesDoNotHappen()
         {
-            var item = GenerateOrFail(i => i.Attributes.Contains(AttributeConstants.Charged) == false);
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Attributes.Contains(AttributeConstants.Charged) == false);
+            AssertItem(item);
+            Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Charged));
             Assert.That(item.Magic.Charges, Is.EqualTo(0));
         }
 
@@ -91,21 +95,27 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public override void SpecificCursedItemsAreNotDecorated()
+        public override void SpecificCursedItemsWithTraitsHappen()
         {
-            AssertSpecificCursedItemsAreNotDecorated();
+            AssertSpecificCursedItemsWithTraitsHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsHaveTraits()
+        public override void SpecificCursedItemsWithIntelligenceHappen()
         {
-            AssertSpecificCursedItemsHaveTraits();
+            AssertSpecificCursedItemsWithIntelligenceHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        public override void SpecificCursedItemsWithNoDecorationHappen()
         {
-            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+            AssertSpecificCursedItemsWithNoDecorationHappen();
+        }
+
+        [Test]
+        public override void StressSpecificCursedItems()
+        {
+            base.StressSpecificCursedItems();
         }
     }
 }

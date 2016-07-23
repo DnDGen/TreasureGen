@@ -53,7 +53,9 @@ namespace TreasureGen.Domain.Generators.Items
 
             tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, specificGearType);
             var traits = attributesSelector.SelectFrom(tableName, gear.Name);
-            gear.Traits.AddRange(traits);
+
+            foreach (var trait in traits)
+                gear.Traits.Add(trait);
 
             if (gear.Attributes.Contains(AttributeConstants.Charged))
                 gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, gear.Name);

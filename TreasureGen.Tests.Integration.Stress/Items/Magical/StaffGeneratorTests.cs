@@ -11,15 +11,15 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Inject, Named(ItemTypeConstants.Staff)]
         public MagicalItemGenerator StaffGenerator { get; set; }
 
-        [TestCase("Staff generator")]
-        public override void Stress(string thingToStress)
-        {
-            Stress();
-        }
-
         protected override string itemType
         {
             get { return ItemTypeConstants.Staff; }
+        }
+
+        [Test]
+        public void StressStaff()
+        {
+            Stress(StressItem);
         }
 
         protected override Item GenerateItem()
@@ -28,7 +28,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             return StaffGenerator.GenerateAtPower(power);
         }
 
-        protected override void MakeAssertionsAgainst(Item staff)
+        protected override void MakeSpecificAssertionsAgainst(Item staff)
         {
             Assert.That(staff.Name, Does.StartWith("Staff of "));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -69,21 +69,27 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public override void SpecificCursedItemsAreNotDecorated()
+        public override void SpecificCursedItemsWithTraitsHappen()
         {
-            AssertSpecificCursedItemsAreNotDecorated();
+            AssertSpecificCursedItemsWithTraitsHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsHaveTraits()
+        public override void SpecificCursedItemsWithIntelligenceHappen()
         {
-            AssertSpecificCursedItemsHaveTraits();
+            AssertSpecificCursedItemsWithIntelligenceHappen();
         }
 
         [Test]
-        public override void SpecificCursedItemsDoNotHaveSpecialMaterials()
+        public override void SpecificCursedItemsWithNoDecorationHappen()
         {
-            AssertSpecificCursedItemsDoNotHaveSpecialMaterials();
+            AssertSpecificCursedItemsWithNoDecorationHappen();
+        }
+
+        [Test]
+        public override void StressSpecificCursedItems()
+        {
+            base.StressSpecificCursedItems();
         }
     }
 }

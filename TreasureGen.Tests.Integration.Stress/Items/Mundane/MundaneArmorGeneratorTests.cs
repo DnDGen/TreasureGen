@@ -12,25 +12,23 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Inject, Named(ItemTypeConstants.Armor)]
         public MundaneItemGenerator MundaneArmorGenerator { get; set; }
 
-        [TestCase("Mundane armor generator")]
-        public override void Stress(string thingToStress)
+        [Test]
+        public void StressArmor()
         {
-            Stress();
+            Stress(StressItem);
         }
 
-        protected override void MakeAssertions()
+        protected override void MakeSpecificAssertionsAgainst(Item item)
         {
-            var armor = GenerateItem();
-
-            Assert.That(armor.Name, Is.Not.Empty);
-            Assert.That(armor.Traits, Contains.Item(TraitConstants.Small)
+            Assert.That(item.Name, Is.Not.Empty);
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Small)
                 .Or.Contains(TraitConstants.Medium)
                 .Or.Contains(TraitConstants.Large));
-            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
-            Assert.That(armor.Attributes, Is.Not.Null, armor.Name);
-            Assert.That(armor.Quantity, Is.EqualTo(1));
-            Assert.That(armor.IsMagical, Is.False);
-            Assert.That(armor.Contents, Is.Empty);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Armor), item.Name);
+            Assert.That(item.Attributes, Is.Not.Null, item.Name);
+            Assert.That(item.Quantity, Is.EqualTo(1));
+            Assert.That(item.IsMagical, Is.False);
+            Assert.That(item.Contents, Is.Empty);
         }
 
         protected override Item GenerateItem()
@@ -53,7 +51,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void DarkwoodShieldsHappen()
         {
-            GenerateOrFail(s => s.Traits.Contains(TraitConstants.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
+            var shield = GenerateOrFail(GenerateItem, s => s.Traits.Contains(TraitConstants.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
+            AssertItem(shield);
+            Assert.That(shield.Traits, Contains.Item(TraitConstants.Darkwood));
+            Assert.That(shield.Attributes, Contains.Item(AttributeConstants.Shield));
         }
     }
 }

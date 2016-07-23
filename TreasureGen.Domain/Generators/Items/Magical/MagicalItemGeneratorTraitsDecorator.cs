@@ -22,7 +22,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
 
-            item.Traits.AddRange(traits);
+            foreach (var trait in traits)
+                item.Traits.Add(trait);
+
             return item;
         }
     }

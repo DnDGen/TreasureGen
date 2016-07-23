@@ -53,13 +53,6 @@ namespace TreasureGen.Tests.Integration.Stress
             Stopwatch.Reset();
         }
 
-        public abstract void Stress(string thingToStress);
-
-        protected void Stress()
-        {
-            Stress(MakeAssertions);
-        }
-
         protected void Stress(Action generate)
         {
             do generate();
@@ -71,12 +64,35 @@ namespace TreasureGen.Tests.Integration.Stress
                 Assert.Fail("Something took way too long");
         }
 
-        protected abstract void MakeAssertions();
-
-        protected bool TestShouldKeepRunning()
+        private bool TestShouldKeepRunning()
         {
             iterations++;
             return Stopwatch.Elapsed.TotalSeconds < timeLimitInSeconds && iterations < ConfidentIterations;
+        }
+
+        protected T GenerateOrFail<T>(Func<T> generate, Func<T, bool> isValid)
+        {
+            T generatedObject;
+
+            do generatedObject = generate();
+            while (TestShouldKeepRunning() && isValid(generatedObject) == false);
+
+            Console.WriteLine($"Generation complete after {Stopwatch.Elapsed} and {iterations} iterations");
+
+            if (TestShouldKeepRunning() == false && isValid(generatedObject) == false)
+                Assert.Fail($"Stress test timed out after {Stopwatch.Elapsed} and {iterations} iterations");
+
+            return generatedObject;
+        }
+
+        protected T Generate<T>(Func<T> generate, Func<T, bool> isValid)
+        {
+            T generatedObject;
+
+            do generatedObject = generate();
+            while (isValid(generatedObject) == false);
+
+            return generatedObject;
         }
 
         protected int GetNewLevel()

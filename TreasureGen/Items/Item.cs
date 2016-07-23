@@ -8,7 +8,7 @@ namespace TreasureGen.Items
     {
         public string Name { get; set; }
         public string ItemType { get; set; }
-        public List<string> Traits { get; set; }
+        public HashSet<string> Traits { get; set; }
         public IEnumerable<string> Attributes { get; set; }
         public Magic Magic { get; set; }
         public int Quantity { get; set; }
@@ -35,7 +35,7 @@ namespace TreasureGen.Items
 
         public Item()
         {
-            Traits = new List<string>();
+            Traits = new HashSet<string>();
             Attributes = Enumerable.Empty<string>();
             Magic = new Magic();
             Quantity = 1;

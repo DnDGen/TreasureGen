@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
@@ -12,27 +11,23 @@ namespace TreasureGen.Tests.Integration.Stress.Items
     {
         [Inject]
         public IItemsGenerator ItemsGenerator { get; set; }
+        [Inject]
+        public ItemVerifier ItemVerifier { get; set; }
 
-        [TestCase("Items generator")]
-        public override void Stress(String thingToStress)
+        [Test]
+        public void StressItems()
         {
-            Stress();
+            Stress(AssertItems);
         }
 
-        protected override void MakeAssertions()
+        private void AssertItems()
         {
             var items = GenerateItems();
-
             Assert.That(items, Is.Not.Null);
+
             foreach (var item in items)
             {
-                Assert.That(item.Name, Is.Not.Empty);
-                Assert.That(item.Attributes, Is.Not.Null);
-                Assert.That(item.Magic, Is.Not.Null);
-                Assert.That(item.Quantity, Is.GreaterThan(0));
-                Assert.That(item.Traits, Is.Not.Null);
-                Assert.That(item.Contents, Is.Not.Null);
-                Assert.That(item.ItemType, Is.Not.Empty);
+                ItemVerifier.AssertItem(item);
             }
         }
 
@@ -45,22 +40,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items
         [Test]
         public void ItemsHappen()
         {
-            IEnumerable<Item> items;
-
-            do items = GenerateItems();
-            while (TestShouldKeepRunning() && !items.Any());
-
+            var items = GenerateOrFail(GenerateItems, i => i.Any());
             Assert.That(items, Is.Not.Empty);
         }
 
         [Test]
         public void ItemsDoNotHappen()
         {
-            IEnumerable<Item> items;
-
-            do items = GenerateItems();
-            while (TestShouldKeepRunning() && items.Any());
-
+            var items = GenerateOrFail(GenerateItems, i => !i.Any());
             Assert.That(items, Is.Empty);
         }
     }

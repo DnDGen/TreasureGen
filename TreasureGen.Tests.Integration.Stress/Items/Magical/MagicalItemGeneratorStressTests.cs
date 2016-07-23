@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using System;
+﻿using Ninject;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
@@ -10,6 +10,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public abstract class MagicalItemGeneratorStressTests : ItemTests
     {
+        [Inject]
+        public ItemVerifier ItemVerifier { get; set; }
+
         protected abstract string itemType { get; }
         protected IEnumerable<string> materials;
 
@@ -19,85 +22,108 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             materials = TraitConstants.GetSpecialMaterials();
         }
 
-        protected override void MakeAssertions()
+        protected void StressItem()
         {
-            var item = GenerateItem();
-
-            //INFO: This is in case the generator produces a specific cursed item of the incorrect item type
-            if (item.ItemType != itemType)
-                return;
-
-            MakeAssertionsAgainst(item);
+            var item = Generate(GenerateItem, i => i.ItemType == itemType);
+            AssertItem(item);
         }
 
-        protected abstract void MakeAssertionsAgainst(Item item);
+        protected void AssertItem(Item item)
+        {
+            ItemVerifier.AssertItem(item);
+            MakeSpecificAssertionsAgainst(item);
+        }
+
+        protected abstract void MakeSpecificAssertionsAgainst(Item item);
 
         public virtual void IntelligenceHappens()
         {
-            GenerateOrFail(i => i.Magic.Intelligence.Ego > 0);
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Magic.Intelligence.Ego > 0);
+            AssertItem(item);
+            ItemVerifier.AssertIntelligence(item.Magic.Intelligence);
         }
 
         public abstract void CursesHappen();
 
         protected void AssertCursesHappen()
         {
-            GenerateOrFail(i => string.IsNullOrEmpty(i.Magic.Curse) == false && i.Magic.Curse != CurseConstants.SpecificCursedItem);
-        }
-
-        public abstract void SpecificCursesHappen();
-
-        protected void AssertSpecificCursesHappen()
-        {
-            GenerateOrFail(i => i.Magic.Curse == CurseConstants.SpecificCursedItem);
-        }
-
-        public abstract void SpecificCursedItemsHaveTraits();
-
-        protected void AssertSpecificCursedItemsHaveTraits()
-        {
-            GenerateOrFail(i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Traits.Except(materials).Any());
-        }
-
-        public abstract void SpecificCursedItemsDoNotHaveSpecialMaterials();
-
-        protected void AssertSpecificCursedItemsDoNotHaveSpecialMaterials()
-        {
-            Stress(AssertNoSpecialMaterialsForSpecificCursedItems);
-        }
-
-        private void AssertNoSpecialMaterialsForSpecificCursedItems()
-        {
-            var item = GenerateItem();
-            if (item.Magic.Curse != CurseConstants.SpecificCursedItem)
-                return;
-
-            var itemMaterials = item.Traits.Intersect(materials);
-            Assert.That(itemMaterials, Is.Empty, item.Name);
-            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
-        }
-
-        public abstract void SpecificCursedItemsAreNotDecorated();
-
-        protected void AssertSpecificCursedItemsAreNotDecorated()
-        {
-            GenerateOrFail(i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Magic.Intelligence.Ego == 0);
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && string.IsNullOrEmpty(i.Magic.Curse) == false && i.Magic.Curse != CurseConstants.SpecificCursedItem);
+            AssertItem(item);
+            Assert.That(item.Magic.Curse, Is.Not.Empty);
+            Assert.That(item.Magic.Curse, Is.Not.EqualTo(CurseConstants.SpecificCursedItem));
         }
 
         public virtual void TraitsHappen()
         {
-            GenerateOrFail(i => i.Traits.Except(materials).Any());
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Traits.Except(materials).Any());
+            AssertItem(item);
+            Assert.That(item.Traits.Except(materials), Is.Not.Empty);
         }
 
         public virtual void SpecialMaterialsHappen()
         {
-            GenerateOrFail(i => i.Traits.Intersect(materials).Any());
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Traits.Intersect(materials).Any());
+            AssertItem(item);
+            Assert.That(item.Traits.Intersect(materials), Is.Not.Empty);
         }
 
         public abstract void NoDecorationsHappen();
 
         protected void AssertNoDecorationsHappen()
         {
-            GenerateOrFail(i => i.Traits.Any() == false && String.IsNullOrEmpty(i.Magic.Curse) && i.Magic.Intelligence.Ego == 0);
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Traits.Any() == false && string.IsNullOrEmpty(i.Magic.Curse) && i.Magic.Intelligence.Ego == 0);
+            AssertItem(item);
+            Assert.That(item.Traits, Is.Empty);
+            Assert.That(item.Magic.Curse, Is.Empty);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
+        }
+
+        public abstract void SpecificCursesHappen();
+
+        protected void AssertSpecificCursesHappen()
+        {
+            var item = GenerateOrFail(GenerateItem, i => i.Magic.Curse == CurseConstants.SpecificCursedItem);
+            ItemVerifier.AssertSpecificCursedItem(item);
+        }
+
+        public virtual void StressSpecificCursedItems()
+        {
+            Stress(AssertSpecificCursedItems);
+        }
+
+        protected void AssertSpecificCursedItems()
+        {
+            var item = Generate(GenerateItem, i => i.Magic.Curse == CurseConstants.SpecificCursedItem);
+            ItemVerifier.AssertSpecificCursedItem(item);
+        }
+
+        public abstract void SpecificCursedItemsWithTraitsHappen();
+
+        protected void AssertSpecificCursedItemsWithTraitsHappen()
+        {
+            var item = GenerateOrFail(GenerateItem, i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Traits.Except(materials).Any());
+            ItemVerifier.AssertSpecificCursedItem(item);
+            Assert.That(item.Traits, Is.Not.Empty);
+            Assert.That(item.Traits.Except(materials), Is.Not.Empty);
+        }
+
+        public abstract void SpecificCursedItemsWithIntelligenceHappen();
+
+        protected void AssertSpecificCursedItemsWithIntelligenceHappen()
+        {
+            var item = GenerateOrFail(GenerateItem, i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Magic.Intelligence.Ego > 0);
+            ItemVerifier.AssertSpecificCursedItem(item);
+            ItemVerifier.AssertIntelligence(item.Magic.Intelligence);
+        }
+
+        public abstract void SpecificCursedItemsWithNoDecorationHappen();
+
+        protected void AssertSpecificCursedItemsWithNoDecorationHappen()
+        {
+            var item = GenerateOrFail(GenerateItem, i => i.Magic.Curse == CurseConstants.SpecificCursedItem && i.Traits.Any() == false && i.Magic.Intelligence.Ego == 0);
+            ItemVerifier.AssertSpecificCursedItem(item);
+            Assert.That(item.Traits, Is.Empty);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
     }
 }
