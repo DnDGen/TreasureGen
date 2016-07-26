@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Items;
@@ -43,16 +42,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
             var decoratedItem = decorator.GenerateAtPower("power");
-
-            Assert.That(decoratedItem.Traits, Is.SubsetOf(traits));
-            Assert.That(traits, Is.SubsetOf(decoratedItem.Traits));
-            Assert.That(decoratedItem.Traits.Count, Is.EqualTo(traits.Count()));
+            Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
         }
 
         [Test]
         public void EmptyTraitsIsAlright()
         {
-            var traits = Enumerable.Empty<String>();
+            var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
             var decoratedItem = decorator.GenerateAtPower("power");
@@ -79,7 +75,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void EmptyGeneratedTraitsIsAlright()
         {
             item.Traits.Add("inner trait");
-            var traits = Enumerable.Empty<String>();
+            var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
             var decoratedItem = decorator.GenerateAtPower("power");
@@ -95,6 +91,36 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
             var decoratedItem = decorator.GenerateAtPower("power");
+            Assert.That(decoratedItem.Traits, Is.Empty);
+        }
+
+        [Test]
+        public void DecorateCustomItem()
+        {
+            var template = new Item();
+
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(item);
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.Generate(template, allowRandomDecoration: true);
+            Assert.That(decoratedItem, Is.Not.EqualTo(template));
+            Assert.That(decoratedItem, Is.EqualTo(item));
+            Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
+        }
+
+        [Test]
+        public void DoNotDecorateCustomItem()
+        {
+            var template = new Item();
+
+            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(item);
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.Generate(template);
+            Assert.That(decoratedItem, Is.Not.EqualTo(template));
+            Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
     }

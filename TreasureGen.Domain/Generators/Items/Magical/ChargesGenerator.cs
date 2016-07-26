@@ -34,7 +34,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                     name = WondrousItemConstants.FullDeckOfIllusions;
             }
 
-            var result = rangeAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ChargeLimits, name);
+            var result = rangeAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
             var die = result.Maximum - result.Minimum + 1;
 
             return dice.Roll().d(die) - 1 + result.Minimum;

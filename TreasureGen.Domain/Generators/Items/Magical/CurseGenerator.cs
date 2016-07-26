@@ -13,15 +13,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private Dice dice;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
 
         public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector,
-            IAttributesSelector attributesSelector)
+            ICollectionsSelector collectionsSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
         }
 
         public bool HasCurse(bool isMagical)
@@ -61,10 +61,29 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var specificCursedItem = new Item();
             specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
-            specificCursedItem.ItemType = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
-            specificCursedItem.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
+            specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
+            specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 
             return specificCursedItem;
+        }
+
+        public bool IsSpecificCursedItem(Item template)
+        {
+            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            return cursedItems.Contains(template.Name);
+        }
+
+        public Item GenerateSpecificCursedItem(Item template)
+        {
+            var cursedItem = template.Copy();
+            cursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, cursedItem.Name).Single();
+            cursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, cursedItem.Name);
+            cursedItem.Quantity = 1;
+            cursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
+            cursedItem.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+
+            return cursedItem;
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Mappers.Attributes;
+using TreasureGen.Domain.Mappers.Collections;
 using TreasureGen.Domain.Mappers.Percentile;
 
 namespace TreasureGen.Tests.Integration.IoC.Modules
@@ -23,13 +23,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void AttributesMapperConstructedAsSingleton()
         {
-            AssertSingleton<IAttributesMapper>();
+            AssertSingleton<ICollectionsMapper>();
         }
 
         [Test]
         public void AttributesMapperHasCachingProxy()
         {
-            var mapper = GetNewInstanceOf<IAttributesMapper>();
+            var mapper = GetNewInstanceOf<ICollectionsMapper>();
             Assert.That(mapper, Is.InstanceOf<AttributesMapperCachingProxy>());
         }
     }

@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
     [TestFixture]
-    public class SpecificCursedItemItemTypesTests : AttributesTests
+    public class SpecificCursedItemItemTypesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes; }
+            get { return TableNameConstants.Collections.Set.SpecificCursedItemItemTypes; }
         }
 
         [TestCase(WondrousItemConstants.IncenseOfObsession, ItemTypeConstants.WondrousItem)]
@@ -43,9 +43,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WondrousItemConstants.NecklaceOfStrangulation, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.CloakOfPoisonousness, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.ScarabOfDeath, ItemTypeConstants.WondrousItem)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

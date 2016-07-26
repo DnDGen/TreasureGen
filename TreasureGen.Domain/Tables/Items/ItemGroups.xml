@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+  <object>
+    <name>Specific</name>
+    <attribute>Assassin's dagger</attribute>
+    <attribute>Berserking sword</attribute>
+    <attribute>Cursed backbiter spear</attribute>
+    <attribute>Cursed -2 sword</attribute>
+    <attribute>Dagger of venom</attribute>
+    <attribute>Dwarven thrower</attribute>
+    <attribute>Armor of arrow attraction</attribute>
+    <attribute>Armor of rage</attribute>
+    <attribute>Banded mail of luck</attribute>
+    <attribute>Breastplate of command</attribute>
+    <attribute>Celestial armor</attribute>
+    <attribute>Demon armor</attribute>
+    <attribute>Dwarven plate</attribute>
+    <attribute>Elven chain</attribute>
+    <attribute>Full plate of speed</attribute>
+    <attribute>Plate armor of the deep</attribute>
+    <attribute>Absorbing shield</attribute>
+    <attribute>Caster's shield</attribute>
+    <attribute>Lion's shield</attribute>
+    <attribute>Spined shield</attribute>
+    <attribute>Winged shield</attribute>
+    <attribute>Rhino hide</attribute>
+    <attribute>Flame tongue</attribute>
+    <attribute>Frost brand</attribute>
+    <attribute>Greater slaying arrow</attribute>
+    <attribute>Holy avenger</attribute>
+    <attribute>Javelin of lightning</attribute>
+    <attribute>Life-drinker</attribute>
+    <attribute>Luck blade</attribute>
+    <attribute>Mace of blood</attribute>
+    <attribute>Mace of smiting</attribute>
+    <attribute>Mace of terror</attribute>
+    <attribute>Net of snaring</attribute>
+    <attribute>Nine lives stealer</attribute>
+    <attribute>Rapier of puncturing</attribute>
+    <attribute>Screaming bolt</attribute>
+    <attribute>Shatterspike</attribute>
+    <attribute>Shifter's sorrow</attribute>
+    <attribute>Slaying arrow</attribute>
+    <attribute>Sleep arrow</attribute>
+    <attribute>Sun blade</attribute>
+    <attribute>Sword of life stealing</attribute>
+    <attribute>Sword of subtlety</attribute>
+    <attribute>Sword of the planes</attribute>
+    <attribute>Sylvan scimitar</attribute>
+    <attribute>Trident of fish command</attribute>
+    <attribute>Trident of warning</attribute>
+    <attribute>Ring of Clumsiness</attribute>
+    <attribute>Amulet of inescapable location</attribute>
+    <attribute>Bag of devouring</attribute>
+    <attribute>Bracers of defenselessness</attribute>
+    <attribute>Broom of animated attack</attribute>
+    <attribute>Cloak of poisonousness</attribute>
+    <attribute>Dust of sneezing and choking</attribute>
+    <attribute>Robe of vermin</attribute>
+    <attribute>Crystal hypnosis ball</attribute>
+    <attribute>Scarab of death</attribute>
+    <attribute>Boots of dancing</attribute>
+    <attribute>Necklace of strangulation</attribute>
+    <attribute>Periapt of foul rotting</attribute>
+    <attribute>Gauntlets of fumbling</attribute>
+    <attribute>Vacuous grimoire</attribute>
+    <attribute>Medallion of thought projection</attribute>
+    <attribute>Stone of weight (loadstone)</attribute>
+    <attribute>Helm of opposite alignment</attribute>
+    <attribute>Incense of obsession</attribute>
+    <attribute>Flask of curses</attribute>
+    <attribute>Robe of powerlessness</attribute>
+    <attribute>Mace of blood</attribute>
+    <attribute>Oathbow</attribute>
+  </object>
+  <object>
+    <name>Shield</name>
+    <attribute>Absorbing shield</attribute>
+    <attribute>Caster's shield</attribute>
+    <attribute>Lion's shield</attribute>
+    <attribute>Spined shield</attribute>
+    <attribute>Winged shield</attribute>
+  </object>
+  <object>
+    <name>Armor</name>
+    <attribute>Armor of arrow attraction</attribute>
+    <attribute>Armor of rage</attribute>
+    <attribute>Banded mail of luck</attribute>
+    <attribute>Breastplate of command</attribute>
+    <attribute>Celestial armor</attribute>
+    <attribute>Demon armor</attribute>
+    <attribute>Dwarven plate</attribute>
+    <attribute>Elven chain</attribute>
+    <attribute>Full plate of speed</attribute>
+    <attribute>Plate armor of the deep</attribute>
+    <attribute>Absorbing shield</attribute>
+    <attribute>Caster's shield</attribute>
+    <attribute>Lion's shield</attribute>
+    <attribute>Spined shield</attribute>
+    <attribute>Winged shield</attribute>
+    <attribute>Rhino hide</attribute>
+  </object>
+  <object>
+    <name>Weapon</name>
+    <attribute>Assassin's dagger</attribute>
+    <attribute>Berserking sword</attribute>
+    <attribute>Cursed backbiter spear</attribute>
+    <attribute>Cursed -2 sword</attribute>
+    <attribute>Dagger of venom</attribute>
+    <attribute>Dwarven thrower</attribute>
+    <attribute>Flame tongue</attribute>
+    <attribute>Frost brand</attribute>
+    <attribute>Greater slaying arrow</attribute>
+    <attribute>Holy avenger</attribute>
+    <attribute>Javelin of lightning</attribute>
+    <attribute>Life-drinker</attribute>
+    <attribute>Luck blade</attribute>
+    <attribute>Mace of blood</attribute>
+    <attribute>Mace of smiting</attribute>
+    <attribute>Mace of terror</attribute>
+    <attribute>Net of snaring</attribute>
+    <attribute>Nine lives stealer</attribute>
+    <attribute>Rapier of puncturing</attribute>
+    <attribute>Screaming bolt</attribute>
+    <attribute>Shatterspike</attribute>
+    <attribute>Shifter's sorrow</attribute>
+    <attribute>Slaying arrow</attribute>
+    <attribute>Sleep arrow</attribute>
+    <attribute>Sun blade</attribute>
+    <attribute>Sword of life stealing</attribute>
+    <attribute>Sword of subtlety</attribute>
+    <attribute>Sword of the planes</attribute>
+    <attribute>Sylvan scimitar</attribute>
+    <attribute>Trident of fish command</attribute>
+    <attribute>Trident of warning</attribute>
+    <attribute>Oathbow</attribute>
+  </object>
+  <object>
+    <name>This is a specific cursed item</name>
+    <attribute>Armor of arrow attraction</attribute>
+    <attribute>Armor of rage</attribute>
+    <attribute>Berserking sword</attribute>
+    <attribute>Cursed backbiter spear</attribute>
+    <attribute>Cursed -2 sword</attribute>
+    <attribute>Net of snaring</attribute>
+    <attribute>Ring of Clumsiness</attribute>
+    <attribute>Amulet of inescapable location</attribute>
+    <attribute>Bag of devouring</attribute>
+    <attribute>Bracers of defenselessness</attribute>
+    <attribute>Broom of animated attack</attribute>
+    <attribute>Cloak of poisonousness</attribute>
+    <attribute>Dust of sneezing and choking</attribute>
+    <attribute>Robe of vermin</attribute>
+    <attribute>Crystal hypnosis ball</attribute>
+    <attribute>Scarab of death</attribute>
+    <attribute>Boots of dancing</attribute>
+    <attribute>Necklace of strangulation</attribute>
+    <attribute>Periapt of foul rotting</attribute>
+    <attribute>Gauntlets of fumbling</attribute>
+    <attribute>Vacuous grimoire</attribute>
+    <attribute>Medallion of thought projection</attribute>
+    <attribute>Stone of weight (loadstone)</attribute>
+    <attribute>Helm of opposite alignment</attribute>
+    <attribute>Incense of obsession</attribute>
+    <attribute>Flask of curses</attribute>
+    <attribute>Robe of powerlessness</attribute>
+    <attribute>Mace of blood</attribute>
+  </object>
+</attributes>

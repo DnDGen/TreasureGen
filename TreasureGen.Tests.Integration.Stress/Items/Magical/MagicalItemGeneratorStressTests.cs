@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
@@ -8,24 +8,41 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
-    public abstract class MagicalItemGeneratorStressTests : ItemTests
+    public abstract class MagicalItemGeneratorStressTests : ItemStressTests
     {
-        [Inject]
-        public ItemVerifier ItemVerifier { get; set; }
-
         protected abstract string itemType { get; }
+        protected abstract bool allowMinor { get; }
+
         protected IEnumerable<string> materials;
+        private MagicalItemGenerator magicalItemGenerator;
+        private IEnumerable<string> traits;
+        private IEnumerable<string> specialAbilities;
 
         [SetUp]
         public void MundaneItemGeneratorStressSetup()
         {
+            magicalItemGenerator = GetNewInstanceOf<MagicalItemGenerator>(itemType);
+
             materials = TraitConstants.GetSpecialMaterials();
+            traits = new[]
+            {
+                TraitConstants.Markings,
+                TraitConstants.ShedsLight
+            };
+
+            specialAbilities = SpecialAbilityConstants.GetAllAbilities();
         }
 
         protected void StressItem()
         {
             var item = Generate(GenerateItem, i => i.ItemType == itemType);
             AssertItem(item);
+        }
+
+        protected override Item GenerateItem()
+        {
+            var power = GetNewPower(allowMinor);
+            return magicalItemGenerator.GenerateAtPower(power);
         }
 
         protected void AssertItem(Item item)
@@ -35,6 +52,58 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         protected abstract void MakeSpecificAssertionsAgainst(Item item);
+
+        protected void StressRandomCustomItem()
+        {
+            var name = GetRandomName();
+            var item = GenerateRandomCustomItem(name);
+
+            AssertItem(item);
+            Assert.That(item.Name, Is.EqualTo(name));
+        }
+
+        private string GetRandomName()
+        {
+            var names = GetItemNames();
+            var name = GetRandom(names);
+
+            return name;
+        }
+
+        protected override Item GenerateRandomCustomItem(string name)
+        {
+            var template = GetRandomTemplate(name);
+            return magicalItemGenerator.Generate(template, allowRandomDecoration: true);
+        }
+
+        private Item GetRandomTemplate(string name)
+        {
+            var template = ItemVerifier.CreateRandomTemplate(name);
+
+            var abilitiesCount = Random.Next(specialAbilities.Count()) + 1;
+            var abilityNames = specialAbilities.Take(abilitiesCount);
+            template.Magic.SpecialAbilities = abilityNames.Select(n => new SpecialAbility { Name = n });
+
+            return template;
+        }
+
+        protected void StressCustomItem()
+        {
+            var name = GetRandomName();
+            var template = GetRandomTemplate(name);
+
+            var item = magicalItemGenerator.Generate(template);
+            AssertItem(item);
+            ItemVerifier.AssertMagicalItemFromTemplate(item, template);
+        }
+
+        protected abstract IEnumerable<string> GetItemNames();
+
+        private string GetRandom(IEnumerable<string> collection)
+        {
+            var randomIndex = Random.Next(collection.Count());
+            return collection.ElementAt(randomIndex);
+        }
 
         public virtual void IntelligenceHappens()
         {

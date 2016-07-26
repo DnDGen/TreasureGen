@@ -1,38 +1,38 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Tools
 {
     [TestFixture]
     public class ToolsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.Tools; }
         }
 
-        [TestCase("Empty backpack", 1, 3)]
-        [TestCase("Crowbar", 4, 6)]
-        [TestCase("Bullseye lantern", 7, 11)]
-        [TestCase("Simple lock", 12, 16)]
-        [TestCase("Average lock", 17, 21)]
-        [TestCase("Good lock", 22, 28)]
-        [TestCase("Superior lock", 29, 35)]
-        [TestCase("Masterwork manacles", 36, 40)]
-        [TestCase("Small steel mirror", 41, 43)]
-        [TestCase("Silk rope (50')", 44, 46)]
-        [TestCase("Spyglass", 47, 53)]
-        [TestCase("Masterwork artisan's tools", 54, 58)]
-        [TestCase("Climber's kit", 59, 63)]
-        [TestCase("Disguise kit", 64, 68)]
-        [TestCase("Healer's kit", 69, 73)]
-        [TestCase("Silver holy symbol", 74, 77)]
-        [TestCase("Hourglass", 78, 81)]
-        [TestCase("Magnifying glass", 82, 88)]
-        [TestCase("Masterwork musical instrument", 89, 95)]
-        [TestCase("Masterwork thieves' tools", 96, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        [TestCase(ToolConstants.Backpack_Empty, 1, 3)]
+        [TestCase(ToolConstants.Crowbar, 4, 6)]
+        [TestCase(ToolConstants.Lantern_Bullseye, 7, 11)]
+        [TestCase(ToolConstants.Lock_Simple, 12, 16)]
+        [TestCase(ToolConstants.Lock_Average, 17, 21)]
+        [TestCase(ToolConstants.Lock_Good, 22, 28)]
+        [TestCase(ToolConstants.Lock_Superior, 29, 35)]
+        [TestCase(ToolConstants.Manacles_Masterwork, 36, 40)]
+        [TestCase(ToolConstants.Mirror_SmallSteel, 41, 43)]
+        [TestCase(ToolConstants.Rope_Silk, 44, 46)]
+        [TestCase(ToolConstants.Spyglass, 47, 53)]
+        [TestCase(ToolConstants.ArtisansTools_Masterwork, 54, 58)]
+        [TestCase(ToolConstants.ClimbersKit, 59, 63)]
+        [TestCase(ToolConstants.DisguiseKit, 64, 68)]
+        [TestCase(ToolConstants.HealersKit, 69, 73)]
+        [TestCase(ToolConstants.HolySymbol_Silver, 74, 77)]
+        [TestCase(ToolConstants.Hourglass, 78, 81)]
+        [TestCase(ToolConstants.MagnifyingGlass, 82, 88)]
+        [TestCase(ToolConstants.MusicalInstrument_Masterwork, 89, 95)]
+        [TestCase(ToolConstants.ThievesTools_Masterwork, 96, 100)]
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

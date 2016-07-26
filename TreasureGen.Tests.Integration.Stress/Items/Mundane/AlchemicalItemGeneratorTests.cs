@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
 
@@ -8,8 +8,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class AlchemicalItemGeneratorTests : MundaneItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.AlchemicalItem)]
-        public MundaneItemGenerator AlchemicalItemGenerator { get; set; }
+        [SetUp]
+        public void Setup()
+        {
+            mundaneItemGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
+        }
 
         [Test]
         public void StressAlchemicalItem()
@@ -23,20 +26,30 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.Quantity, Is.Positive);
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Attributes, Is.Empty);
-            Assert.That(item.Traits, Is.Empty);
-            Assert.That(item.Contents, Is.Empty);
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
-        }
-
-        protected override Item GenerateItem()
-        {
-            return AlchemicalItemGenerator.Generate();
         }
 
         [Test]
         public override void NoDecorationsHappen()
         {
             AssertNoDecorationsHappen();
+        }
+
+        protected override IEnumerable<string> GetItemNames()
+        {
+            return AlchemicalItemConstants.GetAllAlchemicalItems();
+        }
+
+        [Test]
+        public void StressCustomAlchemicalItem()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomAlchemicalItem()
+        {
+            Stress(StressRandomCustomItem);
         }
     }
 }

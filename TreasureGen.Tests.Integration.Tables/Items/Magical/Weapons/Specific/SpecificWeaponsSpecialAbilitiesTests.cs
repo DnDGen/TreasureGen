@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -7,11 +6,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
     [TestFixture]
-    public class SpecificWeaponsSpecialAbilitiesTests : AttributesTests
+    public class SpecificWeaponsSpecialAbilitiesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon); }
         }
 
         [TestCase(WeaponConstants.SleepArrow)]
@@ -48,9 +47,10 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.LuckBlade2)]
         [TestCase(WeaponConstants.HolyAvenger)]
         [TestCase(WeaponConstants.LuckBlade3)]
-        public override void Attributes(String name, params String[] attributes)
+        [TestCase(WeaponConstants.LuckBlade)]
+        public override void Collections(string name, params string[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

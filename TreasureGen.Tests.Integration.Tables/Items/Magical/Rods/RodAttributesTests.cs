@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
 {
     [TestFixture]
-    public class RodAttributesTests : AttributesTests
+    public class RodAttributesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod); }
         }
 
         [TestCase(RodConstants.Metamagic_Enlarge_Lesser)]
@@ -82,9 +82,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,
                                       AttributeConstants.Specific)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

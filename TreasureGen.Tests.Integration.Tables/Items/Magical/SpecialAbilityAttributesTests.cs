@@ -6,11 +6,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
-    public class SpecialAbilityAttributesTests : AttributesTests
+    public class SpecialAbilityAttributesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.SpecialAbilityAttributes; }
+            get { return TableNameConstants.Collections.Set.SpecialAbilityAttributes; }
         }
 
         [TestCase(SpecialAbilityConstants.Glamered, 0, SpecialAbilityConstants.Glamered, 0)]
@@ -116,7 +116,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.Plantbane, 1, SpecialAbilityConstants.Bane, 0)]
         [TestCase(SpecialAbilityConstants.Undeadbane, 1, SpecialAbilityConstants.Bane, 0)]
         [TestCase(SpecialAbilityConstants.Verminbane, 1, SpecialAbilityConstants.Bane, 0)]
-        public void OrderedAttributes(String name, Int32 bonusEquivalent, String baseName, Int32 strength)
+        public void OrderedAttributes(string name, int bonusEquivalent, string baseName, int strength)
         {
             var attributes = new[]
             {
@@ -125,7 +125,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
                 Convert.ToString(strength)
             };
 
-            base.OrderedAttributes(name, attributes);
+            base.OrderedCollections(name, attributes);
         }
     }
 }

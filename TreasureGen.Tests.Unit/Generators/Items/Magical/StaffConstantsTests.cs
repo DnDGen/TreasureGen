@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Linq;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -30,6 +31,35 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllStaffs()
+        {
+            var staffs = StaffConstants.GetAllStaffs();
+
+            Assert.That(staffs, Contains.Item(StaffConstants.Abjuration));
+            Assert.That(staffs, Contains.Item(StaffConstants.Charming));
+            Assert.That(staffs, Contains.Item(StaffConstants.Conjuration));
+            Assert.That(staffs, Contains.Item(StaffConstants.Defense));
+            Assert.That(staffs, Contains.Item(StaffConstants.Divination));
+            Assert.That(staffs, Contains.Item(StaffConstants.EarthAndStone));
+            Assert.That(staffs, Contains.Item(StaffConstants.Enchantment));
+            Assert.That(staffs, Contains.Item(StaffConstants.Evocation));
+            Assert.That(staffs, Contains.Item(StaffConstants.Fire));
+            Assert.That(staffs, Contains.Item(StaffConstants.Frost));
+            Assert.That(staffs, Contains.Item(StaffConstants.Healing));
+            Assert.That(staffs, Contains.Item(StaffConstants.Illumination));
+            Assert.That(staffs, Contains.Item(StaffConstants.Illusion));
+            Assert.That(staffs, Contains.Item(StaffConstants.Life));
+            Assert.That(staffs, Contains.Item(StaffConstants.Necromancy));
+            Assert.That(staffs, Contains.Item(StaffConstants.Passage));
+            Assert.That(staffs, Contains.Item(StaffConstants.Power));
+            Assert.That(staffs, Contains.Item(StaffConstants.SizeAlteration));
+            Assert.That(staffs, Contains.Item(StaffConstants.SwarmingInsects));
+            Assert.That(staffs, Contains.Item(StaffConstants.Transmutation));
+            Assert.That(staffs, Contains.Item(StaffConstants.Woodlands));
+            Assert.That(staffs.Count(), Is.EqualTo(21));
         }
     }
 }

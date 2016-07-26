@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class ItemAlignmentRequirementsTests : AttributesTests
+    public class ItemAlignmentRequirementsTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.ItemAlignmentRequirements; }
+            get { return TableNameConstants.Collections.Set.ItemAlignmentRequirements; }
         }
 
         [TestCase(ArmorConstants.CelestialArmor, AlignmentConstants.Good)]
@@ -43,23 +43,23 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase(WondrousItemConstants.StoneOfWeight_Loadstone, AlignmentConstants.Evil)]
         [TestCase(WondrousItemConstants.VacousGrimoire, AlignmentConstants.Evil)]
         [TestCase(WeaponConstants.CursedMinus2Sword, AlignmentConstants.Evil)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
 
         [Test]
         public void HolyAvengerAlignmentRequirement()
         {
             var attributes = new[] { AlignmentConstants.LawfulGood };
-            base.Attributes(WeaponConstants.HolyAvenger, attributes);
+            base.Collections(WeaponConstants.HolyAvenger, attributes);
         }
 
         [Test]
         public void MaceOfBloodAlignmentRequirement()
         {
             var attributes = new[] { AlignmentConstants.ChaoticEvil };
-            base.Attributes(WeaponConstants.MaceOfBlood, attributes);
+            base.Collections(WeaponConstants.MaceOfBlood, attributes);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
                 WeaponConstants.CursedMinus2Sword
             };
 
-            base.Attributes("Items", items);
+            base.Collections("Items", items);
         }
     }
 }

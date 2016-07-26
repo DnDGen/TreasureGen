@@ -19,7 +19,13 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         public Item Generate()
         {
             var item = innerGenerator.Generate();
+            item = AddSpecialMaterials(item);
 
+            return item;
+        }
+
+        private Item AddSpecialMaterials(Item item)
+        {
             while (specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
@@ -30,6 +36,18 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                     var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
                     item.Attributes = item.Attributes.Except(metalAndWood);
                 }
+            }
+
+            return item;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
+
+            if (allowRandomDecoration)
+            {
+                item = AddSpecialMaterials(item);
             }
 
             return item;

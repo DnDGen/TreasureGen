@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Attributes;
@@ -16,17 +17,21 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator staffGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private string power;
+        private ItemVerifier itemVerifier;
+        private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
-            staffGenerator = new StaffGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object, mockAttributesSelector.Object);
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
+            mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
+            staffGenerator = new StaffGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object, mockAttributesSelector.Object, mockSpecialAbilitiesGenerator.Object);
             power = "power";
+            itemVerifier = new ItemVerifier();
         }
 
         [Test]
@@ -84,12 +89,113 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(StaffConstants.Power);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
-            tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockAttributesSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.Quarterstaff)).Returns(attributes);
 
             var staff = staffGenerator.GenerateAtPower(power);
-            foreach (var attribute in attributes)
-                Assert.That(staff.Attributes, Contains.Item(attribute));
+            Assert.That(staff.Attributes, Is.EquivalentTo(attributes.Union(new[] { AttributeConstants.Charged })));
+        }
+
+        [Test]
+        public void GenerateCustomStaff()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var staff = staffGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(staff, template);
+            Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
+            Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(staff.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(staff.Attributes.Count(), Is.EqualTo(2));
+            Assert.That(staff.Quantity, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GenerateCustomStaffOfPower()
+        {
+            var name = StaffConstants.Power;
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.Quarterstaff)).Returns(attributes);
+
+            var staff = staffGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(staff, template);
+            Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
+            Assert.That(staff.Attributes, Is.EquivalentTo(attributes.Union(new[] { AttributeConstants.Charged })));
+            Assert.That(staff.Quantity, Is.EqualTo(1));
+            Assert.That(staff.Magic.SpecialAbilities, Is.EqualTo(abilities));
+        }
+
+        [Test]
+        public void GenerateRandomCustomStaff()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var staff = staffGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(staff, template);
+            Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
+            Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(staff.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(staff.Attributes.Count(), Is.EqualTo(2));
+            Assert.That(staff.Quantity, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GenerateRandomCustomStaffOfPower()
+        {
+            var name = StaffConstants.Power;
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.Quarterstaff)).Returns(attributes);
+
+            var staff = staffGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(staff, template);
+            Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
+            Assert.That(staff.Attributes, Is.EquivalentTo(attributes.Union(new[] { AttributeConstants.Charged })));
+            Assert.That(staff.Quantity, Is.EqualTo(1));
+            Assert.That(staff.Magic.SpecialAbilities, Is.EqualTo(abilities));
         }
     }
 }

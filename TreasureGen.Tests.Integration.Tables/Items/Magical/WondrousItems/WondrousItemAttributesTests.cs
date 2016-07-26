@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
-    public class WondrousItemAttributesTests : AttributesTests
+    public class WondrousItemAttributesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem); }
         }
 
         [TestCase(WondrousItemConstants.BeadOfForce,
@@ -323,9 +323,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.BottleOfAir)]
         [TestCase(WondrousItemConstants.BagOfHolding_III)]
         [TestCase(WondrousItemConstants.PeriaptOfHealth)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

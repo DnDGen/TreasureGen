@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TreasureGen.Items
 {
@@ -39,9 +40,9 @@ namespace TreasureGen.Items
         public const string ArmorOfRage = "Armor of rage";
         public const string ArmorOfArrowAttraction = "Armor of arrow attraction";
 
-        public static IEnumerable<string> GetAllArmors()
+        public static IEnumerable<string> GetAllArmors(bool includeSpecific)
         {
-            return new[]
+            var armors = new[]
             {
                 PaddedArmor,
                 LeatherArmor,
@@ -78,6 +79,31 @@ namespace TreasureGen.Items
                 ArmorOfArrowAttraction,
                 ArmorOfRage
             };
+
+            if (includeSpecific)
+                return armors;
+
+            var specificArmors = new[]
+            {
+                ElvenChain,
+                RhinoHide,
+                DwarvenPlate,
+                BandedMailOfLuck,
+                CelestialArmor,
+                PlateArmorOfTheDeep,
+                BreastplateOfCommand,
+                FullPlateOfSpeed,
+                DemonArmor,
+                CastersShield,
+                SpinedShield,
+                LionsShield,
+                WingedShield,
+                AbsorbingShield,
+                ArmorOfArrowAttraction,
+                ArmorOfRage
+            };
+
+            return armors.Except(specificArmors);
         }
     }
 }

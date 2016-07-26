@@ -17,17 +17,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator ringGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private TypeAndAmountPercentileResult result;
         private string power;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
@@ -36,33 +37,31 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result = new TypeAndAmountPercentileResult();
             ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
             power = "power";
+            itemVerifier = new ItemVerifier();
 
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(result);
-            result.Amount = 0;
+            result.Amount = 9266;
+            result.Type = "ring of ability";
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(result);
+
         }
 
         [Test]
         public void GenerateRing()
         {
-            var newResult = new TypeAndAmountPercentileResult();
-            newResult.Type = "ring of ability";
-            newResult.Amount = 0;
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(newResult);
-
             var ring = ringGenerator.GenerateAtPower(power);
             Assert.That(ring.Name, Is.EqualTo("ring of ability"));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
         }
 
         [Test]
         public void GetAttributesFromSelector()
         {
-            result.Type = "ring ability";
             var attributes = new[] { "attribute 1", "attribute 2" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
 
             var ring = ringGenerator.GenerateAtPower(power);
@@ -72,9 +71,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetChargesIfCharged()
         {
-            result.Type = "ring ability";
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, result.Type)).Returns(9266);
 
@@ -85,9 +83,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGetChargesIfNotCharged()
         {
-            result.Type = "ring ability";
             var attributes = new[] { "new attribute" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, result.Type)).Returns(9266);
 
@@ -306,14 +303,60 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GetBonus()
+        public void GenerateCustomRing()
         {
-            result.Type = "ring of ability";
-            result.Amount = 9266;
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
 
-            var ring = ringGenerator.GenerateAtPower(power);
-            Assert.That(ring.Name, Is.EqualTo("ring of ability"));
-            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var ring = ringGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Quantity, Is.EqualTo(1));
+            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateRandomCustomRing()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var ring = ringGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Quantity, Is.EqualTo(1));
+            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateOneTimeUseRing()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.OneTimeUse };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var ring = ringGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Quantity, Is.EqualTo(1));
+            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
     {
         private Mock<Dice> mockDice;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private IGoodsGenerator generator;
 
         private TypeAndAmountPercentileResult typeAndAmountResult;
@@ -26,7 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         {
             mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object);
             typeAndAmountResult = new TypeAndAmountPercentileResult();
             valueResult = new TypeAndAmountPercentileResult();
@@ -41,7 +41,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(valueResult);
 
             var descriptions = new[] { "description 1", "description 2" };
-            tableName = string.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, typeAndAmountResult.Type);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, typeAndAmountResult.Type);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
         }

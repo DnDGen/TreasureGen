@@ -1,46 +1,42 @@
 ﻿using NUnit.Framework;
-using System;
-using TreasureGen.Items;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
     [TestFixture]
-    public class AmmunitionAttributesTests : AttributesTests
+    public class AmmunitionAttributesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.AmmunitionAttributes; }
+            get { return TableNameConstants.Collections.Set.AmmunitionAttributes; }
         }
 
-        [TestCase(WeaponConstants.Arrow, ItemTypeConstants.Weapon,
-                                         AttributeConstants.Common,
-                                         AttributeConstants.Ranged,
-                                         AttributeConstants.Ammunition,
-                                         AttributeConstants.Metal,
-                                         AttributeConstants.Wood,
-                                         AttributeConstants.NotBludgeoning)]
-        [TestCase(WeaponConstants.CrossbowBolt, ItemTypeConstants.Weapon,
-                                                AttributeConstants.Common,
-                                                AttributeConstants.Ranged,
-                                                AttributeConstants.Ammunition,
-                                                AttributeConstants.Metal,
-                                                AttributeConstants.NotBludgeoning)]
-        [TestCase(WeaponConstants.SlingBullet, ItemTypeConstants.Weapon,
-                                               AttributeConstants.Common,
-                                               AttributeConstants.Ranged,
-                                               AttributeConstants.Ammunition,
-                                               AttributeConstants.Metal,
-                                               AttributeConstants.Bludgeoning)]
-        [TestCase(AttributeConstants.Thrown,
-            WeaponConstants.Dart,
-            WeaponConstants.Javelin,
-            WeaponConstants.JavelinOfLightning,
-            WeaponConstants.Shuriken,
-            WeaponConstants.ThrowingAxe)]
-        public override void Attributes(String name, params String[] attributes)
+        [TestCase(WeaponConstants.Arrow,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal,
+            AttributeConstants.Wood,
+            AttributeConstants.Piercing)]
+        [TestCase(WeaponConstants.CrossbowBolt,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal,
+            AttributeConstants.Piercing)]
+        [TestCase(WeaponConstants.SlingBullet,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal,
+            AttributeConstants.Bludgeoning)]
+        public override void Collections(string name, params string[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

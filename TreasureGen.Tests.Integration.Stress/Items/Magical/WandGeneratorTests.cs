@@ -1,16 +1,18 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
-using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public class WandGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Wand)]
-        public MagicalItemGenerator WandGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return true; }
+        }
 
         protected override string itemType
         {
@@ -32,7 +34,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.Magic.Bonus, Is.EqualTo(0));
-            Assert.That(wand.Magic.Charges, Is.InRange(1, 50));
+            Assert.That(wand.Magic.Charges, Is.Positive);
             Assert.That(wand.Magic.Curse, Is.Not.Null);
             Assert.That(wand.Magic.Intelligence.Ego, Is.EqualTo(0));
             Assert.That(wand.Magic.SpecialAbilities, Is.Empty);
@@ -43,10 +45,21 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(itemMaterials, Is.Empty);
         }
 
-        protected override Item GenerateItem()
+        protected override IEnumerable<string> GetItemNames()
         {
-            var power = GetNewPower();
-            return WandGenerator.GenerateAtPower(power);
+            return new[] { "Wand of " + Guid.NewGuid().ToString() };
+        }
+
+        [Test]
+        public void StressCustomWand()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomWand()
+        {
+            Stress(StressRandomCustomItem);
         }
 
         [Test]

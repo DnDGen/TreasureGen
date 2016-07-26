@@ -1,7 +1,6 @@
-﻿using System;
+﻿using NUnit.Framework;
 using System.Linq;
 using TreasureGen.Items;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Unit.Generators.Items
 {
@@ -42,7 +41,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(ArmorConstants.AbsorbingShield, "Absorbing shield")]
         [TestCase(ArmorConstants.ArmorOfRage, "Armor of rage")]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction, "Armor of arrow attraction")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
@@ -50,7 +49,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void AllArmors()
         {
-            var armors = ArmorConstants.GetAllArmors();
+            var armors = ArmorConstants.GetAllArmors(true);
 
             Assert.That(armors, Contains.Item(ArmorConstants.PaddedArmor));
             Assert.That(armors, Contains.Item(ArmorConstants.LeatherArmor));
@@ -87,6 +86,32 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(armors, Contains.Item(ArmorConstants.ArmorOfRage));
             Assert.That(armors, Contains.Item(ArmorConstants.ArmorOfArrowAttraction));
             Assert.That(armors.Count(), Is.EqualTo(34));
+        }
+
+        [Test]
+        public void MundaneArmors()
+        {
+            var armors = ArmorConstants.GetAllArmors(false);
+
+            Assert.That(armors, Contains.Item(ArmorConstants.PaddedArmor));
+            Assert.That(armors, Contains.Item(ArmorConstants.LeatherArmor));
+            Assert.That(armors, Contains.Item(ArmorConstants.StuddedLeatherArmor));
+            Assert.That(armors, Contains.Item(ArmorConstants.ChainShirt));
+            Assert.That(armors, Contains.Item(ArmorConstants.HideArmor));
+            Assert.That(armors, Contains.Item(ArmorConstants.ScaleMail));
+            Assert.That(armors, Contains.Item(ArmorConstants.Chainmail));
+            Assert.That(armors, Contains.Item(ArmorConstants.Breastplate));
+            Assert.That(armors, Contains.Item(ArmorConstants.SplintMail));
+            Assert.That(armors, Contains.Item(ArmorConstants.BandedMail));
+            Assert.That(armors, Contains.Item(ArmorConstants.HalfPlate));
+            Assert.That(armors, Contains.Item(ArmorConstants.FullPlate));
+            Assert.That(armors, Contains.Item(ArmorConstants.Buckler));
+            Assert.That(armors, Contains.Item(ArmorConstants.LightWoodenShield));
+            Assert.That(armors, Contains.Item(ArmorConstants.LightSteelShield));
+            Assert.That(armors, Contains.Item(ArmorConstants.HeavyWoodenShield));
+            Assert.That(armors, Contains.Item(ArmorConstants.HeavySteelShield));
+            Assert.That(armors, Contains.Item(ArmorConstants.TowerShield));
+            Assert.That(armors.Count(), Is.EqualTo(18));
         }
     }
 }

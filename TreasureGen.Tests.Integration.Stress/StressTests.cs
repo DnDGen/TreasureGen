@@ -186,24 +186,24 @@ namespace TreasureGen.Tests.Integration.Stress
             else if (attributes.Contains(AttributeConstants.Ranged) && Random.Next(2) > 0)
                 attributes.Add(AttributeConstants.Ammunition);
 
-            switch (Random.Next(6))
+            switch (Random.Next(7))
             {
                 case 0: attributes.Add(AttributeConstants.Bludgeoning); break;
-                case 1: attributes.Add(AttributeConstants.NotBludgeoning); break;
-                case 2:
-                    attributes.Add(AttributeConstants.NotBludgeoning);
-                    attributes.Add(AttributeConstants.Slashing);
-                    break;
+                case 1: attributes.Add(AttributeConstants.Piercing); break;
+                case 2: attributes.Add(AttributeConstants.Slashing); break;
                 case 3:
-                    attributes.Add(AttributeConstants.Bludgeoning);
-                    attributes.Add(AttributeConstants.NotBludgeoning);
+                    attributes.Add(AttributeConstants.Piercing);
+                    attributes.Add(AttributeConstants.Slashing);
                     break;
                 case 4:
                     attributes.Add(AttributeConstants.Bludgeoning);
-                    attributes.Add(AttributeConstants.NotBludgeoning);
+                    attributes.Add(AttributeConstants.Piercing);
+                    break;
+                case 5:
+                    attributes.Add(AttributeConstants.Piercing);
                     attributes.Add(AttributeConstants.Slashing);
                     break;
-                case 5: break;
+                case 6: break;
             }
 
             return attributes;

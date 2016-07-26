@@ -6,11 +6,11 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Integration.Tables.Goods.Art
 {
     [TestFixture]
-    public class ArtDescriptionsTests : AttributesTests
+    public class ArtDescriptionsTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, GoodsConstants.Art); }
+            get { return String.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, GoodsConstants.Art); }
         }
 
         [TestCase("1d10*10", "silver ewer",
@@ -43,9 +43,9 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Art
                               "jeweled electrum ring")]
         [TestCase("2d6*1000", "gold and ruby ring",
                               "gold cup set with emeralds")]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

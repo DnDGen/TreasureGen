@@ -16,13 +16,20 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.specialMaterialGenerator = specialMaterialGenerator;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateAtPower(power);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
-            if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
-                return item;
+            if (allowRandomDecoration)
+            {
+                item = AddSpecialMaterials(item);
+            }
 
+            return item;
+        }
+
+        private Item AddSpecialMaterials(Item item)
+        {
             while (specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
@@ -34,6 +41,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                     item.Attributes = item.Attributes.Except(metalAndWood);
                 }
             }
+
+            return item;
+        }
+
+        public Item GenerateAtPower(string power)
+        {
+            var item = innerGenerator.GenerateAtPower(power);
+
+            if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+                return item;
+
+            item = AddSpecialMaterials(item);
 
             return item;
         }

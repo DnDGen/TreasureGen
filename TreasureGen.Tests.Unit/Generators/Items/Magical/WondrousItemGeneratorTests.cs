@@ -18,19 +18,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator wondrousItemGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<Dice> mockDice;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private TypeAndAmountPercentileResult result;
         private string power;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
@@ -38,6 +39,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             result = new TypeAndAmountPercentileResult();
             wondrousItemGenerator = new WondrousItemGenerator(mockPercentileSelector.Object, mockAttributesSelector.Object, mockChargesGenerator.Object, mockDice.Object, mockSpellGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
+            itemVerifier = new ItemVerifier();
 
             power = "power";
             result.Type = "wondrous item";
@@ -59,7 +61,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "type 1", "type 2" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -70,7 +72,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void DoNotGetChargesIfNotCharged()
         {
             var attributes = new[] { "type 1", "type 2" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
@@ -83,7 +85,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetChargesIfCharged()
         {
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(9266);
@@ -164,7 +166,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(4).IndividualRolls(4)).Returns(new[] { 0, 0, 0, 0 });
             result.Type = WondrousItemConstants.RobeOfUsefulItems;
             var items = new[] { "item 1", "item 1", "item 2", "item 2", "item 3", "item 3" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -257,7 +259,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Type = WondrousItemConstants.DeckOfIllusions;
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(cards);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(cards);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
@@ -276,7 +278,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Type = WondrousItemConstants.NecklaceOfFireballs + " type whatever";
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(spheres);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(spheres);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(5)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
@@ -297,7 +299,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Type = WondrousItemConstants.RobeOfBones;
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(6)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(5)).Returns(new[] { 1 });
             mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
@@ -318,7 +320,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Type = WondrousItemConstants.RobeOfBones;
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(6);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
@@ -354,6 +356,42 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Name, Is.EqualTo(result.Type));
             Assert.That(item.Traits, Contains.Item("color (alignment)"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GenerateCustomWondrousItem()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var attributes = new[] { "type 1", "type 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var wondrousItem = wondrousItemGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
+            Assert.That(wondrousItem.Name, Is.EqualTo(name));
+            Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
+            Assert.That(wondrousItem.IsMagical, Is.True);
+            Assert.That(wondrousItem.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateRandomCustomWondrousItem()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var attributes = new[] { "type 1", "type 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var wondrousItem = wondrousItemGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
+            Assert.That(wondrousItem.Name, Is.EqualTo(name));
+            Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
+            Assert.That(wondrousItem.IsMagical, Is.True);
+            Assert.That(wondrousItem.Attributes, Is.EqualTo(attributes));
         }
     }
 }

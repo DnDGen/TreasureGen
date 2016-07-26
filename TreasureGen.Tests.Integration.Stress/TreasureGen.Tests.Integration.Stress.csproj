@@ -61,10 +61,6 @@
       <HintPath>..\packages\DnDGen.RollGen.12.2\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\D20Dice.Bootstrap.11.0.1\lib\RollGen.Bootstrap.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RollGen.Domain, Version=12.1.5991.24748, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DnDGen.RollGen.Domain.12.2\lib\RollGen.Domain.dll</HintPath>
       <Private>True</Private>
@@ -80,8 +76,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Items\ItemTests.cs" />
-    <Compile Include="Items\ItemVerifier.cs" />
+    <Compile Include="Items\ItemStressTests.cs" />
     <Compile Include="Items\Magical\MagicalItemGeneratorStressTests.cs" />
     <Compile Include="Items\Magical\MagicalWeaponGeneratorTests.cs" />
     <Compile Include="Items\Magical\PotionGeneratorTests.cs" />
@@ -108,6 +103,10 @@
     <ProjectReference Include="..\TreasureGen.Tests.Integration\TreasureGen.Tests.Integration.csproj">
       <Project>{4386b84e-fcca-4fc2-84d7-bd4161ca4612}</Project>
       <Name>TreasureGen.Tests.Integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TreasureGen.Tests.Unit\TreasureGen.Tests.Unit.csproj">
+      <Project>{28c8919c-6d51-4e5d-8214-da6e35f9fdee}</Project>
+      <Name>TreasureGen.Tests.Unit</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreasureGen\TreasureGen.csproj">
       <Project>{a8e27feb-c25e-4315-aace-7cd6f72e9fc9}</Project>

@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
@@ -9,8 +9,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public class MundaneArmorGeneratorTests : MundaneItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Armor)]
-        public MundaneItemGenerator MundaneArmorGenerator { get; set; }
+        [SetUp]
+        public void Setup()
+        {
+            mundaneItemGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Armor);
+        }
 
         [Test]
         public void StressArmor()
@@ -28,12 +31,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.Attributes, Is.Not.Null, item.Name);
             Assert.That(item.Quantity, Is.EqualTo(1));
             Assert.That(item.IsMagical, Is.False);
-            Assert.That(item.Contents, Is.Empty);
-        }
-
-        protected override Item GenerateItem()
-        {
-            return MundaneArmorGenerator.Generate();
         }
 
         [Test]
@@ -55,6 +52,23 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             AssertItem(shield);
             Assert.That(shield.Traits, Contains.Item(TraitConstants.Darkwood));
             Assert.That(shield.Attributes, Contains.Item(AttributeConstants.Shield));
+        }
+
+        protected override IEnumerable<string> GetItemNames()
+        {
+            return ArmorConstants.GetAllArmors(false);
+        }
+
+        [Test]
+        public void StressCustomArmor()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomArmor()
+        {
+            Stress(StressRandomCustomItem);
         }
     }
 }

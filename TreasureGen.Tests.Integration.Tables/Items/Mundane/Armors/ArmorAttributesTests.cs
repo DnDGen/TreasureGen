@@ -6,11 +6,11 @@ using NUnit.Framework;
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
 {
     [TestFixture]
-    public class ArmorAttributesTests : AttributesTests
+    public class ArmorAttributesTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor); }
+            get { return String.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor); }
         }
 
         [TestCase(ArmorConstants.Buckler, AttributeConstants.Wood,
@@ -42,9 +42,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.BandedMail, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.HalfPlate, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

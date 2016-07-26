@@ -71,7 +71,7 @@
             }
         }
 
-        public static class Attributes
+        public static class Collections
         {
             public static class Formattable
             {
@@ -92,6 +92,7 @@
                 public const string IntelligenceAttributes = "IntelligenceAttributes";
                 public const string IntelligenceCommunication = "IntelligenceCommunication";
                 public const string ItemAlignmentRequirements = "ItemAlignmentRequirements";
+                public const string ItemGroups = "ItemGroups";
                 public const string ReplacementStrings = "ReplacementStrings";
                 public const string SpecialAbilityAttributes = "SpecialAbilityAttributes";
                 public const string SpecialAbilityAttributeRequirements = "SpecialAbilityAttributeRequirements";

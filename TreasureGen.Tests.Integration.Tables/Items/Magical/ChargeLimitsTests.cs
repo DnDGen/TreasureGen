@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
-    public class ChargeLimitsTests : AttributesTests
+    public class ChargeLimitsTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.ChargeLimits; }
+            get { return TableNameConstants.Collections.Set.ChargeLimits; }
         }
 
         [TestCase(WondrousItemConstants.BraceletOfFriends, 1, 4)]
@@ -43,7 +43,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
         public void Attributes(String name, Int32 min, Int32 max)
         {
             var attributes = new[] { min.ToString(), max.ToString() };
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

@@ -9,12 +9,12 @@ namespace TreasureGen.Tests.Unit.Selectors.Attributes
     public class RangeAttributesSelectorTests
     {
         private IRangeAttributesSelector rangeAttributesSelector;
-        private Mock<IAttributesSelector> mockInnerSelector;
+        private Mock<ICollectionsSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerSelector = new Mock<IAttributesSelector>();
+            mockInnerSelector = new Mock<ICollectionsSelector>();
             rangeAttributesSelector = new RangeAttributesSelector(mockInnerSelector.Object);
         }
 

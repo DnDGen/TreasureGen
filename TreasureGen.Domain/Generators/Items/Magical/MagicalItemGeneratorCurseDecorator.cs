@@ -30,5 +30,21 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             return item;
         }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            if (curseGenerator.IsSpecificCursedItem(template))
+                return curseGenerator.GenerateSpecificCursedItem(template);
+
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
+
+            if (allowRandomDecoration && curseGenerator.HasCurse(item.IsMagical))
+            {
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            }
+
+            return item;
+        }
     }
 }

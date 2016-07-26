@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -15,25 +16,31 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator rodGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private TypeAndAmountPercentileResult result;
-        private String power;
+        private string power;
+        private ItemVerifier itemVerifier;
+        private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             result = new TypeAndAmountPercentileResult();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object,
-                mockChargesGenerator.Object, mockBooleanPercentileSelector.Object);
+            mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
+            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object,
+                mockChargesGenerator.Object, mockBooleanPercentileSelector.Object, mockSpecialAbilitiesGenerator.Object);
+            itemVerifier = new ItemVerifier();
 
-            result.Amount = 0;
+            result.Type = "rod of ability";
+            result.Amount = 9266;
             power = "power";
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(result);
         }
@@ -44,6 +51,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.Name, Is.EqualTo("rod of ability"));
         }
 
         [Test]
@@ -53,20 +61,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GetNameFromSelector()
-        {
-            result.Type = "rod of ability";
-            var rod = rodGenerator.GenerateAtPower(power);
-            Assert.That(rod.Name, Is.EqualTo(result.Type));
-        }
-
-        [Test]
         public void GetAttributesFromSelector()
         {
-            result.Type = "rod of ability";
             var attributes = new[] { "attribute 1", "attribute 2" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Attributes, Is.EqualTo(attributes));
@@ -75,44 +74,34 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetChargesIfCharged()
         {
-            result.Type = "rod of ability";
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(9266);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(90210);
 
             var rod = rodGenerator.GenerateAtPower(power);
-            Assert.That(rod.Magic.Charges, Is.EqualTo(9266));
+            Assert.That(rod.Magic.Charges, Is.EqualTo(90210));
         }
 
         [Test]
         public void DoNotGetChargesIfNotCharged()
         {
-            result.Type = "rod ability";
             var attributes = new[] { "new attribute" };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(9266);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(90210);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(0));
         }
 
         [Test]
-        public void GetBonus()
-        {
-            result.Amount = 9266;
-            var rod = rodGenerator.GenerateAtPower(power);
-            Assert.That(rod.Magic.Bonus, Is.EqualTo(9266));
-        }
-
-        [Test]
         public void RodOfAbsorptionContainsLevelsIfSelectorSaysSo()
         {
-            result.Type = "Rod of absorption";
+            result.Type = RodConstants.Absorption;
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type + " (max)")).Returns(50);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(true);
@@ -126,10 +115,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RodOfAbsorptionDoesNotContainLevelsIfSelectorSaysSo()
         {
-            result.Type = "Rod of absorption";
+            result.Type = RodConstants.Absorption;
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type + " (max)")).Returns(50);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(false);
@@ -137,6 +126,122 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(42));
             Assert.That(rod.Contents, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateCustomRod()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var rod = rodGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(rod, template);
+            Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
+            Assert.That(rod.Quantity, Is.EqualTo(1));
+            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [TestCase(RodConstants.Alertness)]
+        [TestCase(RodConstants.Flailing)]
+        [TestCase(RodConstants.Python)]
+        [TestCase(RodConstants.ThunderAndLightning)]
+        [TestCase(RodConstants.Viper)]
+        [TestCase(RodConstants.Withering)]
+        public void GenerateNamedCustomRod(string name)
+        {
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var rod = rodGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(rod, template);
+            Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
+            Assert.That(rod.Quantity, Is.EqualTo(1));
+            Assert.That(rod.Magic.SpecialAbilities, Is.EqualTo(abilities));
+        }
+
+        [Test]
+        public void GenerateRandomCustomRod()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var rod = rodGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(rod, template);
+            Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
+            Assert.That(rod.Quantity, Is.EqualTo(1));
+            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateOneTimeUseCustomRod()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.OneTimeUse };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
+
+            var rod = rodGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(rod, template);
+            Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
+            Assert.That(rod.Quantity, Is.EqualTo(1));
+            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }

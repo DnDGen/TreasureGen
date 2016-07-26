@@ -29,5 +29,25 @@ namespace TreasureGen.Items.Magical
             Languages = new List<string>();
             Personality = string.Empty;
         }
+
+        public Intelligence Copy()
+        {
+            var copy = new Intelligence();
+
+            copy.Alignment = Alignment;
+            copy.CharismaStat = CharismaStat;
+            copy.Communication = Communication.ToArray();
+            copy.DedicatedPower = DedicatedPower;
+            copy.Ego = Ego;
+            copy.IntelligenceStat = IntelligenceStat;
+            copy.Languages.AddRange(Languages);
+            copy.Personality = Personality;
+            copy.Powers.AddRange(Powers);
+            copy.Senses = Senses;
+            copy.SpecialPurpose = SpecialPurpose;
+            copy.WisdomStat = WisdomStat;
+
+            return copy;
+        }
     }
 }

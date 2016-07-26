@@ -13,6 +13,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.innerGenerator = innerGenerator;
         }
 
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            return innerGenerator.Generate(template, allowRandomDecoration);
+        }
+
         public Item GenerateAtPower(string power)
         {
             if (power == PowerConstants.Mundane)

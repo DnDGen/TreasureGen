@@ -12,19 +12,19 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
     {
         private IPercentileSelector decorator;
         private Mock<IPercentileSelector> mockInnerSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
 
         [SetUp]
         public void Setup()
         {
             mockInnerSelector = new Mock<IPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
 
             var replacementStrings = new[] { "FIRST", "SECOND" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, TableNameConstants.Attributes.Set.ReplacementStrings))
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, TableNameConstants.Collections.Set.ReplacementStrings))
                 .Returns(replacementStrings);
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, "FIRST")).Returns(new[] { "first table" });
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, "SECOND")).Returns(new[] { "second table" });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, "FIRST")).Returns(new[] { "first table" });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, "SECOND")).Returns(new[] { "second table" });
 
             decorator = new ReplacePercentileSelectorDecorator(mockInnerSelector.Object, mockAttributesSelector.Object);
         }
@@ -50,10 +50,10 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
         [Test]
         public void GetReplacementStringsOnConstruction()
         {
-            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, TableNameConstants.Attributes.Set.ReplacementStrings),
+            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, TableNameConstants.Collections.Set.ReplacementStrings),
                 Times.Once);
-            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, "FIRST"), Times.Once);
-            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, "SECOND"), Times.Once);
+            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, "FIRST"), Times.Once);
+            mockAttributesSelector.Verify(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, "SECOND"), Times.Once);
         }
 
         [Test]

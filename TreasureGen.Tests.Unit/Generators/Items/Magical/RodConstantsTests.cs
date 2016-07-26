@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Linq;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -44,9 +44,55 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(RodConstants.Viper, "Rod of the viper")]
         [TestCase(RodConstants.Withering, "Rod of withering")]
         [TestCase(RodConstants.Wonder, "Rod of wonder")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllRods()
+        {
+            var rods = RodConstants.GetAllRods();
+
+            Assert.That(rods, Contains.Item(RodConstants.Absorption));
+            Assert.That(rods, Contains.Item(RodConstants.Alertness));
+            Assert.That(rods, Contains.Item(RodConstants.Cancellation));
+            Assert.That(rods, Contains.Item(RodConstants.EnemyDetection));
+            Assert.That(rods, Contains.Item(RodConstants.Flailing));
+            Assert.That(rods, Contains.Item(RodConstants.FlameExtinguishing));
+            Assert.That(rods, Contains.Item(RodConstants.ImmovableRod));
+            Assert.That(rods, Contains.Item(RodConstants.LordlyMight));
+            Assert.That(rods, Contains.Item(RodConstants.MetalAndMineralDetection));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Empower));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Empower_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Empower_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Enlarge));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Enlarge_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Enlarge_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Extend));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Extend_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Extend_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Maximize));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Maximize_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Maximize_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Quicken));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Quicken_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Quicken_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Silent));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Silent_Greater));
+            Assert.That(rods, Contains.Item(RodConstants.Metamagic_Silent_Lesser));
+            Assert.That(rods, Contains.Item(RodConstants.Negation));
+            Assert.That(rods, Contains.Item(RodConstants.Python));
+            Assert.That(rods, Contains.Item(RodConstants.Rulership));
+            Assert.That(rods, Contains.Item(RodConstants.Splendor));
+            Assert.That(rods, Contains.Item(RodConstants.Security));
+            Assert.That(rods, Contains.Item(RodConstants.ThunderAndLightning));
+            Assert.That(rods, Contains.Item(RodConstants.Viper));
+            Assert.That(rods, Contains.Item(RodConstants.Withering));
+            Assert.That(rods, Contains.Item(RodConstants.Wonder));
+            Assert.That(rods.Count(), Is.EqualTo(36));
+
+
         }
     }
 }

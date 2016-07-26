@@ -19,7 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private IIntelligenceGenerator intelligenceGenerator;
         private Mock<Dice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private Mock<IIntelligenceAttributesSelector> mockIntelligenceAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private List<string> attributes;
@@ -32,7 +32,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             mockIntelligenceAttributesSelector = new Mock<IIntelligenceAttributesSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             intelligenceAttributesResult = new IntelligenceAttributesResult();
@@ -44,7 +44,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(fillerValues);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 4 });
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("10");
-            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceAttributes, It.IsAny<string>())).Returns(intelligenceAttributesResult);
+            mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceAttributes, It.IsAny<string>())).Returns(intelligenceAttributesResult);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(string.Empty);
 
             intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
@@ -54,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DetermineIntelligentFromBooleanSelector()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -64,7 +64,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DetermineNotIntelligentFromBooleanSelector()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(false);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -75,7 +75,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void DetermineMeleeIntelligence()
         {
             attributes.Add(AttributeConstants.Melee);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -86,7 +86,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void DetermineRangedIntelligence()
         {
             attributes.Add(AttributeConstants.Ranged);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Ranged);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Ranged);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -98,7 +98,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Melee);
             attributes.Add(AttributeConstants.Ranged);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -109,7 +109,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void AmmunitionIsNotIntelligent()
         {
             attributes.Add(AttributeConstants.Ammunition);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -120,7 +120,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void OneTimeUseItemsAreNotIntelligent()
         {
             attributes.Add(AttributeConstants.OneTimeUse);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
@@ -130,7 +130,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NonMagicalItemsAreNotIntelligent()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, false);
@@ -185,7 +185,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "talky" };
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("9266");
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "9266")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "9266")).Returns(attributes);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Communication, Is.EqualTo(attributes));
@@ -196,7 +196,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "Speech" };
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("10");
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "10")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "10")).Returns(attributes);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Languages, Contains.Item("Common"));
@@ -207,7 +207,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "Speech" };
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("14");
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "14")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "14")).Returns(attributes);
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Languages)).Returns("english").Returns("german");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -222,7 +222,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "Speech" };
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("14");
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "14")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "14")).Returns(attributes);
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Languages))
                 .Returns("english").Returns("english").Returns("german");
 
@@ -245,7 +245,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetLesserPowersFromAttributesSelector()
         {
             intelligenceAttributesResult.LesserPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -256,7 +256,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void CannotHaveDuplicateLesserPowers()
         {
             intelligenceAttributesResult.LesserPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -269,7 +269,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetGreaterPowersFromAttributesSelector()
         {
             intelligenceAttributesResult.GreaterPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -533,10 +533,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void ItemWithSpecificAlignmentHasMatchingAlignment()
         {
             item.Name = "item name";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items"))
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items"))
                 .Returns(new[] { item.Name, "other item name" });
             var alignment = "specific alignment";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
                 .Returns("alignment").Returns(alignment);
 
@@ -548,8 +548,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void ItemWithNoSpecificAlignmentHasAnyAlignment()
         {
             item.Name = "item name";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items")).Returns(new[] { "other item name" });
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { "specific" });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items")).Returns(new[] { "other item name" });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { "specific" });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
                 .Returns("alignment").Returns("specific alignment");
 
@@ -561,10 +561,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void ItemWithSpecificAlignmentBeginningHasMatchingAlignment()
         {
             item.Name = "item name";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items"))
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items"))
                 .Returns(new[] { item.Name, "other item name" });
             var alignment = "specific";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
                 .Returns("alignment").Returns("specific alignment");
 
@@ -576,10 +576,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void ItemWithSpecificAlignmentEndingHasMatchingAlignment()
         {
             item.Name = "item name";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items"))
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items"))
                 .Returns(new[] { item.Name, "other item name" });
             var alignment = "ending";
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { alignment });
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
                 .Returns("alignment").Returns("specific alignment ending");
 
@@ -645,6 +645,36 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void TrueNeutralSatisfiesAllRequirements()
+        {
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = SpecialAbilityConstants.Unholy },
+                new SpecialAbility { Name = SpecialAbilityConstants.Holy },
+                new SpecialAbility { Name = SpecialAbilityConstants.Axiomatic },
+                new SpecialAbility { Name = SpecialAbilityConstants.Anarchic }
+            };
+
+            item.Traits.Add(AlignmentConstants.ChaoticEvil);
+            item.Traits.Add($"trait ({AlignmentConstants.Good})");
+
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name)).Returns(new[] { "specific" });
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments))
+                .Returns(AlignmentConstants.ChaoticEvil)
+                .Returns(AlignmentConstants.ChaoticGood)
+                .Returns(AlignmentConstants.ChaoticNeutral)
+                .Returns(AlignmentConstants.LawfulEvil)
+                .Returns(AlignmentConstants.LawfulGood)
+                .Returns(AlignmentConstants.LawfulNeutral)
+                .Returns(AlignmentConstants.NeutralEvil)
+                .Returns(AlignmentConstants.NeutralGood)
+                .Returns(AlignmentConstants.TrueNeutral);
+
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Alignment, Is.EqualTo(AlignmentConstants.TrueNeutral));
+        }
+
+        [Test]
         public void EgoIncludesMagicBonus()
         {
             item.Magic.Bonus = 9266;
@@ -706,7 +736,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void EgoIncludesTelepathy()
         {
             var attributes = new[] { "Telepathy" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "10")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "10")).Returns(attributes);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
@@ -716,7 +746,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void EgoIncludesReading()
         {
             var attributes = new[] { "Read" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "10")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "10")).Returns(attributes);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
@@ -726,7 +756,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void EgoIncludesReadMagic()
         {
             var attributes = new[] { "Read magic" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "10")).Returns(attributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "10")).Returns(attributes);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
             Assert.That(intelligence.Ego, Is.EqualTo(1));
@@ -755,7 +785,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var communication = new[] { "Read", "Read magic", "Telepathy" };
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("19");
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, "19")).Returns(communication);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, "19")).Returns(communication);
             intelligenceAttributesResult.LesserPowersCount = 2;
             intelligenceAttributesResult.GreaterPowersCount = 2;
 

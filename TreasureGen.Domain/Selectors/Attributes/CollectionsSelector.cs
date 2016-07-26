@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using TreasureGen.Domain.Mappers.Attributes;
+using TreasureGen.Domain.Mappers.Collections;
 
 namespace TreasureGen.Domain.Selectors.Attributes
 {
-    internal class AttributesSelector : IAttributesSelector
+    internal class CollectionsSelector : ICollectionsSelector
     {
-        private IAttributesMapper attributesMapper;
+        private ICollectionsMapper attributesMapper;
 
-        public AttributesSelector(IAttributesMapper attributesMapper)
+        public CollectionsSelector(ICollectionsMapper attributesMapper)
         {
             this.attributesMapper = attributesMapper;
         }

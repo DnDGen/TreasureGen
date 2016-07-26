@@ -6,14 +6,14 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Integration.Tables
 {
     [TestFixture]
-    public class ReplacementStringsTests : AttributesTests
+    public class ReplacementStringsTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.ReplacementStrings; }
+            get { return TableNameConstants.Collections.Set.ReplacementStrings; }
         }
 
-        [TestCase(TableNameConstants.Attributes.Set.ReplacementStrings,
+        [TestCase(TableNameConstants.Collections.Set.ReplacementStrings,
             ReplacementStringConstants.DesignatedFoe,
             ReplacementStringConstants.Gender,
             ReplacementStringConstants.Height,
@@ -35,9 +35,9 @@ namespace TreasureGen.Tests.Integration.Tables
             TableNameConstants.Percentiles.Set.PartialAlignments)]
         [TestCase(ReplacementStringConstants.FullAlignment,
             TableNameConstants.Percentiles.Set.FullAlignments)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

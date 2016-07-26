@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Linq;
 using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Unit.Generators.Items
@@ -118,9 +118,130 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.NetOfSnaring, "Net of snaring")]
         [TestCase(WeaponConstants.MaceOfBlood, "Mace of blood")]
         [TestCase(WeaponConstants.BerserkingSword, "Berserking sword")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllWeapons()
+        {
+            var weapons = WeaponConstants.GetAllWeapons();
+
+            Assert.That(weapons, Contains.Item(WeaponConstants.Arrow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.AssassinsDagger));
+            Assert.That(weapons, Contains.Item(WeaponConstants.BastardSword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Battleaxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Club));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus0Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus0Shortbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus1Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus1Shortbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus2Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus2Shortbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus3Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus4Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CrossbowBolt));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Dagger));
+            Assert.That(weapons, Contains.Item(WeaponConstants.DaggerOfVenom));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Dart));
+            Assert.That(weapons, Contains.Item(WeaponConstants.DireFlail));
+            Assert.That(weapons, Contains.Item(WeaponConstants.DwarvenThrower));
+            Assert.That(weapons, Contains.Item(WeaponConstants.DwarvenUrgrosh));
+            Assert.That(weapons, Contains.Item(WeaponConstants.DwarvenWaraxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Falchion));
+            Assert.That(weapons, Contains.Item(WeaponConstants.FlameTongue));
+            Assert.That(weapons, Contains.Item(WeaponConstants.FrostBrand));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Gauntlet));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Glaive));
+            Assert.That(weapons, Contains.Item(WeaponConstants.GnomeHookedHammer));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Greataxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Greatclub));
+            Assert.That(weapons, Contains.Item(WeaponConstants.GreaterSlayingArrow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Greatsword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Guisarme));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Halberd));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Halfspear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Handaxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HandCrossbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HeavyCrossbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HeavyFlail));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HeavyMace));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HeavyPick));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HeavyRepeatingCrossbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.HolyAvenger));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Javelin));
+            Assert.That(weapons, Contains.Item(WeaponConstants.JavelinOfLightning));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Kama));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Kukri));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Lance));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LifeDrinker));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightCrossbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightFlail));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightHammer));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightMace));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightPick));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LightRepeatingCrossbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Longspear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Longsword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.LuckBlade));
+            Assert.That(weapons, Contains.Item(WeaponConstants.MaceOfSmiting));
+            Assert.That(weapons, Contains.Item(WeaponConstants.MaceOfTerror));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Morningstar));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Net));
+            Assert.That(weapons, Contains.Item(WeaponConstants.NineLivesStealer));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Nunchaku));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Oathbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.OrcDoubleAxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.PunchingDagger));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Quarterstaff));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Ranseur));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Rapier));
+            Assert.That(weapons, Contains.Item(WeaponConstants.RapierOfPuncturing));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Sap));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Scimitar));
+            Assert.That(weapons, Contains.Item(WeaponConstants.ScreamingBolt));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Scythe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Shatterspike));
+            Assert.That(weapons, Contains.Item(WeaponConstants.ShiftersSorrow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Shortbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Shortspear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.ShortSword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Shuriken));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Siangham));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Sickle));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SlayingArrow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SleepArrow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Sling));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SlingBullet));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SpikedChain));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SpikedGauntlet));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SunBlade));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SwordOfLifeStealing));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SwordOfSubtlety));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SwordOfThePlanes));
+            Assert.That(weapons, Contains.Item(WeaponConstants.SylvanScimitar));
+            Assert.That(weapons, Contains.Item(WeaponConstants.ThrowingAxe));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Trident));
+            Assert.That(weapons, Contains.Item(WeaponConstants.TridentOfFishCommand));
+            Assert.That(weapons, Contains.Item(WeaponConstants.TridentOfWarning));
+            Assert.That(weapons, Contains.Item(WeaponConstants.TwoBladedSword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Warhammer));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Whip));
+            Assert.That(weapons, Contains.Item(WeaponConstants.BerserkingSword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CursedBackbiterSpear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CursedMinus2Sword));
+            Assert.That(weapons, Contains.Item(WeaponConstants.MaceOfBlood));
+            Assert.That(weapons, Contains.Item(WeaponConstants.NetOfSnaring));
+
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.SilverDagger));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade0));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade1));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade2));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade3));
+
+            Assert.That(weapons.Count(), Is.EqualTo(106));
         }
     }
 }

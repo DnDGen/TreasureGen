@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Mappers.Attributes;
+using TreasureGen.Domain.Mappers.Collections;
 using TreasureGen.Domain.Selectors.Attributes;
 
 namespace TreasureGen.Tests.Unit.Selectors
@@ -10,8 +10,8 @@ namespace TreasureGen.Tests.Unit.Selectors
     [TestFixture]
     public class AttributesSelectorTests
     {
-        private IAttributesSelector attributesSelector;
-        private Mock<IAttributesMapper> mockAttributesMapper;
+        private ICollectionsSelector attributesSelector;
+        private Mock<ICollectionsMapper> mockAttributesMapper;
         private IEnumerable<string> expected;
 
         [SetUp]
@@ -22,11 +22,11 @@ namespace TreasureGen.Tests.Unit.Selectors
             table.Add("name", expected);
             table.Add("other name", Enumerable.Empty<string>());
 
-            mockAttributesMapper = new Mock<IAttributesMapper>();
+            mockAttributesMapper = new Mock<ICollectionsMapper>();
             mockAttributesMapper.Setup(p => p.Map("table name")).Returns(table);
             mockAttributesMapper.Setup(p => p.Map("other table name")).Returns(new Dictionary<string, IEnumerable<string>>());
 
-            attributesSelector = new AttributesSelector(mockAttributesMapper.Object);
+            attributesSelector = new CollectionsSelector(mockAttributesMapper.Object);
         }
 
         [Test]

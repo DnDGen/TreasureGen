@@ -1,114 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentile>
-    <object>
-        <name>Battleaxe</name>
-        <attribute>Adamantine</attribute>
-    </object>
-    <object>
-        <name>Dagger</name>
-        <attribute>Adamantine</attribute>
-    </object>
-    <object>
-        <name>Silver dagger</name>
-        <attribute>Alchemical silver</attribute>
-    </object>
-    <object>
-        <name>Holy avenger</name>
-        <attribute>Cold iron</attribute>
-    </object>
-    <object>
-        <name>Longsword</name>
-        <attribute>Masterwork</attribute>
-        <attribute>Cold iron</attribute>
-    </object>
-    <object>
-        <name>Mace of smiting</name>
-        <attribute>Adamantine</attribute>
-    </object>
-    <object>
-        <name>Shifter's sorrow</name>
-        <attribute>Alchemical silver</attribute>
-    </object>
-    <object>
-        <name>Shatterspike</name>
-    </object>
-    <object>
-        <name>Assassin's dagger</name>
-    </object>
-    <object>
-        <name>Dagger of venom</name>
-    </object>
-    <object>
-        <name>Dwarven thrower</name>
-    </object>
-    <object>
-        <name>Flame tongue</name>
-    </object>
-    <object>
-        <name>Rapier of puncturing</name>
-    </object>
-    <object>
-        <name>Frost brand</name>
-    </object>
-    <object>
-        <name>Greater slaying arrow</name>
-    </object>
-    <object>
-        <name>Javelin of lightning</name>
-    </object>
-    <object>
-        <name>Life-drinker</name>
-    </object>
-    <object>
-        <name>Luck blade (0 wishes)</name>
-    </object>
-    <object>
-        <name>Luck blade (1 wish)</name>
-    </object>
-    <object>
-        <name>Luck blade (2 wishes)</name>
-    </object>
-    <object>
-        <name>Luck blade (3 wishes)</name>
-    </object>
-    <object>
-        <name>Mace of terror</name>
-    </object>
-    <object>
-        <name>Nine lives stealer</name>
-    </object>
-    <object>
-        <name>Screaming bolt</name>
-    </object>
-    <object>
-        <name>Oathbow</name>
-    </object>
-    <object>
-        <name>Slaying arrow</name>
-    </object>
-    <object>
-        <name>Sleep arrow</name>
-    </object>
-    <object>
-        <name>Sun blade</name>
-    </object>
-    <object>
-        <name>Sword of life stealing</name>
-    </object>
-    <object>
-        <name>Sword of the planes</name>
-    </object>
-    <object>
-        <name>Sword of subtlety</name>
-    </object>
-    <object>
-        <name>Sylvan scimitar</name>
-    </object>
-    <object>
-        <name>Trident of warning</name>
-    </object>
-    <object>
-        <name>Trident of fish command</name>
-    </object>
+  <object>
+    <name>Battleaxe</name>
+    <attribute>Adamantine</attribute>
+  </object>
+  <object>
+    <name>Dagger</name>
+    <attribute>Adamantine</attribute>
+  </object>
+  <object>
+    <name>Silver dagger</name>
+    <attribute>Alchemical silver</attribute>
+  </object>
+  <object>
+    <name>Holy avenger</name>
+    <attribute>Cold iron</attribute>
+  </object>
+  <object>
+    <name>Longsword</name>
+    <attribute>Masterwork</attribute>
+    <attribute>Cold iron</attribute>
+  </object>
+  <object>
+    <name>Mace of smiting</name>
+    <attribute>Adamantine</attribute>
+  </object>
+  <object>
+    <name>Shifter's sorrow</name>
+    <attribute>Alchemical silver</attribute>
+  </object>
+  <object>
+    <name>Shatterspike</name>
+  </object>
+  <object>
+    <name>Assassin's dagger</name>
+  </object>
+  <object>
+    <name>Dagger of venom</name>
+  </object>
+  <object>
+    <name>Dwarven thrower</name>
+  </object>
+  <object>
+    <name>Flame tongue</name>
+  </object>
+  <object>
+    <name>Rapier of puncturing</name>
+  </object>
+  <object>
+    <name>Frost brand</name>
+  </object>
+  <object>
+    <name>Greater slaying arrow</name>
+  </object>
+  <object>
+    <name>Javelin of lightning</name>
+  </object>
+  <object>
+    <name>Life-drinker</name>
+  </object>
+  <object>
+    <name>Luck blade (0 wishes)</name>
+  </object>
+  <object>
+    <name>Luck blade (1 wish)</name>
+  </object>
+  <object>
+    <name>Luck blade (2 wishes)</name>
+  </object>
+  <object>
+    <name>Luck blade (3 wishes)</name>
+  </object>
+  <object>
+    <name>Luck blade</name>
+  </object>
+  <object>
+    <name>Mace of terror</name>
+  </object>
+  <object>
+    <name>Nine lives stealer</name>
+  </object>
+  <object>
+    <name>Screaming bolt</name>
+  </object>
+  <object>
+    <name>Oathbow</name>
+  </object>
+  <object>
+    <name>Slaying arrow</name>
+  </object>
+  <object>
+    <name>Sleep arrow</name>
+  </object>
+  <object>
+    <name>Sun blade</name>
+  </object>
+  <object>
+    <name>Sword of life stealing</name>
+  </object>
+  <object>
+    <name>Sword of the planes</name>
+  </object>
+  <object>
+    <name>Sword of subtlety</name>
+  </object>
+  <object>
+    <name>Sylvan scimitar</name>
+  </object>
+  <object>
+    <name>Trident of warning</name>
+  </object>
+  <object>
+    <name>Trident of fish command</name>
+  </object>
 </percentile>

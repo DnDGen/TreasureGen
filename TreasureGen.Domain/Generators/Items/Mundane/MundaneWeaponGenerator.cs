@@ -12,15 +12,15 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     {
         private IPercentileSelector percentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private Dice dice;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
         }
@@ -41,20 +41,53 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             {
                 weapon.Name = weaponName;
                 weapon.ItemType = ItemTypeConstants.Weapon;
-                tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
-                weapon.Attributes = attributesSelector.SelectFrom(tableName, weapon.Name);
+                tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
             }
 
             var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
-            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
-            if (thrownWeapons.Contains(weapon.Name))
+            if (weapon.Attributes.Contains(AttributeConstants.Thrown) && weapon.Attributes.Contains(AttributeConstants.Melee) == false)
                 weapon.Quantity = dice.Roll().d20();
 
             var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
             weapon.Traits.Add(size);
+
+            return weapon;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            template.ItemType = ItemTypeConstants.Weapon;
+            var weapon = template.CopyWithoutMagic();
+
+            if (ammunitionGenerator.TemplateIsAmmunition(template))
+            {
+                weapon = ammunitionGenerator.GenerateFrom(template);
+                weapon = weapon.CopyWithoutMagic();
+            }
+            else
+            {
+                var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
+            }
+
+            var sizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+
+            if (weapon.Traits.Intersect(sizes).Any() == false)
+            {
+                var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+                weapon.Traits.Add(size);
+            }
+
+            if (allowRandomDecoration)
+            {
+                var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+                if (isMasterwork)
+                    weapon.Traits.Add(TraitConstants.Masterwork);
+            }
 
             return weapon;
         }

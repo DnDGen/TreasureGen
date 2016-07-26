@@ -6,11 +6,11 @@ using NUnit.Framework;
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
 {
     [TestFixture]
-    public class SpecialMaterialsTests : AttributesTests
+    public class SpecialMaterialsTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Attributes.Set.SpecialMaterials; }
+            get { return TableNameConstants.Collections.Set.SpecialMaterials; }
         }
 
         [TestCase(TraitConstants.Adamantine, AttributeConstants.Metal)]
@@ -21,9 +21,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
         [TestCase(TraitConstants.AlchemicalSilver, AttributeConstants.Metal,
                                                    ItemTypeConstants.Weapon)]
         [TestCase(TraitConstants.Darkwood, AttributeConstants.Wood)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

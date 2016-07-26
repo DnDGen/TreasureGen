@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rings
 {
     [TestFixture]
-    public class RingAttributesTests : AttributesTests
+    public class RingAttributesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring); }
         }
 
         [TestCase(RingConstants.FeatherFalling)]
@@ -70,9 +70,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rings
                          AttributeConstants.OneTimeUse)]
         [TestCase(RingConstants.ThreeWishes, AttributeConstants.Charged,
                                   AttributeConstants.OneTimeUse)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

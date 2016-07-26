@@ -30,5 +30,17 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             return wand;
         }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            template.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
+            template.ItemType = ItemTypeConstants.Wand;
+
+            var wand = template.Copy();
+            wand.IsMagical = true;
+            wand.Quantity = 1;
+
+            return wand;
+        }
     }
 }

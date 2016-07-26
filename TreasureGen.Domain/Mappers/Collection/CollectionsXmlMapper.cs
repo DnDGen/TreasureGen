@@ -2,9 +2,9 @@
 using System.Xml;
 using TreasureGen.Domain.Tables;
 
-namespace TreasureGen.Domain.Mappers.Attributes
+namespace TreasureGen.Domain.Mappers.Collections
 {
-    internal class AttributesXmlMapper : IAttributesMapper
+    internal class AttributesXmlMapper : ICollectionsMapper
     {
         private IStreamLoader streamLoader;
 

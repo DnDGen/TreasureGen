@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -9,8 +9,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class MagicalWeaponGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Weapon)]
-        public MagicalItemGenerator MagicalWeaponGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return true; }
+        }
 
         protected override string itemType
         {
@@ -35,10 +37,21 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(weapon.Magic.SpecialAbilities, Is.Not.Null);
         }
 
-        protected override Item GenerateItem()
+        protected override IEnumerable<string> GetItemNames()
         {
-            var power = GetNewPower();
-            return MagicalWeaponGenerator.GenerateAtPower(power);
+            return WeaponConstants.GetAllWeapons();
+        }
+
+        [Test]
+        public void StressCustomWeapon()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomWeapon()
+        {
+            Stress(StressRandomCustomItem);
         }
 
         [Test]

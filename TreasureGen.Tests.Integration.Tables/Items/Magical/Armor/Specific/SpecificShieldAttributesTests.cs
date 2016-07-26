@@ -6,11 +6,11 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
-    public class SpecificShieldAttributesTests : AttributesTests
+    public class SpecificShieldAttributesTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, AttributeConstants.Shield); }
+            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, AttributeConstants.Shield); }
         }
 
         [TestCase(ArmorConstants.AbsorbingShield, ItemTypeConstants.Armor,
@@ -53,9 +53,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
                                                AttributeConstants.NotTower,
                                                AttributeConstants.Specific,
                                                AttributeConstants.Wood)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

@@ -1,40 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <attributes>
-    <object>
-        <name>Arrow</name>
-        <attribute>Weapon</attribute>
-        <attribute>Common</attribute>
-        <attribute>Ranged</attribute>
-        <attribute>Ammunition</attribute>
-        <attribute>Wood</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Not bludgeoning</attribute>
-    </object>
-    <object>
-        <name>Crossbow bolt</name>
-        <attribute>Weapon</attribute>
-        <attribute>Common</attribute>
-        <attribute>Ranged</attribute>
-        <attribute>Ammunition</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Not bludgeoning</attribute>
-    </object>
-    <object>
-        <name>Sling bullet</name>
-        <attribute>Weapon</attribute>
-        <attribute>Common</attribute>
-        <attribute>Ranged</attribute>
-        <attribute>Ammunition</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Bludgeoning</attribute>
-    </object>
   <object>
-    <name>Thrown</name>
-    <attribute>Dart</attribute>
-    <attribute>Javelin</attribute>
-    <attribute>Javelin of lightning</attribute>
-    <attribute>Throwing axe</attribute>
-    <attribute>Shuriken</attribute>
+    <name>Arrow</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Wood</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Piercing</attribute>
+  </object>
+  <object>
+    <name>Crossbow bolt</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Piercing</attribute>
+  </object>
+  <object>
+    <name>Sling bullet</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Bludgeoning</attribute>
   </object>
 </attributes>

@@ -1,4 +1,6 @@
-﻿namespace TreasureGen.Items.Magical
+﻿using System.Collections.Generic;
+
+namespace TreasureGen.Items.Magical
 {
     public static class StaffConstants
     {
@@ -23,5 +25,33 @@
         public const string Life = "Staff of Life";
         public const string Passage = "Staff of Passage";
         public const string Power = "Staff of Power";
+
+        public static IEnumerable<string> GetAllStaffs()
+        {
+            return new[]
+            {
+                Charming,
+                Fire,
+                SwarmingInsects,
+                Healing,
+                SizeAlteration,
+                Illumination,
+                Frost,
+                Defense,
+                Abjuration,
+                Conjuration,
+                Enchantment,
+                Evocation,
+                Illusion,
+                Necromancy,
+                Transmutation,
+                Divination,
+                EarthAndStone,
+                Woodlands,
+                Life,
+                Passage,
+                Power
+            };
+        }
     }
 }

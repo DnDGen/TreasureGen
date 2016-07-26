@@ -108,18 +108,18 @@
     <Compile Include="IoC\Modules\SelectorsModule.cs" />
     <Compile Include="IoC\Modules\TablesModule.cs" />
     <Compile Include="IoC\TreasureGenModuleLoader.cs" />
-    <Compile Include="Mappers\Attributes\AttributesMapperCachingProxy.cs" />
-    <Compile Include="Mappers\Attributes\AttributesXmlMapper.cs" />
-    <Compile Include="Mappers\Attributes\IAttributesMapper.cs" />
+    <Compile Include="Mappers\Collection\CollectionsMapperCachingProxy.cs" />
+    <Compile Include="Mappers\Collection\CollectionsXmlMapper.cs" />
+    <Compile Include="Mappers\Collection\ICollectionsMapper.cs" />
     <Compile Include="Mappers\Percentile\IPercentileMapper.cs" />
     <Compile Include="Mappers\Percentile\PercentileMapperCachingProxy.cs" />
     <Compile Include="Mappers\Percentile\PercentileXmlMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selectors\Attributes\AttributesSelector.cs" />
+    <Compile Include="Selectors\Attributes\CollectionsSelector.cs" />
     <Compile Include="Selectors\Percentiles\BooleanPercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecorator.cs" />
-    <Compile Include="Selectors\Attributes\IAttributesSelector.cs" />
+    <Compile Include="Selectors\Attributes\ICollectionsSelector.cs" />
     <Compile Include="Selectors\Percentiles\IBooleanPercentileSelector.cs" />
     <Compile Include="Selectors\Attributes\IIntelligenceAttributesSelector.cs" />
     <Compile Include="Selectors\Attributes\IntelligenceAttributesSelector.cs" />
@@ -834,6 +834,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\ItemGroups.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

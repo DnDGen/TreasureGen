@@ -25,5 +25,13 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             return item;
         }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var item = template.CopyWithoutMagic();
+            item.ItemType = ItemTypeConstants.AlchemicalItem;
+
+            return item;
+        }
     }
 }

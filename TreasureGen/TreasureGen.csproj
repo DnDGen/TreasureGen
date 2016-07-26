@@ -56,8 +56,10 @@
     <Compile Include="Items\ItemTypeConstants.cs" />
     <Compile Include="Items\Magical\Magic.cs" />
     <Compile Include="Items\Magical\MagicalItemGenerator.cs" />
+    <Compile Include="Items\Mundane\AlchemicalItemConstants.cs" />
     <Compile Include="Items\Mundane\MundaneItemGenerator.cs" />
     <Compile Include="Items\Magical\PotionConstants.cs" />
+    <Compile Include="Items\Mundane\ToolConstants.cs" />
     <Compile Include="Items\PowerConstants.cs" />
     <Compile Include="Items\Magical\RingConstants.cs" />
     <Compile Include="Items\Magical\RodConstants.cs" />

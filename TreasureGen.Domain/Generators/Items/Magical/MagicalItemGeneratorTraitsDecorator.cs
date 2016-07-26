@@ -14,16 +14,35 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.traitsGenerator = traitsGenerator;
         }
 
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
+
+            if (allowRandomDecoration)
+            {
+                item = AddTraits(item);
+            }
+
+            return item;
+        }
+
+        private Item AddTraits(Item item)
+        {
+            var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
+
+            foreach (var trait in traits)
+                item.Traits.Add(trait);
+
+            return item;
+        }
+
         public Item GenerateAtPower(string power)
         {
             var item = innerGenerator.GenerateAtPower(power);
             if (item.IsMagical == false)
                 return item;
 
-            var traits = traitsGenerator.GenerateFor(item.ItemType, item.Attributes);
-
-            foreach (var trait in traits)
-                item.Traits.Add(trait);
+            item = AddTraits(item);
 
             return item;
         }

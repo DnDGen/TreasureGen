@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
+using TreasureGen.Tests.Unit.Generators.Items;
 
 namespace TreasureGen.Tests.Integration.Stress.Items
 {

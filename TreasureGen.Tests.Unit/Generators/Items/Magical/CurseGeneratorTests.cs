@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
+using System;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -16,7 +17,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<Dice> mockDice;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
@@ -24,10 +26,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
 
             curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object,
-                mockAttributesSelector.Object);
+                mockCollectionsSelector.Object);
+
+            itemVerifier = new ItemVerifier();
         }
 
         [Test]
@@ -110,11 +114,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
 
             var itemType = new[] { "item type" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "specific cursed item"))
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item"))
                 .Returns(itemType);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "specific cursed item"))
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item"))
                 .Returns(attributes);
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem();
@@ -122,9 +126,57 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.IsMagical, Is.True);
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
             Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+        }
 
-            foreach (var attribute in attributes)
-                Assert.That(cursedItem.Attributes, Contains.Item(attribute));
+        [Test]
+        public void TemplateHasCurse()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var cursedItems = new[] { "other cursed item", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem)).Returns(cursedItems);
+
+            var isCursed = curseGenerator.IsSpecificCursedItem(template);
+            Assert.That(isCursed, Is.True);
+        }
+
+        [Test]
+        public void TemplateHasNoCurse()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var cursedItems = new[] { "other cursed item", "cursed item" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem)).Returns(cursedItems);
+
+            var isCursed = curseGenerator.IsSpecificCursedItem(template);
+            Assert.That(isCursed, Is.False);
+        }
+
+        [Test]
+        public void GenerateCustomSpecificCursedItem()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var itemType = new[] { "item type" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, name))
+                .Returns(itemType);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, name))
+                .Returns(attributes);
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem(template);
+            itemVerifier.AssertMagicalItemFromTemplate(cursedItem, template);
+            Assert.That(cursedItem.Name, Is.EqualTo(name));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }

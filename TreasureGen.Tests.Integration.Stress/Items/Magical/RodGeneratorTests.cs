@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -9,8 +9,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class RodGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Rod)]
-        public MagicalItemGenerator RodGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return false; }
+        }
 
         protected override string itemType
         {
@@ -30,9 +32,8 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(rod.Contents, Is.Not.Null);
             Assert.That(rod.IsMagical, Is.True);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
-            Assert.That(rod.Magic.Bonus, Is.AtLeast(0));
-            Assert.That(rod.Magic.Charges, Is.AtLeast(0));
-            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(rod.Magic.Bonus, Is.Not.Negative);
+            Assert.That(rod.Magic.Charges, Is.Not.Negative);
             Assert.That(rod.Quantity, Is.EqualTo(1));
             Assert.That(rod.Traits, Is.Not.Null);
 
@@ -40,10 +41,21 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(rodMaterials, Is.Empty);
         }
 
-        protected override Item GenerateItem()
+        protected override IEnumerable<string> GetItemNames()
         {
-            var power = GetNewPower(allowMinor: false);
-            return RodGenerator.GenerateAtPower(power);
+            return RodConstants.GetAllRods();
+        }
+
+        [Test]
+        public void StressCustomRod()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomRod()
+        {
+            Stress(StressRandomCustomItem);
         }
 
         [Test]

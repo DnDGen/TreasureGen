@@ -8,12 +8,12 @@ namespace TreasureGen.Tests.Unit.Selectors.Attributes
     public class SpecialAbilityAttributesSelectorTests
     {
         private ISpecialAbilityAttributesSelector selector;
-        private Mock<IAttributesSelector> mockInnerSelector;
+        private Mock<ICollectionsSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerSelector = new Mock<IAttributesSelector>();
+            mockInnerSelector = new Mock<ICollectionsSelector>();
             selector = new SpecialAbilityAttributesSelector(mockInnerSelector.Object);
         }
 

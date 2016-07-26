@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void AttributesSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IAttributesSelector>();
+            AssertNotSingleton<ICollectionsSelector>();
         }
 
         [Test]

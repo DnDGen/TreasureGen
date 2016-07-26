@@ -10,15 +10,15 @@ namespace TreasureGen.Domain.Selectors.Percentiles
         private IPercentileSelector innerSelector;
         private Dictionary<string, string> replacementTables;
 
-        public ReplacePercentileSelectorDecorator(IPercentileSelector innerSelector, IAttributesSelector attributesSelector)
+        public ReplacePercentileSelectorDecorator(IPercentileSelector innerSelector, ICollectionsSelector attributesSelector)
         {
             this.innerSelector = innerSelector;
 
-            var replaceTargets = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, TableNameConstants.Attributes.Set.ReplacementStrings);
+            var replaceTargets = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, TableNameConstants.Collections.Set.ReplacementStrings);
             replacementTables = new Dictionary<string, string>();
 
             foreach (var replaceTarget in replaceTargets)
-                replacementTables[replaceTarget] = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ReplacementStrings, replaceTarget).Single();
+                replacementTables[replaceTarget] = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, replaceTarget).Single();
         }
 
         public string SelectFrom(string tableName)

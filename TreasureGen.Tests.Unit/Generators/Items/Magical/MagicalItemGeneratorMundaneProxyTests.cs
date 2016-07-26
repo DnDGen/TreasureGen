@@ -35,5 +35,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             Assert.That(() => mundaneProxy.GenerateAtPower(PowerConstants.Mundane), Throws.ArgumentException);
         }
+
+        [Test]
+        public void PassCustomItemThrough()
+        {
+            var template = new Item();
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(innerItem);
+
+            var item = mundaneProxy.Generate(template, true);
+            Assert.That(item, Is.EqualTo(innerItem));
+        }
     }
 }

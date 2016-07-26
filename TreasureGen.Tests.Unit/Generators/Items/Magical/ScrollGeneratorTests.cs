@@ -1,6 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
+using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -13,6 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator scrollGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<Dice> mockDice;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
@@ -20,6 +23,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockDice = new Mock<Dice>();
             scrollGenerator = new ScrollGenerator(mockDice.Object, mockSpellGenerator.Object);
+
+            itemVerifier = new ItemVerifier();
 
             mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
         }
@@ -31,7 +36,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.IsMagical, Is.True);
-            Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Quantity, Is.EqualTo(1));
         }
 
         [Test]
@@ -97,6 +103,40 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
             mockSpellGenerator.Verify(g => g.GenerateLevel(PowerConstants.Minor), Times.Exactly(9266));
             mockSpellGenerator.Verify(g => g.Generate(It.IsAny<string>(), It.IsAny<int>()), Times.Exactly(9266));
+        }
+
+        [Test]
+        public void GenerateCustomScroll()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var scroll = scrollGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(scroll, template);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.IsMagical, Is.True);
+            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Quantity, Is.EqualTo(1));
+            Assert.That(scroll.Magic.Bonus, Is.EqualTo(0));
+            Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
+            Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateRandomCustomScroll()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var scroll = scrollGenerator.Generate(template, true);
+            itemVerifier.AssertMagicalItemFromTemplate(scroll, template);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.IsMagical, Is.True);
+            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Quantity, Is.EqualTo(1));
+            Assert.That(scroll.Magic.Bonus, Is.EqualTo(0));
+            Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
+            Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }

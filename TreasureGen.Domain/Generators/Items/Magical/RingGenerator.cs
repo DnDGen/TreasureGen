@@ -11,12 +11,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class RingGenerator : MagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
         private ISpellGenerator spellGenerator;
         private IChargesGenerator chargesGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
-        public RingGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, ISpellGenerator spellGenerator, IChargesGenerator chargesGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public RingGenerator(IPercentileSelector percentileSelector, ICollectionsSelector attributesSelector, ISpellGenerator spellGenerator, IChargesGenerator chargesGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
@@ -36,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             ring.IsMagical = true;
             ring.ItemType = ItemTypeConstants.Ring;
 
-            tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, ring.ItemType);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ring.ItemType);
             ring.Attributes = attributesSelector.SelectFrom(tableName, result.Type);
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
@@ -89,6 +89,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             return spells;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            template.Attributes = attributesSelector.SelectFrom(tableName, template.Name);
+
+            var ring = template.Copy();
+            ring.ItemType = ItemTypeConstants.Ring;
+            ring.Quantity = 1;
+            ring.IsMagical = true;
+
+            return ring;
         }
     }
 }

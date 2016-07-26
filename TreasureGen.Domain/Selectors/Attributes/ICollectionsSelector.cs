@@ -2,7 +2,7 @@
 
 namespace TreasureGen.Domain.Selectors.Attributes
 {
-    internal interface IAttributesSelector
+    internal interface ICollectionsSelector
     {
         IEnumerable<string> SelectFrom(string tableName, string name);
     }

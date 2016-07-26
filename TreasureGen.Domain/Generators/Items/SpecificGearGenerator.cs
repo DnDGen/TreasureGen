@@ -1,4 +1,5 @@
 ﻿using RollGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -13,24 +14,24 @@ namespace TreasureGen.Domain.Generators.Items
     internal class SpecificGearGenerator : ISpecificGearGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IAttributesSelector attributesSelector;
-        private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private IChargesGenerator chargesGenerator;
         private IPercentileSelector percentileSelector;
         private ISpellGenerator spellGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private Dice dice;
 
-        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
+        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionsSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, Dice dice, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.attributesSelector = attributesSelector;
-            this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.chargesGenerator = chargesGenerator;
             this.percentileSelector = percentileSelector;
             this.spellGenerator = spellGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
+            this.specialAbilitiesGenerator = specialAbilitiesGenerator;
         }
 
         public Item GenerateFrom(string power, string specificGearType)
@@ -42,17 +43,13 @@ namespace TreasureGen.Domain.Generators.Items
             gear.Name = result.Type;
             gear.Magic.Bonus = result.Amount;
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
+            gear.ItemType = GetItemType(specificGearType);
 
-            if (specificGearType == ItemTypeConstants.Weapon)
-                gear.ItemType = ItemTypeConstants.Weapon;
-            else
-                gear.ItemType = ItemTypeConstants.Armor;
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
+            gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
 
-            tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, specificGearType);
-            gear.Attributes = attributesSelector.SelectFrom(tableName, gear.Name);
-
-            tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, specificGearType);
-            var traits = attributesSelector.SelectFrom(tableName, gear.Name);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
+            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
 
             foreach (var trait in traits)
                 gear.Traits.Add(trait);
@@ -99,12 +96,13 @@ namespace TreasureGen.Domain.Generators.Items
 
         private int GetQuantity(Item gear)
         {
-            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
+            if (gear.Attributes.Contains(AttributeConstants.Ammunition))
+                return dice.Roll().d(50);
 
-            if (gear.Attributes.Contains(AttributeConstants.Ammunition) == false && thrownWeapons.Contains(gear.Name) == false)
-                return 1;
+            if (gear.Attributes.Contains(AttributeConstants.Thrown) && gear.Attributes.Contains(AttributeConstants.Melee) == false)
+                return dice.Roll().d20();
 
-            return dice.Roll().d20();
+            return 1;
         }
 
         private string RenameGear(string oldName)
@@ -122,24 +120,62 @@ namespace TreasureGen.Domain.Generators.Items
 
         private IEnumerable<SpecialAbility> GetSpecialAbilities(string specificGearType, string name)
         {
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
-            var abilityNames = attributesSelector.SelectFrom(tableName, name);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
+            var abilityNames = collectionsSelector.SelectFrom(tableName, name);
+            var abilities = specialAbilitiesGenerator.GenerateFor(abilityNames.ToArray());
 
-            return abilityNames.Select(n => ReconstituteAbility(n));
+            return abilities;
         }
 
-        private SpecialAbility ReconstituteAbility(string name)
+        public Item GenerateFrom(Item template)
         {
-            var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, name);
-            var ability = new SpecialAbility();
+            var specificGearType = GetSpecificGearType(template.Name);
+            template.ItemType = GetItemType(specificGearType);
 
-            ability.Name = name;
-            ability.AttributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, abilityResult.BaseName);
-            ability.BaseName = abilityResult.BaseName;
-            ability.BonusEquivalent = abilityResult.BonusEquivalent;
-            ability.Power = abilityResult.Power;
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
+            template.Attributes = collectionsSelector.SelectFrom(tableName, template.Name);
 
-            return ability;
+            var gear = template.Copy();
+            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
+
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
+            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
+
+            foreach (var trait in traits)
+                gear.Traits.Add(trait);
+
+            return gear;
+        }
+
+        private string GetItemType(string specificGearType)
+        {
+            if (specificGearType == ItemTypeConstants.Weapon)
+                return ItemTypeConstants.Weapon;
+
+            return ItemTypeConstants.Armor;
+        }
+
+        private string GetSpecificGearType(string name)
+        {
+            var shields = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield);
+            if (shields.Contains(name))
+                return AttributeConstants.Shield;
+
+            var armors = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor);
+            if (armors.Contains(name))
+                return ItemTypeConstants.Armor;
+
+            var weapons = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon);
+            if (weapons.Contains(name))
+                return ItemTypeConstants.Weapon;
+
+            throw new ArgumentException($"Specific gear {name} is not a shield, armor, or weapon");
+        }
+
+        public bool TemplateIsSpecific(Item template)
+        {
+            var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
+            return specificItems.Contains(template.Name);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -11,22 +11,22 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesSelector;
         private ISpecificGearGenerator specificGearGenerator;
 
-        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecificGearGenerator specificGearGenerator)
+        public MagicalArmorGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, ISpecialAbilitiesGenerator specialAbilitiesSelector, ISpecificGearGenerator specificGearGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesSelector = specialAbilitiesSelector;
             this.specificGearGenerator = specificGearGenerator;
         }
 
-        public Item GenerateAtPower(String power)
+        public Item GenerateAtPower(string power)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var abilityCount = 0;
 
@@ -43,12 +43,37 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             armor.ItemType = ItemTypeConstants.Armor;
             armor.Magic.Bonus = result.Amount;
 
-            tableName = String.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
             armor.Name = percentileSelector.SelectFrom(tableName);
 
-            tableName = String.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, armor.ItemType);
-            armor.Attributes = attributesSelector.SelectFrom(tableName, armor.Name);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
+            armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
             armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(armor.ItemType, armor.Attributes, power, armor.Magic.Bonus, abilityCount);
+
+            return armor;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var armor = template.Copy();
+
+            if (specificGearGenerator.TemplateIsSpecific(template))
+            {
+                armor = specificGearGenerator.GenerateFrom(template);
+            }
+            else
+            {
+                armor.ItemType = ItemTypeConstants.Armor;
+                armor.Quantity = 1;
+
+                var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
+                armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
+            }
+
+            armor.Quantity = 1;
+
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(specialAbilityNames);
 
             return armor;
         }

@@ -1,16 +1,18 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
-using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 {
     [TestFixture]
     public class ScrollGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Scroll)]
-        public MagicalItemGenerator ScrollGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return true; }
+        }
 
         protected override string itemType
         {
@@ -26,8 +28,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override void MakeSpecificAssertionsAgainst(Item scroll)
         {
             Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.Traits, Contains.Item("Arcane").Or.Contains("Divine"));
-            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
+
+            var trash = Guid.Empty;
+            if (scroll.Traits.Any(t => Guid.TryParse(t, out trash) == false))
+            {
+                Assert.That(scroll.Traits.Single(), Is.EqualTo("Arcane").Or.EqualTo("Divine"));
+            }
+
             Assert.That(scroll.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(scroll.Attributes.Count(), Is.EqualTo(1));
             Assert.That(scroll.Quantity, Is.EqualTo(1));
@@ -41,10 +48,21 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
         }
 
-        protected override Item GenerateItem()
+        protected override IEnumerable<string> GetItemNames()
         {
-            var power = GetNewPower();
-            return ScrollGenerator.GenerateAtPower(power);
+            return new[] { ItemTypeConstants.Scroll };
+        }
+
+        [Test]
+        public void StressCustomScroll()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomScroll()
+        {
+            Stress(StressRandomCustomItem);
         }
 
         [Test]

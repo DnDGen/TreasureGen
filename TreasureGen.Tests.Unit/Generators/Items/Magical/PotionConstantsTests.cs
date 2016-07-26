@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Linq;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -42,6 +42,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(PotionConstants.Levitate_Potion, "Potion of levitate")]
         [TestCase(PotionConstants.MageArmor, "Potion of mage armor")]
         [TestCase(PotionConstants.MagicCircleAgainstPARTIALALIGNMENT, "Potion of magic circle against PARTIALALIGNMENT")]
+        [TestCase(PotionConstants.MagicCircleAgainstChaos, "Potion of magic circle against chaos")]
+        [TestCase(PotionConstants.MagicCircleAgainstEvil, "Potion of magic circle against evil")]
+        [TestCase(PotionConstants.MagicCircleAgainstGood, "Potion of magic circle against good")]
+        [TestCase(PotionConstants.MagicCircleAgainstLaw, "Potion of magic circle against law")]
         [TestCase(PotionConstants.MagicFang, "Potion of magic fang")]
         [TestCase(PotionConstants.MagicFang_Greater, "Potion of greater magic fang")]
         [TestCase(PotionConstants.MagicStone, "Oil of magic stone")]
@@ -55,9 +59,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(PotionConstants.PassWithoutTrace, "Potion of pass without trace")]
         [TestCase(PotionConstants.Poison, "Potion of poison")]
         [TestCase(PotionConstants.ProtectionFromPARTIALALIGNMENT, "Potion of protection from PARTIALALIGNMENT")]
+        [TestCase(PotionConstants.ProtectionFromChaos, "Potion of protection from chaos")]
+        [TestCase(PotionConstants.ProtectionFromEvil, "Potion of protection from evil")]
+        [TestCase(PotionConstants.ProtectionFromGood, "Potion of protection from good")]
+        [TestCase(PotionConstants.ProtectionFromLaw, "Potion of protection from law")]
         [TestCase(PotionConstants.ProtectionFromArrows_10, "Potion of protection from arrows 10/magic")]
         [TestCase(PotionConstants.ProtectionFromArrows_15, "Potion of protection from arrows 15/magic")]
         [TestCase(PotionConstants.ProtectionFromENERGY, "Potion of protection from ENERGY")]
+        [TestCase(PotionConstants.ProtectionFromCold, "Potion of protection from cold")]
+        [TestCase(PotionConstants.ProtectionFromElectricity, "Potion of protection from electricity")]
+        [TestCase(PotionConstants.ProtectionFromFire, "Potion of protection from fire")]
+        [TestCase(PotionConstants.ProtectionFromSonic, "Potion of protection from sonic")]
+        [TestCase(PotionConstants.ProtectionFromAcid, "Potion of protection from acid")]
         [TestCase(PotionConstants.Rage, "Potion of rage")]
         [TestCase(PotionConstants.RemoveBlindnessDeafness, "Potion of remove blindness/deafness")]
         [TestCase(PotionConstants.RemoveCurse, "Potion of remove curse")]
@@ -66,8 +79,23 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(PotionConstants.RemoveFear, "Potion of remove fear")]
         [TestCase(PotionConstants.RemoveParalysis, "Potion of remove paralysis")]
         [TestCase(PotionConstants.ResistENERGY_10, "Potion of resist ENERGY 10")]
+        [TestCase(PotionConstants.ResistAcid_10, "Potion of resist acid 10")]
+        [TestCase(PotionConstants.ResistCold_10, "Potion of resist cold 10")]
+        [TestCase(PotionConstants.ResistElectricity_10, "Potion of resist electricity 10")]
+        [TestCase(PotionConstants.ResistFire_10, "Potion of resist fire 10")]
+        [TestCase(PotionConstants.ResistSonic_10, "Potion of resist sonic 10")]
         [TestCase(PotionConstants.ResistENERGY_20, "Potion of resist ENERGY 20")]
+        [TestCase(PotionConstants.ResistAcid_20, "Potion of resist acid 20")]
+        [TestCase(PotionConstants.ResistCold_20, "Potion of resist cold 20")]
+        [TestCase(PotionConstants.ResistElectricity_20, "Potion of resist electricity 20")]
+        [TestCase(PotionConstants.ResistFire_20, "Potion of resist fire 20")]
+        [TestCase(PotionConstants.ResistSonic_20, "Potion of resist sonic 20")]
         [TestCase(PotionConstants.ResistENERGY_30, "Potion of resist ENERGY 30")]
+        [TestCase(PotionConstants.ResistAcid_30, "Potion of resist acid 30")]
+        [TestCase(PotionConstants.ResistCold_30, "Potion of resist cold 30")]
+        [TestCase(PotionConstants.ResistElectricity_30, "Potion of resist electricity 30")]
+        [TestCase(PotionConstants.ResistFire_30, "Potion of resist fire 30")]
+        [TestCase(PotionConstants.ResistSonic_30, "Potion of resist sonic 30")]
         [TestCase(PotionConstants.Restoration_Lesser, "Potion of lesser restoration")]
         [TestCase(PotionConstants.Sanctuary, "Potion of sanctuary")]
         [TestCase(PotionConstants.ShieldOfFaith, "Potion of shield of faith")]
@@ -77,9 +105,109 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(PotionConstants.UndetectableAlignment, "Potion of undetectable alignment")]
         [TestCase(PotionConstants.WaterBreathing, "Potion of water breathing")]
         [TestCase(PotionConstants.WaterWalk, "Potion of water walk")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllPotions()
+        {
+            var potions = PotionConstants.GetAllPotions();
+
+            Assert.That(potions, Contains.Item(PotionConstants.Aid));
+            Assert.That(potions, Contains.Item(PotionConstants.Barkskin));
+            Assert.That(potions, Contains.Item(PotionConstants.BearsEndurance));
+            Assert.That(potions, Contains.Item(PotionConstants.BlessWeapon));
+            Assert.That(potions, Contains.Item(PotionConstants.Blur));
+            Assert.That(potions, Contains.Item(PotionConstants.BullsStrength));
+            Assert.That(potions, Contains.Item(PotionConstants.CatsGrace));
+            Assert.That(potions, Contains.Item(PotionConstants.CureLightWounds));
+            Assert.That(potions, Contains.Item(PotionConstants.CureModerateWounds));
+            Assert.That(potions, Contains.Item(PotionConstants.CureSeriousWounds));
+            Assert.That(potions, Contains.Item(PotionConstants.Darkness));
+            Assert.That(potions, Contains.Item(PotionConstants.Darkvision));
+            Assert.That(potions, Contains.Item(PotionConstants.Daylight));
+            Assert.That(potions, Contains.Item(PotionConstants.DelayPoison));
+            Assert.That(potions, Contains.Item(PotionConstants.Displacement));
+            Assert.That(potions, Contains.Item(PotionConstants.EaglesSplendor));
+            Assert.That(potions, Contains.Item(PotionConstants.EndureElements));
+            Assert.That(potions, Contains.Item(PotionConstants.EnlargePerson));
+            Assert.That(potions, Contains.Item(PotionConstants.FlameArrow));
+            Assert.That(potions, Contains.Item(PotionConstants.Fly));
+            Assert.That(potions, Contains.Item(PotionConstants.FoxsCunning));
+            Assert.That(potions, Contains.Item(PotionConstants.GaseousForm));
+            Assert.That(potions, Contains.Item(PotionConstants.GoodHope));
+            Assert.That(potions, Contains.Item(PotionConstants.Haste));
+            Assert.That(potions, Contains.Item(PotionConstants.Heroism));
+            Assert.That(potions, Contains.Item(PotionConstants.HideFromAnimals));
+            Assert.That(potions, Contains.Item(PotionConstants.HideFromUndead));
+            Assert.That(potions, Contains.Item(PotionConstants.Invisibility_Oil));
+            Assert.That(potions, Contains.Item(PotionConstants.Invisibility_Potion));
+            Assert.That(potions, Contains.Item(PotionConstants.Jump));
+            Assert.That(potions, Contains.Item(PotionConstants.KeenEdge));
+            Assert.That(potions, Contains.Item(PotionConstants.Levitate_Oil));
+            Assert.That(potions, Contains.Item(PotionConstants.Levitate_Potion));
+            Assert.That(potions, Contains.Item(PotionConstants.MageArmor));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicCircleAgainstChaos));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicCircleAgainstLaw));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicCircleAgainstGood));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicCircleAgainstEvil));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicFang));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicFang_Greater));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicStone));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicVestment));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicWeapon));
+            Assert.That(potions, Contains.Item(PotionConstants.MagicWeapon_Greater));
+            Assert.That(potions, Contains.Item(PotionConstants.Misdirection));
+            Assert.That(potions, Contains.Item(PotionConstants.NeutralizePoison));
+            Assert.That(potions, Contains.Item(PotionConstants.Nondetection));
+            Assert.That(potions, Contains.Item(PotionConstants.OwlsWisdom));
+            Assert.That(potions, Contains.Item(PotionConstants.PassWithoutTrace));
+            Assert.That(potions, Contains.Item(PotionConstants.Poison));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromArrows_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromArrows_15));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromFire));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromSonic));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromAcid));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromElectricity));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromCold));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromGood));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromEvil));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromLaw));
+            Assert.That(potions, Contains.Item(PotionConstants.ProtectionFromChaos));
+            Assert.That(potions, Contains.Item(PotionConstants.Rage));
+            Assert.That(potions, Contains.Item(PotionConstants.ReducePerson));
+            Assert.That(potions, Contains.Item(PotionConstants.RemoveBlindnessDeafness));
+            Assert.That(potions, Contains.Item(PotionConstants.RemoveCurse));
+            Assert.That(potions, Contains.Item(PotionConstants.RemoveDisease));
+            Assert.That(potions, Contains.Item(PotionConstants.RemoveFear));
+            Assert.That(potions, Contains.Item(PotionConstants.RemoveParalysis));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistCold_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistElectricity_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistFire_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistSonic_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistAcid_10));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistCold_20));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistElectricity_20));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistFire_20));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistSonic_20));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistAcid_20));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistCold_30));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistElectricity_30));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistFire_30));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistSonic_30));
+            Assert.That(potions, Contains.Item(PotionConstants.ResistAcid_30));
+            Assert.That(potions, Contains.Item(PotionConstants.Restoration_Lesser));
+            Assert.That(potions, Contains.Item(PotionConstants.Sanctuary));
+            Assert.That(potions, Contains.Item(PotionConstants.ShieldOfFaith));
+            Assert.That(potions, Contains.Item(PotionConstants.Shillelagh));
+            Assert.That(potions, Contains.Item(PotionConstants.SpiderClimb));
+            Assert.That(potions, Contains.Item(PotionConstants.Tongues));
+            Assert.That(potions, Contains.Item(PotionConstants.UndetectableAlignment));
+            Assert.That(potions, Contains.Item(PotionConstants.WaterBreathing));
+            Assert.That(potions, Contains.Item(PotionConstants.WaterWalk));
+            Assert.That(potions.Count(), Is.EqualTo(92));
         }
     }
 }

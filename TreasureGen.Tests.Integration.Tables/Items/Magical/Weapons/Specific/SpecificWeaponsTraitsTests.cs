@@ -1,23 +1,21 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
     [TestFixture]
-    public class SpecificWeaponsTraitsTests : AttributesTests
+    public class SpecificWeaponsTraitsTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon); }
         }
 
         [TestCase(WeaponConstants.SleepArrow)]
         [TestCase(WeaponConstants.ScreamingBolt)]
         [TestCase(WeaponConstants.SilverDagger, TraitConstants.AlchemicalSilver)]
-        [TestCase(WeaponConstants.Longsword, TraitConstants.Masterwork,
-                                             TraitConstants.ColdIron)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Masterwork, TraitConstants.ColdIron)]
         [TestCase(WeaponConstants.JavelinOfLightning)]
         [TestCase(WeaponConstants.SlayingArrow)]
         [TestCase(WeaponConstants.Dagger, TraitConstants.Adamantine)]
@@ -48,9 +46,10 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.LuckBlade2)]
         [TestCase(WeaponConstants.HolyAvenger, TraitConstants.ColdIron)]
         [TestCase(WeaponConstants.LuckBlade3)]
-        public override void Attributes(String name, params String[] attributes)
+        [TestCase(WeaponConstants.LuckBlade)]
+        public override void Collections(string name, params string[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

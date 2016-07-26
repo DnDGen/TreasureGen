@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Unit.Generators.Items
@@ -14,7 +13,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(AttributeConstants.DoubleWeapon, "Double weapon")]
         [TestCase(AttributeConstants.Melee, "Melee")]
         [TestCase(AttributeConstants.Metal, "Metal")]
-        [TestCase(AttributeConstants.NotBludgeoning, "Not bludgeoning")]
+        [TestCase(AttributeConstants.Piercing, "Piercing")]
         [TestCase(AttributeConstants.NotTower, "Not tower")]
         [TestCase(AttributeConstants.OneTimeUse, "One-time use")]
         [TestCase(AttributeConstants.Ranged, "Ranged")]
@@ -24,7 +23,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(AttributeConstants.TwoHanded, "Two-Handed")]
         [TestCase(AttributeConstants.Uncommon, "Uncommon")]
         [TestCase(AttributeConstants.Wood, "Wood")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

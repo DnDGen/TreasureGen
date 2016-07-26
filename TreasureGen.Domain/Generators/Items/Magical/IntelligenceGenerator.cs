@@ -14,11 +14,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private Dice dice;
         private IPercentileSelector percentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
         private IIntelligenceAttributesSelector intelligenceAttributesSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, IAttributesSelector attributesSelector,
+        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, ICollectionsSelector attributesSelector,
             IIntelligenceAttributesSelector intelligenceAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
@@ -68,7 +68,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             intelligence.IntelligenceStat = SetHighStat(highStat, intelligence.IntelligenceStat);
             intelligence.WisdomStat = SetHighStat(highStat, intelligence.WisdomStat);
 
-            intelligence.Communication = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceCommunication, highStatResult);
+            intelligence.Communication = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, highStatResult);
 
             if (intelligence.Communication.Contains("Speech"))
                 intelligence.Languages = GenerateLanguages(intelligence.IntelligenceStat);
@@ -77,7 +77,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Read magic");
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Telepathy");
 
-            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.IntelligenceAttributes, highStatResult);
+            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceAttributes, highStatResult);
             intelligence.Senses = intelligenceAttributesResult.Senses;
 
             var lesserPowers = GeneratePowers("Lesser", intelligenceAttributesResult.LesserPowersCount);
@@ -134,7 +134,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private List<string> GetNonDuplicateList(string tableName, int quantity)
         {
-            var list = new List<String>();
+            var list = new List<string>();
 
             while (list.Count < quantity)
             {
@@ -166,10 +166,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private string GetSpecificAlignmentRequirement(Item item)
         {
-            var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "Items");
+            var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items");
 
             if (itemsWithSpecificAlignments.Contains(item.Name))
-                return attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, item.Name).Single();
+                return attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name).Single();
 
             var alignments = AlignmentConstants.GetAllAlignments();
             var requirements = alignments.Where(a => item.Traits.Any(t => t.Contains(a)));
@@ -191,6 +191,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private bool AlignmentIsAllowed(string alignment, IEnumerable<string> abilityNames, string specificAlignmentRequirement)
         {
+            if (alignment == AlignmentConstants.TrueNeutral)
+                return true;
+
             if (abilityNames.Contains(SpecialAbilityConstants.Anarchic) && alignment.StartsWith(AlignmentConstants.Lawful))
                 return false;
 

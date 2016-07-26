@@ -11,17 +11,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class RodGenerator : MagicalItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
+        private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
 
-        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IAttributesSelector attributesSelector,
-            IChargesGenerator chargesGenerator, IBooleanPercentileSelector booleanPercentileSelector)
+        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector attributesSelector,
+            IChargesGenerator chargesGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.attributesSelector = attributesSelector;
             this.chargesGenerator = chargesGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.specialAbilitiesGenerator = specialAbilitiesGenerator;
         }
 
         public Item GenerateAtPower(string power)
@@ -37,7 +39,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             rod.Name = result.Type;
             rod.IsMagical = true;
             rod.Magic.Bonus = result.Amount;
-            tablename = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, rod.ItemType);
+            tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, rod.ItemType);
             rod.Attributes = attributesSelector.SelectFrom(tablename, rod.Name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
@@ -53,6 +55,22 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                     rod.Contents.Add($"{containedSpellLevels} spell levels");
                 }
             }
+
+            return rod;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            template.Attributes = attributesSelector.SelectFrom(tablename, template.Name);
+            template.ItemType = ItemTypeConstants.Rod;
+
+            var rod = template.Copy();
+            rod.IsMagical = true;
+            rod.Quantity = 1;
+
+            var specialAbilityNames = rod.Magic.SpecialAbilities.Select(a => a.Name);
+            rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
 
             return rod;
         }

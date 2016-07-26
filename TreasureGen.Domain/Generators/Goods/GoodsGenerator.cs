@@ -12,10 +12,10 @@ namespace TreasureGen.Domain.Generators.Goods
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private Dice dice;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
 
         public GoodsGenerator(Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            IAttributesSelector attributesSelector)
+            ICollectionsSelector attributesSelector)
         {
             this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
@@ -32,7 +32,7 @@ namespace TreasureGen.Domain.Generators.Goods
 
             var goods = new List<Good>();
             var valueTableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, result.Type);
-            var descriptionTableName = string.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, result.Type);
+            var descriptionTableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, result.Type);
 
             while (result.Amount-- > 0)
             {

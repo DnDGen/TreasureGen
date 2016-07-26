@@ -6,9 +6,9 @@ namespace TreasureGen.Domain.Selectors.Attributes
 {
     internal class SpecialAbilityAttributesSelector : ISpecialAbilityAttributesSelector
     {
-        private IAttributesSelector innerSelector;
+        private ICollectionsSelector innerSelector;
 
-        public SpecialAbilityAttributesSelector(IAttributesSelector innerSelector)
+        public SpecialAbilityAttributesSelector(ICollectionsSelector innerSelector)
         {
             this.innerSelector = innerSelector;
         }

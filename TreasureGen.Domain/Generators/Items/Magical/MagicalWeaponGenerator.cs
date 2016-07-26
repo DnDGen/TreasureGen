@@ -12,7 +12,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalWeaponGenerator : MagicalItemGenerator
     {
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private IPercentileSelector percentileSelector;
         private IAmmunitionGenerator ammunitionGenerator;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
@@ -21,9 +21,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private ISpellGenerator spellGenerator;
         private Dice dice;
 
-        public MagicalWeaponGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, Dice dice)
+        public MagicalWeaponGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, Dice dice)
         {
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
@@ -63,8 +63,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Name = name;
 
-                tablename = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, weapon.ItemType);
-                weapon.Attributes = attributesSelector.SelectFrom(tablename, weapon.Name);
+                tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = collectionsSelector.SelectFrom(tablename, weapon.Name);
             }
 
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
@@ -84,9 +84,33 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 }
             }
 
-            var thrownWeapons = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown);
-            if (thrownWeapons.Contains(weapon.Name))
+            if (weapon.Attributes.Contains(AttributeConstants.Thrown) && weapon.Attributes.Contains(AttributeConstants.Melee) == false)
                 weapon.Quantity = dice.Roll().d20();
+
+            return weapon;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            template.ItemType = ItemTypeConstants.Weapon;
+            var weapon = template.Copy();
+
+            if (specificGearGenerator.TemplateIsSpecific(template))
+            {
+                weapon = specificGearGenerator.GenerateFrom(template);
+            }
+            else if (ammunitionGenerator.TemplateIsAmmunition(template))
+            {
+                weapon = ammunitionGenerator.GenerateFrom(template);
+            }
+            else
+            {
+                var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
+            }
+
+            var abilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(abilityNames);
 
             return weapon;
         }

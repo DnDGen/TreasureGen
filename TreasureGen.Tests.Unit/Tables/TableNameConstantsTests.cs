@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Unit.Tables
@@ -7,25 +6,26 @@ namespace TreasureGen.Tests.Unit.Tables
     [TestFixture]
     public class TableNameConstantsTests
     {
-        [TestCase(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, "{0}Descriptions")]
-        [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, "{0}Attributes")]
-        [TestCase(TableNameConstants.Attributes.Formattable.ITEMTYPESpecialAbilities, "{0}SpecialAbilities")]
-        [TestCase(TableNameConstants.Attributes.Formattable.POWERITEMTYPE, "{0}{1}")]
-        [TestCase(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, "Specific{0}Attributes")]
-        [TestCase(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, "Specific{0}SpecialAbilities")]
-        [TestCase(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, "Specific{0}Traits")]
-        [TestCase(TableNameConstants.Attributes.Set.AmmunitionAttributes, "AmmunitionAttributes")]
-        [TestCase(TableNameConstants.Attributes.Set.ChargeLimits, "ChargeLimits")]
-        [TestCase(TableNameConstants.Attributes.Set.IntelligenceAttributes, "IntelligenceAttributes")]
-        [TestCase(TableNameConstants.Attributes.Set.IntelligenceCommunication, "IntelligenceCommunication")]
-        [TestCase(TableNameConstants.Attributes.Set.ItemAlignmentRequirements, "ItemAlignmentRequirements")]
-        [TestCase(TableNameConstants.Attributes.Set.ReplacementStrings, "ReplacementStrings")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "SpecialAbilityAttributeRequirements")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, "SpecialAbilityAttributes")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecialMaterials, "SpecialMaterials")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemItemTypes, "SpecificCursedItemItemTypes")]
-        [TestCase(TableNameConstants.Attributes.Set.SpecificCursedItemAttributes, "SpecificCursedItemAttributes")]
-        [TestCase(TableNameConstants.Attributes.Set.WondrousItemContents, "WondrousItemContents")]
+        [TestCase(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, "{0}Descriptions")]
+        [TestCase(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, "{0}Attributes")]
+        [TestCase(TableNameConstants.Collections.Formattable.ITEMTYPESpecialAbilities, "{0}SpecialAbilities")]
+        [TestCase(TableNameConstants.Collections.Formattable.POWERITEMTYPE, "{0}{1}")]
+        [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, "Specific{0}Attributes")]
+        [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, "Specific{0}SpecialAbilities")]
+        [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, "Specific{0}Traits")]
+        [TestCase(TableNameConstants.Collections.Set.AmmunitionAttributes, "AmmunitionAttributes")]
+        [TestCase(TableNameConstants.Collections.Set.ChargeLimits, "ChargeLimits")]
+        [TestCase(TableNameConstants.Collections.Set.IntelligenceAttributes, "IntelligenceAttributes")]
+        [TestCase(TableNameConstants.Collections.Set.IntelligenceCommunication, "IntelligenceCommunication")]
+        [TestCase(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "ItemAlignmentRequirements")]
+        [TestCase(TableNameConstants.Collections.Set.ItemGroups, "ItemGroups")]
+        [TestCase(TableNameConstants.Collections.Set.ReplacementStrings, "ReplacementStrings")]
+        [TestCase(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "SpecialAbilityAttributeRequirements")]
+        [TestCase(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "SpecialAbilityAttributes")]
+        [TestCase(TableNameConstants.Collections.Set.SpecialMaterials, "SpecialMaterials")]
+        [TestCase(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "SpecificCursedItemItemTypes")]
+        [TestCase(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "SpecificCursedItemAttributes")]
+        [TestCase(TableNameConstants.Collections.Set.WondrousItemContents, "WondrousItemContents")]
         [TestCase(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "{0}Types")]
         [TestCase(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, "{0}Values")]
         [TestCase(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Intelligence{0}Powers")]
@@ -83,7 +83,7 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Set.SpellTypes, "SpellTypes")]
         [TestCase(TableNameConstants.Percentiles.Set.Tools, "Tools")]
         [TestCase(TableNameConstants.Percentiles.Set.WeaponTypes, "WeaponTypes")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
@@ -97,7 +97,7 @@ namespace TreasureGen.Tests.Unit.Tables
         [Test]
         public void AttributeItemTypeTraits()
         {
-            Assert.That(TableNameConstants.Attributes.Formattable.ITEMTYPETraits, Is.EqualTo("{0}Traits"));
+            Assert.That(TableNameConstants.Collections.Formattable.ITEMTYPETraits, Is.EqualTo("{0}Traits"));
         }
     }
 }

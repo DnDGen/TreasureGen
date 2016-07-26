@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -9,8 +9,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class WondrousItemGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.WondrousItem)]
-        public MagicalItemGenerator WondrousItemGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return true; }
+        }
 
         protected override string itemType
         {
@@ -23,10 +25,21 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Stress(StressItem);
         }
 
-        protected override Item GenerateItem()
+        protected override IEnumerable<string> GetItemNames()
         {
-            var power = GetNewPower();
-            return WondrousItemGenerator.GenerateAtPower(power);
+            return WondrousItemConstants.GetAllWondrousItems();
+        }
+
+        [Test]
+        public void StressCustomWondrousItem()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomWondrousItem()
+        {
+            Stress(StressRandomCustomItem);
         }
 
         protected override void MakeSpecificAssertionsAgainst(Item wondrousItem)
@@ -34,7 +47,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(wondrousItem.Name, Is.Not.Empty);
             Assert.That(wondrousItem.Traits, Is.Not.Null);
             Assert.That(wondrousItem.Attributes, Is.Not.Null);
-            Assert.That(wondrousItem.Quantity, Is.EqualTo(1));
             Assert.That(wondrousItem.IsMagical, Is.True);
             Assert.That(wondrousItem.Contents, Is.Not.Null);
             Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));

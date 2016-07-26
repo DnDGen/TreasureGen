@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
-using TreasureGen.Domain.Mappers.Attributes;
+using TreasureGen.Domain.Mappers.Collections;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Unit.Mappers.Attributes
@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Unit.Mappers.Attributes
     {
         private const string tableName = "AttributeXmlMapperTests";
 
-        private IAttributesMapper mapper;
+        private ICollectionsMapper mapper;
         private Mock<IStreamLoader> mockStreamLoader;
         private string fileName;
 

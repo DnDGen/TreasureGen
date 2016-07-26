@@ -1,5 +1,6 @@
 ﻿using RollGen;
 using System;
+using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -11,9 +12,9 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     {
         private IPercentileSelector percentileSelector;
         private Dice dice;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
 
-        public AmmunitionGenerator(IPercentileSelector percentileSelector, Dice dice, IAttributesSelector attributesSelector)
+        public AmmunitionGenerator(IPercentileSelector percentileSelector, Dice dice, ICollectionsSelector attributesSelector)
         {
             this.percentileSelector = percentileSelector;
             this.dice = dice;
@@ -27,8 +28,24 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var ammunition = new Item();
             ammunition.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions);
             ammunition.Quantity = Math.Max(1, roll / 2);
-            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, ammunition.Name);
+            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
             ammunition.ItemType = ItemTypeConstants.Weapon;
+
+            return ammunition;
+        }
+
+        public bool TemplateIsAmmunition(Item template)
+        {
+            var allAmmunitions = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.Ammunitions);
+            return allAmmunitions.Contains(template.Name);
+        }
+
+        public Item GenerateFrom(Item template)
+        {
+            template.ItemType = ItemTypeConstants.Weapon;
+            template.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, template.Name);
+
+            var ammunition = template.Copy();
 
             return ammunition;
         }

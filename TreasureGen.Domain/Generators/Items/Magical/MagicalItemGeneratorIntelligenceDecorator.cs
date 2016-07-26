@@ -14,6 +14,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.intelligenceGenerator = intelligenceGenerator;
         }
 
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
+
+            if (allowRandomDecoration && intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
+                item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item);
+
+            return item;
+        }
+
         public Item GenerateAtPower(string power)
         {
             var item = innerGenerator.GenerateAtPower(power);

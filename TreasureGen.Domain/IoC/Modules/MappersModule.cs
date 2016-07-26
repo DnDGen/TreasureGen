@@ -1,5 +1,5 @@
 ﻿using Ninject.Modules;
-using TreasureGen.Domain.Mappers.Attributes;
+using TreasureGen.Domain.Mappers.Collections;
 using TreasureGen.Domain.Mappers.Percentile;
 
 namespace TreasureGen.Domain.IoC.Modules
@@ -11,8 +11,8 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IPercentileMapper>().To<PercentileXmlMapper>().WhenInjectedInto<PercentileMapperCachingProxy>();
             Bind<IPercentileMapper>().To<PercentileMapperCachingProxy>().InSingletonScope();
 
-            Bind<IAttributesMapper>().To<AttributesXmlMapper>().WhenInjectedInto<AttributesMapperCachingProxy>();
-            Bind<IAttributesMapper>().To<AttributesMapperCachingProxy>().InSingletonScope();
+            Bind<ICollectionsMapper>().To<AttributesXmlMapper>().WhenInjectedInto<AttributesMapperCachingProxy>();
+            Bind<ICollectionsMapper>().To<AttributesMapperCachingProxy>().InSingletonScope();
         }
     }
 }

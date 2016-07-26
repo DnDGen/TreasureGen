@@ -6,11 +6,11 @@ using NUnit.Framework;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
-    public class SpecificShieldTraitsTests : AttributesTests
+    public class SpecificShieldTraitsTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, AttributeConstants.Shield); }
+            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, AttributeConstants.Shield); }
         }
 
         [TestCase(ArmorConstants.AbsorbingShield)]
@@ -21,9 +21,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.LionsShield)]
         [TestCase(ArmorConstants.SpinedShield)]
         [TestCase(ArmorConstants.WingedShield)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

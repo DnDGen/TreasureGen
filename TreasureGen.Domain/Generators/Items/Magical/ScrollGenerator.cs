@@ -16,14 +16,26 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.spellGenerator = spellGenerator;
         }
 
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            template.ItemType = ItemTypeConstants.Scroll;
+            template.Attributes = new[] { AttributeConstants.OneTimeUse };
+
+            var scroll = template.Copy();
+            scroll.IsMagical = true;
+            scroll.Quantity = 1;
+
+            return scroll;
+        }
+
         public Item GenerateAtPower(string power)
         {
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
             scroll.Name = ItemTypeConstants.Scroll;
+            scroll.ItemType = ItemTypeConstants.Scroll;
             scroll.IsMagical = true;
             scroll.Attributes = new[] { AttributeConstants.OneTimeUse };
-            scroll.ItemType = ItemTypeConstants.Scroll;
             scroll.Traits.Add(spellType);
 
             var quantity = GetQuantity(power);

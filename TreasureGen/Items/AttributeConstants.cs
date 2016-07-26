@@ -9,7 +9,7 @@
         public const string DoubleWeapon = "Double weapon";
         public const string Melee = "Melee";
         public const string Metal = "Metal";
-        public const string NotBludgeoning = "Not bludgeoning";
+        public const string Piercing = "Piercing";
         public const string NotTower = "Not tower";
         public const string OneTimeUse = "One-time use";
         public const string Ranged = "Ranged";

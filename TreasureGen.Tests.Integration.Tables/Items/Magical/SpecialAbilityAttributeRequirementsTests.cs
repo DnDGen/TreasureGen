@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -7,11 +6,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
-    public class SpecialAbilityAttributeRequirementsTests : AttributesTests
+    public class SpecialAbilityAttributeRequirementsTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements; }
+            get { return TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements; }
         }
 
         [TestCase(SpecialAbilityConstants.Glamered)]
@@ -67,7 +66,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.BrilliantEnergy)]
         [TestCase(SpecialAbilityConstants.Keen,
             AttributeConstants.Melee,
-            AttributeConstants.NotBludgeoning)]
+            AttributeConstants.Piercing + "/" + AttributeConstants.Slashing)]
         [TestCase(SpecialAbilityConstants.KiFocus,
             AttributeConstants.Melee)]
         [TestCase(SpecialAbilityConstants.MightyCleaving,
@@ -86,11 +85,10 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
             AttributeConstants.Melee)]
         [TestCase(SpecialAbilityConstants.Vorpal,
             AttributeConstants.Melee,
-            AttributeConstants.NotBludgeoning,
             AttributeConstants.Slashing)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

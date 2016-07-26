@@ -1,4 +1,6 @@
-﻿namespace TreasureGen.Items.Magical
+﻿using System.Collections.Generic;
+
+namespace TreasureGen.Items.Magical
 {
     public static class RingConstants
     {
@@ -60,5 +62,67 @@
         public const string Wizardry_III = "Ring of Wizardry (III)";
         public const string Wizardry_IV = "Ring of Wizardry (IV)";
         public const string XRayVision = "Ring of X-ray vision";
+
+        public static IEnumerable<string> GetAllRings()
+        {
+            return new[]
+            {
+                AnimalFriendship,
+                Blinking,
+                ChameleonPower,
+                Climbing,
+                Climbing_Improved,
+                Clumsiness,
+                Counterspells,
+                DjinniCalling,
+                ElementalCommand_Air,
+                ElementalCommand_Earth,
+                ElementalCommand_Fire,
+                ElementalCommand_Water,
+                AcidResistance_Greater,
+                AcidResistance_Major,
+                AcidResistance_Minor,
+                ColdResistance_Greater,
+                ColdResistance_Major,
+                ColdResistance_Minor,
+                FireResistance_Greater,
+                FireResistance_Major,
+                FireResistance_Minor,
+                ElectricityResistance_Greater,
+                ElectricityResistance_Major,
+                ElectricityResistance_Minor,
+                SonicResistance_Greater,
+                SonicResistance_Major,
+                SonicResistance_Minor,
+                Evasion,
+                FeatherFalling,
+                ForceShield,
+                FreedomOfMovement,
+                FriendShield,
+                Invisibility,
+                Jumping,
+                Jumping_Improved,
+                MindShielding,
+                Protection,
+                Ram,
+                Regeneration,
+                ShootingStars,
+                SpellStoring,
+                SpellStoring_Major,
+                SpellStoring_Minor,
+                SpellTurning,
+                Sustenance,
+                Swimming,
+                Swimming_Improved,
+                Telekinesis,
+                ThreeWishes,
+                WaterWalking,
+                Wizardry_I,
+                Wizardry_II,
+                Wizardry_III,
+                Wizardry_IV,
+                XRayVision
+            };
+        }
     }
 }

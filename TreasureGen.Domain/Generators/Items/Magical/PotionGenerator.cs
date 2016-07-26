@@ -1,5 +1,4 @@
-﻿using System;
-using TreasureGen.Domain.Selectors.Percentiles;
+﻿using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -19,7 +18,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateAtPower(string power)
         {
-            var result = GetResult(power);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var potion = new Item();
 
             potion.Name = result.Type;
@@ -31,10 +31,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return potion;
         }
 
-        private TypeAndAmountPercentileResult GetResult(string power)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            return typeAndAmountPercentileSelector.SelectFrom(tableName);
+            template.ItemType = ItemTypeConstants.Potion;
+            template.Attributes = new[] { AttributeConstants.OneTimeUse };
+
+            var potion = template.Copy();
+            potion.IsMagical = true;
+            potion.Quantity = 1;
+
+            return potion;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         private Dictionary<string, IEnumerable<string>> specialMaterialAttributes;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public SpecialMaterialGenerator(Dice dice, IAttributesSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecialMaterialGenerator(Dice dice, ICollectionsSelector attributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.booleanPercentileSelector = booleanPercentileSelector;
@@ -26,7 +26,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var materials = TraitConstants.GetSpecialMaterials();
             foreach (var material in materials)
             {
-                var attributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, material);
+                var attributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, material);
                 specialMaterialAttributes.Add(material, attributeRequirements);
             }
         }

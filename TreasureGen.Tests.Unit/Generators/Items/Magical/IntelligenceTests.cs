@@ -7,11 +7,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class IntelligenceTests
     {
         private Intelligence intelligence;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             intelligence = new Intelligence();
+            itemVerifier = new ItemVerifier();
         }
 
         [Test]
@@ -84,6 +86,27 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void PersonalityIsInitialized()
         {
             Assert.That(intelligence.Personality, Is.Empty);
+        }
+
+        [Test]
+        public void CopyIntelligence()
+        {
+            intelligence = itemVerifier.CreateRandomTemplate(string.Empty).Magic.Intelligence;
+
+            var copy = intelligence.Copy();
+            Assert.That(copy, Is.Not.EqualTo(intelligence));
+            Assert.That(copy.Alignment, Is.EqualTo(intelligence.Alignment));
+            Assert.That(copy.CharismaStat, Is.EqualTo(intelligence.CharismaStat));
+            Assert.That(copy.Communication, Is.EquivalentTo(intelligence.Communication));
+            Assert.That(copy.DedicatedPower, Is.EqualTo(intelligence.DedicatedPower));
+            Assert.That(copy.Ego, Is.EqualTo(intelligence.Ego));
+            Assert.That(copy.IntelligenceStat, Is.EqualTo(intelligence.IntelligenceStat));
+            Assert.That(copy.Languages, Is.EquivalentTo(intelligence.Languages));
+            Assert.That(copy.Personality, Is.EqualTo(intelligence.Personality));
+            Assert.That(copy.Powers, Is.EquivalentTo(intelligence.Powers));
+            Assert.That(copy.Senses, Is.EqualTo(intelligence.Senses));
+            Assert.That(copy.SpecialPurpose, Is.EqualTo(intelligence.SpecialPurpose));
+            Assert.That(copy.WisdomStat, Is.EqualTo(intelligence.WisdomStat));
         }
     }
 }

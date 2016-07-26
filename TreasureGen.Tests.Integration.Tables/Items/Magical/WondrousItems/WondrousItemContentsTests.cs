@@ -6,11 +6,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
-    public class WondrousItemContentsTests : AttributesTests
+    public class WondrousItemContentsTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.WondrousItemContents; }
+            get { return TableNameConstants.Collections.Set.WondrousItemContents; }
         }
 
         [TestCase(WondrousItemConstants.RobeOfUsefulItems,
@@ -46,9 +46,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_V, "3d6", "3d6", "5d6", "5d6", "7d6", "7d6", "9d6")]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_VI, "4d6", "4d6", "4d6", "4d6", "6d6", "6d6", "8d6", "8d6", "10d6")]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_VII, "3d6", "3d6", "5d6", "5d6", "7d6", "7d6", "9d6", "9d6", "10d6")]
-        public override void Attributes(string name, params string[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
 
         //HACK: have to make this separate - too many attributes for NUnit to handle as test name
@@ -93,7 +93,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
                 "Joker"
             };
 
-            Attributes(WondrousItemConstants.DeckOfIllusions, attributes);
+            Collections(WondrousItemConstants.DeckOfIllusions, attributes);
         }
     }
 }

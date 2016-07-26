@@ -42,7 +42,7 @@
     <object>
         <name>Keen</name>
         <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
+        <attribute>Piercing/Slashing</attribute>
     </object>
     <object>
         <name>Ki focus</name>
@@ -84,7 +84,6 @@
     <object>
         <name>Vorpal</name>
         <attribute>Melee</attribute>
-        <attribute>Not bludgeoning</attribute>
         <attribute>Slashing</attribute>
     </object>
     <object>

@@ -1,5 +1,5 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -9,8 +9,10 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
     [TestFixture]
     public class MagicalArmorGeneratorTests : MagicalItemGeneratorStressTests
     {
-        [Inject, Named(ItemTypeConstants.Armor)]
-        public MagicalItemGenerator MagicalArmorGenerator { get; set; }
+        protected override bool allowMinor
+        {
+            get { return true; }
+        }
 
         protected override string itemType
         {
@@ -25,20 +27,8 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override void MakeSpecificAssertionsAgainst(Item armor)
         {
-            Assert.That(armor.Name, Is.Not.Empty, armor.Name);
-            Assert.That(armor.Traits, Is.Not.Null, armor.Name);
-            Assert.That(armor.Attributes, Is.Not.Null, armor.Name);
             Assert.That(armor.Quantity, Is.EqualTo(1), armor.Name);
-            Assert.That(armor.Contents, Is.Not.Null, armor.Name);
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
-            Assert.That(armor.Magic.Charges, Is.EqualTo(0), armor.Name);
-            Assert.That(armor.Magic.SpecialAbilities, Is.Not.Null, armor.Name);
-        }
-
-        protected override Item GenerateItem()
-        {
-            var power = GetNewPower();
-            return MagicalArmorGenerator.GenerateAtPower(power);
         }
 
         [Test]
@@ -195,6 +185,23 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         public override void StressSpecificCursedItems()
         {
             base.StressSpecificCursedItems();
+        }
+
+        protected override IEnumerable<string> GetItemNames()
+        {
+            return ArmorConstants.GetAllArmors(true);
+        }
+
+        [Test]
+        public void StressCustomArmor()
+        {
+            Stress(StressCustomItem);
+        }
+
+        [Test]
+        public void StressRandomCustomArmor()
+        {
+            Stress(StressRandomCustomItem);
         }
     }
 }

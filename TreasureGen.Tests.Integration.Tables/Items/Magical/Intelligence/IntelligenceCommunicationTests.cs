@@ -5,11 +5,11 @@ using NUnit.Framework;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class IntelligenceCommunicationTests : AttributesTests
+    public class IntelligenceCommunicationTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Attributes.Set.IntelligenceCommunication; }
+            get { return TableNameConstants.Collections.Set.IntelligenceCommunication; }
         }
 
         [TestCase(12,
@@ -39,7 +39,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         public void Attributes(Int32 highStat, params String[] attributes)
         {
             var name = Convert.ToString(highStat);
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

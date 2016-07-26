@@ -1,4 +1,6 @@
-﻿namespace TreasureGen.Items.Magical
+﻿using System.Collections.Generic;
+
+namespace TreasureGen.Items.Magical
 {
     public static class RodConstants
     {
@@ -39,5 +41,48 @@
         public const string Viper = "Rod of the viper";
         public const string Withering = "Rod of withering";
         public const string Wonder = "Rod of wonder";
+
+        public static IEnumerable<string> GetAllRods()
+        {
+            return new[]
+            {
+                Absorption,
+                Alertness,
+                Cancellation,
+                EnemyDetection,
+                Flailing,
+                FlameExtinguishing,
+                ImmovableRod,
+                LordlyMight,
+                MetalAndMineralDetection,
+                Metamagic_Empower,
+                Metamagic_Empower_Greater,
+                Metamagic_Empower_Lesser,
+                Metamagic_Enlarge,
+                Metamagic_Enlarge_Greater,
+                Metamagic_Enlarge_Lesser,
+                Metamagic_Extend,
+                Metamagic_Extend_Greater,
+                Metamagic_Extend_Lesser,
+                Metamagic_Maximize,
+                Metamagic_Maximize_Greater,
+                Metamagic_Maximize_Lesser,
+                Metamagic_Quicken,
+                Metamagic_Quicken_Greater,
+                Metamagic_Quicken_Lesser,
+                Metamagic_Silent,
+                Metamagic_Silent_Greater,
+                Metamagic_Silent_Lesser,
+                Negation,
+                Python,
+                Rulership,
+                Security,
+                Splendor,
+                ThunderAndLightning,
+                Viper,
+                Withering,
+                Wonder
+            };
+        }
     }
 }

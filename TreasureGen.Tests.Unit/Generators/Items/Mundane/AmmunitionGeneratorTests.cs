@@ -1,11 +1,14 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
+using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
+using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 {
@@ -15,15 +18,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private IAmmunitionGenerator ammunitionGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<Dice> mockDice;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             mockDice = new Mock<Dice>();
             ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
+            itemVerifier = new ItemVerifier();
 
             mockDice.Setup(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { 0 });
         }
@@ -32,6 +37,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void GenerateAmmunition()
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("ammunition name");
+
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Name, Is.EqualTo("ammunition name"));
             Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
@@ -149,9 +155,52 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("ammunition name");
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, "ammunition name")).Returns(attributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, "ammunition name")).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
+            Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void TemplateIsAmmunition()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var ammunitions = new[] { "other ammunition", name };
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns(ammunitions);
+
+            var isAmmunition = ammunitionGenerator.TemplateIsAmmunition(template);
+            Assert.That(isAmmunition, Is.True);
+        }
+
+        [Test]
+        public void TemplateIsNotAmmunition()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var ammunitions = new[] { "other ammunition", "ammunition" };
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns(ammunitions);
+
+            var isAmmunition = ammunitionGenerator.TemplateIsAmmunition(template);
+            Assert.That(isAmmunition, Is.False);
+        }
+
+        [Test]
+        public void GenerateCustomAmmunition()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+
+            var attributes = new[] { "type 1", "type 2", AttributeConstants.Ammunition };
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, name)).Returns(attributes);
+
+            var ammunition = ammunitionGenerator.GenerateFrom(template);
+            itemVerifier.AssertMagicalItemFromTemplate(ammunition, template);
+            Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(ammunition.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
         }
     }

@@ -12,7 +12,7 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IIntelligenceAttributesSelector>().To<IntelligenceAttributesSelector>();
             Bind<IRangeAttributesSelector>().To<RangeAttributesSelector>();
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
-            Bind<IAttributesSelector>().To<AttributesSelector>();
+            Bind<ICollectionsSelector>().To<CollectionsSelector>();
             Bind<IBooleanPercentileSelector>().To<BooleanPercentileSelector>();
 
             Bind<IPercentileSelector>().To<PercentileSelector>().WhenInjectedInto<ReplacePercentileSelectorDecorator>();

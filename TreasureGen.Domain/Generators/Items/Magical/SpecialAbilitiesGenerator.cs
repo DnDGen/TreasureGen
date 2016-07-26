@@ -14,13 +14,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private const int MaxBonus = 10;
 
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private Dice dice;
 
-        public SpecialAbilitiesGenerator(IAttributesSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
+        public SpecialAbilitiesGenerator(ICollectionsSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
             IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.attributesSelector = attributesSelector;
@@ -138,11 +138,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private SpecialAbility GetSpecialAbility(string abilityName)
         {
             var ability = new SpecialAbility();
-            var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, abilityName);
+            var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, abilityName);
 
             ability.Name = abilityName;
             ability.BaseName = abilityResult.BaseName;
-            ability.AttributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
+            ability.AttributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
             ability.BonusEquivalent = abilityResult.BonusEquivalent;
             ability.Power = abilityResult.Power;
 
@@ -151,8 +151,25 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private bool AllAttributeRequirementsMet(IEnumerable<string> requirements, IEnumerable<string> attributes)
         {
-            var missingRequirements = requirements.Except(attributes);
-            return !missingRequirements.Any();
+            var missingRequirements = requirements.Where(r => r.Contains("/") == false).Except(attributes);
+            return !missingRequirements.Any() && OrRequirementsMet(requirements, attributes);
+        }
+
+        private bool OrRequirementsMet(IEnumerable<string> requirements, IEnumerable<string> attributes)
+        {
+            if (requirements.Any(r => r.Contains("/")) == false)
+                return true;
+
+            var orRequirements = requirements.Where(r => r.Contains("/"));
+
+            foreach (var orRequirement in orRequirements)
+            {
+                var options = orRequirement.Split('/');
+                if (options.Intersect(attributes).Any() == false)
+                    return false;
+            }
+
+            return true;
         }
 
         private bool CanHaveAllAvailableAbilities(int quantity, int bonusSum, IEnumerable<SpecialAbility> availableAbilities)
@@ -191,6 +208,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             } while (!availableAbilities.Any(a => a.Name == abilityName));
 
             return availableAbilities.First(a => a.Name == abilityName);
+        }
+
+        public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<string> abilityNames)
+        {
+            var abilities = new List<SpecialAbility>();
+
+            foreach (var abilityName in abilityNames)
+            {
+                var ability = GetSpecialAbility(abilityName);
+                abilities.Add(ability);
+            }
+
+            return abilities;
         }
     }
 }

@@ -12,13 +12,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class WondrousItemGenerator : MagicalItemGenerator
     {
         private IPercentileSelector percentileSelector;
-        private IAttributesSelector attributesSelector;
+        private ICollectionsSelector attributesSelector;
         private IChargesGenerator chargesGenerator;
         private Dice dice;
         private ISpellGenerator spellGenerator;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
-        public WondrousItemGenerator(IPercentileSelector percentileSelector, IAttributesSelector attributesSelector, IChargesGenerator chargesGenerator, Dice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public WondrousItemGenerator(IPercentileSelector percentileSelector, ICollectionsSelector attributesSelector, IChargesGenerator chargesGenerator, Dice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.attributesSelector = attributesSelector;
@@ -38,7 +38,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
 
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.ITEMTYPEAttributes, item.ItemType);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, item.ItemType);
             item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
             item.Magic.Bonus = result.Amount;
 
@@ -96,7 +96,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private IEnumerable<string> GetRobeOfUsefulItemsItems()
         {
-            var baseItems = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
+            var baseItems = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
             var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
 
             //INFO: Can't do Union because it will deduplicate the allowed duplicate items
@@ -110,7 +110,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private IEnumerable<string> GetPartialContents(string name)
         {
             var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
-            var fullContents = attributesSelector.SelectFrom(TableNameConstants.Attributes.Set.WondrousItemContents, name).ToList();
+            var fullContents = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name).ToList();
 
             if (quantity >= fullContents.Count)
                 return fullContents;
@@ -178,6 +178,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             return planes;
+        }
+
+        public Item Generate(Item template, bool allowRandomDecoration = false)
+        {
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            template.Attributes = attributesSelector.SelectFrom(tableName, template.Name);
+            template.ItemType = ItemTypeConstants.WondrousItem;
+
+            var item = template.Copy();
+            item.IsMagical = true;
+
+            return item;
         }
     }
 }

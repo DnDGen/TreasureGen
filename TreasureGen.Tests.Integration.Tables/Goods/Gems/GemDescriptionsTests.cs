@@ -6,11 +6,11 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
 {
     [TestFixture]
-    public class GemDescriptionsTests : AttributesTests
+    public class GemDescriptionsTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return String.Format(TableNameConstants.Attributes.Formattable.GOODTYPEDescriptions, GoodsConstants.Gem); }
+            get { return String.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, GoodsConstants.Gem); }
         }
 
         [TestCase("4d4", "eye agate",
@@ -81,9 +81,9 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
                               "brown diamond",
                               "blue diamond",
                               "jacinth")]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

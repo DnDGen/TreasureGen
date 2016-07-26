@@ -68,11 +68,13 @@
     <Compile Include="Generators\Coins\CoinConstantsTests.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
+    <Compile Include="Generators\Items\ItemVerifier.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecoratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorMundaneProxyTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorSpecialMaterialDecoratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorTraitsDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Mundane\AlchemicalItemConstantsTests.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorSpecialMaterialDecoratorTests.cs" />
     <Compile Include="Generators\Goods\GoodsConstantsTests.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorTests.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Generators\Items\Magical\RodGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\ScrollGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\SpecialAbilitiesGeneratorTests.cs" />
+    <Compile Include="Generators\Items\Mundane\ToolConstantsTests.cs" />
     <Compile Include="Generators\Items\SpecificGearGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\SpellGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\StaffGeneratorTests.cs" />

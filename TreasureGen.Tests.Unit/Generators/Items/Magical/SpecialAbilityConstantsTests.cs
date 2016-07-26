@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Linq;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -115,9 +115,120 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(SpecialAbilityConstants.Vicious, "Vicious")]
         [TestCase(SpecialAbilityConstants.GhostTouchWeapon, "Ghost touch (weapon)")]
         [TestCase(SpecialAbilityConstants.GhostTouchArmor, "Ghost touch (armor)")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllAbilities()
+        {
+            var abilities = SpecialAbilityConstants.GetAllAbilities();
+
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Aberrationbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.AcidResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.AirOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Anarchic));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Animalbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Animated));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.AquaticHumanoidbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ArrowCatching));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ArrowDeflection));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Axiomatic));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Bashing));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Blinding));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.BrilliantEnergy));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ChaoticOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ColdResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Constructbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Dancing));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Defending));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Disruption));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Distance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Dragonbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Dwarfbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.EarthOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ElectricityResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Elementalbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Elfbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Etherealness));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.EvilOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Feybane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.FireOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.FireResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Flaming));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.FlamingBurst));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Frost));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GhostTouchArmor));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GhostTouchWeapon));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Giantbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Glamered));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Gnollbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Gnomebane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Goblinoidbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GoodOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterAcidResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterColdResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterElectricityResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterFireResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterShadow));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterSilentMoves));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterSlick));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.GreaterSonicResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Halflingbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.HeavyFortification));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Holy));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Humanbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.IcyBurst));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedAcidResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedColdResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedElectricityResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedFireResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedShadow));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedSilentMoves));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedSlick));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ImprovedSonicResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Invulnerability));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Keen));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.KiFocus));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.LawfulOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.LightFortification));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.MagicalBeastbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Merciful));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.MightyCleaving));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ModerateFortification));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.MonstrousHumanoidbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Oozebane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Orcbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Plantbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Reflecting));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ReptilianHumanoidbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Returning));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Seeking));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Shadow));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Shock));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.ShockingBurst));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SilentMoves));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Slick));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SonicResistance));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Speed));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SpellResistance13));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SpellResistance15));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SpellResistance17));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SpellResistance19));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.SpellStoring));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Throwing));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Thundering));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Undeadbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.UndeadControlling));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Unholy));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Verminbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Vicious));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Vorpal));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.WaterOutsiderbane));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Wild));
+            Assert.That(abilities, Contains.Item(SpecialAbilityConstants.Wounding));
+            Assert.That(abilities.Count(), Is.EqualTo(103));
         }
     }
 }

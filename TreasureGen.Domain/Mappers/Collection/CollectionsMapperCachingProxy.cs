@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace TreasureGen.Domain.Mappers.Attributes
+namespace TreasureGen.Domain.Mappers.Collections
 {
-    internal class AttributesMapperCachingProxy : IAttributesMapper
+    internal class AttributesMapperCachingProxy : ICollectionsMapper
     {
         private Dictionary<string, Dictionary<string, IEnumerable<string>>> tables;
-        private IAttributesMapper innerMapper;
+        private ICollectionsMapper innerMapper;
 
-        public AttributesMapperCachingProxy(IAttributesMapper innerMapper)
+        public AttributesMapperCachingProxy(ICollectionsMapper innerMapper)
         {
             this.innerMapper = innerMapper;
             tables = new Dictionary<string, Dictionary<string, IEnumerable<string>>>();

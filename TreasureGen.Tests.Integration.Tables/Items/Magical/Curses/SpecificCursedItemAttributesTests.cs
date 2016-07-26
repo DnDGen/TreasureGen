@@ -7,11 +7,11 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
     [TestFixture]
-    public class SpecificCursedItemAttributesTests : AttributesTests
+    public class SpecificCursedItemAttributesTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Attributes.Set.SpecificCursedItemAttributes; }
+            get { return TableNameConstants.Collections.Set.SpecificCursedItemAttributes; }
         }
 
         [TestCase(WondrousItemConstants.IncenseOfObsession,
@@ -31,7 +31,6 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
-            AttributeConstants.NotBludgeoning,
             AttributeConstants.Slashing)]
         [TestCase(ArmorConstants.ArmorOfRage,
             AttributeConstants.Metal,
@@ -53,7 +52,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
-            AttributeConstants.NotBludgeoning,
+            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction,
@@ -78,7 +77,6 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
-            AttributeConstants.NotBludgeoning,
             AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WondrousItemConstants.BootsOfDancing,
@@ -97,9 +95,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.ScarabOfDeath,
             AttributeConstants.Specific)]
-        public override void Attributes(String name, params String[] attributes)
+        public override void Collections(String name, params String[] attributes)
         {
-            base.Attributes(name, attributes);
+            base.Collections(name, attributes);
         }
     }
 }

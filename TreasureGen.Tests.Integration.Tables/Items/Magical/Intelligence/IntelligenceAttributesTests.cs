@@ -5,11 +5,11 @@ using NUnit.Framework;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class IntelligenceAttributesTests : AttributesTests
+    public class IntelligenceAttributesTests : CollectionsTests
     {
         protected override String tableName
         {
-            get { return TableNameConstants.Attributes.Set.IntelligenceAttributes; }
+            get { return TableNameConstants.Collections.Set.IntelligenceAttributes; }
         }
 
         [TestCase("12", "30 ft. vision and hearing", 1, 0)]
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
                 Convert.ToString(greaterPowersCount) 
             };
 
-            OrderedAttributes(strength, attributes);
+            OrderedCollections(strength, attributes);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<Dice> mockDice;
-        private Mock<IAttributesSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockAttributesSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         private List<string> mithralAttributes;
@@ -34,12 +34,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             adamantineAttributes = new List<string>() { "type 3", "type 2" };
             otherMaterialAttributes = new List<string>() { "type 3", "type 2", "other attribute" };
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
+            mockAttributesSelector = new Mock<ICollectionsSelector>();
             traits = new List<string>();
 
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Mithral)).Returns(mithralAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, TraitConstants.Adamantine)).Returns(adamantineAttributes);
+            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Mithral)).Returns(mithralAttributes);
+            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Adamantine)).Returns(adamantineAttributes);
 
             specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
         }
@@ -48,7 +48,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void CacheMaterialsAndAttributeRequirementsOnConstruction()
         {
             foreach (var material in TraitConstants.GetSpecialMaterials())
-                mockAttributesSelector.Verify(p => p.SelectFrom(TableNameConstants.Attributes.Set.SpecialMaterials, material), Times.Once);
+                mockAttributesSelector.Verify(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, material), Times.Once);
 
             mockAttributesSelector.ResetCalls();
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);

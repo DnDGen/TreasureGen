@@ -1,23 +1,32 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
     [TestFixture]
-    public abstract class MundaneItemGeneratorStressTests : ItemTests
+    public abstract class MundaneItemGeneratorStressTests : ItemStressTests
     {
-        [Inject]
-        public ItemVerifier ItemVerifier { get; set; }
 
+        protected MundaneItemGenerator mundaneItemGenerator;
         private IEnumerable<string> materials;
+        private IEnumerable<string> traits;
 
         [SetUp]
         public void MundaneItemGeneratorStressSetup()
         {
             materials = TraitConstants.GetSpecialMaterials();
+            traits = new[]
+            {
+                TraitConstants.Large,
+                TraitConstants.Markings,
+                TraitConstants.Masterwork,
+                TraitConstants.Medium,
+                TraitConstants.Small
+            };
         }
 
         protected void StressItem()
@@ -25,6 +34,48 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var item = GenerateItem();
             AssertItem(item);
         }
+
+        protected override Item GenerateItem()
+        {
+            return mundaneItemGenerator.Generate();
+        }
+
+        protected void StressRandomCustomItem()
+        {
+            var names = GetItemNames();
+            var name = GetRandom(names);
+
+            var item = GenerateRandomCustomItem(name);
+            AssertItem(item);
+            Assert.That(item.Name, Is.EqualTo(name));
+        }
+
+        protected void StressCustomItem()
+        {
+            var names = GetItemNames();
+            var name = GetRandom(names);
+            var template = ItemVerifier.CreateRandomTemplate(name);
+
+            var item = mundaneItemGenerator.Generate(template);
+            AssertItem(item);
+            ItemVerifier.AssertMundaneItemFromTemplate(item, template);
+        }
+
+        private string GetRandom(IEnumerable<string> collection)
+        {
+            var randomIndex = Random.Next(collection.Count());
+            return collection.ElementAt(randomIndex);
+        }
+
+        protected override Item GenerateRandomCustomItem(string name)
+        {
+            var template = new Item();
+            template.Name = name;
+
+            return mundaneItemGenerator.Generate(template, true);
+        }
+
+        protected abstract IEnumerable<string> GetItemNames();
 
         protected void AssertItem(Item item)
         {

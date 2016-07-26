@@ -81,8 +81,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AttributesTests.cs" />
+    <Compile Include="CollectionsTests.cs" />
     <Compile Include="BooleanPercentileTests.cs" />
+    <Compile Include="Items\ItemGroupsTests.cs" />
     <Compile Include="Items\Magical\Armor\Specific\CastersShieldContainsSpellTests.cs" />
     <Compile Include="Items\Magical\Armor\Specific\CastersShieldSpellTypesTests.cs" />
     <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />

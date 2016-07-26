@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Linq;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -65,9 +65,72 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(RingConstants.Wizardry_III, "Ring of Wizardry (III)")]
         [TestCase(RingConstants.Wizardry_IV, "Ring of Wizardry (IV)")]
         [TestCase(RingConstants.XRayVision, "Ring of X-ray vision")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void AllRings()
+        {
+            var rings = RingConstants.GetAllRings();
+
+            Assert.That(rings, Contains.Item(RingConstants.AcidResistance_Greater));
+            Assert.That(rings, Contains.Item(RingConstants.AcidResistance_Major));
+            Assert.That(rings, Contains.Item(RingConstants.AcidResistance_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.AnimalFriendship));
+            Assert.That(rings, Contains.Item(RingConstants.Blinking));
+            Assert.That(rings, Contains.Item(RingConstants.ChameleonPower));
+            Assert.That(rings, Contains.Item(RingConstants.Climbing));
+            Assert.That(rings, Contains.Item(RingConstants.Climbing_Improved));
+            Assert.That(rings, Contains.Item(RingConstants.Clumsiness));
+            Assert.That(rings, Contains.Item(RingConstants.ColdResistance_Greater));
+            Assert.That(rings, Contains.Item(RingConstants.ColdResistance_Major));
+            Assert.That(rings, Contains.Item(RingConstants.ColdResistance_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.Counterspells));
+            Assert.That(rings, Contains.Item(RingConstants.DjinniCalling));
+            Assert.That(rings, Contains.Item(RingConstants.ElectricityResistance_Greater));
+            Assert.That(rings, Contains.Item(RingConstants.ElectricityResistance_Major));
+            Assert.That(rings, Contains.Item(RingConstants.ElectricityResistance_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.ElementalCommand_Air));
+            Assert.That(rings, Contains.Item(RingConstants.ElementalCommand_Earth));
+            Assert.That(rings, Contains.Item(RingConstants.ElementalCommand_Fire));
+            Assert.That(rings, Contains.Item(RingConstants.ElementalCommand_Water));
+            Assert.That(rings, Contains.Item(RingConstants.Evasion));
+            Assert.That(rings, Contains.Item(RingConstants.FeatherFalling));
+            Assert.That(rings, Contains.Item(RingConstants.FireResistance_Greater));
+            Assert.That(rings, Contains.Item(RingConstants.FireResistance_Major));
+            Assert.That(rings, Contains.Item(RingConstants.FireResistance_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.ForceShield));
+            Assert.That(rings, Contains.Item(RingConstants.FreedomOfMovement));
+            Assert.That(rings, Contains.Item(RingConstants.FriendShield));
+            Assert.That(rings, Contains.Item(RingConstants.Invisibility));
+            Assert.That(rings, Contains.Item(RingConstants.Jumping));
+            Assert.That(rings, Contains.Item(RingConstants.Jumping_Improved));
+            Assert.That(rings, Contains.Item(RingConstants.MindShielding));
+            Assert.That(rings, Contains.Item(RingConstants.Protection));
+            Assert.That(rings, Contains.Item(RingConstants.Ram));
+            Assert.That(rings, Contains.Item(RingConstants.Regeneration));
+            Assert.That(rings, Contains.Item(RingConstants.ShootingStars));
+            Assert.That(rings, Contains.Item(RingConstants.SonicResistance_Greater));
+            Assert.That(rings, Contains.Item(RingConstants.SonicResistance_Major));
+            Assert.That(rings, Contains.Item(RingConstants.SonicResistance_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.SpellStoring));
+            Assert.That(rings, Contains.Item(RingConstants.SpellStoring_Major));
+            Assert.That(rings, Contains.Item(RingConstants.SpellStoring_Minor));
+            Assert.That(rings, Contains.Item(RingConstants.SpellTurning));
+            Assert.That(rings, Contains.Item(RingConstants.Sustenance));
+            Assert.That(rings, Contains.Item(RingConstants.Swimming));
+            Assert.That(rings, Contains.Item(RingConstants.Swimming_Improved));
+            Assert.That(rings, Contains.Item(RingConstants.ThreeWishes));
+            Assert.That(rings, Contains.Item(RingConstants.Telekinesis));
+            Assert.That(rings, Contains.Item(RingConstants.WaterWalking));
+            Assert.That(rings, Contains.Item(RingConstants.Wizardry_I));
+            Assert.That(rings, Contains.Item(RingConstants.Wizardry_II));
+            Assert.That(rings, Contains.Item(RingConstants.Wizardry_III));
+            Assert.That(rings, Contains.Item(RingConstants.Wizardry_IV));
+            Assert.That(rings, Contains.Item(RingConstants.XRayVision));
+            Assert.That(rings.Count(), Is.EqualTo(55));
         }
     }
 }

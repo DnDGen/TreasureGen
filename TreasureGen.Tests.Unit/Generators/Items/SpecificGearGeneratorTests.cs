@@ -9,17 +9,17 @@ using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
-using TreasureGen.Selectors.Results;
+using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items
 {
     [TestFixture]
     public class SpecificGearGeneratorTests
     {
-        private ISpecificGearGenerator generator;
+        private ISpecificGearGenerator specificGearGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IAttributesSelector> mockAttributesSelector;
-        private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilitiesAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
@@ -28,19 +28,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         private string power;
         private string gearType;
         private Mock<Dice> mockDice;
+        private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockAttributesSelector = new Mock<IAttributesSelector>();
-            mockSpecialAbilitiesAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockDice = new Mock<Dice>();
-            generator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object, mockSpecialAbilitiesAttributesSelector.Object, mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
+            specificGearGenerator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object, mockDice.Object, mockSpecialAbilitiesGenerator.Object);
             result = new TypeAndAmountPercentileResult();
 
             power = "power";
@@ -49,12 +50,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             result.Type = "specific gear";
             result.Amount = 1;
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(result);
+            itemVerifier = new ItemVerifier();
         }
 
         [Test]
         public void ReturnGear()
         {
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear, Is.Not.Null);
         }
 
@@ -63,7 +65,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(ItemTypeConstants.Weapon, ItemTypeConstants.Weapon)]
         public void CorrectItemType(string gearType, string itemType)
         {
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.ItemType, Is.EqualTo(itemType));
         }
 
@@ -76,7 +78,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.Magic.Bonus, Is.EqualTo(42));
         }
@@ -90,7 +92,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.IsMagical, Is.False);
         }
@@ -98,8 +100,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void JavelinOfLightningIsMagical()
         {
-            result.Type = "Javelin of lightning";
-            var gear = generator.GenerateFrom(power, gearType);
+            result.Type = WeaponConstants.JavelinOfLightning;
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.IsMagical, Is.True);
         }
 
@@ -107,10 +109,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void GetAttributesFromSelector()
         {
             var attributes = new[] { "attribute 1", "attribute 2" };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Attributes, Is.EqualTo(attributes));
         }
 
@@ -118,66 +120,41 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void GetTraitsFromSelector()
         {
             var traits = new[] { "trait 1", "trait 2" };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPETraits, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(traits);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(traits);
 
-            var gear = generator.GenerateFrom(power, gearType);
-
-            foreach (var trait in traits)
-                Assert.That(gear.Traits, Contains.Item(trait));
-
-            Assert.That(gear.Traits.Count, Is.EqualTo(traits.Count()));
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Traits, Is.EquivalentTo(traits));
         }
 
         [Test]
-        public void GetSpecialAbilitiesFromSelector()
+        public void GetSpecialAbilities()
         {
-            var specialAbilities = new[] { "ability 1", "ability 2" };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPESpecialAbilities, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(specialAbilities);
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(specialAbilityNames);
 
-            var ability1Result = new SpecialAbilityAttributesResult();
-            ability1Result.BaseName = "base name";
-            ability1Result.BonusEquivalent = 9266;
-            ability1Result.Power = 42;
-            var ability1Requirements = new[] { "req 1", "req 2" };
+            var specialAbilities = new[]
+            {
+                new SpecialAbility(),
+                new SpecialAbility()
+            };
 
-            var ability2Result = new SpecialAbilityAttributesResult();
-            ability2Result.BaseName = "base name 2";
-            ability2Result.BonusEquivalent = 6629;
-            ability2Result.Power = 24;
-            var ability2Requirements = new[] { "req a", "req b" };
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
 
-            mockSpecialAbilitiesAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, "ability 1")).Returns(ability1Result);
-            mockSpecialAbilitiesAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributes, "ability 2")).Returns(ability2Result);
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "base name")).Returns(ability1Requirements);
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Attributes.Set.SpecialAbilityAttributeRequirements, "base name 2")).Returns(ability2Requirements);
-
-            var gear = generator.GenerateFrom(power, gearType);
-            var ability1 = gear.Magic.SpecialAbilities.First();
-            var ability2 = gear.Magic.SpecialAbilities.Last();
-            Assert.That(ability1.Name, Is.EqualTo("ability 1"));
-            Assert.That(ability1.BaseName, Is.EqualTo(ability1Result.BaseName));
-            Assert.That(ability1.AttributeRequirements, Is.EqualTo(ability1Requirements));
-            Assert.That(ability1.BonusEquivalent, Is.EqualTo(ability1Result.BonusEquivalent));
-            Assert.That(ability1.Power, Is.EqualTo(ability1Result.Power));
-            Assert.That(ability2.Name, Is.EqualTo("ability 2"));
-            Assert.That(ability2.BaseName, Is.EqualTo(ability2Result.BaseName));
-            Assert.That(ability2.AttributeRequirements, Is.EqualTo(ability2Requirements));
-            Assert.That(ability2.BonusEquivalent, Is.EqualTo(ability2Result.BonusEquivalent));
-            Assert.That(ability2.Power, Is.EqualTo(ability2Result.Power));
-            Assert.That(gear.Magic.SpecialAbilities.Count(), Is.EqualTo(2));
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
         }
 
         [Test]
         public void IfCharged_GetChargesFromGenerator()
         {
             var attributes = new[] { AttributeConstants.Charged };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, "specific gear")).Returns(9266);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, result.Type)).Returns(9266);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(9266));
         }
 
@@ -185,11 +162,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void IfNotCharged_DoNotGetChargesFromGenerator()
         {
             var attributes = new[] { "not charged" };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, "specific gear")).Returns(9266);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, result.Type)).Returns(9266);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));
         }
 
@@ -197,7 +174,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void SilverDaggerRenamedDagger()
         {
             result.Type = WeaponConstants.SilverDagger;
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.Dagger));
         }
 
@@ -205,10 +182,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.LuckBlade1)]
         [TestCase(WeaponConstants.LuckBlade2)]
         [TestCase(WeaponConstants.LuckBlade3)]
-        public void LuckBladeWithChargeRenamedLuckBlade(String luckBlade)
+        public void LuckBladeWithChargeRenamedLuckBlade(string luckBlade)
         {
             result.Type = luckBlade;
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
         }
 
@@ -221,7 +198,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(false);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
             Assert.That(gear.Contents, Is.Empty);
         }
@@ -235,7 +212,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(true);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
             Assert.That(gear.Contents, Contains.Item("spell (spell type, 42)"));
         }
@@ -246,7 +223,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             result.Type = WeaponConstants.SlayingArrow;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
             Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
@@ -257,7 +234,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             result.Type = WeaponConstants.GreaterSlayingArrow;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
             Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
@@ -266,25 +243,37 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void SpecificAmmunitionReceivesQuantity()
         {
             var attributes = new[] { "attribute 1", AttributeConstants.Ammunition };
-            var tableName = string.Format(TableNameConstants.Attributes.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockAttributesSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
 
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(50)).Returns(new[] { 9266 });
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
         }
 
         [Test]
         public void SpecificThrownWeaponsReceiveQuantity()
         {
-            mockAttributesSelector.Setup(
-                s => s.SelectFrom(TableNameConstants.Attributes.Set.AmmunitionAttributes, AttributeConstants.Thrown))
-                .Returns(new[] { "other weapon", "specific gear" });
+            var attributes = new[] { "attribute 1", AttributeConstants.Thrown };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void SpecificMeleeThrownWeaponsReceiveQuantityOf1()
+        {
+            var attributes = new[] { "attribute 1", AttributeConstants.Thrown, AttributeConstants.Melee };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
+            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Quantity, Is.EqualTo(1));
         }
 
         [Test]
@@ -299,7 +288,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.IsMagical, Is.False);
             Assert.That(gear.Traits, Contains.Item("size"));
@@ -317,10 +306,208 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
 
-            var gear = generator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.IsMagical, Is.True);
             Assert.That(gear.Traits, Is.Not.Contains("size"));
+        }
+
+        [Test]
+        public void TemplateIsSpecific()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var specificItems = new[] { "other item", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).Returns(specificItems);
+
+            var isSpecific = specificGearGenerator.TemplateIsSpecific(template);
+            Assert.That(isSpecific, Is.True);
+        }
+
+        [Test]
+        public void TemplateIsNotSpecific()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var specificItems = new[] { "other item", "item" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).Returns(specificItems);
+
+            var isSpecific = specificGearGenerator.TemplateIsSpecific(template);
+            Assert.That(isSpecific, Is.False);
+        }
+
+        [Test]
+        public void GenerateCustomSpecificShield()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var shields = new[] { "other shield", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield)).Returns(shields);
+
+            var armors = new[] { "other armor", "armor" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor)).Returns(armors);
+
+            var weapons = new[] { "other weapon", "weapon" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon)).Returns(weapons);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, AttributeConstants.Shield);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, AttributeConstants.Shield);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, AttributeConstants.Shield);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.First().Name },
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            itemVerifier.AssertMagicalItemFromTemplate(gear, template);
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.EquivalentTo(traits.Union(template.Traits)));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+        }
+
+        [Test]
+        public void GenerateCustomSpecificArmor()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var shields = new[] { "other shield", "shield" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield)).Returns(shields);
+
+            var armors = new[] { "other armor", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor)).Returns(armors);
+
+            var weapons = new[] { "other weapon", "weapon" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon)).Returns(weapons);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.First().Name },
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            itemVerifier.AssertMagicalItemFromTemplate(gear, template);
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.EquivalentTo(traits.Union(template.Traits)));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+        }
+
+        [Test]
+        public void GenerateCustomSpecificWeapon()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var shields = new[] { "other shield", "shield" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield)).Returns(shields);
+
+            var armors = new[] { "other armor", "armor" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor)).Returns(armors);
+
+            var weapons = new[] { "other weapon", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon)).Returns(weapons);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.First().Name },
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            itemVerifier.AssertMagicalItemFromTemplate(gear, template);
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.EquivalentTo(traits.Union(template.Traits)));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+        }
+
+        [Test]
+        public void GenerateCustomSpecificAmmunition()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var shields = new[] { "other shield", "shield" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield)).Returns(shields);
+
+            var armors = new[] { "other armor", "armor" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor)).Returns(armors);
+
+            var weapons = new[] { "other weapon", name };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon)).Returns(weapons);
+
+            var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.Ammunition };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.First().Name },
+                new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            itemVerifier.AssertMagicalItemFromTemplate(gear, template);
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.EquivalentTo(traits.Union(template.Traits)));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
         }
     }
 }
