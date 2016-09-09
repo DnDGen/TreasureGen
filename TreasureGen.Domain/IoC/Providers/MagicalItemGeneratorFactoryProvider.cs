@@ -6,9 +6,9 @@ using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Domain.IoC.Providers
 {
-    class MagicalItemGeneratorFactoryProvider : Provider<MagicalItemGeneratorFactory>
+    class MagicalItemGeneratorFactoryProvider : Provider<MagicalItemGeneratorRuntimeFactory>
     {
-        protected override MagicalItemGeneratorFactory CreateInstance(IContext context)
+        protected override MagicalItemGeneratorRuntimeFactory CreateInstance(IContext context)
         {
             var armorGenerator = context.Kernel.Get<MagicalItemGenerator>(ItemTypeConstants.Armor);
             var weaponGenerator = context.Kernel.Get<MagicalItemGenerator>(ItemTypeConstants.Weapon);
@@ -20,7 +20,7 @@ namespace TreasureGen.Domain.IoC.Providers
             var wandGenerator = context.Kernel.Get<MagicalItemGenerator>(ItemTypeConstants.Wand);
             var wondrousItemGenerator = context.Kernel.Get<MagicalItemGenerator>(ItemTypeConstants.WondrousItem);
 
-            var factory = new MagicalItemGeneratorFactory(armorGenerator, potionGenerator, ringGenerator, rodGenerator, scrollGenerator, staffGenerator,
+            var factory = new MagicalItemGeneratorRuntimeFactory(armorGenerator, potionGenerator, ringGenerator, rodGenerator, scrollGenerator, staffGenerator,
                 wandGenerator, weaponGenerator, wondrousItemGenerator);
 
             return factory;

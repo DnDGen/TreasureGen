@@ -66,15 +66,15 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
-        public void MundaneGearGeneratorFactoryNotConstructedAsSingleton()
+        public void MundaneGearGeneratorRuntimeFactoryNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGeneratorFactory>();
+            AssertNotSingleton<IMundaneItemGeneratorRuntimeFactory>();
         }
 
         [Test]
-        public void MagicalItemGeneratorFactoryNotConstructedAsSingleton()
+        public void MagicalItemGeneratorRuntimeFactoryNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGeneratorFactory>();
+            AssertNotSingleton<IMagicalItemGeneratorRuntimeFactory>();
         }
 
         [Test]

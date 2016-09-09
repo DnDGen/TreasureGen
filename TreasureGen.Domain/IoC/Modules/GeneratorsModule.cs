@@ -38,8 +38,8 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<ITreasureGenerator>().To<TreasureGenerator>();
 
-            Bind<IMundaneItemGeneratorFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
-            Bind<IMagicalItemGeneratorFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();
+            Bind<IMundaneItemGeneratorRuntimeFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
+            Bind<IMagicalItemGeneratorRuntimeFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();
 
             var decorators = new[]
             {

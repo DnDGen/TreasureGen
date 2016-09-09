@@ -50,6 +50,7 @@
     <Compile Include="Items\AttributeConstants.cs" />
     <Compile Include="Items\Magical\CurseConstants.cs" />
     <Compile Include="Items\IItemsGenerator.cs" />
+    <Compile Include="Items\Magical\IMagicalItemGeneratorRuntimeFactory.cs" />
     <Compile Include="Items\Magical\Intelligence.cs" />
     <Compile Include="Items\Magical\AlignmentConstants.cs" />
     <Compile Include="Items\Item.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Items\Magical\Magic.cs" />
     <Compile Include="Items\Magical\MagicalItemGenerator.cs" />
     <Compile Include="Items\Mundane\AlchemicalItemConstants.cs" />
+    <Compile Include="Items\Mundane\IMundaneItemGeneratorRuntimeFactory.cs" />
     <Compile Include="Items\Mundane\MundaneItemGenerator.cs" />
     <Compile Include="Items\Magical\PotionConstants.cs" />
     <Compile Include="Items\Mundane\ToolConstants.cs" />

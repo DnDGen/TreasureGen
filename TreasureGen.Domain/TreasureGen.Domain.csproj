@@ -96,10 +96,8 @@
     <Compile Include="Generators\Items\Mundane\MundaneWeaponGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\SpecialMaterialGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\ToolGenerator.cs" />
-    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactory.cs" />
-    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactory.cs" />
-    <Compile Include="Generators\Items\Magical\IMagicalItemGeneratorFactory.cs" />
-    <Compile Include="Generators\Items\Mundane\IMundaneItemGeneratorFactory.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorRuntimeFactory.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorRuntimeFactory.cs" />
     <Compile Include="Generators\TreasureGenerator.cs" />
     <Compile Include="IoC\Providers\MagicalItemGeneratorFactoryProvider.cs" />
     <Compile Include="IoC\Providers\MundaneItemGeneratorFactoryProvider.cs" />

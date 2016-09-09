@@ -4,7 +4,7 @@ using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Domain.Generators.Items.Magical
 {
-    internal class MagicalItemGeneratorFactory : IMagicalItemGeneratorFactory
+    internal class MagicalItemGeneratorRuntimeFactory : IMagicalItemGeneratorRuntimeFactory
     {
         private MagicalItemGenerator armorGenerator;
         private MagicalItemGenerator potionGenerator;
@@ -16,7 +16,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private MagicalItemGenerator weaponGenerator;
         private MagicalItemGenerator wondrousItemGenerator;
 
-        public MagicalItemGeneratorFactory(MagicalItemGenerator armorGenerator, MagicalItemGenerator potionGenerator,
+        public MagicalItemGeneratorRuntimeFactory(MagicalItemGenerator armorGenerator, MagicalItemGenerator potionGenerator,
             MagicalItemGenerator ringGenerator, MagicalItemGenerator rodGenerator, MagicalItemGenerator scrollGenerator,
             MagicalItemGenerator staffGenerator, MagicalItemGenerator wandGenerator, MagicalItemGenerator weaponGenerator,
             MagicalItemGenerator wondrousItemGenerator)

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
+using TreasureGen.Items.Magical;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Domain.Generators.Items
 {
@@ -11,10 +11,10 @@ namespace TreasureGen.Domain.Generators.Items
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;
-        private IMundaneItemGeneratorFactory mundaneItemGeneratorFactory;
-        private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
+        private IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory;
+        private IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;

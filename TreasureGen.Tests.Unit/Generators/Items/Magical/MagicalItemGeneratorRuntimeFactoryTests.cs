@@ -8,9 +8,9 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {
     [TestFixture]
-    public class MagicalItemGeneratorFactoryTests
+    public class MagicalItemGeneratorRuntimeFactoryTests
     {
-        private IMagicalItemGeneratorFactory factory;
+        private IMagicalItemGeneratorRuntimeFactory factory;
         private Dictionary<string, Mock<MagicalItemGenerator>> mockMagicalItemGenerators;
 
         [SetUp]
@@ -27,7 +27,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMagicalItemGenerators[ItemTypeConstants.Weapon] = new Mock<MagicalItemGenerator>();
             mockMagicalItemGenerators[ItemTypeConstants.WondrousItem] = new Mock<MagicalItemGenerator>();
 
-            factory = new MagicalItemGeneratorFactory(mockMagicalItemGenerators[ItemTypeConstants.Armor].Object, mockMagicalItemGenerators[ItemTypeConstants.Potion].Object,
+            factory = new MagicalItemGeneratorRuntimeFactory(mockMagicalItemGenerators[ItemTypeConstants.Armor].Object, mockMagicalItemGenerators[ItemTypeConstants.Potion].Object,
                 mockMagicalItemGenerators[ItemTypeConstants.Ring].Object, mockMagicalItemGenerators[ItemTypeConstants.Rod].Object, mockMagicalItemGenerators[ItemTypeConstants.Scroll].Object,
                 mockMagicalItemGenerators[ItemTypeConstants.Staff].Object, mockMagicalItemGenerators[ItemTypeConstants.Wand].Object, mockMagicalItemGenerators[ItemTypeConstants.Weapon].Object,
                 mockMagicalItemGenerators[ItemTypeConstants.WondrousItem].Object);

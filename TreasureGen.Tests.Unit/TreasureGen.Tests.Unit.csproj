@@ -121,8 +121,8 @@
     <Compile Include="Generators\Items\TraitConstantsTests.cs" />
     <Compile Include="Generators\Items\WeaponConstantsTests.cs" />
     <Compile Include="Generators\Items\Magical\WondrousItemConstantsTests.cs" />
-    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactoryTests.cs" />
-    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactoryTests.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorRuntimeFactoryTests.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorRuntimeFactoryTests.cs" />
     <Compile Include="Generators\TreasureGeneratorTests.cs" />
     <Compile Include="Mappers\Attributes\AttributeMapperCachingProxyTests.cs" />
     <Compile Include="Mappers\Attributes\AttributeXmlMapperTests.cs" />

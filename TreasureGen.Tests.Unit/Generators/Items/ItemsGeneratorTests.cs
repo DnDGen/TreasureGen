@@ -4,8 +4,6 @@ using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -18,10 +16,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
     public class ItemsGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IMundaneItemGeneratorFactory> mockMundaneItemGeneratorFactory;
+        private Mock<IMundaneItemGeneratorRuntimeFactory> mockMundaneItemGeneratorFactory;
         private Mock<MundaneItemGenerator> mockMundaneItemGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IMagicalItemGeneratorFactory> mockMagicalItemGeneratorFactory;
+        private Mock<IMagicalItemGeneratorRuntimeFactory> mockMagicalItemGeneratorFactory;
         private Mock<MagicalItemGenerator> mockMagicalItemGenerator;
         private Mock<Dice> mockDice;
         private IItemsGenerator itemsGenerator;
@@ -32,10 +30,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             mockDice = new Mock<Dice>();
             result = new TypeAndAmountPercentileResult();
-            mockMundaneItemGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
+            mockMundaneItemGeneratorFactory = new Mock<IMundaneItemGeneratorRuntimeFactory>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockMagicalItemGenerator = new Mock<MagicalItemGenerator>();
-            mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
+            mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorRuntimeFactory>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockMundaneItemGenerator = new Mock<MundaneItemGenerator>();
 

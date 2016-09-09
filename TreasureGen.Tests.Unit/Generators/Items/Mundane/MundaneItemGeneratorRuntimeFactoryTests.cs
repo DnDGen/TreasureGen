@@ -8,9 +8,9 @@ using TreasureGen.Items.Mundane;
 namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 {
     [TestFixture]
-    public class MundaneItemGeneratorFactoryTests
+    public class MundaneItemGeneratorRuntimeFactoryTests
     {
-        private IMundaneItemGeneratorFactory factory;
+        private IMundaneItemGeneratorRuntimeFactory factory;
         private Dictionary<string, Mock<MundaneItemGenerator>> mockMundaneItemGenerators;
 
         [SetUp]
@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockMundaneItemGenerators[ItemTypeConstants.Tool] = new Mock<MundaneItemGenerator>();
             mockMundaneItemGenerators[ItemTypeConstants.Weapon] = new Mock<MundaneItemGenerator>();
 
-            factory = new MundaneItemGeneratorFactory(mockMundaneItemGenerators[ItemTypeConstants.Armor].Object, mockMundaneItemGenerators[ItemTypeConstants.Weapon].Object, mockMundaneItemGenerators[ItemTypeConstants.Tool].Object, mockMundaneItemGenerators[ItemTypeConstants.AlchemicalItem].Object);
+            factory = new MundaneItemGeneratorRuntimeFactory(mockMundaneItemGenerators[ItemTypeConstants.Armor].Object, mockMundaneItemGenerators[ItemTypeConstants.Weapon].Object, mockMundaneItemGenerators[ItemTypeConstants.Tool].Object, mockMundaneItemGenerators[ItemTypeConstants.AlchemicalItem].Object);
         }
 
         [TestCase(ItemTypeConstants.Armor)]

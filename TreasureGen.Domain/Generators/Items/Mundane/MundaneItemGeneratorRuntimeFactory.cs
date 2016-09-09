@@ -4,14 +4,14 @@ using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Domain.Generators.Items.Mundane
 {
-    internal class MundaneItemGeneratorFactory : IMundaneItemGeneratorFactory
+    internal class MundaneItemGeneratorRuntimeFactory : IMundaneItemGeneratorRuntimeFactory
     {
         private MundaneItemGenerator armorGenerator;
         private MundaneItemGenerator weaponGenerator;
         private MundaneItemGenerator toolGenerator;
         private MundaneItemGenerator alchemicalItemGenerator;
 
-        public MundaneItemGeneratorFactory(MundaneItemGenerator armorGenerator, MundaneItemGenerator weaponGenerator, MundaneItemGenerator toolGenerator, MundaneItemGenerator alchemicalItemGenerator)
+        public MundaneItemGeneratorRuntimeFactory(MundaneItemGenerator armorGenerator, MundaneItemGenerator weaponGenerator, MundaneItemGenerator toolGenerator, MundaneItemGenerator alchemicalItemGenerator)
         {
             this.armorGenerator = armorGenerator;
             this.weaponGenerator = weaponGenerator;
