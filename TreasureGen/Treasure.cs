@@ -12,6 +12,14 @@ namespace TreasureGen
         public IEnumerable<Good> Goods { get; set; }
         public IEnumerable<Item> Items { get; set; }
 
+        public bool IsAny
+        {
+            get
+            {
+                return Coin.Quantity > 0 || Goods.Any() || Items.Any();
+            }
+        }
+
         public Treasure()
         {
             Coin = new Coin();
