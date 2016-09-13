@@ -68,11 +68,13 @@ namespace TreasureGen.Items
         public const string Dart = "Dart";
         public const string Javelin = "Javelin";
         public const string Shortbow = "Shortbow";
+        public const string CompositeShortbow = "Composite shortbow";
         public const string CompositePlus0Shortbow = "Composite (+0) shortbow";
         public const string CompositePlus1Shortbow = "Composite (+1) shortbow";
         public const string CompositePlus2Shortbow = "Composite (+2) shortbow";
         public const string Sling = "Sling";
         public const string Longbow = "Longbow";
+        public const string CompositeLongbow = "Composite longbow";
         public const string CompositePlus0Longbow = "Composite (+0) longbow";
         public const string CompositePlus1Longbow = "Composite (+1) longbow";
         public const string CompositePlus2Longbow = "Composite (+2) longbow";
@@ -184,16 +186,10 @@ namespace TreasureGen.Items
                 Dart,
                 Javelin,
                 Shortbow,
-                CompositePlus0Shortbow,
-                CompositePlus1Shortbow,
-                CompositePlus2Shortbow,
+                CompositeShortbow,
                 Sling,
                 Longbow,
-                CompositePlus0Longbow,
-                CompositePlus1Longbow,
-                CompositePlus2Longbow,
-                CompositePlus3Longbow,
-                CompositePlus4Longbow,
+                CompositeLongbow,
                 SleepArrow,
                 ScreamingBolt,
                 JavelinOfLightning,

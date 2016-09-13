@@ -29,6 +29,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private string power;
         private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
+        private string tableName;
 
         [SetUp]
         public void Setup()
@@ -46,7 +47,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             power = "power";
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes)).Returns("weapon type");
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("weapon name");
         }
 
@@ -131,7 +132,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("0");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), power, It.IsAny<Int32>(), 1)).Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<string>>(), power, It.IsAny<int>(), 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
@@ -149,7 +150,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("0");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
-            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<String>>(), power, It.IsAny<Int32>(), 1)).Returns(abilities);
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, It.IsAny<IEnumerable<string>>(), power, It.IsAny<int>(), 1)).Returns(abilities);
 
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
@@ -293,6 +294,28 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon, Is.EqualTo(ammunition));
             Assert.That(weapon.Magic.SpecialAbilities.Select(a => a.Name), Is.EquivalentTo(specialAbilityNames));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+        }
+
+        [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow, 0)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow, WeaponConstants.CompositeLongbow, 1)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow, WeaponConstants.CompositeLongbow, 2)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow, WeaponConstants.CompositeLongbow, 3)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow, WeaponConstants.CompositeLongbow, 4)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow, 0)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow, 1)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow, 2)]
+        public void ChangeCompositeBowName(string compositeBowWithBonus, string compositeBow, int bonus)
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(compositeBowWithBonus);
+
+            var attributes = new[] { "type 1", "type 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, compositeBow)).Returns(attributes);
+
+            var weapon = weaponGenerator.GenerateAtPower(power);
+            Assert.That(weapon.Name, Is.EqualTo(compositeBow));
+            Assert.That(weapon.Attributes, Is.EqualTo(attributes));
+            Assert.That(weapon.Traits, Contains.Item($"+{bonus} Strength bonus"));
         }
     }
 }

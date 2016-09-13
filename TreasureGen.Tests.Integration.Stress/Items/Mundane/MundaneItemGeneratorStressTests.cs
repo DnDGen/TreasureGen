@@ -10,7 +10,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
     [TestFixture]
     public abstract class MundaneItemGeneratorStressTests : ItemStressTests
     {
-
         protected MundaneItemGenerator mundaneItemGenerator;
         private IEnumerable<string> materials;
 

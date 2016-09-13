@@ -436,7 +436,7 @@
     <attribute>Slashing</attribute>
   </object>
   <object>
-    <name>Composite (+0) longbow</name>
+    <name>Composite longbow</name>
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
@@ -444,55 +444,7 @@
     <attribute>Two-Handed</attribute>
   </object>
   <object>
-    <name>Composite (+1) longbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+2) longbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+3) longbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+4) longbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+0) shortbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+1) shortbow</name>
-    <attribute>Common</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
-    <name>Composite (+2) shortbow</name>
+    <name>Composite shortbow</name>
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>

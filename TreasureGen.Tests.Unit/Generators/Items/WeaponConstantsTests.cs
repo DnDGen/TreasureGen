@@ -71,11 +71,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.Dart, "Dart")]
         [TestCase(WeaponConstants.Javelin, "Javelin")]
         [TestCase(WeaponConstants.Shortbow, "Shortbow")]
+        [TestCase(WeaponConstants.CompositeShortbow, "Composite shortbow")]
         [TestCase(WeaponConstants.CompositePlus0Shortbow, "Composite (+0) shortbow")]
         [TestCase(WeaponConstants.CompositePlus1Shortbow, "Composite (+1) shortbow")]
         [TestCase(WeaponConstants.CompositePlus2Shortbow, "Composite (+2) shortbow")]
         [TestCase(WeaponConstants.Sling, "Sling")]
         [TestCase(WeaponConstants.Longbow, "Longbow")]
+        [TestCase(WeaponConstants.CompositeLongbow, "Composite longbow")]
         [TestCase(WeaponConstants.CompositePlus0Longbow, "Composite (+0) longbow")]
         [TestCase(WeaponConstants.CompositePlus1Longbow, "Composite (+1) longbow")]
         [TestCase(WeaponConstants.CompositePlus2Longbow, "Composite (+2) longbow")]
@@ -133,14 +135,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.BastardSword));
             Assert.That(weapons, Contains.Item(WeaponConstants.Battleaxe));
             Assert.That(weapons, Contains.Item(WeaponConstants.Club));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus0Longbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus0Shortbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus1Longbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus1Shortbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus2Longbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus2Shortbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus3Longbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.CompositePlus4Longbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositeLongbow));
+            Assert.That(weapons, Contains.Item(WeaponConstants.CompositeShortbow));
             Assert.That(weapons, Contains.Item(WeaponConstants.CrossbowBolt));
             Assert.That(weapons, Contains.Item(WeaponConstants.Dagger));
             Assert.That(weapons, Contains.Item(WeaponConstants.DaggerOfVenom));
@@ -240,8 +236,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade1));
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade2));
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade3));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus0Longbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus0Shortbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus1Longbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus1Shortbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus2Longbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus2Shortbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus3Longbow));
+            Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus4Longbow));
 
-            Assert.That(weapons.Count(), Is.EqualTo(106));
+            Assert.That(weapons.Count(), Is.EqualTo(100));
         }
     }
 }

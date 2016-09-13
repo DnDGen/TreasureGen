@@ -63,6 +63,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Name = name;
 
+                if (weapon.Name.Contains("Composite"))
+                {
+                    weapon.Name = GetCompositeBowName(name);
+                    var compositeStrengthBonus = GetCompositeBowBonus(name);
+                    weapon.Traits.Add(compositeStrengthBonus);
+                }
+
                 tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = collectionsSelector.SelectFrom(tablename, weapon.Name);
             }
@@ -88,6 +95,29 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 weapon.Quantity = dice.Roll().d20();
 
             return weapon;
+        }
+
+        private string GetCompositeBowBonus(string weaponName)
+        {
+            var compositeBonusStartIndex = weaponName.IndexOf('+');
+            var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
+            return $"{compositeBonus} Strength bonus";
+        }
+
+        private string GetCompositeBowName(string weaponName)
+        {
+            switch (weaponName)
+            {
+                case WeaponConstants.CompositePlus0Longbow:
+                case WeaponConstants.CompositePlus1Longbow:
+                case WeaponConstants.CompositePlus2Longbow:
+                case WeaponConstants.CompositePlus3Longbow:
+                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
+                case WeaponConstants.CompositePlus0Shortbow:
+                case WeaponConstants.CompositePlus1Shortbow:
+                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
+                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
+            }
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)

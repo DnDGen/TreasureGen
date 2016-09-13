@@ -1,4 +1,5 @@
 ﻿using RollGen;
+using System;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -40,6 +41,14 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             else
             {
                 weapon.Name = weaponName;
+
+                if (weapon.Name.Contains("Composite"))
+                {
+                    weapon.Name = GetCompositeBowName(weaponName);
+                    var compositeStrengthBonus = GetCompositeBowBonus(weaponName);
+                    weapon.Traits.Add(compositeStrengthBonus);
+                }
+
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
@@ -56,6 +65,29 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             weapon.Traits.Add(size);
 
             return weapon;
+        }
+
+        private string GetCompositeBowBonus(string weaponName)
+        {
+            var compositeBonusStartIndex = weaponName.IndexOf('+');
+            var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
+            return $"{compositeBonus} Strength bonus";
+        }
+
+        private string GetCompositeBowName(string weaponName)
+        {
+            switch (weaponName)
+            {
+                case WeaponConstants.CompositePlus0Longbow:
+                case WeaponConstants.CompositePlus1Longbow:
+                case WeaponConstants.CompositePlus2Longbow:
+                case WeaponConstants.CompositePlus3Longbow:
+                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
+                case WeaponConstants.CompositePlus0Shortbow:
+                case WeaponConstants.CompositePlus1Shortbow:
+                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
+                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
+            }
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)

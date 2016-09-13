@@ -373,19 +373,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Wood,
             AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus0Shortbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus1Shortbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus2Shortbow,
+        [TestCase(WeaponConstants.CompositeShortbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
@@ -402,31 +390,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Wood,
             AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus0Longbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus1Longbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus2Longbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus3Longbow,
-            AttributeConstants.Common,
-            AttributeConstants.Ranged,
-            AttributeConstants.Wood,
-            AttributeConstants.Piercing,
-            AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.CompositePlus4Longbow,
+        [TestCase(WeaponConstants.CompositeLongbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
