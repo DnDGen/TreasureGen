@@ -95,10 +95,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
-                .Returns(TraitConstants.Dragonhide);
+                .Returns(TraitConstants.SpecialMaterials.Dragonhide);
 
             var decoratedItem = decorator.GenerateAtPower("power");
-            Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.Dragonhide));
+            Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
             Assert.That(decoratedItem.Attributes, Is.Not.Contains(AttributeConstants.Metal));
         }
@@ -111,10 +111,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
-                .Returns(TraitConstants.Dragonhide);
+                .Returns(TraitConstants.SpecialMaterials.Dragonhide);
 
             var decoratedItem = decorator.GenerateAtPower("power");
-            Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.Dragonhide));
+            Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
             Assert.That(decoratedItem.Attributes, Is.Not.Contains(AttributeConstants.Wood));
         }

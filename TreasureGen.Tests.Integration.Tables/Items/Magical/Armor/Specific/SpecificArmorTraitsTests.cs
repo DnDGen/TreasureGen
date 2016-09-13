@@ -1,31 +1,30 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
     public class SpecificArmorTraitsTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Armor); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Armor); }
         }
 
         [TestCase(ArmorConstants.BandedMailOfLuck)]
         [TestCase(ArmorConstants.BreastplateOfCommand)]
         [TestCase(ArmorConstants.CelestialArmor)]
         [TestCase(ArmorConstants.DemonArmor)]
-        [TestCase(ArmorConstants.DwarvenPlate, TraitConstants.Adamantine)]
-        [TestCase(ArmorConstants.ElvenChain, TraitConstants.Mithral)]
-        [TestCase(ArmorConstants.FullPlateOfSpeed, TraitConstants.Mithral)]
+        [TestCase(ArmorConstants.DwarvenPlate, TraitConstants.SpecialMaterials.Adamantine)]
+        [TestCase(ArmorConstants.ElvenChain, TraitConstants.SpecialMaterials.Mithral)]
+        [TestCase(ArmorConstants.FullPlateOfSpeed, TraitConstants.SpecialMaterials.Mithral)]
         [TestCase(ArmorConstants.PlateArmorOfTheDeep)]
         [TestCase(ArmorConstants.RhinoHide)]
-        [TestCase(ArmorConstants.ChainShirt, TraitConstants.Mithral)]
-        [TestCase(ArmorConstants.FullPlate, TraitConstants.Dragonhide)]
-        [TestCase(ArmorConstants.Breastplate, TraitConstants.Adamantine)]
-        public override void Collections(String name, params String[] attributes)
+        [TestCase(ArmorConstants.ChainShirt, TraitConstants.SpecialMaterials.Mithral)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.SpecialMaterials.Dragonhide)]
+        [TestCase(ArmorConstants.Breastplate, TraitConstants.SpecialMaterials.Adamantine)]
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

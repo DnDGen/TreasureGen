@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Linq;
 using TreasureGen.Items;
 
@@ -9,33 +8,51 @@ namespace TreasureGen.Tests.Unit.Generators.Items
     public class TraitConstantsTests
     {
         [TestCase(TraitConstants.Masterwork, "Masterwork")]
-        [TestCase(TraitConstants.Darkwood, "Darkwood")]
-        [TestCase(TraitConstants.Small, "Small")]
-        [TestCase(TraitConstants.Medium, "Medium")]
-        [TestCase(TraitConstants.Large, "Large")]
-        [TestCase(TraitConstants.Adamantine, "Adamantine")]
-        [TestCase(TraitConstants.Dragonhide, "Dragonhide")]
-        [TestCase(TraitConstants.ColdIron, "Cold iron")]
-        [TestCase(TraitConstants.Mithral, "Mithral")]
-        [TestCase(TraitConstants.AlchemicalSilver, "Alchemical silver")]
+        [TestCase(TraitConstants.SpecialMaterials.Darkwood, "Darkwood")]
+        [TestCase(TraitConstants.Sizes.Tiny, "Tiny")]
+        [TestCase(TraitConstants.Sizes.Small, "Small")]
+        [TestCase(TraitConstants.Sizes.Medium, "Medium")]
+        [TestCase(TraitConstants.Sizes.Large, "Large")]
+        [TestCase(TraitConstants.Sizes.Huge, "Huge")]
+        [TestCase(TraitConstants.Sizes.Gargantuan, "Gargantuan")]
+        [TestCase(TraitConstants.Sizes.Colossal, "Colossal")]
+        [TestCase(TraitConstants.SpecialMaterials.Adamantine, "Adamantine")]
+        [TestCase(TraitConstants.SpecialMaterials.Dragonhide, "Dragonhide")]
+        [TestCase(TraitConstants.SpecialMaterials.ColdIron, "Cold iron")]
+        [TestCase(TraitConstants.SpecialMaterials.Mithral, "Mithral")]
+        [TestCase(TraitConstants.SpecialMaterials.AlchemicalSilver, "Alchemical silver")]
         [TestCase(TraitConstants.Markings, "Markings provide a clue to its function")]
         [TestCase(TraitConstants.ShedsLight, "Sheds light")]
-        public void Constant(String constant, String value)
+        public void Constant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
 
         [Test]
-        public void SpecialMaterialsContainAllSpecialMaterials()
+        public void AllSpecialMaterials()
         {
-            var materials = TraitConstants.GetSpecialMaterials();
-            Assert.That(materials, Contains.Item(TraitConstants.Mithral));
-            Assert.That(materials, Contains.Item(TraitConstants.Adamantine));
-            Assert.That(materials, Contains.Item(TraitConstants.AlchemicalSilver));
-            Assert.That(materials, Contains.Item(TraitConstants.Darkwood));
-            Assert.That(materials, Contains.Item(TraitConstants.ColdIron));
-            Assert.That(materials, Contains.Item(TraitConstants.Dragonhide));
+            var materials = TraitConstants.SpecialMaterials.All();
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.Mithral));
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.Adamantine));
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.AlchemicalSilver));
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.Darkwood));
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.ColdIron));
+            Assert.That(materials, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(materials.Count(), Is.EqualTo(6));
+        }
+
+        [Test]
+        public void AllSizes()
+        {
+            var sizes = TraitConstants.Sizes.All();
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Colossal));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Gargantuan));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Huge));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Large));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Medium));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Small));
+            Assert.That(sizes, Contains.Item(TraitConstants.Sizes.Tiny));
+            Assert.That(sizes.Count(), Is.EqualTo(7));
         }
     }
 }

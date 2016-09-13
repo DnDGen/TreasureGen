@@ -23,7 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             specialMaterialAttributes = new Dictionary<string, IEnumerable<string>>();
 
-            var materials = TraitConstants.GetSpecialMaterials();
+            var materials = TraitConstants.SpecialMaterials.All();
             foreach (var material in materials)
             {
                 var attributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, material);

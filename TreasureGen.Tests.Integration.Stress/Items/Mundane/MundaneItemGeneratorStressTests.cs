@@ -13,20 +13,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected MundaneItemGenerator mundaneItemGenerator;
         private IEnumerable<string> materials;
-        private IEnumerable<string> traits;
 
         [SetUp]
         public void MundaneItemGeneratorStressSetup()
         {
-            materials = TraitConstants.GetSpecialMaterials();
-            traits = new[]
-            {
-                TraitConstants.Large,
-                TraitConstants.Markings,
-                TraitConstants.Masterwork,
-                TraitConstants.Medium,
-                TraitConstants.Small
-            };
+            materials = TraitConstants.SpecialMaterials.All();
         }
 
         protected void StressItem()

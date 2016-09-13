@@ -31,7 +31,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 item.Traits.Add(material);
 
-                if (material == TraitConstants.Dragonhide)
+                if (material == TraitConstants.SpecialMaterials.Dragonhide)
                 {
                     var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
                     item.Attributes = item.Attributes.Except(metalAndWood);

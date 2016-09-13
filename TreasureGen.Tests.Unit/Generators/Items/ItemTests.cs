@@ -391,7 +391,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(StaffConstants.Frost)]
         [TestCase(StaffConstants.Healing)]
         [TestCase(StaffConstants.Illumination)]
-        [TestCase(StaffConstants.Abjuration)]
         [TestCase(StaffConstants.Illusion)]
         [TestCase(StaffConstants.Life)]
         [TestCase(StaffConstants.Necromancy)]

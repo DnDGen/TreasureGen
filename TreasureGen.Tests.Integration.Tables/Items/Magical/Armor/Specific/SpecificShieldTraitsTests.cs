@@ -1,27 +1,26 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
     public class SpecificShieldTraitsTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, AttributeConstants.Shield); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, AttributeConstants.Shield); }
         }
 
         [TestCase(ArmorConstants.AbsorbingShield)]
         [TestCase(ArmorConstants.CastersShield)]
-        [TestCase(ArmorConstants.Buckler, TraitConstants.Darkwood)]
-        [TestCase(ArmorConstants.HeavySteelShield, TraitConstants.Mithral)]
-        [TestCase(ArmorConstants.HeavyWoodenShield, TraitConstants.Darkwood)]
+        [TestCase(ArmorConstants.Buckler, TraitConstants.SpecialMaterials.Darkwood)]
+        [TestCase(ArmorConstants.HeavySteelShield, TraitConstants.SpecialMaterials.Mithral)]
+        [TestCase(ArmorConstants.HeavyWoodenShield, TraitConstants.SpecialMaterials.Darkwood)]
         [TestCase(ArmorConstants.LionsShield)]
         [TestCase(ArmorConstants.SpinedShield)]
         [TestCase(ArmorConstants.WingedShield)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

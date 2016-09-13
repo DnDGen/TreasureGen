@@ -50,7 +50,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
         public void AssertSpecificCursedItem(Item item)
         {
-            var materials = TraitConstants.GetSpecialMaterials();
+            var materials = TraitConstants.SpecialMaterials.All();
 
             AssertItem(item);
             Assert.That(item.Magic.Curse, Is.Not.Empty, item.Name);

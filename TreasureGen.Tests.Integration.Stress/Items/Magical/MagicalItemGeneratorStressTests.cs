@@ -15,7 +15,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected IEnumerable<string> materials;
         private MagicalItemGenerator magicalItemGenerator;
-        private IEnumerable<string> traits;
         private IEnumerable<string> specialAbilities;
 
         [SetUp]
@@ -23,13 +22,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         {
             magicalItemGenerator = GetNewInstanceOf<MagicalItemGenerator>(itemType);
 
-            materials = TraitConstants.GetSpecialMaterials();
-            traits = new[]
-            {
-                TraitConstants.Markings,
-                TraitConstants.ShedsLight
-            };
-
+            materials = TraitConstants.SpecialMaterials.All();
             specialAbilities = SpecialAbilityConstants.GetAllAbilities();
         }
 

@@ -24,13 +24,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         protected override void MakeSpecificAssertionsAgainst(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.Traits, Contains.Item(TraitConstants.Small)
-                .Or.Contains(TraitConstants.Medium)
-                .Or.Contains(TraitConstants.Large));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Armor), item.Name);
             Assert.That(item.Attributes, Is.Not.Null, item.Name);
             Assert.That(item.Quantity, Is.EqualTo(1));
             Assert.That(item.IsMagical, Is.False);
+
+            var sizes = TraitConstants.Sizes.All();
+            Assert.That(item.Traits.Intersect(sizes), Is.Not.Empty);
         }
 
         [Test]
@@ -48,9 +48,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void DarkwoodShieldsHappen()
         {
-            var shield = GenerateOrFail(GenerateItem, s => s.Traits.Contains(TraitConstants.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
+            var shield = GenerateOrFail(GenerateItem, s => s.Traits.Contains(TraitConstants.SpecialMaterials.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
             AssertItem(shield);
-            Assert.That(shield.Traits, Contains.Item(TraitConstants.Darkwood));
+            Assert.That(shield.Traits, Contains.Item(TraitConstants.SpecialMaterials.Darkwood));
             Assert.That(shield.Attributes, Contains.Item(AttributeConstants.Shield));
         }
 
