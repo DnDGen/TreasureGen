@@ -53,7 +53,8 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         private string GetRandom(IEnumerable<string> collection)
         {
-            var randomIndex = Random.Next(collection.Count());
+            var count = collection.Count();
+            var randomIndex = Random.Next(count);
             return collection.ElementAt(randomIndex);
         }
 
