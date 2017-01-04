@@ -33,7 +33,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
         public void RollPercentile()
         {
             table.Add(9266, "9266 content");
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
 
             var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[9266]));
@@ -44,7 +44,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
         {
             table.Add(42, "other content");
             table.Add(9266, "9266 content");
-            mockDice.SetupSequence(d => d.Roll(1).IndividualRolls(100)).Returns(new[] { 42 }).Returns(new[] { 9266 });
+            mockDice.SetupSequence(d => d.Roll(1).d(100).AsSum()).Returns(42).Returns(9266);
 
             var result = percentileSelector.SelectFrom(tableName);
             Assert.That(result, Is.EqualTo(table[42]));

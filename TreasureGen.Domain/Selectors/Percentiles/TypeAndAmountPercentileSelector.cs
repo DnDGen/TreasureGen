@@ -31,7 +31,7 @@ namespace TreasureGen.Domain.Selectors.Percentiles
             var parsedResult = percentileResult.Split(',');
 
             result.Type = parsedResult[0];
-            result.Amount = dice.Roll(parsedResult[1]);
+            result.Amount = dice.Roll(parsedResult[1]).AsSum();
 
             return result;
         }

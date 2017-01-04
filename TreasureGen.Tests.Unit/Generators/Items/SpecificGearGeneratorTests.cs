@@ -246,7 +246,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
 
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(50)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(50).AsSum()).Returns(9266);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
@@ -258,7 +258,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var attributes = new[] { "attribute 1", AttributeConstants.Thrown };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
@@ -270,7 +270,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var attributes = new[] { "attribute 1", AttributeConstants.Thrown, AttributeConstants.Melee };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Quantity, Is.EqualTo(1));

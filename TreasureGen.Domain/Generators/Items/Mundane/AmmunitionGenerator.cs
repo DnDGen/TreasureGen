@@ -23,7 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var roll = dice.Roll().Percentile();
+            var roll = dice.Roll().Percentile().AsSum();
 
             var ammunition = new Item();
             ammunition.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions);

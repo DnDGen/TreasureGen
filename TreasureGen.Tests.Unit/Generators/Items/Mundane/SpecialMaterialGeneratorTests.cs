@@ -214,7 +214,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void NonMaterialTraitsDoNotMatter()
         {
-            mockDice.Setup(d => d.Roll(It.IsAny<int>()).IndividualRolls(It.IsAny<int>())).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(It.IsAny<int>()).d(It.IsAny<int>()).AsSum()).Returns(1);
             traits.Add("not a material trait");
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
 
@@ -226,12 +226,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void IfMultipleMatchingMaterials_RollsToDetermineWhichOne()
         {
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(1);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.SpecialMaterials.Adamantine));
 
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
+            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.SpecialMaterials.Mithral));

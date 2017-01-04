@@ -119,7 +119,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var index = dice.Roll().d(fullContents.Count) - 1;
+                var index = dice.Roll().d(fullContents.Count).AsSum() - 1;
 
                 contents.Add(fullContents[index]);
                 fullContents.RemoveAt(index);
@@ -145,7 +145,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private IEnumerable<string> GenerateExtraItemsInRobeOfUsefulItems()
         {
             var extraItems = new List<string>();
-            var quantity = dice.Roll(4).d4();
+            var quantity = dice.Roll(4).d4().AsSum();
 
             while (quantity-- > 0)
             {

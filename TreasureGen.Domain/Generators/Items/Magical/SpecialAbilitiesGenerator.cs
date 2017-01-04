@@ -198,7 +198,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             do
             {
-                var index = dice.Roll().d(tableNames.Count()) - 1;
+                var index = dice.Roll().d(tableNames.Count()).AsSum() - 1;
                 var tableName = tableNames.ElementAt(index);
 
                 abilityName = percentileSelector.SelectFrom(tableName);

@@ -57,7 +57,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             foreach (var ability in item.Magic.SpecialAbilities)
                 intelligence.Ego += ability.BonusEquivalent;
 
-            switch (dice.Roll().d3())
+            switch (dice.Roll().d3().AsSum())
             {
                 case 1: intelligence.CharismaStat = 10; break;
                 case 2: intelligence.IntelligenceStat = 10; break;
@@ -86,7 +86,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
 
-            var roll = dice.Roll().d4();
+            var roll = dice.Roll().d4().AsSum();
             if (roll <= intelligenceAttributesResult.GreaterPowersCount)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);

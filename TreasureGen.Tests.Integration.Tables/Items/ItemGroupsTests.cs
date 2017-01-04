@@ -39,71 +39,51 @@ namespace TreasureGen.Tests.Integration.Tables.Items
             ArmorConstants.LionsShield,
             ArmorConstants.SpinedShield,
             ArmorConstants.WingedShield)]
-        [TestCase(ItemTypeConstants.Weapon,
-            WeaponConstants.AssassinsDagger,
-            WeaponConstants.BerserkingSword,
-            WeaponConstants.CursedBackbiterSpear,
-            WeaponConstants.CursedMinus2Sword,
-            WeaponConstants.DaggerOfVenom,
-            WeaponConstants.DwarvenThrower,
-            WeaponConstants.FlameTongue,
-            WeaponConstants.FrostBrand,
-            WeaponConstants.GreaterSlayingArrow,
-            WeaponConstants.HolyAvenger,
-            WeaponConstants.JavelinOfLightning,
-            WeaponConstants.LifeDrinker,
-            WeaponConstants.LuckBlade,
-            WeaponConstants.MaceOfBlood,
-            WeaponConstants.MaceOfSmiting,
-            WeaponConstants.MaceOfTerror,
-            WeaponConstants.NetOfSnaring,
-            WeaponConstants.NineLivesStealer,
-            WeaponConstants.RapierOfPuncturing,
-            WeaponConstants.ScreamingBolt,
-            WeaponConstants.Shatterspike,
-            WeaponConstants.ShiftersSorrow,
-            WeaponConstants.SlayingArrow,
-            WeaponConstants.SleepArrow,
-            WeaponConstants.SunBlade,
-            WeaponConstants.SwordOfLifeStealing,
-            WeaponConstants.SwordOfSubtlety,
-            WeaponConstants.SwordOfThePlanes,
-            WeaponConstants.SylvanScimitar,
-            WeaponConstants.TridentOfFishCommand,
-            WeaponConstants.TridentOfWarning,
-            WeaponConstants.Oathbow)]
-        [TestCase(CurseConstants.SpecificCursedItem,
-            ArmorConstants.ArmorOfArrowAttraction,
-            ArmorConstants.ArmorOfRage,
-            WeaponConstants.BerserkingSword,
-            WeaponConstants.CursedBackbiterSpear,
-            WeaponConstants.CursedMinus2Sword,
-            WeaponConstants.NetOfSnaring,
-            RingConstants.Clumsiness,
-            WondrousItemConstants.AmuletOfInescapableLocation,
-            WondrousItemConstants.BagOfDevouring,
-            WondrousItemConstants.BracersOfDefenselessness,
-            WondrousItemConstants.BroomOfAnimatedAttack,
-            WondrousItemConstants.CloakOfPoisonousness,
-            WondrousItemConstants.DustOfSneezingAndChoking,
-            WondrousItemConstants.RobeOfVermin,
-            WondrousItemConstants.CrystalBall_Hypnosis,
-            WondrousItemConstants.ScarabOfDeath,
-            WondrousItemConstants.NecklaceOfStrangulation,
-            WondrousItemConstants.BootsOfDancing,
-            WondrousItemConstants.StoneOfWeight_Loadstone,
-            WondrousItemConstants.PeriaptOfFoulRotting,
-            WondrousItemConstants.GauntletsOfFumbling,
-            WondrousItemConstants.VacousGrimoire,
-            WondrousItemConstants.MedallionOfThoughtProjection,
-            WondrousItemConstants.IncenseOfObsession,
-            WondrousItemConstants.HelmOfOppositeAlignment,
-            WondrousItemConstants.FlaskOfCurses,
-            WondrousItemConstants.RobeOfPowerlessness,
-            WeaponConstants.MaceOfBlood)]
-        public override void Collections(string name, params string[] items)
+        public void ItemGroup(string name, params string[] items)
         {
             base.Collections(name, items);
+        }
+
+        [Test]
+        public void WeaponGroup()
+        {
+            var items = new[]
+            {
+                WeaponConstants.AssassinsDagger,
+                WeaponConstants.BerserkingSword,
+                WeaponConstants.CursedBackbiterSpear,
+                WeaponConstants.CursedMinus2Sword,
+                WeaponConstants.DaggerOfVenom,
+                WeaponConstants.DwarvenThrower,
+                WeaponConstants.FlameTongue,
+                WeaponConstants.FrostBrand,
+                WeaponConstants.GreaterSlayingArrow,
+                WeaponConstants.HolyAvenger,
+                WeaponConstants.JavelinOfLightning,
+                WeaponConstants.LifeDrinker,
+                WeaponConstants.LuckBlade,
+                WeaponConstants.MaceOfBlood,
+                WeaponConstants.MaceOfSmiting,
+                WeaponConstants.MaceOfTerror,
+                WeaponConstants.NetOfSnaring,
+                WeaponConstants.NineLivesStealer,
+                WeaponConstants.RapierOfPuncturing,
+                WeaponConstants.ScreamingBolt,
+                WeaponConstants.Shatterspike,
+                WeaponConstants.ShiftersSorrow,
+                WeaponConstants.SlayingArrow,
+                WeaponConstants.SleepArrow,
+                WeaponConstants.SunBlade,
+                WeaponConstants.SwordOfLifeStealing,
+                WeaponConstants.SwordOfSubtlety,
+                WeaponConstants.SwordOfThePlanes,
+                WeaponConstants.SylvanScimitar,
+                WeaponConstants.TridentOfFishCommand,
+                WeaponConstants.TridentOfWarning,
+                WeaponConstants.Oathbow
+            };
+
+            base.Collections(ItemTypeConstants.Weapon, items);
         }
 
         [Test]
@@ -184,6 +164,44 @@ namespace TreasureGen.Tests.Integration.Tables.Items
             };
 
             base.Collections(AttributeConstants.Specific, items);
+        }
+
+        [Test]
+        public void SpecificCursedItems()
+        {
+            var items = new[]
+            {
+                ArmorConstants.ArmorOfArrowAttraction,
+                ArmorConstants.ArmorOfRage,
+                WeaponConstants.BerserkingSword,
+                WeaponConstants.CursedBackbiterSpear,
+                WeaponConstants.CursedMinus2Sword,
+                WeaponConstants.NetOfSnaring,
+                RingConstants.Clumsiness,
+                WondrousItemConstants.AmuletOfInescapableLocation,
+                WondrousItemConstants.BagOfDevouring,
+                WondrousItemConstants.BracersOfDefenselessness,
+                WondrousItemConstants.BroomOfAnimatedAttack,
+                WondrousItemConstants.CloakOfPoisonousness,
+                WondrousItemConstants.DustOfSneezingAndChoking,
+                WondrousItemConstants.RobeOfVermin,
+                WondrousItemConstants.CrystalBall_Hypnosis,
+                WondrousItemConstants.ScarabOfDeath,
+                WondrousItemConstants.NecklaceOfStrangulation,
+                WondrousItemConstants.BootsOfDancing,
+                WondrousItemConstants.StoneOfWeight_Loadstone,
+                WondrousItemConstants.PeriaptOfFoulRotting,
+                WondrousItemConstants.GauntletsOfFumbling,
+                WondrousItemConstants.VacousGrimoire,
+                WondrousItemConstants.MedallionOfThoughtProjection,
+                WondrousItemConstants.IncenseOfObsession,
+                WondrousItemConstants.HelmOfOppositeAlignment,
+                WondrousItemConstants.FlaskOfCurses,
+                WondrousItemConstants.RobeOfPowerlessness,
+                WeaponConstants.MaceOfBlood
+            };
+
+            base.Collections(CurseConstants.SpecificCursedItem, items);
         }
     }
 }

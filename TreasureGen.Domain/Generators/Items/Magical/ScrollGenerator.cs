@@ -54,9 +54,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             switch (power)
             {
-                case PowerConstants.Minor: return dice.Roll().d3();
-                case PowerConstants.Medium: return dice.Roll().d4();
-                case PowerConstants.Major: return dice.Roll().d6();
+                case PowerConstants.Minor: return dice.Roll().d3().AsSum();
+                case PowerConstants.Medium: return dice.Roll().d4().AsSum();
+                case PowerConstants.Major: return dice.Roll().d6().AsSum();
                 default: throw new ArgumentException();
             }
         }

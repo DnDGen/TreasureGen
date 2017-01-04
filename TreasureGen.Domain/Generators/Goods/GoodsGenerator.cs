@@ -38,7 +38,7 @@ namespace TreasureGen.Domain.Generators.Goods
             {
                 var valueResult = typeAndAmountPercentileSelector.SelectFrom(valueTableName);
                 var descriptions = attributesSelector.SelectFrom(descriptionTableName, valueResult.Type);
-                var descriptionIndex = dice.Roll().d(descriptions.Count()) - 1;
+                var descriptionIndex = dice.Roll().d(descriptions.Count()).AsSum() - 1;
 
                 var good = new Good();
                 good.Description = descriptions.ElementAt(descriptionIndex);

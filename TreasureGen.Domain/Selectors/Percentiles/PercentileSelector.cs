@@ -18,7 +18,7 @@ namespace TreasureGen.Domain.Selectors.Percentiles
 
         public string SelectFrom(string tableName)
         {
-            var roll = dice.Roll().Percentile();
+            var roll = dice.Roll().Percentile().AsSum();
             var table = percentileMapper.Map(tableName);
             return table[roll];
         }

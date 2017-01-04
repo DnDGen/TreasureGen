@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using System;
 using System.Collections.Generic;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Attributes;
@@ -42,7 +41,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var fillerValues = new[] { "0" };
             mockAttributesSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(fillerValues);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 4 });
+            mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(4);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("10");
             mockIntelligenceAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceAttributes, It.IsAny<string>())).Returns(intelligenceAttributesResult);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(string.Empty);
@@ -147,7 +146,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void Roll1MeansCharismaIsWeakStat()
         {
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("42");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -159,7 +158,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void Roll2MeansIntelligenceIsWeakStat()
         {
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 2 });
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(2);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("42");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -171,7 +170,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void Roll3MeansWisdomIsWeakStat()
         {
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(3)).Returns(new[] { 3 });
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(3);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("42");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -295,7 +294,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.GreaterPowersCount = 1;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("greater power");
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes)).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers)).Returns("dedicated power");
 
@@ -316,7 +315,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             for (var roll = 4; roll > 1; roll--)
             {
-                mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { roll });
+                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power"));
@@ -337,7 +336,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("greater power 1").Returns("greater power 2");
-                mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { roll });
+                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
@@ -358,7 +357,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("greater power 1").Returns("greater power 2");
-                mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { roll });
+                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
@@ -382,7 +381,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
                     .Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
 
-                mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { roll });
+                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
@@ -406,7 +405,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
                     .Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
 
-                mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { roll });
+                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
                 Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
@@ -700,7 +699,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void EgoIncludesLesserPowers()
         {
             intelligenceAttributesResult.LesserPowersCount = 2;
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -724,7 +723,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             intelligenceAttributesResult.GreaterPowersCount = 1;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("greater power");
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes)).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers)).Returns("dedicated power");
 
@@ -773,7 +772,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(18, 8)]
         [TestCase(19, 8)]
         [TestCase(20, 10)]
-        public void EgoIncludesStatBonuses(Int32 strongStat, Int32 egoBonus)
+        public void EgoIncludesStatBonuses(int strongStat, int egoBonus)
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns(strongStat.ToString());
             var intelligence = intelligenceGenerator.GenerateFor(item);
@@ -791,7 +790,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("greater power 1").Returns("greater power 2");
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(4)).Returns(new[] { 1 });
+            mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(1);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes)).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers)).Returns("dedicated power");
 

@@ -43,7 +43,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
             var descriptions = new[] { "description 1", "description 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, typeAndAmountResult.Type);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 2 });
+            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
         }
 
         [Test]
@@ -98,11 +98,11 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [Test]
         public void DescriptionDeterminedByValueResult()
         {
-            mockDice.SetupSequence(d => d.Roll(1).IndividualRolls(2)).Returns(new[] { 1 }).Returns(new[] { 2 });
+            mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
 
-            var good = generator.GenerateAtLevel(1);
-            var firstGood = good.First();
-            var secondGood = good.Last();
+            var goods = generator.GenerateAtLevel(1);
+            var firstGood = goods.First();
+            var secondGood = goods.Last();
 
             Assert.That(firstGood.Description, Is.EqualTo("description 1"));
             Assert.That(secondGood.Description, Is.EqualTo("description 2"));

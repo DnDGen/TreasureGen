@@ -38,8 +38,8 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen, Version=12.1.5991.24748, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.RollGen.12.2\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=12.1.6162.15224, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnDGen.RollGen.13.1.0\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

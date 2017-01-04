@@ -97,10 +97,10 @@ namespace TreasureGen.Domain.Generators.Items
         private int GetQuantity(Item gear)
         {
             if (gear.Attributes.Contains(AttributeConstants.Ammunition))
-                return dice.Roll().d(50);
+                return dice.Roll().d(50).AsSum();
 
             if (gear.Attributes.Contains(AttributeConstants.Thrown) && gear.Attributes.Contains(AttributeConstants.Melee) == false)
-                return dice.Roll().d20();
+                return dice.Roll().d20().AsSum();
 
             return 1;
         }

@@ -21,7 +21,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object, mockDice.Object);
 
             mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,amount");
-            mockDice.Setup(d => d.Roll("amount")).Returns(9266);
+            mockDice.Setup(d => d.Roll("amount").AsSum()).Returns(9266);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
         [Test]
         public void ReturnEmptyIfPercentileIsEmpty()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns(String.Empty);
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(string.Empty);
 
             var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             Assert.That(result.Type, Is.Empty);
@@ -58,7 +58,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
         [Test]
         public void ThrowFormatExceptionIfNoComma()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<String>())).Returns("no comma in this result");
+            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("no comma in this result");
             Assert.That(() => typeAndAmountPercentileSelector.SelectFrom("table name"), Throws.InstanceOf<FormatException>());
         }
     }

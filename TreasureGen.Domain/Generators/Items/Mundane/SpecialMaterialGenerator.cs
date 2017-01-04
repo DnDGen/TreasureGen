@@ -88,7 +88,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             if (allowedSpecialMaterials.Count() == 1)
                 return allowedSpecialMaterials.First();
 
-            var index = dice.Roll().d(allowedSpecialMaterials.Count()) - 1;
+            var index = dice.Roll().d(allowedSpecialMaterials.Count()).AsSum() - 1;
             return allowedSpecialMaterials.ElementAt(index);
         }
     }

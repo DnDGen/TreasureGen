@@ -92,7 +92,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             if (weapon.Attributes.Contains(AttributeConstants.Thrown) && weapon.Attributes.Contains(AttributeConstants.Melee) == false)
-                weapon.Quantity = dice.Roll().d20();
+                weapon.Quantity = dice.Roll().d20().AsSum();
 
             return weapon;
         }

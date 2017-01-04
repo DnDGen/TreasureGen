@@ -149,7 +149,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var attributes = new[] { "type 1", AttributeConstants.Thrown };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(9266));
@@ -161,7 +161,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var attributes = new[] { "type 1", AttributeConstants.Thrown, AttributeConstants.Melee };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).IndividualRolls(20)).Returns(new[] { 9266 });
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(1));

@@ -44,7 +44,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private string GetIntermittentFunctioning()
         {
-            var roll = dice.Roll().d3();
+            var roll = dice.Roll().d3().AsSum();
 
             if (roll == 1)
                 return "Unreliable";
@@ -53,7 +53,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 return "Uncontrolled";
 
             var situation = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations);
-            return string.Format("Dependent: {0}", situation);
+            return $"Dependent: {situation}";
         }
 
         public Item GenerateSpecificCursedItem()

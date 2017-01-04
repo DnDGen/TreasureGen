@@ -59,7 +59,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
             if (weapon.Attributes.Contains(AttributeConstants.Thrown) && weapon.Attributes.Contains(AttributeConstants.Melee) == false)
-                weapon.Quantity = dice.Roll().d20();
+                weapon.Quantity = dice.Roll().d20().AsSum();
 
             var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
             weapon.Traits.Add(size);
