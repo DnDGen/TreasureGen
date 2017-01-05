@@ -18,8 +18,8 @@ namespace TreasureGen.Tests.Integration.Stress
         public Stopwatch Stopwatch { get; set; }
 
         private const int ConfidentIterations = 1000000;
-        private const int TenMinutesInSeconds = 600;
-        private const int TwoHoursInSeconds = 3600 * 2;
+        private const int TravisJobOutputTimeLimit = 60 * 10;
+        private const int TravisJobBuildTimeLimit = 60 * 50;
 
         private readonly int timeLimitInSeconds;
 
@@ -32,9 +32,9 @@ namespace TreasureGen.Tests.Integration.Stress
             var methods = types.SelectMany(t => t.GetMethods());
             var stressTestsCount = methods.Count(m => m.GetCustomAttributes<TestAttribute>(true).Any() || m.GetCustomAttributes<TestCaseAttribute>().Any());
 
-            var twoHourTimeLimitPerTest = TwoHoursInSeconds / stressTestsCount;
+            var twoHourTimeLimitPerTest = TravisJobBuildTimeLimit / stressTestsCount;
 #if STRESS
-            timeLimitInSeconds = Math.Min(twoHourTimeLimitPerTest, TenMinutesInSeconds - 10);
+            timeLimitInSeconds = Math.Min(twoHourTimeLimitPerTest, TravisJobOutputTimeLimit - 10);
 #else
             timeLimitInSeconds = 1;
 #endif
