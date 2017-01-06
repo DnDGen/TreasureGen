@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -46,7 +45,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rings
         [TestCase(RingConstants.XRayVision, 0, 91, 93)]
         [TestCase(RingConstants.Blinking, 0, 94, 97)]
         [TestCase(RingConstants.ENERGYResistance_Major, 0, 98, 100)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }

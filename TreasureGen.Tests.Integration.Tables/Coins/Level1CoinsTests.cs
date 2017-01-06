@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Tables;
 
@@ -8,9 +7,9 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
     [TestFixture]
     public class Level1CoinsTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1); }
         }
 
         [Test]
@@ -20,16 +19,16 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
         }
 
         [TestCase(EmptyContent, 1, 14)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase(CoinConstants.Copper, "1d5001+999", 15, 29)]
-        [TestCase(CoinConstants.Silver, "1d701+99", 30, 52)]
-        [TestCase(CoinConstants.Gold, "2d71+18", 53, 95)]
-        [TestCase(CoinConstants.Platinum, "1d31+9", 96, 100)]
-        public override void TypeAndAmountPercentile(String type, String amount, Int32 lower, Int32 upper)
+        [TestCase(CoinConstants.Copper, AmountConstants.Range1d6x1000, 15, 29)]
+        [TestCase(CoinConstants.Silver, AmountConstants.Range1d8x100, 30, 52)]
+        [TestCase(CoinConstants.Gold, AmountConstants.Range2d8x10, 53, 95)]
+        [TestCase(CoinConstants.Platinum, AmountConstants.Range1d4x10, 96, 100)]
+        public override void TypeAndAmountPercentile(string type, string amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }

@@ -1,16 +1,16 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class IsMeleeIntelligentTests : BooleanPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee); }
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 
         [TestCase(true, 1, 15)]
         [TestCase(false, 16, 100)]
-        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, int lower, int upper)
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }

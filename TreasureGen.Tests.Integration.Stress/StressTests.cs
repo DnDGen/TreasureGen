@@ -30,11 +30,16 @@ namespace TreasureGen.Tests.Integration.Stress
             var assembly = Assembly.GetExecutingAssembly();
             var types = assembly.GetTypes();
             var methods = types.SelectMany(t => t.GetMethods());
-            var stressTestsCount = methods.Count(m => m.GetCustomAttributes<TestAttribute>(true).Any() || m.GetCustomAttributes<TestCaseAttribute>().Any());
+            var stressTestsCount = methods.Sum(m => m.GetCustomAttributes<TestAttribute>(true).Count());
+            var stressTestsCasesCount = methods.Sum(m => m.GetCustomAttributes<TestCaseAttribute>(true).Count());
+            var stressTestsTotal = stressTestsCount + stressTestsCasesCount;
 
-            var twoHourTimeLimitPerTest = TravisJobBuildTimeLimit / stressTestsCount;
+            var perTestTimeLimit = TravisJobBuildTimeLimit / stressTestsTotal;
+
+            //INFO: This asserts that the stress tests should have enough time to generate even the rarest of occurrances
+            Assert.That(perTestTimeLimit, Is.AtLeast(15));
 #if STRESS
-            timeLimitInSeconds = Math.Min(twoHourTimeLimitPerTest, TravisJobOutputTimeLimit - 10);
+            timeLimitInSeconds = Math.Min(perTestTimeLimit, TravisJobOutputTimeLimit - 10);
 #else
             timeLimitInSeconds = 1;
 #endif
@@ -97,7 +102,7 @@ namespace TreasureGen.Tests.Integration.Stress
 
         protected int GetNewLevel()
         {
-            return Random.Next(1, 21);
+            return Random.Next(1, 31);
         }
 
         protected string GetNewPower(bool allowMinor = true)

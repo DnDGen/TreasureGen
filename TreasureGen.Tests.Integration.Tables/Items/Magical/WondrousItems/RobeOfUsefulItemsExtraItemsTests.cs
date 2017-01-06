@@ -1,14 +1,13 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
     public class RobeOfUsefulItemsExtraItemsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems; }
         }
@@ -38,7 +37,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("Pair of war dogs (treat as riding dogs)", 84, 90)]
         [TestCase("Window (2 ft. by 4 ft., up to 2 ft. deep)", 91, 96)]
         [TestCase("Portable ram", 97, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

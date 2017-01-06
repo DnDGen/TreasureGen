@@ -1,13 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class IntelligenceAttributesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Collections.Set.IntelligenceAttributes; }
         }
@@ -20,13 +20,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("17", "120 ft. darkvision and hearing", 3, 1)]
         [TestCase("18", "120 ft. darkvision, blindsense, and hearing", 3, 2)]
         [TestCase("19", "120 ft. darkvision, blindsense, and hearing", 4, 3)]
-        public void OrderedAttributes(String strength, String senses, Int32 lesserPowersCount, Int32 greaterPowersCount)
+        public void OrderedAttributes(string strength, string senses, int lesserPowersCount, int greaterPowersCount)
         {
             var attributes = new[]
             {
-                senses, 
+                senses,
                 Convert.ToString(lesserPowersCount),
-                Convert.ToString(greaterPowersCount) 
+                Convert.ToString(greaterPowersCount)
             };
 
             OrderedCollections(strength, attributes);

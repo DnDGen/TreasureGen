@@ -1,15 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
     [TestFixture]
     public class Level4DivineSpellsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 4, "Divine"); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 4, "Divine"); }
         }
 
         [Test]
@@ -57,7 +56,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Summon nature's ally IV", 91, 93)]
         [TestCase("Tongues", 94, 98)]
         [TestCase("Tree stride", 99, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

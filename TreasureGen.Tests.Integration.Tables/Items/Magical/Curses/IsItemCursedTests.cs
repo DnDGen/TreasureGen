@@ -1,13 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
     [TestFixture]
     public class IsItemCursedTests : BooleanPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.IsItemCursed; }
         }
@@ -26,7 +26,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 
         [TestCase(true, 1, 5)]
         [TestCase(false, 6, 100)]
-        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, int lower, int upper)
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }

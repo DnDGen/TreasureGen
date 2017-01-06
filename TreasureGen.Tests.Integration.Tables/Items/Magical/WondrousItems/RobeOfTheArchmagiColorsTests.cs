@@ -1,13 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
     [TestFixture]
     public class RobeOfTheArchmagiColorsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors; }
         }
@@ -27,7 +26,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase("White (Good)", 1, 45)]
         [TestCase("Gray (Neutral)", 46, 75)]
         [TestCase("Black (Evil)", 76, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

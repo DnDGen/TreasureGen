@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -42,13 +41,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
         [TestCase(RodConstants.FlameExtinguishing, 0, 84, 89)]
         [TestCase(RodConstants.Viper, 2, 90, 97)]
         [TestCase(RodConstants.Metamagic_Empower, 0, 98, 99)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
 
         [TestCase(RodConstants.Metamagic_Quicken_Lesser, 0, 100)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 roll)
+        public override void TypeAndAmountPercentile(string type, int amount, int roll)
         {
             base.TypeAndAmountPercentile(type, amount, roll);
         }

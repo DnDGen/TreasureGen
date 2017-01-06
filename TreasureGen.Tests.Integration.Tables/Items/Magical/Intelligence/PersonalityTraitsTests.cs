@@ -1,13 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class PersonalityTraitsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.PersonalityTraits; }
         }
@@ -124,7 +123,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Prefers members of one class over all others", 98)]
         [TestCase("Jokester", 99)]
         [TestCase("No sense of humor", 100)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

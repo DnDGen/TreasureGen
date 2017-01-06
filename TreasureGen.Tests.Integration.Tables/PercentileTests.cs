@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -52,24 +51,24 @@ namespace TreasureGen.Tests.Integration.Tables
                 AssertValidReplacementStrings(value);
         }
 
-        private void AssertValidReplacementStrings(String value)
+        private void AssertValidReplacementStrings(string value)
         {
             var matches = allCapsRegex.Matches(value);
             foreach (var match in matches)
                 Assert.That(replacementStrings, Contains.Item(match.ToString()));
         }
 
-        public virtual void Percentile(String content, Int32 lower, Int32 upper)
+        public virtual void Percentile(string content, int lower, int upper)
         {
             for (var roll = lower; roll <= upper; roll++)
                 Percentile(content, roll);
         }
 
-        public virtual void Percentile(String content, Int32 roll)
+        public virtual void Percentile(string content, int roll)
         {
             Assert.That(table.Keys, Contains.Item(roll), tableName);
 
-            var message = String.Format("Roll: {0}", roll);
+            var message = string.Format("Roll: {0}", roll);
             Assert.That(table[roll], Is.EqualTo(content), message);
         }
     }

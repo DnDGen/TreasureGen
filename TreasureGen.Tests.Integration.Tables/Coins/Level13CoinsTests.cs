@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Tables;
 
@@ -8,9 +7,9 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
     [TestFixture]
     public class Level13CoinsTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 13); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 13); }
         }
 
         [Test]
@@ -20,14 +19,14 @@ namespace TreasureGen.Tests.Integration.Tables.Coins
         }
 
         [TestCase(EmptyContent, 1, 8)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase(CoinConstants.Gold, "1d3001+999", 9, 75)]
-        [TestCase(CoinConstants.Platinum, "1d901+99", 76, 100)]
-        public override void TypeAndAmountPercentile(String type, String amount, Int32 lower, Int32 upper)
+        [TestCase(CoinConstants.Gold, AmountConstants.Range1d4x1000, 9, 75)]
+        [TestCase(CoinConstants.Platinum, AmountConstants.Range1d10x100, 76, 100)]
+        public override void TypeAndAmountPercentile(string type, string amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }

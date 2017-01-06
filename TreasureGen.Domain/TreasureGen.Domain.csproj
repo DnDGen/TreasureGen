@@ -133,6 +133,7 @@
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileResult.cs" />
     <Compile Include="Selectors\Attributes\SpecialAbilityAttributesSelector.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelector.cs" />
+    <Compile Include="Tables\AmountConstants.cs" />
     <Compile Include="Tables\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Tables\IStreamLoader.cs" />
     <Compile Include="Tables\TableNameConstants.cs" />
@@ -198,7 +199,9 @@
     <EmbeddedResource Include="Tables\Coins\Level9Coins.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Goods\Art\ArtDescriptions.xml" />
+    <EmbeddedResource Include="Tables\Goods\Art\ArtDescriptions.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Goods\Art\ArtValues.xml" />
@@ -835,6 +838,99 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\ItemGroups.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level21Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level22Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level23Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level24Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level25Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level26Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level27Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level28Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level29Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Coins\Level30Coins.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level21Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level22Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level23Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level24Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level25Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level26Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level27Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level28Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level29Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Goods\Level30Goods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Magical\EpicItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level21Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level22Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level23Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level24Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level25Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level26Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level27Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level28Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level29Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Level30Items.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

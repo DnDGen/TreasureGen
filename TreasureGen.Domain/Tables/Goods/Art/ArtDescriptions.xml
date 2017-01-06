@@ -2,68 +2,68 @@
 
 <attributes>
   <object>
-    <name>1d10*10</name>
+    <name>1d91+9</name>
     <attribute>silver ewer</attribute>
     <attribute>carved bone statuette</attribute>
     <attribute>carved ivory statuette</attribute>
     <attribute>finely wrought small gold bracelet</attribute>
   </object>
   <object>
-      <name>3d6*10</name>
+      <name>3d51+27</name>
       <attribute>cloth of gold vestments</attribute>
       <attribute>black velvet mask with numerous citrines</attribute>
       <attribute>silver chalice with lapis lazuli gems</attribute>
   </object>
   <object>
-      <name>1d6*100</name>
+      <name>1d501+99</name>
       <attribute>large well-done wool tapestry</attribute>
       <attribute>brass mug with jade inlays</attribute>
   </object>
   <object>
-      <name>1d10*100</name>
+      <name>1d901+99</name>
       <attribute>silver comb with moonstones</attribute>
       <attribute>silver-plated steel longsword with jet jewel in hilt</attribute>
   </object>
   <object>
-      <name>2d6*100</name>
+      <name>2d501+198</name>
       <attribute>carved harp of exotic wood with ivory inlay and zircon gems</attribute>
       <attribute>10 lb. solid gold idol</attribute>
   </object>
   <object>
-    <name>3d6*100</name>
+    <name>3d501+297</name>
     <attribute>gold dragon comb with red garnet eye</attribute>
     <attribute>gold and topaz bottle stopper cork</attribute>
     <attribute>ceremonial electrum dagger with a star ruby in the pommel</attribute>
   </object>
   <object>
-      <name>4d6*100</name>
+      <name>4d501+396</name>
       <attribute>eyepatch with mock eye of sapphire and moonstone</attribute>
       <attribute>fire opal pendant on a fine gold chain</attribute>
       <attribute>old masterpiece painting</attribute>
   </object>
   <object>
-      <name>5d6*100</name>
+      <name>5d501+495</name>
       <attribute>embroidered silk and velvet mantle with numerous moonstones</attribute>
       <attribute>sapphire pendant on gold chain</attribute>
   </object>
   <object>
-    <name>1d4*1000</name>
+    <name>1d3001+999</name>
     <attribute>embroidered and bejeweled glove</attribute>
     <attribute>jeweled anklet</attribute>
     <attribute>gold music box</attribute>
   </object>
   <object>
-      <name>1d6*1000</name>
+      <name>1d5001+999</name>
       <attribute>golden circlet with four aquamarines</attribute>
       <attribute>a necklace of small pink pearls</attribute>
   </object>
   <object>
-      <name>2d4*1000</name>
+      <name>2d3001+1998</name>
       <attribute>jeweled gold crown</attribute>
       <attribute>jeweled electrum ring</attribute>
   </object>
   <object>
-      <name>2d6*1000</name>
+      <name>2d5001+1998</name>
       <attribute>gold and ruby ring</attribute>
       <attribute>gold cup set with emeralds</attribute>
   </object>

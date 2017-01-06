@@ -1,13 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class IntelligenceCommunicationTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Collections.Set.IntelligenceCommunication; }
         }
@@ -36,7 +36,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
             "Read all languages",
             "Read magic",
             "Telepathy")]
-        public void Attributes(Int32 highStat, params String[] attributes)
+        public void Attributes(int highStat, params string[] attributes)
         {
             var name = Convert.ToString(highStat);
             base.Collections(name, attributes);

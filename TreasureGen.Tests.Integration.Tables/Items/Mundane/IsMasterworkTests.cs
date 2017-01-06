@@ -7,7 +7,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
     [TestFixture]
     public class IsMasterworkTests : BooleanPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.IsMasterwork; }
         }
@@ -26,7 +26,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
 
         [TestCase(false, 1, 90)]
         [TestCase(true, 91, 100)]
-        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, int lower, int upper)
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }

@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
     [TestFixture]
     public class CommonRangedWeaponsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "CommonRanged"); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "CommonRanged"); }
         }
 
         [Test]
@@ -36,7 +35,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.CompositePlus2Longbow, 86, 90)]
         [TestCase(WeaponConstants.CompositePlus3Longbow, 91, 95)]
         [TestCase(WeaponConstants.CompositePlus4Longbow, 96, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

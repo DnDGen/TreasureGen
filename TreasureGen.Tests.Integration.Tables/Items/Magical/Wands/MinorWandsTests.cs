@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Wands
 {
     [TestFixture]
     public class MinorWandsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Wand); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Wand); }
         }
 
         [Test]
@@ -60,13 +59,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Wands
         [TestCase("Silence", 92, 94)]
         [TestCase("Summon monster II", 95, 97)]
         [TestCase("Web", 98, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
         [TestCase("Magic missile (5th)", 37)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

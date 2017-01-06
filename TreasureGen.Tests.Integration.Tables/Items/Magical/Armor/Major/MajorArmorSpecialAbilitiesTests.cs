@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -44,7 +43,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(SpecialAbilityConstants.SpellResistance17, 84, 88)]
         [TestCase(SpecialAbilityConstants.HeavyFortification, 91, 92)]
         [TestCase(SpecialAbilityConstants.SpellResistance19, 93, 94)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
@@ -59,7 +58,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(SpecialAbilityConstants.GreaterFireResistance, 98)]
         [TestCase(SpecialAbilityConstants.GreaterSonicResistance, 99)]
         [TestCase("BonusSpecialAbility", 100)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

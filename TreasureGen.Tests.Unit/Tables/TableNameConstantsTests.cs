@@ -15,6 +15,7 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, "Specific{0}Traits")]
         [TestCase(TableNameConstants.Collections.Set.AmmunitionAttributes, "AmmunitionAttributes")]
         [TestCase(TableNameConstants.Collections.Set.ChargeLimits, "ChargeLimits")]
+        [TestCase(TableNameConstants.Collections.Set.EpicItems, "EpicItems")]
         [TestCase(TableNameConstants.Collections.Set.IntelligenceAttributes, "IntelligenceAttributes")]
         [TestCase(TableNameConstants.Collections.Set.IntelligenceCommunication, "IntelligenceCommunication")]
         [TestCase(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "ItemAlignmentRequirements")]

@@ -13,13 +13,12 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void StressCoins()
         {
-            Stress(AssertCoins);
+            Stress(GenerateAndAssertCoins);
         }
 
-        private void AssertCoins()
+        private void GenerateAndAssertCoins()
         {
             var coin = GenerateCoin();
-
             Assert.That(coin.Currency, Is.Not.Null);
             Assert.That(coin.Quantity, Is.Not.Negative);
         }

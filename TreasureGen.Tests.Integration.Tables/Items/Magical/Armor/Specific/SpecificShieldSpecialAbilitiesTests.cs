@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
     [TestFixture]
     public class SpecificShieldSpecialAbilitiesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, AttributeConstants.Shield); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, AttributeConstants.Shield); }
         }
 
         [TestCase(ArmorConstants.AbsorbingShield)]
@@ -21,7 +20,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.LionsShield)]
         [TestCase(ArmorConstants.SpinedShield)]
         [TestCase(ArmorConstants.WingedShield)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

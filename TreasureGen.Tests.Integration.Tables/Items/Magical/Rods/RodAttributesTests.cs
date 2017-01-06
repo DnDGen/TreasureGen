@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -82,7 +81,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
                                       AttributeConstants.Melee,
                                       AttributeConstants.Metal,
                                       AttributeConstants.Specific)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

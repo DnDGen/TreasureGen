@@ -81,9 +81,39 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Coins\Level30CoinsTests.cs" />
+    <Compile Include="Coins\Level22CoinsTests.cs" />
+    <Compile Include="Coins\Level23CoinsTests.cs" />
+    <Compile Include="Coins\Level24CoinsTests.cs" />
+    <Compile Include="Coins\Level25CoinsTests.cs" />
+    <Compile Include="Coins\Level26CoinsTests.cs" />
+    <Compile Include="Coins\Level27CoinsTests.cs" />
+    <Compile Include="Coins\Level28CoinsTests.cs" />
+    <Compile Include="Coins\Level29CoinsTests.cs" />
+    <Compile Include="Coins\Level21CoinsTests.cs" />
     <Compile Include="CollectionsTests.cs" />
     <Compile Include="BooleanPercentileTests.cs" />
+    <Compile Include="Goods\Level30GoodsTests.cs" />
+    <Compile Include="Goods\Level22GoodsTests.cs" />
+    <Compile Include="Goods\Level23GoodsTests.cs" />
+    <Compile Include="Goods\Level24GoodsTests.cs" />
+    <Compile Include="Goods\Level25GoodsTests.cs" />
+    <Compile Include="Goods\Level26GoodsTests.cs" />
+    <Compile Include="Goods\Level27GoodsTests.cs" />
+    <Compile Include="Goods\Level28GoodsTests.cs" />
+    <Compile Include="Goods\Level29GoodsTests.cs" />
+    <Compile Include="Goods\Level21GoodsTests.cs" />
     <Compile Include="Items\ItemGroupsTests.cs" />
+    <Compile Include="Items\Level30ItemsTests.cs" />
+    <Compile Include="Items\Level22ItemsTests.cs" />
+    <Compile Include="Items\Level23ItemsTests.cs" />
+    <Compile Include="Items\Level24ItemsTests.cs" />
+    <Compile Include="Items\Level25ItemsTests.cs" />
+    <Compile Include="Items\Level26ItemsTests.cs" />
+    <Compile Include="Items\Level27ItemsTests.cs" />
+    <Compile Include="Items\Level28ItemsTests.cs" />
+    <Compile Include="Items\Level29ItemsTests.cs" />
+    <Compile Include="Items\Level21ItemsTests.cs" />
     <Compile Include="Items\Magical\Armor\Specific\CastersShieldContainsSpellTests.cs" />
     <Compile Include="Items\Magical\Armor\Specific\CastersShieldSpellTypesTests.cs" />
     <Compile Include="Items\Magical\Armor\Major\MajorSpecificShieldsTests.cs" />
@@ -105,6 +135,7 @@
     <Compile Include="Items\Magical\Curses\LivingCreatureTraitsTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemAttributesTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemItemTypesTests.cs" />
+    <Compile Include="Items\Magical\EpicItemsTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsLivingCreatureIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IsRodIntelligentTests.cs" />
     <Compile Include="Items\Magical\Intelligence\ItemAlignmentRequirementsTests.cs" />

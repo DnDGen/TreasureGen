@@ -1,16 +1,15 @@
 ﻿using NUnit.Framework;
-using System;
-using TreasureGen.Items;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
 {
     [TestFixture]
     public class SpecificArmorsAttributesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Armor); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Armor); }
         }
 
         [TestCase(ArmorConstants.BandedMailOfLuck, ItemTypeConstants.Armor,
@@ -47,7 +46,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
         [TestCase(ArmorConstants.Breastplate, ItemTypeConstants.Armor,
                                               AttributeConstants.Specific,
                                               AttributeConstants.Metal)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

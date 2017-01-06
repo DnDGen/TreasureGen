@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
 {
     [TestFixture]
     public class MajorSpecificShieldsTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, PowerConstants.Major, AttributeConstants.Shield); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, PowerConstants.Major, AttributeConstants.Shield); }
         }
 
         [Test]
@@ -30,7 +29,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase(ArmorConstants.LionsShield, 2, 41, 60)]
         [TestCase(ArmorConstants.WingedShield, 3, 61, 90)]
         [TestCase(ArmorConstants.AbsorbingShield, 1, 91, 100)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }

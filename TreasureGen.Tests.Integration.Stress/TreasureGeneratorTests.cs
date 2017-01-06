@@ -14,22 +14,31 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void StressTreasure()
         {
-            Stress(AssertTreasure);
+            Stress(GenerateAndAssertTreasure);
         }
 
-        private void AssertTreasure()
+        private void GenerateAndAssertTreasure()
         {
-            var treasure = GenerateTreasure();
-
+            var level = GetNewLevel();
+            var treasure = GenerateTreasure(level);
             Assert.That(treasure.Coin.Currency, Is.Not.Null, "currency");
             Assert.That(treasure.Coin.Quantity, Is.Not.Negative);
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
             Assert.That(treasure.Items, Is.Not.Null, "items");
+
+            if (level > 20)
+            {
+                Assert.That(treasure.Items, Is.Not.Empty, "epic items");
+                Assert.That(treasure.Items, Is.All.Not.Null, "epic items");
+                Assert.That(treasure.Items, Is.Unique, "epic items");
+            }
         }
 
-        private Treasure GenerateTreasure()
+        private Treasure GenerateTreasure(int level = 0)
         {
-            var level = GetNewLevel();
+            if (level == 0)
+                level = GetNewLevel();
+
             var treasure = TreasureGenerator.GenerateAtLevel(level);
 
             return treasure;
@@ -38,21 +47,21 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void TreasureHappens()
         {
-            var treasure = GenerateOrFail(GenerateTreasure, t => t.IsAny);
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.IsAny);
             Assert.That(treasure.IsAny, Is.True);
         }
 
         [Test]
         public void TreasureDoesNotHappen()
         {
-            var treasure = GenerateOrFail(GenerateTreasure, t => t.IsAny == false);
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.IsAny == false);
             Assert.That(treasure.IsAny, Is.False);
         }
 
         [Test]
         public void CoinHappens()
         {
-            var treasure = GenerateOrFail(GenerateTreasure, t => t.Coin.Quantity > 0);
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Coin.Quantity > 0);
             Assert.That(treasure.Coin.Quantity, Is.Positive);
             Assert.That(treasure.Coin.Currency, Is.Not.Empty);
         }
@@ -60,17 +69,19 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void GoodsHappen()
         {
-            var treasure = GenerateOrFail(GenerateTreasure, t => t.Goods.Any());
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Goods.Any());
             Assert.That(treasure.Goods, Is.Not.Empty);
             Assert.That(treasure.Goods, Is.All.Not.Null);
+            Assert.That(treasure.Goods, Is.Unique);
         }
 
         [Test]
         public void ItemsHappen()
         {
-            var treasure = GenerateOrFail(GenerateTreasure, t => t.Items.Any());
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Items.Any());
             Assert.That(treasure.Items, Is.Not.Empty);
             Assert.That(treasure.Items, Is.All.Not.Null);
+            Assert.That(treasure.Items, Is.Unique);
         }
     }
 }

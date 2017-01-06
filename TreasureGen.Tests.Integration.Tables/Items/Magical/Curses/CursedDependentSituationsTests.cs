@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items.Magical;
 
@@ -43,14 +42,14 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(CurseConstants.Dependent.HandsOfPARTIALALIGNMENT, 91, 93)]
         [TestCase(CurseConstants.Dependent.HandsOfFULLALIGNMENT, 94, 95)]
         [TestCase(CurseConstants.Dependent.NonholyDays, 97, 99)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
         [TestCase(CurseConstants.Dependent.HandsOfGENDER, 96)]
         [TestCase(CurseConstants.Dependent.MilesFromSite, 100)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

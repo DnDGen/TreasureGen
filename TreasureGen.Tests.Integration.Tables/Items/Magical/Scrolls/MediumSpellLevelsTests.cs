@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls
 {
     [TestFixture]
     public class MediumSpellLevelsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERSpellLevels, PowerConstants.Medium); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.POWERSpellLevels, PowerConstants.Medium); }
         }
 
         [Test]
@@ -29,7 +28,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls
         [TestCase("3", 6, 65)]
         [TestCase("4", 66, 95)]
         [TestCase("5", 96, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

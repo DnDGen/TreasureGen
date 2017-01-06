@@ -1,16 +1,15 @@
 ﻿using NUnit.Framework;
-using System;
-using TreasureGen.Goods;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Goods;
 
 namespace TreasureGen.Tests.Integration.Tables.Goods.Art
 {
     [TestFixture]
     public class ArtValuesTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, GoodsConstants.Art); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, GoodsConstants.Art); }
         }
 
         [Test]
@@ -25,24 +24,24 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Art
             AssertTableIsComplete();
         }
 
-        [TestCase("1d10*10", "1d91+9", 1, 10)]
-        [TestCase("3d6*10", "3d51+27", 11, 25)]
-        [TestCase("1d6*100", "1d501+99", 26, 40)]
-        [TestCase("1d10*100", "1d901+99", 41, 50)]
-        [TestCase("2d6*100", "2d501+198", 51, 60)]
-        [TestCase("3d6*100", "3d501+297", 61, 70)]
-        [TestCase("4d6*100", "4d501+396", 71, 80)]
-        [TestCase("5d6*100", "5d501+495", 81, 85)]
-        [TestCase("1d4*1000", "1d3001+999", 86, 90)]
-        [TestCase("1d6*1000", "1d5001+999", 91, 95)]
-        [TestCase("2d4*1000", "2d3001+1998", 96, 99)]
-        public override void TypeAndAmountPercentile(String type, String value, Int32 lower, Int32 upper)
+        [TestCase(AmountConstants.Range1d10x10, AmountConstants.Range1d10x10, 1, 10)]
+        [TestCase(AmountConstants.Range3d6x10, AmountConstants.Range3d6x10, 11, 25)]
+        [TestCase(AmountConstants.Range1d6x100, AmountConstants.Range1d6x100, 26, 40)]
+        [TestCase(AmountConstants.Range1d10x100, AmountConstants.Range1d10x100, 41, 50)]
+        [TestCase(AmountConstants.Range2d6x100, AmountConstants.Range2d6x100, 51, 60)]
+        [TestCase(AmountConstants.Range3d6x100, AmountConstants.Range3d6x100, 61, 70)]
+        [TestCase(AmountConstants.Range4d6x100, AmountConstants.Range4d6x100, 71, 80)]
+        [TestCase(AmountConstants.Range5d6x100, AmountConstants.Range5d6x100, 81, 85)]
+        [TestCase(AmountConstants.Range1d4x1000, AmountConstants.Range1d4x1000, 86, 90)]
+        [TestCase(AmountConstants.Range1d6x1000, AmountConstants.Range1d6x1000, 91, 95)]
+        [TestCase(AmountConstants.Range2d4x1000, AmountConstants.Range2d4x1000, 96, 99)]
+        public override void TypeAndAmountPercentile(string type, string value, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, value, lower, upper);
         }
 
-        [TestCase("2d6*1000", "2d5001+1998", 100)]
-        public override void TypeAndAmountPercentile(String type, String value, Int32 roll)
+        [TestCase(AmountConstants.Range2d6x1000, AmountConstants.Range2d6x1000, 100)]
+        public override void TypeAndAmountPercentile(string type, string value, int roll)
         {
             base.TypeAndAmountPercentile(type, value, roll);
         }

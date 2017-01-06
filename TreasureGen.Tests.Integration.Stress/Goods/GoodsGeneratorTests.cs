@@ -15,10 +15,10 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void StressGoods()
         {
-            Stress(AssertGoods);
+            Stress(GenerateAndAssertGoods);
         }
 
-        private void AssertGoods()
+        private void GenerateAndAssertGoods()
         {
             var goods = GenerateGoods();
 

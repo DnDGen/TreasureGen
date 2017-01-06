@@ -89,6 +89,7 @@
             {
                 public const string AmmunitionAttributes = "AmmunitionAttributes";
                 public const string ChargeLimits = "ChargeLimits";
+                public const string EpicItems = "EpicItems";
                 public const string IntelligenceAttributes = "IntelligenceAttributes";
                 public const string IntelligenceCommunication = "IntelligenceCommunication";
                 public const string ItemAlignmentRequirements = "ItemAlignmentRequirements";

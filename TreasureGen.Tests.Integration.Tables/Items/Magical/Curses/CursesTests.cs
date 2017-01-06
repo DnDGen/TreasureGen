@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items.Magical;
 
@@ -32,7 +31,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(CurseConstants.Drawback, 61, 75)]
         [TestCase(CurseConstants.DifferentEffect, 76, 90)]
         [TestCase(TableNameConstants.Percentiles.Set.SpecificCursedItems, 91, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

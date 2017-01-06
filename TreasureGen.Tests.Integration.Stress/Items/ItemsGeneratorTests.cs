@@ -18,37 +18,41 @@ namespace TreasureGen.Tests.Integration.Stress.Items
         [Test]
         public void StressItems()
         {
-            Stress(AssertItems);
+            Stress(GenerateAndAssertItems);
         }
 
-        private void AssertItems()
+        private void GenerateAndAssertItems()
         {
-            var items = GenerateItems();
+            var level = GetNewLevel();
+            var items = GenerateItems(level);
             Assert.That(items, Is.Not.Null);
 
             foreach (var item in items)
-            {
                 ItemVerifier.AssertItem(item);
-            }
+
+            if (level > 20)
+                Assert.That(items, Is.Not.Empty);
         }
 
-        private IEnumerable<Item> GenerateItems()
+        private IEnumerable<Item> GenerateItems(int level = 0)
         {
-            var level = GetNewLevel();
+            if (level == 0)
+                level = GetNewLevel();
+
             return ItemsGenerator.GenerateAtLevel(level);
         }
 
         [Test]
         public void ItemsHappen()
         {
-            var items = GenerateOrFail(GenerateItems, i => i.Any());
+            var items = GenerateOrFail(() => GenerateItems(), i => i.Any());
             Assert.That(items, Is.Not.Empty);
         }
 
         [Test]
         public void ItemsDoNotHappen()
         {
-            var items = GenerateOrFail(GenerateItems, i => !i.Any());
+            var items = GenerateOrFail(() => GenerateItems(), i => !i.Any());
             Assert.That(items, Is.Empty);
         }
     }

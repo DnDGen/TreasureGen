@@ -24,8 +24,8 @@ namespace TreasureGen.Tests.Integration.Tables.Goods
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase(GoodsConstants.Gem, "1d8", 41, 80)]
-        [TestCase(GoodsConstants.Art, "1d4", 81, 100)]
+        [TestCase(GoodsConstants.Gem, AmountConstants.Range1d8, 41, 80)]
+        [TestCase(GoodsConstants.Art, AmountConstants.Range1d4, 81, 100)]
         public override void TypeAndAmountPercentile(string type, string amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);

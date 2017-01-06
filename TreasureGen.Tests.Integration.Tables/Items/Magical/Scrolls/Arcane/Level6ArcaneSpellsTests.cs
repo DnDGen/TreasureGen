@@ -1,15 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
     [TestFixture]
     public class Level6ArcaneSpellsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 6, "Arcane"); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 6, "Arcane"); }
         }
 
         [Test]
@@ -59,7 +58,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Undeath to death", 94, 95)]
         [TestCase("Veil", 96, 97)]
         [TestCase("Wall of iron", 98, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
@@ -77,7 +76,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
         [TestCase("Symbol of fear", 86)]
         [TestCase("Symbol of persuasion", 87)]
         [TestCase("Sympathetic vibration", 88)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

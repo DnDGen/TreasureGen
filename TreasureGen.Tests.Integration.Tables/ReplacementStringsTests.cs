@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 
@@ -35,7 +34,7 @@ namespace TreasureGen.Tests.Integration.Tables
             TableNameConstants.Percentiles.Set.PartialAlignments)]
         [TestCase(ReplacementStringConstants.FullAlignment,
             TableNameConstants.Percentiles.Set.FullAlignments)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

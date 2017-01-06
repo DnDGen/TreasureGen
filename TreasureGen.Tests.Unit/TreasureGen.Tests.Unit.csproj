@@ -139,6 +139,7 @@
     <Compile Include="Selectors\Attributes\RangeAttributesSelectorTests.cs" />
     <Compile Include="Selectors\Attributes\SpecialAbilityAttributesSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelectorTests.cs" />
+    <Compile Include="Tables\AmountConstantsTests.cs" />
     <Compile Include="Tables\TableNameConstantsTests.cs" />
   </ItemGroup>
   <ItemGroup>

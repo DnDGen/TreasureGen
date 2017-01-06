@@ -1,16 +1,15 @@
 ﻿using NUnit.Framework;
-using System;
-using TreasureGen.Goods;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Goods;
 
 namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
 {
     [TestFixture]
     public class GemValuesTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, GoodsConstants.Gem); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, GoodsConstants.Gem); }
         }
 
         [Test]
@@ -25,18 +24,18 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
             AssertTableIsComplete();
         }
 
-        [TestCase("4d4", "4d4", 1, 25)]
-        [TestCase("2d4*10", "2d31+18", 26, 50)]
-        [TestCase("4d4*10", "4d31+36", 51, 70)]
-        [TestCase("2d4*100", "2d301+198", 71, 90)]
-        [TestCase("4d4*100", "4d301+396", 91, 99)]
-        public override void TypeAndAmountPercentile(String type, String value, Int32 lower, Int32 upper)
+        [TestCase(AmountConstants.Range4d4, AmountConstants.Range4d4, 1, 25)]
+        [TestCase(AmountConstants.Range2d4x10, AmountConstants.Range2d4x10, 26, 50)]
+        [TestCase(AmountConstants.Range4d4x10, AmountConstants.Range4d4x10, 51, 70)]
+        [TestCase(AmountConstants.Range2d4x100, AmountConstants.Range2d4x100, 71, 90)]
+        [TestCase(AmountConstants.Range4d4x100, AmountConstants.Range4d4x100, 91, 99)]
+        public override void TypeAndAmountPercentile(string type, string value, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, value, lower, upper);
         }
 
-        [TestCase("2d4*1000", "2d3001+1998", 100)]
-        public override void TypeAndAmountPercentile(String type, String value, Int32 roll)
+        [TestCase(AmountConstants.Range2d4x1000, AmountConstants.Range2d4x1000, 100)]
+        public override void TypeAndAmountPercentile(string type, string value, int roll)
         {
             base.TypeAndAmountPercentile(type, value, roll);
         }

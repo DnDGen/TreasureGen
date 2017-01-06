@@ -1,13 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class IntelligenceSpecialPurposeTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
             get { return TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes; }
         }
@@ -35,13 +34,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("Defeat/slay all (other than the item and the wielder)", 91, 95)]
         [TestCase("Defend arcane spellcasters", 96, 97)]
         [TestCase("Defend divine spellcasters", 98, 99)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
         [TestCase("Defend nonspellcasters", 100)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

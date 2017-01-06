@@ -1,16 +1,16 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
     public class IsWondrousItemIntelligentTests : BooleanPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, ItemTypeConstants.WondrousItem); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, ItemTypeConstants.WondrousItem); }
         }
 
         [Test]
@@ -26,13 +26,13 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         }
 
         [TestCase(false, 2, 100)]
-        public override void BooleanPercentile(Boolean isTrue, Int32 lower, Int32 upper)
+        public override void BooleanPercentile(Boolean isTrue, int lower, int upper)
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }
 
         [TestCase(true, 1)]
-        public override void BooleanPercentile(Boolean isTrue, Int32 roll)
+        public override void BooleanPercentile(Boolean isTrue, int roll)
         {
             base.BooleanPercentile(isTrue, roll);
         }

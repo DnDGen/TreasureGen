@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -40,10 +39,10 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(RodConstants.Absorption, 1, 50)]
         [TestCase(RodConstants.FullAbsorption, 50, 50)]
         [TestCase(RodConstants.Rulership, 1, 500)]
-        public void Attributes(String name, Int32 min, Int32 max)
+        public void ChargeLimits(string name, int min, int max)
         {
-            var attributes = new[] { min.ToString(), max.ToString() };
-            base.Collections(name, attributes);
+            var limits = new[] { min.ToString(), max.ToString() };
+            base.OrderedCollections(name, limits);
         }
     }
 }

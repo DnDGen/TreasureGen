@@ -17,7 +17,7 @@
         <attribute>irregular freshwater pearl</attribute>
     </object>
     <object>
-        <name>2d4*10</name>
+        <name>2d31+18</name>
         <attribute>bloodstone</attribute>
         <attribute>carnelian</attribute>
         <attribute>chalcedony</attribute>
@@ -37,7 +37,7 @@
         <attribute>zircon</attribute>
     </object>
     <object>
-        <name>4d4*10</name>
+        <name>4d31+36</name>
         <attribute>amber</attribute>
         <attribute>amethyst</attribute>
         <attribute>chrysoberyl</attribute>
@@ -56,7 +56,7 @@
         <attribute>tourmaline</attribute>
     </object>
     <object>
-        <name>2d4*100</name>
+        <name>2d301+198</name>
         <attribute>alexandrite</attribute>
         <attribute>aquamarine</attribute>
         <attribute>violet garnet</attribute>
@@ -65,7 +65,7 @@
         <attribute>golden yellow topaz</attribute>
     </object>
     <object>
-        <name>4d4*100</name>
+        <name>4d301+396</name>
         <attribute>emerald</attribute>
         <attribute>white opal</attribute>
         <attribute>black opal</attribute>
@@ -78,7 +78,7 @@
         <attribute>star ruby</attribute>
     </object>
     <object>
-        <name>2d4*1000</name>
+        <name>2d3001+1998</name>
         <attribute>clearest bright green emerald</attribute>
         <attribute>blue-white diamond</attribute>
         <attribute>canary diamond</attribute>

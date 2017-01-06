@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -323,7 +322,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.BottleOfAir)]
         [TestCase(WondrousItemConstants.BagOfHolding_III)]
         [TestCase(WondrousItemConstants.PeriaptOfHealth)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

@@ -1,15 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
     [TestFixture]
     public class Level6DivineSpellsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 6, "Divine"); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXSPELLTYPESpells, 6, "Divine"); }
         }
 
         [Test]
@@ -53,7 +52,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Undeath to death", 92, 94)]
         [TestCase("Windwalk", 95, 97)]
         [TestCase("Word of recall", 98, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
@@ -65,7 +64,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
         [TestCase("Liveoak", 62)]
         [TestCase("Symbol of fear", 87)]
         [TestCase("Symbol of persuasion", 88)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

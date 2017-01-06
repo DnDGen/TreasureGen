@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -51,7 +50,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Major
         [TestCase(SpecialAbilityConstants.Dancing, 87, 88)]
         [TestCase(SpecialAbilityConstants.Vorpal, 89, 90)]
         [TestCase("BonusSpecialAbility", 91, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }

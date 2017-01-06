@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -126,7 +125,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
         [TestCase(WondrousItemConstants.TomeOfClearThought, 1, 98)]
         [TestCase(WondrousItemConstants.TomeOfLeadershipAndInfluence, 1, 99)]
         [TestCase(WondrousItemConstants.TomeOfUnderstanding, 1, 100)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 roll)
+        public override void TypeAndAmountPercentile(string type, int amount, int roll)
         {
             base.TypeAndAmountPercentile(type, amount, roll);
         }

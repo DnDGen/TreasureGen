@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
 {
     [TestFixture]
     public class ArmorAttributesTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor); }
         }
 
         [TestCase(ArmorConstants.Buckler, AttributeConstants.Wood,
@@ -42,7 +41,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.BandedMail, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.HalfPlate, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

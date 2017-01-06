@@ -1,16 +1,15 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
 {
     [TestFixture]
     public class MediumSpecificWeaponsTests : TypeAndAmountPercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Weapon); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Weapon); }
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
         [TestCase(WeaponConstants.NineLivesStealer, 2, 92, 95)]
         [TestCase(WeaponConstants.SwordOfLifeStealing, 2, 96, 98)]
         [TestCase(WeaponConstants.Oathbow, 2, 99, 100)]
-        public override void TypeAndAmountPercentile(String type, Int32 amount, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
         }

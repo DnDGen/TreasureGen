@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -43,7 +42,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WondrousItemConstants.NecklaceOfStrangulation, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.CloakOfPoisonousness, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.ScarabOfDeath, ItemTypeConstants.WondrousItem)]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

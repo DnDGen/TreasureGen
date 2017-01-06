@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -51,7 +50,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase(PotionConstants.MagicFang_Greater, 4, 92, 93)]
         [TestCase(PotionConstants.MagicWeapon_Greater, 4, 94, 95)]
         [TestCase(PotionConstants.MagicVestment, 4, 96, 97)]
-        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 lower, Int32 upper)
+        public override void TypeAndAmountPercentile(string name, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(name, amount, lower, upper);
         }
@@ -81,7 +80,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Potions
         [TestCase(PotionConstants.MagicFang_Greater, 5, 98)]
         [TestCase(PotionConstants.MagicWeapon_Greater, 5, 99)]
         [TestCase(PotionConstants.MagicVestment, 5, 100)]
-        public override void TypeAndAmountPercentile(String name, Int32 amount, Int32 roll)
+        public override void TypeAndAmountPercentile(string name, int amount, int roll)
         {
             base.TypeAndAmountPercentile(name, amount, roll);
         }

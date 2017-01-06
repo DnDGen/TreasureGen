@@ -1,19 +1,18 @@
 ﻿using NUnit.Framework;
-using System;
-using TreasureGen.Goods;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Goods;
 
 namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
 {
     [TestFixture]
     public class GemDescriptionsTests : CollectionsTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, GoodsConstants.Gem); }
+            get { return string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, GoodsConstants.Gem); }
         }
 
-        [TestCase("4d4", "eye agate",
+        [TestCase(AmountConstants.Range4d4, "eye agate",
                          "moss agate",
                          "banded agate",
                          "azurite",
@@ -25,7 +24,7 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
                          "rhodochrosite",
                          "tiger eye turquoise",
                          "irregular freshwater pearl")]
-        [TestCase("2d4*10", "bloodstone",
+        [TestCase(AmountConstants.Range2d4x10, "bloodstone",
                             "carnelian",
                             "chalcedony",
                             "chrysoprase",
@@ -42,7 +41,7 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
                             "smoky rose quartz",
                             "star rose quartz",
                             "zircon")]
-        [TestCase("4d4*10", "amber",
+        [TestCase(AmountConstants.Range4d4x10, "amber",
                             "amethyst",
                             "chrysoberyl",
                             "coral",
@@ -58,13 +57,13 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
                             "red-brown spinel",
                             "deep green spinel",
                             "tourmaline")]
-        [TestCase("2d4*100", "alexandrite",
+        [TestCase(AmountConstants.Range2d4x100, "alexandrite",
                              "aquamarine",
                              "violet garnet",
                              "black pearl",
                              "deep blue spinel",
                              "golden yellow topaz")]
-        [TestCase("4d4*100", "emerald",
+        [TestCase(AmountConstants.Range4d4x100, "emerald",
                              "white opal",
                              "black opal",
                              "fire opal",
@@ -74,14 +73,14 @@ namespace TreasureGen.Tests.Integration.Tables.Goods.Gems
                              "blue star sapphire",
                              "black star sapphire",
                              "star ruby")]
-        [TestCase("2d4*1000", "clearest bright green emerald",
+        [TestCase(AmountConstants.Range2d4x1000, "clearest bright green emerald",
                               "blue-white diamond",
                               "canary diamond",
                               "pink diamond",
                               "brown diamond",
                               "blue diamond",
                               "jacinth")]
-        public override void Collections(String name, params String[] attributes)
+        public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

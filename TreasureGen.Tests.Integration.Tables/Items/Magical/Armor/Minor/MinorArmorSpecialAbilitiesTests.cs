@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -32,7 +31,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
         [TestCase(SpecialAbilityConstants.Shadow, 53, 72)]
         [TestCase(SpecialAbilityConstants.SilentMoves, 73, 92)]
         [TestCase(SpecialAbilityConstants.SpellResistance13, 93, 96)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
@@ -41,7 +40,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Minor
         [TestCase(SpecialAbilityConstants.ImprovedShadow, 98)]
         [TestCase(SpecialAbilityConstants.ImprovedSilentMoves, 99)]
         [TestCase("BonusSpecialAbility", 100)]
-        public override void Percentile(String content, Int32 roll)
+        public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
         }

@@ -1,16 +1,16 @@
-﻿using System;
-using TreasureGen.Items;
+﻿using NUnit.Framework;
+using System;
 using TreasureGen.Domain.Tables;
-using NUnit.Framework;
+using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
 {
     [TestFixture]
     public class MinorWeaponsTests : PercentileTests
     {
-        protected override String tableName
+        protected override string tableName
         {
-            get { return String.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Weapon); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Weapon); }
         }
 
         [Test]
@@ -27,14 +27,14 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
 
         [TestCase(ItemTypeConstants.Weapon, 86, 90)]
         [TestCase("SpecialAbility", 91, 100)]
-        public override void Percentile(String content, Int32 lower, Int32 upper)
+        public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
         [TestCase(1, 1, 70)]
         [TestCase(2, 71, 85)]
-        public void Percentile(Int32 bonus, Int32 lower, Int32 upper)
+        public void Percentile(int bonus, int lower, int upper)
         {
             var content = Convert.ToString(bonus);
             Percentile(content, lower, upper);
