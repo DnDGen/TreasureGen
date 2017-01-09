@@ -16,7 +16,7 @@
       This generates items for the Dungeons and Dragons 3.5 system.
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/DnDGen.TreasureGen</projectUrl>
+    <projectUrl>https://github.com/DnDGen/TreasureGen</projectUrl>
     <iconUrl>http://www.downloadclipart.net/thumb/18531-twenty-sided-dice-vector-thumb.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
