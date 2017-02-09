@@ -169,7 +169,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private IEnumerable<string> GeneratePlanesForCubicGate()
         {
             var planes = new HashSet<string>();
-            planes.Add("Material plane");
+            planes.Add("Material Plane");
 
             while (planes.Count < 6)
             {

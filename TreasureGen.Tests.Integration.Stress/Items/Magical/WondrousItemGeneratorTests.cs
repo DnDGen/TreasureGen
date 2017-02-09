@@ -129,5 +129,20 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         {
             base.StressSpecificCursedItems();
         }
+
+        [Test]
+        public void BUG_CubicGateDoesNotDuplicateMaterialPlane()
+        {
+            Stress(AssertCubicGatePlanesAreUnique);
+        }
+
+        private void AssertCubicGatePlanesAreUnique()
+        {
+            var cubicGate = Generate(GenerateItem, i => i.ItemType == itemType && i.Name == WondrousItemConstants.CubicGate);
+            Assert.That(cubicGate.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
+            Assert.That(cubicGate.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
+            Assert.That(cubicGate.Contents, Is.Unique);
+            Assert.That(cubicGate.Contents.Select(p => p.ToLower()), Is.Unique);
+        }
     }
 }

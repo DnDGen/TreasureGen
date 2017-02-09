@@ -226,7 +226,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
-            Assert.That(item.Contents, Contains.Item("Material plane"));
+            Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
             Assert.That(item.Contents, Contains.Item("plane 2"));
             Assert.That(item.Contents, Contains.Item("plane 3"));
@@ -244,7 +244,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
-            Assert.That(item.Contents, Contains.Item("Material plane"));
+            Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
             Assert.That(item.Contents, Contains.Item("plane 2"));
             Assert.That(item.Contents, Contains.Item("plane 3"));
