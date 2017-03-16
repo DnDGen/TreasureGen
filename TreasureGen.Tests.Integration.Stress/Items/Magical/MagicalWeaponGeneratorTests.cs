@@ -66,7 +66,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void UndecoratedSpecificWeaponHappens()
         {
-            var weapon = GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Specific) && w.Magic.Curse != CurseConstants.SpecificCursedItem && w.Magic.Intelligence.Ego == 0);
+            var weapon = GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Specific) && w.Magic.Curse == string.Empty && w.Magic.Intelligence.Ego == 0);
             AssertItem(weapon);
             Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Specific));
             Assert.That(weapon.Magic.Curse, Is.Empty);

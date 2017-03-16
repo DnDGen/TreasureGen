@@ -44,12 +44,16 @@
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+    <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EventGen.1.0.0\lib\EventGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RollGen, Version=12.1.6247.28555, Culture=neutral, processorArchitecture=MSIL">
@@ -66,8 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generators\Coins\CoinConstantsTests.cs" />
+    <Compile Include="Generators\Coins\CoinGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
+    <Compile Include="Generators\Items\ItemsGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\TreasureGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Goods\GoodsGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Items\ItemVerifier.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecoratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />
