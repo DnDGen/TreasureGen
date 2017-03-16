@@ -74,14 +74,14 @@ namespace TreasureGen.Domain.IoC.Modules
         private void Decorate<S, T>(string name, params Type[] decorators)
             where T : S
         {
-            var allImplementations = new[] { typeof(T) }.Union(decorators);
+            var implementations = new[] { typeof(T) }.Union(decorators).Take(decorators.Length);
 
-            foreach (var implementation in allImplementations)
+            foreach (var implementation in implementations)
             {
-                Bind<S>().To(implementation).When(r => Need(implementation, r, name, allImplementations));
+                Bind<S>().To(implementation).When(r => Need(implementation, r, name, implementations));
             }
 
-            Bind<S>().To(allImplementations.Last()).Named(name);
+            Bind<S>().To(decorators.Last()).Named(name);
         }
 
         private bool Need(Type implementation, IRequest request, string name, IEnumerable<Type> implementations)
