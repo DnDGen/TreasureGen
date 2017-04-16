@@ -22,14 +22,16 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             item.Name = result.Type;
             item.Quantity = result.Amount;
             item.ItemType = ItemTypeConstants.AlchemicalItem;
+            item.BaseNames = new[] { item.Name };
 
             return item;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = template.CopyWithoutMagic();
+            var item = template.MundaneClone();
             item.ItemType = ItemTypeConstants.AlchemicalItem;
+            item.BaseNames = new[] { item.Name };
 
             return item;
         }

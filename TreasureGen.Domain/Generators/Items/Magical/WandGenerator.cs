@@ -26,6 +26,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var spell = percentileSelector.SelectFrom(tablename);
             wand.Magic.Charges = chargesGenerator.GenerateFor(wand.ItemType, spell);
             wand.Name = string.Format("Wand of {0}", spell);
+            wand.BaseNames = new[] { ItemTypeConstants.Wand };
             wand.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
 
             return wand;
@@ -33,14 +34,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
-            template.ItemType = ItemTypeConstants.Wand;
-
-            var wand = template.Copy();
+            var wand = template.Clone();
             wand.IsMagical = true;
             wand.Quantity = 1;
+            wand.BaseNames = new[] { ItemTypeConstants.Wand };
+            wand.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
+            wand.ItemType = ItemTypeConstants.Wand;
 
-            return wand;
+            return wand.SmartClone();
         }
     }
 }

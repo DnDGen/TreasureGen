@@ -35,6 +35,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var item = new Item();
             item.Name = result.Type;
+            item.BaseNames = new[] { result.Type };
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
 
@@ -182,14 +183,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            template.Attributes = attributesSelector.SelectFrom(tableName, template.Name);
-            template.ItemType = ItemTypeConstants.WondrousItem;
-
-            var item = template.Copy();
+            var item = template.Clone();
             item.IsMagical = true;
+            item.BaseNames = new[] { item.Name };
 
-            return item;
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
+            item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
+            item.ItemType = ItemTypeConstants.WondrousItem;
+
+            return item.SmartClone();
         }
     }
 }

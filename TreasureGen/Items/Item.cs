@@ -7,6 +7,7 @@ namespace TreasureGen.Items
     public class Item
     {
         public string Name { get; set; }
+        public IEnumerable<string> BaseNames { get; set; }
         public string ItemType { get; set; }
         public HashSet<string> Traits { get; set; }
         public IEnumerable<string> Attributes { get; set; }
@@ -35,15 +36,15 @@ namespace TreasureGen.Items
         {
             get
             {
+                var allWeapons = WeaponConstants.GetAllWeapons();
+                var allArmors = ArmorConstants.GetAllArmors(true);
+
                 return ItemType == ItemTypeConstants.Weapon
                     || ItemType == ItemTypeConstants.Armor
-                    || Name == StaffConstants.Power
-                    || Name == RodConstants.Alertness
-                    || Name == RodConstants.Flailing
-                    || Name == RodConstants.Python
-                    || Name == RodConstants.Viper
-                    || Name == RodConstants.ThunderAndLightning
-                    || Name == RodConstants.Withering;
+                    || allWeapons.Contains(Name)
+                    || allWeapons.Intersect(BaseNames).Any()
+                    || allArmors.Contains(Name)
+                    || allArmors.Intersect(BaseNames).Any();
             }
         }
 
@@ -56,50 +57,64 @@ namespace TreasureGen.Items
             Magic = new Magic();
             Quantity = 1;
             Name = string.Empty;
+            BaseNames = Enumerable.Empty<string>();
             Contents = new List<string>();
             ItemType = string.Empty;
         }
 
-        public Item Copy()
+        public Item Clone()
         {
-            var copy = CopyWithoutMagic();
+            var clone = MundaneClone();
+            clone.Magic.Bonus = Magic.Bonus;
+            clone.Magic.Charges = Magic.Charges;
+            clone.Magic.Curse = Magic.Curse;
+            clone.Magic.Intelligence = Magic.Intelligence.Clone();
+            clone.Magic.SpecialAbilities = Magic.SpecialAbilities.ToArray();
 
-            copy.Magic.Curse = Magic.Curse;
+            return clone;
+        }
+
+        public Item SmartClone()
+        {
+            var clone = MundaneClone();
+
+            clone.Magic.Curse = Magic.Curse;
+
+            if (clone.CanBeUsedAsWeaponOrArmor)
+                clone.Magic.SpecialAbilities = Magic.SpecialAbilities.ToArray();
 
             if (ItemType == ItemTypeConstants.Wand)
-                copy.Contents.Clear();
+                clone.Contents.Clear();
 
             if (ItemType != ItemTypeConstants.Potion && ItemType != ItemTypeConstants.Scroll)
-                copy.Magic.Charges = Magic.Charges;
+                clone.Magic.Charges = Magic.Charges;
 
             if (ItemType != ItemTypeConstants.Wand && ItemType != ItemTypeConstants.Scroll)
-                copy.Magic.Bonus = Magic.Bonus;
+                clone.Magic.Bonus = Magic.Bonus;
 
             var nonIntelligenceItems = new[] { AttributeConstants.OneTimeUse, AttributeConstants.Ammunition };
             if (Attributes.Intersect(nonIntelligenceItems).Any() == false)
-                copy.Magic.Intelligence = Magic.Intelligence.Copy();
+                clone.Magic.Intelligence = Magic.Intelligence.Clone();
 
-            if (CanBeUsedAsWeaponOrArmor)
-                copy.Magic.SpecialAbilities = Magic.SpecialAbilities.ToArray();
-
-            return copy;
+            return clone;
         }
 
-        public Item CopyWithoutMagic()
+        public Item MundaneClone()
         {
-            var copy = new Item();
-            copy.Attributes = Attributes.ToArray();
-            copy.Contents.AddRange(Contents);
-            copy.ItemType = ItemType;
-            copy.Name = Name;
-            copy.Quantity = Quantity;
+            var clone = new Item();
+            clone.Attributes = Attributes.ToArray();
+            clone.Contents.AddRange(Contents);
+            clone.ItemType = ItemType;
+            clone.Name = Name;
+            clone.BaseNames = BaseNames.ToArray();
+            clone.Quantity = Quantity;
 
             foreach (var trait in Traits)
             {
-                copy.Traits.Add(trait);
+                clone.Traits.Add(trait);
             }
 
-            return copy;
+            return clone;
         }
     }
 }

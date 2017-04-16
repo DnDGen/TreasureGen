@@ -55,6 +55,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GetBaseNames()
+        {
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "rod of ability")).Returns(baseNames);
+
+            var rod = rodGenerator.GenerateAtPower(power);
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
+        }
+
+        [Test]
         public void MinorPowerThrowsError()
         {
             Assert.That(() => rodGenerator.GenerateAtPower(PowerConstants.Minor), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor rods"));
@@ -147,23 +157,22 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
             var rod = rodGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(rod, template);
             Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
             Assert.That(rod.IsMagical, Is.True);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.Quantity, Is.EqualTo(1));
-            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
         }
 
-        [TestCase(RodConstants.Alertness)]
-        [TestCase(RodConstants.Flailing)]
-        [TestCase(RodConstants.Python)]
-        [TestCase(RodConstants.ThunderAndLightning)]
-        [TestCase(RodConstants.Viper)]
-        [TestCase(RodConstants.Withering)]
-        public void GenerateNamedCustomRod(string name)
+        [Test]
+        public void GenerateCustomRodThatCanBeAWeapon()
         {
+            var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
             var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
 
@@ -179,6 +188,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name", WeaponConstants.Club };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
             var rod = rodGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(rod, template);
             Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
@@ -186,6 +198,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.Quantity, Is.EqualTo(1));
             Assert.That(rod.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
         }
 
         [Test]
@@ -207,13 +220,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
             var rod = rodGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(rod, template);
             Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
             Assert.That(rod.IsMagical, Is.True);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.Quantity, Is.EqualTo(1));
-            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
         }
 
         [Test]
@@ -235,13 +251,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
             var rod = rodGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(rod, template);
             Assert.That(rod.Attributes, Is.EquivalentTo(attributes));
             Assert.That(rod.IsMagical, Is.True);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.Quantity, Is.EqualTo(1));
-            Assert.That(rod.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
         }
     }
 }

@@ -22,6 +22,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void ItemInitialized()
         {
             Assert.That(item.Name, Is.Empty);
+            Assert.That(item.BaseNames, Is.Empty);
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.Magic, Is.Not.Null);
             Assert.That(item.Quantity, Is.EqualTo(1));
@@ -83,28 +84,22 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void CopyItem()
+        public void SmartCloneItem()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
             template.ItemType = Guid.NewGuid().ToString();
-            template.Magic.SpecialAbilities = new[]
-            {
-                new SpecialAbility { Name = Guid.NewGuid().ToString() },
-                new SpecialAbility { Name = Guid.NewGuid().ToString() }
-            };
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
 
-            var copy = template.Copy();
+            var copy = template.SmartClone();
             itemVerifier.AssertMagicalItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
-            Assert.That(copy.Magic.SpecialAbilities, Is.Empty);
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
         }
 
         [Test]
-        public void CopyScroll()
+        public void SmartCloneScroll()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -118,7 +113,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             //INFO: All scrolls have a one-time use attribute, so this is appropriate for the use case
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AttributeConstants.OneTimeUse };
 
-            var copy = template.Copy();
+            var copy = template.SmartClone();
             itemVerifier.AssertMagicalItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
@@ -140,7 +135,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void CopyOneTimeUseItem()
+        public void SmartCloneOneTimeUseItem()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -153,7 +148,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AttributeConstants.OneTimeUse };
 
-            var copy = template.Copy();
+            var copy = template.SmartClone();
             itemVerifier.AssertMagicalItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
@@ -172,7 +167,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void CopyAmmunition()
+        public void SmartCloneAmmunition()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -185,27 +180,27 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AttributeConstants.Ammunition };
 
-            var copy = template.Copy();
-            itemVerifier.AssertMagicalItemFromTemplate(copy, template);
-            Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
-            Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
-            Assert.That(copy.Magic.Intelligence.Alignment, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.CharismaStat, Is.EqualTo(0));
-            Assert.That(copy.Magic.Intelligence.Communication, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.DedicatedPower, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.Ego, Is.EqualTo(0));
-            Assert.That(copy.Magic.Intelligence.IntelligenceStat, Is.EqualTo(0));
-            Assert.That(copy.Magic.Intelligence.Languages, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.Personality, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.Powers, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.Senses, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.SpecialPurpose, Is.Empty);
-            Assert.That(copy.Magic.Intelligence.WisdomStat, Is.EqualTo(0));
-            Assert.That(copy.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            var clone = template.SmartClone();
+            itemVerifier.AssertMagicalItemFromTemplate(clone, template);
+            Assert.That(clone.ItemType, Is.EqualTo(template.ItemType));
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(0));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(0));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(0));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.Personality, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.Powers, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.Senses, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.Empty);
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(0));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
         }
 
         [Test]
-        public void CopyPotion()
+        public void SmartClonePotion()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -219,7 +214,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             //INFO: All potions have a one-time use attribute, so this is appropriate for the use case
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AttributeConstants.OneTimeUse };
 
-            var copy = template.Copy();
+            var copy = template.SmartClone();
             itemVerifier.AssertMagicalItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
@@ -238,7 +233,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void CopyWand()
+        public void SmartCloneWand()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -252,7 +247,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             //INFO: All potions have a one-time use attribute, so this is appropriate for the use case
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AttributeConstants.OneTimeUse };
 
-            var copy = template.Copy();
+            var copy = template.SmartClone();
             itemVerifier.AssertMagicalItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
@@ -273,56 +268,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(copy.Magic.SpecialAbilities, Is.Empty);
         }
 
-        [TestCase(ItemTypeConstants.Armor)]
-        [TestCase(ItemTypeConstants.Weapon)]
-        public void CopyWeaponOrArmor(string itemType)
-        {
-            var name = Guid.NewGuid().ToString();
-            var template = itemVerifier.CreateRandomTemplate(name);
-            template.ItemType = itemType;
-            template.Magic.SpecialAbilities = new[]
-            {
-                new SpecialAbility { Name = Guid.NewGuid().ToString() },
-                new SpecialAbility { Name = Guid.NewGuid().ToString() }
-            };
-
-            template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-
-            var copy = template.Copy();
-            itemVerifier.AssertMagicalItemFromTemplate(copy, template);
-            Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
-            Assert.That(copy.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
-            Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
-        }
-
-        [TestCase(StaffConstants.Power)]
-        [TestCase(RodConstants.Alertness)]
-        [TestCase(RodConstants.Flailing)]
-        [TestCase(RodConstants.Python)]
-        [TestCase(RodConstants.ThunderAndLightning)]
-        [TestCase(RodConstants.Viper)]
-        [TestCase(RodConstants.Withering)]
-        public void CopyNamedItem(string name)
-        {
-            var template = itemVerifier.CreateRandomTemplate(name);
-            template.ItemType = Guid.NewGuid().ToString();
-            template.Magic.SpecialAbilities = new[]
-            {
-                new SpecialAbility { Name = Guid.NewGuid().ToString() },
-                new SpecialAbility { Name = Guid.NewGuid().ToString() }
-            };
-
-            template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-
-            var copy = template.Copy();
-            itemVerifier.AssertMagicalItemFromTemplate(copy, template);
-            Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
-            Assert.That(copy.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
-            Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
-        }
-
         [Test]
-        public void CopyItemWithoutMagic()
+        public void MundaneCloneItem()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
@@ -335,10 +282,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
 
-            var copy = template.CopyWithoutMagic();
+            var copy = template.MundaneClone();
             itemVerifier.AssertMundaneItemFromTemplate(copy, template);
             Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(copy.Magic.SpecialAbilities, Is.Empty);
         }
 
         [TestCase(ItemTypeConstants.Armor)]
@@ -365,74 +313,370 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.False);
         }
 
-        [TestCase(StaffConstants.Power)]
-        [TestCase(RodConstants.Alertness)]
-        [TestCase(RodConstants.Flailing)]
-        [TestCase(RodConstants.Python)]
-        [TestCase(RodConstants.ThunderAndLightning)]
-        [TestCase(RodConstants.Viper)]
-        [TestCase(RodConstants.Withering)]
-        public void NamedItemCanBeUsedAsWeaponOrArmor(string name)
+        [Test]
+        public void NamedWeaponCanBeUsedAsWeaponOrArmor()
         {
-            item.Name = name;
-            Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.True);
+            var allWeapons = WeaponConstants.GetAllWeapons();
+            foreach (var weapon in allWeapons)
+            {
+                item.Name = weapon;
+                item.BaseNames = new[] { "base name", "other base name" };
+                Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.True, weapon);
+            }
         }
 
-        [TestCase("random name")]
-        [TestCase(StaffConstants.Abjuration)]
-        [TestCase(StaffConstants.Charming)]
-        [TestCase(StaffConstants.Conjuration)]
-        [TestCase(StaffConstants.Defense)]
-        [TestCase(StaffConstants.Divination)]
-        [TestCase(StaffConstants.EarthAndStone)]
-        [TestCase(StaffConstants.Enchantment)]
-        [TestCase(StaffConstants.Evocation)]
-        [TestCase(StaffConstants.Fire)]
-        [TestCase(StaffConstants.Frost)]
-        [TestCase(StaffConstants.Healing)]
-        [TestCase(StaffConstants.Illumination)]
-        [TestCase(StaffConstants.Illusion)]
-        [TestCase(StaffConstants.Life)]
-        [TestCase(StaffConstants.Necromancy)]
-        [TestCase(StaffConstants.Passage)]
-        [TestCase(StaffConstants.SizeAlteration)]
-        [TestCase(StaffConstants.SwarmingInsects)]
-        [TestCase(StaffConstants.Transmutation)]
-        [TestCase(StaffConstants.Woodlands)]
-        [TestCase(RodConstants.Absorption)]
-        [TestCase(RodConstants.Cancellation)]
-        [TestCase(RodConstants.EnemyDetection)]
-        [TestCase(RodConstants.FlameExtinguishing)]
-        [TestCase(RodConstants.ImmovableRod)]
-        [TestCase(RodConstants.LordlyMight)]
-        [TestCase(RodConstants.MetalAndMineralDetection)]
-        [TestCase(RodConstants.Metamagic_Empower)]
-        [TestCase(RodConstants.Metamagic_Empower_Greater)]
-        [TestCase(RodConstants.Metamagic_Empower_Lesser)]
-        [TestCase(RodConstants.Metamagic_Enlarge)]
-        [TestCase(RodConstants.Metamagic_Enlarge_Greater)]
-        [TestCase(RodConstants.Metamagic_Enlarge_Lesser)]
-        [TestCase(RodConstants.Metamagic_Extend)]
-        [TestCase(RodConstants.Metamagic_Extend_Greater)]
-        [TestCase(RodConstants.Metamagic_Extend_Lesser)]
-        [TestCase(RodConstants.Metamagic_Maximize)]
-        [TestCase(RodConstants.Metamagic_Maximize_Greater)]
-        [TestCase(RodConstants.Metamagic_Maximize_Lesser)]
-        [TestCase(RodConstants.Metamagic_Quicken)]
-        [TestCase(RodConstants.Metamagic_Quicken_Greater)]
-        [TestCase(RodConstants.Metamagic_Quicken_Lesser)]
-        [TestCase(RodConstants.Metamagic_Silent)]
-        [TestCase(RodConstants.Metamagic_Silent_Greater)]
-        [TestCase(RodConstants.Metamagic_Silent_Lesser)]
-        [TestCase(RodConstants.Negation)]
-        [TestCase(RodConstants.Rulership)]
-        [TestCase(RodConstants.Security)]
-        [TestCase(RodConstants.Splendor)]
-        [TestCase(RodConstants.Wonder)]
-        public void NamedItemCannotBeUsedAsWeaponOrArmor(string name)
+        [Test]
+        public void NamedArmorCanBeUsedAsWeaponOrArmor()
         {
-            item.Name = name;
+            var allArmors = ArmorConstants.GetAllArmors(true);
+            foreach (var armor in allArmors)
+            {
+                item.Name = armor;
+                item.BaseNames = new[] { "base name", "other base name" };
+                Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.True, armor);
+            }
+        }
+
+        [Test]
+        public void RandomNameCannotBeUsedAsWeaponOrArmor()
+        {
+            item.Name = "random name";
             Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.False);
+        }
+
+        [Test]
+        public void BaseNamedWeaponCanBeUsedAsWeaponOrArmor()
+        {
+            var allWeapons = WeaponConstants.GetAllWeapons();
+            foreach (var weapon in allWeapons)
+            {
+                item.Name = "random name";
+                item.BaseNames = new[] { "base name", weapon, "other base name" };
+                Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.True, weapon);
+            }
+        }
+
+        [Test]
+        public void BaseNamedArmorCanBeUsedAsWeaponOrArmor()
+        {
+            var allArmors = ArmorConstants.GetAllArmors(true);
+            foreach (var armor in allArmors)
+            {
+                item.Name = "random name";
+                item.BaseNames = new[] { "base name", armor, "other base name" };
+                Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.True, armor);
+            }
+        }
+
+        [Test]
+        public void RandomBaseNameCannotBeUsedAsWeaponOrArmor()
+        {
+            item.Name = "random name";
+            item.BaseNames = new[] { "base name", "other base name" };
+            Assert.That(item.CanBeUsedAsWeaponOrArmor, Is.False);
+        }
+
+        [TestCase(ItemTypeConstants.Armor)]
+        [TestCase(ItemTypeConstants.Weapon)]
+        public void SmartCloneWithItemTypeCanBeUsedAsWeaponOrArmor(string itemType)
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.ItemType = itemType;
+
+            var clone = template.SmartClone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+        }
+
+        [TestCase(ItemTypeConstants.AlchemicalItem)]
+        [TestCase(ItemTypeConstants.LivingCreature)]
+        [TestCase(ItemTypeConstants.Potion)]
+        [TestCase(ItemTypeConstants.Ring)]
+        [TestCase(ItemTypeConstants.Rod)]
+        [TestCase(ItemTypeConstants.Scroll)]
+        [TestCase(ItemTypeConstants.Staff)]
+        [TestCase(ItemTypeConstants.Tool)]
+        [TestCase(ItemTypeConstants.Wand)]
+        [TestCase(ItemTypeConstants.WondrousItem)]
+        public void SmartCloneWithItemTypeCannotBeUsedAsWeaponOrArmor(string itemType)
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.ItemType = itemType;
+
+            var clone = template.SmartClone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+        }
+
+        [Test]
+        public void SmartCloneWithNamedWeaponCanBeUsedAsWeaponOrArmor()
+        {
+            var allWeapons = WeaponConstants.GetAllWeapons();
+            foreach (var weapon in allWeapons)
+            {
+                var template = itemVerifier.CreateRandomTemplate(weapon);
+                template.BaseNames = new[] { "base name", "other base name" };
+
+                var clone = template.SmartClone();
+                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone.Name, Is.EqualTo(template.Name));
+                Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+                Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+                Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+                Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+                Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+                Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+                Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+                Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+                Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+                Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+                Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+                Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+                Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+                Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+                Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+                Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+                Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+                Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+                Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+                Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+            }
+        }
+
+        [Test]
+        public void SmartCloneWithNamedArmorCanBeUsedAsWeaponOrArmor()
+        {
+            var allArmors = ArmorConstants.GetAllArmors(true);
+            foreach (var armor in allArmors)
+            {
+                var template = itemVerifier.CreateRandomTemplate(armor);
+                template.BaseNames = new[] { "base name", "other base name" };
+
+                var clone = template.SmartClone();
+                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone.Name, Is.EqualTo(template.Name));
+                Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+                Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+                Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+                Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+                Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+                Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+                Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+                Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+                Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+                Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+                Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+                Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+                Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+                Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+                Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+                Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+                Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+                Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+                Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+                Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+            }
+        }
+
+        [Test]
+        public void SmartCloneWithRandomNameCannotBeUsedAsWeaponOrArmor()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var clone = template.SmartClone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+        }
+
+        [Test]
+        public void SmartCloneWithBaseNamedWeaponCanBeUsedAsWeaponOrArmor()
+        {
+            var allWeapons = WeaponConstants.GetAllWeapons();
+            foreach (var weapon in allWeapons)
+            {
+                var name = Guid.NewGuid().ToString();
+                var template = itemVerifier.CreateRandomTemplate(name);
+                template.BaseNames = new[] { "base name", weapon, "other base name" };
+
+                var clone = template.SmartClone();
+                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone.Name, Is.EqualTo(template.Name));
+                Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+                Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+                Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+                Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+                Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+                Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+                Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+                Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+                Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+                Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+                Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+                Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+                Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+                Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+                Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+                Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+                Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+                Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+                Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+                Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+            }
+        }
+
+        [Test]
+        public void SmartCloneWithBaseNamedArmorCanBeUsedAsWeaponOrArmor()
+        {
+            var allArmors = ArmorConstants.GetAllArmors(true);
+            foreach (var armor in allArmors)
+            {
+                var name = Guid.NewGuid().ToString();
+                var template = itemVerifier.CreateRandomTemplate(name);
+                template.BaseNames = new[] { "base name", armor, "other base name" };
+
+                var clone = template.SmartClone();
+                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone.Name, Is.EqualTo(template.Name));
+                Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+                Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+                Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+                Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+                Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+                Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+                Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+                Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+                Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+                Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+                Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+                Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+                Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+                Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+                Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+                Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+                Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+                Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+                Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+                Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+            }
+        }
+
+        [Test]
+        public void SmartCloneWithRandomBaseNameCannotBeUsedAsWeaponOrArmor()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var clone = template.SmartClone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+        }
+
+        [Test]
+        public void CloneCopiesAll()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var clone = template.Clone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
         }
     }
 }

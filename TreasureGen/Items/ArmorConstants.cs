@@ -40,6 +40,11 @@ namespace TreasureGen.Items
         public const string ArmorOfRage = "Armor of rage";
         public const string ArmorOfArrowAttraction = "Armor of arrow attraction";
 
+        public static IEnumerable<string> GetBaseNames()
+        {
+            return GetAllArmors(false);
+        }
+
         public static IEnumerable<string> GetAllArmors(bool includeSpecific)
         {
             var armors = new[]

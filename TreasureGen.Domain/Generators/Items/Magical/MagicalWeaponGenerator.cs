@@ -62,6 +62,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             {
                 weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Name = name;
+                weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
 
                 if (weapon.Name.Contains("Composite"))
                 {
@@ -123,7 +124,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             template.ItemType = ItemTypeConstants.Weapon;
-            var weapon = template.Copy();
+            var weapon = template.SmartClone();
 
             if (specificGearGenerator.TemplateIsSpecific(template))
             {
@@ -137,6 +138,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             {
                 var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
+                weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
             }
 
             var abilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);

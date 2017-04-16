@@ -18,14 +18,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.ItemType = ItemTypeConstants.Scroll;
-            template.Attributes = new[] { AttributeConstants.OneTimeUse };
-
-            var scroll = template.Copy();
+            var scroll = template.Clone();
             scroll.IsMagical = true;
             scroll.Quantity = 1;
+            scroll.ItemType = ItemTypeConstants.Scroll;
+            scroll.Attributes = new[] { AttributeConstants.OneTimeUse };
+            scroll.BaseNames = new[] { ItemTypeConstants.Scroll };
 
-            return scroll;
+            return scroll.SmartClone();
         }
 
         public Item GenerateAtPower(string power)
@@ -33,6 +33,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
             scroll.Name = ItemTypeConstants.Scroll;
+            scroll.BaseNames = new[] { ItemTypeConstants.Scroll };
             scroll.ItemType = ItemTypeConstants.Scroll;
             scroll.IsMagical = true;
             scroll.Attributes = new[] { AttributeConstants.OneTimeUse };

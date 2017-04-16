@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(AlignmentConstants.Good, "Good")]
         [TestCase(AlignmentConstants.Lawful, "Lawful")]
         [TestCase(AlignmentConstants.Neutral, "Neutral")]
-        public void Constant(string constant, string value)
+        public void AlignmentConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

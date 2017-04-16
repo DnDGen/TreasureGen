@@ -18,18 +18,29 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void AssertItem(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
+            Assert.That(item.ItemType, Is.Not.Empty, item.Name);
+            Assert.That(item.BaseNames, Is.Not.Empty, item.Name);
+            Assert.That(item.BaseNames, Is.All.Not.Empty, item.Name);
+            Assert.That(item.BaseNames, Is.Unique, item.Name);
             Assert.That(item.Attributes, Is.Not.Null, item.Name);
+            Assert.That(item.Attributes, Is.All.Not.Empty, item.Name);
+            Assert.That(item.Attributes, Is.Unique, item.Name);
             Assert.That(item.Magic, Is.Not.Null, item.Name);
             Assert.That(item.Traits, Is.Not.Null, item.Name);
+            Assert.That(item.Traits, Is.All.Not.Empty, item.Name);
+            Assert.That(item.Traits, Is.Unique, item.Name);
             Assert.That(item.Contents, Is.Not.Null, item.Name);
-            Assert.That(item.ItemType, Is.Not.Empty, item.Name);
-            Assert.That(item.Traits, Is.Unique, item.Name, item.Name);
+            Assert.That(item.Contents, Is.All.Not.Empty, item.Name);
+
+            if (!item.CanBeUsedAsWeaponOrArmor)
+                Assert.That(item.Magic.SpecialAbilities, Is.Empty);
 
             foreach (var ability in item.Magic.SpecialAbilities)
             {
                 Assert.That(ability.Name, Is.Not.Empty, item.Name);
                 Assert.That(ability.BonusEquivalent, Is.Not.Negative, ability.Name);
                 Assert.That(ability.AttributeRequirements, Is.Not.Null, ability.Name);
+                Assert.That(ability.AttributeRequirements, Is.All.Not.Empty, ability.Name);
                 Assert.That(ability.BaseName, Is.Not.Empty, $"{item.Name} with {ability.Name}");
                 Assert.That(ability.Power, Is.Not.Negative, ability.Name);
             }
@@ -43,8 +54,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(intelligence.WisdomStat, Is.AtLeast(10));
             Assert.That(intelligence.IntelligenceStat, Is.AtLeast(10));
             Assert.That(intelligence.Communication, Is.Not.Empty);
+            Assert.That(intelligence.Communication, Is.All.Not.Empty);
+            Assert.That(intelligence.Communication, Is.Unique);
             Assert.That(intelligence.Personality, Is.Not.Null);
             Assert.That(intelligence.Powers, Is.Not.Empty);
+            Assert.That(intelligence.Powers, Is.All.Not.Empty);
+            Assert.That(intelligence.Powers, Is.Unique);
             Assert.That(intelligence.Senses, Is.Not.Empty);
         }
 
@@ -64,6 +79,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var template = new Item();
 
             template.Name = name;
+            template.BaseNames = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             template.Quantity = random.Next();
             template.Contents.Add(Guid.NewGuid().ToString());
             template.Contents.Add(Guid.NewGuid().ToString());
@@ -114,7 +130,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             Assert.That(item.IsMagical, Is.True, item.Name);
             Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
-            Assert.That(template.Traits, Is.SubsetOf(item.Traits), item.Name);
+            Assert.That(item.Traits, Is.SupersetOf(template.Traits), item.Name);
 
             if (item.Attributes.Contains(AttributeConstants.OneTimeUse) || item.Attributes.Contains(AttributeConstants.Ammunition))
             {
@@ -155,16 +171,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             {
                 Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
                 Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
-            }
-
-
-            if (item.CanBeUsedAsWeaponOrArmor && item.Magic.Curse != CurseConstants.SpecificCursedItem)
-            {
-                Assert.That(item.Magic.SpecialAbilities.Select(a => a.Name), Is.EquivalentTo(template.Magic.SpecialAbilities.Select(a => a.Name)), item.Name);
-            }
-            else
-            {
-                Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Name);
             }
         }
 

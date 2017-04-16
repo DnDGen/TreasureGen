@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     [TestFixture]
     public class MagicalWeaponGeneratorTests
     {
-        private MagicalItemGenerator weaponGenerator;
+        private MagicalItemGenerator magicalWeaponGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
@@ -42,7 +42,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockDice = new Mock<Dice>();
-            weaponGenerator = new MagicalWeaponGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object, mockDice.Object);
+            magicalWeaponGenerator = new MagicalWeaponGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockSpecialAbilitiesGenerator.Object, mockSpecificGearGenerator.Object, mockBooleanPercentileSelector.Object, mockSpellGenerator.Object, mockDice.Object);
             itemVerifier = new ItemVerifier();
 
             power = "power";
@@ -54,10 +54,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateWeapon()
         {
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Quantity, Is.Positive);
             Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+        }
+
+        [Test]
+        public void GetBaseNames()
+        {
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
+            Assert.That(weapon.BaseNames, Is.EqualTo(baseNames));
         }
 
         [Test]
@@ -66,7 +76,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("9266");
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Magic.Bonus, Is.EqualTo(9266));
         }
 
@@ -77,7 +87,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
         }
 
@@ -90,7 +100,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Item();
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(power, ItemTypeConstants.Weapon)).Returns(specificWeapon);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon, Is.EqualTo(specificWeapon));
         }
 
@@ -107,7 +117,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var abilities = new[] { new SpecialAbility() };
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(ItemTypeConstants.Weapon, attributes, power, 9266, 2)).Returns(abilities);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
         }
 
@@ -120,7 +130,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var ammo = new Item();
             mockAmmunitionGenerator.Setup(g => g.Generate()).Returns(ammo);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon, Is.EqualTo(ammo));
         }
 
@@ -138,7 +148,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Contents, Contains.Item("spell"));
         }
 
@@ -156,7 +166,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Contents, Is.Empty);
         }
 
@@ -168,7 +178,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Quantity, Is.EqualTo(9266));
         }
 
@@ -180,7 +190,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Quantity, Is.EqualTo(1));
         }
 
@@ -203,12 +213,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
-            var weapon = weaponGenerator.Generate(template);
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name)).Returns(baseNames);
+
+            var weapon = magicalWeaponGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(weapon, template);
             Assert.That(weapon.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Attributes, Is.EquivalentTo(attributes));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
@@ -230,12 +244,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
-            var weapon = weaponGenerator.Generate(template, true);
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name)).Returns(baseNames);
+
+            var weapon = magicalWeaponGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(weapon, template);
             Assert.That(weapon.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(weapon.Attributes, Is.EquivalentTo(attributes));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
@@ -260,7 +278,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(template)).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.TemplateIsSpecific(template)).Returns(true);
 
-            var weapon = weaponGenerator.Generate(template, true);
+            var weapon = magicalWeaponGenerator.Generate(template, true);
             Assert.That(weapon.Quantity, Is.EqualTo(specificWeapon.Quantity));
             Assert.That(weapon, Is.EqualTo(specificWeapon));
             Assert.That(weapon.Magic.SpecialAbilities.Select(a => a.Name), Is.EquivalentTo(specialAbilityNames));
@@ -289,7 +307,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockAmmunitionGenerator.Setup(g => g.GenerateFrom(template)).Returns(ammunition);
             mockAmmunitionGenerator.Setup(g => g.TemplateIsAmmunition(template)).Returns(true);
 
-            var weapon = weaponGenerator.Generate(template, true);
+            var weapon = magicalWeaponGenerator.Generate(template, true);
             Assert.That(weapon.Quantity, Is.EqualTo(ammunition.Quantity));
             Assert.That(weapon, Is.EqualTo(ammunition));
             Assert.That(weapon.Magic.SpecialAbilities.Select(a => a.Name), Is.EquivalentTo(specialAbilityNames));
@@ -312,7 +330,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, compositeBow)).Returns(attributes);
 
-            var weapon = weaponGenerator.GenerateAtPower(power);
+            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
             Assert.That(weapon.Traits, Contains.Item($"+{bonus} Strength bonus"));

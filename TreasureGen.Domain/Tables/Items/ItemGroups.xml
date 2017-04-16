@@ -2,13 +2,15 @@
 
 <attributes>
   <object>
-    <name>Specific</name>
-    <attribute>Assassin's dagger</attribute>
-    <attribute>Berserking sword</attribute>
-    <attribute>Cursed backbiter spear</attribute>
-    <attribute>Cursed -2 sword</attribute>
-    <attribute>Dagger of venom</attribute>
-    <attribute>Dwarven thrower</attribute>
+    <name>Absorbing shield</name>
+    <attribute>Heavy steel shield</attribute>
+  </object>
+  <object>
+    <name>Amulet of inescapable location</name>
+    <attribute>Amulet of inescapable location</attribute>
+  </object>
+  <object>
+    <name>Armor</name>
     <attribute>Armor of arrow attraction</attribute>
     <attribute>Armor of rage</attribute>
     <attribute>Banded mail of luck</attribute>
@@ -25,24 +27,832 @@
     <attribute>Spined shield</attribute>
     <attribute>Winged shield</attribute>
     <attribute>Rhino hide</attribute>
+  </object>
+  <object>
+    <name>Armor of arrow attraction</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Armor of rage</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Arrow</name>
+    <attribute>Arrow</attribute>
+  </object>
+  <object>
+    <name>Assassin's dagger</name>
+    <attribute>Dagger</attribute>
+  </object>
+  <object>
+    <name>Bag of devouring</name>
+    <attribute>Bag of devouring</attribute>
+  </object>
+  <object>
+    <name>Banded mail</name>
+    <attribute>Banded mail</attribute>
+  </object>
+  <object>
+    <name>Banded mail of luck</name>
+    <attribute>Banded mail</attribute>
+  </object>
+  <object>
+    <name>Bastard sword</name>
+    <attribute>Bastard sword</attribute>
+  </object>
+  <object>
+    <name>Battleaxe</name>
+    <attribute>Battleaxe</attribute>
+  </object>
+  <object>
+    <name>Berserking sword</name>
+    <attribute>Greatsword</attribute>
+  </object>
+  <object>
+    <name>Boots of dancing</name>
+    <attribute>Boots of dancing</attribute>
+  </object>
+  <object>
+    <name>Bracers of defenselessness</name>
+    <attribute>Bracers of defenselessness</attribute>
+  </object>
+  <object>
+    <name>Breastplate</name>
+    <attribute>Breastplate</attribute>
+  </object>
+  <object>
+    <name>Breastplate of command</name>
+    <attribute>Breastplate</attribute>
+  </object>
+  <object>
+    <name>Broom of animated attack</name>
+    <attribute>Broom of animated attack</attribute>
+  </object>
+  <object>
+    <name>Buckler</name>
+    <attribute>Buckler</attribute>
+  </object>
+  <object>
+    <name>Caster's shield</name>
+    <attribute>Light wooden shield</attribute>
+  </object>
+  <object>
+    <name>Celestial armor</name>
+    <attribute>Chainmail</attribute>
+  </object>
+  <object>
+    <name>Chain shirt</name>
+    <attribute>Chain shirt</attribute>
+  </object>
+  <object>
+    <name>Chainmail</name>
+    <attribute>Chainmail</attribute>
+  </object>
+  <object>
+    <name>Cloak of poisonousness</name>
+    <attribute>Cloak of poisonousness</attribute>
+  </object>
+  <object>
+    <name>Club</name>
+    <attribute>Club</attribute>
+  </object>
+  <object>
+    <name>Composite (+0) longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+1) longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+2) longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+3) longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+4) longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+0) shortbow</name>
+    <attribute>Composite shortbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+1) shortbow</name>
+    <attribute>Composite shortbow</attribute>
+  </object>
+  <object>
+    <name>Composite (+2) shortbow</name>
+    <attribute>Composite shortbow</attribute>
+  </object>
+  <object>
+    <name>Composite longbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Composite shortbow</name>
+    <attribute>Composite shortbow</attribute>
+  </object>
+  <object>
+    <name>Crossbow bolt</name>
+    <attribute>Crossbow bolt</attribute>
+  </object>
+  <object>
+    <name>Crystal hypnosis ball</name>
+    <attribute>Crystal hypnosis ball</attribute>
+  </object>
+  <object>
+    <name>Cursed -2 sword</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Cursed backbiter spear</name>
+    <attribute>Shortspear</attribute>
+  </object>
+  <object>
+    <name>Dagger</name>
+    <attribute>Dagger</attribute>
+  </object>
+  <object>
+    <name>Dagger of venom</name>
+    <attribute>Dagger</attribute>
+  </object>
+  <object>
+    <name>Dart</name>
+    <attribute>Dart</attribute>
+  </object>
+  <object>
+    <name>Demon armor</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Dire flail</name>
+    <attribute>Dire flail</attribute>
+  </object>
+  <object>
+    <name>Dust of sneezing and choking</name>
+    <attribute>Dust of sneezing and choking</attribute>
+  </object>
+  <object>
+    <name>Dwarven plate</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Dwarven thrower</name>
+    <attribute>Warhammer</attribute>
+  </object>
+  <object>
+    <name>Dwarven urgrosh</name>
+    <attribute>Dwarven urgrosh</attribute>
+  </object>
+  <object>
+    <name>Dwarven waraxe</name>
+    <attribute>Dwarven waraxe</attribute>
+  </object>
+  <object>
+    <name>Elven chain</name>
+    <attribute>Chainmail</attribute>
+  </object>
+  <object>
+    <name>Falchion</name>
+    <attribute>Falchion</attribute>
+  </object>
+  <object>
+    <name>Flame tongue</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Flask of curses</name>
+    <attribute>Flask of curses</attribute>
+  </object>
+  <object>
+    <name>Frost brand</name>
+    <attribute>Greatsword</attribute>
+  </object>
+  <object>
+    <name>Full plate</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Full plate of speed</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Gauntlet</name>
+    <attribute>Gauntlet</attribute>
+  </object>
+  <object>
+    <name>Gauntlets of fumbling</name>
+    <attribute>Gauntlets of fumbling</attribute>
+  </object>
+  <object>
+    <name>Glaive</name>
+    <attribute>Glaive</attribute>
+  </object>
+  <object>
+    <name>Gnome hooked hammer</name>
+    <attribute>Gnome hooked hammer</attribute>
+  </object>
+  <object>
+    <name>Greataxe</name>
+    <attribute>Greataxe</attribute>
+  </object>
+  <object>
+    <name>Greatclub</name>
+    <attribute>Greatclub</attribute>
+  </object>
+  <object>
+    <name>Greater slaying arrow</name>
+    <attribute>Arrow</attribute>
+  </object>
+  <object>
+    <name>Greatsword</name>
+    <attribute>Greatsword</attribute>
+  </object>
+  <object>
+    <name>Guisarme</name>
+    <attribute>Guisarme</attribute>
+  </object>
+  <object>
+    <name>Halberd</name>
+    <attribute>Halberd</attribute>
+  </object>
+  <object>
+    <name>Half-plate</name>
+    <attribute>Half-plate</attribute>
+  </object>
+  <object>
+    <name>Halfspear</name>
+    <attribute>Halfspear</attribute>
+  </object>
+  <object>
+    <name>Hand crossbow</name>
+    <attribute>Hand crossbow</attribute>
+  </object>
+  <object>
+    <name>Handaxe</name>
+    <attribute>Handaxe</attribute>
+  </object>
+  <object>
+    <name>Heavy crossbow</name>
+    <attribute>Heavy crossbow</attribute>
+  </object>
+  <object>
+    <name>Heavy flail</name>
+    <attribute>Heavy flail</attribute>
+  </object>
+  <object>
+    <name>Heavy mace</name>
+    <attribute>Heavy mace</attribute>
+  </object>
+  <object>
+    <name>Heavy pick</name>
+    <attribute>Heavy pick</attribute>
+  </object>
+  <object>
+    <name>Heavy repeating crossbow</name>
+    <attribute>Heavy repeating crossbow</attribute>
+  </object>
+  <object>
+    <name>Heavy steel shield</name>
+    <attribute>Heavy steel shield</attribute>
+  </object>
+  <object>
+    <name>Heavy wooden shield</name>
+    <attribute>Heavy wooden shield</attribute>
+  </object>
+  <object>
+    <name>Helm of opposite alignment</name>
+    <attribute>Helm of opposite alignment</attribute>
+  </object>
+  <object>
+    <name>Hide armor</name>
+    <attribute>Hide armor</attribute>
+  </object>
+  <object>
+    <name>Holy avenger</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Immovable rod</name>
+    <attribute>Immovable rod</attribute>
+  </object>
+  <object>
+    <name>Incense of obsession</name>
+    <attribute>Incense of obsession</attribute>
+  </object>
+  <object>
+    <name>Javelin</name>
+    <attribute>Javelin</attribute>
+  </object>
+  <object>
+    <name>Javelin of lightning</name>
+    <attribute>Javelin</attribute>
+  </object>
+  <object>
+    <name>Kama</name>
+    <attribute>Kama</attribute>
+  </object>
+  <object>
+    <name>Kukri</name>
+    <attribute>Kukri</attribute>
+  </object>
+  <object>
+    <name>Lance</name>
+    <attribute>Lance</attribute>
+  </object>
+  <object>
+    <name>Leather armor</name>
+    <attribute>Leather armor</attribute>
+  </object>
+  <object>
+    <name>Life-drinker</name>
+    <attribute>Greataxe</attribute>
+  </object>
+  <object>
+    <name>Light crossbow</name>
+    <attribute>Light crossbow</attribute>
+  </object>
+  <object>
+    <name>Light flail</name>
+    <attribute>Light flail</attribute>
+  </object>
+  <object>
+    <name>Light hammer</name>
+    <attribute>Light hammer</attribute>
+  </object>
+  <object>
+    <name>Light mace</name>
+    <attribute>Light mace</attribute>
+  </object>
+  <object>
+    <name>Light pick</name>
+    <attribute>Light pick</attribute>
+  </object>
+  <object>
+    <name>Light repeating crossbow</name>
+    <attribute>Light repeating crossbow</attribute>
+  </object>
+  <object>
+    <name>Light steel shield</name>
+    <attribute>Light steel shield</attribute>
+  </object>
+  <object>
+    <name>Light wooden shield</name>
+    <attribute>Light wooden shield</attribute>
+  </object>
+  <object>
+    <name>Lion's shield</name>
+    <attribute>Heavy steel shield</attribute>
+  </object>
+  <object>
+    <name>Longbow</name>
+    <attribute>Longbow</attribute>
+  </object>
+  <object>
+    <name>Longspear</name>
+    <attribute>Longspear</attribute>
+  </object>
+  <object>
+    <name>Longsword</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Luck blade (0 wishes)</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Luck blade (1 wish)</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Luck blade (2 wishes)</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Luck blade (3 wishes)</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Luck blade</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Mace of blood</name>
+    <attribute>Heavy mace</attribute>
+  </object>
+  <object>
+    <name>Mace of smiting</name>
+    <attribute>Heavy mace</attribute>
+  </object>
+  <object>
+    <name>Mace of terror</name>
+    <attribute>Heavy mace</attribute>
+  </object>
+  <object>
+    <name>Medallion of thought projection</name>
+    <attribute>Medallion of thought projection</attribute>
+  </object>
+  <object>
+    <name>Morningstar</name>
+    <attribute>Morningstar</attribute>
+  </object>
+  <object>
+    <name>Necklace of strangulation</name>
+    <attribute>Necklace of strangulation</attribute>
+  </object>
+  <object>
+    <name>Net</name>
+    <attribute>Net</attribute>
+  </object>
+  <object>
+    <name>Net of snaring</name>
+    <attribute>Net</attribute>
+  </object>
+  <object>
+    <name>Nine lives stealer</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Nunchaku</name>
+    <attribute>Nunchaku</attribute>
+  </object>
+  <object>
+    <name>Oathbow</name>
+    <attribute>Composite longbow</attribute>
+  </object>
+  <object>
+    <name>Orc double axe</name>
+    <attribute>Orc double axe</attribute>
+  </object>
+  <object>
+    <name>Padded armor</name>
+    <attribute>Padded armor</attribute>
+  </object>
+  <object>
+    <name>Periapt of foul rotting</name>
+    <attribute>Periapt of foul rotting</attribute>
+  </object>
+  <object>
+    <name>Plate armor of the deep</name>
+    <attribute>Full plate</attribute>
+  </object>
+  <object>
+    <name>Potion of poison</name>
+    <attribute>Potion of poison</attribute>
+  </object>
+  <object>
+    <name>Punching dagger</name>
+    <attribute>Punching dagger</attribute>
+  </object>
+  <object>
+    <name>Quarterstaff</name>
+    <attribute>Quarterstaff</attribute>
+  </object>
+  <object>
+    <name>Ranseur</name>
+    <attribute>Ranseur</attribute>
+  </object>
+  <object>
+    <name>Rapier</name>
+    <attribute>Rapier</attribute>
+  </object>
+  <object>
+    <name>Rapier of puncturing</name>
+    <attribute>Rapier</attribute>
+  </object>
+  <object>
+    <name>Rhino hide</name>
+    <attribute>Hide armor</attribute>
+  </object>
+  <object>
+    <name>Ring of Clumsiness</name>
+    <attribute>Ring of Clumsiness</attribute>
+  </object>
+  <object>
+    <name>Robe of powerlessness</name>
+    <attribute>Robe of powerlessness</attribute>
+  </object>
+  <object>
+    <name>Robe of vermin</name>
+    <attribute>Robe of vermin</attribute>
+  </object>
+  <object>
+    <name>Rod of absorption (max)</name>
+    <attribute>Rod of absorption</attribute>
+  </object>
+  <object>
+    <name>Rod of absorption</name>
+    <attribute>Rod of absorption</attribute>
+  </object>
+  <object>
+    <name>Rod of alertness</name>
+    <attribute>Rod of alertness</attribute>
+    <attribute>Light mace</attribute>
+  </object>
+  <object>
+    <name>Rod of cancellation</name>
+    <attribute>Rod of cancellation</attribute>
+  </object>
+  <object>
+    <name>Rod of enemy detection</name>
+    <attribute>Rod of enemy detection</attribute>
+  </object>
+  <object>
+    <name>Rod of flailing</name>
+    <attribute>Rod of flailing</attribute>
+    <attribute>Dire flail</attribute>
+  </object>
+  <object>
+    <name>Rod of flame extinguishing</name>
+    <attribute>Rod of flame extinguishing</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Empower</name>
+    <attribute>Rod of metamagic: Empower</attribute>
+    <attribute>Rod of greater metamagic: Empower</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Enlarge</name>
+    <attribute>Rod of metamagic: Enlarge</attribute>
+    <attribute>Rod of greater metamagic: Enlarge</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Extend</name>
+    <attribute>Rod of metamagic: Extend</attribute>
+    <attribute>Rod of greater metamagic: Extend</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Maximize</name>
+    <attribute>Rod of metamagic: Maximize</attribute>
+    <attribute>Rod of greater metamagic: Maximize</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Quicken</name>
+    <attribute>Rod of metamagic: Quicken</attribute>
+    <attribute>Rod of greater metamagic: Quicken</attribute>
+  </object>
+  <object>
+    <name>Rod of greater metamagic: Silent</name>
+    <attribute>Rod of metamagic: Silent</attribute>
+    <attribute>Rod of greater metamagic: Silent</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Empower</name>
+    <attribute>Rod of metamagic: Empower</attribute>
+    <attribute>Rod of lesser metamagic: Empower</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Enlarge</name>
+    <attribute>Rod of metamagic: Enlarge</attribute>
+    <attribute>Rod of lesser metamagic: Enlarge</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Extend</name>
+    <attribute>Rod of metamagic: Extend</attribute>
+    <attribute>Rod of lesser metamagic: Extend</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Maximize</name>
+    <attribute>Rod of metamagic: Maximize</attribute>
+    <attribute>Rod of lesser metamagic: Maximize</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Quicken</name>
+    <attribute>Rod of metamagic: Quicken</attribute>
+    <attribute>Rod of lesser metamagic: Quicken</attribute>
+  </object>
+  <object>
+    <name>Rod of lesser metamagic: Silent</name>
+    <attribute>Rod of metamagic: Silent</attribute>
+    <attribute>Rod of lesser metamagic: Silent</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Empower</name>
+    <attribute>Rod of metamagic: Empower</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Enlarge</name>
+    <attribute>Rod of metamagic: Enlarge</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Extend</name>
+    <attribute>Rod of metamagic: Extend</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Maximize</name>
+    <attribute>Rod of metamagic: Maximize</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Quicken</name>
+    <attribute>Rod of metamagic: Quicken</attribute>
+  </object>
+  <object>
+    <name>Rod of metamagic: Silent</name>
+    <attribute>Rod of metamagic: Silent</attribute>
+  </object>
+  <object>
+    <name>Rod of lordly might</name>
+    <attribute>Rod of lordly might</attribute>
+    <attribute>Light mace</attribute>
+    <attribute>Longsword</attribute>
+    <attribute>Battleaxe</attribute>
+    <attribute>Shortspear</attribute>
+    <attribute>Longspear</attribute>
+  </object>
+  <object>
+    <name>Rod of metal and mineral detection</name>
+    <attribute>Rod of metal and mineral detection</attribute>
+  </object>
+  <object>
+    <name>Rod of negation</name>
+    <attribute>Rod of negation</attribute>
+  </object>
+  <object>
+    <name>Rod of rulership</name>
+    <attribute>Rod of rulership</attribute>
+  </object>
+  <object>
+    <name>Rod of security</name>
+    <attribute>Rod of security</attribute>
+  </object>
+  <object>
+    <name>Rod of splendor</name>
+    <attribute>Rod of splendor</attribute>
+  </object>
+  <object>
+    <name>Rod of the python</name>
+    <attribute>Rod of the python</attribute>
+    <attribute>Quarterstaff</attribute>
+  </object>
+  <object>
+    <name>Rod of the viper</name>
+    <attribute>Rod of the viper</attribute>
+    <attribute>Heavy mace</attribute>
+  </object>
+  <object>
+    <name>Rod of thunder and lightning</name>
+    <attribute>Rod of thunder and lightning</attribute>
+    <attribute>Light mace</attribute>
+  </object>
+  <object>
+    <name>Rod of withering</name>
+    <attribute>Rod of withering</attribute>
+    <attribute>Light mace</attribute>
+  </object>
+  <object>
+    <name>Rod of wonder</name>
+    <attribute>Rod of wonder</attribute>
+  </object>
+  <object>
+    <name>Sap</name>
+    <attribute>Sap</attribute>
+  </object>
+  <object>
+    <name>Scale mail</name>
+    <attribute>Scale mail</attribute>
+  </object>
+  <object>
+    <name>Scarab of death</name>
+    <attribute>Scarab of death</attribute>
+  </object>
+  <object>
+    <name>Scimitar</name>
+    <attribute>Scimitar</attribute>
+  </object>
+  <object>
+    <name>Screaming bolt</name>
+    <attribute>Crossbow bolt</attribute>
+  </object>
+  <object>
+    <name>Scythe</name>
+    <attribute>Scythe</attribute>
+  </object>
+  <object>
+    <name>Shatterspike</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Shield</name>
+    <attribute>Absorbing shield</attribute>
+    <attribute>Caster's shield</attribute>
+    <attribute>Lion's shield</attribute>
+    <attribute>Spined shield</attribute>
+    <attribute>Winged shield</attribute>
+  </object>
+  <object>
+    <name>Shifter's sorrow</name>
+    <attribute>Two-bladed sword</attribute>
+  </object>
+  <object>
+    <name>Short sword</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Shortbow</name>
+    <attribute>Shortbow</attribute>
+  </object>
+  <object>
+    <name>Shortspear</name>
+    <attribute>Shortspear</attribute>
+  </object>
+  <object>
+    <name>Shuriken</name>
+    <attribute>Shuriken</attribute>
+  </object>
+  <object>
+    <name>Siangham</name>
+    <attribute>Siangham</attribute>
+  </object>
+  <object>
+    <name>Sickle</name>
+    <attribute>Sickle</attribute>
+  </object>
+  <object>
+    <name>Silver dagger</name>
+    <attribute>Dagger</attribute>
+  </object>
+  <object>
+    <name>Slaying arrow</name>
+    <attribute>Arrow</attribute>
+  </object>
+  <object>
+    <name>Sleep arrow</name>
+    <attribute>Arrow</attribute>
+  </object>
+  <object>
+    <name>Sling</name>
+    <attribute>Sling</attribute>
+  </object>
+  <object>
+    <name>Sling bullet</name>
+    <attribute>Sling bullet</attribute>
+  </object>
+  <object>
+    <name>Specific</name>
+    <attribute>Absorbing shield</attribute>
+    <attribute>Amulet of inescapable location</attribute>
+    <attribute>Armor of arrow attraction</attribute>
+    <attribute>Armor of rage</attribute>
+    <attribute>Assassin's dagger</attribute>
+    <attribute>Bag of devouring</attribute>
+    <attribute>Banded mail of luck</attribute>
+    <attribute>Berserking sword</attribute>
+    <attribute>Boots of dancing</attribute>
+    <attribute>Bracers of defenselessness</attribute>
+    <attribute>Breastplate of command</attribute>
+    <attribute>Broom of animated attack</attribute>
+    <attribute>Caster's shield</attribute>
+    <attribute>Celestial armor</attribute>
+    <attribute>Cloak of poisonousness</attribute>
+    <attribute>Crystal hypnosis ball</attribute>
+    <attribute>Cursed backbiter spear</attribute>
+    <attribute>Cursed -2 sword</attribute>
+    <attribute>Dagger of venom</attribute>
+    <attribute>Demon armor</attribute>
+    <attribute>Dust of sneezing and choking</attribute>
+    <attribute>Dwarven plate</attribute>
+    <attribute>Dwarven thrower</attribute>
+    <attribute>Elven chain</attribute>
     <attribute>Flame tongue</attribute>
+    <attribute>Flask of curses</attribute>
     <attribute>Frost brand</attribute>
+    <attribute>Full plate of speed</attribute>
+    <attribute>Gauntlets of fumbling</attribute>
     <attribute>Greater slaying arrow</attribute>
+    <attribute>Helm of opposite alignment</attribute>
     <attribute>Holy avenger</attribute>
+    <attribute>Incense of obsession</attribute>
     <attribute>Javelin of lightning</attribute>
     <attribute>Life-drinker</attribute>
+    <attribute>Lion's shield</attribute>
     <attribute>Luck blade</attribute>
     <attribute>Mace of blood</attribute>
     <attribute>Mace of smiting</attribute>
     <attribute>Mace of terror</attribute>
+    <attribute>Medallion of thought projection</attribute>
+    <attribute>Necklace of strangulation</attribute>
     <attribute>Net of snaring</attribute>
     <attribute>Nine lives stealer</attribute>
+    <attribute>Oathbow</attribute>
+    <attribute>Periapt of foul rotting</attribute>
+    <attribute>Plate armor of the deep</attribute>
     <attribute>Rapier of puncturing</attribute>
+    <attribute>Rhino hide</attribute>
+    <attribute>Ring of Clumsiness</attribute>
+    <attribute>Robe of powerlessness</attribute>
+    <attribute>Robe of vermin</attribute>
+    <attribute>Scarab of death</attribute>
     <attribute>Screaming bolt</attribute>
     <attribute>Shatterspike</attribute>
     <attribute>Shifter's sorrow</attribute>
     <attribute>Slaying arrow</attribute>
     <attribute>Sleep arrow</attribute>
+    <attribute>Spined shield</attribute>
+    <attribute>Stone of weight (loadstone)</attribute>
     <attribute>Sun blade</attribute>
     <attribute>Sword of life stealing</attribute>
     <attribute>Sword of subtlety</attribute>
@@ -50,6 +860,148 @@
     <attribute>Sylvan scimitar</attribute>
     <attribute>Trident of fish command</attribute>
     <attribute>Trident of warning</attribute>
+    <attribute>Vacuous grimoire</attribute>
+    <attribute>Winged shield</attribute>
+  </object>
+  <object>
+    <name>Spiked chain</name>
+    <attribute>Spiked chain</attribute>
+  </object>
+  <object>
+    <name>Spiked gauntlet</name>
+    <attribute>Spiked gauntlet</attribute>
+  </object>
+  <object>
+    <name>Spined shield</name>
+    <attribute>Heavy steel shield</attribute>
+  </object>
+  <object>
+    <name>Splint mail</name>
+    <attribute>Splint mail</attribute>
+  </object>
+  <object>
+    <name>Staff of Abjuration</name>
+    <attribute>Staff of Abjuration</attribute>
+  </object>
+  <object>
+    <name>Staff of Charming</name>
+    <attribute>Staff of Charming</attribute>
+  </object>
+  <object>
+    <name>Staff of Conjuration</name>
+    <attribute>Staff of Conjuration</attribute>
+  </object>
+  <object>
+    <name>Staff of Defense</name>
+    <attribute>Staff of Defense</attribute>
+  </object>
+  <object>
+    <name>Staff of Divination</name>
+    <attribute>Staff of Divination</attribute>
+  </object>
+  <object>
+    <name>Staff of Earth and stone</name>
+    <attribute>Staff of Earth and stone</attribute>
+  </object>
+  <object>
+    <name>Staff of Enchantment</name>
+    <attribute>Staff of Enchantment</attribute>
+  </object>
+  <object>
+    <name>Staff of Evocation</name>
+    <attribute>Staff of Evocation</attribute>
+  </object>
+  <object>
+    <name>Staff of Fire</name>
+    <attribute>Staff of Fire</attribute>
+  </object>
+  <object>
+    <name>Staff of Frost</name>
+    <attribute>Staff of Frost</attribute>
+  </object>
+  <object>
+    <name>Staff of Healing</name>
+    <attribute>Staff of Healing</attribute>
+  </object>
+  <object>
+    <name>Staff of Illumination</name>
+    <attribute>Staff of Illumination</attribute>
+  </object>
+  <object>
+    <name>Staff of Illusion</name>
+    <attribute>Staff of Illusion</attribute>
+  </object>
+  <object>
+    <name>Staff of Life</name>
+    <attribute>Staff of Life</attribute>
+  </object>
+  <object>
+    <name>Staff of Necromancy</name>
+    <attribute>Staff of Necromancy</attribute>
+  </object>
+  <object>
+    <name>Staff of Passage</name>
+    <attribute>Staff of Passage</attribute>
+  </object>
+  <object>
+    <name>Staff of Power</name>
+    <attribute>Staff of Power</attribute>
+    <attribute>Quarterstaff</attribute>
+  </object>
+  <object>
+    <name>Staff of Size alteration</name>
+    <attribute>Staff of Size alteration</attribute>
+  </object>
+  <object>
+    <name>Staff of Swarming insects</name>
+    <attribute>Staff of Swarming insects</attribute>
+  </object>
+  <object>
+    <name>Staff of Transmutation</name>
+    <attribute>Staff of Transmutation</attribute>
+  </object>
+  <object>
+    <name>Staff of Woodlands</name>
+    <attribute>Staff of Woodlands</attribute>
+    <attribute>Quarterstaff</attribute>
+  </object>
+  <object>
+    <name>Stone of weight (loadstone)</name>
+    <attribute>Stone of weight (loadstone)</attribute>
+  </object>
+  <object>
+    <name>Studded leather armor</name>
+    <attribute>Studded leather armor</attribute>
+  </object>
+  <object>
+    <name>Sun blade</name>
+    <attribute>Short sword</attribute>
+    <attribute>Bastard sword</attribute>
+  </object>
+  <object>
+    <name>Sword of life stealing</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Sword of subtlety</name>
+    <attribute>Short sword</attribute>
+  </object>
+  <object>
+    <name>Sword of the planes</name>
+    <attribute>Longsword</attribute>
+  </object>
+  <object>
+    <name>Sylvan scimitar</name>
+    <attribute>Scimitar</attribute>
+  </object>
+  <object>
+    <name>This is a specific cursed item</name>
+    <attribute>Armor of arrow attraction</attribute>
+    <attribute>Armor of rage</attribute>
+    <attribute>Berserking sword</attribute>
+    <attribute>Cursed backbiter spear</attribute>
+    <attribute>Cursed -2 sword</attribute>
+    <attribute>Net of snaring</attribute>
     <attribute>Ring of Clumsiness</attribute>
     <attribute>Amulet of inescapable location</attribute>
     <attribute>Bag of devouring</attribute>
@@ -72,34 +1024,38 @@
     <attribute>Flask of curses</attribute>
     <attribute>Robe of powerlessness</attribute>
     <attribute>Mace of blood</attribute>
-    <attribute>Oathbow</attribute>
   </object>
   <object>
-    <name>Shield</name>
-    <attribute>Absorbing shield</attribute>
-    <attribute>Caster's shield</attribute>
-    <attribute>Lion's shield</attribute>
-    <attribute>Spined shield</attribute>
-    <attribute>Winged shield</attribute>
+    <name>Throwing axe</name>
+    <attribute>Throwing axe</attribute>
   </object>
   <object>
-    <name>Armor</name>
-    <attribute>Armor of arrow attraction</attribute>
-    <attribute>Armor of rage</attribute>
-    <attribute>Banded mail of luck</attribute>
-    <attribute>Breastplate of command</attribute>
-    <attribute>Celestial armor</attribute>
-    <attribute>Demon armor</attribute>
-    <attribute>Dwarven plate</attribute>
-    <attribute>Elven chain</attribute>
-    <attribute>Full plate of speed</attribute>
-    <attribute>Plate armor of the deep</attribute>
-    <attribute>Absorbing shield</attribute>
-    <attribute>Caster's shield</attribute>
-    <attribute>Lion's shield</attribute>
-    <attribute>Spined shield</attribute>
-    <attribute>Winged shield</attribute>
-    <attribute>Rhino hide</attribute>
+    <name>Tower shield</name>
+    <attribute>Tower shield</attribute>
+  </object>
+  <object>
+    <name>Trident</name>
+    <attribute>Trident</attribute>
+  </object>
+  <object>
+    <name>Trident of fish command</name>
+    <attribute>Trident</attribute>
+  </object>
+  <object>
+    <name>Trident of warning</name>
+    <attribute>Trident</attribute>
+  </object>
+  <object>
+    <name>Two-bladed sword</name>
+    <attribute>Two-bladed sword</attribute>
+  </object>
+  <object>
+    <name>Vacuous grimoire</name>
+    <attribute>Vacuous grimoire</attribute>
+  </object>
+  <object>
+    <name>Warhammer</name>
+    <attribute>Warhammer</attribute>
   </object>
   <object>
     <name>Weapon</name>
@@ -137,34 +1093,11 @@
     <attribute>Oathbow</attribute>
   </object>
   <object>
-    <name>This is a specific cursed item</name>
-    <attribute>Armor of arrow attraction</attribute>
-    <attribute>Armor of rage</attribute>
-    <attribute>Berserking sword</attribute>
-    <attribute>Cursed backbiter spear</attribute>
-    <attribute>Cursed -2 sword</attribute>
-    <attribute>Net of snaring</attribute>
-    <attribute>Ring of Clumsiness</attribute>
-    <attribute>Amulet of inescapable location</attribute>
-    <attribute>Bag of devouring</attribute>
-    <attribute>Bracers of defenselessness</attribute>
-    <attribute>Broom of animated attack</attribute>
-    <attribute>Cloak of poisonousness</attribute>
-    <attribute>Dust of sneezing and choking</attribute>
-    <attribute>Robe of vermin</attribute>
-    <attribute>Crystal hypnosis ball</attribute>
-    <attribute>Scarab of death</attribute>
-    <attribute>Boots of dancing</attribute>
-    <attribute>Necklace of strangulation</attribute>
-    <attribute>Periapt of foul rotting</attribute>
-    <attribute>Gauntlets of fumbling</attribute>
-    <attribute>Vacuous grimoire</attribute>
-    <attribute>Medallion of thought projection</attribute>
-    <attribute>Stone of weight (loadstone)</attribute>
-    <attribute>Helm of opposite alignment</attribute>
-    <attribute>Incense of obsession</attribute>
-    <attribute>Flask of curses</attribute>
-    <attribute>Robe of powerlessness</attribute>
-    <attribute>Mace of blood</attribute>
+    <name>Whip</name>
+    <attribute>Whip</attribute>
+  </object>
+  <object>
+    <name>Winged shield</name>
+    <attribute>Heavy wooden shield</attribute>
   </object>
 </attributes>

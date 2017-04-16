@@ -30,24 +30,24 @@ namespace TreasureGen.Items.Magical
             Personality = string.Empty;
         }
 
-        public Intelligence Copy()
+        public Intelligence Clone()
         {
-            var copy = new Intelligence();
+            var clone = new Intelligence();
 
-            copy.Alignment = Alignment;
-            copy.CharismaStat = CharismaStat;
-            copy.Communication = Communication.ToArray();
-            copy.DedicatedPower = DedicatedPower;
-            copy.Ego = Ego;
-            copy.IntelligenceStat = IntelligenceStat;
-            copy.Languages.AddRange(Languages);
-            copy.Personality = Personality;
-            copy.Powers.AddRange(Powers);
-            copy.Senses = Senses;
-            copy.SpecialPurpose = SpecialPurpose;
-            copy.WisdomStat = WisdomStat;
+            clone.Alignment = Alignment;
+            clone.CharismaStat = CharismaStat;
+            clone.Communication = Communication.ToArray();
+            clone.DedicatedPower = DedicatedPower;
+            clone.Ego = Ego;
+            clone.IntelligenceStat = IntelligenceStat;
+            clone.Languages.AddRange(Languages);
+            clone.Personality = Personality;
+            clone.Powers.AddRange(Powers);
+            clone.Senses = Senses;
+            clone.SpecialPurpose = SpecialPurpose;
+            clone.WisdomStat = WisdomStat;
 
-            return copy;
+            return clone;
         }
     }
 }

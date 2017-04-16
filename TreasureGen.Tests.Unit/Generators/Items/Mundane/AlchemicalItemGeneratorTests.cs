@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -35,6 +36,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var item = generator.Generate();
             Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(result.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
@@ -47,6 +49,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var item = generator.Generate(template);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
 
@@ -58,6 +61,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var item = generator.Generate(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
     }

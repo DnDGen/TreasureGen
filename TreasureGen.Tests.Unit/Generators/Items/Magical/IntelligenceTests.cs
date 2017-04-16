@@ -93,7 +93,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             intelligence = itemVerifier.CreateRandomTemplate(string.Empty).Magic.Intelligence;
 
-            var copy = intelligence.Copy();
+            var copy = intelligence.Clone();
             Assert.That(copy, Is.Not.EqualTo(intelligence));
             Assert.That(copy.Alignment, Is.EqualTo(intelligence.Alignment));
             Assert.That(copy.CharismaStat, Is.EqualTo(intelligence.CharismaStat));

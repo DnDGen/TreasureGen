@@ -41,6 +41,7 @@ namespace TreasureGen.Domain.Generators.Items
 
             var gear = new Item();
             gear.Name = result.Type;
+            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
             gear.Magic.Bonus = result.Amount;
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
             gear.ItemType = GetItemType(specificGearType);
@@ -122,7 +123,7 @@ namespace TreasureGen.Domain.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
             var abilityNames = collectionsSelector.SelectFrom(tableName, name);
-            var abilities = specialAbilitiesGenerator.GenerateFor(abilityNames.ToArray());
+            var abilities = specialAbilitiesGenerator.GenerateFor(abilityNames);
 
             return abilities;
         }
@@ -135,7 +136,7 @@ namespace TreasureGen.Domain.Generators.Items
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
             template.Attributes = collectionsSelector.SelectFrom(tableName, template.Name);
 
-            var gear = template.Copy();
+            var gear = template.SmartClone();
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
             tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);

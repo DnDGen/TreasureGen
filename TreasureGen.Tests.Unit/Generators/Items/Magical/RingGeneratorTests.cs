@@ -52,6 +52,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var ring = ringGenerator.GenerateAtPower(power);
             Assert.That(ring.Name, Is.EqualTo("ring of ability"));
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring of ability"));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
             Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
@@ -314,11 +315,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
             Assert.That(ring.Quantity, Is.EqualTo(1));
-            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
         }
 
         [Test]
@@ -333,11 +334,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
             Assert.That(ring.Quantity, Is.EqualTo(1));
-            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
         }
 
         [Test]
@@ -352,11 +353,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var ring = ringGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
             Assert.That(ring.IsMagical, Is.True);
             Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
             Assert.That(ring.Quantity, Is.EqualTo(1));
-            Assert.That(ring.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }

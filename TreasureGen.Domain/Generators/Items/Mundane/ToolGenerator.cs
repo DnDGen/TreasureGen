@@ -19,15 +19,17 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var tool = new Item();
             tool.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Tools);
             tool.ItemType = ItemTypeConstants.Tool;
+            tool.BaseNames = new[] { tool.Name };
 
             return tool;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var tool = template.CopyWithoutMagic();
+            var tool = template.MundaneClone();
             tool.ItemType = ItemTypeConstants.Tool;
             tool.Quantity = 1;
+            tool.BaseNames = new[] { tool.Name };
 
             return tool;
         }

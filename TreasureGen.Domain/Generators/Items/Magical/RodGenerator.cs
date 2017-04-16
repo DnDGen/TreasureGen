@@ -11,16 +11,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class RodGenerator : MagicalItemGenerator
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private ICollectionsSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private IChargesGenerator chargesGenerator;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
 
-        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector attributesSelector,
+        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionsSelector,
             IChargesGenerator chargesGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.chargesGenerator = chargesGenerator;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
@@ -37,10 +37,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var rod = new Item();
             rod.ItemType = ItemTypeConstants.Rod;
             rod.Name = result.Type;
+            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
             rod.IsMagical = true;
             rod.Magic.Bonus = result.Amount;
             tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, rod.ItemType);
-            rod.Attributes = attributesSelector.SelectFrom(tablename, rod.Name);
+            rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
                 rod.Magic.Charges = chargesGenerator.GenerateFor(rod.ItemType, rod.Name);
@@ -61,18 +62,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            template.Attributes = attributesSelector.SelectFrom(tablename, template.Name);
-            template.ItemType = ItemTypeConstants.Rod;
-
-            var rod = template.Copy();
+            var rod = template.Clone();
+            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
             rod.IsMagical = true;
             rod.Quantity = 1;
+            rod.ItemType = ItemTypeConstants.Rod;
+
+            var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
 
             var specialAbilityNames = rod.Magic.SpecialAbilities.Select(a => a.Name);
             rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
 
-            return rod;
+            return rod.SmartClone();
         }
     }
 }

@@ -12,14 +12,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private IPercentileSelector percentileSelector;
         private IChargesGenerator chargesGenerator;
-        private ICollectionsSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
 
-        public StaffGenerator(IPercentileSelector percentileSelector, IChargesGenerator chargesGenerator, ICollectionsSelector attributesSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
+        public StaffGenerator(IPercentileSelector percentileSelector, IChargesGenerator chargesGenerator, ICollectionsSelector collectionsSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.chargesGenerator = chargesGenerator;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
         }
 
@@ -50,12 +50,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             staff.Quantity = 1;
             staff.IsMagical = true;
+            staff.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, staff.Name);
 
             if (staff.Name != StaffConstants.Power)
                 return staff;
 
             var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            var quarterstaffAttributes = attributesSelector.SelectFrom(tablename, WeaponConstants.Quarterstaff);
+            var quarterstaffAttributes = collectionsSelector.SelectFrom(tablename, WeaponConstants.Quarterstaff);
             staff.Attributes = staff.Attributes.Union(quarterstaffAttributes).Except(new[] { AttributeConstants.OneTimeUse });
 
             return staff;
@@ -63,21 +64,17 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.ItemType = ItemTypeConstants.Staff;
-            template.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
-
-            var staff = template.Copy();
+            var staff = template.Clone();
+            staff.ItemType = ItemTypeConstants.Staff;
+            staff.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
             staff = BuildStaff(staff);
 
-            if (staff.CanBeUsedAsWeaponOrArmor)
-            {
-                staff.Magic.Intelligence = template.Magic.Intelligence.Copy();
+            staff.Magic.Intelligence = template.Magic.Intelligence.Clone();
 
-                var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
-                staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
-            }
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
 
-            return staff;
+            return staff.SmartClone();
         }
     }
 }

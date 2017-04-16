@@ -32,6 +32,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var ring = new Item();
             ring.Name = result.Type;
+            ring.BaseNames = new[] { result.Type };
             ring.Magic.Bonus = result.Amount;
             ring.IsMagical = true;
             ring.ItemType = ItemTypeConstants.Ring;
@@ -93,15 +94,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
-            template.Attributes = attributesSelector.SelectFrom(tableName, template.Name);
-
-            var ring = template.Copy();
+            var ring = template.Clone();
+            ring.BaseNames = new[] { ring.Name };
             ring.ItemType = ItemTypeConstants.Ring;
             ring.Quantity = 1;
             ring.IsMagical = true;
 
-            return ring;
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            ring.Attributes = attributesSelector.SelectFrom(tableName, ring.Name);
+
+            return ring.SmartClone();
         }
     }
 }

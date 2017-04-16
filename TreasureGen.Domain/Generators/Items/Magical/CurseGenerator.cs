@@ -60,6 +60,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var specificCursedItem = new Item();
             specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            specificCursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificCursedItem.Name);
             specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
             specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
             specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
@@ -75,11 +76,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateSpecificCursedItem(Item template)
         {
-            var cursedItem = template.Copy();
+            var cursedItem = template.SmartClone();
             cursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, cursedItem.Name).Single();
             cursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, cursedItem.Name);
             cursedItem.Quantity = 1;
             cursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
+            cursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, cursedItem.Name);
             cursedItem.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
             return cursedItem;

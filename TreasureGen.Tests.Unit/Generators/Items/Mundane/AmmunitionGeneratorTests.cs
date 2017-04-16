@@ -40,6 +40,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Name, Is.EqualTo("ammunition name"));
+            Assert.That(ammunition.BaseNames.Single(), Is.EqualTo("ammunition name"));
             Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
         }
 
@@ -202,6 +203,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
             Assert.That(ammunition.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
+            Assert.That(ammunition.BaseNames.Single(), Is.EqualTo(name));
         }
     }
 }

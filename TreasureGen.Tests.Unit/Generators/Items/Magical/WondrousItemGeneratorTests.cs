@@ -53,6 +53,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(result.Type));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(item.IsMagical, Is.True);
         }
@@ -378,6 +379,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var wondrousItem = wondrousItemGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
             Assert.That(wondrousItem.Name, Is.EqualTo(name));
+            Assert.That(wondrousItem.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(wondrousItem.IsMagical, Is.True);
             Assert.That(wondrousItem.Attributes, Is.EqualTo(attributes));
@@ -396,6 +398,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var wondrousItem = wondrousItemGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
             Assert.That(wondrousItem.Name, Is.EqualTo(name));
+            Assert.That(wondrousItem.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(wondrousItem.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(wondrousItem.IsMagical, Is.True);
             Assert.That(wondrousItem.Attributes, Is.EqualTo(attributes));

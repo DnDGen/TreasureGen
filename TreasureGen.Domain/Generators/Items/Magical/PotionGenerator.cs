@@ -23,6 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var potion = new Item();
 
             potion.Name = result.Type;
+            potion.BaseNames = new[] { result.Type };
             potion.ItemType = ItemTypeConstants.Potion;
             potion.Magic.Bonus = result.Amount;
             potion.IsMagical = true;
@@ -33,14 +34,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.ItemType = ItemTypeConstants.Potion;
-            template.Attributes = new[] { AttributeConstants.OneTimeUse };
-
-            var potion = template.Copy();
+            var potion = template.Clone();
+            potion.BaseNames = new[] { potion.Name };
+            potion.ItemType = ItemTypeConstants.Potion;
+            potion.Attributes = new[] { AttributeConstants.OneTimeUse };
             potion.IsMagical = true;
             potion.Quantity = 1;
 
-            return potion;
+            return potion.SmartClone();
         }
     }
 }

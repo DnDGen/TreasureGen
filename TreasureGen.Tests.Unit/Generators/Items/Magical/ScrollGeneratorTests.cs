@@ -38,6 +38,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
             Assert.That(scroll.Quantity, Is.EqualTo(1));
+            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
         }
 
         [Test]
@@ -119,7 +120,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(scroll.Quantity, Is.EqualTo(1));
             Assert.That(scroll.Magic.Bonus, Is.EqualTo(0));
             Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
-            Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
         }
 
         [Test]
@@ -136,7 +137,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(scroll.Quantity, Is.EqualTo(1));
             Assert.That(scroll.Magic.Bonus, Is.EqualTo(0));
             Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
-            Assert.That(scroll.Magic.SpecialAbilities, Is.Empty);
+            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
         }
     }
 }

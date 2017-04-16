@@ -27,6 +27,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             var ammunition = new Item();
             ammunition.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions);
+            ammunition.BaseNames = new[] { ammunition.Name };
             ammunition.Quantity = Math.Max(1, roll / 2);
             ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
             ammunition.ItemType = ItemTypeConstants.Weapon;
@@ -42,12 +43,13 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item GenerateFrom(Item template)
         {
-            template.ItemType = ItemTypeConstants.Weapon;
-            template.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, template.Name);
+            var ammunition = template.SmartClone();
+            ammunition.BaseNames = new[] { ammunition.Name };
+            ammunition.ItemType = ItemTypeConstants.Weapon;
+            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
 
-            var ammunition = template.Copy();
-
-            return ammunition;
+            //INFO: This second clone takes into account the attributes now on the ammunition.
+            return ammunition.SmartClone();
         }
     }
 }

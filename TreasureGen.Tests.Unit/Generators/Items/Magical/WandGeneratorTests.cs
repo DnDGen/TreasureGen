@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -34,6 +35,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var wand = wandGenerator.GenerateAtPower(power);
 
             Assert.That(wand.Name, Does.StartWith("Wand of "));
+            Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -72,6 +74,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var wand = wandGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(wand, template);
             Assert.That(wand.Name, Is.EqualTo(name));
+            Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -89,6 +92,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var wand = wandGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(wand, template);
             Assert.That(wand.Name, Is.EqualTo(name));
+            Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));

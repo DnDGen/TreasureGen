@@ -74,6 +74,19 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GetBaseNames()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+
+            var armor = magicalArmorGenerator.GenerateAtPower(power);
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+        }
+
+        [Test]
         public void GetAttributesFromSelector()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
@@ -139,12 +152,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name)).Returns(baseNames);
+
             var armor = magicalArmorGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(armor, template);
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(armor.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
@@ -166,12 +183,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(specialAbilityNames)).Returns(abilities);
 
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name)).Returns(baseNames);
+
             var armor = magicalArmorGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(armor, template);
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(armor.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]

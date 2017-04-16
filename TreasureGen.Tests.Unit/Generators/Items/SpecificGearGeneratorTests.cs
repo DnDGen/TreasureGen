@@ -84,6 +84,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void GetBaseNames()
+        {
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type)).Returns(baseNames);
+
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.BaseNames, Is.EqualTo(baseNames));
+        }
+
+        [Test]
         public void GetMundaneGearNameAndBonusFromSelector()
         {
             var newResult = new TypeAndAmountPercentileResult();

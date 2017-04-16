@@ -45,6 +45,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, result.Type);
             armor.Name = percentileSelector.SelectFrom(tableName);
+            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
 
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
             armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
@@ -55,7 +56,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var armor = template.Copy();
+            var armor = template.SmartClone();
 
             if (specificGearGenerator.TemplateIsSpecific(template))
             {
@@ -65,6 +66,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             {
                 armor.ItemType = ItemTypeConstants.Armor;
                 armor.Quantity = 1;
+                armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
 
                 var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
                 armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);

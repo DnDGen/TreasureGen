@@ -42,15 +42,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateWeapon()
         {
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
         public void GenerateMasterworkWeapon()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -59,8 +62,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateNonMasterworkWeapon()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(false);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(false);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Is.Not.Contains(TraitConstants.Masterwork));
@@ -69,8 +71,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetWeaponSize()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
-                .Returns("size");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Traits, Contains.Item("size"));
@@ -90,8 +91,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetMasterworkAmmunition()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
 
             var ammo = new Item();
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
@@ -178,8 +178,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var weapon = mundaneWeaponGenerator.Generate(template);
             itemVerifier.AssertMundaneItemFromTemplate(weapon, template);
@@ -189,6 +191,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
             Assert.That(weapon.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
@@ -202,8 +205,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var weapon = mundaneWeaponGenerator.Generate(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(weapon, template);
@@ -213,6 +218,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(weapon.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]
@@ -229,8 +235,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var sizes = new[] { "size", "other size" };
             mockPercentileSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns(sizes);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("other size");
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var weapon = mundaneWeaponGenerator.Generate(template);
             itemVerifier.AssertMundaneItemFromTemplate(weapon, template);
@@ -241,6 +249,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
             Assert.That(weapon.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
         }
 
         [Test]

@@ -41,6 +41,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             else
             {
                 weapon.Name = weaponName;
+                weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
 
                 if (weapon.Name.Contains("Composite"))
                 {
@@ -93,18 +94,20 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             template.ItemType = ItemTypeConstants.Weapon;
-            var weapon = template.CopyWithoutMagic();
+            var weapon = template.MundaneClone();
 
             if (ammunitionGenerator.TemplateIsAmmunition(template))
             {
                 weapon = ammunitionGenerator.GenerateFrom(template);
-                weapon = weapon.CopyWithoutMagic();
+                weapon = weapon.MundaneClone();
             }
             else
             {
                 var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
                 weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
             }
+
+            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
 
             var sizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
 

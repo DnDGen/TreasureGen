@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -42,6 +43,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
+            Assert.That(potion.BaseNames.Single(), Is.EqualTo("potion"));
             Assert.That(potion.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(potion.Quantity, Is.EqualTo(1));
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
@@ -55,11 +57,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var potion = potionGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
+            Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
             Assert.That(potion.Quantity, Is.EqualTo(1));
-            Assert.That(potion.Magic.SpecialAbilities, Is.Empty);
         }
 
         [Test]
@@ -70,11 +72,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var potion = potionGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
+            Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
             Assert.That(potion.Quantity, Is.EqualTo(1));
-            Assert.That(potion.Magic.SpecialAbilities, Is.Empty);
         }
     }
 }
