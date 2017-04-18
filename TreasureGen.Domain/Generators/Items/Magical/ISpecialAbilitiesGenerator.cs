@@ -6,6 +6,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal interface ISpecialAbilitiesGenerator
     {
         IEnumerable<SpecialAbility> GenerateFor(string itemType, IEnumerable<string> attributes, string power, int magicalBonus, int quantity);
-        IEnumerable<SpecialAbility> GenerateFor(IEnumerable<string> abilityNames);
+        IEnumerable<SpecialAbility> GenerateFor(IEnumerable<SpecialAbility> abilityNames);
     }
 }

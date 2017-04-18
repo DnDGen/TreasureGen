@@ -141,8 +141,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
             }
 
-            var abilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
-            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(abilityNames);
+            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return weapon;
         }

@@ -71,8 +71,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
             rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
 
-            var specialAbilityNames = rod.Magic.SpecialAbilities.Select(a => a.Name);
-            rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
+            rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(rod.Magic.SpecialAbilities);
 
             return rod.SmartClone();
         }

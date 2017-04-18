@@ -14,16 +14,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private const int MaxBonus = 10;
 
-        private ICollectionsSelector attributesSelector;
+        private ICollectionsSelector collectionsSelector;
         private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private Dice dice;
 
-        public SpecialAbilitiesGenerator(ICollectionsSelector attributesSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
+        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
             IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
@@ -138,11 +138,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private SpecialAbility GetSpecialAbility(string abilityName)
         {
             var ability = new SpecialAbility();
-            var abilityResult = specialAbilityAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, abilityName);
+            var abilityResult = specialAbilityAttributesSelector.SelectFrom(abilityName);
 
             ability.Name = abilityName;
             ability.BaseName = abilityResult.BaseName;
-            ability.AttributeRequirements = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
+            ability.AttributeRequirements = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
             ability.BonusEquivalent = abilityResult.BonusEquivalent;
             ability.Power = abilityResult.Power;
 
@@ -210,14 +210,21 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return availableAbilities.First(a => a.Name == abilityName);
         }
 
-        public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<string> abilityNames)
+        public IEnumerable<SpecialAbility> GenerateFor(IEnumerable<SpecialAbility> abilityPrototypes)
         {
             var abilities = new List<SpecialAbility>();
 
-            foreach (var abilityName in abilityNames)
+            foreach (var abilityPrototype in abilityPrototypes)
             {
-                var ability = GetSpecialAbility(abilityName);
-                abilities.Add(ability);
+                if (specialAbilityAttributesSelector.IsSpecialAbility(abilityPrototype.Name))
+                {
+                    var ability = GetSpecialAbility(abilityPrototype.Name);
+                    abilities.Add(ability);
+                }
+                else
+                {
+                    abilities.Add(abilityPrototype);
+                }
             }
 
             return abilities;

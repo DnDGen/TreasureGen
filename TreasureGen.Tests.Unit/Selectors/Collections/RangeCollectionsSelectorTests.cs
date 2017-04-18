@@ -3,10 +3,10 @@ using NUnit.Framework;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 
-namespace TreasureGen.Tests.Unit.Selectors.Attributes
+namespace TreasureGen.Tests.Unit.Selectors.Collections
 {
     [TestFixture]
-    public class RangeAttributesSelectorTests
+    public class RangeCollectionsSelectorTests
     {
         private IRangeAttributesSelector rangeAttributesSelector;
         private Mock<ICollectionsSelector> mockInnerSelector;

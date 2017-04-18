@@ -70,9 +70,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             staff = BuildStaff(staff);
 
             staff.Magic.Intelligence = template.Magic.Intelligence.Clone();
-
-            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
-            staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(specialAbilityNames);
+            staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
         }

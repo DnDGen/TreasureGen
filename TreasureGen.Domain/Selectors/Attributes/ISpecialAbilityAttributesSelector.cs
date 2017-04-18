@@ -4,6 +4,7 @@ namespace TreasureGen.Domain.Selectors.Attributes
 {
     internal interface ISpecialAbilityAttributesSelector
     {
-        SpecialAbilityAttributesResult SelectFrom(string tableName, string name);
+        SpecialAbilityAttributesResult SelectFrom(string name);
+        bool IsSpecialAbility(string name);
     }
 }

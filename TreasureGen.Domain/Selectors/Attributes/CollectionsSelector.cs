@@ -13,16 +13,21 @@ namespace TreasureGen.Domain.Selectors.Attributes
             this.attributesMapper = attributesMapper;
         }
 
-        public IEnumerable<string> SelectFrom(string tableName, string name)
+        public bool Exists(string tableName, string name)
         {
             var table = attributesMapper.Map(tableName);
+            return table.ContainsKey(name);
+        }
 
-            if (!table.ContainsKey(name))
+        public IEnumerable<string> SelectFrom(string tableName, string name)
+        {
+            if (!Exists(tableName, name))
             {
                 var message = string.Format("{0} is not in the table {1}", name, tableName);
                 throw new ArgumentException(message);
             }
 
+            var table = attributesMapper.Map(tableName);
             return table[name];
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+﻿using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -73,9 +72,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             armor.Quantity = 1;
-
-            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
-            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(specialAbilityNames);
+            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(template.Magic.SpecialAbilities);
 
             return armor;
         }

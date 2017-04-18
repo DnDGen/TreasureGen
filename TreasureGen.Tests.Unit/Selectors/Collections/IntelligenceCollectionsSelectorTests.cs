@@ -2,10 +2,10 @@
 using NUnit.Framework;
 using TreasureGen.Domain.Selectors.Attributes;
 
-namespace TreasureGen.Tests.Unit.Selectors
+namespace TreasureGen.Tests.Unit.Selectors.Collections
 {
     [TestFixture]
-    public class IntelligenceAttributesSelectorTests
+    public class IntelligenceCollectionsSelectorTests
     {
         private IIntelligenceAttributesSelector selector;
         private Mock<ICollectionsSelector> mockInnerSelector;

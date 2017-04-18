@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using RollGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -150,7 +151,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility()
             };
 
-            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(
+                It.Is<IEnumerable<SpecialAbility>>(aa =>
+                    aa.First().Name == "ability 1"
+                    && aa.Last().Name == "ability 2")
+                )
+            ).Returns(specialAbilities);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
@@ -381,7 +387,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
             };
 
-            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+            mockSpecialAbilitiesGenerator.Setup(s =>
+                s.GenerateFor(
+                    It.Is<IEnumerable<SpecialAbility>>(aa =>
+                        aa.First().Name == "ability 1"
+                        && aa.Last().Name == "ability 2"
+                    )
+                )
+            ).Returns(specialAbilities);
 
             var gear = specificGearGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(gear, template);
@@ -424,7 +437,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
             };
 
-            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+            mockSpecialAbilitiesGenerator.Setup(s =>
+                s.GenerateFor(
+                    It.Is<IEnumerable<SpecialAbility>>(aa =>
+                        aa.First().Name == "ability 1"
+                        && aa.Last().Name == "ability 2"
+                    )
+                )
+            ).Returns(specialAbilities);
 
             var gear = specificGearGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(gear, template);
@@ -467,7 +487,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
             };
 
-            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+            mockSpecialAbilitiesGenerator.Setup(s =>
+                s.GenerateFor(
+                    It.Is<IEnumerable<SpecialAbility>>(aa =>
+                        aa.First().Name == "ability 1"
+                        && aa.Last().Name == "ability 2"
+                    )
+                )
+            ).Returns(specialAbilities);
 
             var gear = specificGearGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(gear, template);
@@ -510,7 +537,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = template.Magic.SpecialAbilities.Last().Name }
             };
 
-            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(specialAbilityNames)).Returns(specialAbilities);
+            mockSpecialAbilitiesGenerator.Setup(s =>
+                s.GenerateFor(
+                    It.Is<IEnumerable<SpecialAbility>>(aa =>
+                        aa.First().Name == "ability 1"
+                        && aa.Last().Name == "ability 2"
+                    )
+                )
+            ).Returns(specialAbilities);
 
             var gear = specificGearGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(gear, template);

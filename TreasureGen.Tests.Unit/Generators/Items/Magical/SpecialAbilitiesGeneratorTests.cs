@@ -8,6 +8,7 @@ using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
+using TreasureGen.Items.Magical;
 using TreasureGen.Selectors.Results;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -144,12 +145,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var meleeResult = new SpecialAbilityAttributesResult();
             meleeResult.BaseName = "melee ability";
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, meleeResult.BaseName)).Returns(meleeResult);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(meleeResult.BaseName)).Returns(meleeResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, meleeResult.BaseName)).Returns(itemAttributes);
 
             var rangedResult = new SpecialAbilityAttributesResult();
             rangedResult.BaseName = "ranged ability";
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, rangedResult.BaseName)).Returns(rangedResult);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
 
             mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
@@ -466,7 +467,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Power = power;
             names.Add(name);
 
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, name)).Returns(result);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(name)).Returns(result);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, result.BaseName)).Returns(itemAttributes);
         }
 
@@ -482,32 +483,136 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributeRequirements.Add(new[] { "other type 2", "type 2" });
             attributeRequirements.Add(new[] { "other type 3", "type 3" });
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
-                .Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
-                .Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
-                .Returns(attributeRequirements[2]);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(new[] { "ability 1", "ability 2", "ability 3" });
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
 
-            var abilityList = abilities.ToList();
-            Assert.That(abilityList[0].AttributeRequirements, Is.EqualTo(attributeRequirements[0]));
-            Assert.That(abilityList[0].Name, Is.EqualTo("ability 1"));
-            Assert.That(abilityList[0].BaseName, Is.EqualTo("base 1"));
-            Assert.That(abilityList[0].Power, Is.EqualTo(90210));
-            Assert.That(abilityList[0].BonusEquivalent, Is.EqualTo(9266));
-            Assert.That(abilityList[1].AttributeRequirements, Is.EqualTo(attributeRequirements[1]));
-            Assert.That(abilityList[1].Name, Is.EqualTo("ability 2"));
-            Assert.That(abilityList[1].BaseName, Is.EqualTo("base 2"));
-            Assert.That(abilityList[1].Power, Is.EqualTo(600));
-            Assert.That(abilityList[1].BonusEquivalent, Is.EqualTo(42));
-            Assert.That(abilityList[2].AttributeRequirements, Is.EqualTo(attributeRequirements[2]));
-            Assert.That(abilityList[2].Name, Is.EqualTo("ability 3"));
-            Assert.That(abilityList[2].BaseName, Is.EqualTo("base 3"));
-            Assert.That(abilityList[2].Power, Is.EqualTo(1234));
-            Assert.That(abilityList[2].BonusEquivalent, Is.EqualTo(1337));
-            Assert.That(abilityList.Count, Is.EqualTo(3));
+            var abilityPrototypes = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+                new SpecialAbility { Name = "ability 2" },
+                new SpecialAbility { Name = "ability 3" },
+            };
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(abilityPrototypes);
+
+            var abilityArray = abilities.ToArray();
+            Assert.That(abilityArray[0].Name, Is.EqualTo("ability 1"));
+            Assert.That(abilityArray[0].BaseName, Is.EqualTo("base 1"));
+            Assert.That(abilityArray[0].AttributeRequirements, Is.EqualTo(attributeRequirements[0]));
+            Assert.That(abilityArray[0].Power, Is.EqualTo(90210));
+            Assert.That(abilityArray[0].BonusEquivalent, Is.EqualTo(9266));
+            Assert.That(abilityArray[1].Name, Is.EqualTo("ability 2"));
+            Assert.That(abilityArray[1].BaseName, Is.EqualTo("base 2"));
+            Assert.That(abilityArray[1].AttributeRequirements, Is.EqualTo(attributeRequirements[1]));
+            Assert.That(abilityArray[1].Power, Is.EqualTo(600));
+            Assert.That(abilityArray[1].BonusEquivalent, Is.EqualTo(42));
+            Assert.That(abilityArray[2].Name, Is.EqualTo("ability 3"));
+            Assert.That(abilityArray[2].BaseName, Is.EqualTo("base 3"));
+            Assert.That(abilityArray[2].AttributeRequirements, Is.EqualTo(attributeRequirements[2]));
+            Assert.That(abilityArray[2].Power, Is.EqualTo(1234));
+            Assert.That(abilityArray[2].BonusEquivalent, Is.EqualTo(1337));
+            Assert.That(abilityArray.Length, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void CreateCustomSpecialAbilities()
+        {
+            CreateSpecialAbility("ability 1", "base 1", 9266, 90210);
+            CreateSpecialAbility("ability 2", "base 2", 42, 600);
+            CreateSpecialAbility("ability 3", "base 3", 1337, 1234);
+
+            var attributeRequirements = new List<IEnumerable<string>>();
+            attributeRequirements.Add(new[] { "other type 1", "type 1" });
+            attributeRequirements.Add(new[] { "other type 2", "type 2" });
+            attributeRequirements.Add(new[] { "other type 3", "type 3" });
+
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(false);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(false);
+
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+
+            var abilityPrototypes = new[]
+            {
+                new SpecialAbility { Name = "ability 1", BaseName = "custom base 1", BonusEquivalent = 2345, Power = 9876 },
+                new SpecialAbility { Name = "ability 2", BaseName = "custom base 2", BonusEquivalent = 3456, Power = 8765 },
+                new SpecialAbility { Name = "ability 3", BaseName = "custom base 3", BonusEquivalent = 4567, Power = 7654 },
+            };
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(abilityPrototypes);
+
+            var abilityArray = abilities.ToArray();
+            Assert.That(abilityArray[0].AttributeRequirements, Is.Empty);
+            Assert.That(abilityArray[0].Name, Is.EqualTo("ability 1"));
+            Assert.That(abilityArray[0].BaseName, Is.EqualTo("custom base 1"));
+            Assert.That(abilityArray[0].Power, Is.EqualTo(9876));
+            Assert.That(abilityArray[0].BonusEquivalent, Is.EqualTo(2345));
+            Assert.That(abilityArray[1].AttributeRequirements, Is.Empty);
+            Assert.That(abilityArray[1].Name, Is.EqualTo("ability 2"));
+            Assert.That(abilityArray[1].BaseName, Is.EqualTo("custom base 2"));
+            Assert.That(abilityArray[1].Power, Is.EqualTo(8765));
+            Assert.That(abilityArray[1].BonusEquivalent, Is.EqualTo(3456));
+            Assert.That(abilityArray[2].AttributeRequirements, Is.Empty);
+            Assert.That(abilityArray[2].Name, Is.EqualTo("ability 3"));
+            Assert.That(abilityArray[2].BaseName, Is.EqualTo("custom base 3"));
+            Assert.That(abilityArray[2].Power, Is.EqualTo(7654));
+            Assert.That(abilityArray[2].BonusEquivalent, Is.EqualTo(4567));
+            Assert.That(abilityArray.Length, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void CreateSetAndCustomSpecialAbilities()
+        {
+            CreateSpecialAbility("ability 1", "base 1", 9266, 90210);
+            CreateSpecialAbility("ability 2", "base 2", 42, 600);
+            CreateSpecialAbility("ability 3", "base 3", 1337, 1234);
+
+            var attributeRequirements = new List<IEnumerable<string>>();
+            attributeRequirements.Add(new[] { "other type 1", "type 1" });
+            attributeRequirements.Add(new[] { "other type 2", "type 2" });
+            attributeRequirements.Add(new[] { "other type 3", "type 3" });
+
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
+            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
+
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+
+            var abilityPrototypes = new[]
+            {
+                new SpecialAbility { Name = "ability 1", BaseName = "custom base 1", BonusEquivalent = 2345, Power = 9876 },
+                new SpecialAbility { Name = "ability 2", BaseName = "custom base 2", BonusEquivalent = 3456, Power = 8765 },
+                new SpecialAbility { Name = "ability 3", BaseName = "custom base 3", BonusEquivalent = 4567, Power = 7654 },
+            };
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(abilityPrototypes);
+
+            var abilityArray = abilities.ToArray();
+            Assert.That(abilityArray[0].Name, Is.EqualTo("ability 1"));
+            Assert.That(abilityArray[0].BaseName, Is.EqualTo("base 1"));
+            Assert.That(abilityArray[0].AttributeRequirements, Is.EqualTo(attributeRequirements[0]));
+            Assert.That(abilityArray[0].Power, Is.EqualTo(90210));
+            Assert.That(abilityArray[0].BonusEquivalent, Is.EqualTo(9266));
+            Assert.That(abilityArray[1].Name, Is.EqualTo("ability 2"));
+            Assert.That(abilityArray[1].BaseName, Is.EqualTo("custom base 2"));
+            Assert.That(abilityArray[1].AttributeRequirements, Is.Empty);
+            Assert.That(abilityArray[1].Power, Is.EqualTo(8765));
+            Assert.That(abilityArray[1].BonusEquivalent, Is.EqualTo(3456));
+            Assert.That(abilityArray[2].Name, Is.EqualTo("ability 3"));
+            Assert.That(abilityArray[2].BaseName, Is.EqualTo("base 3"));
+            Assert.That(abilityArray[2].AttributeRequirements, Is.EqualTo(attributeRequirements[2]));
+            Assert.That(abilityArray[2].Power, Is.EqualTo(1234));
+            Assert.That(abilityArray[2].BonusEquivalent, Is.EqualTo(1337));
+            Assert.That(abilityArray.Length, Is.EqualTo(3));
         }
     }
 }

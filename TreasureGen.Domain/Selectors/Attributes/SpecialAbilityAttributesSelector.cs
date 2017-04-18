@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TreasureGen.Domain.Tables;
 using TreasureGen.Selectors.Results;
 
 namespace TreasureGen.Domain.Selectors.Attributes
@@ -13,11 +14,16 @@ namespace TreasureGen.Domain.Selectors.Attributes
             this.innerSelector = innerSelector;
         }
 
-        public SpecialAbilityAttributesResult SelectFrom(string tableName, string name)
+        public bool IsSpecialAbility(string name)
         {
-            var attributes = innerSelector.SelectFrom(tableName, name).ToList();
+            return innerSelector.Exists(TableNameConstants.Collections.Set.SpecialAbilityAttributes, name);
+        }
 
-            if (attributes.Count < 3)
+        public SpecialAbilityAttributesResult SelectFrom(string name)
+        {
+            var attributes = innerSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, name).ToArray();
+
+            if (attributes.Length < 3)
                 throw new Exception("Attributes are not formatted for special abilities");
 
             var result = new SpecialAbilityAttributesResult();
