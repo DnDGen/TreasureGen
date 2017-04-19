@@ -111,5 +111,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         {
             base.StressSpecificCursedItems();
         }
+
+        [Test]
+        public void StressScrollFromSubset()
+        {
+            Stress(StressItemFromSubset);
+        }
     }
 }

@@ -58,77 +58,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected override IEnumerable<string> GetItemNames()
         {
-            return new[]
-            {
-                WeaponConstants.Arrow,
-                WeaponConstants.BastardSword,
-                WeaponConstants.Battleaxe,
-                WeaponConstants.Club,
-                WeaponConstants.CompositeLongbow,
-                WeaponConstants.CompositeShortbow,
-                WeaponConstants.CrossbowBolt,
-                WeaponConstants.Dagger,
-                WeaponConstants.Dart,
-                WeaponConstants.DireFlail,
-                WeaponConstants.DwarvenUrgrosh,
-                WeaponConstants.DwarvenWaraxe,
-                WeaponConstants.Falchion,
-                WeaponConstants.Gauntlet,
-                WeaponConstants.Glaive,
-                WeaponConstants.GnomeHookedHammer,
-                WeaponConstants.Greataxe,
-                WeaponConstants.Greatclub,
-                WeaponConstants.Greatsword,
-                WeaponConstants.Guisarme,
-                WeaponConstants.Halberd,
-                WeaponConstants.Halfspear,
-                WeaponConstants.Handaxe,
-                WeaponConstants.HandCrossbow,
-                WeaponConstants.HeavyCrossbow,
-                WeaponConstants.HeavyFlail,
-                WeaponConstants.HeavyMace,
-                WeaponConstants.HeavyPick,
-                WeaponConstants.HeavyRepeatingCrossbow,
-                WeaponConstants.Javelin,
-                WeaponConstants.Kama,
-                WeaponConstants.Kukri,
-                WeaponConstants.Lance,
-                WeaponConstants.LightCrossbow,
-                WeaponConstants.LightFlail,
-                WeaponConstants.LightHammer,
-                WeaponConstants.LightMace,
-                WeaponConstants.LightPick,
-                WeaponConstants.LightRepeatingCrossbow,
-                WeaponConstants.Longbow,
-                WeaponConstants.Longspear,
-                WeaponConstants.Longsword,
-                WeaponConstants.Morningstar,
-                WeaponConstants.Net,
-                WeaponConstants.Nunchaku,
-                WeaponConstants.OrcDoubleAxe,
-                WeaponConstants.PunchingDagger,
-                WeaponConstants.Quarterstaff,
-                WeaponConstants.Ranseur,
-                WeaponConstants.Rapier,
-                WeaponConstants.Sap,
-                WeaponConstants.Scimitar,
-                WeaponConstants.Scythe,
-                WeaponConstants.Shortbow,
-                WeaponConstants.Shortspear,
-                WeaponConstants.ShortSword,
-                WeaponConstants.Shuriken,
-                WeaponConstants.Siangham,
-                WeaponConstants.Sickle,
-                WeaponConstants.Sling,
-                WeaponConstants.SlingBullet,
-                WeaponConstants.SpikedChain,
-                WeaponConstants.SpikedGauntlet,
-                WeaponConstants.ThrowingAxe,
-                WeaponConstants.Trident,
-                WeaponConstants.TwoBladedSword,
-                WeaponConstants.Warhammer,
-                WeaponConstants.Whip
-            };
+            return WeaponConstants.GetBaseNames();
         }
 
         [Test]
@@ -141,6 +71,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public void StressRandomCustomWeapon()
         {
             Stress(StressRandomCustomItem);
+        }
+
+        [Test]
+        public void StressMundaneWeaponFromSubset()
+        {
+            Stress(StressItemFromSubset);
         }
     }
 }

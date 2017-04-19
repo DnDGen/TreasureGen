@@ -51,11 +51,34 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             ItemVerifier.AssertMundaneItemFromTemplate(item, template);
         }
 
+        protected void StressItemFromSubset()
+        {
+            var names = GetItemNames();
+            var subset = GetRandomSubset(names);
+            var item = GenerateItemFromSubset(subset);
+            AssertItem(item);
+            Assert.That(subset.Any(n => item.NameMatches(n)), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from [{string.Join(", ", subset)}]");
+        }
+
+        protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
+        {
+            return mundaneItemGenerator.GenerateFromSubset(subset);
+        }
+
         private string GetRandom(IEnumerable<string> collection)
         {
             var count = collection.Count();
             var randomIndex = Random.Next(count);
             return collection.ElementAt(randomIndex);
+        }
+
+        private IEnumerable<string> GetRandomSubset(IEnumerable<string> collection)
+        {
+            var limit = collection.Count() / 2;
+            var skipAmount = Random.Next(limit);
+            var takeAmount = Random.Next(limit) + 1;
+
+            return collection.Skip(skipAmount).Take(takeAmount);
         }
 
         protected override Item GenerateRandomCustomItem(string name)

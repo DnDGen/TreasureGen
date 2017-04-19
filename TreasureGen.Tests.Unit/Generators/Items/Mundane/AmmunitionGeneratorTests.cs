@@ -18,16 +18,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private IAmmunitionGenerator ammunitionGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<Dice> mockDice;
-        private Mock<ICollectionsSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
         private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockAttributesSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockDice = new Mock<Dice>();
-            ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockAttributesSelector.Object);
+            var generator = new ConfigurableIterativeGenerator(5);
+            ammunitionGenerator = new AmmunitionGenerator(mockPercentileSelector.Object, mockDice.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();
 
             mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(0);
@@ -156,7 +157,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("ammunition name");
             var attributes = new[] { "type 1", "type 2" };
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, "ammunition name")).Returns(attributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, "ammunition name")).Returns(attributes);
 
             var ammunition = ammunitionGenerator.Generate();
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
@@ -196,7 +197,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             template.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
             var attributes = new[] { "type 1", "type 2", AttributeConstants.Ammunition };
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, name)).Returns(attributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, name)).Returns(attributes);
 
             var ammunition = ammunitionGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(ammunition, template);
@@ -204,6 +205,56 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(ammunition.Quantity, Is.EqualTo(template.Quantity));
             Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
             Assert.That(ammunition.BaseNames.Single(), Is.EqualTo(name));
+        }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions))
+                .Returns("wrong ammunition")
+                .Returns("ammunition")
+                .Returns("other ammunition");
+
+            var attributes = new[] { "type 1", "type 2" };
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, "ammunition")).Returns(attributes);
+
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
+
+            var subset = new[] { "other ammunition", "ammunition" };
+
+            var ammunition = ammunitionGenerator.GenerateFrom(subset);
+            Assert.That(ammunition.Name, Is.EqualTo("ammunition"));
+            Assert.That(ammunition.BaseNames.Single(), Is.EqualTo("ammunition"));
+            Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
+            Assert.That(ammunition.Quantity, Is.EqualTo(9266 / 2));
+        }
+
+        [Test]
+        public void GenerateDefaultFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions)).Returns("wrong ammunition");
+
+            var attributes = new[] { "type 1", "type 2" };
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, "ammunition")).Returns(attributes);
+
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
+
+            var subset = new[] { "other ammunition", "ammunition" };
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
+
+            var ammunition = ammunitionGenerator.GenerateFrom(subset);
+            Assert.That(ammunition.Name, Is.EqualTo("ammunition"));
+            Assert.That(ammunition.BaseNames.Single(), Is.EqualTo("ammunition"));
+            Assert.That(ammunition.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(ammunition.Attributes, Is.EqualTo(attributes));
+            Assert.That(ammunition.Quantity, Is.EqualTo(9266 / 2));
+        }
+
+        [Test]
+        public void GenerateFromEmptySubset()
+        {
+            Assert.That(() => ammunitionGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

@@ -63,7 +63,9 @@
     <Compile Include="Generators\Coins\CoinGenerator.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorEventGenDecorator.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorEventGenDecorator.cs" />
+    <Compile Include="Generators\Items\Generator.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventGenDecorator.cs" />
+    <Compile Include="Generators\Items\IterativeGenerator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventGenDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecorator.cs" />

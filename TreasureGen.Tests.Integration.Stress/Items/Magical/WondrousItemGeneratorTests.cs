@@ -144,5 +144,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(cubicGate.Contents, Is.Unique);
             Assert.That(cubicGate.Contents.Select(p => p.ToLower()), Is.Unique);
         }
+
+        [Test]
+        public void StressWondrousItemFromSubset()
+        {
+            Stress(StressItemFromSubset);
+        }
     }
 }

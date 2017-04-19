@@ -1,5 +1,7 @@
 ﻿using RollGen;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
@@ -48,6 +50,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 scroll.Contents.Add(spellWithLevel);
             }
 
+            return scroll;
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            if (!subset.Contains(ItemTypeConstants.Scroll))
+                throw new ArgumentException("Cannot generate a non-scroll item");
+
+            var scroll = GenerateAtPower(power);
             return scroll;
         }
 

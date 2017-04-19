@@ -11,46 +11,62 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class WondrousItemGenerator : MagicalItemGenerator
     {
-        private IPercentileSelector percentileSelector;
-        private ICollectionsSelector attributesSelector;
-        private IChargesGenerator chargesGenerator;
-        private Dice dice;
-        private ISpellGenerator spellGenerator;
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly IChargesGenerator chargesGenerator;
+        private readonly Dice dice;
+        private readonly ISpellGenerator spellGenerator;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly Generator generator;
 
-        public WondrousItemGenerator(IPercentileSelector percentileSelector, ICollectionsSelector attributesSelector, IChargesGenerator chargesGenerator, Dice dice, ISpellGenerator spellGenerator, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+        public WondrousItemGenerator(
+            IPercentileSelector percentileSelector,
+            ICollectionsSelector collectionsSelector,
+            IChargesGenerator chargesGenerator,
+            Dice dice,
+            ISpellGenerator spellGenerator,
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            Generator generator)
         {
             this.percentileSelector = percentileSelector;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
             this.chargesGenerator = chargesGenerator;
             this.dice = dice;
             this.spellGenerator = spellGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
+            this.generator = generator;
         }
 
         public Item GenerateAtPower(string power)
         {
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
+            var item = BuildWondrousItem(result.Type);
+            item.Magic.Bonus = result.Amount;
+
+            return item;
+        }
+
+        private Item BuildWondrousItem(string name)
+        {
             var item = new Item();
-            item.Name = result.Type;
-            item.BaseNames = new[] { result.Type };
+            item.Name = name;
+            item.BaseNames = new[] { name };
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, item.ItemType);
-            item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
-            item.Magic.Bonus = result.Amount;
+            item.Attributes = collectionsSelector.SelectFrom(tableName, name);
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
-                item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, item.Name);
+                item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, name);
 
-            var trait = GetTraitFor(item.Name);
+            var trait = GetTraitFor(name);
             if (!string.IsNullOrEmpty(trait))
                 item.Traits.Add(trait);
 
-            var contents = GetContentsFor(item.Name);
+            var contents = GetContentsFor(name);
             item.Contents.AddRange(contents);
 
             return item;
@@ -97,7 +113,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private IEnumerable<string> GetRobeOfUsefulItemsItems()
         {
-            var baseItems = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
+            var baseItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
             var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
 
             //INFO: Can't do Union because it will deduplicate the allowed duplicate items
@@ -111,7 +127,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private IEnumerable<string> GetPartialContents(string name)
         {
             var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
-            var fullContents = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name).ToList();
+            var fullContents = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name).ToList();
 
             if (quantity >= fullContents.Count)
                 return fullContents;
@@ -188,10 +204,54 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             item.BaseNames = new[] { item.Name };
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            item.Attributes = attributesSelector.SelectFrom(tableName, item.Name);
+            item.Attributes = collectionsSelector.SelectFrom(tableName, item.Name);
             item.ItemType = ItemTypeConstants.WondrousItem;
 
             return item.SmartClone();
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            var item = generator.Generate(
+                () => GenerateAtPower(power),
+                i => subset.Any(n => i.NameMatches(n)),
+                () => CreateDefaultWondrousItem(power, subset),
+                $"Wondrous item from [{string.Join(", ", subset)}]");
+
+            return item;
+        }
+
+        private Item CreateDefaultWondrousItem(string power, IEnumerable<string> subset)
+        {
+            var name = collectionsSelector.SelectRandomFrom(subset);
+            var item = BuildWondrousItem(name);
+            var result = GetResult(power, item.Name);
+
+            item.Magic.Bonus = result.Amount;
+
+            return item;
+        }
+
+        private TypeAndAmountPercentileResult GetResult(string power, string name)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var result = results.FirstOrDefault(r => r.Type == name);
+
+            if (result != null)
+                return result;
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.WondrousItem);
+            var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.WondrousItem);
+            var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.WondrousItem);
+            var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            results = minorResults.Union(mediumResults).Union(majorResults);
+            return results.First(r => r.Type == name);
         }
     }
 }

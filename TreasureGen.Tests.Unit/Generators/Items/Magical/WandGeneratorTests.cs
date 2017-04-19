@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
+using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -16,6 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator wandGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
         private string power;
         private ItemVerifier itemVerifier;
 
@@ -24,7 +26,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
-            wandGenerator = new WandGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object);
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            var generator = new ConfigurableIterativeGenerator(5);
+            wandGenerator = new WandGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object, generator, mockCollectionsSelector.Object);
             power = "power";
             itemVerifier = new ItemVerifier();
         }
@@ -59,7 +63,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wand spell");
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "wand spell")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of wand spell")).Returns(9266);
 
             var wand = wandGenerator.GenerateAtPower(power);
             Assert.That(wand.Magic.Charges, Is.EqualTo(9266));
@@ -99,6 +103,59 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(wand.Quantity, Is.EqualTo(1));
             Assert.That(wand.Contents, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            var subset = new[] { "Wand of other spell", "Wand of spell" };
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
+                .Returns("wrong spell")
+                .Returns("spell")
+                .Returns("other spell");
+
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of wrong spell")).Returns(666);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of spell")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of other spell")).Returns(90210);
+
+            var wand = wandGenerator.GenerateFromSubset(power, subset);
+            Assert.That(wand.Name, Is.EqualTo("Wand of spell"));
+            Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
+            Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
+            Assert.That(wand.IsMagical, Is.True);
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(wand.Quantity, Is.EqualTo(1));
+            Assert.That(wand.Contents, Is.Empty);
+            Assert.That(wand.Magic.Charges, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void GenerateDefaultFromSubset()
+        {
+            var subset = new[] { "Wand of other spell", "Wand of spell" };
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wrong spell");
+
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
+
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of wrong spell")).Returns(666);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of spell")).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of other spell")).Returns(90210);
+
+            var wand = wandGenerator.GenerateFromSubset(power, subset);
+            Assert.That(wand.Name, Does.StartWith("Wand of spell"));
+            Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
+            Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
+            Assert.That(wand.IsMagical, Is.True);
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(wand.Quantity, Is.EqualTo(1));
+            Assert.That(wand.Contents, Is.Empty);
+            Assert.That(wand.Magic.Charges, Is.EqualTo(9266));
         }
     }
 }

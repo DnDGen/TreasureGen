@@ -1,4 +1,5 @@
 ﻿using RollGen;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -10,18 +11,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class CurseGenerator : ICurseGenerator
     {
-        private Dice dice;
-        private IPercentileSelector percentileSelector;
-        private IBooleanPercentileSelector booleanPercentileSelector;
-        private ICollectionsSelector collectionsSelector;
+        private readonly Dice dice;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly Generator generator;
 
-        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector,
-            ICollectionsSelector collectionsSelector)
+        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.collectionsSelector = collectionsSelector;
+            this.generator = generator;
         }
 
         public bool HasCurse(bool isMagical)
@@ -86,6 +88,17 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             return cursedItem;
 
+        }
+
+        public Item GenerateSpecificCursedItem(IEnumerable<string> subset)
+        {
+            var specificCursedItem = generator.Generate(
+                GenerateSpecificCursedItem,
+                i => subset.Any(n => i.NameMatches(n)),
+                () => null,
+                $"Cannot generate a specific cursed item from [{string.Join(", ", subset)}]");
+
+            return specificCursedItem;
         }
     }
 }

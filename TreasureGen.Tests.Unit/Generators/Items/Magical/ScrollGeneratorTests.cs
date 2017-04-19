@@ -139,5 +139,40 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(scroll.Magic.Charges, Is.EqualTo(0));
             Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
         }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            var subset = new[] { ItemTypeConstants.Scroll };
+
+            var scroll = scrollGenerator.GenerateFromSubset(PowerConstants.Minor, subset);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.IsMagical, Is.True);
+            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Quantity, Is.EqualTo(1));
+            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
+        }
+
+        [Test]
+        public void GenerateFromNonScrollSubset()
+        {
+            var subset = new[] { "not a scroll" };
+            Assert.That(() => scrollGenerator.GenerateFromSubset(PowerConstants.Minor, subset), Throws.ArgumentException.With.Message.EqualTo("Cannot generate a non-scroll item"));
+        }
+
+        [Test]
+        public void GenerateFromScrollAndNonScrollSubset()
+        {
+            var subset = new[] { ItemTypeConstants.Scroll, "not a scroll" };
+
+            var scroll = scrollGenerator.GenerateFromSubset(PowerConstants.Minor, subset);
+            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.IsMagical, Is.True);
+            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(scroll.Quantity, Is.EqualTo(1));
+            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using RollGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Attributes;
@@ -12,16 +13,26 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalWeaponGenerator : MagicalItemGenerator
     {
-        private ICollectionsSelector collectionsSelector;
-        private IPercentileSelector percentileSelector;
-        private IAmmunitionGenerator ammunitionGenerator;
-        private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private ISpecificGearGenerator specificGearGenerator;
-        private IBooleanPercentileSelector booleanPercentileSelector;
-        private ISpellGenerator spellGenerator;
-        private Dice dice;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly IAmmunitionGenerator ammunitionGenerator;
+        private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
+        private readonly ISpecificGearGenerator specificGearGenerator;
+        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ISpellGenerator spellGenerator;
+        private readonly Dice dice;
+        private readonly Generator generator;
 
-        public MagicalWeaponGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ISpecialAbilitiesGenerator specialAbilitiesGenerator, ISpecificGearGenerator specificGearGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpellGenerator spellGenerator, Dice dice)
+        public MagicalWeaponGenerator(
+            ICollectionsSelector collectionsSelector,
+            IPercentileSelector percentileSelector,
+            IAmmunitionGenerator ammunitionGenerator,
+            ISpecialAbilitiesGenerator specialAbilitiesGenerator,
+            ISpecificGearGenerator specificGearGenerator,
+            IBooleanPercentileSelector booleanPercentileSelector,
+            ISpellGenerator spellGenerator,
+            Dice dice,
+            Generator generator)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
@@ -31,6 +42,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.spellGenerator = spellGenerator;
             this.dice = dice;
+            this.generator = generator;
         }
 
         public Item GenerateAtPower(string power)
@@ -46,7 +58,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             if (bonus == ItemTypeConstants.Weapon)
-                return specificGearGenerator.GenerateFrom(power, bonus);
+                return specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
 
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes);
             tablename = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
@@ -123,8 +135,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.ItemType = ItemTypeConstants.Weapon;
-            var weapon = template.SmartClone();
+            var weapon = template.Clone();
 
             if (specificGearGenerator.TemplateIsSpecific(template))
             {
@@ -133,17 +144,53 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             else if (ammunitionGenerator.TemplateIsAmmunition(template))
             {
                 weapon = ammunitionGenerator.GenerateFrom(template);
+                weapon.Magic.Bonus = template.Magic.Bonus;
+                weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
             }
             else
             {
-                var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, weapon.ItemType);
+                var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+                weapon.ItemType = ItemTypeConstants.Weapon;
                 weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
                 weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
+                weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
             }
 
-            weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
+            return weapon.SmartClone();
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            var weapon = generator.Generate(
+                () => GenerateAtPower(power),
+                w => subset.Any(n => w.NameMatches(n)),
+                () => GetDefaultWeapon(power, subset),
+                $"Magical weapon from [{string.Join(", ", subset)}]");
 
             return weapon;
+        }
+
+        private Item GetDefaultWeapon(string power, IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+
+            if (!specificGearGenerator.TemplateIsSpecific(template))
+            {
+                var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+                var bonuses = percentileSelector.SelectAllFrom(tablename);
+                var junk = 0;
+                bonuses = bonuses.Where(b => int.TryParse(b, out junk));
+
+                template.Magic.Bonus = bonuses.Select(b => Convert.ToInt32(b)).Min();
+            }
+
+            var defaultWeapon = Generate(template);
+
+            if (defaultWeapon.Attributes.Contains(AttributeConstants.Thrown) && defaultWeapon.Attributes.Contains(AttributeConstants.Melee) == false)
+                defaultWeapon.Quantity = dice.Roll().d20().AsSum();
+
+            return defaultWeapon;
         }
     }
 }

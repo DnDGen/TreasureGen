@@ -51,5 +51,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         {
             Stress(StressRandomCustomItem);
         }
+
+        [Test]
+        public void StressAlchemicalItemFromSubset()
+        {
+            Stress(StressItemFromSubset);
+        }
     }
 }

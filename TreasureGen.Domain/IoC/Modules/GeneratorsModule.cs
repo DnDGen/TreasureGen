@@ -45,6 +45,7 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
+            Bind<Generator>().To<IterativeGenerator>();
 
             Bind<IMundaneItemGeneratorRuntimeFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
             Bind<IMagicalItemGeneratorRuntimeFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();

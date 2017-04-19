@@ -65,11 +65,10 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rings
         [TestCase(RingConstants.ElementalCommand_Fire)]
         [TestCase(RingConstants.ElementalCommand_Water)]
         [TestCase(RingConstants.SpellStoring_Major)]
-        [TestCase(RingConstants.Ram, AttributeConstants.Charged,
-                         AttributeConstants.OneTimeUse)]
-        [TestCase(RingConstants.ThreeWishes, AttributeConstants.Charged,
-                                  AttributeConstants.OneTimeUse)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(RingConstants.Clumsiness)]
+        [TestCase(RingConstants.Ram, AttributeConstants.Charged, AttributeConstants.OneTimeUse)]
+        [TestCase(RingConstants.ThreeWishes, AttributeConstants.Charged, AttributeConstants.OneTimeUse)]
+        public void RingAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

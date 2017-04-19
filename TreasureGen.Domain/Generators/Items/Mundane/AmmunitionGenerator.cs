@@ -1,5 +1,6 @@
 ﻿using RollGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -10,15 +11,17 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class AmmunitionGenerator : IAmmunitionGenerator
     {
-        private IPercentileSelector percentileSelector;
-        private Dice dice;
-        private ICollectionsSelector attributesSelector;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly Dice dice;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly Generator generator;
 
-        public AmmunitionGenerator(IPercentileSelector percentileSelector, Dice dice, ICollectionsSelector attributesSelector)
+        public AmmunitionGenerator(IPercentileSelector percentileSelector, Dice dice, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.dice = dice;
-            this.attributesSelector = attributesSelector;
+            this.collectionsSelector = collectionsSelector;
+            this.generator = generator;
         }
 
         public Item Generate()
@@ -29,7 +32,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             ammunition.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Ammunitions);
             ammunition.BaseNames = new[] { ammunition.Name };
             ammunition.Quantity = Math.Max(1, roll / 2);
-            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
+            ammunition.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
             ammunition.ItemType = ItemTypeConstants.Weapon;
 
             return ammunition;
@@ -43,13 +46,39 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item GenerateFrom(Item template)
         {
-            var ammunition = template.SmartClone();
+            var ammunition = template.Clone();
             ammunition.BaseNames = new[] { ammunition.Name };
             ammunition.ItemType = ItemTypeConstants.Weapon;
-            ammunition.Attributes = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
+            ammunition.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.AmmunitionAttributes, ammunition.Name);
 
             //INFO: This second clone takes into account the attributes now on the ammunition.
             return ammunition.SmartClone();
+        }
+
+        public Item GenerateFrom(IEnumerable<string> subset)
+        {
+            if (!subset.Any())
+                throw new ArgumentException("Cannot generate from an empty collection subset");
+
+            var ammunition = generator.Generate(
+                Generate,
+                a => subset.Any(n => a.NameMatches(n)),
+                () => CreateDefaultAmmunition(subset),
+                $"Ammunition from [{string.Join(", ", subset)}]");
+
+            return ammunition;
+        }
+
+        private Item CreateDefaultAmmunition(IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+
+            var roll = dice.Roll().Percentile().AsSum();
+            template.Quantity = Math.Max(1, roll / 2);
+
+            var ammunition = GenerateFrom(template);
+            return ammunition;
         }
     }
 }

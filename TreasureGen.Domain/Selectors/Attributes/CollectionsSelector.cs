@@ -1,16 +1,20 @@
-﻿using System;
+﻿using RollGen;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Domain.Mappers.Collections;
 
 namespace TreasureGen.Domain.Selectors.Attributes
 {
     internal class CollectionsSelector : ICollectionsSelector
     {
-        private ICollectionsMapper attributesMapper;
+        private readonly ICollectionsMapper attributesMapper;
+        private readonly Dice dice;
 
-        public CollectionsSelector(ICollectionsMapper attributesMapper)
+        public CollectionsSelector(ICollectionsMapper attributesMapper, Dice dice)
         {
             this.attributesMapper = attributesMapper;
+            this.dice = dice;
         }
 
         public bool Exists(string tableName, string name)
@@ -29,6 +33,15 @@ namespace TreasureGen.Domain.Selectors.Attributes
 
             var table = attributesMapper.Map(tableName);
             return table[name];
+        }
+
+        public string SelectRandomFrom(IEnumerable<string> collection)
+        {
+            if (!collection.Any())
+                throw new ArgumentException("Cannot select random from an empty collection");
+
+            var index = dice.Roll().d(collection.Count()).AsSum() - 1;
+            return collection.ElementAt(index);
         }
     }
 }

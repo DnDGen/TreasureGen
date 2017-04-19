@@ -1,4 +1,5 @@
-﻿using TreasureGen.Items;
+﻿using System.Collections.Generic;
+using TreasureGen.Items;
 
 namespace TreasureGen.Domain.Generators.Items.Magical
 {
@@ -9,5 +10,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         string GenerateCurse();
         Item GenerateSpecificCursedItem();
         Item GenerateSpecificCursedItem(Item template);
+        Item GenerateSpecificCursedItem(IEnumerable<string> subset);
     }
 }

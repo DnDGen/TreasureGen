@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Domain.Items.Mundane;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -48,6 +49,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item GenerateAtPower(string power)
         {
             var item = innerGenerator.GenerateAtPower(power);
+
+            if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+                return item;
+
+            item = AddSpecialMaterials(item);
+
+            return item;
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            var item = innerGenerator.GenerateFromSubset(power, subset);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;

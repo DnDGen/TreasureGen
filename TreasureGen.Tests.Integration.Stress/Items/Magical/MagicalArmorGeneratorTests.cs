@@ -203,5 +203,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         {
             Stress(StressRandomCustomItem);
         }
+
+        [Test]
+        public void StressArmorFromSubset()
+        {
+            Stress(StressItemFromSubset);
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using TreasureGen.Domain.Selectors.Percentiles;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
@@ -7,11 +11,15 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class ToolGenerator : MundaneItemGenerator
     {
-        private IPercentileSelector percentileSelector;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly Generator generator;
 
-        public ToolGenerator(IPercentileSelector percentileSelector)
+        public ToolGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.percentileSelector = percentileSelector;
+            this.collectionsSelector = collectionsSelector;
+            this.generator = generator;
         }
 
         public Item Generate()
@@ -32,6 +40,29 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             tool.BaseNames = new[] { tool.Name };
 
             return tool;
+        }
+
+        public Item GenerateFromSubset(IEnumerable<string> subset)
+        {
+            if (!subset.Any())
+                throw new ArgumentException("Cannot generate from an empty collection subset");
+
+            var tool = generator.Generate(
+                Generate,
+                t => subset.Any(n => t.NameMatches(n)),
+                () => GenerateDefaultFrom(subset),
+                $"Tool from [{string.Join(", ", subset)}]");
+
+            return tool;
+        }
+
+        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+
+            var defaultTool = Generate(template);
+            return defaultTool;
         }
     }
 }

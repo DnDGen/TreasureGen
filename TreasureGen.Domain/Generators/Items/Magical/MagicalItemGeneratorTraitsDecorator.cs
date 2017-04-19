@@ -1,4 +1,5 @@
-﻿using TreasureGen.Items;
+﻿using System.Collections.Generic;
+using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Domain.Generators.Items.Magical
@@ -39,6 +40,17 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item GenerateAtPower(string power)
         {
             var item = innerGenerator.GenerateAtPower(power);
+            if (item.IsMagical == false)
+                return item;
+
+            item = AddTraits(item);
+
+            return item;
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            var item = innerGenerator.GenerateFromSubset(power, subset);
             if (item.IsMagical == false)
                 return item;
 

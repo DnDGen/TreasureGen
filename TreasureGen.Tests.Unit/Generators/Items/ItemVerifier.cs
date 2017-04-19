@@ -118,16 +118,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             Assert.That(item, Is.Not.EqualTo(template), item.Name);
             Assert.That(item.Name, Is.EqualTo(template.Name));
-
-            if (item.ItemType == ItemTypeConstants.Wand)
-            {
-                Assert.That(item.Contents, Is.Empty);
-            }
-            else
-            {
-                Assert.That(item.Contents, Is.EquivalentTo(template.Contents), item.Name);
-            }
-
             Assert.That(item.IsMagical, Is.True, item.Name);
             Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
             Assert.That(item.Traits, Is.SupersetOf(template.Traits), item.Name);
@@ -150,27 +140,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(item.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses), item.Name);
                 Assert.That(item.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose), item.Name);
                 Assert.That(item.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat), item.Name);
-            }
-
-            if (item.ItemType == ItemTypeConstants.Scroll)
-            {
-                Assert.That(item.Magic.Bonus, Is.EqualTo(0), item.Name);
-                Assert.That(item.Magic.Charges, Is.EqualTo(0), item.Name);
-            }
-            else if (item.ItemType == ItemTypeConstants.Potion)
-            {
-                Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
-                Assert.That(item.Magic.Charges, Is.EqualTo(0), item.Name);
-            }
-            else if (item.ItemType == ItemTypeConstants.Wand)
-            {
-                Assert.That(item.Magic.Bonus, Is.EqualTo(0), item.Name);
-                Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
-            }
-            else
-            {
-                Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus), item.Name);
-                Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges), item.Name);
             }
         }
 

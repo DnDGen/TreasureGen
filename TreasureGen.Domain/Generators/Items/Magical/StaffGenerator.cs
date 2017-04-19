@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -10,17 +11,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class StaffGenerator : MagicalItemGenerator
     {
-        private IPercentileSelector percentileSelector;
-        private IChargesGenerator chargesGenerator;
-        private ICollectionsSelector collectionsSelector;
-        private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly IChargesGenerator chargesGenerator;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
+        private readonly Generator generator;
 
-        public StaffGenerator(IPercentileSelector percentileSelector, IChargesGenerator chargesGenerator, ICollectionsSelector collectionsSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
+        public StaffGenerator(IPercentileSelector percentileSelector, IChargesGenerator chargesGenerator, ICollectionsSelector collectionsSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.chargesGenerator = chargesGenerator;
             this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
+            this.generator = generator;
         }
 
         public Item GenerateAtPower(string power)
@@ -38,11 +41,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             staff = BuildStaff(staff);
             staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, staffName);
 
-            if (staff.Name != StaffConstants.Power)
-                return staff;
-
-            staff.Magic.Bonus = 2;
-
             return staff;
         }
 
@@ -59,6 +57,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var quarterstaffAttributes = collectionsSelector.SelectFrom(tablename, WeaponConstants.Quarterstaff);
             staff.Attributes = staff.Attributes.Union(quarterstaffAttributes).Except(new[] { AttributeConstants.OneTimeUse });
 
+            if (staff.Name == StaffConstants.Power)
+                staff.Magic.Bonus = 2;
+
             return staff;
         }
 
@@ -73,6 +74,31 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            if (power == PowerConstants.Minor)
+                throw new ArgumentException("Cannot generate minor staffs");
+
+            var staff = generator.Generate(
+                () => GenerateAtPower(power),
+                s => subset.Any(n => s.NameMatches(n)),
+                () => GenerateDefaultFrom(subset),
+                $"Staff from [{string.Join(", ", subset)}]");
+
+            return staff;
+        }
+
+        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+            template.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Staff, template.Name);
+
+            var defaultStaff = Generate(template);
+
+            return defaultStaff;
         }
     }
 }

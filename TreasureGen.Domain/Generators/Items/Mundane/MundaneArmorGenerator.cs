@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -9,15 +11,17 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class MundaneArmorGenerator : MundaneItemGenerator
     {
-        private IPercentileSelector percentileSelector;
-        private ICollectionsSelector collectionsSelector;
-        private IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly Generator generator;
 
-        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.generator = generator;
         }
 
         public Item Generate()
@@ -70,6 +74,29 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             }
 
             return armor;
+        }
+
+        public Item GenerateFromSubset(IEnumerable<string> subset)
+        {
+            if (!subset.Any())
+                throw new ArgumentException("Cannot generate from an empty collection subset");
+
+            var armor = generator.Generate(
+                Generate,
+                a => subset.Any(n => a.NameMatches(n)),
+                () => GenerateDefaultFrom(subset),
+                $"Mundane armor from [{string.Join(", ", subset)}]");
+
+            return armor;
+        }
+
+        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+
+            var defaultArmor = Generate(template);
+            return defaultArmor;
         }
     }
 }

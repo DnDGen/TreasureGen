@@ -98,6 +98,32 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             return collection.ElementAt(randomIndex);
         }
 
+        protected void StressItemFromSubset()
+        {
+            var names = GetItemNames();
+            var subset = GetRandomSubset(names);
+
+            var item = GenerateItemFromSubset(subset);
+            AssertItem(item);
+            Assert.That(item.ItemType, Is.EqualTo(itemType));
+            Assert.That(subset.Any(n => item.NameMatches(n)), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from [{string.Join(", ", subset)}]");
+        }
+
+        protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
+        {
+            var power = GetNewPower(allowMinor);
+            return magicalItemGenerator.GenerateFromSubset(power, subset);
+        }
+
+        private IEnumerable<string> GetRandomSubset(IEnumerable<string> collection)
+        {
+            var limit = collection.Count() / 2;
+            var skipAmount = Random.Next(limit);
+            var takeAmount = Random.Next(limit) + 1;
+
+            return collection.Skip(skipAmount).Take(takeAmount);
+        }
+
         public virtual void IntelligenceHappens()
         {
             var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Magic.Intelligence.Ego > 0);

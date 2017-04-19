@@ -1,4 +1,5 @@
-﻿using TreasureGen.Domain.Tables;
+﻿using System.Collections.Generic;
+using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
@@ -42,6 +43,28 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             {
                 do item.Magic.Curse = curseGenerator.GenerateCurse();
                 while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            }
+
+            return item;
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            var item = innerGenerator.GenerateFromSubset(power, subset);
+
+            if (curseGenerator.HasCurse(item.IsMagical))
+            {
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                {
+                    var specificCursedItem = curseGenerator.GenerateSpecificCursedItem(subset);
+                    if (specificCursedItem == null)
+                        return item;
+
+                    return specificCursedItem;
+                }
+
+                item.Magic.Curse = curse;
             }
 
             return item;

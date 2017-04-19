@@ -26,7 +26,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object);
+            var generator = new ConfigurableIterativeGenerator(5);
+            mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object, generator);
             itemVerifier = new ItemVerifier();
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns("armor type");
@@ -59,8 +60,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void SetMasterworkTraitIfMasterwork()
         {
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -69,11 +69,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoNotSetMasterworkTraitIfNotMasterwork()
         {
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(false);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(false);
 
             var armor = mundaneArmorGenerator.Generate();
-            Assert.That(armor.Traits, Is.Not.Contains(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
         }
 
         [Test]
@@ -254,6 +253,185 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+        }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors))
+                .Returns("wrong armor")
+                .Returns("armor")
+                .Returns("other armor");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(false);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor")).Returns(attributes);
+
+            var subset = new[] { "other armor", "armor" };
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("armor"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateMasterworkFromSubset()
+        {
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors))
+                .Returns("wrong armor")
+                .Returns("armor")
+                .Returns("other armor");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor")).Returns(attributes);
+
+            var subset = new[] { "other armor", "armor" };
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("armor"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateShieldFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields))
+                .Returns("wrong shield")
+                .Returns("shield")
+                .Returns("other shield");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "shield")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(false);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "shield")).Returns(attributes);
+
+            var subset = new[] { "other shield", "shield" };
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("shield"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateMasterworkShieldFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields))
+                .Returns("wrong shield")
+                .Returns("shield")
+                .Returns("other shield");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "shield")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "shield")).Returns(attributes);
+
+            var subset = new[] { "other armor", "shield" };
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("shield"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateDefaultFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns("wrong armor");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor")).Returns(attributes);
+
+            var subset = new[] { "other armor", "armor" };
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("armor"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateDefaultShieldFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("wrong shield");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "shield")).Returns(baseNames);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "shield")).Returns(attributes);
+
+            var subset = new[] { "other shield", "shield" };
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
+
+            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            Assert.That(armor, Is.Not.Null);
+            Assert.That(armor.Name, Is.EqualTo("shield"));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateFromEmptySubset()
+        {
+            Assert.That(() => mundaneArmorGenerator.GenerateFromSubset(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using TreasureGen.Items;
+﻿using System.Collections.Generic;
+using TreasureGen.Items;
 
 namespace TreasureGen.Domain.Generators.Items.Mundane
 {
@@ -7,5 +8,6 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         Item Generate();
         bool TemplateIsAmmunition(Item template);
         Item GenerateFrom(Item template);
+        Item GenerateFrom(IEnumerable<string> subset);
     }
 }

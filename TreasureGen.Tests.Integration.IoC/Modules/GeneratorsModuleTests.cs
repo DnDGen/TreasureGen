@@ -183,5 +183,11 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         {
             AssertNotSingleton<IAmmunitionGenerator>();
         }
+
+        [Test]
+        public void GeneratorIsNotConstructedAsASingleton()
+        {
+            AssertNotSingleton<Generator>();
+        }
     }
 }

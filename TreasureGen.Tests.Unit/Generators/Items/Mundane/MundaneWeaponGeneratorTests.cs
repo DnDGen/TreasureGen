@@ -2,6 +2,9 @@
 using NUnit.Framework;
 using RollGen;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -22,6 +25,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
+        private Generator generator;
 
         [SetUp]
         public void Setup()
@@ -31,7 +35,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockDice = new Mock<Dice>();
-            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
+            generator = new ConfigurableIterativeGenerator(5);
+            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockAmmunitionGenerator.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object, generator);
             itemVerifier = new ItemVerifier();
 
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("weapon type");
@@ -120,8 +125,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetAmmunitionSize()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
-                .Returns("size");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
             var ammo = new Item();
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns(AttributeConstants.Ammunition);
@@ -290,6 +294,162 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
             Assert.That(weapon.Traits, Contains.Item($"+{bonus} Strength bonus"));
+        }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons))
+                .Returns("wrong weapon type")
+                .Returns("weapon type")
+                .Returns("other weapon type");
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "wrong weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong weapon name");
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "other weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other weapon name");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var attributes = new[] { "type 1", "type 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            var subset = new[] { "other weapon name", "weapon name" };
+
+            var weapon = mundaneWeaponGenerator.GenerateFromSubset(subset);
+            Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(weapon.Attributes, Is.EqualTo(attributes));
+            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.Contents, Is.Empty);
+            Assert.That(weapon.Quantity, Is.EqualTo(1));
+            Assert.That(weapon.Traits, Contains.Item("size"));
+        }
+
+        [Test]
+        public void GenerateAmmunitionFromSubset()
+        {
+            var subset = new[] { "other ammunition", "ammunition" };
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("ammo weapon type");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "ammo weapon type");
+
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
+                .Returns("weapon name")
+                .Returns(AttributeConstants.Ammunition)
+                .Returns(AttributeConstants.Ammunition);
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var attributes = new[] { "type 1", "type 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            var ammo = new Item { Name = "ammunition" };
+            var wrongAmmo = new Item { Name = "wrong ammunition" };
+            mockAmmunitionGenerator.SetupSequence(p => p.Generate())
+                .Returns(wrongAmmo)
+                .Returns(ammo);
+
+            var weapon = mundaneWeaponGenerator.GenerateFromSubset(subset);
+            Assert.That(weapon.Name, Is.EqualTo("ammunition"));
+            Assert.That(weapon.Traits, Contains.Item("size"));
+            Assert.That(weapon, Is.EqualTo(ammo));
+        }
+
+        [Test]
+        public void GenerateThrownWeaponFromSubset()
+        {
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons))
+                .Returns("wrong weapon type")
+                .Returns("weapon type")
+                .Returns("other weapon type");
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "wrong weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong weapon name");
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "other weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other weapon name");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var attributes = new[] { "type 1", AttributeConstants.Thrown };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+
+            var subset = new[] { "other weapon name", "weapon name" };
+
+            var weapon = mundaneWeaponGenerator.GenerateFromSubset(subset);
+            Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(weapon.Attributes, Is.EqualTo(attributes));
+            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.Contents, Is.Empty);
+            Assert.That(weapon.Quantity, Is.EqualTo(9266));
+            Assert.That(weapon.Traits, Contains.Item("size"));
+        }
+
+        [Test]
+        public void GenerateDefaultFromSubset()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons)).Returns("wrong weapon type");
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "wrong weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong weapon name");
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var attributes = new[] { "type 1", AttributeConstants.Thrown };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+
+            var subset = new[] { "other weapon name", "weapon name" };
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
+
+            var weapon = mundaneWeaponGenerator.GenerateFromSubset(subset);
+            Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+            Assert.That(weapon.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(weapon.Attributes, Is.EqualTo(attributes));
+            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(weapon.IsMagical, Is.False);
+            Assert.That(weapon.Contents, Is.Empty);
+            Assert.That(weapon.Quantity, Is.EqualTo(1));
+            Assert.That(weapon.Traits, Contains.Item("size"));
+        }
+
+        [Test]
+        public void GenerateFromEmptySubset()
+        {
+            Assert.That(() => mundaneWeaponGenerator.GenerateFromSubset(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

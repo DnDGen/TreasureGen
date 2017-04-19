@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -44,6 +45,29 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var item = mundaneProxy.Generate(template, true);
             Assert.That(item, Is.EqualTo(innerItem));
+        }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            var subset = new[] { "first", "second" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(innerItem);
+
+            var item = mundaneProxy.GenerateFromSubset("power", subset);
+            Assert.That(item, Is.EqualTo(innerItem));
+        }
+
+        [Test]
+        public void GenerateFromEmptySubset()
+        {
+            Assert.That(() => mundaneProxy.GenerateFromSubset("power", Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
+        }
+
+        [Test]
+        public void ThrowArgumentExceptionIfPowerFromSubsetIsMundane()
+        {
+            var subset = new[] { "first", "second" };
+            Assert.That(() => mundaneProxy.GenerateFromSubset(PowerConstants.Mundane, subset), Throws.ArgumentException);
         }
     }
 }

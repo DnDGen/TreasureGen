@@ -123,5 +123,90 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
+
+        [Test]
+        public void GenerateFromSubset()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            var subsetItem = new Item();
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(subsetItem);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+            Assert.That(decoratedItem, Is.EqualTo(subsetItem));
+        }
+
+        [Test]
+        public void GetTraitsForItemFromSubset()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(item);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+            Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
+        }
+
+        [Test]
+        public void EmptyTraitsFromSubsetIsAlright()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(item);
+
+            var traits = Enumerable.Empty<string>();
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+            Assert.That(decoratedItem.Traits, Is.Empty);
+        }
+
+        [Test]
+        public void ItemFromSubsetCanHaveTraitsFromInnerGenerator()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(item);
+
+            item.Traits.Add("inner trait");
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+
+            foreach (var trait in traits)
+                Assert.That(decoratedItem.Traits, Contains.Item(trait));
+
+            Assert.That(decoratedItem.Traits, Contains.Item("inner trait"));
+            Assert.That(decoratedItem.Traits.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void EmptyGeneratedTraitsFromSubsetIsAlright()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(item);
+
+            item.Traits.Add("inner trait");
+            var traits = Enumerable.Empty<string>();
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+            Assert.That(decoratedItem.Traits, Contains.Item("inner trait"));
+            Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DoNotGetTraitsIfItemFromSubsetIsNotMagical()
+        {
+            var subset = new[] { "item 1", "item 2" };
+            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(item);
+
+            item.IsMagical = false;
+            var traits = new[] { "trait 1", "trait 2" };
+            mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
+
+            var decoratedItem = decorator.GenerateFromSubset("power", subset);
+            Assert.That(decoratedItem.Traits, Is.Empty);
+        }
     }
 }

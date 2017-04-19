@@ -1,4 +1,5 @@
 ﻿using EventGen;
+using System.Collections.Generic;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
@@ -28,6 +29,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation");
             var item = innerGenerator.GenerateAtPower(power);
+            eventQueue.Enqueue("TreasureGen", $"Completed generation of {power} {item.ItemType} {item.Name}");
+
+            return item;
+        }
+
+        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation from [{string.Join(", ", subset)}]");
+            var item = innerGenerator.GenerateFromSubset(power, subset);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {power} {item.ItemType} {item.Name}");
 
             return item;

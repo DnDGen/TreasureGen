@@ -70,6 +70,7 @@ namespace TreasureGen.Items
             clone.Magic.Curse = Magic.Curse;
             clone.Magic.Intelligence = Magic.Intelligence.Clone();
             clone.Magic.SpecialAbilities = Magic.SpecialAbilities.ToArray();
+            clone.IsMagical = isMagical;
 
             return clone;
         }
@@ -79,6 +80,7 @@ namespace TreasureGen.Items
             var clone = MundaneClone();
 
             clone.Magic.Curse = Magic.Curse;
+            clone.IsMagical = isMagical;
 
             if (clone.CanBeUsedAsWeaponOrArmor)
                 clone.Magic.SpecialAbilities = Magic.SpecialAbilities.ToArray();
@@ -115,6 +117,11 @@ namespace TreasureGen.Items
             }
 
             return clone;
+        }
+
+        public bool NameMatches(string name)
+        {
+            return Name == name || BaseNames.Contains(name);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using RollGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Attributes;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -16,13 +17,15 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         private ICollectionsSelector collectionsSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private Dice dice;
+        private Generator generator;
 
-        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
+        public MundaneWeaponGenerator(IPercentileSelector percentileSelector, IAmmunitionGenerator ammunitionGenerator, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Dice dice, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.ammunitionGenerator = ammunitionGenerator;
             this.collectionsSelector = collectionsSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
+            this.generator = generator;
             this.dice = dice;
         }
 
@@ -93,8 +96,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.ItemType = ItemTypeConstants.Weapon;
             var weapon = template.MundaneClone();
+            weapon.ItemType = ItemTypeConstants.Weapon;
 
             if (ammunitionGenerator.TemplateIsAmmunition(template))
             {
@@ -125,6 +128,29 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             }
 
             return weapon;
+        }
+
+        public Item GenerateFromSubset(IEnumerable<string> subset)
+        {
+            if (!subset.Any())
+                throw new ArgumentException("Cannot generate from an empty collection subset");
+
+            var weapon = generator.Generate(
+                Generate,
+                w => subset.Any(n => w.NameMatches(n)),
+                () => GenerateDefaultFrom(subset),
+                $"Mundane weapon from [{string.Join(", ", subset)}]");
+
+            return weapon;
+        }
+
+        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        {
+            var template = new Item();
+            template.Name = collectionsSelector.SelectRandomFrom(subset);
+
+            var defaultWeapon = Generate(template);
+            return defaultWeapon;
         }
     }
 }
