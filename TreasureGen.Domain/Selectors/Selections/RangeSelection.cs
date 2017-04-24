@@ -1,6 +1,6 @@
-﻿namespace TreasureGen.Selectors.Results
+﻿namespace TreasureGen.Domain.Selectors.Selections
 {
-    internal class RangeAttributesResult
+    internal class RangeSelection
     {
         public int Minimum { get; set; }
         public int Maximum { get; set; }

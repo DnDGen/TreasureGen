@@ -8,30 +8,39 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorSpecialMaterialDecorator : MagicalItemGenerator
     {
-        private MagicalItemGenerator innerGenerator;
-        private ISpecialMaterialGenerator specialMaterialGenerator;
+        private readonly MagicalItemGenerator innerGenerator;
+        private readonly ISpecialMaterialGenerator specialMaterialGenerator;
+        private readonly IEnumerable<string> masterworkMaterials;
 
         public MagicalItemGeneratorSpecialMaterialDecorator(MagicalItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;
+
+            masterworkMaterials = new[]
+            {
+                TraitConstants.SpecialMaterials.Adamantine,
+                TraitConstants.SpecialMaterials.Darkwood,
+                TraitConstants.SpecialMaterials.Dragonhide,
+                TraitConstants.SpecialMaterials.Mithral,
+            };
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var item = innerGenerator.Generate(template, allowRandomDecoration);
 
-            if (allowRandomDecoration)
-            {
-                item = AddSpecialMaterials(item);
-            }
+            item = AddSpecialMaterials(item, allowRandomDecoration);
+
+            if (item.Traits.Intersect(masterworkMaterials).Any())
+                item.Traits.Add(TraitConstants.Masterwork);
 
             return item;
         }
 
-        private Item AddSpecialMaterials(Item item)
+        private Item AddSpecialMaterials(Item item, bool allowMaterials)
         {
-            while (specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
+            while (allowMaterials && specialMaterialGenerator.CanHaveSpecialMaterial(item.ItemType, item.Attributes, item.Traits))
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 item.Traits.Add(material);
@@ -43,6 +52,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 }
             }
 
+            if (item.Traits.Intersect(masterworkMaterials).Any())
+                item.Traits.Add(TraitConstants.Masterwork);
+
             return item;
         }
 
@@ -53,7 +65,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;
 
-            item = AddSpecialMaterials(item);
+            item = AddSpecialMaterials(item, true);
 
             return item;
         }
@@ -65,7 +77,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;
 
-            item = AddSpecialMaterials(item);
+            item = AddSpecialMaterials(item, true);
 
             return item;
         }

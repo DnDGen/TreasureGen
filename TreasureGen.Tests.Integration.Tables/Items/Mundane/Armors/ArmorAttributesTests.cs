@@ -12,23 +12,29 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
             get { return string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor); }
         }
 
-        [TestCase(ArmorConstants.Buckler, AttributeConstants.Wood,
-                                          AttributeConstants.Shield,
-                                          AttributeConstants.NotTower)]
-        [TestCase(ArmorConstants.LightWoodenShield, AttributeConstants.Wood,
-                                                    AttributeConstants.Shield,
-                                                    AttributeConstants.NotTower)]
-        [TestCase(ArmorConstants.LightSteelShield, AttributeConstants.Metal,
-                                                   AttributeConstants.Shield,
-                                                   AttributeConstants.NotTower)]
-        [TestCase(ArmorConstants.HeavyWoodenShield, AttributeConstants.Wood,
-                                                    AttributeConstants.Shield,
-                                                    AttributeConstants.NotTower)]
-        [TestCase(ArmorConstants.HeavySteelShield, AttributeConstants.Metal,
-                                                   AttributeConstants.Shield,
-                                                   AttributeConstants.NotTower)]
-        [TestCase(ArmorConstants.TowerShield, AttributeConstants.Wood,
-                                              AttributeConstants.Shield)]
+        [TestCase(ArmorConstants.Buckler,
+            AttributeConstants.Wood,
+            AttributeConstants.Shield,
+            AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.LightWoodenShield,
+            AttributeConstants.Wood,
+            AttributeConstants.Shield,
+            AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.LightSteelShield,
+            AttributeConstants.Metal,
+            AttributeConstants.Shield,
+            AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.HeavyWoodenShield,
+            AttributeConstants.Wood,
+            AttributeConstants.Shield,
+            AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.HeavySteelShield,
+            AttributeConstants.Metal,
+            AttributeConstants.Shield,
+            AttributeConstants.NotTower)]
+        [TestCase(ArmorConstants.TowerShield,
+            AttributeConstants.Wood,
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.PaddedArmor)]
         [TestCase(ArmorConstants.LeatherArmor)]
         [TestCase(ArmorConstants.StuddedLeatherArmor, AttributeConstants.Metal)]
@@ -41,7 +47,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
         [TestCase(ArmorConstants.BandedMail, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.HalfPlate, AttributeConstants.Metal)]
         [TestCase(ArmorConstants.FullPlate, AttributeConstants.Metal)]
-        public override void Collections(string name, params string[] attributes)
+        public void ArmorAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

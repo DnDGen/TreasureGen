@@ -30,7 +30,16 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.IsMagical, Is.False);
 
             var sizes = TraitConstants.Sizes.All();
-            Assert.That(item.Traits.Intersect(sizes), Is.Not.Empty);
+            Assert.That(item.Traits.Intersect(sizes), Is.Empty);
+
+            Assert.That(item, Is.InstanceOf<Armor>());
+
+            var armor = item as Armor;
+            Assert.That(armor.ArmorBonus, Is.Positive);
+            Assert.That(armor.ArmorCheckPenalty, Is.Not.Positive);
+            Assert.That(armor.MaxDexterityBonus, Is.Not.Negative);
+            Assert.That(armor.Size, Is.Not.Empty);
+            Assert.That(sizes, Contains.Item(armor.Size));
         }
 
         [Test]

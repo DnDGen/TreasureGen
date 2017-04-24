@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -21,7 +22,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private TypeAndAmountPercentileResult result;
+        private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
@@ -33,20 +34,19 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
-            result = new TypeAndAmountPercentileResult();
+            selection = new TypeAndAmountSelection();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             generator = new ConfigurableIterativeGenerator(5);
-            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object,
-                mockChargesGenerator.Object, mockBooleanPercentileSelector.Object, mockSpecialAbilitiesGenerator.Object, generator);
+            rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, mockChargesGenerator.Object, mockBooleanPercentileSelector.Object, mockSpecialAbilitiesGenerator.Object, generator);
             itemVerifier = new ItemVerifier();
 
-            result.Type = "rod of ability";
-            result.Amount = 9266;
+            selection.Type = "rod of ability";
+            selection.Amount = 9266;
             power = "power";
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(selection);
         }
 
         [Test]
@@ -55,15 +55,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
             Assert.That(rod.IsMagical, Is.True);
-            Assert.That(rod.Name, Is.EqualTo(result.Type));
-            Assert.That(rod.Magic.Bonus, Is.EqualTo(result.Amount));
+            Assert.That(rod.Name, Is.EqualTo(selection.Type));
+            Assert.That(rod.Magic.Bonus, Is.EqualTo(selection.Amount));
         }
 
         [Test]
         public void GetBaseNames()
         {
             var baseNames = new[] { "base name", "other base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type)).Returns(baseNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
@@ -80,7 +80,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "attribute 1", "attribute 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Attributes, Is.EqualTo(attributes));
@@ -91,8 +91,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(90210);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(90210);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(90210));
@@ -103,8 +103,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "new attribute" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(90210);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(90210);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(0));
@@ -113,11 +113,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RodOfAbsorptionContainsLevelsIfSelectorSaysSo()
         {
-            result.Type = RodConstants.Absorption;
+            selection.Type = RodConstants.Absorption;
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption)).Returns(50);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(true);
 
@@ -130,11 +130,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RodOfAbsorptionDoesNotContainLevelsIfSelectorSaysSo()
         {
-            result.Type = RodConstants.Absorption;
+            selection.Type = RodConstants.Absorption;
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, result.Type)).Returns(42);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption)).Returns(50);
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(false);
 
@@ -168,8 +168,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 9266, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 0, Type = name },
+                new TypeAndAmountSelection { Amount = 9266, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 0, Type = name },
             });
 
             var rod = rodGenerator.Generate(template);
@@ -208,8 +208,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 9266, Type = name },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 9266, Type = name },
             });
 
             var rod = rodGenerator.Generate(template);
@@ -247,8 +247,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 9266, Type = name },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 9266, Type = name },
             });
 
             var rod = rodGenerator.Generate(template);
@@ -287,8 +287,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 9266, Type = name },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 9266, Type = name },
             });
 
             var rod = rodGenerator.Generate(template, true);
@@ -326,8 +326,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 0, Type = name },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 0, Type = name },
             });
 
             var rod = rodGenerator.Generate(template);
@@ -345,9 +345,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "rod", Amount = 90210 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other rod", Amount = 42 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "rod", Amount = 90210 })
+                .Returns(new TypeAndAmountSelection { Type = "other rod", Amount = 42 });
 
             var subset = new[] { "rod", "other rod" };
 
@@ -372,9 +372,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "rod", Amount = 90210 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other rod", Amount = 42 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "rod", Amount = 90210 })
+                .Returns(new TypeAndAmountSelection { Type = "other rod", Amount = 42 });
 
             var subset = new[] { "base name", "other rod" };
 
@@ -398,7 +398,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultAsMiedumFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 });
 
             var subset = new[] { "other rod", "rod" };
 
@@ -414,9 +414,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong rod" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 0, Type = "rod" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong rod" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 0, Type = "rod" },
             });
 
             var rod = rodGenerator.GenerateFromSubset(power, subset);
@@ -432,7 +432,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultAsMajorFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 });
 
             var subset = new[] { "other rod", "rod" };
 
@@ -448,9 +448,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong rod" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 0, Type = "rod" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong rod" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 0, Type = "rod" },
             });
 
             var rod = rodGenerator.GenerateFromSubset(power, subset);
@@ -466,7 +466,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultAsWeaponFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 });
 
             var subset = new[] { "other rod", "base name" };
 
@@ -482,9 +482,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong rod" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 0, Type = "rod" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong rod" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 0, Type = "rod" },
             });
 
             var rod = rodGenerator.GenerateFromSubset(power, subset);
@@ -500,7 +500,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultWithBonusFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong rod", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 });
 
             var subset = new[] { "other rod", "rod" };
 
@@ -516,9 +516,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong rod" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "other rod" },
-                new TypeAndAmountPercentileResult { Amount = 9266, Type = "rod" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong rod" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 9266, Type = "rod" },
             });
 
 

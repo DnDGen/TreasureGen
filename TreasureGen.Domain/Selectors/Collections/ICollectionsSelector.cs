@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TreasureGen.Domain.Selectors.Attributes
+namespace TreasureGen.Domain.Selectors.Collections
 {
     internal interface ICollectionsSelector
     {

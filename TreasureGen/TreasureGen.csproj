@@ -46,6 +46,7 @@
     <Compile Include="Goods\Good.cs" />
     <Compile Include="Goods\GoodsConstants.cs" />
     <Compile Include="Goods\IGoodsGenerator.cs" />
+    <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\ArmorConstants.cs" />
     <Compile Include="Items\AttributeConstants.cs" />
     <Compile Include="Items\Magical\CurseConstants.cs" />

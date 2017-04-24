@@ -8,13 +8,22 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class MundaneItemGeneratorSpecialMaterialDecorator : MundaneItemGenerator
     {
-        private MundaneItemGenerator innerGenerator;
-        private ISpecialMaterialGenerator specialMaterialGenerator;
+        private readonly MundaneItemGenerator innerGenerator;
+        private readonly ISpecialMaterialGenerator specialMaterialGenerator;
+        private readonly IEnumerable<string> masterworkMaterials;
 
         public MundaneItemGeneratorSpecialMaterialDecorator(MundaneItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;
+
+            masterworkMaterials = new[]
+            {
+                TraitConstants.SpecialMaterials.Adamantine,
+                TraitConstants.SpecialMaterials.Darkwood,
+                TraitConstants.SpecialMaterials.Dragonhide,
+                TraitConstants.SpecialMaterials.Mithral,
+            };
         }
 
         public Item Generate()
@@ -38,6 +47,9 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                     item.Attributes = item.Attributes.Except(metalAndWood);
                 }
             }
+
+            if (item.Traits.Intersect(masterworkMaterials).Any())
+                item.Traits.Add(TraitConstants.Masterwork);
 
             return item;
         }

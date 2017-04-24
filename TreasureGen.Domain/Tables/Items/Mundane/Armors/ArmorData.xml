@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<attributes>
+  <object>
+    <name>Banded mail</name>
+    <attribute>6</attribute>
+    <attribute>-6</attribute>
+    <attribute>1</attribute>
+  </object>
+  <object>
+    <name>Breastplate</name>
+    <attribute>5</attribute>
+    <attribute>-4</attribute>
+    <attribute>3</attribute>
+  </object>
+  <object>
+    <name>Buckler</name>
+    <attribute>1</attribute>
+    <attribute>-1</attribute>
+    <attribute>2147483647</attribute>
+  </object>
+  <object>
+    <name>Chain shirt</name>
+    <attribute>4</attribute>
+    <attribute>-2</attribute>
+    <attribute>4</attribute>
+  </object>
+  <object>
+    <name>Chainmail</name>
+    <attribute>5</attribute>
+    <attribute>-5</attribute>
+    <attribute>2</attribute>
+  </object>
+  <object>
+    <name>Full plate</name>
+    <attribute>8</attribute>
+    <attribute>-6</attribute>
+    <attribute>1</attribute>
+  </object>
+  <object>
+    <name>Half-plate</name>
+    <attribute>7</attribute>
+    <attribute>-7</attribute>
+    <attribute>0</attribute>
+  </object>
+  <object>
+    <name>Heavy steel shield</name>
+    <attribute>2</attribute>
+    <attribute>-2</attribute>
+    <attribute>2147483647</attribute>
+  </object>
+  <object>
+    <name>Heavy wooden shield</name>
+    <attribute>2</attribute>
+    <attribute>-2</attribute>
+    <attribute>2147483647</attribute>
+  </object>
+  <object>
+    <name>Hide armor</name>
+    <attribute>3</attribute>
+    <attribute>-3</attribute>
+    <attribute>4</attribute>
+  </object>
+  <object>
+    <name>Leather armor</name>
+    <attribute>2</attribute>
+    <attribute>0</attribute>
+    <attribute>6</attribute>
+  </object>
+  <object>
+    <name>Light steel shield</name>
+    <attribute>1</attribute>
+    <attribute>-1</attribute>
+    <attribute>2147483647</attribute>
+  </object>
+  <object>
+    <name>Light wooden shield</name>
+    <attribute>1</attribute>
+    <attribute>-1</attribute>
+    <attribute>2147483647</attribute>
+  </object>
+  <object>
+    <name>Padded armor</name>
+    <attribute>1</attribute>
+    <attribute>0</attribute>
+    <attribute>8</attribute>
+  </object>
+  <object>
+    <name>Scale mail</name>
+    <attribute>4</attribute>
+    <attribute>-4</attribute>
+    <attribute>3</attribute>
+  </object>
+  <object>
+    <name>Splint mail</name>
+    <attribute>6</attribute>
+    <attribute>-7</attribute>
+    <attribute>0</attribute>
+  </object>
+  <object>
+    <name>Studded leather armor</name>
+    <attribute>3</attribute>
+    <attribute>-1</attribute>
+    <attribute>5</attribute>
+  </object>
+  <object>
+    <name>Tower shield</name>
+    <attribute>4</attribute>
+    <attribute>-10</attribute>
+    <attribute>2</attribute>
+  </object>
+</attributes>

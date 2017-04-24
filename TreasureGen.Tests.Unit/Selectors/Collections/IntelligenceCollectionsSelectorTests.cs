@@ -1,40 +1,45 @@
 ﻿using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
+using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {
     [TestFixture]
     public class IntelligenceCollectionsSelectorTests
     {
-        private IIntelligenceAttributesSelector selector;
+        private IIntelligenceDataSelector selector;
         private Mock<ICollectionsSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
             mockInnerSelector = new Mock<ICollectionsSelector>();
-            selector = new IntelligenceAttributesSelector(mockInnerSelector.Object);
+            selector = new IntelligenceDataSelector(mockInnerSelector.Object);
         }
 
         [Test]
         public void ReturnIntelligenceResult()
         {
-            var attributes = new[] { "senses", "42", "9266" };
-            mockInnerSelector.Setup(s => s.SelectFrom("table name", "name")).Returns(attributes);
+            var data = new string[3];
+            data[DataIndexConstants.Intelligence.GreaterPowersCount] = "9266";
+            data[DataIndexConstants.Intelligence.LesserPowersCount] = "42";
+            data[DataIndexConstants.Intelligence.Senses] = "senses";
 
-            var result = selector.SelectFrom("table name", "name");
-            Assert.That(result.Senses, Is.EqualTo("senses"));
-            Assert.That(result.LesserPowersCount, Is.EqualTo(42));
-            Assert.That(result.GreaterPowersCount, Is.EqualTo(9266));
+            mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceData, "name")).Returns(data);
+
+            var selection = selector.SelectFrom("name");
+            Assert.That(selection.Senses, Is.EqualTo("senses"));
+            Assert.That(selection.LesserPowersCount, Is.EqualTo(42));
+            Assert.That(selection.GreaterPowersCount, Is.EqualTo(9266));
         }
 
         [Test]
         public void ThrowErrorIfFewerThan3Attributes()
         {
-            var attributes = new[] { "senses", "42" };
-            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
-            Assert.That(() => selector.SelectFrom("table name", "name"), Throws.Exception.With.Message.EqualTo("Attributes are not formatted for intelligence"));
+            var data = new[] { "senses", "42" };
+            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(data);
+            Assert.That(() => selector.SelectFrom("name"), Throws.Exception.With.Message.EqualTo("Data is not formatted for intelligence"));
         }
     }
 }

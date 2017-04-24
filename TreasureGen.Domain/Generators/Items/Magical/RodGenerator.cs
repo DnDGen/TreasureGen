@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -83,7 +84,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return rod.SmartClone();
         }
 
-        private IEnumerable<TypeAndAmountPercentileResult> GetAllResults()
+        private IEnumerable<TypeAndAmountSelection> GetAllResults()
         {
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
             var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tablename);

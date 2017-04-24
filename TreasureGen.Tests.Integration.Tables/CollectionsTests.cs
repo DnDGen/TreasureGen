@@ -41,16 +41,15 @@ namespace TreasureGen.Tests.Integration.Tables
         public virtual void OrderedCollections(string name, params string[] items)
         {
             Assert.That(table.Keys, Contains.Item(name), tableName);
-            var count = items.Count();
 
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < items.Length; i++)
             {
-                var expected = items.ElementAt(i);
+                var expected = items[i];
                 var actual = table[name].ElementAt(i);
-                Assert.That(actual, Is.EqualTo(expected));
+                Assert.That(actual, Is.EqualTo(expected), $"Index {i}");
             }
 
-            Assert.That(table[name].Count(), Is.EqualTo(count));
+            Assert.That(table[name].Count(), Is.EqualTo(items.Length));
         }
     }
 }

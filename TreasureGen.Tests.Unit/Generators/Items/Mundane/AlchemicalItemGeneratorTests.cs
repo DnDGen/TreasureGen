@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
@@ -18,7 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     {
         private MundaneItemGenerator alchemicalItemGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private TypeAndAmountPercentileResult result;
+        private TypeAndAmountSelection selection;
         private ItemVerifier itemVerifier;
         private Generator generator;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
@@ -30,20 +31,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             generator = new ConfigurableIterativeGenerator(5);
             alchemicalItemGenerator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
-            result = new TypeAndAmountPercentileResult();
+            selection = new TypeAndAmountSelection();
             itemVerifier = new ItemVerifier();
         }
 
         [Test]
         public void GenerateAlchemicalItem()
         {
-            result.Type = "alchemical item";
-            result.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems)).Returns(result);
+            selection.Type = "alchemical item";
+            selection.Amount = 9266;
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems)).Returns(selection);
 
             var item = alchemicalItemGenerator.Generate();
-            Assert.That(item.Name, Is.EqualTo(result.Type));
-            Assert.That(item.BaseNames.Single(), Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(selection.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
@@ -77,12 +78,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var subset = new[] { "other alchemical item", "alchemical item" };
 
-            result.Type = "alchemical item";
-            result.Amount = 9266;
+            selection.Type = "alchemical item";
+            selection.Amount = 9266;
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong alchemical item", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "alchemical item", Amount = 90210 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other alchemical item", Amount = 42 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "alchemical item", Amount = 90210 })
+                .Returns(new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 });
 
             var item = alchemicalItemGenerator.GenerateFromSubset(subset);
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
@@ -100,10 +101,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var subset = new[] { "other alchemical item", "alchemical item" };
 
-            result.Type = "alchemical item";
-            result.Amount = 9266;
+            selection.Type = "alchemical item";
+            selection.Amount = 9266;
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong alchemical item", Amount = 9266 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 });
 
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
 

@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
@@ -8,14 +8,14 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
     [TestFixture]
     public class SpecialAbilityCollectionsSelectorTests
     {
-        private ISpecialAbilityAttributesSelector selector;
+        private ISpecialAbilityDataSelector selector;
         private Mock<ICollectionsSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
             mockInnerSelector = new Mock<ICollectionsSelector>();
-            selector = new SpecialAbilityAttributesSelector(mockInnerSelector.Object);
+            selector = new SpecialAbilityDataSelector(mockInnerSelector.Object);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         {
             var attributes = new[] { "base name", "42" };
             mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
-            Assert.That(() => selector.SelectFrom("name"), Throws.Exception.With.Message.EqualTo("Attributes are not formatted for special abilities"));
+            Assert.That(() => selector.SelectFrom("name"), Throws.Exception.With.Message.EqualTo("Data is not formatted for special abilities"));
         }
 
         [Test]

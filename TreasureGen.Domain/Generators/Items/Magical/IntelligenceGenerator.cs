@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -12,19 +12,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class IntelligenceGenerator : IIntelligenceGenerator
     {
-        private Dice dice;
-        private IPercentileSelector percentileSelector;
-        private ICollectionsSelector attributesSelector;
-        private IIntelligenceAttributesSelector intelligenceAttributesSelector;
-        private IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly Dice dice;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly IIntelligenceDataSelector intelligenceDataSelector;
+        private readonly IBooleanPercentileSelector booleanPercentileSelector;
 
-        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, ICollectionsSelector attributesSelector,
-            IIntelligenceAttributesSelector intelligenceAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
-            this.attributesSelector = attributesSelector;
-            this.intelligenceAttributesSelector = intelligenceAttributesSelector;
+            this.collectionsSelector = collectionsSelector;
+            this.intelligenceDataSelector = intelligenceDataSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
@@ -57,6 +56,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             foreach (var ability in item.Magic.SpecialAbilities)
                 intelligence.Ego += ability.BonusEquivalent;
 
+            intelligence.CharismaStat = highStat;
+            intelligence.IntelligenceStat = highStat;
+            intelligence.WisdomStat = highStat;
+
             switch (dice.Roll().d3().AsSum())
             {
                 case 1: intelligence.CharismaStat = 10; break;
@@ -64,11 +67,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 case 3: intelligence.WisdomStat = 10; break;
             }
 
-            intelligence.CharismaStat = SetHighStat(highStat, intelligence.CharismaStat);
-            intelligence.IntelligenceStat = SetHighStat(highStat, intelligence.IntelligenceStat);
-            intelligence.WisdomStat = SetHighStat(highStat, intelligence.WisdomStat);
-
-            intelligence.Communication = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, highStatResult);
+            intelligence.Communication = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceCommunication, highStatResult);
 
             if (intelligence.Communication.Contains("Speech"))
                 intelligence.Languages = GenerateLanguages(intelligence.IntelligenceStat);
@@ -77,7 +76,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Read magic");
             intelligence.Ego += BoostEgoByCommunication(intelligence.Communication, "Telepathy");
 
-            var intelligenceAttributesResult = intelligenceAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceAttributes, highStatResult);
+            var intelligenceAttributesResult = intelligenceDataSelector.SelectFrom(highStatResult);
             intelligence.Senses = intelligenceAttributesResult.Senses;
 
             var lesserPowers = GeneratePowers("Lesser", intelligenceAttributesResult.LesserPowersCount);
@@ -107,14 +106,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var containsCommunicationType = communication.Contains(communicationType);
             return Convert.ToInt32(containsCommunicationType);
-        }
-
-        private int SetHighStat(int highStat, int stat)
-        {
-            if (stat == 0)
-                return highStat;
-
-            return stat;
         }
 
         private List<string> GenerateLanguages(int intelligenceStat)
@@ -166,10 +157,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private string GetSpecificAlignmentRequirement(Item item)
         {
-            var itemsWithSpecificAlignments = attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items");
+            var itemsWithSpecificAlignments = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "Items");
 
             if (itemsWithSpecificAlignments.Contains(item.Name))
-                return attributesSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name).Single();
+                return collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemAlignmentRequirements, item.Name).Single();
 
             var alignments = AlignmentConstants.GetAllAlignments();
             var requirements = alignments.Where(a => item.Traits.Any(t => t.Contains(a)));
@@ -183,7 +174,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             if (requirements.Any())
                 //INFO: If there is more than 1 partial alignment requirement in the traits, then there is a problem
-                //i.e., they either conflict or should have been a full alignment requriement
+                //i.e., they either conflict or should have been a full alignment requirement
                 return requirements.Single();
 
             return string.Empty;

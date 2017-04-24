@@ -1,21 +1,21 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {
     [TestFixture]
-    public class RangeCollectionsSelectorTests
+    public class RangeDataSelectorTests
     {
-        private IRangeAttributesSelector rangeAttributesSelector;
+        private IRangeDataSelector rangeDataSelector;
         private Mock<ICollectionsSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
             mockInnerSelector = new Mock<ICollectionsSelector>();
-            rangeAttributesSelector = new RangeAttributesSelector(mockInnerSelector.Object);
+            rangeDataSelector = new RangeDataSelector(mockInnerSelector.Object);
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
             var attributes = new[] { "42", "9266" };
             mockInnerSelector.Setup(s => s.SelectFrom("table name", "name")).Returns(attributes);
 
-            var result = rangeAttributesSelector.SelectFrom("table name", "name");
+            var result = rangeDataSelector.SelectFrom("table name", "name");
             Assert.That(result.Minimum, Is.EqualTo(42));
             Assert.That(result.Maximum, Is.EqualTo(9266));
         }
@@ -34,14 +34,14 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         {
             var attributes = new[] { "42" };
             mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
-            Assert.That(() => rangeAttributesSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Attributes are not in format for range"));
+            Assert.That(() => rangeDataSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Data is not in format for range"));
         }
 
         [Test]
         public void ThrowErrorIfNoAttributes()
         {
             mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(Enumerable.Empty<string>());
-            Assert.That(() => rangeAttributesSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Attributes are not in format for range"));
+            Assert.That(() => rangeDataSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Data is not in format for range"));
         }
     }
 }

@@ -36,7 +36,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
             "Read all languages",
             "Read magic",
             "Telepathy")]
-        public void Attributes(int highStat, params string[] attributes)
+        public void IntelligenceCommunications(int highStat, params string[] attributes)
         {
             var name = Convert.ToString(highStat);
             base.Collections(name, attributes);

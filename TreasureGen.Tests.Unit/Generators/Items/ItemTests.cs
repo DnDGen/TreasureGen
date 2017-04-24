@@ -99,6 +99,23 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void SmartCloneItemIntoSpecifiedItem()
+        {
+            var clone = new Item();
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.ItemType = Guid.NewGuid().ToString();
+
+            template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+
+            var newClone = template.SmartClone(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
+            itemVerifier.AssertMagicalItemFromTemplate(clone, template);
+            Assert.That(clone.ItemType, Is.EqualTo(template.ItemType));
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+        }
+
+        [Test]
         public void SmartCloneScroll()
         {
             var name = Guid.NewGuid().ToString();
@@ -287,6 +304,30 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(copy.ItemType, Is.EqualTo(template.ItemType));
             Assert.That(copy.Attributes, Is.EquivalentTo(template.Attributes));
             Assert.That(copy.Magic.SpecialAbilities, Is.Empty);
+        }
+
+        [Test]
+        public void MundaneCloneItemIntoSpecifiedItem()
+        {
+            var clone = new Item();
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.ItemType = Guid.NewGuid().ToString();
+            template.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = Guid.NewGuid().ToString() },
+                new SpecialAbility { Name = Guid.NewGuid().ToString() }
+            };
+
+            template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+
+            var newClone = template.MundaneClone(clone);
+
+            Assert.That(newClone, Is.EqualTo(clone));
+            itemVerifier.AssertMundaneItemFromTemplate(clone, template);
+            Assert.That(clone.ItemType, Is.EqualTo(template.ItemType));
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
         }
 
         [TestCase(ItemTypeConstants.Armor)]
@@ -654,6 +695,40 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var template = itemVerifier.CreateRandomTemplate(name);
 
             var clone = template.Clone();
+            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+        }
+
+        [Test]
+        public void CloneCopiesAllIntoSpecifiedItem()
+        {
+            var clone = new Item();
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var newClone = template.Clone(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
             Assert.That(clone, Is.Not.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 

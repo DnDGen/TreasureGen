@@ -44,6 +44,62 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(ability.BaseName, Is.Not.Empty, $"{item.Name} with {ability.Name}");
                 Assert.That(ability.Power, Is.Not.Negative, ability.Name);
             }
+
+            AssertArmor(item);
+            AssertSpecialMaterials(item);
+        }
+
+        private void AssertArmor(Item item)
+        {
+            if (!(item is Armor))
+                return;
+
+            var armor = item as Armor;
+            Assert.That(armor.ArmorBonus, Is.Positive, armor.Name);
+            Assert.That(armor.Size, Is.Not.Empty, armor.Name);
+            Assert.That(armor.MaxDexterityBonus, Is.Not.Negative, armor.Name);
+            Assert.That(armor.ArmorCheckPenalty, Is.Not.Positive, armor.Name);
+
+            if (armor.IsMagical)
+                Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork), armor.Name);
+        }
+
+        private void AssertSpecialMaterials(Item item)
+        {
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Adamantine))
+            {
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Name);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Name);
+            }
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Darkwood))
+            {
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Wood), item.Name);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Name);
+            }
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Dragonhide))
+            {
+                Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Metal), item.Name);
+                Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Wood), item.Name);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Name);
+            }
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.ColdIron))
+            {
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Name);
+            }
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Mithral))
+            {
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Name);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Name);
+            }
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.AlchemicalSilver))
+            {
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal));
+            }
         }
 
         public void AssertIntelligence(Intelligence intelligence)
@@ -74,44 +130,61 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item.Traits.Intersect(materials), Is.Empty, item.Name);
         }
 
+        public Armor CreateRandomArmorTemplate(string name)
+        {
+            var template = new Armor();
+
+            template.Name = name;
+            template = PopulateItem(template) as Armor;
+
+            return template;
+        }
+
         public Item CreateRandomTemplate(string name)
         {
             var template = new Item();
 
             template.Name = name;
-            template.BaseNames = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            template.Quantity = random.Next();
-            template.Contents.Add(Guid.NewGuid().ToString());
-            template.Contents.Add(Guid.NewGuid().ToString());
-            template.IsMagical = true;
-            template.ItemType = Guid.NewGuid().ToString();
-            template.Magic.Bonus = random.Next();
-            template.Magic.Charges = random.Next();
-            template.Magic.Curse = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.Alignment = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.CharismaStat = random.Next();
-            template.Magic.Intelligence.Communication = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            template.Magic.Intelligence.DedicatedPower = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.Ego = random.Next();
-            template.Magic.Intelligence.IntelligenceStat = random.Next();
-            template.Magic.Intelligence.Languages.Add(Guid.NewGuid().ToString());
-            template.Magic.Intelligence.Languages.Add(Guid.NewGuid().ToString());
-            template.Magic.Intelligence.Personality = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.Powers.Add(Guid.NewGuid().ToString());
-            template.Magic.Intelligence.Powers.Add(Guid.NewGuid().ToString());
-            template.Magic.Intelligence.Senses = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.SpecialPurpose = Guid.NewGuid().ToString();
-            template.Magic.Intelligence.WisdomStat = random.Next();
-            template.Magic.SpecialAbilities = new[]
+            template = PopulateItem(template);
+
+            return template;
+        }
+
+        private Item PopulateItem(Item item)
+        {
+            item.BaseNames = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            item.Quantity = random.Next();
+            item.Contents.Add(Guid.NewGuid().ToString());
+            item.Contents.Add(Guid.NewGuid().ToString());
+            item.IsMagical = true;
+            item.ItemType = Guid.NewGuid().ToString();
+            item.Magic.Bonus = random.Next();
+            item.Magic.Charges = random.Next();
+            item.Magic.Curse = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.Alignment = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.CharismaStat = random.Next();
+            item.Magic.Intelligence.Communication = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            item.Magic.Intelligence.DedicatedPower = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.Ego = random.Next();
+            item.Magic.Intelligence.IntelligenceStat = random.Next();
+            item.Magic.Intelligence.Languages.Add(Guid.NewGuid().ToString());
+            item.Magic.Intelligence.Languages.Add(Guid.NewGuid().ToString());
+            item.Magic.Intelligence.Personality = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.Powers.Add(Guid.NewGuid().ToString());
+            item.Magic.Intelligence.Powers.Add(Guid.NewGuid().ToString());
+            item.Magic.Intelligence.Senses = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.SpecialPurpose = Guid.NewGuid().ToString();
+            item.Magic.Intelligence.WisdomStat = random.Next();
+            item.Magic.SpecialAbilities = new[]
             {
                 new SpecialAbility { Name = Guid.NewGuid().ToString() },
                 new SpecialAbility { Name = Guid.NewGuid().ToString() }
             };
 
-            template.Traits.Add(Guid.NewGuid().ToString());
-            template.Traits.Add(Guid.NewGuid().ToString());
+            item.Traits.Add(Guid.NewGuid().ToString());
+            item.Traits.Add(Guid.NewGuid().ToString());
 
-            return template;
+            return item;
         }
 
         public void AssertMagicalItemFromTemplate(Item item, Item template)
@@ -170,7 +243,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item.Magic.Curse, Is.Empty, item.Name);
             AssertNoIntelligence(item.Magic.Intelligence);
             Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Name);
-            Assert.That(template.Traits, Is.SubsetOf(item.Traits), item.Name);
+
+            if (!(item is Armor))
+                Assert.That(template.Traits, Is.SubsetOf(item.Traits), item.Name);
         }
     }
 }

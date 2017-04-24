@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Mappers.Collections;
 
-namespace TreasureGen.Domain.Selectors.Attributes
+namespace TreasureGen.Domain.Selectors.Collections
 {
     internal class CollectionsSelector : ICollectionsSelector
     {

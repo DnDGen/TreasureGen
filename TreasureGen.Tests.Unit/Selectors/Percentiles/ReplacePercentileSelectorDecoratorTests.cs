@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 

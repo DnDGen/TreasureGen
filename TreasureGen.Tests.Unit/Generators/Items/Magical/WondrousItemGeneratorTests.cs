@@ -4,8 +4,9 @@ using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -23,7 +24,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<Dice> mockDice;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private TypeAndAmountPercentileResult result;
+        private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
 
@@ -37,7 +38,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            result = new TypeAndAmountPercentileResult();
+            selection = new TypeAndAmountSelection();
             var generator = new ConfigurableIterativeGenerator(5);
             wondrousItemGenerator = new WondrousItemGenerator(
                 mockPercentileSelector.Object,
@@ -50,18 +51,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
 
             power = "power";
-            result.Type = "wondrous item";
-            result.Amount = 0;
+            selection.Type = "wondrous item";
+            selection.Amount = 0;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(result);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(selection);
         }
 
         [Test]
         public void GenerateWondrousItem()
         {
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
-            Assert.That(item.BaseNames.Single(), Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
+            Assert.That(item.BaseNames.Single(), Is.EqualTo(selection.Type));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(item.IsMagical, Is.True);
         }
@@ -71,7 +72,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "type 1", "type 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Attributes, Is.EqualTo(attributes));
@@ -82,7 +83,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { "type 1", "type 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
@@ -95,9 +96,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(9266);
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(9266);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Magic.Charges, Is.EqualTo(9266));
@@ -106,7 +107,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetBonus()
         {
-            result.Amount = 90210;
+            selection.Amount = 90210;
             var item = wondrousItemGenerator.GenerateAtPower(power);
             Assert.That(item.Magic.Bonus, Is.EqualTo(90210));
         }
@@ -114,7 +115,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void HornOfValhallaGetsType()
         {
-            result.Type = WondrousItemConstants.HornOfValhalla;
+            selection.Type = WondrousItemConstants.HornOfValhalla;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes)).Returns("metallic");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -126,7 +127,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskContentsGenerated()
         {
-            result.Type = WondrousItemConstants.IronFlask;
+            selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns("contents");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -137,7 +138,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskContentsDoNotContainEmptyString()
         {
-            result.Type = WondrousItemConstants.IronFlask;
+            selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns(string.Empty);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -148,7 +149,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IronFlaskOnlyContainsOneThing()
         {
-            result.Type = WondrousItemConstants.IronFlask;
+            selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns("contents").Returns("more contents");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
@@ -160,7 +161,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void IfBalorOrPitFiend_GetFromSelector()
         {
-            result.Type = WondrousItemConstants.IronFlask;
+            selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend)).Returns("balor or pit fiend");
 
@@ -173,24 +174,24 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void RobeOfUsefulItemsBaseItemsAdded()
         {
             SetUpRoll(4, 4, 0);
-            result.Type = WondrousItemConstants.RobeOfUsefulItems;
+            selection.Type = WondrousItemConstants.RobeOfUsefulItems;
             var items = new[] { "item 1", "item 1", "item 2", "item 2", "item 3", "item 3" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Is.SupersetOf(items));
         }
 
         [Test]
         public void RobeOfUsefulItemsExtraItemsDetermined()
         {
-            result.Type = WondrousItemConstants.RobeOfUsefulItems;
+            selection.Type = WondrousItemConstants.RobeOfUsefulItems;
             SetUpRoll(4, 4, 2);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1").Returns("item 2");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("item 1"));
             Assert.That(item.Contents, Contains.Item("item 2"));
             Assert.That(item.Contents.Count, Is.EqualTo(2));
@@ -199,12 +200,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsCanHaveDuplicateExtraItems()
         {
-            result.Type = WondrousItemConstants.RobeOfUsefulItems;
+            selection.Type = WondrousItemConstants.RobeOfUsefulItems;
             SetUpRoll(4, 4, 2);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("item 1"));
             Assert.That(item.Contents.Count(i => i == "item 1"), Is.EqualTo(2));
             Assert.That(item.Contents.Count, Is.EqualTo(2));
@@ -213,7 +214,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfUsefulItemsExtraItemsScrollDetermined()
         {
-            result.Type = WondrousItemConstants.RobeOfUsefulItems;
+            selection.Type = WondrousItemConstants.RobeOfUsefulItems;
             SetUpRoll(4, 4, 1);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("Scroll");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
@@ -221,19 +222,19 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("spell type scroll of spell (9266)"));
         }
 
         [Test]
         public void CubicGateGetsPlanes()
         {
-            result.Type = WondrousItemConstants.CubicGate;
+            selection.Type = WondrousItemConstants.CubicGate;
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Planes)).Returns("plane 1").Returns("plane 2").Returns("plane 3")
                 .Returns("plane 4").Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
             Assert.That(item.Contents, Contains.Item("plane 2"));
@@ -246,12 +247,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CubicGateGetsDistinctPlanes()
         {
-            result.Type = WondrousItemConstants.CubicGate;
+            selection.Type = WondrousItemConstants.CubicGate;
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Planes)).Returns("plane 1").Returns("plane 1").Returns("plane 2")
                 .Returns("plane 3").Returns("plane 4").Returns("plane 5");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
             Assert.That(item.Contents, Contains.Item("plane 2"));
@@ -264,16 +265,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetCardsForDeckOfIllusions()
         {
-            result.Type = WondrousItemConstants.DeckOfIllusions;
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(3);
+            selection.Type = WondrousItemConstants.DeckOfIllusions;
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(cards);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(cards);
             SetUpRoll(1, 4, 1);
             SetUpRoll(1, 3, 1);
             SetUpRoll(1, 2, 2);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("card 1"));
             Assert.That(item.Contents, Contains.Item("card 2"));
             Assert.That(item.Contents, Contains.Item("card 4"));
@@ -283,17 +284,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetSpheresForNecklaceOfFireballs()
         {
-            result.Type = WondrousItemConstants.NecklaceOfFireballs + " type whatever";
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
+            selection.Type = WondrousItemConstants.NecklaceOfFireballs + " type whatever";
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(spheres);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(spheres);
             SetUpRoll(1, 5, 1);
             SetUpRoll(1, 4, 1);
             SetUpRoll(1, 3, 1);
             SetUpRoll(1, 2, 2);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("small sphere"));
             Assert.That(item.Contents, Contains.Item("normal sphere"));
             Assert.That(item.Contents, Contains.Item("big sphere"));
@@ -311,17 +312,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfBonesItemsAdded()
         {
-            result.Type = WondrousItemConstants.RobeOfBones;
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(4);
+            selection.Type = WondrousItemConstants.RobeOfBones;
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
             SetUpRoll(1, 6, 1);
             SetUpRoll(1, 5, 1);
             SetUpRoll(1, 4, 1);
             SetUpRoll(1, 3, 2);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("undead 1"));
             Assert.That(item.Contents.Count(c => c == "undead 1"), Is.EqualTo(2));
             Assert.That(item.Contents, Contains.Item("undead 2"));
@@ -332,13 +333,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotRollIfFullContents()
         {
-            result.Type = WondrousItemConstants.RobeOfBones;
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, result.Type)).Returns(6);
+            selection.Type = WondrousItemConstants.RobeOfBones;
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(6);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, result.Type)).Returns(items);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("undead 1"));
             Assert.That(item.Contents.Count(c => c == "undead 1"), Is.EqualTo(2));
             Assert.That(item.Contents, Contains.Item("undead 2"));
@@ -352,11 +353,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CandleOfInvocationGetsAlignment()
         {
-            result.Type = WondrousItemConstants.CandleOfInvocation;
+            selection.Type = WondrousItemConstants.CandleOfInvocation;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns("alignment");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Traits, Contains.Item("alignment"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
         }
@@ -364,11 +365,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void RobeOfTheArchmagiGetsAlignment()
         {
-            result.Type = WondrousItemConstants.RobeOfTheArchmagi;
+            selection.Type = WondrousItemConstants.RobeOfTheArchmagi;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors)).Returns("color (alignment)");
 
             var item = wondrousItemGenerator.GenerateAtPower(power);
-            Assert.That(item.Name, Is.EqualTo(result.Type));
+            Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Traits, Contains.Item("color (alignment)"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
         }
@@ -416,9 +417,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "wondrous item", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -443,9 +444,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "wondrous item", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2", AttributeConstants.Charged };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -472,9 +473,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.HornOfValhalla, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.HornOfValhalla, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -503,9 +504,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.IronFlask, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.IronFlask, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -536,9 +537,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfUsefulItems, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfUsefulItems, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -573,9 +574,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.CubicGate, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.CubicGate, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -614,9 +615,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.DeckOfIllusions, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.DeckOfIllusions, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -652,9 +653,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = name, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = name, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -690,9 +691,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfBones, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfBones, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -722,9 +723,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.CandleOfInvocation, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.CandleOfInvocation, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -753,9 +754,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 })
-                .Returns(new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfTheArchmagi, Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 })
+                .Returns(new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfTheArchmagi, Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 });
 
             var attributes = new[] { "type 1", "type 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
@@ -781,12 +782,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = "wondrous item", Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -812,12 +813,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultChargedFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = "wondrous item", Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2", AttributeConstants.Charged };
@@ -845,12 +846,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes)).Returns("metallic");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.HornOfValhalla, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.HornOfValhalla, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -880,12 +881,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns("contents");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.IronFlask, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.IronFlask, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -917,12 +918,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("extra item 1").Returns("extra item 2");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfUsefulItems, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfUsefulItems, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -958,12 +959,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns("plane 5");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.CubicGate, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.CubicGate, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1003,12 +1004,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 2, 2);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.DeckOfIllusions, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.DeckOfIllusions, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1045,12 +1046,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 2, 2);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = name, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = name, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1087,12 +1088,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 3, 2);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfBones, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfBones, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1123,12 +1124,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns("alignment");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.CandleOfInvocation, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.CandleOfInvocation, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1158,12 +1159,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors)).Returns("color (alignment)");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 });
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountPercentileResult { Type = WondrousItemConstants.RobeOfTheArchmagi, Amount = 9266 },
-                new TypeAndAmountPercentileResult { Type = "other wondrous item", Amount = 90210 },
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = WondrousItemConstants.RobeOfTheArchmagi, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 },
             });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -1191,29 +1192,29 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultFromSubsetWithDifferentPower()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong wondrous item", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 9266 });
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong wondrous item" },
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other wondrous item" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong wondrous item" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other wondrous item" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong wondrous item" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong wondrous item" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other wondrous item" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other wondrous item" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "wondrous item" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "wondrous item" },
             });
 
             var attributes = new[] { "attribute 1", "attribute 2" };

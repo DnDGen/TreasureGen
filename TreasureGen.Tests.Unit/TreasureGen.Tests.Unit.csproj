@@ -73,6 +73,7 @@
     <Compile Include="Generators\Coins\CoinGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
+    <Compile Include="Generators\Items\ArmorTests.cs" />
     <Compile Include="Generators\Items\ConfigurableIterativeGenerator.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Items\IterativeGeneratorTests.cs" />
@@ -142,16 +143,18 @@
     <Compile Include="Mappers\Percentile\PercentileXmlMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generators\TreasureTests.cs" />
+    <Compile Include="Selectors\Collections\ArmorDataSelectorTests.cs" />
     <Compile Include="Selectors\Collections\CollectionsSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\BooleanPercentileSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstantsTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecoratorTests.cs" />
     <Compile Include="Selectors\Collections\IntelligenceCollectionsSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\PercentileSelectorTests.cs" />
-    <Compile Include="Selectors\Collections\RangeCollectionsSelectorTests.cs" />
+    <Compile Include="Selectors\Collections\RangeDataSelectorTests.cs" />
     <Compile Include="Selectors\Collections\SpecialAbilityCollectionsSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelectorTests.cs" />
     <Compile Include="Tables\AmountConstantsTests.cs" />
+    <Compile Include="Tables\DataIndexConstantsTests.cs" />
     <Compile Include="Tables\TableNameConstantsTests.cs" />
   </ItemGroup>
   <ItemGroup>

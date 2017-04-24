@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -143,7 +144,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        private TypeAndAmountPercentileResult GetResult(string power, string name)
+        private TypeAndAmountSelection GetResult(string power, string name)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -166,7 +167,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             //INFO: This means the ring name replaces some fillable field such as ALIGNMENT, so we will assume a bonus of 0
             if (result == null)
-                return new TypeAndAmountPercentileResult();
+                return new TypeAndAmountSelection();
 
             return result;
         }

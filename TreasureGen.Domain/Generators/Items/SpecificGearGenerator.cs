@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -21,8 +21,17 @@ namespace TreasureGen.Domain.Generators.Items
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private Dice dice;
+        private IArmorDataSelector armorDataSelector;
 
-        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionsSelector, IChargesGenerator chargesGenerator, IPercentileSelector percentileSelector, ISpellGenerator spellGenerator, IBooleanPercentileSelector booleanPercentileSelector, Dice dice, ISpecialAbilitiesGenerator specialAbilitiesGenerator)
+        public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            ICollectionsSelector collectionsSelector,
+            IChargesGenerator chargesGenerator,
+            IPercentileSelector percentileSelector,
+            ISpellGenerator spellGenerator,
+            IBooleanPercentileSelector booleanPercentileSelector,
+            Dice dice,
+            ISpecialAbilitiesGenerator specialAbilitiesGenerator,
+            IArmorDataSelector armorDataSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -32,17 +41,18 @@ namespace TreasureGen.Domain.Generators.Items
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
+            this.armorDataSelector = armorDataSelector;
         }
 
         public Item GenerateFrom(string power, string specificGearType)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
+            var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var gear = new Item();
-            gear.Name = result.Type;
-            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
-            gear.Magic.Bonus = result.Amount;
+            gear.Name = selection.Type;
+            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
+            gear.Magic.Bonus = selection.Amount;
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
             gear.ItemType = GetItemType(specificGearType);
 
@@ -86,13 +96,30 @@ namespace TreasureGen.Domain.Generators.Items
                 gear.Traits.Add(trait);
             }
 
-            if (gear.IsMagical == false)
+            if (gear.IsMagical == false && gear.ItemType != ItemTypeConstants.Armor)
             {
                 var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
                 gear.Traits.Add(size);
             }
 
-            return gear;
+            if (gear.IsMagical)
+                gear.Traits.Add(TraitConstants.Masterwork);
+
+            if (gear.ItemType != ItemTypeConstants.Armor)
+                return gear;
+
+            var armor = new Armor();
+            gear.Clone(armor);
+
+            var baseName = armor.BaseNames.Single();
+            var armorSelection = armorDataSelector.Select(baseName);
+
+            armor.ArmorBonus = armorSelection.ArmorBonus;
+            armor.ArmorCheckPenalty = armorSelection.ArmorCheckPenalty;
+            armor.MaxDexterityBonus = armorSelection.MaxDexterityBonus;
+            armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+
+            return armor;
         }
 
         private int GetQuantity(Item gear)

@@ -1,6 +1,6 @@
-﻿namespace TreasureGen.Selectors.Results
+﻿namespace TreasureGen.Domain.Selectors.Selections
 {
-    internal class SpecialAbilityAttributesResult
+    internal class SpecialAbilitySelection
     {
         public int BonusEquivalent { get; set; }
         public int Power { get; set; }

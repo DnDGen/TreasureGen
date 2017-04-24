@@ -4,7 +4,7 @@ using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Mappers.Collections;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {

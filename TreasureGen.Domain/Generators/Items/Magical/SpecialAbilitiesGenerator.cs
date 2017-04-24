@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -15,12 +15,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private const int MaxBonus = 10;
 
         private ICollectionsSelector collectionsSelector;
-        private ISpecialAbilityAttributesSelector specialAbilityAttributesSelector;
+        private ISpecialAbilityDataSelector specialAbilityAttributesSelector;
         private IPercentileSelector percentileSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
         private Dice dice;
 
-        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, ISpecialAbilityAttributesSelector specialAbilityAttributesSelector,
+        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityAttributesSelector,
             IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
         {
             this.collectionsSelector = collectionsSelector;

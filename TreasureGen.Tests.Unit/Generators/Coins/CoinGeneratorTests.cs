@@ -3,6 +3,7 @@ using NUnit.Framework;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators.Coins;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Coins
@@ -13,18 +14,18 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private ICoinGenerator generator;
 
-        private TypeAndAmountPercentileResult result;
+        private TypeAndAmountSelection selection;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             generator = new CoinGenerator(mockTypeAndAmountPercentileSelector.Object);
-            result = new TypeAndAmountPercentileResult();
+            selection = new TypeAndAmountSelection();
 
-            result.Type = "coin type";
-            result.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(result);
+            selection.Type = "coin type";
+            selection.Amount = 9266;
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(selection);
 
         }
 
@@ -39,7 +40,7 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         [Test]
         public void CoinIsEmptyIfResultIsEmpty()
         {
-            result.Type = string.Empty;
+            selection.Type = string.Empty;
 
             var coin = generator.GenerateAtLevel(1);
             Assert.That(coin.Currency, Is.EqualTo(string.Empty));
@@ -50,7 +51,7 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         public void GetCurrencyAmount()
         {
             var coin = generator.GenerateAtLevel(1);
-            Assert.That(coin.Currency, Is.EqualTo(result.Type));
+            Assert.That(coin.Currency, Is.EqualTo(selection.Type));
             Assert.That(coin.Quantity, Is.EqualTo(9266));
         }
     }

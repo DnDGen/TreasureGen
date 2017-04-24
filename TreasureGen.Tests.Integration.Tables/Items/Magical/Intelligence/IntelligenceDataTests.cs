@@ -5,11 +5,11 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
 {
     [TestFixture]
-    public class IntelligenceAttributesTests : CollectionsTests
+    public class IntelligenceDataTests : CollectionsTests
     {
         protected override string tableName
         {
-            get { return TableNameConstants.Collections.Set.IntelligenceAttributes; }
+            get { return TableNameConstants.Collections.Set.IntelligenceData; }
         }
 
         [TestCase("12", "30 ft. vision and hearing", 1, 0)]
@@ -22,14 +22,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence
         [TestCase("19", "120 ft. darkvision, blindsense, and hearing", 4, 3)]
         public void OrderedAttributes(string strength, string senses, int lesserPowersCount, int greaterPowersCount)
         {
-            var attributes = new[]
-            {
-                senses,
-                Convert.ToString(lesserPowersCount),
-                Convert.ToString(greaterPowersCount)
-            };
+            var data = new string[3];
+            data[DataIndexConstants.Intelligence.GreaterPowersCount] = Convert.ToString(greaterPowersCount);
+            data[DataIndexConstants.Intelligence.LesserPowersCount] = Convert.ToString(lesserPowersCount);
+            data[DataIndexConstants.Intelligence.Senses] = senses;
 
-            OrderedCollections(strength, attributes);
+            OrderedCollections(strength, data);
         }
     }
 }

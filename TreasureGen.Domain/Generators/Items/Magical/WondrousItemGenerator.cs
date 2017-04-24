@@ -1,8 +1,9 @@
 ﻿using RollGen;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -232,7 +233,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        private TypeAndAmountPercentileResult GetResult(string power, string name)
+        private TypeAndAmountSelection GetResult(string power, string name)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);

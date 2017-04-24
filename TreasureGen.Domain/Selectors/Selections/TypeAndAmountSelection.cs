@@ -1,11 +1,11 @@
-﻿namespace TreasureGen.Domain.Selectors.Percentiles
+﻿namespace TreasureGen.Domain.Selectors.Selections
 {
-    internal class TypeAndAmountPercentileResult
+    internal class TypeAndAmountSelection
     {
         public string Type { get; set; }
         public int Amount { get; set; }
 
-        public TypeAndAmountPercentileResult()
+        public TypeAndAmountSelection()
         {
             Type = string.Empty;
         }

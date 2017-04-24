@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -25,11 +26,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private TypeAndAmountPercentileResult result;
+        private Mock<IArmorDataSelector> mockArmorDataSelector;
+        private TypeAndAmountSelection selection;
         private string power;
         private string gearType;
         private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
+        private List<string> baseNames;
+        private ArmorSelection armorSelection;
 
         [SetUp]
         public void Setup()
@@ -42,16 +46,36 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockDice = new Mock<Dice>();
-            specificGearGenerator = new SpecificGearGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, mockChargesGenerator.Object, mockPercentileSelector.Object, mockSpellGenerator.Object, mockBooleanPercentileSelector.Object, mockDice.Object, mockSpecialAbilitiesGenerator.Object);
-            result = new TypeAndAmountPercentileResult();
+            mockArmorDataSelector = new Mock<IArmorDataSelector>();
+            specificGearGenerator = new SpecificGearGenerator(
+                mockTypeAndAmountPercentileSelector.Object,
+                mockCollectionsSelector.Object,
+                mockChargesGenerator.Object,
+                mockPercentileSelector.Object,
+                mockSpellGenerator.Object,
+                mockBooleanPercentileSelector.Object,
+                mockDice.Object,
+                mockSpecialAbilitiesGenerator.Object,
+                mockArmorDataSelector.Object);
+            selection = new TypeAndAmountSelection();
+            itemVerifier = new ItemVerifier();
 
             power = "power";
             gearType = "gear type";
 
-            result.Type = "specific gear";
-            result.Amount = 1;
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(result);
-            itemVerifier = new ItemVerifier();
+            selection.Type = "specific gear";
+            selection.Amount = 1;
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(selection);
+
+            baseNames = new List<string> { "base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
+
+            armorSelection = new ArmorSelection();
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+
+            mockArmorDataSelector.Setup(s => s.Select(baseNames[0])).Returns(armorSelection);
         }
 
         [Test]
@@ -73,11 +97,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void GetGearNameAndBonusFromSelector()
         {
-            var newResult = new TypeAndAmountPercentileResult();
+            var newResult = new TypeAndAmountSelection();
             newResult.Type = "new specific gear";
             newResult.Amount = 42;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, newResult.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
@@ -87,9 +112,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void GetBaseNames()
         {
-            var baseNames = new[] { "base name", "other base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type)).Returns(baseNames);
-
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.BaseNames, Is.EqualTo(baseNames));
         }
@@ -97,11 +119,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void GetMundaneGearNameAndBonusFromSelector()
         {
-            var newResult = new TypeAndAmountPercentileResult();
+            var newResult = new TypeAndAmountSelection();
             newResult.Type = "new specific gear";
             newResult.Amount = 0;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, newResult.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
@@ -109,10 +132,71 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void MagicGearIsMasterwork()
+        {
+            var traits = new[] { "trait 1", "trait 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(traits);
+
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void SpecificMagicGearIsMasterwork()
+        {
+            var traits = new[] { "trait 1", "trait 2", TraitConstants.Masterwork };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(traits);
+
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void NonMagicGearIsNotMasterwork()
+        {
+            var traits = new[] { "trait 1", "trait 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(traits);
+
+            selection.Amount = 0;
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void NonMagicSpecificGearIsMasterwork()
+        {
+            var traits = new[] { "trait 1", "trait 2", TraitConstants.Masterwork };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(traits);
+
+            selection.Amount = 0;
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GetArmorProperties()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            Assert.That(gear, Is.InstanceOf<Armor>());
+
+            var armor = gear as Armor;
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
+            Assert.That(armor.Size, Is.EqualTo("size"));
+        }
+
+        [Test]
         public void JavelinOfLightningIsMagical()
         {
-            result.Type = WeaponConstants.JavelinOfLightning;
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            selection.Type = WeaponConstants.JavelinOfLightning;
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.IsMagical, Is.True);
         }
 
@@ -121,7 +205,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var attributes = new[] { "attribute 1", "attribute 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Attributes, Is.EqualTo(attributes));
@@ -132,10 +216,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var traits = new[] { "trait 1", "trait 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, gearType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(traits);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(traits);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
-            Assert.That(gear.Traits, Is.EquivalentTo(traits));
+            Assert.That(gear.Traits, Is.SupersetOf(traits));
         }
 
         [Test]
@@ -143,7 +227,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var specialAbilityNames = new[] { "ability 1", "ability 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, gearType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(specialAbilityNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(specialAbilityNames);
 
             var specialAbilities = new[]
             {
@@ -167,8 +251,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, result.Type)).Returns(9266);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, selection.Type)).Returns(9266);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(9266));
@@ -179,8 +263,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var attributes = new[] { "not charged" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, result.Type)).Returns(attributes);
-            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, result.Type)).Returns(9266);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
+            mockChargesGenerator.Setup(g => g.GenerateFor(gearType, selection.Type)).Returns(9266);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));
@@ -189,8 +273,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void SilverDaggerRenamedDagger()
         {
-            result.Type = WeaponConstants.SilverDagger;
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            selection.Type = WeaponConstants.SilverDagger;
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.Dagger));
         }
 
@@ -200,19 +284,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.LuckBlade3)]
         public void LuckBladeWithChargeRenamedLuckBlade(string luckBlade)
         {
-            result.Type = luckBlade;
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            selection.Type = luckBlade;
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.LuckBlade));
         }
 
         [Test]
         public void CastersShieldHasNoSpellIfSelectorSaysSo()
         {
-            result.Type = ArmorConstants.CastersShield;
+            selection.Type = ArmorConstants.CastersShield;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes)).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(false);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
@@ -222,11 +307,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void CastersShieldHasSpellIfSelectorSaysSo()
         {
-            result.Type = ArmorConstants.CastersShield;
+            selection.Type = ArmorConstants.CastersShield;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes)).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(true);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo(ArmorConstants.CastersShield));
@@ -236,10 +322,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void SlayingArrowHasDesignatedFoe()
         {
-            result.Type = WeaponConstants.SlayingArrow;
+            selection.Type = WeaponConstants.SlayingArrow;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
             Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
@@ -247,10 +333,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void GreaterSlayingArrowHasDesignatedFoe()
         {
-            result.Type = WeaponConstants.GreaterSlayingArrow;
+            selection.Type = WeaponConstants.GreaterSlayingArrow;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
             Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
@@ -259,12 +345,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void SpecificAmmunitionReceivesQuantity()
         {
             var attributes = new[] { "attribute 1", AttributeConstants.Ammunition };
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
 
             mockDice.Setup(d => d.Roll(1).d(50).AsSum()).Returns(9266);
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
         }
 
@@ -272,11 +358,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void SpecificThrownWeaponsReceiveQuantity()
         {
             var attributes = new[] { "attribute 1", AttributeConstants.Thrown };
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Quantity, Is.EqualTo(9266));
         }
 
@@ -284,27 +370,28 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void SpecificMeleeThrownWeaponsReceiveQuantityOf1()
         {
             var attributes = new[] { "attribute 1", AttributeConstants.Thrown, AttributeConstants.Melee };
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, gearType);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "specific gear")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Quantity, Is.EqualTo(1));
         }
 
+        //INFO: This has to be a weapon for now because armor handles sizes differently
         [Test]
         public void NonMagicalGearGetsSize()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
-                .Returns("size");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            var newResult = new TypeAndAmountPercentileResult();
+            var newResult = new TypeAndAmountSelection();
             newResult.Type = "new specific gear";
             newResult.Amount = 0;
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, newResult.Type)).Returns(baseNames);
 
-            var gear = specificGearGenerator.GenerateFrom(power, gearType);
+            var gear = specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));
             Assert.That(gear.IsMagical, Is.False);
             Assert.That(gear.Traits, Contains.Item("size"));
@@ -313,14 +400,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void MagicalGearDoesNotGetSize()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes))
-                .Returns("size");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            var newResult = new TypeAndAmountPercentileResult();
+            var newResult = new TypeAndAmountSelection();
             newResult.Type = "new specific gear";
             newResult.Amount = 1;
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(newResult);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, newResult.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
             Assert.That(gear.Name, Is.EqualTo("new specific gear"));

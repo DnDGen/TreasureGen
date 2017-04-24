@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 
 namespace TreasureGen.Tests.Integration.IoC.Modules
@@ -27,33 +27,39 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
-        public void AttributesSelectorNotConstructedAsSingleton()
+        public void CollectionsSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ICollectionsSelector>();
         }
 
         [Test]
-        public void SpecialAbilityAttributesSelectorNotConstructedAsSingleton()
+        public void SpecialAbilityDataSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<ISpecialAbilityAttributesSelector>();
+            AssertNotSingleton<ISpecialAbilityDataSelector>();
         }
 
         [Test]
-        public void IntelligenceAttributesSelectorNotConstructedAsSingleton()
+        public void IntelligenceDataSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IIntelligenceAttributesSelector>();
+            AssertNotSingleton<IIntelligenceDataSelector>();
         }
 
         [Test]
-        public void RangeAttributesSelectorNotConstructedAsSingleton()
+        public void RangeDataSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IRangeAttributesSelector>();
+            AssertNotSingleton<IRangeDataSelector>();
         }
 
         [Test]
         public void BooleanPercentileSelectorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IBooleanPercentileSelector>();
+        }
+
+        [Test]
+        public void ArmorDataSelectorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IArmorDataSelector>();
         }
     }
 }

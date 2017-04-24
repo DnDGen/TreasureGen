@@ -4,12 +4,12 @@ using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
-using TreasureGen.Selectors.Results;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {
@@ -20,7 +20,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private Mock<ISpecialAbilityAttributesSelector> mockSpecialAbilityAttributesSelector;
+        private Mock<ISpecialAbilityDataSelector> mockSpecialAbilityAttributesSelector;
         private Mock<Dice> mockDice;
 
         private List<string> itemAttributes;
@@ -35,7 +35,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityAttributesSelector>();
+            mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityDataSelector>();
             mockDice = new Mock<Dice>();
             names = new List<string>();
             power = "power";
@@ -143,12 +143,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
             mockPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[] { "ranged ability" });
 
-            var meleeResult = new SpecialAbilityAttributesResult();
+            var meleeResult = new SpecialAbilitySelection();
             meleeResult.BaseName = "melee ability";
             mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(meleeResult.BaseName)).Returns(meleeResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, meleeResult.BaseName)).Returns(itemAttributes);
 
-            var rangedResult = new SpecialAbilityAttributesResult();
+            var rangedResult = new SpecialAbilitySelection();
             rangedResult.BaseName = "ranged ability";
             mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
@@ -456,7 +456,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
         private void CreateSpecialAbility(string name, string baseName = "", int bonus = 0, int power = 0)
         {
-            var result = new SpecialAbilityAttributesResult();
+            var result = new SpecialAbilitySelection();
 
             if (string.IsNullOrEmpty(baseName))
                 result.BaseName = name;

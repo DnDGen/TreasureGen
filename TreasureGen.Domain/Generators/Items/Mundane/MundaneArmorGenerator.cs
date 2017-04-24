@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -15,55 +15,72 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         private readonly ICollectionsSelector collectionsSelector;
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly Generator generator;
+        private readonly IArmorDataSelector armorDataSelector;
 
-        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Generator generator)
+        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Generator generator, IArmorDataSelector armorDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.generator = generator;
+            this.armorDataSelector = armorDataSelector;
         }
 
         public Item Generate()
         {
-            var armor = new Item();
+            var armor = new Armor();
             armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
 
             if (armor.Name == AttributeConstants.Shield)
                 armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields);
 
-            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
-            armor.ItemType = ItemTypeConstants.Armor;
-
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
-            armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
+            armor = PopulateArmor(armor);
 
             var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-            armor.Traits.Add(size);
+            armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+
+            return armor;
+        }
+
+        private Armor PopulateArmor(Armor armor)
+        {
+            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
+            armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
+
+            var armorSelection = armorDataSelector.Select(armor.Name);
+            armor.ArmorBonus = armorSelection.ArmorBonus;
+            armor.ArmorCheckPenalty = armorSelection.ArmorCheckPenalty;
+            armor.MaxDexterityBonus = armorSelection.MaxDexterityBonus;
 
             return armor;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var armor = template.MundaneClone();
+            var armor = new Armor();
+            template.MundaneClone(armor);
+
             armor.ItemType = ItemTypeConstants.Armor;
             armor.Quantity = 1;
-            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
 
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, armor.ItemType);
-            armor.Attributes = collectionsSelector.SelectFrom(tableName, armor.Name);
+            armor = PopulateArmor(armor);
 
-            var sizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            var sizes = armor.Traits.Intersect(allSizes);
 
-            if (armor.Traits.Intersect(sizes).Any() == false)
+            if (sizes.Any())
             {
-                var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-                armor.Traits.Add(size);
+                armor.Size = sizes.Single();
+                armor.Traits.Remove(armor.Size);
+            }
+            else
+            {
+                armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
             }
 
             if (allowRandomDecoration)

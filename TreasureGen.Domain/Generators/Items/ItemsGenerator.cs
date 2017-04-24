@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -14,15 +14,15 @@ namespace TreasureGen.Domain.Generators.Items
         private IPercentileSelector percentileSelector;
         private IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory;
         private IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory;
-        private IRangeAttributesSelector rangeAttributesSelector;
+        private IRangeDataSelector rangeDataSelector;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory, IRangeAttributesSelector rangeAttributesSelector)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory, IRangeDataSelector rangeDataSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;
             this.percentileSelector = percentileSelector;
             this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
-            this.rangeAttributesSelector = rangeAttributesSelector;
+            this.rangeDataSelector = rangeDataSelector;
         }
 
         public IEnumerable<Item> GenerateAtLevel(int level)
@@ -46,7 +46,7 @@ namespace TreasureGen.Domain.Generators.Items
         private IEnumerable<Item> GetEpicItems(int level)
         {
             var epicItems = new List<Item>();
-            var majorItemQuantity = rangeAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.EpicItems, level.ToString()).Minimum;
+            var majorItemQuantity = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.EpicItems, level.ToString()).Minimum;
 
             while (majorItemQuantity-- > 0)
             {

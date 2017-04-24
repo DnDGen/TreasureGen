@@ -1,6 +1,6 @@
 ﻿using RollGen;
 using System;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -11,13 +11,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class ChargesGenerator : IChargesGenerator
     {
         private Dice dice;
-        private IRangeAttributesSelector rangeAttributesSelector;
+        private IRangeDataSelector rangeDataSelector;
         private IBooleanPercentileSelector booleanPercentileSelector;
 
-        public ChargesGenerator(Dice dice, IRangeAttributesSelector rangeAttributesSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public ChargesGenerator(Dice dice, IRangeDataSelector rangeDataSelector, IBooleanPercentileSelector booleanPercentileSelector)
         {
             this.dice = dice;
-            this.rangeAttributesSelector = rangeAttributesSelector;
+            this.rangeDataSelector = rangeDataSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
@@ -34,7 +34,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                     name = WondrousItemConstants.FullDeckOfIllusions;
             }
 
-            var result = rangeAttributesSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
+            var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
             var die = result.Maximum - result.Minimum + 1;
 
             return dice.Roll().d(die).AsSum() - 1 + result.Minimum;

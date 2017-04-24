@@ -125,27 +125,31 @@
     <Compile Include="Mappers\Percentile\PercentileMapperCachingProxy.cs" />
     <Compile Include="Mappers\Percentile\PercentileXmlMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selectors\Attributes\CollectionsSelector.cs" />
+    <Compile Include="Selectors\Collections\ArmorDataSelector.cs" />
+    <Compile Include="Selectors\Collections\CollectionsSelector.cs" />
+    <Compile Include="Selectors\Collections\IArmorDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\BooleanPercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecorator.cs" />
-    <Compile Include="Selectors\Attributes\ICollectionsSelector.cs" />
+    <Compile Include="Selectors\Collections\ICollectionsSelector.cs" />
     <Compile Include="Selectors\Percentiles\IBooleanPercentileSelector.cs" />
-    <Compile Include="Selectors\Attributes\IIntelligenceAttributesSelector.cs" />
-    <Compile Include="Selectors\Attributes\IntelligenceAttributesSelector.cs" />
+    <Compile Include="Selectors\Collections\IIntelligenceDataSelector.cs" />
+    <Compile Include="Selectors\Collections\IntelligenceDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\IPercentileSelector.cs" />
-    <Compile Include="Selectors\Attributes\IRangeAttributesSelector.cs" />
-    <Compile Include="Selectors\Attributes\ISpecialAbilityAttributesSelector.cs" />
+    <Compile Include="Selectors\Collections\IRangeDataSelector.cs" />
+    <Compile Include="Selectors\Collections\ISpecialAbilityDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\ITypeAndAmountPercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\PercentileSelector.cs" />
-    <Compile Include="Selectors\Attributes\RangeAttributesSelector.cs" />
-    <Compile Include="Selectors\Attributes\IntelligenceAttributesResult.cs" />
-    <Compile Include="Selectors\Attributes\RangeAttributesResult.cs" />
-    <Compile Include="Selectors\Attributes\SpecialAbilityAttributesResult.cs" />
-    <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileResult.cs" />
-    <Compile Include="Selectors\Attributes\SpecialAbilityAttributesSelector.cs" />
+    <Compile Include="Selectors\Collections\RangeDataSelector.cs" />
+    <Compile Include="Selectors\Selections\ArmorSelection.cs" />
+    <Compile Include="Selectors\Selections\IntelligenceSelection.cs" />
+    <Compile Include="Selectors\Selections\RangeSelection.cs" />
+    <Compile Include="Selectors\Selections\SpecialAbilitySelection.cs" />
+    <Compile Include="Selectors\Selections\TypeAndAmountSelection.cs" />
+    <Compile Include="Selectors\Collections\SpecialAbilityDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelector.cs" />
     <Compile Include="Tables\AmountConstants.cs" />
+    <Compile Include="Tables\DataIndexConstants.cs" />
     <Compile Include="Tables\EmbeddedResourceStreamLoader.cs" />
     <Compile Include="Tables\IStreamLoader.cs" />
     <Compile Include="Tables\TableNameConstants.cs" />
@@ -464,7 +468,7 @@
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAttributes.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceData.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
@@ -943,6 +947,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Level30Items.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Armors\ArmorData.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

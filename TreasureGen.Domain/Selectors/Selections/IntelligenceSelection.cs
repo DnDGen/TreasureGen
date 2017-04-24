@@ -1,6 +1,6 @@
-﻿namespace TreasureGen.Selectors.Results
+﻿namespace TreasureGen.Domain.Selectors.Selections
 {
-    internal class IntelligenceAttributesResult
+    internal class IntelligenceSelection
     {
         public string Senses { get; set; }
         public int LesserPowersCount { get; set; }

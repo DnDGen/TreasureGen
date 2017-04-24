@@ -3,8 +3,9 @@ using NUnit.Framework;
 using RollGen;
 using System.Linq;
 using TreasureGen.Domain.Generators.Goods;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Goods;
 
@@ -18,8 +19,8 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         private Mock<ICollectionsSelector> mockAttributesSelector;
         private IGoodsGenerator generator;
 
-        private TypeAndAmountPercentileResult typeAndAmountResult;
-        private TypeAndAmountPercentileResult valueResult;
+        private TypeAndAmountSelection selection;
+        private TypeAndAmountSelection valueSelection;
 
         [SetUp]
         public void Setup()
@@ -28,20 +29,20 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockAttributesSelector = new Mock<ICollectionsSelector>();
             generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object);
-            typeAndAmountResult = new TypeAndAmountPercentileResult();
-            valueResult = new TypeAndAmountPercentileResult();
+            selection = new TypeAndAmountSelection();
+            valueSelection = new TypeAndAmountSelection();
 
-            typeAndAmountResult.Type = "type";
-            typeAndAmountResult.Amount = 2;
-            valueResult.Type = "first value";
-            valueResult.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(typeAndAmountResult);
+            selection.Type = "type";
+            selection.Amount = 2;
+            valueSelection.Type = "first value";
+            valueSelection.Amount = 9266;
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(selection);
 
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, typeAndAmountResult.Type);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(valueResult);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, selection.Type);
+            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(valueSelection);
 
             var descriptions = new[] { "description 1", "description 2" };
-            tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, typeAndAmountResult.Type);
+            tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, selection.Type);
             mockAttributesSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
             mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
         }
@@ -64,7 +65,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [Test]
         public void EmptyGoodsIfNoGoodType()
         {
-            typeAndAmountResult.Type = string.Empty;
+            selection.Type = string.Empty;
             var goods = generator.GenerateAtLevel(1);
             Assert.That(goods, Is.Empty);
         }
@@ -72,7 +73,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [Test]
         public void ReturnsNumberOfGoods()
         {
-            typeAndAmountResult.Amount = 9266;
+            selection.Amount = 9266;
             var goods = generator.GenerateAtLevel(1);
             Assert.That(goods.Count(), Is.EqualTo(9266));
         }
@@ -80,12 +81,12 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [Test]
         public void ValueDeterminedByValueResult()
         {
-            var secondValueResult = new TypeAndAmountPercentileResult();
+            var secondValueResult = new TypeAndAmountSelection();
             secondValueResult.Type = "second value";
             secondValueResult.Amount = 90210;
 
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, typeAndAmountResult.Type);
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns(valueResult).Returns(secondValueResult);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, selection.Type);
+            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns(valueSelection).Returns(secondValueResult);
 
             var goods = generator.GenerateAtLevel(1);
             var firstGood = goods.First();

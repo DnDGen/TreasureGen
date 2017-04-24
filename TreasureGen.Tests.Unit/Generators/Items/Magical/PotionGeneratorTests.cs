@@ -4,8 +4,9 @@ using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
@@ -33,7 +34,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();
 
-            var result = new TypeAndAmountPercentileResult();
+            var result = new TypeAndAmountSelection();
             result.Amount = 9266;
             result.Type = "potion";
             power = "power";
@@ -90,15 +91,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             mockTypeAndAmountPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
-                .Returns(new TypeAndAmountPercentileResult { Type = "wrong potion", Amount = 9266 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "potion", Amount = 90210 })
-                .Returns(new TypeAndAmountPercentileResult { Type = "other potion", Amount = 42 });
+                .Returns(new TypeAndAmountSelection { Type = "wrong potion", Amount = 9266 })
+                .Returns(new TypeAndAmountSelection { Type = "potion", Amount = 90210 })
+                .Returns(new TypeAndAmountSelection { Type = "other potion", Amount = 42 });
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong potion" },
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other potion" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
             });
 
             var subset = new[] { "other potion", "potion" };
@@ -117,12 +118,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong potion", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong potion", Amount = 9266 });
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong potion" },
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other potion" },
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
             });
 
             var subset = new[] { "other potion", "potion" };
@@ -142,29 +143,29 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateDefaultFromSubsetWithDifferentPower()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountPercentileResult { Type = "wrong potion", Amount = 9266 });
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong potion", Amount = 9266 });
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong potion" },
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other potion" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Potion);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 42, Type = "other potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
             });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion);
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
             {
-                new TypeAndAmountPercentileResult { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
             });
 
             var subset = new[] { "other potion", "potion" };

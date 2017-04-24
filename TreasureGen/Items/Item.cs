@@ -62,9 +62,9 @@ namespace TreasureGen.Items
             ItemType = string.Empty;
         }
 
-        public Item Clone()
+        public virtual Item Clone(Item target)
         {
-            var clone = MundaneClone();
+            var clone = MundaneClone(target);
             clone.Magic.Bonus = Magic.Bonus;
             clone.Magic.Charges = Magic.Charges;
             clone.Magic.Curse = Magic.Curse;
@@ -75,9 +75,25 @@ namespace TreasureGen.Items
             return clone;
         }
 
-        public Item SmartClone()
+        public virtual Item Clone()
         {
-            var clone = MundaneClone();
+            var clone = new Item();
+            clone = Clone(clone);
+
+            return clone;
+        }
+
+        public virtual Item SmartClone()
+        {
+            var clone = new Item();
+            clone = SmartClone(clone);
+
+            return clone;
+        }
+
+        public virtual Item SmartClone(Item target)
+        {
+            var clone = MundaneClone(target);
 
             clone.Magic.Curse = Magic.Curse;
             clone.IsMagical = isMagical;
@@ -101,22 +117,29 @@ namespace TreasureGen.Items
             return clone;
         }
 
-        public Item MundaneClone()
+        public virtual Item MundaneClone()
         {
             var clone = new Item();
-            clone.Attributes = Attributes.ToArray();
-            clone.Contents.AddRange(Contents);
-            clone.ItemType = ItemType;
-            clone.Name = Name;
-            clone.BaseNames = BaseNames.ToArray();
-            clone.Quantity = Quantity;
+            clone = MundaneClone(clone);
+
+            return clone;
+        }
+
+        public virtual Item MundaneClone(Item target)
+        {
+            target.Attributes = Attributes.ToArray();
+            target.Contents.AddRange(Contents);
+            target.ItemType = ItemType;
+            target.Name = Name;
+            target.BaseNames = BaseNames.ToArray();
+            target.Quantity = Quantity;
 
             foreach (var trait in Traits)
             {
-                clone.Traits.Add(trait);
+                target.Traits.Add(trait);
             }
 
-            return clone;
+            return target;
         }
 
         public bool NameMatches(string name)

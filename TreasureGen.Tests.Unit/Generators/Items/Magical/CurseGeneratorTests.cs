@@ -3,9 +3,11 @@ using NUnit.Framework;
 using RollGen;
 using System;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
+using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -18,6 +20,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<IArmorDataSelector> mockArmorDataSelector;
         private ItemVerifier itemVerifier;
 
         [SetUp]
@@ -28,7 +31,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             var generator = new ConfigurableIterativeGenerator(5);
-            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object, mockCollectionsSelector.Object, generator);
+            mockArmorDataSelector = new Mock<IArmorDataSelector>();
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object, mockCollectionsSelector.Object, generator, mockArmorDataSelector.Object);
 
             itemVerifier = new ItemVerifier();
         }
@@ -128,6 +132,41 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
             Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
             Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+        }
+
+        [Test]
+        public void GetArmorProperties()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("specific cursed item");
+
+            var itemType = new[] { ItemTypeConstants.Armor };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            var baseNames = new[] { "base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "specific cursed item")).Returns(baseNames);
+
+            var armorSelection = new ArmorSelection();
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+
+            mockArmorDataSelector.Setup(s => s.Select("base name")).Returns(armorSelection);
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem();
+            Assert.That(cursedItem, Is.InstanceOf<Armor>());
+
+            var armor = cursedItem as Armor;
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
+            Assert.That(armor.Size, Is.EqualTo("size"));
+
+            //INFO: Because all specific cursed items are magical, they are also all masterwork
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
         [Test]

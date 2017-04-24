@@ -3,8 +3,9 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
@@ -18,7 +19,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<IArmorDataSelector> mockArmorDataSelector;
         private ItemVerifier itemVerifier;
+        private ArmorSelection armorSelection;
 
         [SetUp]
         public void Setup()
@@ -27,10 +30,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             var generator = new ConfigurableIterativeGenerator(5);
-            mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object, generator);
+            mockArmorDataSelector = new Mock<IArmorDataSelector>();
+            mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockBooleanPercentileSelector.Object, generator, mockArmorDataSelector.Object);
             itemVerifier = new ItemVerifier();
+            armorSelection = new ArmorSelection();
 
-            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns("armor type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns("armor type");
+            mockArmorDataSelector.Setup(s => s.Select("armor type")).Returns(armorSelection);
         }
 
         [Test]
@@ -38,6 +44,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor, Is.Not.Null);
+            Assert.That(armor, Is.InstanceOf<Armor>());
         }
 
         [Test]
@@ -55,6 +62,87 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+        }
+
+        [Test]
+        public void GetArmorBonus()
+        {
+            armorSelection.ArmorBonus = 9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void GetShieldArmorBonus()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
+
+            armorSelection.ArmorBonus = 9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.Name, Is.EqualTo("big shield"));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void GetArmorCheckPenalty()
+        {
+            armorSelection.ArmorCheckPenalty = -9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-9266));
+        }
+
+        [Test]
+        public void GetShieldArmorCheckPenalty()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
+
+            armorSelection.ArmorCheckPenalty = -9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.Name, Is.EqualTo("big shield"));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-9266));
+        }
+
+        [Test]
+        public void GetMaxDexterityBonus()
+        {
+            armorSelection.MaxDexterityBonus = 9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(9266));
+        }
+
+        [Test]
+        public void GetShieldMaxDexterityBonus()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
+
+            armorSelection.MaxDexterityBonus = 9266;
+
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.Name, Is.EqualTo("big shield"));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(9266));
         }
 
         [Test]
@@ -80,6 +168,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
             var shield = mundaneArmorGenerator.Generate();
             Assert.That(shield.Name, Is.EqualTo("big shield"));
@@ -90,6 +179,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "big shield")).Returns(baseNames);
@@ -114,9 +204,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            var armor = mundaneArmorGenerator.Generate();
-            Assert.That(armor.Traits, Contains.Item("size"));
-            Assert.That(armor.Traits.Count(), Is.EqualTo(1));
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
         }
 
         [Test]
@@ -125,9 +217,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
-            var tableName = String.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "big shield")).Returns(attributes);
 
             var armor = mundaneArmorGenerator.Generate();
@@ -141,10 +234,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
-            var armor = mundaneArmorGenerator.Generate();
+            var item = mundaneArmorGenerator.Generate();
+            var armor = item as Armor;
+
             Assert.That(armor.Name, Is.EqualTo("big shield"));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
         }
 
         [Test]
@@ -152,8 +249,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(true);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -165,8 +262,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors)).Returns(AttributeConstants.Shield);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields)).Returns("big shield");
-            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork))
-                .Returns(false);
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(false);
+            mockArmorDataSelector.Setup(s => s.Select("big shield")).Returns(armorSelection);
 
             var armor = mundaneArmorGenerator.Generate();
             Assert.That(armor.Name, Is.EqualTo("big shield"));
@@ -177,6 +274,43 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void GenerateCustomMundaneArmor()
         {
             var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
+
+            var item = mundaneArmorGenerator.Generate(template);
+            var armor = item as Armor;
+
+            itemVerifier.AssertMundaneItemFromTemplate(armor, template);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Quantity, Is.EqualTo(1));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
+        }
+
+        [Test]
+        public void GenerateCustomMundaneArmorFromNonArmorTemplate()
+        {
+            var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
@@ -189,21 +323,32 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var armor = mundaneArmorGenerator.Generate(template);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
+
+            var item = mundaneArmorGenerator.Generate(template);
+            var armor = item as Armor;
+
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
         public void GenerateRandomCustomMundaneArmor()
         {
             var name = Guid.NewGuid().ToString();
-            var template = itemVerifier.CreateRandomTemplate(name);
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
@@ -215,21 +360,32 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var armor = mundaneArmorGenerator.Generate(template, true);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
+
+            var item = mundaneArmorGenerator.Generate(template, true);
+            var armor = item as Armor;
+
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
-        public void DoNotAddSizeToCustomArmorIfItAlreadyHasOne()
+        public void DoNotAddSizeToCustomItemIfItAlreadyHasOne()
         {
             var name = Guid.NewGuid().ToString();
-            var template = itemVerifier.CreateRandomTemplate(name);
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
             template.Traits.Add("size");
 
             var attributes = new[] { "attribute 1", "attribute 2" };
@@ -244,15 +400,68 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var armor = mundaneArmorGenerator.Generate(template);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
+
+            var item = mundaneArmorGenerator.Generate(template);
+            var armor = item as Armor;
+
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
             Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
             Assert.That(armor.Traits, Is.All.Not.EqualTo("other size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
             Assert.That(armor.Quantity, Is.EqualTo(1));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
+        }
+
+        [Test]
+        public void DoNotAddSizeToCustomArmorIfItAlreadyHasOne()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
+            var templateArmor = template as Armor;
+            templateArmor.Size = "size";
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var sizes = new[] { "size", "other size" };
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns(sizes);
+            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("other size");
+            mockBooleanPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
+
+            var item = mundaneArmorGenerator.Generate(template);
+            var armor = item as Armor;
+
+            itemVerifier.AssertMundaneItemFromTemplate(armor, template);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(armor.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("other size"));
+            Assert.That(armor.Size, Is.EqualTo("other size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Quantity, Is.EqualTo(1));
+            Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -275,13 +484,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var subset = new[] { "other armor", "armor" };
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("armor"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -304,13 +525,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var subset = new[] { "other armor", "armor" };
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("armor"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -334,13 +567,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var subset = new[] { "other shield", "shield" };
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("shield"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -364,13 +609,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var subset = new[] { "other armor", "shield" };
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("shield"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -391,13 +648,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var subset = new[] { "other armor", "armor" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("armor"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]
@@ -419,13 +688,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var subset = new[] { "other shield", "shield" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var armor = mundaneArmorGenerator.GenerateFromSubset(subset);
+            armorSelection.ArmorBonus = 9266;
+            armorSelection.ArmorCheckPenalty = -90210;
+            armorSelection.MaxDexterityBonus = 42;
+            mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
+            mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
+
+            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var armor = item as Armor;
+
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("shield"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
             Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
-            Assert.That(armor.Traits, Contains.Item("size"));
+            Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
         }
 
         [Test]

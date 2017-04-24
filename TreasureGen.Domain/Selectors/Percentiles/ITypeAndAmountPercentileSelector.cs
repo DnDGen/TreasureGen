@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using TreasureGen.Domain.Selectors.Selections;
 
 namespace TreasureGen.Domain.Selectors.Percentiles
 {
     internal interface ITypeAndAmountPercentileSelector
     {
-        TypeAndAmountPercentileResult SelectFrom(string tableName);
-        IEnumerable<TypeAndAmountPercentileResult> SelectAllFrom(string tablename);
+        TypeAndAmountSelection SelectFrom(string tableName);
+        IEnumerable<TypeAndAmountSelection> SelectAllFrom(string tablename);
     }
 }

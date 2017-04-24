@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TreasureGen.Domain.Selectors.Selections;
 
 namespace TreasureGen.Domain.Selectors.Percentiles
 {
@@ -16,7 +17,7 @@ namespace TreasureGen.Domain.Selectors.Percentiles
             this.dice = dice;
         }
 
-        public TypeAndAmountPercentileResult SelectFrom(string tableName)
+        public TypeAndAmountSelection SelectFrom(string tableName)
         {
             var percentileResult = percentileSelector.SelectFrom(tableName);
             var result = ParseResult(percentileResult);
@@ -24,9 +25,9 @@ namespace TreasureGen.Domain.Selectors.Percentiles
             return result;
         }
 
-        private TypeAndAmountPercentileResult ParseResult(string percentileResult)
+        private TypeAndAmountSelection ParseResult(string percentileResult)
         {
-            var result = new TypeAndAmountPercentileResult();
+            var result = new TypeAndAmountSelection();
 
             if (string.IsNullOrEmpty(percentileResult))
                 return result;
@@ -44,7 +45,7 @@ namespace TreasureGen.Domain.Selectors.Percentiles
             return result;
         }
 
-        public IEnumerable<TypeAndAmountPercentileResult> SelectAllFrom(string tablename)
+        public IEnumerable<TypeAndAmountSelection> SelectAllFrom(string tablename)
         {
             var percentileResults = percentileSelector.SelectAllFrom(tablename);
             var results = percentileResults.Select(r => ParseResult(r));

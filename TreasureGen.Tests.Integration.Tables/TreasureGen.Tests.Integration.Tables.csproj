@@ -159,6 +159,7 @@
     <Compile Include="Items\Magical\Weapons\SpellStoringContainsSpellTests.cs" />
     <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\RobeOfTheArchmagiColorsTests.cs" />
+    <Compile Include="Items\Mundane\Armors\ArmorDataTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
     <Compile Include="Items\Magical\Curses\IsItemCursedTests.cs" />
     <Compile Include="Items\Magical\Curses\SpecificCursedItemsTests.cs" />
@@ -166,7 +167,7 @@
     <Compile Include="Items\Magical\Intelligence\IntelligenceCommunicationTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceDedicatedPowerTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceGreaterPowersTests.cs" />
-    <Compile Include="Items\Magical\Intelligence\IntelligenceAttributesTests.cs" />
+    <Compile Include="Items\Magical\Intelligence\IntelligenceDataTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceLesserPowersTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceSpecialPurposeTests.cs" />
     <Compile Include="Items\Magical\Intelligence\IntelligenceStrongStatTests.cs" />

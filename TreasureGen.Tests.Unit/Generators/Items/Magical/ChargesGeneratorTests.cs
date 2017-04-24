@@ -2,12 +2,12 @@
 using NUnit.Framework;
 using RollGen;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
-using TreasureGen.Selectors.Results;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {
@@ -16,17 +16,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private IChargesGenerator generator;
         private Mock<Dice> mockDice;
-        private Mock<IRangeAttributesSelector> mockRangeAttributesSelector;
+        private Mock<IRangeDataSelector> mockRangeDataSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<Dice>();
-            mockRangeAttributesSelector = new Mock<IRangeAttributesSelector>();
+            mockRangeDataSelector = new Mock<IRangeDataSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
 
-            generator = new ChargesGenerator(mockDice.Object, mockRangeAttributesSelector.Object, mockBooleanPercentileSelector.Object);
+            generator = new ChargesGenerator(mockDice.Object, mockRangeDataSelector.Object, mockBooleanPercentileSelector.Object);
         }
 
         [TestCase(ItemTypeConstants.Wand, 1, 1)]
@@ -239,11 +239,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetMinAndMaxForNamedItemsFromAttributesSelector()
         {
-            var result = new RangeAttributesResult();
+            var result = new RangeSelection();
             result.Maximum = 92;
             result.Minimum = 66;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, "name")).Returns(result);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, "name")).Returns(result);
             SetUpRoll(27, 9266);
 
             var charges = generator.GenerateFor(string.Empty, "name");
@@ -253,15 +253,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFullDeckOfIllusions()
         {
-            var result = new RangeAttributesResult();
+            var result = new RangeSelection();
             result.Maximum = 92;
             result.Minimum = 66;
-            var fullResult = new RangeAttributesResult();
+            var fullResult = new RangeSelection();
             fullResult.Maximum = 34;
             fullResult.Minimum = 34;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
 
             SetUpRoll(27, 9266);
             SetUpRoll(1, 1);
@@ -275,15 +275,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GeneratePartiallyFullDeckOfIllusions()
         {
-            var result = new RangeAttributesResult();
+            var result = new RangeSelection();
             result.Maximum = 92;
             result.Minimum = 66;
-            var fullResult = new RangeAttributesResult();
+            var fullResult = new RangeSelection();
             fullResult.Maximum = 34;
             fullResult.Minimum = 34;
 
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
 
             SetUpRoll(27, 9266);
             SetUpRoll(1, 1);

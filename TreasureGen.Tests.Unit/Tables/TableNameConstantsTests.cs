@@ -14,10 +14,11 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, "Specific{0}SpecialAbilities")]
         [TestCase(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, "Specific{0}Traits")]
         [TestCase(TableNameConstants.Collections.Set.AmmunitionAttributes, "AmmunitionAttributes")]
+        [TestCase(TableNameConstants.Collections.Set.ArmorData, "ArmorData")]
         [TestCase(TableNameConstants.Collections.Set.ChargeLimits, "ChargeLimits")]
         [TestCase(TableNameConstants.Collections.Set.EpicItems, "EpicItems")]
-        [TestCase(TableNameConstants.Collections.Set.IntelligenceAttributes, "IntelligenceAttributes")]
         [TestCase(TableNameConstants.Collections.Set.IntelligenceCommunication, "IntelligenceCommunication")]
+        [TestCase(TableNameConstants.Collections.Set.IntelligenceData, "IntelligenceData")]
         [TestCase(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "ItemAlignmentRequirements")]
         [TestCase(TableNameConstants.Collections.Set.ItemGroups, "ItemGroups")]
         [TestCase(TableNameConstants.Collections.Set.ReplacementStrings, "ReplacementStrings")]
@@ -84,7 +85,7 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Set.SpellTypes, "SpellTypes")]
         [TestCase(TableNameConstants.Percentiles.Set.Tools, "Tools")]
         [TestCase(TableNameConstants.Percentiles.Set.WeaponTypes, "WeaponTypes")]
-        public void Constant(string constant, string value)
+        public void TableNameConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
@@ -96,7 +97,7 @@ namespace TreasureGen.Tests.Unit.Tables
         }
 
         [Test]
-        public void AttributeItemTypeTraits()
+        public void CollectionItemTypeTraits()
         {
             Assert.That(TableNameConstants.Collections.Formattable.ITEMTYPETraits, Is.EqualTo("{0}Traits"));
         }

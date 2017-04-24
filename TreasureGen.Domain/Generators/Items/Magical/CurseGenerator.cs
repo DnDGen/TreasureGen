@@ -1,7 +1,7 @@
 ﻿using RollGen;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Attributes;
+using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -16,14 +16,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
+        private readonly IArmorDataSelector armorDataSelector;
 
-        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
+        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.generator = generator;
+            this.armorDataSelector = armorDataSelector;
         }
 
         public bool HasCurse(bool isMagical)
@@ -67,7 +69,23 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
             specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 
-            return specificCursedItem;
+            if (specificCursedItem.ItemType != ItemTypeConstants.Armor)
+                return specificCursedItem;
+
+            var armor = new Armor();
+            specificCursedItem.Clone(armor);
+
+            var baseName = armor.BaseNames.Single();
+            var armorSelection = armorDataSelector.Select(baseName);
+
+            armor.ArmorBonus = armorSelection.ArmorBonus;
+            armor.ArmorCheckPenalty = armorSelection.ArmorCheckPenalty;
+            armor.MaxDexterityBonus = armorSelection.MaxDexterityBonus;
+            armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+
+            armor.Traits.Add(TraitConstants.Masterwork);
+
+            return armor;
         }
 
         public bool IsSpecificCursedItem(Item template)
