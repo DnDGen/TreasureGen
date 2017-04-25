@@ -2,25 +2,61 @@
 
 <attributes>
   <object>
+    <name>Arrow</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Wood</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Crossbow bolt</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Sling bullet</name>
+    <attribute>Weapon</attribute>
+    <attribute>Common</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Sai</name>
+    <attribute>1d4</attribute>
+    <attribute>1d6</attribute>
+    <attribute>Uncommon</attribute>
+    <attribute>Melee</attribute>
+  </object>
+  <object>
+    <name>Bolas</name>
+    <attribute>1d4</attribute>
+    <attribute>1d6</attribute>
+    <attribute>Uncommon</attribute>
+    <attribute>Melee</attribute>
+  </object>
+  <object>
     <name>Bastard sword</name>
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Battleaxe</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Club</name>
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
   </object>
@@ -31,8 +67,6 @@
     <attribute>Melee</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Dire flail</name>
@@ -40,7 +74,6 @@
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -49,23 +82,19 @@
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Dwarven waraxe</name>
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Falchion</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -73,14 +102,12 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Glaive</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -89,8 +116,6 @@
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -98,7 +123,6 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -106,7 +130,6 @@
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -114,7 +137,6 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -122,7 +144,6 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -130,17 +151,14 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
-    <name>Halfspear</name>
+    <name>Spear</name>
     <attribute>Metal</attribute>
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -148,21 +166,18 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Hand crossbow</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Ranged</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Heavy flail</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -170,21 +185,18 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Heavy pick</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Heavy repeating crossbow</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Ranged</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -193,14 +205,12 @@
     <attribute>Wood</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Kukri</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Lance</name>
@@ -208,22 +218,19 @@
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
-    <name>Light flail</name>
+    <name>Flail</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Light hammer</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
   </object>
@@ -232,21 +239,18 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Light pick</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Light repeating crossbow</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Ranged</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -255,7 +259,6 @@
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -263,15 +266,12 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Morningstar</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Net</name>
@@ -285,7 +285,6 @@
     <attribute>Wood</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Orc double axe</name>
@@ -293,7 +292,6 @@
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -301,7 +299,6 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Quarterstaff</name>
@@ -309,7 +306,6 @@
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -318,7 +314,6 @@
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -326,20 +321,17 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Sap</name>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Scimitar</name>
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Scythe</name>
@@ -347,7 +339,6 @@
     <attribute>Wood</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -356,7 +347,6 @@
     <attribute>Wood</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
   </object>
@@ -365,14 +355,12 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Shuriken</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Ranged</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Thrown</attribute>
   </object>
   <object>
@@ -380,21 +368,18 @@
     <attribute>Metal</attribute>
     <attribute>Common</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Sickle</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Spiked chain</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -402,14 +387,12 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Trident</name>
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
   </object>
@@ -419,7 +402,6 @@
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
     <attribute>Double weapon</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -427,20 +409,17 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Whip</name>
     <attribute>Uncommon</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Composite longbow</name>
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -448,7 +427,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -456,7 +434,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -464,7 +441,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -472,7 +448,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Metal</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Thrown</attribute>
   </object>
   <object>
@@ -480,7 +455,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -488,7 +462,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -497,14 +470,12 @@
     <attribute>Ranged</attribute>
     <attribute>Wood</attribute>
     <attribute>Metal</attribute>
-    <attribute>Piercing</attribute>
     <attribute>Thrown</attribute>
   </object>
   <object>
     <name>Sling</name>
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
-    <attribute>Bludgeoning</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>
@@ -512,7 +483,6 @@
     <attribute>Common</attribute>
     <attribute>Ranged</attribute>
     <attribute>Metal</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Thrown</attribute>
   </object>
 </attributes>

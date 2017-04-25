@@ -18,7 +18,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AssertReplacementStringsAreValid();
         }
 
-        [TestCase(AttributeConstants.Ammunition, 1, 10)]
+        [TestCase(WeaponConstants.Arrow, 1, 5)]
+        [TestCase(WeaponConstants.CrossbowBolt, 6, 8)]
+        [TestCase(WeaponConstants.SlingBullet, 9, 10)]
         [TestCase(WeaponConstants.ThrowingAxe, 11, 15)]
         [TestCase(WeaponConstants.HeavyCrossbow, 16, 25)]
         [TestCase(WeaponConstants.LightCrossbow, 26, 35)]

@@ -16,7 +16,7 @@
     <object>
         <name>Bashing</name>
         <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
+        <attribute>!Tower shield</attribute>
     </object>
     <object>
         <name>Blinding</name>

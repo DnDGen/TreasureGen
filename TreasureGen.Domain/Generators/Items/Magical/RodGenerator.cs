@@ -7,6 +7,7 @@ using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Domain.Generators.Items.Magical
 {
@@ -18,9 +19,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
+        private readonly MundaneItemGenerator mundaneWeaponGenerator;
 
-        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionsSelector,
-            IChargesGenerator chargesGenerator, IBooleanPercentileSelector booleanPercentileSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator, Generator generator)
+        public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            ICollectionsSelector collectionsSelector,
+            IChargesGenerator chargesGenerator,
+            IBooleanPercentileSelector booleanPercentileSelector,
+            ISpecialAbilitiesGenerator specialAbilitiesGenerator,
+            Generator generator,
+            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -28,6 +35,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.generator = generator;
+
+            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
         }
 
         public Item GenerateAtPower(string power)
@@ -44,24 +53,45 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
             rod.IsMagical = true;
             rod.Magic.Bonus = result.Amount;
-            tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, rod.ItemType);
+            tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
             rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
-                rod.Magic.Charges = chargesGenerator.GenerateFor(rod.ItemType, rod.Name);
+                rod.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, rod.Name);
 
             if (rod.Name == RodConstants.Absorption)
             {
                 var containsSpellLevels = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
-                    var maxCharges = chargesGenerator.GenerateFor(rod.ItemType, RodConstants.FullAbsorption);
+                    var maxCharges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption);
                     var containedSpellLevels = (maxCharges - rod.Magic.Charges) / 2;
                     rod.Contents.Add($"{containedSpellLevels} spell levels");
                 }
             }
 
+            rod = GetWeapon(rod);
+
             return rod;
+        }
+
+        private Item GetWeapon(Item rod)
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            if (!weapons.Intersect(rod.BaseNames).Any())
+                return rod;
+
+            var template = new Weapon();
+            template.Name = weapons.Intersect(rod.BaseNames).First();
+            var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
+
+            rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);
+            rod.Clone(mundaneWeapon);
+
+            if (mundaneWeapon.IsMagical)
+                mundaneWeapon.Traits.Add(TraitConstants.Masterwork);
+
+            return mundaneWeapon;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
@@ -80,6 +110,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
 
             rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(rod.Magic.SpecialAbilities);
+
+            rod = GetWeapon(rod);
 
             return rod.SmartClone();
         }

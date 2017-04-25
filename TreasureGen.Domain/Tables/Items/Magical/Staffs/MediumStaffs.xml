@@ -3,42 +3,42 @@
 <percentile>
     <object>
         <lower>1</lower>
-        <content>Staff of Charming</content>
+        <content>Staff of Charming,0</content>
         <upper>15</upper>
     </object>
     <object>
         <lower>16</lower>
-        <content>Staff of Fire</content>
+        <content>Staff of Fire,0</content>
         <upper>30</upper>
     </object>
     <object>
         <lower>31</lower>
-        <content>Staff of Swarming insects</content>
+        <content>Staff of Swarming insects,0</content>
         <upper>40</upper>
     </object>
     <object>
         <lower>41</lower>
-        <content>Staff of Healing</content>
+        <content>Staff of Healing,0</content>
         <upper>60</upper>
     </object>
     <object>
         <lower>61</lower>
-        <content>Staff of Size alteration</content>
+        <content>Staff of Size alteration,0</content>
         <upper>75</upper>
     </object>
     <object>
         <lower>76</lower>
-        <content>Staff of Illumination</content>
+        <content>Staff of Illumination,0</content>
         <upper>90</upper>
     </object>
     <object>
         <lower>91</lower>
-        <content>Staff of Frost</content>
+        <content>Staff of Frost,0</content>
         <upper>95</upper>
     </object>
     <object>
         <lower>96</lower>
-        <content>Staff of Defense</content>
+        <content>Staff of Defense,0</content>
         <upper>100</upper>
     </object>
 </percentile>

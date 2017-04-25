@@ -33,7 +33,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
             AttributeConstants.Shield)]
         [TestCase(SpecialAbilityConstants.Bashing,
             AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            "!" + AttributeConstants.TowerShield)]
         [TestCase(SpecialAbilityConstants.Blinding,
             AttributeConstants.Shield)]
         [TestCase(SpecialAbilityConstants.ArrowDeflection,
@@ -47,7 +47,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
             AttributeConstants.Ranged)]
         [TestCase(SpecialAbilityConstants.Disruption,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.DamageTypes.Bludgeoning)]
         [TestCase(SpecialAbilityConstants.Flaming)]
         [TestCase(SpecialAbilityConstants.Frost)]
         [TestCase(SpecialAbilityConstants.Merciful)]
@@ -66,7 +66,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.BrilliantEnergy)]
         [TestCase(SpecialAbilityConstants.Keen,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing + "/" + AttributeConstants.Slashing)]
+            AttributeConstants.DamageTypes.Piercing + "/" + AttributeConstants.DamageTypes.Slashing)]
         [TestCase(SpecialAbilityConstants.KiFocus,
             AttributeConstants.Melee)]
         [TestCase(SpecialAbilityConstants.MightyCleaving,
@@ -85,8 +85,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical
             AttributeConstants.Melee)]
         [TestCase(SpecialAbilityConstants.Vorpal,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
-        public override void Collections(string name, params string[] attributes)
+            AttributeConstants.DamageTypes.Slashing)]
+        public void SpecialAbilityRequirements(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

@@ -100,8 +100,6 @@
     <Compile Include="Generators\Items\Magical\WandGenerator.cs" />
     <Compile Include="Generators\Items\Magical\WondrousItemGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\AlchemicalItemGenerator.cs" />
-    <Compile Include="Generators\Items\Mundane\AmmunitionGenerator.cs" />
-    <Compile Include="Generators\Items\Mundane\IAmmunitionGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\ISpecialMaterialGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneArmorGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneWeaponGenerator.cs" />
@@ -128,6 +126,8 @@
     <Compile Include="Selectors\Collections\ArmorDataSelector.cs" />
     <Compile Include="Selectors\Collections\CollectionsSelector.cs" />
     <Compile Include="Selectors\Collections\IArmorDataSelector.cs" />
+    <Compile Include="Selectors\Collections\IWeaponDataSelector.cs" />
+    <Compile Include="Selectors\Collections\WeaponDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\BooleanPercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecorator.cs" />
@@ -148,6 +148,7 @@
     <Compile Include="Selectors\Selections\TypeAndAmountSelection.cs" />
     <Compile Include="Selectors\Collections\SpecialAbilityDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelector.cs" />
+    <Compile Include="Selectors\Selections\WeaponSelection.cs" />
     <Compile Include="Tables\AmountConstants.cs" />
     <Compile Include="Tables\DataIndexConstants.cs" />
     <Compile Include="Tables\EmbeddedResourceStreamLoader.cs" />
@@ -802,7 +803,7 @@
     <EmbeddedResource Include="Tables\Items\Mundane\Armors\MundaneShields.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Mundane\HasSpecialMaterial.xml" />
+    <EmbeddedResource Include="Tables\Items\HasSpecialMaterial.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\IsMasterwork.xml" />
@@ -818,12 +819,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\Tools\Tools.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\AmmunitionAttributes.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\Ammunitions.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\Weapons\CommonMeleeWeapons.xml" />
@@ -950,6 +945,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\Armors\ArmorData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\WeaponDamages.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\WeaponData.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

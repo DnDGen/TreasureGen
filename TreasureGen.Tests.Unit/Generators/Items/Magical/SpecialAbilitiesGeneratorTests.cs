@@ -26,6 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private List<string> itemAttributes;
         private List<string> names;
         private string power;
+        private Item item;
 
         [SetUp]
         public void Setup()
@@ -37,20 +38,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityDataSelector>();
             mockDice = new Mock<Dice>();
+            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
             names = new List<string>();
+            item = new Item();
+
             power = "power";
+            item.ItemType = ItemTypeConstants.Armor;
+            item.Attributes = itemAttributes;
+            item.Magic.Bonus = 1;
 
             mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(names);
             mockDice.Setup(d => d.Roll(1).d(It.IsAny<int>()).AsSum()).Returns(1);
-
-            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object,
-                mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
         }
 
         [Test]
         public void ReturnEmptyIfBonusLessThanOne()
         {
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 0, 1);
+            item.Magic.Bonus = 0;
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
         }
 
@@ -60,27 +66,29 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             itemAttributes.Add(AttributeConstants.Shield);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
 
-            specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
         }
 
         [Test]
         public void GetMeleeAbilityIfMelee()
         {
+            item.ItemType = ItemTypeConstants.Weapon;
             itemAttributes.Add(AttributeConstants.Melee);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
 
-            specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Weapon, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
         }
 
         [Test]
         public void GetRangedAbilityIfRanged()
         {
+            item.ItemType = ItemTypeConstants.Weapon;
             itemAttributes.Add(AttributeConstants.Ranged);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
 
-            specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Weapon, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
         }
 
@@ -88,14 +96,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetArmorAbilityIfArmor()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
-            specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
         }
 
         [Test]
         public void ReturnEmptyIfNoMatchingTableNames()
         {
-            var abilities = specialAbilitiesGenerator.GenerateFor("wrong item type", itemAttributes, power, 1, 1);
+            item.ItemType = "wrong item type";
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
         }
 
@@ -105,7 +115,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("name", "base name", 9, 266);
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var ability = abilities.First();
             Assert.That(ability.AttributeRequirements, Is.EqualTo(itemAttributes));
             Assert.That(ability.Name, Is.EqualTo("name"));
@@ -121,10 +131,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 1");
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+                .Returns("ability 1")
+                .Returns("ability 2")
                 .Returns("ability 3");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 3);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -135,6 +147,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void WeaponsThatAreBothMeleeAndRangedGetRandomlyBetweenTables()
         {
+            item.ItemType = ItemTypeConstants.Weapon;
             itemAttributes.Add(AttributeConstants.Melee);
             itemAttributes.Add(AttributeConstants.Ranged);
 
@@ -155,7 +168,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
 
             Assert.That(names, Contains.Item("melee ability"));
@@ -166,11 +179,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotAllowAbilitiesAndMagicBonusToBeGreaterThan10()
         {
+            item.Magic.Bonus = 9;
+
             CreateSpecialAbility("big ability", bonus: 2);
             CreateSpecialAbility("small ability", bonus: 1);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("big ability").Returns("small ability");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 9, 1);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+                .Returns("big ability")
+                .Returns("small ability");
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("small ability"));
             Assert.That(names.Count(), Is.EqualTo(1));
@@ -179,14 +197,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void AccumulateAbilities()
         {
+            item.Magic.Bonus = 5;
+
             CreateSpecialAbility("ability 1", bonus: 2);
             CreateSpecialAbility("ability 2", bonus: 2);
             CreateSpecialAbility("ability 3", bonus: 3);
             CreateSpecialAbility("ability 4", bonus: 0);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
-                .Returns("ability 3").Returns("ability 4");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 5, 3);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+                .Returns("ability 1")
+                .Returns("ability 2")
+                .Returns("ability 3")
+                .Returns("ability 4");
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -199,9 +223,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("weak ability", "ability", power: 1);
             CreateSpecialAbility("strong ability", "ability", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("weak ability").Returns("strong ability");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+                .Returns("weak ability")
+                .Returns("strong ability");
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("strong ability"));
             Assert.That(names.Count(), Is.EqualTo(1));
@@ -214,7 +241,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("strong ability", power: 2);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("weak ability").Returns("strong ability");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("weak ability"));
             Assert.That(names, Contains.Item("strong ability"));
@@ -230,7 +257,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("strong ability").Returns("weak ability")
                 .Returns("other ability");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("strong ability"));
             Assert.That(names, Is.Not.Contains("weak ability"));
@@ -246,7 +273,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 4);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 4);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -263,7 +290,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -279,7 +306,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 1")
                 .Returns("ability 2");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 2);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -296,7 +323,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1")).Returns(new[] { "other type", "type 1" });
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2")).Returns(itemAttributes);
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names.Count(), Is.EqualTo(1));
@@ -314,7 +341,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1")).Returns(new[] { "other/order/of/type", "type 1" });
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2")).Returns(new[] { "either/or" });
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names.Count(), Is.EqualTo(1));
@@ -326,9 +353,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("ability");
             itemAttributes.Add("type 1");
-            var inputTypes = itemAttributes.Union(new[] { "other type" });
+            item.Attributes = itemAttributes.Union(new[] { "other type" });
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, inputTypes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability"));
             Assert.That(names.Count(), Is.EqualTo(1));
@@ -339,10 +366,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("BonusSpecialAbility").Returns("ability 1")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+                .Returns("BonusSpecialAbility")
+                .Returns("ability 1")
                 .Returns("ability 2");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -355,7 +384,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability");
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("ability");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 5);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 5);
             Assert.That(abilities.Count(), Is.EqualTo(1));
         }
 
@@ -366,7 +395,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2", "base name", power: 2);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 5);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 5);
             Assert.That(abilities.Count(), Is.EqualTo(1));
         }
 
@@ -374,7 +403,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void ReturnEmptyIfNoCompatibleAbilities()
         {
             mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(Enumerable.Empty<string>());
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 1);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
         }
 
@@ -388,7 +417,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 4);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 4);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -407,7 +436,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 5);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 5);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -426,7 +455,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 4").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 1");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 3);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));
@@ -445,7 +474,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 3").Returns("BonusSpecialAbility")
                 .Returns("ability 2").Returns("ability 1").Returns("ability 4");
 
-            var abilities = specialAbilitiesGenerator.GenerateFor(ItemTypeConstants.Armor, itemAttributes, power, 1, 3);
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
             var names = abilities.Select(a => a.Name);
             Assert.That(names, Contains.Item("ability 1"));
             Assert.That(names, Contains.Item("ability 2"));

@@ -208,7 +208,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public override void NoDecorationsHappen()
         {
-            AssertNoDecorationsHappen();
+            //INFO: have to make our own method here, since all magic weapons are masterwork
+            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && !i.Traits.Except(new[] { TraitConstants.Masterwork }).Any() && string.IsNullOrEmpty(i.Magic.Curse) && i.Magic.Intelligence.Ego == 0);
+            AssertItem(item);
+            Assert.That(item.Traits.Except(new[] { TraitConstants.Masterwork }), Is.Empty);
+            Assert.That(item.Magic.Curse, Is.Empty);
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
         }
 
         [Test]

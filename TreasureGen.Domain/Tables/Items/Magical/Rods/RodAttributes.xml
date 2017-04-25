@@ -69,7 +69,6 @@
     </object>
     <object>
         <name>Rod of the python</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Double weapon</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
@@ -78,7 +77,6 @@
     </object>
     <object>
         <name>Rod of the viper</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>
@@ -95,7 +93,6 @@
     </object>
     <object>
         <name>Rod of withering</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>
@@ -103,7 +100,6 @@
     </object>
     <object>
         <name>Rod of thunder and lightning</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>
@@ -114,7 +110,6 @@
     </object>
     <object>
         <name>Rod of flailing</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Double weapon</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>
@@ -136,7 +131,6 @@
     </object>
     <object>
         <name>Rod of lordly might</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>
@@ -144,7 +138,6 @@
     </object>
     <object>
         <name>Rod of alertness</name>
-        <attribute>Bludgeoning</attribute>
         <attribute>Common</attribute>
         <attribute>Melee</attribute>
         <attribute>Metal</attribute>

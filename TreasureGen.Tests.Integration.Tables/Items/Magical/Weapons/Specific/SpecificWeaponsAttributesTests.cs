@@ -15,26 +15,21 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.SleepArrow,
             AttributeConstants.Ammunition,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.ScreamingBolt,
             AttributeConstants.Ammunition,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.SilverDagger,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.Longsword,
             AttributeConstants.Melee,
             AttributeConstants.Specific,
-            AttributeConstants.Slashing,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.JavelinOfLightning,
             AttributeConstants.Specific,
@@ -46,52 +41,40 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.SlayingArrow,
             AttributeConstants.Ammunition,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.Dagger,
-            AttributeConstants.Slashing,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.Battleaxe,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.GreaterSlayingArrow,
             AttributeConstants.Ammunition,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.Shatterspike,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.DaggerOfVenom,
-            AttributeConstants.Slashing,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.TridentOfWarning,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.AssassinsDagger,
-            AttributeConstants.Slashing,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.ShiftersSorrow,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
@@ -99,118 +82,97 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.TridentOfFishCommand,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.FlameTongue,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.LuckBlade0,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
         [TestCase(WeaponConstants.LuckBlade,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
         [TestCase(WeaponConstants.SwordOfSubtlety,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.SwordOfThePlanes,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.NineLivesStealer,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.SwordOfLifeStealing,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.Oathbow,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.MaceOfTerror,
             AttributeConstants.Specific,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.LifeDrinker,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.SylvanScimitar,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.RapierOfPuncturing,
             AttributeConstants.Specific,
-            AttributeConstants.Piercing,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.SunBlade,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.FrostBrand,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.DwarvenThrower,
             AttributeConstants.Specific,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.LuckBlade1,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
         [TestCase(WeaponConstants.MaceOfSmiting,
             AttributeConstants.Specific,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.LuckBlade2,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
         [TestCase(WeaponConstants.HolyAvenger,
-            AttributeConstants.Slashing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.LuckBlade3,
-            AttributeConstants.Piercing,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
-        public override void Collections(string name, params string[] attributes)
+        public void SpecificWeaponAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

@@ -54,9 +54,9 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return item;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.Generate(template, allowRandomDecoration);
+            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
             if (allowRandomDecoration)
             {
@@ -66,9 +66,9 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFromSubset(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset)
         {
-            var item = innerGenerator.GenerateFromSubset(subset);
+            var item = innerGenerator.GenerateFrom(subset);
             item = AddSpecialMaterials(item);
 
             return item;

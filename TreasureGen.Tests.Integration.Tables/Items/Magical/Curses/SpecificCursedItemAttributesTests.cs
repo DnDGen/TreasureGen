@@ -29,8 +29,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WeaponConstants.CursedMinus2Sword,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
-            AttributeConstants.Metal,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Metal)]
         [TestCase(ArmorConstants.ArmorOfRage,
             AttributeConstants.Metal,
             AttributeConstants.Specific)]
@@ -51,7 +50,6 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction,
@@ -66,8 +64,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific)]
         [TestCase(WeaponConstants.MaceOfBlood,
             AttributeConstants.Specific,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WondrousItemConstants.RobeOfVermin,
             AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.PeriaptOfFoulRotting,
@@ -76,7 +73,6 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WondrousItemConstants.BootsOfDancing,
             AttributeConstants.Specific)]
@@ -94,7 +90,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.ScarabOfDeath,
             AttributeConstants.Specific)]
-        public override void Collections(string name, params string[] attributes)
+        public void SpecificCursedItemAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

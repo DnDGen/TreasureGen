@@ -69,6 +69,10 @@
     <attribute>Greatsword</attribute>
   </object>
   <object>
+    <name>Bolas</name>
+    <attribute>Bolas</attribute>
+  </object>
+  <object>
     <name>Boots of dancing</name>
     <attribute>Boots of dancing</attribute>
   </object>
@@ -285,8 +289,8 @@
     <attribute>Half-plate</attribute>
   </object>
   <object>
-    <name>Halfspear</name>
-    <attribute>Halfspear</attribute>
+    <name>Spear</name>
+    <attribute>Spear</attribute>
   </object>
   <object>
     <name>Hand crossbow</name>
@@ -377,8 +381,8 @@
     <attribute>Light crossbow</attribute>
   </object>
   <object>
-    <name>Light flail</name>
-    <attribute>Light flail</attribute>
+    <name>Flail</name>
+    <attribute>Flail</attribute>
   </object>
   <object>
     <name>Light hammer</name>
@@ -706,6 +710,10 @@
   <object>
     <name>Rod of wonder</name>
     <attribute>Rod of wonder</attribute>
+  </object>
+  <object>
+    <name>Sai</name>
+    <attribute>Sai</attribute>
   </object>
   <object>
     <name>Sap</name>

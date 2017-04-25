@@ -6,7 +6,7 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Staves
 {
     [TestFixture]
-    public class MediumStaffsTests : PercentileTests
+    public class MediumStaffsTests : TypeAndAmountPercentileTests
     {
         protected override string tableName
         {
@@ -25,17 +25,17 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Staves
             AssertTableIsComplete();
         }
 
-        [TestCase(StaffConstants.Charming, 1, 15)]
-        [TestCase(StaffConstants.Fire, 16, 30)]
-        [TestCase(StaffConstants.SwarmingInsects, 31, 40)]
-        [TestCase(StaffConstants.Healing, 41, 60)]
-        [TestCase(StaffConstants.SizeAlteration, 61, 75)]
-        [TestCase(StaffConstants.Illumination, 76, 90)]
-        [TestCase(StaffConstants.Frost, 91, 95)]
-        [TestCase(StaffConstants.Defense, 96, 100)]
-        public override void Percentile(string content, int lower, int upper)
+        [TestCase(1, 15, StaffConstants.Charming, 0)]
+        [TestCase(16, 30, StaffConstants.Fire, 0)]
+        [TestCase(31, 40, StaffConstants.SwarmingInsects, 0)]
+        [TestCase(41, 60, StaffConstants.Healing, 0)]
+        [TestCase(61, 75, StaffConstants.SizeAlteration, 0)]
+        [TestCase(76, 90, StaffConstants.Illumination, 0)]
+        [TestCase(91, 95, StaffConstants.Frost, 0)]
+        [TestCase(96, 100, StaffConstants.Defense, 0)]
+        public void TypeAndAmountPercentile(int lower, int upper, string type, int amount)
         {
-            base.Percentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
     }
 }

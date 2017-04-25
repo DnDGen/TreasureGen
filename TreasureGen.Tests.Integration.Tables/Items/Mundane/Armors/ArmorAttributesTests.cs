@@ -14,27 +14,23 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Armors
 
         [TestCase(ArmorConstants.Buckler,
             AttributeConstants.Wood,
-            AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.LightWoodenShield,
             AttributeConstants.Wood,
-            AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.LightSteelShield,
             AttributeConstants.Metal,
-            AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.HeavyWoodenShield,
             AttributeConstants.Wood,
-            AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.HeavySteelShield,
             AttributeConstants.Metal,
-            AttributeConstants.Shield,
-            AttributeConstants.NotTower)]
+            AttributeConstants.Shield)]
         [TestCase(ArmorConstants.TowerShield,
             AttributeConstants.Wood,
-            AttributeConstants.Shield)]
+            AttributeConstants.Shield,
+            AttributeConstants.TowerShield)]
         [TestCase(ArmorConstants.PaddedArmor)]
         [TestCase(ArmorConstants.LeatherArmor)]
         [TestCase(ArmorConstants.StuddedLeatherArmor, AttributeConstants.Metal)]

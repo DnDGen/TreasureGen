@@ -54,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var tool = toolGenerator.Generate(template);
+            var tool = toolGenerator.GenerateFrom(template);
             itemVerifier.AssertMundaneItemFromTemplate(tool, template);
             Assert.That(tool.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
@@ -69,7 +69,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var tool = toolGenerator.Generate(template, true);
+            var tool = toolGenerator.GenerateFrom(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(tool, template);
             Assert.That(tool.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
@@ -87,7 +87,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns("tool")
                 .Returns("other tool");
 
-            var tool = toolGenerator.GenerateFromSubset(subset);
+            var tool = toolGenerator.GenerateFrom(subset);
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);
@@ -105,7 +105,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools)).Returns("wrong tool");
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
 
-            var tool = toolGenerator.GenerateFromSubset(subset);
+            var tool = toolGenerator.GenerateFrom(subset);
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);
@@ -119,7 +119,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateFromEmptySubset()
         {
-            Assert.That(() => toolGenerator.GenerateFromSubset(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
+            Assert.That(() => toolGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

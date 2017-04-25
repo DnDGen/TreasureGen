@@ -36,7 +36,6 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IItemsGenerator>().To<ItemsGenerator>().WhenInjectedInto<ItemsGeneratorEventGenDecorator>();
             Bind<IItemsGenerator>().To<ItemsGeneratorEventGenDecorator>();
 
-            Bind<IAmmunitionGenerator>().To<AmmunitionGenerator>();
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<ICurseGenerator>().To<CurseGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();

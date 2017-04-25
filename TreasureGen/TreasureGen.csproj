@@ -70,6 +70,7 @@
     <Compile Include="Items\Magical\SpecialAbilityConstants.cs" />
     <Compile Include="Items\Magical\StaffConstants.cs" />
     <Compile Include="Items\TraitConstants.cs" />
+    <Compile Include="Items\Weapon.cs" />
     <Compile Include="Items\WeaponConstants.cs" />
     <Compile Include="Items\Magical\WondrousItemConstants.cs" />
     <Compile Include="ITreasureGenerator.cs" />

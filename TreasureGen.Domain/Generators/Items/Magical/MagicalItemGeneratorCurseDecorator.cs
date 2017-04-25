@@ -24,7 +24,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             {
                 var curse = curseGenerator.GenerateCurse();
                 if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-                    return curseGenerator.GenerateSpecificCursedItem();
+                    return curseGenerator.Generate();
 
                 item.Magic.Curse = curse;
             }
@@ -35,7 +35,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             if (curseGenerator.IsSpecificCursedItem(template))
-                return curseGenerator.GenerateSpecificCursedItem(template);
+                return curseGenerator.GenerateFrom(template);
 
             var item = innerGenerator.Generate(template, allowRandomDecoration);
 
@@ -52,20 +52,20 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var item = innerGenerator.GenerateFromSubset(power, subset);
 
-            if (curseGenerator.HasCurse(item.IsMagical))
+            if (!curseGenerator.HasCurse(item.IsMagical))
+                return item;
+
+            var curse = curseGenerator.GenerateCurse();
+            if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
             {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-                {
-                    var specificCursedItem = curseGenerator.GenerateSpecificCursedItem(subset);
-                    if (specificCursedItem == null)
-                        return item;
+                var specificCursedItem = curseGenerator.GenerateFrom(subset);
+                if (specificCursedItem == null)
+                    return item;
 
-                    return specificCursedItem;
-                }
-
-                item.Magic.Curse = curse;
+                return specificCursedItem;
             }
+
+            item.Magic.Curse = curse;
 
             return item;
         }

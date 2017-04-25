@@ -2,83 +2,79 @@
 
 <attributes>
   <object>
-      <name>Banded mail</name>
-      <attribute>Metal</attribute>
+    <name>Banded mail</name>
+    <attribute>Metal</attribute>
   </object>
-    <object>
-        <name>Breastplate</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Buckler</name>
-        <attribute>Wood</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
-    </object>
-    <object>
-        <name>Chainmail</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Chain shirt</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Full plate</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Half-plate</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Heavy steel shield</name>
-        <attribute>Metal</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
-    </object>
-    <object>
-        <name>Heavy wooden shield</name>
-        <attribute>Wood</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
-    </object>
-    <object>
-        <name>Light steel shield</name>
-        <attribute>Metal</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
-    </object>
-    <object>
-        <name>Light wooden shield</name>
-        <attribute>Wood</attribute>
-        <attribute>Shield</attribute>
-        <attribute>Not tower</attribute>
-    </object>
-    <object>
-        <name>Scale mail</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Splint mail</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Studded leather armor</name>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Tower shield</name>
-        <attribute>Wood</attribute>
-        <attribute>Shield</attribute>
-    </object>
-    <object>
-        <name>Hide armor</name>
-    </object>
-    <object>
-        <name>Leather armor</name>
-    </object>
-    <object>
-        <name>Padded armor</name>
-    </object>
+  <object>
+    <name>Breastplate</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Buckler</name>
+    <attribute>Wood</attribute>
+    <attribute>Shield</attribute>
+  </object>
+  <object>
+    <name>Chainmail</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Chain shirt</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Full plate</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Half-plate</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Heavy steel shield</name>
+    <attribute>Metal</attribute>
+    <attribute>Shield</attribute>
+  </object>
+  <object>
+    <name>Heavy wooden shield</name>
+    <attribute>Wood</attribute>
+    <attribute>Shield</attribute>
+  </object>
+  <object>
+    <name>Light steel shield</name>
+    <attribute>Metal</attribute>
+    <attribute>Shield</attribute>
+  </object>
+  <object>
+    <name>Light wooden shield</name>
+    <attribute>Wood</attribute>
+    <attribute>Shield</attribute>
+  </object>
+  <object>
+    <name>Scale mail</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Splint mail</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Studded leather armor</name>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Tower shield</name>
+    <attribute>Wood</attribute>
+    <attribute>Shield</attribute>
+    <attribute>Tower shield</attribute>
+  </object>
+  <object>
+    <name>Hide armor</name>
+  </object>
+  <object>
+    <name>Leather armor</name>
+  </object>
+  <object>
+    <name>Padded armor</name>
+  </object>
 </attributes>

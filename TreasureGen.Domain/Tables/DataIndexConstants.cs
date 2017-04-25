@@ -9,6 +9,13 @@
             public const int MaxDexterityBonus = 2;
         }
 
+        public static class Weapon
+        {
+            public const int DamageType = 0;
+            public const int ThreatRange = 1;
+            public const int CriticalMultiplier = 2;
+        }
+
         public static class Intelligence
         {
             public const int GreaterPowersCount = 2;

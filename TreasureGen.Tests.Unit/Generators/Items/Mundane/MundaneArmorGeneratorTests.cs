@@ -291,7 +291,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             armorSelection.MaxDexterityBonus = 42;
             mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
 
-            var item = mundaneArmorGenerator.Generate(template);
+            var item = mundaneArmorGenerator.GenerateFrom(template);
             var armor = item as Armor;
 
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
@@ -328,7 +328,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             armorSelection.MaxDexterityBonus = 42;
             mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
 
-            var item = mundaneArmorGenerator.Generate(template);
+            var item = mundaneArmorGenerator.GenerateFrom(template);
             var armor = item as Armor;
 
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
@@ -365,7 +365,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             armorSelection.MaxDexterityBonus = 42;
             mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
 
-            var item = mundaneArmorGenerator.Generate(template, true);
+            var item = mundaneArmorGenerator.GenerateFrom(template, true);
             var armor = item as Armor;
 
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
@@ -405,7 +405,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             armorSelection.MaxDexterityBonus = 42;
             mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
 
-            var item = mundaneArmorGenerator.Generate(template);
+            var item = mundaneArmorGenerator.GenerateFrom(template);
             var armor = item as Armor;
 
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
@@ -447,7 +447,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             armorSelection.MaxDexterityBonus = 42;
             mockArmorDataSelector.Setup(s => s.Select(name)).Returns(armorSelection);
 
-            var item = mundaneArmorGenerator.Generate(template);
+            var item = mundaneArmorGenerator.GenerateFrom(template);
             var armor = item as Armor;
 
             itemVerifier.AssertMundaneItemFromTemplate(armor, template);
@@ -490,7 +490,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -531,7 +531,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -573,7 +573,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -615,7 +615,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -654,7 +654,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("armor")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong armor")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -694,7 +694,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockArmorDataSelector.Setup(s => s.Select("shield")).Returns(armorSelection);
             mockArmorDataSelector.Setup(s => s.Select("wrong shield")).Returns(new ArmorSelection());
 
-            var item = mundaneArmorGenerator.GenerateFromSubset(subset);
+            var item = mundaneArmorGenerator.GenerateFrom(subset);
             var armor = item as Armor;
 
             Assert.That(armor, Is.Not.Null);
@@ -712,7 +712,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateFromEmptySubset()
         {
-            Assert.That(() => mundaneArmorGenerator.GenerateFromSubset(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
+            Assert.That(() => mundaneArmorGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

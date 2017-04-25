@@ -47,6 +47,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(item.BaseNames.Single(), Is.EqualTo(selection.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
+            Assert.That(item.Attributes, Is.Empty);
+            Assert.That(item.IsMagical, Is.False);
         }
 
         [Test]
@@ -55,10 +57,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var item = alchemicalItemGenerator.Generate(template);
+            var item = alchemicalItemGenerator.GenerateFrom(template);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
+            Assert.That(item.Attributes, Is.Empty);
         }
 
         [Test]
@@ -67,10 +70,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var item = alchemicalItemGenerator.Generate(template, true);
+            var item = alchemicalItemGenerator.GenerateFrom(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
+            Assert.That(item.Attributes, Is.Empty);
         }
 
         [Test]
@@ -85,7 +89,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns(new TypeAndAmountSelection { Type = "alchemical item", Amount = 90210 })
                 .Returns(new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 });
 
-            var item = alchemicalItemGenerator.GenerateFromSubset(subset);
+            var item = alchemicalItemGenerator.GenerateFrom(subset);
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
@@ -108,7 +112,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
 
-            var item = alchemicalItemGenerator.GenerateFromSubset(subset);
+            var item = alchemicalItemGenerator.GenerateFrom(subset);
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
@@ -122,7 +126,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateFromEmptySubset()
         {
-            Assert.That(() => alchemicalItemGenerator.GenerateFromSubset(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
+            Assert.That(() => alchemicalItemGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
     }
 }

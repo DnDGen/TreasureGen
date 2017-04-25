@@ -8,6 +8,7 @@ using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Domain.Generators.Items
 {
@@ -21,7 +22,8 @@ namespace TreasureGen.Domain.Generators.Items
         private IBooleanPercentileSelector booleanPercentileSelector;
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private Dice dice;
-        private IArmorDataSelector armorDataSelector;
+        private MundaneItemGenerator mundaneArmorGenerator;
+        private MundaneItemGenerator mundaneWeaponGenerator;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
@@ -31,7 +33,7 @@ namespace TreasureGen.Domain.Generators.Items
             IBooleanPercentileSelector booleanPercentileSelector,
             Dice dice,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
-            IArmorDataSelector armorDataSelector)
+            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -41,7 +43,9 @@ namespace TreasureGen.Domain.Generators.Items
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
-            this.armorDataSelector = armorDataSelector;
+
+            mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
         }
 
         public Item GenerateFrom(string power, string specificGearType)
@@ -87,7 +91,6 @@ namespace TreasureGen.Domain.Generators.Items
             }
 
             gear.Name = RenameGear(gear.Name);
-            gear.Quantity = GetQuantity(gear);
 
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
@@ -96,41 +99,49 @@ namespace TreasureGen.Domain.Generators.Items
                 gear.Traits.Add(trait);
             }
 
-            if (gear.IsMagical == false && gear.ItemType != ItemTypeConstants.Armor)
-            {
-                var size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-                gear.Traits.Add(size);
-            }
-
             if (gear.IsMagical)
                 gear.Traits.Add(TraitConstants.Masterwork);
 
-            if (gear.ItemType != ItemTypeConstants.Armor)
-                return gear;
+            if (gear.ItemType == ItemTypeConstants.Armor)
+                return GetArmor(gear);
 
-            var armor = new Armor();
+            if (gear.ItemType == ItemTypeConstants.Weapon)
+                return GetWeapon(gear);
+
+            return gear;
+        }
+
+        private Item GetArmor(Item gear)
+        {
+            var template = new Armor();
+            template.Name = gear.BaseNames.First();
+            var armor = mundaneArmorGenerator.GenerateFrom(template);
+
             gear.Clone(armor);
 
-            var baseName = armor.BaseNames.Single();
-            var armorSelection = armorDataSelector.Select(baseName);
-
-            armor.ArmorBonus = armorSelection.ArmorBonus;
-            armor.ArmorCheckPenalty = armorSelection.ArmorCheckPenalty;
-            armor.MaxDexterityBonus = armorSelection.MaxDexterityBonus;
-            armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            if (armor.IsMagical)
+                armor.Traits.Add(TraitConstants.Masterwork);
 
             return armor;
         }
 
-        private int GetQuantity(Item gear)
+        private Item GetWeapon(Item gear)
         {
-            if (gear.Attributes.Contains(AttributeConstants.Ammunition))
-                return dice.Roll().d(50).AsSum();
+            var template = new Weapon();
+            template.Name = gear.BaseNames.First();
+            template.Quantity = 0;
+            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
 
-            if (gear.Attributes.Contains(AttributeConstants.Thrown) && gear.Attributes.Contains(AttributeConstants.Melee) == false)
-                return dice.Roll().d20().AsSum();
+            gear.Quantity = weapon.Quantity;
+            gear.Clone(weapon);
 
-            return 1;
+            if (weapon.IsMagical)
+                weapon.Traits.Add(TraitConstants.Masterwork);
+
+            if (weapon.Attributes.Contains(AttributeConstants.Ammunition) || weapon.Attributes.Contains(AttributeConstants.OneTimeUse))
+                weapon.Magic.Intelligence = new Intelligence();
+
+            return weapon;
         }
 
         private string RenameGear(string oldName)
@@ -162,6 +173,7 @@ namespace TreasureGen.Domain.Generators.Items
 
             var specificGearType = GetSpecificGearType(gear.Name);
             gear.ItemType = GetItemType(specificGearType);
+            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, gear.Name);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
             gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
@@ -172,6 +184,12 @@ namespace TreasureGen.Domain.Generators.Items
 
             foreach (var trait in traits)
                 gear.Traits.Add(trait);
+
+            if (gear.ItemType == ItemTypeConstants.Armor)
+                return GetArmor(gear);
+
+            if (gear.ItemType == ItemTypeConstants.Weapon)
+                return GetWeapon(gear);
 
             return gear.SmartClone();
         }

@@ -14,6 +14,14 @@ namespace TreasureGen.Tests.Unit.Tables
             Assert.That(constant, Is.EqualTo(value));
         }
 
+        [TestCase(DataIndexConstants.Weapon.CriticalMultiplier, 2)]
+        [TestCase(DataIndexConstants.Weapon.DamageType, 0)]
+        [TestCase(DataIndexConstants.Weapon.ThreatRange, 1)]
+        public void WeaponDataIndex(int constant, int value)
+        {
+            Assert.That(constant, Is.EqualTo(value));
+        }
+
         [TestCase(DataIndexConstants.Intelligence.GreaterPowersCount, 2)]
         [TestCase(DataIndexConstants.Intelligence.LesserPowersCount, 1)]
         [TestCase(DataIndexConstants.Intelligence.Senses, 0)]

@@ -31,7 +31,6 @@
     <attribute>Specific</attribute>
     <attribute>Metal</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
   </object>
   <object>
     <name>Armor of rage</name>
@@ -80,7 +79,6 @@
     <attribute>Melee</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>
-    <attribute>Piercing</attribute>
   </object>
   <object>
     <name>Armor of arrow attraction</name>
@@ -102,7 +100,6 @@
     <name>Mace of blood</name>
     <attribute>Specific</attribute>
     <attribute>Melee</attribute>
-    <attribute>Bludgeoning</attribute>
   </object>
   <object>
     <name>Robe of vermin</name>
@@ -117,7 +114,6 @@
     <attribute>Specific</attribute>
     <attribute>Metal</attribute>
     <attribute>Melee</attribute>
-    <attribute>Slashing</attribute>
     <attribute>Two-Handed</attribute>
   </object>
   <object>

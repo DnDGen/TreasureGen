@@ -21,19 +21,24 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Stress(StressItem);
         }
 
-        protected override void MakeSpecificAssertionsAgainst(Item weapon)
+        protected override void MakeSpecificAssertionsAgainst(Item item)
         {
-            Assert.That(weapon.Name, Is.Not.Empty);
-            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
-            Assert.That(weapon.Quantity, Is.Positive);
-            Assert.That(weapon.IsMagical, Is.False);
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Common)
+            Assert.That(item.Name, Is.Not.Empty);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(item.Quantity, Is.Positive);
+            Assert.That(item.IsMagical, Is.False);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Common)
                 .Or.Contains(AttributeConstants.Uncommon));
-            Assert.That(weapon.Attributes, Contains.Item(AttributeConstants.Melee)
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Melee)
                 .Or.Contains(AttributeConstants.Ranged));
 
             var sizes = TraitConstants.Sizes.All();
-            Assert.That(weapon.Traits.Intersect(sizes), Is.Not.Empty);
+            Assert.That(item.Traits.Intersect(sizes), Is.Empty);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.Not.Empty);
+            Assert.That(sizes, Contains.Item(weapon.Size));
         }
 
         [Test]

@@ -32,7 +32,7 @@ namespace TreasureGen.Items
             }
         }
 
-        public bool CanBeUsedAsWeaponOrArmor
+        public virtual bool CanBeUsedAsWeaponOrArmor
         {
             get
             {

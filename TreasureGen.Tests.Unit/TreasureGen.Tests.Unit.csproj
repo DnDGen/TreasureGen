@@ -79,6 +79,7 @@
     <Compile Include="Generators\Items\IterativeGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Items\WeaponTests.cs" />
     <Compile Include="Generators\TreasureGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorEventGenDecoratorTests.cs" />
     <Compile Include="Generators\Items\ItemVerifier.cs" />
@@ -119,7 +120,6 @@
     <Compile Include="Generators\Items\Magical\WondrousItemGeneratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicTests.cs" />
     <Compile Include="Generators\Items\Mundane\AlchemicalItemGeneratorTests.cs" />
-    <Compile Include="Generators\Items\Mundane\AmmunitionGeneratorTests.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneArmorGeneratorTests.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneWeaponGeneratorTests.cs" />
     <Compile Include="Generators\Items\Mundane\SpecialMaterialGeneratorTests.cs" />
@@ -145,6 +145,7 @@
     <Compile Include="Generators\TreasureTests.cs" />
     <Compile Include="Selectors\Collections\ArmorDataSelectorTests.cs" />
     <Compile Include="Selectors\Collections\CollectionsSelectorTests.cs" />
+    <Compile Include="Selectors\Collections\WeaponDataSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\BooleanPercentileSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstantsTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecoratorTests.cs" />

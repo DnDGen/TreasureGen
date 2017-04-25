@@ -6,6 +6,7 @@ using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Items.Mundane;
 
 namespace TreasureGen.Domain.Generators.Items.Magical
 {
@@ -16,16 +17,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
-        private readonly IArmorDataSelector armorDataSelector;
+        private readonly MundaneItemGenerator mundaneArmorGenerator;
+        private readonly MundaneItemGenerator mundaneWeaponGenerator;
 
-        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
+        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.generator = generator;
-            this.armorDataSelector = armorDataSelector;
+
+            mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
         }
 
         public bool HasCurse(bool isMagical)
@@ -60,7 +64,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return $"Dependent: {situation}";
         }
 
-        public Item GenerateSpecificCursedItem()
+        public Item Generate()
         {
             var specificCursedItem = new Item();
             specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
@@ -69,23 +73,42 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
             specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 
-            if (specificCursedItem.ItemType != ItemTypeConstants.Armor)
-                return specificCursedItem;
+            if (specificCursedItem.ItemType == ItemTypeConstants.Armor)
+                return GetArmor(specificCursedItem);
 
-            var armor = new Armor();
-            specificCursedItem.Clone(armor);
+            if (specificCursedItem.ItemType == ItemTypeConstants.Weapon)
+                return GetWeapon(specificCursedItem);
 
-            var baseName = armor.BaseNames.Single();
-            var armorSelection = armorDataSelector.Select(baseName);
+            return specificCursedItem;
+        }
 
-            armor.ArmorBonus = armorSelection.ArmorBonus;
-            armor.ArmorCheckPenalty = armorSelection.ArmorCheckPenalty;
-            armor.MaxDexterityBonus = armorSelection.MaxDexterityBonus;
-            armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+        private Item GetArmor(Item cursedItem)
+        {
+            var template = new Armor();
+            template.Name = cursedItem.BaseNames.First();
+            var armor = mundaneArmorGenerator.GenerateFrom(template);
 
-            armor.Traits.Add(TraitConstants.Masterwork);
+            cursedItem.Clone(armor);
+
+            if (armor.IsMagical)
+                armor.Traits.Add(TraitConstants.Masterwork);
 
             return armor;
+        }
+
+        private Item GetWeapon(Item cursedItem)
+        {
+            var template = new Weapon();
+            template.Name = cursedItem.BaseNames.First();
+            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
+
+            cursedItem.Quantity = weapon.Quantity;
+            cursedItem.Clone(weapon);
+
+            if (weapon.IsMagical)
+                weapon.Traits.Add(TraitConstants.Masterwork);
+
+            return weapon;
         }
 
         public bool IsSpecificCursedItem(Item template)
@@ -94,7 +117,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return cursedItems.Contains(template.Name);
         }
 
-        public Item GenerateSpecificCursedItem(Item template)
+        public Item GenerateFrom(Item template, bool allowDecoration = false)
         {
             var cursedItem = template.SmartClone();
             cursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, cursedItem.Name).Single();
@@ -104,14 +127,20 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             cursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, cursedItem.Name);
             cursedItem.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
+            if (cursedItem.ItemType == ItemTypeConstants.Armor)
+                return GetArmor(cursedItem);
+
+            if (cursedItem.ItemType == ItemTypeConstants.Weapon)
+                return GetWeapon(cursedItem);
+
             return cursedItem;
 
         }
 
-        public Item GenerateSpecificCursedItem(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset)
         {
             var specificCursedItem = generator.Generate(
-                GenerateSpecificCursedItem,
+                Generate,
                 i => subset.Any(n => i.NameMatches(n)),
                 () => null,
                 $"Cannot generate a specific cursed item from [{string.Join(", ", subset)}]");

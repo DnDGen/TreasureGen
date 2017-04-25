@@ -35,53 +35,55 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
         [TestCase(RodConstants.MetalAndMineralDetection)]
         [TestCase(RodConstants.Cancellation)]
         [TestCase(RodConstants.Wonder)]
-        [TestCase(RodConstants.Python, AttributeConstants.Bludgeoning,
-                                       AttributeConstants.DoubleWeapon,
-                                       AttributeConstants.Common,
-                                       AttributeConstants.Melee,
-                                       AttributeConstants.Wood,
-                                       AttributeConstants.Specific)]
-        [TestCase(RodConstants.Viper, AttributeConstants.Bludgeoning,
-                                      AttributeConstants.Common,
-                                      AttributeConstants.Melee,
-                                      AttributeConstants.Metal,
-                                      AttributeConstants.Specific)]
+        [TestCase(RodConstants.Python,
+            AttributeConstants.DoubleWeapon,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Wood,
+            AttributeConstants.Specific)]
+        [TestCase(RodConstants.Viper,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
         [TestCase(RodConstants.FlameExtinguishing)]
         [TestCase(RodConstants.EnemyDetection)]
         [TestCase(RodConstants.Splendor)]
-        [TestCase(RodConstants.Withering, AttributeConstants.Bludgeoning,
-                                      AttributeConstants.Common,
-                                      AttributeConstants.Melee,
-                                      AttributeConstants.Metal,
-                                      AttributeConstants.Specific)]
-        [TestCase(RodConstants.ThunderAndLightning, AttributeConstants.Bludgeoning,
-                                                  AttributeConstants.Common,
-                                                  AttributeConstants.Melee,
-                                                  AttributeConstants.Metal,
-                                                  AttributeConstants.Specific)]
+        [TestCase(RodConstants.Withering,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
+        [TestCase(RodConstants.ThunderAndLightning,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
         [TestCase(RodConstants.Negation)]
-        [TestCase(RodConstants.Flailing, AttributeConstants.Bludgeoning,
-                                     AttributeConstants.DoubleWeapon,
-                                     AttributeConstants.Melee,
-                                     AttributeConstants.Metal,
-                                     AttributeConstants.Specific,
-                                     AttributeConstants.Uncommon)]
-        [TestCase(RodConstants.Absorption, AttributeConstants.Charged,
-                                       AttributeConstants.OneTimeUse)]
-        [TestCase(RodConstants.Rulership, AttributeConstants.Charged,
-                                      AttributeConstants.OneTimeUse)]
+        [TestCase(RodConstants.Flailing,
+            AttributeConstants.DoubleWeapon,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific,
+            AttributeConstants.Uncommon)]
+        [TestCase(RodConstants.Absorption,
+            AttributeConstants.Charged,
+            AttributeConstants.OneTimeUse)]
+        [TestCase(RodConstants.Rulership,
+            AttributeConstants.Charged,
+            AttributeConstants.OneTimeUse)]
         [TestCase(RodConstants.Security)]
-        [TestCase(RodConstants.LordlyMight, AttributeConstants.Bludgeoning,
-                                         AttributeConstants.Common,
-                                         AttributeConstants.Melee,
-                                         AttributeConstants.Metal,
-                                         AttributeConstants.Specific)]
-        [TestCase(RodConstants.Alertness, AttributeConstants.Bludgeoning,
-                                      AttributeConstants.Common,
-                                      AttributeConstants.Melee,
-                                      AttributeConstants.Metal,
-                                      AttributeConstants.Specific)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(RodConstants.LordlyMight,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
+        [TestCase(RodConstants.Alertness,
+            AttributeConstants.Common,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
+        public void RodAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

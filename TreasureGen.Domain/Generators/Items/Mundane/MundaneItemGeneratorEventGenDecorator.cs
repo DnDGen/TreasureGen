@@ -16,10 +16,10 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             this.innerGenerator = innerGenerator;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation from template: {template.ItemType} {template.Name}");
-            var item = innerGenerator.Generate(template, allowRandomDecoration);
+            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;
@@ -34,10 +34,10 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFromSubset(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation from [{string.Join(", ", subset)}]");
-            var item = innerGenerator.GenerateFromSubset(subset);
+            var item = innerGenerator.GenerateFrom(subset);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;

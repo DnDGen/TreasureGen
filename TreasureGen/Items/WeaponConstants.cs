@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TreasureGen.Items
 {
@@ -22,6 +23,8 @@ namespace TreasureGen.Items
         public const string DwarvenWaraxe = "Dwarven waraxe";
         public const string OrcDoubleAxe = "Orc double axe";
         public const string Battleaxe = "Battleaxe";
+        public const string Bolas = "Bolas";
+        public const string Sai = "Sai";
         public const string SpikedChain = "Spiked chain";
         public const string Club = "Club";
         public const string HandCrossbow = "Hand crossbow";
@@ -31,14 +34,14 @@ namespace TreasureGen.Items
         public const string Falchion = "Falchion";
         public const string DireFlail = "Dire flail";
         public const string HeavyFlail = "Heavy flail";
-        public const string LightFlail = "Light flail";
+        public const string Flail = "Flail";
         public const string Gauntlet = "Gauntlet";
         public const string SpikedGauntlet = "Spiked gauntlet";
         public const string Glaive = "Glaive";
         public const string Greatclub = "Greatclub";
         public const string Guisarme = "Guisarme";
         public const string Halberd = "Halberd";
-        public const string Halfspear = "Halfspear";
+        public const string Spear = "Spear";
         public const string GnomeHookedHammer = "Gnome hooked hammer";
         public const string LightHammer = "Light hammer";
         public const string Handaxe = "Handaxe";
@@ -120,7 +123,6 @@ namespace TreasureGen.Items
 
         public static IEnumerable<string> GetBaseNames()
         {
-
             return new[]
             {
                 Dagger,
@@ -150,14 +152,14 @@ namespace TreasureGen.Items
                 Falchion,
                 DireFlail,
                 HeavyFlail,
-                LightFlail,
+                Flail,
                 Gauntlet,
                 SpikedGauntlet,
                 Glaive,
                 Greatclub,
                 Guisarme,
                 Halberd,
-                Halfspear,
+                Spear,
                 GnomeHookedHammer,
                 LightHammer,
                 Handaxe,
@@ -191,81 +193,17 @@ namespace TreasureGen.Items
                 Sling,
                 Longbow,
                 CompositeLongbow,
+                Sai,
+                Bolas,
             };
         }
 
         public static IEnumerable<string> GetAllWeapons()
         {
-            return new[]
+            var baseNames = GetBaseNames();
+
+            return baseNames.Union(new[]
             {
-                Dagger,
-                Greataxe,
-                Greatsword,
-                Kama,
-                Longsword,
-                LightMace,
-                HeavyMace,
-                Nunchaku,
-                Quarterstaff,
-                Rapier,
-                Scimitar,
-                Shortspear,
-                Siangham,
-                BastardSword,
-                ShortSword,
-                DwarvenWaraxe,
-                OrcDoubleAxe,
-                Battleaxe,
-                SpikedChain,
-                Club,
-                HandCrossbow,
-                HeavyRepeatingCrossbow,
-                LightRepeatingCrossbow,
-                PunchingDagger,
-                Falchion,
-                DireFlail,
-                HeavyFlail,
-                LightFlail,
-                Gauntlet,
-                SpikedGauntlet,
-                Glaive,
-                Greatclub,
-                Guisarme,
-                Halberd,
-                Halfspear,
-                GnomeHookedHammer,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                Lance,
-                Longspear,
-                Morningstar,
-                Net,
-                HeavyPick,
-                LightPick,
-                Ranseur,
-                Sap,
-                Scythe,
-                Shuriken,
-                Sickle,
-                TwoBladedSword,
-                Trident,
-                DwarvenUrgrosh,
-                Warhammer,
-                Whip,
-                Arrow,
-                CrossbowBolt,
-                SlingBullet,
-                ThrowingAxe,
-                HeavyCrossbow,
-                LightCrossbow,
-                Dart,
-                Javelin,
-                Shortbow,
-                CompositeShortbow,
-                Sling,
-                Longbow,
-                CompositeLongbow,
                 SleepArrow,
                 ScreamingBolt,
                 JavelinOfLightning,
@@ -297,8 +235,8 @@ namespace TreasureGen.Items
                 CursedBackbiterSpear,
                 CursedMinus2Sword,
                 NetOfSnaring,
-                MaceOfBlood
-            };
+                MaceOfBlood,
+            });
         }
     }
 }

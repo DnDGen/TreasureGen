@@ -46,7 +46,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var name = GetRandom(names);
             var template = ItemVerifier.CreateRandomTemplate(name);
 
-            var item = mundaneItemGenerator.Generate(template);
+            var item = mundaneItemGenerator.GenerateFrom(template);
             AssertItem(item);
             ItemVerifier.AssertMundaneItemFromTemplate(item, template);
         }
@@ -62,7 +62,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
         {
-            return mundaneItemGenerator.GenerateFromSubset(subset);
+            return mundaneItemGenerator.GenerateFrom(subset);
         }
 
         private string GetRandom(IEnumerable<string> collection)
@@ -86,7 +86,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var template = new Item();
             template.Name = name;
 
-            return mundaneItemGenerator.Generate(template, true);
+            return mundaneItemGenerator.GenerateFrom(template, true);
         }
 
         protected abstract IEnumerable<string> GetItemNames();

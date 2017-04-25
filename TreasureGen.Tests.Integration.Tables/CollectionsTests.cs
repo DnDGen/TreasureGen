@@ -20,36 +20,62 @@ namespace TreasureGen.Tests.Integration.Tables
             table = CollectionsMapper.Map(tableName);
         }
 
+        protected IEnumerable<string> GetKeys()
+        {
+            return table.Keys;
+        }
+
         public virtual void Collections(string name, params string[] items)
         {
             Assert.That(table.Keys, Contains.Item(name), tableName);
+            AssertCollection(table[name], items);
+        }
 
-            var missingItems = items.Except(table[name]);
+        protected void AssertCollection(IEnumerable<string> actual, IEnumerable<string> expected)
+        {
+            if (actual.Count() <= 10 && expected.Count() <= 10)
+            {
+                Assert.That(actual, Is.EquivalentTo(expected));
+                return;
+            }
+
+            var missingItems = expected.Except(actual);
             Assert.That(missingItems, Is.Empty, $"{missingItems.Count()} missing items");
 
-            foreach (var item in items)
+            foreach (var item in expected)
             {
-                var actualAttributeCount = table[name].Count(a => a == item);
-                var expectedAttributeCount = items.Count(a => a == item);
+                var actualAttributeCount = actual.Count(a => a == item);
+                var expectedAttributeCount = expected.Count(a => a == item);
                 Assert.That(actualAttributeCount, Is.EqualTo(expectedAttributeCount), item);
             }
 
-            var extraItems = table[name].Except(items);
+            var extraItems = actual.Except(expected);
             Assert.That(extraItems, Is.Empty, $"{extraItems.Count()} extra items in collection");
         }
 
         public virtual void OrderedCollections(string name, params string[] items)
         {
             Assert.That(table.Keys, Contains.Item(name), tableName);
+            AssertOrderedCollection(table[name], items);
+        }
 
-            for (var i = 0; i < items.Length; i++)
+        protected void AssertOrderedCollection(IEnumerable<string> actual, IEnumerable<string> expected)
+        {
+            AssertCollection(actual, expected);
+
+            if (actual.Count() <= 10 && expected.Count() <= 10)
             {
-                var expected = items[i];
-                var actual = table[name].ElementAt(i);
-                Assert.That(actual, Is.EqualTo(expected), $"Index {i}");
+                Assert.That(actual, Is.EqualTo(expected));
+                return;
             }
 
-            Assert.That(table[name].Count(), Is.EqualTo(items.Length));
+            var expectedArray = expected.ToArray();
+            var actualArray = actual.ToArray();
+
+            for (var i = 0; i < expectedArray.Length; i++)
+            {
+                Assert.That(actualArray[i], Is.EqualTo(expectedArray[i]), $"Index {i}");
+            }
         }
     }
 }

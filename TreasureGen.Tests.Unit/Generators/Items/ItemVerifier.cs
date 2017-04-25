@@ -46,6 +46,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             }
 
             AssertArmor(item);
+            AssertWeapon(item);
             AssertSpecialMaterials(item);
         }
 
@@ -56,12 +57,54 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             var armor = item as Armor;
             Assert.That(armor.ArmorBonus, Is.Positive, armor.Name);
+            Assert.That(armor.CanBeUsedAsWeaponOrArmor, Is.True, armor.Name);
             Assert.That(armor.Size, Is.Not.Empty, armor.Name);
             Assert.That(armor.MaxDexterityBonus, Is.Not.Negative, armor.Name);
             Assert.That(armor.ArmorCheckPenalty, Is.Not.Positive, armor.Name);
 
             if (armor.IsMagical)
                 Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork), armor.Name);
+        }
+
+        private void AssertWeapon(Item item)
+        {
+            if (!(item is Weapon))
+                return;
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Name);
+            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.Size, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.Damage, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.DamageType, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.ThreatRange, Is.Not.Empty, weapon.Name);
+
+            if (weapon.IsMagical)
+                Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Name);
+
+            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Bludgeoning), weapon.Name);
+            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Piercing), weapon.Name);
+            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+
+            if (weapon.Damage != "0")
+            {
+                Assert.That(weapon.DamageType, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning).Or.Contains(AttributeConstants.DamageTypes.Piercing).Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+            }
+
+            if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon))
+            {
+                Assert.That(weapon.CriticalMultiplier, Contains.Substring("/"), weapon.Name);
+                Assert.That(weapon.Damage, Contains.Substring("/"), weapon.Name);
+                Assert.That(weapon.DamageType, Contains.Substring("/"), weapon.Name);
+                Assert.That(weapon.ThreatRange, Contains.Substring("/"), weapon.Name);
+            }
+            else
+            {
+                Assert.That(weapon.CriticalMultiplier, Is.All.Not.EqualTo("/"), weapon.Name);
+                Assert.That(weapon.Damage, Is.All.Not.EqualTo("/"), weapon.Name);
+                Assert.That(weapon.DamageType, Is.All.Not.EqualTo("/"), weapon.Name);
+                Assert.That(weapon.ThreatRange, Is.All.Not.EqualTo("/"), weapon.Name);
+            }
         }
 
         private void AssertSpecialMaterials(Item item)
@@ -137,6 +180,25 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             template.Name = name;
             template = PopulateItem(template) as Armor;
 
+            template.ArmorBonus = random.Next();
+            template.ArmorCheckPenalty = -random.Next();
+            template.MaxDexterityBonus = random.Next();
+
+            return template;
+        }
+
+        public Weapon CreateRandomWeaponTemplate(string name)
+        {
+            var template = new Weapon();
+
+            template.Name = name;
+            template = PopulateItem(template) as Weapon;
+
+            template.CriticalMultiplier = Guid.NewGuid().ToString();
+            template.Damage = Guid.NewGuid().ToString();
+            template.DamageType = Guid.NewGuid().ToString();
+            template.ThreatRange = Guid.NewGuid().ToString();
+
             return template;
         }
 
@@ -183,6 +245,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             item.Traits.Add(Guid.NewGuid().ToString());
             item.Traits.Add(Guid.NewGuid().ToString());
+            item.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
 
             return item;
         }
@@ -197,7 +260,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             if (item.Attributes.Contains(AttributeConstants.OneTimeUse) || item.Attributes.Contains(AttributeConstants.Ammunition))
             {
-                AssertNoIntelligence(item.Magic.Intelligence);
+                AssertNoIntelligence(item.Magic.Intelligence, item.Name);
             }
             else
             {
@@ -216,20 +279,20 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             }
         }
 
-        private void AssertNoIntelligence(Intelligence intelligence)
+        private void AssertNoIntelligence(Intelligence intelligence, string name)
         {
-            Assert.That(intelligence.Alignment, Is.Empty);
-            Assert.That(intelligence.CharismaStat, Is.EqualTo(0));
-            Assert.That(intelligence.Communication, Is.Empty);
-            Assert.That(intelligence.DedicatedPower, Is.Empty);
-            Assert.That(intelligence.Ego, Is.EqualTo(0));
-            Assert.That(intelligence.IntelligenceStat, Is.EqualTo(0));
-            Assert.That(intelligence.Languages, Is.Empty);
-            Assert.That(intelligence.Personality, Is.Empty);
-            Assert.That(intelligence.Powers, Is.Empty);
-            Assert.That(intelligence.Senses, Is.Empty);
-            Assert.That(intelligence.SpecialPurpose, Is.Empty);
-            Assert.That(intelligence.WisdomStat, Is.EqualTo(0));
+            Assert.That(intelligence.Alignment, Is.Empty, name);
+            Assert.That(intelligence.CharismaStat, Is.EqualTo(0), name);
+            Assert.That(intelligence.Communication, Is.Empty, name);
+            Assert.That(intelligence.DedicatedPower, Is.Empty, name);
+            Assert.That(intelligence.Ego, Is.EqualTo(0), name);
+            Assert.That(intelligence.IntelligenceStat, Is.EqualTo(0), name);
+            Assert.That(intelligence.Languages, Is.Empty, name);
+            Assert.That(intelligence.Personality, Is.Empty, name);
+            Assert.That(intelligence.Powers, Is.Empty, name);
+            Assert.That(intelligence.Senses, Is.Empty, name);
+            Assert.That(intelligence.SpecialPurpose, Is.Empty, name);
+            Assert.That(intelligence.WisdomStat, Is.EqualTo(0), name);
         }
 
         public void AssertMundaneItemFromTemplate(Item item, Item template)
@@ -241,7 +304,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item.Magic.Bonus, Is.EqualTo(0), item.Name);
             Assert.That(item.Magic.Charges, Is.EqualTo(0), item.Name);
             Assert.That(item.Magic.Curse, Is.Empty, item.Name);
-            AssertNoIntelligence(item.Magic.Intelligence);
+            AssertNoIntelligence(item.Magic.Intelligence, item.Name);
             Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Name);
 
             if (!(item is Armor))

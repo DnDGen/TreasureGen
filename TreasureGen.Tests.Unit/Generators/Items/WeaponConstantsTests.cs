@@ -7,120 +7,122 @@ namespace TreasureGen.Tests.Unit.Generators.Items
     [TestFixture]
     public class WeaponConstantsTests
     {
-        [TestCase(WeaponConstants.Dagger, "Dagger")]
-        [TestCase(WeaponConstants.Greataxe, "Greataxe")]
-        [TestCase(WeaponConstants.Greatsword, "Greatsword")]
-        [TestCase(WeaponConstants.Kama, "Kama")]
-        [TestCase(WeaponConstants.Longsword, "Longsword")]
-        [TestCase(WeaponConstants.LightMace, "Light mace")]
-        [TestCase(WeaponConstants.HeavyMace, "Heavy mace")]
-        [TestCase(WeaponConstants.Nunchaku, "Nunchaku")]
-        [TestCase(WeaponConstants.Quarterstaff, "Quarterstaff")]
-        [TestCase(WeaponConstants.Rapier, "Rapier")]
-        [TestCase(WeaponConstants.Scimitar, "Scimitar")]
-        [TestCase(WeaponConstants.Shortspear, "Shortspear")]
-        [TestCase(WeaponConstants.Siangham, "Siangham")]
-        [TestCase(WeaponConstants.BastardSword, "Bastard sword")]
-        [TestCase(WeaponConstants.ShortSword, "Short sword")]
-        [TestCase(WeaponConstants.DwarvenWaraxe, "Dwarven waraxe")]
-        [TestCase(WeaponConstants.OrcDoubleAxe, "Orc double axe")]
-        [TestCase(WeaponConstants.Battleaxe, "Battleaxe")]
-        [TestCase(WeaponConstants.SpikedChain, "Spiked chain")]
-        [TestCase(WeaponConstants.Club, "Club")]
-        [TestCase(WeaponConstants.HandCrossbow, "Hand crossbow")]
-        [TestCase(WeaponConstants.HeavyRepeatingCrossbow, "Heavy repeating crossbow")]
-        [TestCase(WeaponConstants.LightRepeatingCrossbow, "Light repeating crossbow")]
-        [TestCase(WeaponConstants.PunchingDagger, "Punching dagger")]
-        [TestCase(WeaponConstants.Falchion, "Falchion")]
-        [TestCase(WeaponConstants.DireFlail, "Dire flail")]
-        [TestCase(WeaponConstants.HeavyFlail, "Heavy flail")]
-        [TestCase(WeaponConstants.LightFlail, "Light flail")]
-        [TestCase(WeaponConstants.Gauntlet, "Gauntlet")]
-        [TestCase(WeaponConstants.SpikedGauntlet, "Spiked gauntlet")]
-        [TestCase(WeaponConstants.Glaive, "Glaive")]
-        [TestCase(WeaponConstants.Greatclub, "Greatclub")]
-        [TestCase(WeaponConstants.Guisarme, "Guisarme")]
-        [TestCase(WeaponConstants.Halberd, "Halberd")]
-        [TestCase(WeaponConstants.Halfspear, "Halfspear")]
-        [TestCase(WeaponConstants.GnomeHookedHammer, "Gnome hooked hammer")]
-        [TestCase(WeaponConstants.LightHammer, "Light hammer")]
-        [TestCase(WeaponConstants.Handaxe, "Handaxe")]
-        [TestCase(WeaponConstants.Kukri, "Kukri")]
-        [TestCase(WeaponConstants.Lance, "Lance")]
-        [TestCase(WeaponConstants.Longspear, "Longspear")]
-        [TestCase(WeaponConstants.Morningstar, "Morningstar")]
-        [TestCase(WeaponConstants.Net, "Net")]
-        [TestCase(WeaponConstants.HeavyPick, "Heavy pick")]
-        [TestCase(WeaponConstants.LightPick, "Light pick")]
-        [TestCase(WeaponConstants.Ranseur, "Ranseur")]
-        [TestCase(WeaponConstants.Sap, "Sap")]
-        [TestCase(WeaponConstants.Scythe, "Scythe")]
-        [TestCase(WeaponConstants.Shuriken, "Shuriken")]
-        [TestCase(WeaponConstants.Sickle, "Sickle")]
-        [TestCase(WeaponConstants.TwoBladedSword, "Two-bladed sword")]
-        [TestCase(WeaponConstants.Trident, "Trident")]
-        [TestCase(WeaponConstants.DwarvenUrgrosh, "Dwarven urgrosh")]
-        [TestCase(WeaponConstants.Warhammer, "Warhammer")]
-        [TestCase(WeaponConstants.Whip, "Whip")]
         [TestCase(WeaponConstants.Arrow, "Arrow")]
-        [TestCase(WeaponConstants.CrossbowBolt, "Crossbow bolt")]
-        [TestCase(WeaponConstants.SlingBullet, "Sling bullet")]
-        [TestCase(WeaponConstants.ThrowingAxe, "Throwing axe")]
-        [TestCase(WeaponConstants.HeavyCrossbow, "Heavy crossbow")]
-        [TestCase(WeaponConstants.LightCrossbow, "Light crossbow")]
-        [TestCase(WeaponConstants.Dart, "Dart")]
-        [TestCase(WeaponConstants.Javelin, "Javelin")]
-        [TestCase(WeaponConstants.Shortbow, "Shortbow")]
+        [TestCase(WeaponConstants.AssassinsDagger, "Assassin's dagger")]
+        [TestCase(WeaponConstants.BastardSword, "Bastard sword")]
+        [TestCase(WeaponConstants.Battleaxe, "Battleaxe")]
+        [TestCase(WeaponConstants.BerserkingSword, "Berserking sword")]
+        [TestCase(WeaponConstants.Bolas, "Bolas")]
+        [TestCase(WeaponConstants.Club, "Club")]
         [TestCase(WeaponConstants.CompositeShortbow, "Composite shortbow")]
         [TestCase(WeaponConstants.CompositePlus0Shortbow, "Composite (+0) shortbow")]
         [TestCase(WeaponConstants.CompositePlus1Shortbow, "Composite (+1) shortbow")]
         [TestCase(WeaponConstants.CompositePlus2Shortbow, "Composite (+2) shortbow")]
-        [TestCase(WeaponConstants.Sling, "Sling")]
-        [TestCase(WeaponConstants.Longbow, "Longbow")]
         [TestCase(WeaponConstants.CompositeLongbow, "Composite longbow")]
         [TestCase(WeaponConstants.CompositePlus0Longbow, "Composite (+0) longbow")]
         [TestCase(WeaponConstants.CompositePlus1Longbow, "Composite (+1) longbow")]
         [TestCase(WeaponConstants.CompositePlus2Longbow, "Composite (+2) longbow")]
         [TestCase(WeaponConstants.CompositePlus3Longbow, "Composite (+3) longbow")]
         [TestCase(WeaponConstants.CompositePlus4Longbow, "Composite (+4) longbow")]
-        [TestCase(WeaponConstants.SleepArrow, "Sleep arrow")]
-        [TestCase(WeaponConstants.ScreamingBolt, "Screaming bolt")]
-        [TestCase(WeaponConstants.SilverDagger, "Silver dagger")]
-        [TestCase(WeaponConstants.JavelinOfLightning, "Javelin of lightning")]
-        [TestCase(WeaponConstants.SlayingArrow, "Slaying arrow")]
-        [TestCase(WeaponConstants.AssassinsDagger, "Assassin's dagger")]
-        [TestCase(WeaponConstants.ShiftersSorrow, "Shifter's sorrow")]
-        [TestCase(WeaponConstants.TridentOfFishCommand, "Trident of fish command")]
+        [TestCase(WeaponConstants.CrossbowBolt, "Crossbow bolt")]
+        [TestCase(WeaponConstants.CursedBackbiterSpear, "Cursed backbiter spear")]
+        [TestCase(WeaponConstants.CursedMinus2Sword, "Cursed -2 sword")]
+        [TestCase(WeaponConstants.Dagger, "Dagger")]
+        [TestCase(WeaponConstants.DaggerOfVenom, "Dagger of venom")]
+        [TestCase(WeaponConstants.Dart, "Dart")]
+        [TestCase(WeaponConstants.DireFlail, "Dire flail")]
+        [TestCase(WeaponConstants.DwarvenThrower, "Dwarven thrower")]
+        [TestCase(WeaponConstants.DwarvenUrgrosh, "Dwarven urgrosh")]
+        [TestCase(WeaponConstants.DwarvenWaraxe, "Dwarven waraxe")]
+        [TestCase(WeaponConstants.Falchion, "Falchion")]
+        [TestCase(WeaponConstants.Flail, "Flail")]
         [TestCase(WeaponConstants.FlameTongue, "Flame tongue")]
+        [TestCase(WeaponConstants.FrostBrand, "Frost brand")]
+        [TestCase(WeaponConstants.Gauntlet, "Gauntlet")]
+        [TestCase(WeaponConstants.Glaive, "Glaive")]
+        [TestCase(WeaponConstants.GnomeHookedHammer, "Gnome hooked hammer")]
+        [TestCase(WeaponConstants.Greataxe, "Greataxe")]
+        [TestCase(WeaponConstants.Greatclub, "Greatclub")]
+        [TestCase(WeaponConstants.GreaterSlayingArrow, "Greater slaying arrow")]
+        [TestCase(WeaponConstants.Greatsword, "Greatsword")]
+        [TestCase(WeaponConstants.Guisarme, "Guisarme")]
+        [TestCase(WeaponConstants.Halberd, "Halberd")]
+        [TestCase(WeaponConstants.Handaxe, "Handaxe")]
+        [TestCase(WeaponConstants.HandCrossbow, "Hand crossbow")]
+        [TestCase(WeaponConstants.HeavyCrossbow, "Heavy crossbow")]
+        [TestCase(WeaponConstants.HeavyFlail, "Heavy flail")]
+        [TestCase(WeaponConstants.HeavyMace, "Heavy mace")]
+        [TestCase(WeaponConstants.HeavyPick, "Heavy pick")]
+        [TestCase(WeaponConstants.HeavyRepeatingCrossbow, "Heavy repeating crossbow")]
+        [TestCase(WeaponConstants.HolyAvenger, "Holy avenger")]
+        [TestCase(WeaponConstants.Javelin, "Javelin")]
+        [TestCase(WeaponConstants.JavelinOfLightning, "Javelin of lightning")]
+        [TestCase(WeaponConstants.Kama, "Kama")]
+        [TestCase(WeaponConstants.Kukri, "Kukri")]
+        [TestCase(WeaponConstants.Lance, "Lance")]
+        [TestCase(WeaponConstants.LightCrossbow, "Light crossbow")]
+        [TestCase(WeaponConstants.LightHammer, "Light hammer")]
+        [TestCase(WeaponConstants.LightMace, "Light mace")]
+        [TestCase(WeaponConstants.LightPick, "Light pick")]
+        [TestCase(WeaponConstants.LightRepeatingCrossbow, "Light repeating crossbow")]
+        [TestCase(WeaponConstants.LifeDrinker, "Life-drinker")]
+        [TestCase(WeaponConstants.Longbow, "Longbow")]
+        [TestCase(WeaponConstants.Longspear, "Longspear")]
+        [TestCase(WeaponConstants.Longsword, "Longsword")]
+        [TestCase(WeaponConstants.LuckBlade, "Luck blade")]
         [TestCase(WeaponConstants.LuckBlade0, "Luck blade (0 wishes)")]
         [TestCase(WeaponConstants.LuckBlade1, "Luck blade (1 wish)")]
         [TestCase(WeaponConstants.LuckBlade2, "Luck blade (2 wishes)")]
         [TestCase(WeaponConstants.LuckBlade3, "Luck blade (3 wishes)")]
+        [TestCase(WeaponConstants.MaceOfBlood, "Mace of blood")]
+        [TestCase(WeaponConstants.MaceOfSmiting, "Mace of smiting")]
+        [TestCase(WeaponConstants.MaceOfTerror, "Mace of terror")]
+        [TestCase(WeaponConstants.Morningstar, "Morningstar")]
+        [TestCase(WeaponConstants.Net, "Net")]
+        [TestCase(WeaponConstants.NetOfSnaring, "Net of snaring")]
+        [TestCase(WeaponConstants.NineLivesStealer, "Nine lives stealer")]
+        [TestCase(WeaponConstants.Nunchaku, "Nunchaku")]
+        [TestCase(WeaponConstants.Oathbow, "Oathbow")]
+        [TestCase(WeaponConstants.OrcDoubleAxe, "Orc double axe")]
+        [TestCase(WeaponConstants.PunchingDagger, "Punching dagger")]
+        [TestCase(WeaponConstants.Quarterstaff, "Quarterstaff")]
+        [TestCase(WeaponConstants.Ranseur, "Ranseur")]
+        [TestCase(WeaponConstants.Rapier, "Rapier")]
+        [TestCase(WeaponConstants.RapierOfPuncturing, "Rapier of puncturing")]
+        [TestCase(WeaponConstants.Sai, "Sai")]
+        [TestCase(WeaponConstants.Sap, "Sap")]
+        [TestCase(WeaponConstants.Scimitar, "Scimitar")]
+        [TestCase(WeaponConstants.ScreamingBolt, "Screaming bolt")]
+        [TestCase(WeaponConstants.Scythe, "Scythe")]
+        [TestCase(WeaponConstants.Shatterspike, "Shatterspike")]
+        [TestCase(WeaponConstants.ShiftersSorrow, "Shifter's sorrow")]
+        [TestCase(WeaponConstants.Shortbow, "Shortbow")]
+        [TestCase(WeaponConstants.Shortspear, "Shortspear")]
+        [TestCase(WeaponConstants.ShortSword, "Short sword")]
+        [TestCase(WeaponConstants.Shuriken, "Shuriken")]
+        [TestCase(WeaponConstants.Siangham, "Siangham")]
+        [TestCase(WeaponConstants.Sickle, "Sickle")]
+        [TestCase(WeaponConstants.SilverDagger, "Silver dagger")]
+        [TestCase(WeaponConstants.SlayingArrow, "Slaying arrow")]
+        [TestCase(WeaponConstants.SleepArrow, "Sleep arrow")]
+        [TestCase(WeaponConstants.Sling, "Sling")]
+        [TestCase(WeaponConstants.SlingBullet, "Sling bullet")]
+        [TestCase(WeaponConstants.Spear, "Spear")]
+        [TestCase(WeaponConstants.SpikedChain, "Spiked chain")]
+        [TestCase(WeaponConstants.SpikedGauntlet, "Spiked gauntlet")]
+        [TestCase(WeaponConstants.SunBlade, "Sun blade")]
+        [TestCase(WeaponConstants.SwordOfLifeStealing, "Sword of life stealing")]
         [TestCase(WeaponConstants.SwordOfSubtlety, "Sword of subtlety")]
         [TestCase(WeaponConstants.SwordOfThePlanes, "Sword of the planes")]
-        [TestCase(WeaponConstants.NineLivesStealer, "Nine lives stealer")]
-        [TestCase(WeaponConstants.SwordOfLifeStealing, "Sword of life stealing")]
-        [TestCase(WeaponConstants.Oathbow, "Oathbow")]
-        [TestCase(WeaponConstants.MaceOfTerror, "Mace of terror")]
-        [TestCase(WeaponConstants.LifeDrinker, "Life-drinker")]
         [TestCase(WeaponConstants.SylvanScimitar, "Sylvan scimitar")]
-        [TestCase(WeaponConstants.RapierOfPuncturing, "Rapier of puncturing")]
-        [TestCase(WeaponConstants.SunBlade, "Sun blade")]
-        [TestCase(WeaponConstants.FrostBrand, "Frost brand")]
-        [TestCase(WeaponConstants.DwarvenThrower, "Dwarven thrower")]
-        [TestCase(WeaponConstants.MaceOfSmiting, "Mace of smiting")]
-        [TestCase(WeaponConstants.HolyAvenger, "Holy avenger")]
-        [TestCase(WeaponConstants.LuckBlade, "Luck blade")]
-        [TestCase(WeaponConstants.GreaterSlayingArrow, "Greater slaying arrow")]
-        [TestCase(WeaponConstants.Shatterspike, "Shatterspike")]
-        [TestCase(WeaponConstants.DaggerOfVenom, "Dagger of venom")]
+        [TestCase(WeaponConstants.ThrowingAxe, "Throwing axe")]
+        [TestCase(WeaponConstants.Trident, "Trident")]
+        [TestCase(WeaponConstants.TridentOfFishCommand, "Trident of fish command")]
         [TestCase(WeaponConstants.TridentOfWarning, "Trident of warning")]
-        [TestCase(WeaponConstants.CursedMinus2Sword, "Cursed -2 sword")]
-        [TestCase(WeaponConstants.CursedBackbiterSpear, "Cursed backbiter spear")]
-        [TestCase(WeaponConstants.NetOfSnaring, "Net of snaring")]
-        [TestCase(WeaponConstants.MaceOfBlood, "Mace of blood")]
-        [TestCase(WeaponConstants.BerserkingSword, "Berserking sword")]
-        public void Constant(string constant, string value)
+        [TestCase(WeaponConstants.TwoBladedSword, "Two-bladed sword")]
+        [TestCase(WeaponConstants.Warhammer, "Warhammer")]
+        [TestCase(WeaponConstants.Whip, "Whip")]
+        public void WeaponConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }
@@ -130,6 +132,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var weapons = WeaponConstants.GetAllWeapons();
 
+            Assert.That(weapons, Contains.Item(WeaponConstants.Sai));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Bolas));
             Assert.That(weapons, Contains.Item(WeaponConstants.Arrow));
             Assert.That(weapons, Contains.Item(WeaponConstants.AssassinsDagger));
             Assert.That(weapons, Contains.Item(WeaponConstants.BastardSword));
@@ -157,7 +161,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Greatsword));
             Assert.That(weapons, Contains.Item(WeaponConstants.Guisarme));
             Assert.That(weapons, Contains.Item(WeaponConstants.Halberd));
-            Assert.That(weapons, Contains.Item(WeaponConstants.Halfspear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Spear));
             Assert.That(weapons, Contains.Item(WeaponConstants.Handaxe));
             Assert.That(weapons, Contains.Item(WeaponConstants.HandCrossbow));
             Assert.That(weapons, Contains.Item(WeaponConstants.HeavyCrossbow));
@@ -173,7 +177,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Lance));
             Assert.That(weapons, Contains.Item(WeaponConstants.LifeDrinker));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightCrossbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LightFlail));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Flail));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightHammer));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightMace));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightPick));
@@ -245,7 +249,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus3Longbow));
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus4Longbow));
 
-            Assert.That(weapons.Count(), Is.EqualTo(100));
+            Assert.That(weapons.Count(), Is.EqualTo(102));
         }
 
         [Test]
@@ -253,6 +257,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         {
             var weapons = WeaponConstants.GetBaseNames();
 
+            Assert.That(weapons, Contains.Item(WeaponConstants.Bolas));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Sai));
             Assert.That(weapons, Contains.Item(WeaponConstants.Arrow));
             Assert.That(weapons, Contains.Item(WeaponConstants.BastardSword));
             Assert.That(weapons, Contains.Item(WeaponConstants.Battleaxe));
@@ -274,7 +280,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Greatsword));
             Assert.That(weapons, Contains.Item(WeaponConstants.Guisarme));
             Assert.That(weapons, Contains.Item(WeaponConstants.Halberd));
-            Assert.That(weapons, Contains.Item(WeaponConstants.Halfspear));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Spear));
             Assert.That(weapons, Contains.Item(WeaponConstants.Handaxe));
             Assert.That(weapons, Contains.Item(WeaponConstants.HandCrossbow));
             Assert.That(weapons, Contains.Item(WeaponConstants.HeavyCrossbow));
@@ -287,7 +293,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Kukri));
             Assert.That(weapons, Contains.Item(WeaponConstants.Lance));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightCrossbow));
-            Assert.That(weapons, Contains.Item(WeaponConstants.LightFlail));
+            Assert.That(weapons, Contains.Item(WeaponConstants.Flail));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightHammer));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightMace));
             Assert.That(weapons, Contains.Item(WeaponConstants.LightPick));
@@ -322,7 +328,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.Warhammer));
             Assert.That(weapons, Contains.Item(WeaponConstants.Whip));
 
-            Assert.That(weapons.Count(), Is.EqualTo(68));
+            Assert.That(weapons.Count(), Is.EqualTo(70));
         }
     }
 }

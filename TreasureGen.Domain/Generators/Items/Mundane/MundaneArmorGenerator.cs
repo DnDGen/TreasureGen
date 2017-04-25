@@ -60,7 +60,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return armor;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var armor = new Armor();
             template.MundaneClone(armor);
@@ -93,7 +93,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return armor;
         }
 
-        public Item GenerateFromSubset(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset)
         {
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
@@ -112,7 +112,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var template = new Item();
             template.Name = collectionsSelector.SelectRandomFrom(subset);
 
-            var defaultArmor = Generate(template);
+            var defaultArmor = GenerateFrom(template);
             return defaultArmor;
         }
     }

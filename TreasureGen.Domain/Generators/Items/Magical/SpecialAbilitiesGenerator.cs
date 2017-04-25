@@ -1,5 +1,4 @@
 ﻿using RollGen;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Collections;
@@ -30,14 +29,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.dice = dice;
         }
 
-        public IEnumerable<SpecialAbility> GenerateFor(string itemType, IEnumerable<string> attributes, string power, int magicalBonus, Int32 quantity)
+        public IEnumerable<SpecialAbility> GenerateFor(Item targetItem, string power, int quantity)
         {
-            if (magicalBonus <= 0)
+            if (targetItem.Magic.Bonus <= 0)
                 return Enumerable.Empty<SpecialAbility>();
 
-            var tableNames = GetTableNames(itemType, attributes, power);
-            var bonusSum = magicalBonus;
-            var availableAbilities = GetAvailableAbilities(tableNames, bonusSum, attributes);
+            var tableNames = GetTableNames(targetItem, power);
+            var bonusSum = targetItem.Magic.Bonus;
+            var availableAbilities = GetAvailableAbilities(targetItem, tableNames, bonusSum);
             var abilities = new List<SpecialAbility>();
 
             while (quantity > 0 && availableAbilities.Count > 0)
@@ -82,28 +81,28 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return abilities;
         }
 
-        private IEnumerable<string> GetTableNames(string itemType, IEnumerable<string> attributes, string power)
+        private IEnumerable<string> GetTableNames(Item targetItem, string power)
         {
             var tableNames = new List<string>();
 
-            if (attributes.Contains(AttributeConstants.Melee))
+            if (targetItem.Attributes.Contains(AttributeConstants.Melee))
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
                 tableNames.Add(tableName);
             }
 
-            if (attributes.Contains(AttributeConstants.Ranged))
+            if (targetItem.Attributes.Contains(AttributeConstants.Ranged))
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
                 tableNames.Add(tableName);
             }
 
-            if (attributes.Contains(AttributeConstants.Shield))
+            if (targetItem.Attributes.Contains(AttributeConstants.Shield))
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
                 tableNames.Add(tableName);
             }
-            else if (itemType == ItemTypeConstants.Armor)
+            else if (targetItem.ItemType == ItemTypeConstants.Armor)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
                 tableNames.Add(tableName);
@@ -112,7 +111,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return tableNames;
         }
 
-        private List<SpecialAbility> GetAvailableAbilities(IEnumerable<string> tableNames, int bonus, IEnumerable<string> attributes)
+        private List<SpecialAbility> GetAvailableAbilities(Item targetItem, IEnumerable<string> tableNames, int bonus)
         {
             var availableAbilities = new List<SpecialAbility>();
 
@@ -127,7 +126,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
                     var ability = GetSpecialAbility(abilityName);
 
-                    if (AllAttributeRequirementsMet(ability.AttributeRequirements, attributes) && bonus + ability.BonusEquivalent <= MaxBonus)
+                    if (ability.RequirementsMet(targetItem) && bonus + ability.BonusEquivalent <= 10)
                         availableAbilities.Add(ability);
                 }
             }
@@ -138,38 +137,15 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private SpecialAbility GetSpecialAbility(string abilityName)
         {
             var ability = new SpecialAbility();
-            var abilityResult = specialAbilityAttributesSelector.SelectFrom(abilityName);
+            var abilitySelection = specialAbilityAttributesSelector.SelectFrom(abilityName);
 
             ability.Name = abilityName;
-            ability.BaseName = abilityResult.BaseName;
+            ability.BaseName = abilitySelection.BaseName;
             ability.AttributeRequirements = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
-            ability.BonusEquivalent = abilityResult.BonusEquivalent;
-            ability.Power = abilityResult.Power;
+            ability.BonusEquivalent = abilitySelection.BonusEquivalent;
+            ability.Power = abilitySelection.Power;
 
             return ability;
-        }
-
-        private bool AllAttributeRequirementsMet(IEnumerable<string> requirements, IEnumerable<string> attributes)
-        {
-            var missingRequirements = requirements.Where(r => r.Contains("/") == false).Except(attributes);
-            return !missingRequirements.Any() && OrRequirementsMet(requirements, attributes);
-        }
-
-        private bool OrRequirementsMet(IEnumerable<string> requirements, IEnumerable<string> attributes)
-        {
-            if (requirements.Any(r => r.Contains("/")) == false)
-                return true;
-
-            var orRequirements = requirements.Where(r => r.Contains("/"));
-
-            foreach (var orRequirement in orRequirements)
-            {
-                var options = orRequirement.Split('/');
-                if (options.Intersect(attributes).Any() == false)
-                    return false;
-            }
-
-            return true;
         }
 
         private bool CanHaveAllAvailableAbilities(int quantity, int bonusSum, IEnumerable<SpecialAbility> availableAbilities)

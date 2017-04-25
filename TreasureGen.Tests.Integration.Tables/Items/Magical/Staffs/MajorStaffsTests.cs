@@ -6,7 +6,7 @@ using TreasureGen.Items.Magical;
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Staves
 {
     [TestFixture]
-    public class MajorStaffsTests : PercentileTests
+    public class MajorStaffsTests : TypeAndAmountPercentileTests
     {
         protected override string tableName
         {
@@ -25,30 +25,30 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Staves
             AssertTableIsComplete();
         }
 
-        [TestCase(StaffConstants.Charming, 1, 3)]
-        [TestCase(StaffConstants.Fire, 4, 9)]
-        [TestCase(StaffConstants.SwarmingInsects, 10, 11)]
-        [TestCase(StaffConstants.Healing, 12, 17)]
-        [TestCase(StaffConstants.SizeAlteration, 18, 19)]
-        [TestCase(StaffConstants.Illumination, 20, 24)]
-        [TestCase(StaffConstants.Frost, 25, 31)]
-        [TestCase(StaffConstants.Defense, 32, 38)]
-        [TestCase(StaffConstants.Abjuration, 39, 43)]
-        [TestCase(StaffConstants.Conjuration, 44, 48)]
-        [TestCase(StaffConstants.Enchantment, 49, 53)]
-        [TestCase(StaffConstants.Evocation, 54, 58)]
-        [TestCase(StaffConstants.Illusion, 59, 63)]
-        [TestCase(StaffConstants.Necromancy, 64, 68)]
-        [TestCase(StaffConstants.Transmutation, 69, 73)]
-        [TestCase(StaffConstants.Divination, 74, 77)]
-        [TestCase(StaffConstants.EarthAndStone, 78, 82)]
-        [TestCase(StaffConstants.Woodlands, 83, 87)]
-        [TestCase(StaffConstants.Life, 88, 92)]
-        [TestCase(StaffConstants.Passage, 93, 97)]
-        [TestCase(StaffConstants.Power, 98, 100)]
-        public override void Percentile(string content, int lower, int upper)
+        [TestCase(1, 3, StaffConstants.Charming, 0)]
+        [TestCase(4, 9, StaffConstants.Fire, 0)]
+        [TestCase(10, 11, StaffConstants.SwarmingInsects, 0)]
+        [TestCase(12, 17, StaffConstants.Healing, 0)]
+        [TestCase(18, 19, StaffConstants.SizeAlteration, 0)]
+        [TestCase(20, 24, StaffConstants.Illumination, 0)]
+        [TestCase(25, 31, StaffConstants.Frost, 0)]
+        [TestCase(32, 38, StaffConstants.Defense, 0)]
+        [TestCase(39, 41, StaffConstants.Abjuration, 0)]
+        [TestCase(44, 48, StaffConstants.Conjuration, 0)]
+        [TestCase(49, 53, StaffConstants.Enchantment, 0)]
+        [TestCase(54, 58, StaffConstants.Evocation, 0)]
+        [TestCase(59, 63, StaffConstants.Illusion, 0)]
+        [TestCase(64, 68, StaffConstants.Necromancy, 0)]
+        [TestCase(69, 73, StaffConstants.Transmutation, 0)]
+        [TestCase(74, 77, StaffConstants.Divination, 0)]
+        [TestCase(78, 82, StaffConstants.EarthAndStone, 0)]
+        [TestCase(83, 87, StaffConstants.Woodlands, 2)]
+        [TestCase(88, 92, StaffConstants.Life, 0)]
+        [TestCase(93, 97, StaffConstants.Passage, 0)]
+        [TestCase(98, 100, StaffConstants.Power, 2)]
+        public void TypeAndAmountPercentile(int lower, int upper, string type, int amount)
         {
-            base.Percentile(content, lower, upper);
+            base.TypeAndAmountPercentile(type, amount, lower, upper);
         }
     }
 }

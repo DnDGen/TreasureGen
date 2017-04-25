@@ -327,8 +327,6 @@
     <Compile Include="Items\Magical\WondrousItems\MinorWondrousItemsTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\WondrousItemAttributesTests.cs" />
     <Compile Include="Items\Mundane\Alchemical\AlchemicalItemsTests.cs" />
-    <Compile Include="Items\Mundane\Weapons\AmmunitionAttributesTests.cs" />
-    <Compile Include="Items\Mundane\Weapons\AmmunitionsTests.cs" />
     <Compile Include="Items\Mundane\MundaneGearSizesTests.cs" />
     <Compile Include="Items\Mundane\Weapons\CommonMeleeWeaponsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\CommonRangedWeaponsTests.cs" />
@@ -340,6 +338,8 @@
     <Compile Include="Items\Mundane\SpecialMaterialsTests.cs" />
     <Compile Include="Items\Mundane\Tools\ToolsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\UncommonWeaponsTests.cs" />
+    <Compile Include="Items\Mundane\Weapons\WeaponDamagesTests.cs" />
+    <Compile Include="Items\Mundane\Weapons\WeaponDataTests.cs" />
     <Compile Include="Items\Mundane\Weapons\WeaponAttributesTests.cs" />
     <Compile Include="PercentileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

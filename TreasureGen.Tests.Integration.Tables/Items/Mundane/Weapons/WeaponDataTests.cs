@@ -1,0 +1,103 @@
+﻿using NUnit.Framework;
+using TreasureGen.Domain.Tables;
+using TreasureGen.Items;
+
+namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
+{
+    [TestFixture]
+    public class WeaponDataTests : CollectionsTests
+    {
+        protected override string tableName
+        {
+            get { return TableNameConstants.Collections.Set.WeaponData; }
+        }
+
+        [TestCase(WeaponConstants.Gauntlet, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Dagger, AttributeConstants.DamageTypes.Piercing + " or " + AttributeConstants.DamageTypes.Slashing, "19-20", "x2")]
+        [TestCase(WeaponConstants.PunchingDagger, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.SpikedGauntlet, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.LightMace, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Sickle, AttributeConstants.DamageTypes.Slashing, "20", "x2")]
+        [TestCase(WeaponConstants.Club, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.HeavyMace, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Morningstar, AttributeConstants.DamageTypes.Bludgeoning + " and " + AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Shortspear, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Longspear, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.Quarterstaff, AttributeConstants.DamageTypes.Bludgeoning + "/" + AttributeConstants.DamageTypes.Bludgeoning, "20/20", "x2/x2")]
+        [TestCase(WeaponConstants.Spear, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.HeavyCrossbow, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.LightCrossbow, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.Dart, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Javelin, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Sling, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.ThrowingAxe, AttributeConstants.DamageTypes.Slashing, "20", "x2")]
+        [TestCase(WeaponConstants.LightHammer, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Handaxe, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Kukri, AttributeConstants.DamageTypes.Slashing, "18-20", "x2")]
+        [TestCase(WeaponConstants.LightPick, AttributeConstants.DamageTypes.Piercing, "20", "x4")]
+        [TestCase(WeaponConstants.Sap, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.ShortSword, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.Battleaxe, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Flail, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Longsword, AttributeConstants.DamageTypes.Slashing, "19-20", "x2")]
+        [TestCase(WeaponConstants.HeavyPick, AttributeConstants.DamageTypes.Piercing, "20", "x4")]
+        [TestCase(WeaponConstants.Rapier, AttributeConstants.DamageTypes.Piercing, "18-20", "x2")]
+        [TestCase(WeaponConstants.Scimitar, AttributeConstants.DamageTypes.Slashing, "18-20", "x2")]
+        [TestCase(WeaponConstants.Trident, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Warhammer, AttributeConstants.DamageTypes.Bludgeoning, "20", "x3")]
+        [TestCase(WeaponConstants.Falchion, AttributeConstants.DamageTypes.Slashing, "18-20", "x2")]
+        [TestCase(WeaponConstants.Glaive, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Greataxe, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Greatclub, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.HeavyFlail, AttributeConstants.DamageTypes.Bludgeoning, "19-20", "x2")]
+        [TestCase(WeaponConstants.Greatsword, AttributeConstants.DamageTypes.Slashing, "19-20", "x2")]
+        [TestCase(WeaponConstants.Guisarme, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Halberd, AttributeConstants.DamageTypes.Piercing + " or " + AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Lance, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.Ranseur, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.Scythe, AttributeConstants.DamageTypes.Piercing + " or " + AttributeConstants.DamageTypes.Slashing, "20", "x4")]
+        [TestCase(WeaponConstants.Longbow, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.CompositeLongbow, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.Shortbow, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.CompositeShortbow, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.Kama, AttributeConstants.DamageTypes.Slashing, "20", "x2")]
+        [TestCase(WeaponConstants.Nunchaku, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Sai, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Siangham, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.BastardSword, AttributeConstants.DamageTypes.Slashing, "19-20", "x2")]
+        [TestCase(WeaponConstants.DwarvenWaraxe, AttributeConstants.DamageTypes.Slashing, "20", "x3")]
+        [TestCase(WeaponConstants.Whip, AttributeConstants.DamageTypes.Slashing, "20", "x2")]
+        [TestCase(WeaponConstants.OrcDoubleAxe, AttributeConstants.DamageTypes.Slashing + "/" + AttributeConstants.DamageTypes.Slashing, "20/20", "x3/x3")]
+        [TestCase(WeaponConstants.SpikedChain, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.DireFlail, AttributeConstants.DamageTypes.Bludgeoning + "/" + AttributeConstants.DamageTypes.Bludgeoning, "20/20", "x2/x2")]
+        [TestCase(WeaponConstants.GnomeHookedHammer, AttributeConstants.DamageTypes.Bludgeoning + "/" + AttributeConstants.DamageTypes.Piercing, "20/20", "x3/x4")]
+        [TestCase(WeaponConstants.TwoBladedSword, AttributeConstants.DamageTypes.Slashing + "/" + AttributeConstants.DamageTypes.Slashing, "19-20/19-20", "x2/x2")]
+        [TestCase(WeaponConstants.DwarvenUrgrosh, AttributeConstants.DamageTypes.Piercing + " or " + AttributeConstants.DamageTypes.Slashing + "/" + AttributeConstants.DamageTypes.Piercing + " or " + AttributeConstants.DamageTypes.Slashing, "20/20", "x3/x3")]
+        [TestCase(WeaponConstants.Bolas, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.HandCrossbow, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.HeavyRepeatingCrossbow, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.LightRepeatingCrossbow, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.Net, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        [TestCase(WeaponConstants.Shuriken, AttributeConstants.DamageTypes.Piercing, "20", "x2")]
+        [TestCase(WeaponConstants.Arrow, AttributeConstants.DamageTypes.Piercing, "20", "x3")]
+        [TestCase(WeaponConstants.CrossbowBolt, AttributeConstants.DamageTypes.Piercing, "19-20", "x2")]
+        [TestCase(WeaponConstants.SlingBullet, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2")]
+        public void WeaponData(string weapon, string damageType, string threatRange, string criticalMultiplier)
+        {
+            var collection = new string[3];
+            collection[DataIndexConstants.Weapon.CriticalMultiplier] = criticalMultiplier;
+            collection[DataIndexConstants.Weapon.DamageType] = damageType;
+            collection[DataIndexConstants.Weapon.ThreatRange] = threatRange;
+
+            base.OrderedCollections(weapon, collection);
+        }
+
+        [Test]
+        public void AllWeaponsAreInTable()
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            var keys = GetKeys();
+            AssertCollection(keys, weapons);
+        }
+    }
+}

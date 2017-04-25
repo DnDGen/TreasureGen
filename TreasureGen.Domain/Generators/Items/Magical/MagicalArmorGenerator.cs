@@ -14,17 +14,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly IPercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly ISpecialAbilitiesGenerator specialAbilitiesSelector;
+        private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
         private readonly Generator generator;
         private readonly MundaneItemGenerator mundaneArmorGenerator;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
         public MagicalArmorGenerator(
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IPercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
-            ISpecialAbilitiesGenerator specialAbilitiesSelector,
+            ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             Generator generator,
             IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
@@ -32,10 +31,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.specialAbilitiesSelector = specialAbilitiesSelector;
+            this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.generator = generator;
-            this.mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
         }
 
         public Item GenerateAtPower(string power)
@@ -57,9 +56,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, selection.Type);
             template.Name = percentileSelector.SelectFrom(tableName);
 
-            var armor = mundaneArmorGenerator.Generate(template);
+            var armor = mundaneArmorGenerator.GenerateFrom(template);
             armor.Magic.Bonus = selection.Amount;
-            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(ItemTypeConstants.Armor, armor.Attributes, power, armor.Magic.Bonus, abilityCount);
+            armor.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(armor, power, abilityCount);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
@@ -76,13 +75,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 return specificArmor;
             }
 
-            var armor = mundaneArmorGenerator.Generate(template);
+            var armor = mundaneArmorGenerator.GenerateFrom(template);
             armor.IsMagical = true;
             armor.Magic.Bonus = template.Magic.Bonus;
             armor.Magic.Charges = template.Magic.Charges;
             armor.Magic.Curse = template.Magic.Curse;
             armor.Magic.Intelligence = template.Magic.Intelligence;
-            armor.Magic.SpecialAbilities = specialAbilitiesSelector.GenerateFor(template.Magic.SpecialAbilities);
+            armor.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);

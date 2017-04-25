@@ -16,251 +16,205 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Metal,
             AttributeConstants.Common,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
-            AttributeConstants.Slashing,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Greataxe,
             AttributeConstants.Metal,
             AttributeConstants.Common,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Greatsword,
             AttributeConstants.Metal,
             AttributeConstants.Common,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Kama,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Longsword,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.LightMace,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.HeavyMace,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Nunchaku,
             AttributeConstants.Wood,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Quarterstaff,
             AttributeConstants.Wood,
             AttributeConstants.Common,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Rapier,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Scimitar,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Shortspear,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Common,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Siangham,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.BastardSword,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.ShortSword,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.DwarvenWaraxe,
             AttributeConstants.Metal,
             AttributeConstants.Common,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.OrcDoubleAxe,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Battleaxe,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.SpikedChain,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Club,
             AttributeConstants.Wood,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.HandCrossbow,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Ranged,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Ranged)]
         [TestCase(WeaponConstants.HeavyRepeatingCrossbow,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Ranged,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.LightRepeatingCrossbow,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Ranged,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.PunchingDagger,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Falchion,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.DireFlail,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.HeavyFlail,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.LightFlail,
+        [TestCase(WeaponConstants.Flail,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Gauntlet,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.SpikedGauntlet,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Glaive,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Greatclub,
             AttributeConstants.Wood,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Guisarme,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Halberd,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
-        [TestCase(WeaponConstants.Halfspear,
+        [TestCase(WeaponConstants.Spear,
             AttributeConstants.Metal,
             AttributeConstants.Wood,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.GnomeHookedHammer,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
-            AttributeConstants.Piercing,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.LightHammer,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Handaxe,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Kukri,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Lance,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Longspear,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Morningstar,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Net,
             AttributeConstants.Uncommon,
             AttributeConstants.Ranged,
@@ -269,54 +223,45 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.HeavyPick,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.LightPick,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Piercing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Ranseur,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Sap,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Scythe,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Shuriken,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Ranged,
-            AttributeConstants.Piercing,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Sickle,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.TwoBladedSword,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Trident,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
-            AttributeConstants.Piercing,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.DwarvenUrgrosh,
@@ -324,81 +269,94 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Uncommon,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
-            AttributeConstants.Piercing,
-            AttributeConstants.Slashing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Warhammer,
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Bludgeoning)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Whip,
             AttributeConstants.Uncommon,
-            AttributeConstants.Melee,
-            AttributeConstants.Slashing)]
+            AttributeConstants.Melee)]
         [TestCase(WeaponConstants.ThrowingAxe,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Metal,
-            AttributeConstants.Slashing,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.HeavyCrossbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.LightCrossbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Dart,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Metal,
-            AttributeConstants.Piercing,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Javelin,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Metal,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Shortbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.CompositeShortbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Sling,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
-            AttributeConstants.Bludgeoning,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Longbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.CompositeLongbow,
             AttributeConstants.Common,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.Piercing,
             AttributeConstants.TwoHanded)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(WeaponConstants.Arrow,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal,
+            AttributeConstants.Wood)]
+        [TestCase(WeaponConstants.CrossbowBolt,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.SlingBullet,
+            ItemTypeConstants.Weapon,
+            AttributeConstants.Common,
+            AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
+            AttributeConstants.Metal)]
+        public void WeaponAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [Test]
+        public void AllWeaponsAreInTable()
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            var keys = GetKeys();
+            AssertCollection(keys, weapons);
         }
     }
 }

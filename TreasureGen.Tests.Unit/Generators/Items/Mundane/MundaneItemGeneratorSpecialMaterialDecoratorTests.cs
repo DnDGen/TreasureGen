@@ -109,13 +109,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(item);
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns("special material");
 
-            var decoratedItem = decorator.Generate(template, true);
+            var decoratedItem = decorator.GenerateFrom(template, true);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Contains.Item("special material"));
@@ -127,13 +127,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(item);
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true).Returns(false);
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns("special material");
 
-            var decoratedItem = decorator.Generate(template);
+            var decoratedItem = decorator.GenerateFrom(template);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
@@ -146,9 +146,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset(subset)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(item);
 
-            var decoratedItem = decorator.GenerateFromSubset(subset);
+            var decoratedItem = decorator.GenerateFrom(subset);
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Not.Contains("special material"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(0));
@@ -163,9 +163,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns("special material");
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset(subset)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(item);
 
-            var decoratedItem = decorator.GenerateFromSubset(subset);
+            var decoratedItem = decorator.GenerateFrom(subset);
             Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
         }
@@ -179,9 +179,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns("special material 1").Returns("special material 2").Returns("special material 3");
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset(subset)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(item);
 
-            var decoratedItem = decorator.GenerateFromSubset(subset);
+            var decoratedItem = decorator.GenerateFrom(subset);
             Assert.That(decoratedItem.Traits, Contains.Item("special material 1"));
             Assert.That(decoratedItem.Traits, Contains.Item("special material 2"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(2));
@@ -198,9 +198,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns(TraitConstants.SpecialMaterials.Dragonhide);
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset(subset)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(item);
 
-            var decoratedItem = decorator.GenerateFromSubset(subset);
+            var decoratedItem = decorator.GenerateFrom(subset);
             Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(decoratedItem.Attributes, Is.All.Not.EqualTo(AttributeConstants.Metal));
         }
@@ -216,9 +216,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns(TraitConstants.SpecialMaterials.Dragonhide);
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset(subset)).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(item);
 
-            var decoratedItem = decorator.GenerateFromSubset(subset);
+            var decoratedItem = decorator.GenerateFrom(subset);
             Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(decoratedItem.Attributes, Is.All.Not.EqualTo(AttributeConstants.Wood));
         }

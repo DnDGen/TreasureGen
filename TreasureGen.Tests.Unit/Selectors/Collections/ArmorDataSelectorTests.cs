@@ -21,12 +21,12 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void GetArmorData()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ArmorData, "armor")).Returns(new[]
-            {
-                "9266",
-                "-90210",
-                "42"
-            });
+            var data = new string[3];
+            data[DataIndexConstants.Armor.ArmorBonus] = "9266";
+            data[DataIndexConstants.Armor.ArmorCheckPenalty] = "-90210";
+            data[DataIndexConstants.Armor.MaxDexterityBonus] = "42";
+
+            mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ArmorData, "armor")).Returns(data);
 
             var selection = armorDataSelector.Select("armor");
             Assert.That(selection.ArmorBonus, Is.EqualTo(9266));

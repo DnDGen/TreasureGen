@@ -61,5 +61,11 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         {
             AssertNotSingleton<IArmorDataSelector>();
         }
+
+        [Test]
+        public void WeaponDataSelectorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IWeaponDataSelector>();
+        }
     }
 }

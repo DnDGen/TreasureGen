@@ -26,7 +26,6 @@
             public static class Set
             {
                 public const string AlchemicalItems = "AlchemicalItems";
-                public const string Ammunitions = "Ammunitions";
                 public const string BalorOrPitFiend = "BalorOrPitFiend";
                 public const string CastersShieldContainsSpell = "CastersShieldContainsSpell";
                 public const string CastersShieldSpellTypes = "CastersShieldSpellTypes";
@@ -87,7 +86,6 @@
 
             public static class Set
             {
-                public const string AmmunitionAttributes = "AmmunitionAttributes";
                 public const string ArmorData = "ArmorData";
                 public const string ChargeLimits = "ChargeLimits";
                 public const string EpicItems = "EpicItems";
@@ -101,6 +99,8 @@
                 public const string SpecialMaterials = "SpecialMaterials";
                 public const string SpecificCursedItemItemTypes = "SpecificCursedItemItemTypes";
                 public const string SpecificCursedItemAttributes = "SpecificCursedItemAttributes";
+                public const string WeaponDamages = "WeaponDamages";
+                public const string WeaponData = "WeaponData";
                 public const string WondrousItemContents = "WondrousItemContents";
             }
         }
