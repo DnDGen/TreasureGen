@@ -29,12 +29,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
         }
 
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
         protected override IEnumerable<string> GetItemNames()
         {
             return AlchemicalItemConstants.GetAllAlchemicalItems();
@@ -44,12 +38,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public void StressCustomAlchemicalItem()
         {
             Stress(StressCustomItem);
-        }
-
-        [Test]
-        public void StressRandomCustomAlchemicalItem()
-        {
-            Stress(StressRandomCustomItem);
         }
 
         [Test]

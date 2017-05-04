@@ -25,6 +25,11 @@ namespace TreasureGen.Tests.Integration.Tables
             return table.Keys;
         }
 
+        protected IEnumerable<string> GetCollection(string name)
+        {
+            return table[name];
+        }
+
         public virtual void Collections(string name, params string[] items)
         {
             Assert.That(table.Keys, Contains.Item(name), tableName);

@@ -1,74 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <attributes>
-    <object>
-        <name>Banded mail of luck</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Breastplate of command</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Breastplate</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Celestial armor</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Demon armor</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Dwarven plate</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Elven chain</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Full plate of speed</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Plate armor of the deep</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Rhino hide</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
-        <name>Chain shirt</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
-        <name>Full plate</name>
-        <attribute>Armor</attribute>
-        <attribute>Specific</attribute>
-    </object>
+  <object>
+    <name>Armor of arrow attraction</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Armor of rage</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Banded mail of luck</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Breastplate of command</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Breastplate</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Celestial armor</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Demon armor</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Dwarven plate</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Elven chain</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Full plate of speed</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Plate armor of the deep</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Rhino hide</name>
+    <attribute>Specific</attribute>
+  </object>
+  <object>
+    <name>Chain shirt</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+  </object>
+  <object>
+    <name>Full plate</name>
+    <attribute>Specific</attribute>
+  </object>
 </attributes>

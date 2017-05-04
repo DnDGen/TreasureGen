@@ -48,7 +48,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.HolyAvenger)]
         [TestCase(WeaponConstants.LuckBlade3)]
         [TestCase(WeaponConstants.LuckBlade)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(WeaponConstants.CursedBackbiterSpear)]
+        [TestCase(WeaponConstants.CursedMinus2Sword)]
+        [TestCase(WeaponConstants.BerserkingSword)]
+        [TestCase(WeaponConstants.NetOfSnaring)]
+        [TestCase(WeaponConstants.MaceOfBlood)]
+        public void SpecificWeaponSpecialAbilities(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

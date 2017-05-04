@@ -88,7 +88,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items
         [TestCase(RodConstants.FlameExtinguishing, RodConstants.FlameExtinguishing)]
         [TestCase(RodConstants.FullAbsorption, RodConstants.Absorption)]
         [TestCase(RodConstants.ImmovableRod, RodConstants.ImmovableRod)]
-        [TestCase(RodConstants.LordlyMight, RodConstants.LordlyMight, WeaponConstants.LightMace, WeaponConstants.Longsword, WeaponConstants.Battleaxe, WeaponConstants.Shortspear, WeaponConstants.Longspear)]
+        [TestCase(RodConstants.LordlyMight, RodConstants.LordlyMight, WeaponConstants.LightMace)]
         [TestCase(RodConstants.MetalAndMineralDetection, RodConstants.MetalAndMineralDetection)]
         [TestCase(RodConstants.Metamagic_Empower, RodConstants.Metamagic_Empower)]
         [TestCase(RodConstants.Metamagic_Empower_Greater, RodConstants.Metamagic_Empower, RodConstants.Metamagic_Empower_Greater)]

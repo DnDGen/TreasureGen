@@ -1,40 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <attributes>
-    <object>
-        <name>Banded mail of luck</name>
-    </object>
-    <object>
-        <name>Breastplate of command</name>
-    </object>
-    <object>
-        <name>Breastplate</name>
-    </object>
-    <object>
-        <name>Celestial armor</name>
-    </object>
-    <object>
-        <name>Demon armor</name>
-    </object>
-    <object>
-        <name>Dwarven plate</name>
-    </object>
-    <object>
-        <name>Elven chain</name>
-    </object>
-    <object>
-        <name>Full plate of speed</name>
-    </object>
-    <object>
-        <name>Plate armor of the deep</name>
-    </object>
-    <object>
-        <name>Rhino hide</name>
-    </object>
-    <object>
-        <name>Chain shirt</name>
-    </object>
-    <object>
-        <name>Full plate</name>
-    </object>
+  <object>
+    <name>Banded mail of luck</name>
+  </object>
+  <object>
+    <name>Breastplate of command</name>
+  </object>
+  <object>
+    <name>Breastplate</name>
+  </object>
+  <object>
+    <name>Celestial armor</name>
+  </object>
+  <object>
+    <name>Demon armor</name>
+  </object>
+  <object>
+    <name>Dwarven plate</name>
+  </object>
+  <object>
+    <name>Elven chain</name>
+  </object>
+  <object>
+    <name>Full plate of speed</name>
+  </object>
+  <object>
+    <name>Plate armor of the deep</name>
+  </object>
+  <object>
+    <name>Rhino hide</name>
+  </object>
+  <object>
+    <name>Chain shirt</name>
+  </object>
+  <object>
+    <name>Full plate</name>
+  </object>
+  <object>
+    <name>Armor of rage</name>
+  </object>
+  <object>
+    <name>Armor of arrow attraction</name>
+  </object>
 </attributes>

@@ -19,7 +19,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
-        private Mock<IMagicalItemTraitsGenerator> mockTraitsGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private TypeAndAmountSelection selection;
@@ -31,7 +30,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<IPercentileSelector>();

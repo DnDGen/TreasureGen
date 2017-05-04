@@ -54,7 +54,7 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void TreasureDoesNotHappen()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.IsAny == false);
+            var treasure = GenerateOrFail(() => GenerateTreasure(), t => !t.IsAny);
             Assert.That(treasure.IsAny, Is.False);
         }
 

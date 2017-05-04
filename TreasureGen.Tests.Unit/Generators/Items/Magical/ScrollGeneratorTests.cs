@@ -33,6 +33,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateScroll()
         {
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
+            AssertScroll(scroll);
+        }
+
+        private void AssertScroll(Item scroll)
+        {
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.IsMagical, Is.True);
@@ -49,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
-            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            AssertScroll(scroll);
             Assert.That(scroll.Traits, Contains.Item("spell type"));
             Assert.That(scroll.Contents, Contains.Item("spell (9266)"));
         }
@@ -60,6 +65,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
+            AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
@@ -69,6 +75,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Medium);
+            AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
@@ -78,6 +85,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d(6).AsSum()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Major);
+            AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
 
@@ -93,6 +101,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
+            AssertScroll(scroll);
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Once);
         }
 
@@ -102,6 +111,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateAtPower(PowerConstants.Minor);
+            AssertScroll(scroll);
             mockSpellGenerator.Verify(g => g.GenerateLevel(PowerConstants.Minor), Times.Exactly(9266));
             mockSpellGenerator.Verify(g => g.Generate(It.IsAny<string>(), It.IsAny<int>()), Times.Exactly(9266));
         }
@@ -146,12 +156,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { ItemTypeConstants.Scroll };
 
             var scroll = scrollGenerator.GenerateFromSubset(PowerConstants.Minor, subset);
-            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.IsMagical, Is.True);
-            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
-            Assert.That(scroll.Quantity, Is.EqualTo(1));
-            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
+            AssertScroll(scroll);
         }
 
         [Test]
@@ -167,12 +172,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { ItemTypeConstants.Scroll, "not a scroll" };
 
             var scroll = scrollGenerator.GenerateFromSubset(PowerConstants.Minor, subset);
-            Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.IsMagical, Is.True);
-            Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
-            Assert.That(scroll.Quantity, Is.EqualTo(1));
-            Assert.That(scroll.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Scroll));
+            AssertScroll(scroll);
         }
     }
 }

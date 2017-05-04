@@ -247,6 +247,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Metal,
             AttributeConstants.Uncommon,
             AttributeConstants.Ranged,
+            AttributeConstants.Ammunition,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Sickle,
             AttributeConstants.Metal,

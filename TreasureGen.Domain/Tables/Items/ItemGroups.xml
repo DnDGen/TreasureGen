@@ -662,10 +662,6 @@
     <name>Rod of lordly might</name>
     <attribute>Rod of lordly might</attribute>
     <attribute>Light mace</attribute>
-    <attribute>Longsword</attribute>
-    <attribute>Battleaxe</attribute>
-    <attribute>Shortspear</attribute>
-    <attribute>Longspear</attribute>
   </object>
   <object>
     <name>Rod of metal and mineral detection</name>

@@ -157,7 +157,7 @@
     <Compile Include="Items\Magical\Weapons\Medium\MediumWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\Minor\MinorWeaponsTests.cs" />
     <Compile Include="Items\Magical\Weapons\SpellStoringContainsSpellTests.cs" />
-    <Compile Include="Items\Magical\Weapons\WeaponTypesTests.cs" />
+    <Compile Include="Items\Magical\Weapons\MagicalWeaponTypesTests.cs" />
     <Compile Include="Items\Magical\WondrousItems\RobeOfTheArchmagiColorsTests.cs" />
     <Compile Include="Items\Mundane\Armors\ArmorDataTests.cs" />
     <Compile Include="Items\Mundane\HasSpecialMaterialTests.cs" />
@@ -334,7 +334,7 @@
     <Compile Include="Items\Mundane\Armors\MundaneArmorsTests.cs" />
     <Compile Include="Items\Mundane\MundaneItemsTests.cs" />
     <Compile Include="Items\Mundane\IsMasterworkTests.cs" />
-    <Compile Include="Items\Mundane\Weapons\MundaneWeaponsTests.cs" />
+    <Compile Include="Items\Mundane\Weapons\MundaneWeaponTypesTests.cs" />
     <Compile Include="Items\Mundane\SpecialMaterialsTests.cs" />
     <Compile Include="Items\Mundane\Tools\ToolsTests.cs" />
     <Compile Include="Items\Mundane\Weapons\UncommonWeaponsTests.cs" />

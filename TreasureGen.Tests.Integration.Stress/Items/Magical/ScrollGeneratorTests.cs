@@ -60,59 +60,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void StressRandomCustomScroll()
-        {
-            Stress(StressRandomCustomItem);
-        }
-
-        [Test]
-        public override void CursesHappen()
-        {
-            AssertCursesHappen();
-        }
-
-        [Test]
-        public override void SpecificCursesHappen()
-        {
-            AssertSpecificCursesHappen();
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            var scroll = GenerateOrFail(GenerateItem, s => s.ItemType == itemType && s.Traits.Count == 1 && s.Magic.Curse == string.Empty && s.Magic.Intelligence.Ego == 0);
-            AssertItem(scroll);
-            Assert.That(scroll.Magic.Curse, Is.Empty);
-            Assert.That(scroll.Magic.Intelligence.Ego, Is.EqualTo(0));
-            Assert.That(scroll.Traits.Count, Is.EqualTo(1));
-            Assert.That(scroll.Traits.Single(), Is.EqualTo("Arcane").Or.EqualTo("Divine"));
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithTraitsHappen()
-        {
-            AssertSpecificCursedItemsWithTraitsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithIntelligenceHappen()
-        {
-            AssertSpecificCursedItemsWithIntelligenceHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithNoDecorationHappen()
-        {
-            AssertSpecificCursedItemsWithNoDecorationHappen();
-        }
-
-        [Test]
-        public override void StressSpecificCursedItems()
-        {
-            base.StressSpecificCursedItems();
-        }
-
-        [Test]
         public void StressScrollFromSubset()
         {
             Stress(StressItemFromSubset);

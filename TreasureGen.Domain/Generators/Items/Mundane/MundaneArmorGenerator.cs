@@ -69,19 +69,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             armor.Quantity = 1;
 
             armor = PopulateArmor(armor);
-
-            var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-            var sizes = armor.Traits.Intersect(allSizes);
-
-            if (sizes.Any())
-            {
-                armor.Size = sizes.Single();
-                armor.Traits.Remove(armor.Size);
-            }
-            else
-            {
-                armor.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-            }
+            armor.Size = GetSize(template);
+            armor.Traits.Remove(armor.Size);
 
             if (allowRandomDecoration)
             {
@@ -91,6 +80,25 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             }
 
             return armor;
+        }
+
+        private string GetSize(Item template)
+        {
+            if (template is Armor)
+            {
+                var armor = template as Armor;
+
+                if (!string.IsNullOrEmpty(armor.Size))
+                    return armor.Size;
+            }
+
+            var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            var sizes = template.Traits.Intersect(allSizes);
+
+            if (sizes.Any())
+                return sizes.Single();
+
+            return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
         }
 
         public Item GenerateFrom(IEnumerable<string> subset)

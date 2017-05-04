@@ -12,43 +12,59 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
             get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Armor); }
         }
 
-        [TestCase(ArmorConstants.BandedMailOfLuck, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Specific,
-                                                   AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.BreastplateOfCommand, ItemTypeConstants.Armor,
-                                                       AttributeConstants.Specific,
-                                                       AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.CelestialArmor, ItemTypeConstants.Armor,
-                                                 AttributeConstants.Specific,
-                                                 AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.DemonArmor, ItemTypeConstants.Armor,
-                                             AttributeConstants.Specific,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.DwarvenPlate, ItemTypeConstants.Armor,
-                                               AttributeConstants.Specific,
-                                               AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.ElvenChain, ItemTypeConstants.Armor,
-                                             AttributeConstants.Specific,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.FullPlateOfSpeed, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Specific,
-                                                   AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.PlateArmorOfTheDeep, ItemTypeConstants.Armor,
-                                                      AttributeConstants.Specific,
-                                                      AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.RhinoHide, ItemTypeConstants.Armor,
-                                            AttributeConstants.Specific)]
-        [TestCase(ArmorConstants.ChainShirt, ItemTypeConstants.Armor,
-                                             AttributeConstants.Specific,
-                                             AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.FullPlate, ItemTypeConstants.Armor,
-                                            AttributeConstants.Specific)]
-        [TestCase(ArmorConstants.Breastplate, ItemTypeConstants.Armor,
-                                              AttributeConstants.Specific,
-                                              AttributeConstants.Metal)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(ArmorConstants.BandedMailOfLuck,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.BreastplateOfCommand,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.CelestialArmor,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.DemonArmor,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.DwarvenPlate,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.ElvenChain,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.FullPlateOfSpeed,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.PlateArmorOfTheDeep,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.RhinoHide,
+            AttributeConstants.Specific)]
+        [TestCase(ArmorConstants.ChainShirt,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.FullPlate,
+            AttributeConstants.Specific)]
+        [TestCase(ArmorConstants.Breastplate,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.ArmorOfRage,
+            AttributeConstants.Metal,
+            AttributeConstants.Specific)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        public void SpecificArmorAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [TestCase(ArmorConstants.ArmorOfRage)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
+        public void SpecificCursedArmorMatchesAttributes(string item)
+        {
+            var specificCursedAttributes = CollectionsMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificAttributes = GetCollection(item);
+
+            Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));
         }
     }
 }

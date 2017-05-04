@@ -76,6 +76,7 @@
     <name>Cursed backbiter spear</name>
     <attribute>Specific</attribute>
     <attribute>Metal</attribute>
+    <attribute>Wood</attribute>
     <attribute>Melee</attribute>
     <attribute>Ranged</attribute>
     <attribute>Thrown</attribute>

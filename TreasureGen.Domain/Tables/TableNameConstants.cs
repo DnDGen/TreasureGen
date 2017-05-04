@@ -49,11 +49,12 @@
                 public const string IsMasterwork = "IsMasterwork";
                 public const string KnowledgeCategories = "KnowledgeCategories";
                 public const string Languages = "Languages";
-                public const string MundaneShields = "MundaneShields";
+                public const string MagicalWeaponTypes = "MagicalWeaponTypes";
                 public const string MeleeWeaponTraits = "MeleeWeaponTraits";
                 public const string MundaneArmors = "MundaneArmors";
                 public const string MundaneGearSizes = "MundaneGearSizes";
-                public const string MundaneWeapons = "MundaneWeapons";
+                public const string MundaneShields = "MundaneShields";
+                public const string MundaneWeaponTypes = "MundaneWeaponTypes";
                 public const string PersonalityTraits = "PersonalityTraits";
                 public const string Planes = "Planes";
                 public const string PartialAlignments = "PartialAlignments";
@@ -66,7 +67,6 @@
                 public const string SpellStoringContainsSpell = "SpellStoringContainsSpell";
                 public const string SpellTypes = "SpellTypes";
                 public const string Tools = "Tools";
-                public const string WeaponTypes = "WeaponTypes";
             }
         }
 

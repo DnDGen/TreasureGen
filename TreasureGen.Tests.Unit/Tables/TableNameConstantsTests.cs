@@ -68,10 +68,11 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Set.IsMasterwork, "IsMasterwork")]
         [TestCase(TableNameConstants.Percentiles.Set.KnowledgeCategories, "KnowledgeCategories")]
         [TestCase(TableNameConstants.Percentiles.Set.Languages, "Languages")]
-        [TestCase(TableNameConstants.Percentiles.Set.MundaneShields, "MundaneShields")]
+        [TestCase(TableNameConstants.Percentiles.Set.MagicalWeaponTypes, "MagicalWeaponTypes")]
         [TestCase(TableNameConstants.Percentiles.Set.MeleeWeaponTraits, "MeleeWeaponTraits")]
         [TestCase(TableNameConstants.Percentiles.Set.MundaneArmors, "MundaneArmors")]
-        [TestCase(TableNameConstants.Percentiles.Set.MundaneWeapons, "MundaneWeapons")]
+        [TestCase(TableNameConstants.Percentiles.Set.MundaneShields, "MundaneShields")]
+        [TestCase(TableNameConstants.Percentiles.Set.MundaneWeaponTypes, "MundaneWeaponTypes")]
         [TestCase(TableNameConstants.Percentiles.Set.PersonalityTraits, "PersonalityTraits")]
         [TestCase(TableNameConstants.Percentiles.Set.Planes, "Planes")]
         [TestCase(TableNameConstants.Percentiles.Set.PartialAlignments, "PartialAlignments")]
@@ -84,7 +85,6 @@ namespace TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell, "SpellStoringContainsSpell")]
         [TestCase(TableNameConstants.Percentiles.Set.SpellTypes, "SpellTypes")]
         [TestCase(TableNameConstants.Percentiles.Set.Tools, "Tools")]
-        [TestCase(TableNameConstants.Percentiles.Set.WeaponTypes, "WeaponTypes")]
         public void TableNameConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));

@@ -12,38 +12,38 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
             get { return string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, AttributeConstants.Shield); }
         }
 
-        [TestCase(ArmorConstants.AbsorbingShield, ItemTypeConstants.Armor,
-                                                  AttributeConstants.Shield,
-                                                  AttributeConstants.Specific,
-                                                  AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.Buckler, ItemTypeConstants.Armor,
-                                          AttributeConstants.Shield,
-                                          AttributeConstants.Specific,
-                                          AttributeConstants.Wood)]
-        [TestCase(ArmorConstants.HeavyWoodenShield, ItemTypeConstants.Armor,
-                                                    AttributeConstants.Shield,
-                                                    AttributeConstants.Specific,
-                                                    AttributeConstants.Wood)]
-        [TestCase(ArmorConstants.HeavySteelShield, ItemTypeConstants.Armor,
-                                                   AttributeConstants.Shield,
-                                                   AttributeConstants.Specific,
-                                                   AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.CastersShield, ItemTypeConstants.Armor,
-                                                AttributeConstants.Shield,
-                                                AttributeConstants.Specific,
-                                                AttributeConstants.Wood)]
-        [TestCase(ArmorConstants.SpinedShield, ItemTypeConstants.Armor,
-                                               AttributeConstants.Shield,
-                                               AttributeConstants.Specific,
-                                               AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.LionsShield, ItemTypeConstants.Armor,
-                                              AttributeConstants.Shield,
-                                              AttributeConstants.Specific,
-                                              AttributeConstants.Metal)]
-        [TestCase(ArmorConstants.WingedShield, ItemTypeConstants.Armor,
-                                               AttributeConstants.Shield,
-                                               AttributeConstants.Specific,
-                                               AttributeConstants.Wood)]
+        [TestCase(ArmorConstants.AbsorbingShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.Buckler,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Wood)]
+        [TestCase(ArmorConstants.HeavyWoodenShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Wood)]
+        [TestCase(ArmorConstants.HeavySteelShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.CastersShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Wood)]
+        [TestCase(ArmorConstants.SpinedShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.LionsShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Metal)]
+        [TestCase(ArmorConstants.WingedShield,
+            AttributeConstants.Shield,
+            AttributeConstants.Specific,
+            AttributeConstants.Wood)]
         public void SpecificShieldAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);

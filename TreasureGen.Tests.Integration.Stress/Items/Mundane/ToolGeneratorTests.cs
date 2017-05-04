@@ -29,12 +29,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
         }
 
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
         protected override IEnumerable<string> GetItemNames()
         {
             return ToolConstants.GetAllTools();
@@ -44,12 +38,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public void StressCustomTool()
         {
             Stress(StressCustomItem);
-        }
-
-        [Test]
-        public void StressRandomCustomTool()
-        {
-            Stress(StressRandomCustomItem);
         }
 
         [Test]

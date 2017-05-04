@@ -361,6 +361,7 @@
     <attribute>Metal</attribute>
     <attribute>Uncommon</attribute>
     <attribute>Ranged</attribute>
+    <attribute>Ammunition</attribute>
     <attribute>Thrown</attribute>
   </object>
   <object>

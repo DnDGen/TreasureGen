@@ -42,27 +42,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(sizes, Contains.Item(armor.Size));
         }
 
-        [Test]
-        public override void SpecialMaterialsHappen()
-        {
-            base.SpecialMaterialsHappen();
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
-        [Test]
-        public void DarkwoodShieldsHappen()
-        {
-            var shield = GenerateOrFail(GenerateItem, s => s.Traits.Contains(TraitConstants.SpecialMaterials.Darkwood) && s.Attributes.Contains(AttributeConstants.Shield));
-            AssertItem(shield);
-            Assert.That(shield.Traits, Contains.Item(TraitConstants.SpecialMaterials.Darkwood));
-            Assert.That(shield.Attributes, Contains.Item(AttributeConstants.Shield));
-        }
-
         protected override IEnumerable<string> GetItemNames()
         {
             return ArmorConstants.GetAllArmors(false);
@@ -72,12 +51,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         public void StressCustomArmor()
         {
             Stress(StressCustomItem);
-        }
-
-        [Test]
-        public void StressRandomCustomArmor()
-        {
-            Stress(StressRandomCustomItem);
         }
 
         [Test]

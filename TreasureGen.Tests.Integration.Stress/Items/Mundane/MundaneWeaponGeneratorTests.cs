@@ -41,29 +41,57 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(sizes, Contains.Item(weapon.Size));
         }
 
-        [Test]
-        public override void SpecialMaterialsHappen()
-        {
-            base.SpecialMaterialsHappen();
-        }
-
-        [Test]
-        public void MasterworkHappens()
-        {
-            var weapon = GenerateOrFail(GenerateItem, w => w.Traits.Contains(TraitConstants.Masterwork));
-            AssertItem(weapon);
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
         protected override IEnumerable<string> GetItemNames()
         {
             return WeaponConstants.GetBaseNames();
+        }
+
+        [Test]
+        public void BUG_AmmunitionWithQuantityGreaterThan1Happens()
+        {
+            var ammunition = GenerateOrFail(GenerateItem, w => w.ItemType == ItemTypeConstants.Weapon && w.Attributes.Contains(AttributeConstants.Ammunition) && w.Quantity > 1);
+            AssertItem(ammunition);
+            Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ammunition), ammunition.Name);
+            Assert.That(ammunition.Quantity, Is.InRange(2, 50), ammunition.Name);
+        }
+
+        [Test]
+        public void BUG_ThrownWeaponWithQuantityGreaterThan1Happens()
+        {
+            var thrownWeapon = GenerateOrFail(GenerateItem, w => w.ItemType == ItemTypeConstants.Weapon && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee) && w.Quantity > 1);
+            AssertItem(thrownWeapon);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), thrownWeapon.Name);
+
+            var topRange = thrownWeapon.NameMatches(WeaponConstants.Shuriken) ? 50 : 20;
+            Assert.That(thrownWeapon.Quantity, Is.InRange(2, topRange), thrownWeapon.Name);
+        }
+
+        [Test]
+        public void BUG_ShurikenHappens()
+        {
+            var shuriken = GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken));
+            AssertItem(shuriken);
+            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
+            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(1, 50), shuriken.Name);
+        }
+
+        [Test]
+        public void BUG_ShurikenWithQuantityGreaterThan1Happens()
+        {
+            var shuriken = GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 1);
+            AssertItem(shuriken);
+            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
+            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(2, 50), shuriken.Name);
         }
 
         [Test]
@@ -73,15 +101,43 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void StressRandomCustomWeapon()
-        {
-            Stress(StressRandomCustomItem);
-        }
-
-        [Test]
         public void StressMundaneWeaponFromSubset()
         {
             Stress(StressItemFromSubset);
+        }
+
+        [Test]
+        public void BUG_ShurikenFromSubsetHappens()
+        {
+            var shuriken = GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken));
+            AssertItem(shuriken);
+            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
+            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(1, 50), shuriken.Name);
+        }
+
+        [Test]
+        public void BUG_ShurikenFromSubsetWithQuantityGreaterThan1Happens()
+        {
+            var shuriken = GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 1);
+            AssertItem(shuriken);
+            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
+            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(2, 50), shuriken.Name);
+        }
+
+        private Item GenerateShuriken()
+        {
+            var subset = new[] { WeaponConstants.Shuriken };
+            var shuriken = mundaneItemGenerator.GenerateFrom(subset);
+
+            return shuriken;
         }
     }
 }

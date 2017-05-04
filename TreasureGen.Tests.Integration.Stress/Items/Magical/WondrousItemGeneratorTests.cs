@@ -36,12 +36,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Stress(StressCustomItem);
         }
 
-        [Test]
-        public void StressRandomCustomWondrousItem()
-        {
-            Stress(StressRandomCustomItem);
-        }
-
         protected override void MakeSpecificAssertionsAgainst(Item wondrousItem)
         {
             Assert.That(wondrousItem.Name, Is.Not.Empty);
@@ -56,78 +50,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
             var itemMaterials = wondrousItem.Traits.Intersect(materials);
             Assert.That(itemMaterials, Is.Empty);
-        }
-
-        [Test]
-        public void ChargesHappen()
-        {
-            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Attributes.Contains(AttributeConstants.Charged));
-            AssertItem(item);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Charged));
-            Assert.That(item.Magic.Charges, Is.Positive);
-        }
-
-        [Test]
-        public void ChargesDoNotHappen()
-        {
-            var item = GenerateOrFail(GenerateItem, i => i.ItemType == itemType && i.Attributes.Contains(AttributeConstants.Charged) == false);
-            AssertItem(item);
-            Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Charged));
-            Assert.That(item.Magic.Charges, Is.EqualTo(0));
-        }
-
-        [Test]
-        public override void IntelligenceHappens()
-        {
-            base.IntelligenceHappens();
-        }
-
-        [Test]
-        public override void TraitsHappen()
-        {
-            base.TraitsHappen();
-        }
-
-        [Test]
-        public override void CursesHappen()
-        {
-            AssertCursesHappen();
-        }
-
-        [Test]
-        public override void SpecificCursesHappen()
-        {
-            AssertSpecificCursesHappen();
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithTraitsHappen()
-        {
-            AssertSpecificCursedItemsWithTraitsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithIntelligenceHappen()
-        {
-            AssertSpecificCursedItemsWithIntelligenceHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithNoDecorationHappen()
-        {
-            AssertSpecificCursedItemsWithNoDecorationHappen();
-        }
-
-        [Test]
-        public override void StressSpecificCursedItems()
-        {
-            base.StressSpecificCursedItems();
         }
 
         [Test]

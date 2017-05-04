@@ -37,7 +37,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeapons);
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var weaponName = percentileSelector.SelectFrom(tableName);
 
@@ -140,18 +140,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
 
             weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
-
-            var sizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-
-            if (weapon.Traits.Intersect(sizes).Any())
-            {
-                weapon.Size = weapon.Traits.Intersect(sizes).First();
-                weapon.Traits.Remove(weapon.Size);
-            }
-            else if (string.IsNullOrEmpty(weapon.Size))
-            {
-                weapon.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-            }
+            weapon.Size = GetSize(template);
+            weapon.Traits.Remove(weapon.Size);
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
             weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
@@ -170,6 +160,25 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 weapon.Quantity = GetQuantity(weapon);
 
             return weapon;
+        }
+
+        private string GetSize(Item template)
+        {
+            if (template is Weapon)
+            {
+                var weapon = template as Weapon;
+
+                if (!string.IsNullOrEmpty(weapon.Size))
+                    return weapon.Size;
+            }
+
+            var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            var sizes = template.Traits.Intersect(allSizes);
+
+            if (sizes.Any())
+                return sizes.Single();
+
+            return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
         }
 
         public Item GenerateFrom(IEnumerable<string> subset)

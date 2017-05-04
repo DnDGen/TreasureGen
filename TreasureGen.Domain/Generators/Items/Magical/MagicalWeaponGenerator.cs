@@ -60,12 +60,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (bonus == ItemTypeConstants.Weapon)
                 return specificGearGenerator.GenerateFrom(power, ItemTypeConstants.Weapon);
 
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.WeaponTypes);
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
             tablename = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
 
-            var template = new Weapon();
-            template.Name = percentileSelector.SelectFrom(tablename);
-            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var name = percentileSelector.SelectFrom(tablename);
+            var template = CreateTemplate(name, power);
+            var weapon = Generate(template);
 
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon, power, specialAbilitiesCount);
@@ -99,7 +99,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             var weapon = mundaneWeaponGenerator.GenerateFrom(template, allowRandomDecoration);
-            weapon.IsMagical = true;
             weapon.Magic.Bonus = template.Magic.Bonus;
             weapon.Magic.Charges = template.Magic.Charges;
             weapon.Magic.Curse = template.Magic.Curse;
@@ -128,8 +127,17 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private Item GetDefaultWeapon(string power, IEnumerable<string> subset)
         {
+            var name = collectionsSelector.SelectRandomFrom(subset);
+            var template = CreateTemplate(name, power);
+            var defaultWeapon = Generate(template);
+
+            return defaultWeapon;
+        }
+
+        private Item CreateTemplate(string name, string power)
+        {
             var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
+            template.Name = name;
             template.Quantity = 0;
 
             if (!specificGearGenerator.TemplateIsSpecific(template))
@@ -142,9 +150,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 template.Magic.Bonus = bonuses.Select(b => Convert.ToInt32(b)).Min();
             }
 
-            var defaultWeapon = Generate(template);
-
-            return defaultWeapon;
+            return template;
         }
     }
 }

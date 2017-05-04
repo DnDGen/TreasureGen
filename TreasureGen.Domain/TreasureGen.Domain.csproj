@@ -749,7 +749,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\Weapons\WeaponTypes.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Weapons\MagicalWeaponTypes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\BalorOrPitFiend.xml" />
@@ -827,7 +827,7 @@
     <EmbeddedResource Include="Tables\Items\Mundane\Weapons\CommonRangedWeapons.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\MundaneWeapons.xml" />
+    <EmbeddedResource Include="Tables\Items\Mundane\Weapons\MundaneWeaponTypes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\Weapons\UncommonWeapons.xml" />

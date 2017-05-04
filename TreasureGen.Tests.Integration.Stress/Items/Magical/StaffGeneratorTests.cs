@@ -35,12 +35,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Stress(StressCustomItem);
         }
 
-        [Test]
-        public void StressRandomCustomStaff()
-        {
-            Stress(StressRandomCustomItem);
-        }
-
         protected override void MakeSpecificAssertionsAgainst(Item staff)
         {
             Assert.That(staff.Name, Does.StartWith("Staff of "));
@@ -63,60 +57,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(staff.Magic.Curse, Is.Not.Null, staff.Name);
             Assert.That(staff.Quantity, Is.EqualTo(1), staff.Name);
             Assert.That(staff.Traits, Is.Not.Null, staff.Name);
-        }
-
-        [Test]
-        public override void TraitsHappen()
-        {
-            base.TraitsHappen();
-        }
-
-        [Test]
-        public override void IntelligenceHappens()
-        {
-            base.IntelligenceHappens();
-        }
-
-        [Test]
-        public override void CursesHappen()
-        {
-            AssertCursesHappen();
-        }
-
-        [Test]
-        public override void SpecificCursesHappen()
-        {
-            AssertSpecificCursesHappen();
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithTraitsHappen()
-        {
-            AssertSpecificCursedItemsWithTraitsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithIntelligenceHappen()
-        {
-            AssertSpecificCursedItemsWithIntelligenceHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithNoDecorationHappen()
-        {
-            AssertSpecificCursedItemsWithNoDecorationHappen();
-        }
-
-        [Test]
-        public override void StressSpecificCursedItems()
-        {
-            base.StressSpecificCursedItems();
         }
 
         [Test]

@@ -172,9 +172,46 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Charged)]
+        [TestCase(WeaponConstants.CursedMinus2Sword,
+            AttributeConstants.Specific,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear,
+            AttributeConstants.Specific,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.Wood,
+            AttributeConstants.Ranged,
+            AttributeConstants.Thrown)]
+        [TestCase(WeaponConstants.NetOfSnaring,
+            AttributeConstants.Specific,
+            AttributeConstants.Ranged,
+            AttributeConstants.Thrown,
+            AttributeConstants.TwoHanded)]
+        [TestCase(WeaponConstants.MaceOfBlood,
+            AttributeConstants.Specific,
+            AttributeConstants.Melee)]
+        [TestCase(WeaponConstants.BerserkingSword,
+            AttributeConstants.Specific,
+            AttributeConstants.Melee,
+            AttributeConstants.Metal,
+            AttributeConstants.TwoHanded)]
         public void SpecificWeaponAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [TestCase(WeaponConstants.BerserkingSword)]
+        [TestCase(WeaponConstants.MaceOfBlood)]
+        [TestCase(WeaponConstants.NetOfSnaring)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear)]
+        [TestCase(WeaponConstants.CursedMinus2Sword)]
+        public void SpecificCursedWeaponMatchesAttributes(string item)
+        {
+            var specificCursedAttributes = CollectionsMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificAttributes = GetCollection(item);
+
+            Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));
         }
     }
 }

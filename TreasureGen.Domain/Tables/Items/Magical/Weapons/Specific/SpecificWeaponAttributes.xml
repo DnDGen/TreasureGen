@@ -2,6 +2,40 @@
 
 <percentile>
   <object>
+    <name>Berserking sword</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Melee</attribute>
+    <attribute>Two-Handed</attribute>
+  </object>
+  <object>
+    <name>Cursed -2 sword</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Melee</attribute>
+  </object>
+  <object>
+    <name>Cursed backbiter spear</name>
+    <attribute>Specific</attribute>
+    <attribute>Metal</attribute>
+    <attribute>Wood</attribute>
+    <attribute>Melee</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Thrown</attribute>
+  </object>
+  <object>
+    <name>Mace of blood</name>
+    <attribute>Specific</attribute>
+    <attribute>Melee</attribute>
+  </object>
+  <object>
+    <name>Net of snaring</name>
+    <attribute>Specific</attribute>
+    <attribute>Ranged</attribute>
+    <attribute>Thrown</attribute>
+    <attribute>Two-Handed</attribute>
+  </object>
+  <object>
     <name>Shatterspike</name>
     <attribute>Specific</attribute>
     <attribute>Metal</attribute>

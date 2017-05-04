@@ -22,7 +22,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<IPercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
-        private Mock<IMagicalItemTraitsGenerator> mockMagicItemTraitsGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
         private Mock<IMundaneItemGeneratorRuntimeFactory> mockMundaneGeneratorFactory;
@@ -37,7 +36,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
-            mockMagicItemTraitsGenerator = new Mock<IMagicalItemTraitsGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();

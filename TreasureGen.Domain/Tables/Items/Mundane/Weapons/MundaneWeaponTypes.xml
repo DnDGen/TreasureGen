@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<percentile>
+  <object>
+    <lower>1</lower>
+    <content>CommonMelee</content>
+    <upper>50</upper>
+  </object>
+    <object>
+        <lower>51</lower>
+        <content>Uncommon</content>
+        <upper>70</upper>
+    </object>
+    <object>
+        <lower>71</lower>
+        <content>CommonRanged</content>
+        <upper>100</upper>
+    </object>
+</percentile>

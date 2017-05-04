@@ -19,10 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Tests.Unit", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Tests.Integration", "TreasureGen.Tests.Integration\TreasureGen.Tests.Integration.csproj", "{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.NuGet", "TreasureGen.NuGet\TreasureGen.NuGet.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Domain.NuGet", "TreasureGen.Domain.NuGet\TreasureGen.Domain.NuGet.csproj", "{C87547BE-0C0E-496F-9A55-F2989563117F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,18 +68,6 @@ Global
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Stress|Any CPU.ActiveCfg = Stress|Any CPU
 		{4386B84E-FCCA-4FC2-84D7-BD4161CA4612}.Stress|Any CPU.Build.0 = Stress|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Stress|Any CPU.ActiveCfg = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Stress|Any CPU.Build.0 = Release|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Stress|Any CPU.ActiveCfg = Release|Any CPU
-		{C87547BE-0C0E-496F-9A55-F2989563117F}.Stress|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

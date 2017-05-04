@@ -45,54 +45,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void StressRandomCustomPotion()
-        {
-            Stress(StressRandomCustomItem);
-        }
-
-        [Test]
-        public override void CursesHappen()
-        {
-            AssertCursesHappen();
-        }
-
-        [Test]
-        public override void SpecificCursesHappen()
-        {
-            AssertSpecificCursesHappen();
-        }
-
-        [Test]
-        public override void NoDecorationsHappen()
-        {
-            AssertNoDecorationsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithTraitsHappen()
-        {
-            AssertSpecificCursedItemsWithTraitsHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithIntelligenceHappen()
-        {
-            AssertSpecificCursedItemsWithIntelligenceHappen();
-        }
-
-        [Test]
-        public override void SpecificCursedItemsWithNoDecorationHappen()
-        {
-            AssertSpecificCursedItemsWithNoDecorationHappen();
-        }
-
-        [Test]
-        public override void StressSpecificCursedItems()
-        {
-            base.StressSpecificCursedItems();
-        }
-
-        [Test]
         public void StressPotionFromSubset()
         {
             Stress(StressItemFromSubset);

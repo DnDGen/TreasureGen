@@ -24,7 +24,9 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.ChainShirt)]
         [TestCase(ArmorConstants.FullPlate)]
         [TestCase(ArmorConstants.Breastplate)]
-        public override void Collections(string name, params string[] attributes)
+        [TestCase(ArmorConstants.ArmorOfRage)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
+        public void SpecificArmorSpecialAbilities(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }

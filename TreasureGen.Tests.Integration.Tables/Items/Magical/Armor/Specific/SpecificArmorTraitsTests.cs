@@ -21,10 +21,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
         [TestCase(ArmorConstants.FullPlateOfSpeed, TraitConstants.SpecialMaterials.Mithral)]
         [TestCase(ArmorConstants.PlateArmorOfTheDeep)]
         [TestCase(ArmorConstants.RhinoHide)]
+        [TestCase(ArmorConstants.ArmorOfRage)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
         [TestCase(ArmorConstants.ChainShirt, TraitConstants.SpecialMaterials.Mithral)]
         [TestCase(ArmorConstants.FullPlate, TraitConstants.SpecialMaterials.Dragonhide)]
         [TestCase(ArmorConstants.Breastplate, TraitConstants.SpecialMaterials.Adamantine)]
-        public override void Collections(string name, params string[] attributes)
+        public void SpecificArmorTraits(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
         }
