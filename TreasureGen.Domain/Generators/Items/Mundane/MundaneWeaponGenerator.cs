@@ -42,35 +42,45 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var weaponName = percentileSelector.SelectFrom(tableName);
 
             var weapon = new Weapon();
-            weapon.ItemType = ItemTypeConstants.Weapon;
             weapon.Name = weaponName;
-            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
             weapon.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-
-            if (weapon.Name.Contains("Composite"))
-            {
-                weapon.Name = GetCompositeBowName(weaponName);
-                var compositeStrengthBonus = GetCompositeBowBonus(weaponName);
-
-                if (!string.IsNullOrEmpty(compositeStrengthBonus))
-                    weapon.Traits.Add(compositeStrengthBonus);
-            }
-
-            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
-
-            //INFO: This must be done after Attributes are set
+            weapon = PopulateWeapon(weapon);
             weapon.Quantity = GetQuantity(weapon);
 
             var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
+            return weapon;
+        }
+
+        private Weapon PopulateWeapon(Weapon weapon)
+        {
+            if (string.IsNullOrEmpty(weapon.Name) || string.IsNullOrEmpty(weapon.Size))
+                throw new ArgumentException("Weapon name and weapon size cannot be empty - they must be filled before calling this method");
+
+            weapon.ItemType = ItemTypeConstants.Weapon;
+            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
+
+            if (weapon.Name.Contains("Composite"))
+            {
+                var name = weapon.Name;
+                weapon.Name = GetCompositeBowName(name);
+                var compositeStrengthBonus = GetCompositeBowBonus(name);
+
+                if (!string.IsNullOrEmpty(compositeStrengthBonus))
+                    weapon.Traits.Add(compositeStrengthBonus);
+            }
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
+
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
             weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
             weapon.Damage = weaponSelection.DamageBySize[weapon.Size];
             weapon.DamageType = weaponSelection.DamageType;
             weapon.ThreatRange = weaponSelection.ThreatRange;
+            weapon.Ammunition = weaponSelection.Ammunition;
 
             return weapon;
         }
@@ -124,30 +134,10 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
         {
             var weapon = new Weapon();
             template.MundaneClone(weapon);
-            weapon.ItemType = ItemTypeConstants.Weapon;
 
-            if (weapon.Name.Contains("Composite"))
-            {
-                var fullName = weapon.Name;
-                weapon.Name = GetCompositeBowName(fullName);
-                var compositeStrengthBonus = GetCompositeBowBonus(fullName);
-
-                if (!string.IsNullOrEmpty(compositeStrengthBonus))
-                    weapon.Traits.Add(compositeStrengthBonus);
-            }
-
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
-
-            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
             weapon.Size = GetSize(template);
             weapon.Traits.Remove(weapon.Size);
-
-            var weaponSelection = weaponDataSelector.Select(weapon.Name);
-            weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
-            weapon.Damage = weaponSelection.DamageBySize[weapon.Size];
-            weapon.DamageType = weaponSelection.DamageType;
-            weapon.ThreatRange = weaponSelection.ThreatRange;
+            weapon = PopulateWeapon(weapon);
 
             if (allowRandomDecoration)
             {

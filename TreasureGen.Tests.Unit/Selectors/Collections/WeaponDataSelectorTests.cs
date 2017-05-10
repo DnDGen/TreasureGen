@@ -22,10 +22,11 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void GetWeaponData()
         {
-            var data = new string[3];
+            var data = new string[4];
             data[DataIndexConstants.Weapon.CriticalMultiplier] = "over 9000!!!";
             data[DataIndexConstants.Weapon.DamageType] = "emotional";
             data[DataIndexConstants.Weapon.ThreatRange] = "here to there";
+            data[DataIndexConstants.Weapon.Ammunition] = "dirty laundry";
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
 
@@ -44,6 +45,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
             Assert.That(selection.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
             Assert.That(selection.DamageType, Is.EqualTo("emotional"));
             Assert.That(selection.ThreatRange, Is.EqualTo("here to there"));
+            Assert.That(selection.Ammunition, Is.EqualTo("dirty laundry"));
             Assert.That(selection.DamageBySize[TraitConstants.Sizes.Colossal], Is.EqualTo("DAYUM"));
             Assert.That(selection.DamageBySize[TraitConstants.Sizes.Gargantuan], Is.EqualTo("way too much"));
             Assert.That(selection.DamageBySize[TraitConstants.Sizes.Huge], Is.EqualTo("a ton"));

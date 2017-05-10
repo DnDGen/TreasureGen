@@ -66,6 +66,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mundaneWeapon = new Weapon();
             mundaneWeapon.Name = "weapon name";
             mundaneWeapon.Quantity = 600;
+            mundaneWeapon.Ammunition = "ammo";
+            mundaneWeapon.CriticalMultiplier = "crit";
+            mundaneWeapon.Damage = "hurty mchurtface";
+            mundaneWeapon.DamageType = "spiritual";
+            mundaneWeapon.Size = "enormous";
+            mundaneWeapon.ThreatRange = "err'where";
             mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.IsAny<Item>(), false)).Returns(new Weapon());
             mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.NameMatches("weapon name")), false)).Returns(mundaneWeapon);
 
@@ -77,11 +83,19 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateWeapon()
         {
-            var weapon = magicalWeaponGenerator.GenerateAtPower(power);
-            Assert.That(weapon, Is.EqualTo(mundaneWeapon));
-            Assert.That(weapon.Magic.Bonus, Is.EqualTo(9266));
-            Assert.That(weapon.Quantity, Is.EqualTo(600));
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+            var item = magicalWeaponGenerator.GenerateAtPower(power);
+            Assert.That(item, Is.EqualTo(mundaneWeapon));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(item.Quantity, Is.EqualTo(600));
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Ammunition, Is.EqualTo("ammo"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("crit"));
+            Assert.That(weapon.Damage, Is.EqualTo("hurty mchurtface"));
+            Assert.That(weapon.DamageType, Is.EqualTo("spiritual"));
+            Assert.That(weapon.Size, Is.EqualTo("enormous"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo("err'where"));
         }
 
         [Test]

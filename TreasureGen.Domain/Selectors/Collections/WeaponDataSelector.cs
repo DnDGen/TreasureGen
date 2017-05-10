@@ -23,6 +23,7 @@ namespace TreasureGen.Domain.Selectors.Collections
             selection.CriticalMultiplier = data[DataIndexConstants.Weapon.CriticalMultiplier];
             selection.DamageType = data[DataIndexConstants.Weapon.DamageType];
             selection.ThreatRange = data[DataIndexConstants.Weapon.ThreatRange];
+            selection.Ammunition = data[DataIndexConstants.Weapon.Ammunition];
 
             var sizes = TraitConstants.Sizes.All().ToArray();
 

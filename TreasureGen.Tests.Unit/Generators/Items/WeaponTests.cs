@@ -21,6 +21,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void WeaponInitialized()
         {
+            Assert.That(weapon.Ammunition, Is.Empty);
             Assert.That(weapon.Damage, Is.Empty);
             Assert.That(weapon.DamageType, Is.Empty);
             Assert.That(weapon.Size, Is.Empty);
@@ -52,6 +53,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             template.ThreatRange = "all the threat";
             template.CriticalMultiplier = "over 9000!!!";
             template.Size = "massive";
+            template.Ammunition = "nerf bullets";
 
             var clone = template.Clone();
             Assert.That(clone, Is.Not.EqualTo(template));
@@ -84,6 +86,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
             Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
         }
 
         [Test]
@@ -104,6 +107,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             template.ThreatRange = "all the threat";
             template.CriticalMultiplier = "over 9000!!!";
             template.Size = "massive";
+            template.Ammunition = "nerf bullets";
 
             var clone = template.MundaneClone();
             itemVerifier.AssertMundaneItemFromTemplate(clone, template);
@@ -117,6 +121,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
             Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
         }
 
         [Test]
@@ -131,6 +136,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             template.DamageType = "stabbing";
             template.ThreatRange = "all the threat";
             template.CriticalMultiplier = "over 9000!!!";
+            template.Ammunition = "nerf bullets";
             template.Size = "massive";
 
             var clone = template.SmartClone();
@@ -144,6 +150,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
             Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
         }
     }
 }

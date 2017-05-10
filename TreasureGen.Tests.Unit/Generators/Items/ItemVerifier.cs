@@ -78,6 +78,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.Damage, Is.Not.Empty, weapon.Name);
             Assert.That(weapon.DamageType, Is.Not.Empty, weapon.Name);
             Assert.That(weapon.ThreatRange, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Name);
 
             if (weapon.IsMagical)
                 Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Name);

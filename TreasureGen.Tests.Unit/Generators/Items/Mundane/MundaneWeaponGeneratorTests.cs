@@ -52,6 +52,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             weaponSelection.ThreatRange = "across the board";
             weaponSelection.DamageBySize["size"] = "normal amount";
             weaponSelection.DamageBySize["other size"] = "other amount";
+            weaponSelection.Ammunition = "QA tears";
 
             var defaultSelection = new WeaponSelection();
             defaultSelection.DamageBySize["size"] = string.Empty;
@@ -78,6 +79,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -302,6 +304,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -337,6 +340,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -373,6 +377,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -410,6 +415,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -447,6 +453,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -482,6 +489,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -523,6 +531,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("custom amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -565,6 +574,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("custom amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow, 0)]
@@ -674,6 +684,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -720,6 +731,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -768,6 +780,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -816,6 +829,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -854,6 +868,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -894,6 +909,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]
@@ -934,6 +950,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damage, Is.EqualTo("normal amount"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
             Assert.That(weapon.ThreatRange, Is.EqualTo("across the board"));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
 
         [Test]

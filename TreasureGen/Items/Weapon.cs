@@ -7,6 +7,7 @@
         public string ThreatRange { get; set; }
         public string CriticalMultiplier { get; set; }
         public string DamageType { get; set; }
+        public string Ammunition { get; set; }
 
         public override bool CanBeUsedAsWeaponOrArmor
         {
@@ -23,6 +24,7 @@
             ThreatRange = string.Empty;
             DamageType = string.Empty;
             CriticalMultiplier = string.Empty;
+            Ammunition = string.Empty;
         }
 
         public override Item Clone()
@@ -41,6 +43,7 @@
             target.CriticalMultiplier = CriticalMultiplier;
             target.Size = Size;
             target.DamageType = DamageType;
+            target.Ammunition = Ammunition;
 
             return target;
         }

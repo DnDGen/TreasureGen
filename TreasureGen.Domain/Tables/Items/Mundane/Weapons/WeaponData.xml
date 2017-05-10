@@ -6,419 +6,489 @@
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Bastard sword</name>
     <attribute>Slashing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Battleaxe</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Bolas</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Club</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Composite longbow</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute>Arrow</attribute>
   </object>
   <object>
     <name>Composite shortbow</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute>Arrow</attribute>
   </object>
   <object>
     <name>Crossbow bolt</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Dagger</name>
     <attribute>Piercing or Slashing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Dart</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Dire flail</name>
     <attribute>Bludgeoning/Bludgeoning</attribute>
     <attribute>20/20</attribute>
     <attribute>x2/x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Dwarven urgrosh</name>
     <attribute>Piercing or Slashing/Piercing or Slashing</attribute>
     <attribute>20/20</attribute>
     <attribute>x3/x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Dwarven waraxe</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Falchion</name>
     <attribute>Slashing</attribute>
     <attribute>18-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Flail</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Gauntlet</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Glaive</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Gnome hooked hammer</name>
     <attribute>Bludgeoning/Piercing</attribute>
     <attribute>20/20</attribute>
     <attribute>x3/x4</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Greataxe</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Greatclub</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Greatsword</name>
     <attribute>Slashing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Guisarme</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Halberd</name>
     <attribute>Piercing or Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Handaxe</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Hand crossbow</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute>Crossbow bolt</attribute>
   </object>
   <object>
     <name>Heavy crossbow</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute>Crossbow bolt</attribute>
   </object>
   <object>
     <name>Heavy flail</name>
     <attribute>Bludgeoning</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Heavy mace</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Heavy pick</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x4</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Heavy repeating crossbow</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute>Crossbow bolt</attribute>
   </object>
   <object>
     <name>Javelin</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Kama</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Kukri</name>
     <attribute>Slashing</attribute>
     <attribute>18-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Lance</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Light crossbow</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute>Crossbow bolt</attribute>
   </object>
   <object>
     <name>Light hammer</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Light mace</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Light pick</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x4</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Light repeating crossbow</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute>Crossbow bolt</attribute>
   </object>
   <object>
     <name>Longbow</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute>Arrow</attribute>
   </object>
   <object>
     <name>Longspear</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Longsword</name>
     <attribute>Slashing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Morningstar</name>
     <attribute>Bludgeoning and Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Net</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Nunchaku</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Orc double axe</name>
     <attribute>Slashing/Slashing</attribute>
     <attribute>20/20</attribute>
     <attribute>x3/x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Punching dagger</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Quarterstaff</name>
     <attribute>Bludgeoning/Bludgeoning</attribute>
     <attribute>20/20</attribute>
     <attribute>x2/x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Ranseur</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Rapier</name>
     <attribute>Piercing</attribute>
     <attribute>18-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Sai</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Sap</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Scimitar</name>
     <attribute>Slashing</attribute>
     <attribute>18-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Scythe</name>
     <attribute>Piercing or Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x4</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Short sword</name>
     <attribute>Piercing</attribute>
     <attribute>19-20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Shortbow</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute>Arrow</attribute>
   </object>
   <object>
     <name>Shortspear</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Shuriken</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Siangham</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Sickle</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Sling</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute>Sling bullet</attribute>
   </object>
   <object>
     <name>Sling bullet</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Spear</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Spiked chain</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Spiked gauntlet</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Throwing axe</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Trident</name>
     <attribute>Piercing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Two-bladed sword</name>
     <attribute>Slashing/Slashing</attribute>
     <attribute>19-20/19-20</attribute>
     <attribute>x2/x2</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Warhammer</name>
     <attribute>Bludgeoning</attribute>
     <attribute>20</attribute>
     <attribute>x3</attribute>
+    <attribute></attribute>
   </object>
   <object>
     <name>Whip</name>
     <attribute>Slashing</attribute>
     <attribute>20</attribute>
     <attribute>x2</attribute>
+    <attribute></attribute>
   </object>
 </attributes>

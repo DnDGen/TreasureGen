@@ -14,6 +14,7 @@
             public const int DamageType = 0;
             public const int ThreatRange = 1;
             public const int CriticalMultiplier = 2;
+            public const int Ammunition = 3;
         }
 
         public static class Intelligence
