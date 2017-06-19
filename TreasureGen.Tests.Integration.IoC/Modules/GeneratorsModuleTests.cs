@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
+using RollGen;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators;
 using TreasureGen.Domain.Generators.Coins;
+using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Goods;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -182,6 +184,18 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         public void GeneratorIsNotConstructedAsASingleton()
         {
             AssertNotSingleton<Generator>();
+        }
+
+        [Test]
+        public void JustInTimeFactoryInjected()
+        {
+            AssertNotSingleton<JustInTimeFactory>();
+        }
+
+        [Test]
+        public void EXTERNAL_DiceInjected()
+        {
+            AssertNotSingleton<Dice>();
         }
     }
 }

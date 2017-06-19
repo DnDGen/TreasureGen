@@ -29,6 +29,7 @@ namespace TreasureGen.Tests.Integration.Stress
 
         private int iterations;
         private Guid clientId;
+        private DateTime eventCheckpoint;
 
         public StressTests()
         {
@@ -53,37 +54,81 @@ namespace TreasureGen.Tests.Integration.Stress
         [SetUp]
         public void StressSetup()
         {
-            iterations = 0;
-            Stopwatch.Start();
-
             clientId = Guid.NewGuid();
             ClientIdManager.SetClientID(clientId);
+
+            iterations = 0;
+            eventCheckpoint = new DateTime();
+
+            Stopwatch.Start();
         }
 
         [TearDown]
         public void StressTearDown()
         {
-            Stopwatch.Reset();
+            WriteStressSummary();
+            WriteEventSummary();
 
+            Stopwatch.Reset();
+        }
+
+        private void AssertEventSpacing()
+        {
             var events = EventQueue.DequeueAll(clientId);
 
-            //INFO: Get the 10 most recent events for TreasureGen
+            //INFO: Have to put the events back in the queue for the summary at the end of the test
+            foreach (var genEvent in events)
+                EventQueue.Enqueue(genEvent);
+
+            Assert.That(events, Is.Ordered.By("When"));
+
+            var newEvents = events.Where(e => e.When > eventCheckpoint).ToArray();
+
+            Assert.That(newEvents, Is.Ordered.By("When"));
+
+            for (var i = 1; i < newEvents.Length; i++)
+            {
+                var failureMessage = $"{GetMessage(newEvents[i - 1])}\n{GetMessage(newEvents[i])}";
+                Assert.That(newEvents[i].When, Is.EqualTo(newEvents[i - 1].When).Within(1).Seconds, failureMessage);
+            }
+
+            if (newEvents.Any())
+                eventCheckpoint = newEvents.Last().When;
+        }
+
+        private void WriteStressSummary()
+        {
+            var iterationsPerSecond = Math.Round(iterations / Stopwatch.Elapsed.TotalSeconds, 2);
+            Console.WriteLine($"Stress test complete after {Stopwatch.Elapsed} and {iterations} iterations, or {iterationsPerSecond} iterations per second");
+        }
+
+        private void WriteEventSummary()
+        {
+            var events = EventQueue.DequeueAll(clientId);
+
+            //INFO: Get the 10 most recent events for TreasureGen.  We assume the events are ordered chronologically already
             events = events.Where(e => e.Source == "TreasureGen");
-            events = events.OrderByDescending(e => e.When);
+            events = events.Reverse();
             events = events.Take(10);
-            events = events.OrderBy(e => e.When);
+            events = events.Reverse();
 
             foreach (var genEvent in events)
-                Console.WriteLine($"[{genEvent.When.ToShortTimeString()}] {genEvent.Source}: {genEvent.Message}");
+                Console.WriteLine(GetMessage(genEvent));
+        }
+
+        private string GetMessage(GenEvent genEvent)
+        {
+            return $"[{genEvent.When.ToLongTimeString()}] {genEvent.Source}: {genEvent.Message}";
         }
 
         protected void Stress(Action generate)
         {
-            do generate();
+            do
+            {
+                generate();
+                AssertEventSpacing();
+            }
             while (TestShouldKeepRunning());
-
-            var iterationsPerSecond = Math.Round(iterations / Stopwatch.Elapsed.TotalSeconds, 2);
-            Console.WriteLine($"Stress test complete after {Stopwatch.Elapsed} and {iterations} iterations, or {iterationsPerSecond} iterations per second");
         }
 
         private bool TestShouldKeepRunning()
@@ -96,12 +141,14 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             T generatedObject;
 
-            do generatedObject = generate();
-            while (TestShouldKeepRunning() && isValid(generatedObject) == false);
+            do
+            {
+                generatedObject = generate();
+                AssertEventSpacing();
+            }
+            while (TestShouldKeepRunning() && !isValid(generatedObject));
 
-            Console.WriteLine($"Generation complete after {Stopwatch.Elapsed} and {iterations} iterations");
-
-            if (TestShouldKeepRunning() == false && isValid(generatedObject) == false)
+            if (!isValid(generatedObject))
                 Assert.Fail($"Stress test timed out after {Stopwatch.Elapsed} and {iterations} iterations");
 
             return generatedObject;
@@ -111,8 +158,12 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             T generatedObject;
 
-            do generatedObject = generate();
-            while (isValid(generatedObject) == false);
+            do
+            {
+                generatedObject = generate();
+                AssertEventSpacing();
+            }
+            while (!isValid(generatedObject));
 
             return generatedObject;
         }

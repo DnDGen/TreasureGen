@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
+using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -18,6 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<Dice> mockDice;
         private Mock<IRangeDataSelector> mockRangeDataSelector;
         private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<JustInTimeFactory> mockJustInTimeFactory;
 
         [SetUp]
         public void Setup()
@@ -25,8 +27,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<Dice>();
             mockRangeDataSelector = new Mock<IRangeDataSelector>();
             mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockJustInTimeFactory = new Mock<JustInTimeFactory>();
+            generator = new ChargesGenerator(mockDice.Object, mockJustInTimeFactory.Object);
 
-            generator = new ChargesGenerator(mockDice.Object, mockRangeDataSelector.Object, mockBooleanPercentileSelector.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<IBooleanPercentileSelector>()).Returns(mockBooleanPercentileSelector.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<IRangeDataSelector>()).Returns(mockRangeDataSelector.Object);
         }
 
         [TestCase(ItemTypeConstants.Wand, 1, 1)]

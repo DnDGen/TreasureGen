@@ -46,10 +46,6 @@
       <HintPath>..\packages\DnDGen.RollGen.13.3.0\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen.Bootstrap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\D20Dice.Bootstrap.11.0.1\lib\RollGen.Bootstrap.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Generators\Coins\CoinGenerator.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorEventGenDecorator.cs" />
+    <Compile Include="Generators\Factories\JustInTimeFactory.cs" />
+    <Compile Include="Generators\Factories\NinjectJustInTimeFactory.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorEventGenDecorator.cs" />
     <Compile Include="Generators\Items\Generator.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventGenDecorator.cs" />
@@ -105,10 +103,11 @@
     <Compile Include="Generators\Items\Mundane\MundaneWeaponGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\SpecialMaterialGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\ToolGenerator.cs" />
-    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorRuntimeFactory.cs" />
-    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorRuntimeFactory.cs" />
+    <Compile Include="Generators\Items\Magical\NinjectMagicalItemGeneratorRuntimeFactory.cs" />
+    <Compile Include="Generators\Items\Mundane\NinjectMundaneItemGeneratorRuntimeFactory.cs" />
     <Compile Include="Generators\TreasureGenerator.cs" />
     <Compile Include="Generators\TreasureGeneratorEventGenDecorator.cs" />
+    <Compile Include="IoC\Providers\JustInTimeFactoryProvider.cs" />
     <Compile Include="IoC\Providers\MagicalItemGeneratorFactoryProvider.cs" />
     <Compile Include="IoC\Providers\MundaneItemGeneratorFactoryProvider.cs" />
     <Compile Include="IoC\Modules\GeneratorsModule.cs" />

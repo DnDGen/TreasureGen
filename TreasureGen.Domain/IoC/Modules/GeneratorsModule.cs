@@ -6,6 +6,7 @@ using System.Linq;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators;
 using TreasureGen.Domain.Generators.Coins;
+using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Goods;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -45,6 +46,7 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<Generator>().To<IterativeGenerator>();
+            Bind<JustInTimeFactory>().ToProvider<JustInTimeFactoryProvider>();
 
             Bind<IMundaneItemGeneratorRuntimeFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
             Bind<IMagicalItemGeneratorRuntimeFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();
