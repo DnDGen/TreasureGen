@@ -7,7 +7,7 @@ using TreasureGen.Domain.Generators.Coins;
 namespace TreasureGen.Tests.Unit.Generators.Coins
 {
     [TestFixture]
-    public class CoinGeneratorEventGenDecoratorTests
+    public class CoinGeneratorEventDecoratorTests
     {
         private ICoinGenerator decorator;
         private Mock<ICoinGenerator> mockInnerGenerator;
@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Coins
         {
             mockInnerGenerator = new Mock<ICoinGenerator>();
             mockEventQueue = new Mock<GenEventQueue>();
-            decorator = new CoinGeneratorEventGenDecorator(mockInnerGenerator.Object, mockEventQueue.Object);
+            decorator = new CoinGeneratorEventDecorator(mockInnerGenerator.Object, mockEventQueue.Object);
         }
 
         [Test]

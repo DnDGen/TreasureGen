@@ -21,7 +21,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ISpellGenerator spellGenerator;
         private readonly Dice dice;
         private readonly Generator generator;
-        private readonly MundaneItemGenerator mundaneWeaponGenerator;
+        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
         public MagicalWeaponGenerator(
             ICollectionsSelector collectionsSelector,
@@ -42,7 +42,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.spellGenerator = spellGenerator;
             this.dice = dice;
             this.generator = generator;
-            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -98,6 +98,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 return specificWeapon;
             }
 
+            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.GenerateFrom(template, allowRandomDecoration);
             weapon.Magic.Bonus = template.Magic.Bonus;
             weapon.Magic.Charges = template.Magic.Charges;

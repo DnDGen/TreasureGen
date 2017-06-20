@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void PercentileSelectorHasReplacementDecorator()
         {
-            var selector = GetNewInstanceOf<IPercentileSelector>();
+            var selector = InjectAndAssertDuration<IPercentileSelector>();
             Assert.That(selector, Is.InstanceOf<ReplacePercentileSelectorDecorator>());
         }
 

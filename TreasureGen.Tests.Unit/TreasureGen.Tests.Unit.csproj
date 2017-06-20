@@ -82,18 +82,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generators\Coins\CoinConstantsTests.cs" />
-    <Compile Include="Generators\Coins\CoinGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Coins\CoinGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
     <Compile Include="Generators\Items\ArmorTests.cs" />
     <Compile Include="Generators\Items\ConfigurableIterativeGenerator.cs" />
-    <Compile Include="Generators\Items\ItemsGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Items\ItemsGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Items\IterativeGeneratorTests.cs" />
-    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventGenDecoratorTests.cs" />
-    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Magical\CurseGeneratorEventDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventDecoratorTests.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Items\WeaponTests.cs" />
-    <Compile Include="Generators\TreasureGeneratorEventGenDecoratorTests.cs" />
-    <Compile Include="Generators\Goods\GoodsGeneratorEventGenDecoratorTests.cs" />
+    <Compile Include="Generators\TreasureGeneratorEventDecoratorTests.cs" />
+    <Compile Include="Generators\Goods\GoodsGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Items\ItemVerifier.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecoratorTests.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecoratorTests.cs" />

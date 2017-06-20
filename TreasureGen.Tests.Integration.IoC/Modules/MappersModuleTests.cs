@@ -16,7 +16,7 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void PercentileMapperHasCachingProxy()
         {
-            var mapper = GetNewInstanceOf<IPercentileMapper>();
+            var mapper = InjectAndAssertDuration<IPercentileMapper>();
             Assert.That(mapper, Is.InstanceOf<PercentileMapperCachingProxy>());
         }
 
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void AttributesMapperHasCachingProxy()
         {
-            var mapper = GetNewInstanceOf<ICollectionsMapper>();
+            var mapper = InjectAndAssertDuration<ICollectionsMapper>();
             Assert.That(mapper, Is.InstanceOf<AttributesMapperCachingProxy>());
         }
     }

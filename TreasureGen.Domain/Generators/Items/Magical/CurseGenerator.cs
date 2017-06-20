@@ -17,8 +17,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
-        private readonly MundaneItemGenerator mundaneArmorGenerator;
-        private readonly MundaneItemGenerator mundaneWeaponGenerator;
+        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
         public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
         {
@@ -27,9 +26,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.generator = generator;
-
-            mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
-            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
         }
 
         public bool HasCurse(bool isMagical)
@@ -86,6 +83,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var template = new Armor();
             template.Name = cursedItem.BaseNames.First();
+
+            var mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
 
             cursedItem.Clone(armor);
@@ -100,6 +99,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var template = new Weapon();
             template.Name = cursedItem.BaseNames.First();
+
+            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             cursedItem.Quantity = weapon.Quantity;

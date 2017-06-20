@@ -19,7 +19,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly MundaneItemGenerator mundaneWeaponGenerator;
+        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
         public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
@@ -35,8 +35,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.generator = generator;
-
-            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -83,6 +82,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var template = new Weapon();
             template.Name = weapons.Intersect(rod.BaseNames).First();
+
+            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
             var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);

@@ -8,7 +8,7 @@ using TreasureGen.Goods;
 namespace TreasureGen.Tests.Unit.Generators.Goods
 {
     [TestFixture]
-    public class GoodsGeneratorEventGenDecoratorTests
+    public class GoodsGeneratorEventDecoratorTests
     {
         private IGoodsGenerator decorator;
         private Mock<IGoodsGenerator> mockInnerGenerator;
@@ -19,7 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         {
             mockInnerGenerator = new Mock<IGoodsGenerator>();
             mockEventQueue = new Mock<GenEventQueue>();
-            decorator = new GoodsGeneratorEventGenDecorator(mockInnerGenerator.Object, mockEventQueue.Object);
+            decorator = new GoodsGeneratorEventDecorator(mockInnerGenerator.Object, mockEventQueue.Object);
         }
 
         [Test]

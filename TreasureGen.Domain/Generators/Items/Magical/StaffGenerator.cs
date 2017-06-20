@@ -18,17 +18,21 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ICollectionsSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly MundaneItemGenerator mundaneWeaponGenerator;
+        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
-        public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IChargesGenerator chargesGenerator, ICollectionsSelector collectionsSelector, ISpecialAbilitiesGenerator specialAbilitiesGenerator, Generator generator, IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+        public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            IChargesGenerator chargesGenerator,
+            ICollectionsSelector collectionsSelector,
+            ISpecialAbilitiesGenerator specialAbilitiesGenerator,
+            Generator generator,
+            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.chargesGenerator = chargesGenerator;
             this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.generator = generator;
-
-            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -69,6 +73,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var template = new Weapon();
             template.Name = weapons.Intersect(staff.BaseNames).First();
+
+            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
             var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             staff.Attributes = staff.Attributes.Union(mundaneWeapon.Attributes).Except(new[] { AttributeConstants.OneTimeUse });

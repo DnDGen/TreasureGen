@@ -3,12 +3,12 @@ using TreasureGen.Generators;
 
 namespace TreasureGen.Domain.Generators
 {
-    internal class TreasureGeneratorEventGenDecorator : ITreasureGenerator
+    internal class TreasureGeneratorEventDecorator : ITreasureGenerator
     {
         private GenEventQueue eventQueue;
         private ITreasureGenerator innerGenerator;
 
-        public TreasureGeneratorEventGenDecorator(ITreasureGenerator innerGenerator, GenEventQueue eventQueue)
+        public TreasureGeneratorEventDecorator(ITreasureGenerator innerGenerator, GenEventQueue eventQueue)
         {
             this.eventQueue = eventQueue;
             this.innerGenerator = innerGenerator;

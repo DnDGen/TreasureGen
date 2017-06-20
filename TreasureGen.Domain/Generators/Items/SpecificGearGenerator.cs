@@ -14,16 +14,15 @@ namespace TreasureGen.Domain.Generators.Items
 {
     internal class SpecificGearGenerator : ISpecificGearGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private ICollectionsSelector collectionsSelector;
-        private IChargesGenerator chargesGenerator;
-        private IPercentileSelector percentileSelector;
-        private ISpellGenerator spellGenerator;
-        private IBooleanPercentileSelector booleanPercentileSelector;
-        private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private Dice dice;
-        private MundaneItemGenerator mundaneArmorGenerator;
-        private MundaneItemGenerator mundaneWeaponGenerator;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly IChargesGenerator chargesGenerator;
+        private readonly IPercentileSelector percentileSelector;
+        private readonly ISpellGenerator spellGenerator;
+        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
+        private readonly Dice dice;
+        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
@@ -43,9 +42,7 @@ namespace TreasureGen.Domain.Generators.Items
             this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
-
-            mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
-            mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
         }
 
         public Item GenerateFrom(string power, string specificGearType)
@@ -115,6 +112,8 @@ namespace TreasureGen.Domain.Generators.Items
         {
             var template = new Armor();
             template.Name = gear.BaseNames.First();
+
+            var mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
 
             gear.Clone(armor);
@@ -130,6 +129,8 @@ namespace TreasureGen.Domain.Generators.Items
             var template = new Weapon();
             template.Name = gear.BaseNames.First();
             template.Quantity = 0;
+
+            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             gear.Quantity = weapon.Quantity;

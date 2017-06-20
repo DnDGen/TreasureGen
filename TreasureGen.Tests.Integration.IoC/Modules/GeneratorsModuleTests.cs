@@ -29,8 +29,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void CoinGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<ICoinGenerator>();
-            Assert.That(generator, Is.InstanceOf<CoinGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<ICoinGenerator>();
+            Assert.That(generator, Is.InstanceOf<CoinGeneratorEventDecorator>());
         }
 
         [Test]
@@ -42,8 +42,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void GoodsGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IGoodsGenerator>();
-            Assert.That(generator, Is.InstanceOf<GoodsGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<IGoodsGenerator>();
+            Assert.That(generator, Is.InstanceOf<GoodsGeneratorEventDecorator>());
         }
 
         [Test]
@@ -55,8 +55,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void TreasureGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<ITreasureGenerator>();
-            Assert.That(generator, Is.InstanceOf<TreasureGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<ITreasureGenerator>();
+            Assert.That(generator, Is.InstanceOf<TreasureGeneratorEventDecorator>());
         }
 
         [Test]
@@ -68,8 +68,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void ItemsGeneratorIsDecorated()
         {
-            var generator = GetNewInstanceOf<IItemsGenerator>();
-            Assert.That(generator, Is.InstanceOf<ItemsGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<IItemsGenerator>();
+            Assert.That(generator, Is.InstanceOf<ItemsGeneratorEventDecorator>());
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
@@ -78,8 +78,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [TestCase(ItemTypeConstants.Weapon)]
         public void MundaneItemGeneratorIsDecorated(string itemType)
         {
-            var generator = GetNewInstanceOf<MundaneItemGenerator>(itemType);
-            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<MundaneItemGenerator>(itemType);
+            Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorEventDecorator>());
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
@@ -119,6 +119,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         public void CurseGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ICurseGenerator>();
+        }
+
+        [Test]
+        public void CurseGeneratorIsDecorated()
+        {
+            var generator = InjectAndAssertDuration<ICurseGenerator>();
+            Assert.That(generator, Is.InstanceOf<CurseGeneratorEventDecorator>());
         }
 
         [Test]
@@ -162,8 +169,8 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [TestCase(ItemTypeConstants.WondrousItem)]
         public void MagicalItemGeneratorIsDecorated(string itemType)
         {
-            var generator = GetNewInstanceOf<MagicalItemGenerator>(itemType);
-            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorEventGenDecorator>());
+            var generator = InjectAndAssertDuration<MagicalItemGenerator>(itemType);
+            Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorEventDecorator>());
         }
 
         [TestCase(ItemTypeConstants.Armor)]

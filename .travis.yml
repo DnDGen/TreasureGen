@@ -5,9 +5,13 @@ install:
   - nuget install NUnit.Runners -OutputDirectory testrunner
 script:
   - xbuild TreasureGen.sln /p:TargetFrameworkVersion="v4.5" /p:Configuration=Stress
+  - set -e
   - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Unit/bin/Stress/TreasureGen.Tests.Unit.dll
+  - set -e
   - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.IoC/bin/Stress/TreasureGen.Tests.Integration.IoC.dll
+  - set -e
   - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.Tables/bin/Stress/TreasureGen.Tests.Integration.Tables.dll
+  - set -e
   - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.Stress/bin/Stress/TreasureGen.Tests.Integration.Stress.dll
 deploy:
   skip_cleanup: true
@@ -15,5 +19,3 @@ deploy:
   script: chmod +x ./deploy/deploy.sh && ./deploy/deploy.sh $NUGET_API_KEY $NUGET_SOURCE
   on:
     branch: master
-matrix:
-  fast_finish: true

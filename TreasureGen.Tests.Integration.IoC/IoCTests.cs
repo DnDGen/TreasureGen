@@ -10,11 +10,8 @@ namespace TreasureGen.Tests.Integration.IoC
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        [TearDown]
-        public void IoCTeardown()
-        {
-            Stopwatch.Reset();
-        }
+        //INFO We set this to 200 instead of 100 because sometimes Travis is just randomly a slower environment
+        private const int TimeLimitInMilliseconds = 200;
 
         protected void AssertSingleton<T>()
         {
@@ -23,24 +20,22 @@ namespace TreasureGen.Tests.Integration.IoC
             Assert.That(first, Is.EqualTo(second));
         }
 
-        private T InjectAndAssertDuration<T>()
+        protected T InjectAndAssertDuration<T>()
         {
-            Stopwatch.Start();
+            Stopwatch.Restart();
 
             var instance = GetNewInstanceOf<T>();
-            Assert.That(Stopwatch.Elapsed.TotalMilliseconds, Is.LessThan(100));
-            Stopwatch.Reset();
+            Assert.That(Stopwatch.Elapsed.TotalMilliseconds, Is.LessThan(TimeLimitInMilliseconds));
 
             return instance;
         }
 
-        private T InjectAndAssertDuration<T>(string name)
+        protected T InjectAndAssertDuration<T>(string name)
         {
-            Stopwatch.Start();
+            Stopwatch.Restart();
 
             var instance = GetNewInstanceOf<T>(name);
-            Assert.That(Stopwatch.Elapsed.TotalMilliseconds, Is.LessThan(100));
-            Stopwatch.Reset();
+            Assert.That(Stopwatch.Elapsed.TotalMilliseconds, Is.LessThan(TimeLimitInMilliseconds));
 
             return instance;
         }

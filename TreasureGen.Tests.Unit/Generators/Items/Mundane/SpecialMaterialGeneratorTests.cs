@@ -44,21 +44,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void CacheMaterialsAndAttributeRequirementsOnConstruction()
-        {
-            foreach (var material in TraitConstants.SpecialMaterials.All())
-                mockAttributesSelector.Verify(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, material), Times.Once);
-
-            mockAttributesSelector.ResetCalls();
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
-
-            specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
-            specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, mithralAttributes, traits);
-
-            mockAttributesSelector.Verify(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-        }
-
-        [Test]
         public void ArmorHasSpecialMaterials()
         {
             mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);

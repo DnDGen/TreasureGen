@@ -73,29 +73,16 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void BUG_ShurikenHappens()
+        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
         {
-            var shuriken = GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken));
+            var shuriken = GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
             AssertItem(shuriken);
             Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
             Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(1, 50), shuriken.Name);
-        }
-
-        [Test]
-        public void BUG_ShurikenWithQuantityGreaterThan1Happens()
-        {
-            var shuriken = GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 1);
-            AssertItem(shuriken);
-            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(2, 50), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
         }
 
         [Test]
@@ -122,29 +109,16 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void BUG_ShurikenFromSubsetHappens()
+        public void BUG_ShurikenFromSubsetWithQuantityGreaterThan20Happens()
         {
-            var shuriken = GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken));
+            var shuriken = GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
             AssertItem(shuriken);
             Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
             Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
             Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(1, 50), shuriken.Name);
-        }
-
-        [Test]
-        public void BUG_ShurikenFromSubsetWithQuantityGreaterThan1Happens()
-        {
-            var shuriken = GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 1);
-            AssertItem(shuriken);
-            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(2, 50), shuriken.Name);
+            Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
         }
 
         private Item GenerateShuriken()

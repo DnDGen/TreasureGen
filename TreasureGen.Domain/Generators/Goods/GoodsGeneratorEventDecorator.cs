@@ -5,12 +5,12 @@ using TreasureGen.Goods;
 
 namespace TreasureGen.Domain.Generators.Goods
 {
-    internal class GoodsGeneratorEventGenDecorator : IGoodsGenerator
+    internal class GoodsGeneratorEventDecorator : IGoodsGenerator
     {
         private GenEventQueue eventQueue;
         private IGoodsGenerator innerGenerator;
 
-        public GoodsGeneratorEventGenDecorator(IGoodsGenerator innerGenerator, GenEventQueue eventQueue)
+        public GoodsGeneratorEventDecorator(IGoodsGenerator innerGenerator, GenEventQueue eventQueue)
         {
             this.eventQueue = eventQueue;
             this.innerGenerator = innerGenerator;
