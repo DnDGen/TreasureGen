@@ -18,14 +18,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ICollectionsSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
+        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
 
         public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IChargesGenerator chargesGenerator,
             ICollectionsSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             Generator generator,
-            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.chargesGenerator = chargesGenerator;

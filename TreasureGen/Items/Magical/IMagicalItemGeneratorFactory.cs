@@ -1,6 +1,6 @@
 ﻿namespace TreasureGen.Items.Magical
 {
-    public interface IMagicalItemGeneratorRuntimeFactory
+    public interface IMagicalItemGeneratorFactory
     {
         MagicalItemGenerator CreateGeneratorOf(string itemType);
     }

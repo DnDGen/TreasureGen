@@ -48,10 +48,12 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
             Bind<Generator>().To<IterativeGenerator>();
-            Bind<JustInTimeFactory>().ToProvider<JustInTimeFactoryProvider>();
 
-            Bind<IMundaneItemGeneratorRuntimeFactory>().ToProvider<MundaneItemGeneratorFactoryProvider>();
-            Bind<IMagicalItemGeneratorRuntimeFactory>().ToProvider<MagicalItemGeneratorFactoryProvider>();
+            Bind<JustInTimeFactory>().ToProvider<JustInTimeFactoryProvider>().WhenInjectedInto<JustInTimeFactoryEventDecorator>();
+            Bind<JustInTimeFactory>().To<JustInTimeFactoryEventDecorator>();
+
+            Bind<IMundaneItemGeneratorFactory>().To<MundaneItemGeneratorFactory>();
+            Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
 
             var decorators = new[]
             {

@@ -35,7 +35,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
 
-            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorRuntimeFactory>();
+            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
             mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
             mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 

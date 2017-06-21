@@ -16,10 +16,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
     public class ItemsGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IMundaneItemGeneratorRuntimeFactory> mockMundaneItemGeneratorFactory;
+        private Mock<IMundaneItemGeneratorFactory> mockMundaneItemGeneratorFactory;
         private Mock<MundaneItemGenerator> mockMundaneItemGenerator;
         private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IMagicalItemGeneratorRuntimeFactory> mockMagicalItemGeneratorFactory;
+        private Mock<IMagicalItemGeneratorFactory> mockMagicalItemGeneratorFactory;
         private Mock<MagicalItemGenerator> mockMagicalItemGenerator;
         private Mock<IRangeDataSelector> mockRangeDataSelector;
         private IItemsGenerator itemsGenerator;
@@ -29,10 +29,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void Setup()
         {
             selection = new TypeAndAmountSelection();
-            mockMundaneItemGeneratorFactory = new Mock<IMundaneItemGeneratorRuntimeFactory>();
+            mockMundaneItemGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
             mockPercentileSelector = new Mock<IPercentileSelector>();
             mockMagicalItemGenerator = new Mock<MagicalItemGenerator>();
-            mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorRuntimeFactory>();
+            mockMagicalItemGeneratorFactory = new Mock<IMagicalItemGeneratorFactory>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockMundaneItemGenerator = new Mock<MundaneItemGenerator>();
             mockRangeDataSelector = new Mock<IRangeDataSelector>();

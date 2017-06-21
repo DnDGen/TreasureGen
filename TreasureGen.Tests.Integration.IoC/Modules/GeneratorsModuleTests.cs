@@ -94,13 +94,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         [Test]
         public void MundaneGearGeneratorRuntimeFactoryNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMundaneItemGeneratorRuntimeFactory>();
+            AssertNotSingleton<IMundaneItemGeneratorFactory>();
         }
 
         [Test]
         public void MagicalItemGeneratorRuntimeFactoryNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IMagicalItemGeneratorRuntimeFactory>();
+            AssertNotSingleton<IMagicalItemGeneratorFactory>();
         }
 
         [Test]
@@ -194,9 +194,16 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
-        public void JustInTimeFactoryInjected()
+        public void JustInTimeFactoryIsInjected()
         {
             AssertNotSingleton<JustInTimeFactory>();
+        }
+
+        [Test]
+        public void JustInTimeFactoryIsDecorated()
+        {
+            var factory = InjectAndAssertDuration<JustInTimeFactory>();
+            Assert.That(factory, Is.InstanceOf<JustInTimeFactoryEventDecorator>());
         }
 
         [Test]

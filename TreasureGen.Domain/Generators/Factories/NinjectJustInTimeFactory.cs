@@ -15,5 +15,10 @@ namespace TreasureGen.Domain.Generators.Factories
         {
             return kernel.Get<T>();
         }
+
+        public T Build<T>(string name)
+        {
+            return kernel.Get<T>(name);
+        }
     }
 }

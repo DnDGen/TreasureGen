@@ -12,11 +12,11 @@ namespace TreasureGen.Domain.Generators.Items
     {
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private IPercentileSelector percentileSelector;
-        private IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory;
-        private IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory;
+        private IMundaneItemGeneratorFactory mundaneItemGeneratorFactory;
+        private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
         private IRangeDataSelector rangeDataSelector;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorRuntimeFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorRuntimeFactory magicalItemGeneratorFactory, IRangeDataSelector rangeDataSelector)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory, IRangeDataSelector rangeDataSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;

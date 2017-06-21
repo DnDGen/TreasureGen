@@ -85,6 +85,8 @@
     <Compile Include="Generators\Coins\CoinGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
+    <Compile Include="Generators\Factories\JustInTimeFactoryEventDecoratorTests.cs" />
+    <Compile Include="Generators\Factories\JustInTimeFactoryTests.cs" />
     <Compile Include="Generators\Items\ArmorTests.cs" />
     <Compile Include="Generators\Items\ConfigurableIterativeGenerator.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventDecoratorTests.cs" />
@@ -147,8 +149,8 @@
     <Compile Include="Generators\Items\TraitConstantsTests.cs" />
     <Compile Include="Generators\Items\WeaponConstantsTests.cs" />
     <Compile Include="Generators\Items\Magical\WondrousItemConstantsTests.cs" />
-    <Compile Include="Generators\Items\Magical\NinjectMagicalItemGeneratorRuntimeFactoryTests.cs" />
-    <Compile Include="Generators\Items\Mundane\NinjectMundaneItemGeneratorRuntimeFactoryTests.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactoryTests.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactoryTests.cs" />
     <Compile Include="Generators\TreasureGeneratorTests.cs" />
     <Compile Include="Mappers\Attributes\AttributeMapperCachingProxyTests.cs" />
     <Compile Include="Mappers\Attributes\AttributeXmlMapperTests.cs" />

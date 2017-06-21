@@ -17,9 +17,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
+        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
 
-        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IMundaneItemGeneratorFactory mundaneGeneratorFactory)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;

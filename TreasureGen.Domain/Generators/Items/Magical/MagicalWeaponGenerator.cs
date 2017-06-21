@@ -21,7 +21,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ISpellGenerator spellGenerator;
         private readonly Dice dice;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
+        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
 
         public MagicalWeaponGenerator(
             ICollectionsSelector collectionsSelector,
@@ -32,7 +32,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             ISpellGenerator spellGenerator,
             Dice dice,
             Generator generator,
-            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;

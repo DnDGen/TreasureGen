@@ -1,6 +1,6 @@
 ﻿namespace TreasureGen.Items.Mundane
 {
-    public interface IMundaneItemGeneratorRuntimeFactory
+    public interface IMundaneItemGeneratorFactory
     {
         MundaneItemGenerator CreateGeneratorOf(string itemType);
     }

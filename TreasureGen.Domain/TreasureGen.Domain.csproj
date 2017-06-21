@@ -59,6 +59,7 @@
     <Compile Include="Generators\Coins\CoinGenerator.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Factories\JustInTimeFactory.cs" />
+    <Compile Include="Generators\Factories\JustInTimeFactoryEventDecorator.cs" />
     <Compile Include="Generators\Factories\NinjectJustInTimeFactory.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Generator.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorMundaneProxy.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorTraitsDecorator.cs" />
+    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactory.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Generators\Goods\GoodsGenerator.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Generators\Items\Magical\RodGenerator.cs" />
     <Compile Include="Generators\Items\Magical\ScrollGenerator.cs" />
     <Compile Include="Generators\Items\Magical\SpecialAbilitiesGenerator.cs" />
+    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactory.cs" />
     <Compile Include="Generators\Items\SpecificGearGenerator.cs" />
     <Compile Include="Generators\Items\Magical\SpellGenerator.cs" />
     <Compile Include="Generators\Items\Magical\StaffGenerator.cs" />
@@ -104,13 +107,9 @@
     <Compile Include="Generators\Items\Mundane\MundaneWeaponGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\SpecialMaterialGenerator.cs" />
     <Compile Include="Generators\Items\Mundane\ToolGenerator.cs" />
-    <Compile Include="Generators\Items\Magical\NinjectMagicalItemGeneratorRuntimeFactory.cs" />
-    <Compile Include="Generators\Items\Mundane\NinjectMundaneItemGeneratorRuntimeFactory.cs" />
     <Compile Include="Generators\TreasureGenerator.cs" />
     <Compile Include="Generators\TreasureGeneratorEventDecorator.cs" />
     <Compile Include="IoC\Providers\JustInTimeFactoryProvider.cs" />
-    <Compile Include="IoC\Providers\MagicalItemGeneratorFactoryProvider.cs" />
-    <Compile Include="IoC\Providers\MundaneItemGeneratorFactoryProvider.cs" />
     <Compile Include="IoC\Modules\GeneratorsModule.cs" />
     <Compile Include="IoC\Modules\MappersModule.cs" />
     <Compile Include="IoC\Modules\SelectorsModule.cs" />

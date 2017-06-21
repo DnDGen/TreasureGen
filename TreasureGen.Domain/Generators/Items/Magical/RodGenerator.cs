@@ -19,7 +19,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
+        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
 
         public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
@@ -27,7 +27,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             IBooleanPercentileSelector booleanPercentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             Generator generator,
-            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;

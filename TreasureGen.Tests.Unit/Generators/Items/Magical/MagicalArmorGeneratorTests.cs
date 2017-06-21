@@ -24,7 +24,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
-        private Mock<IMundaneItemGeneratorRuntimeFactory> mockMundaneGeneratorFactory;
+        private Mock<IMundaneItemGeneratorFactory> mockMundaneGeneratorFactory;
         private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
@@ -39,7 +39,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
-            mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorRuntimeFactory>();
+            mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
 
             mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
 

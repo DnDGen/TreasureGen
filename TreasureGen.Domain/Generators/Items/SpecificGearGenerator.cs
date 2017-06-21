@@ -22,7 +22,7 @@ namespace TreasureGen.Domain.Generators.Items
         private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Dice dice;
-        private readonly IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory;
+        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
@@ -32,7 +32,7 @@ namespace TreasureGen.Domain.Generators.Items
             IBooleanPercentileSelector booleanPercentileSelector,
             Dice dice,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
-            IMundaneItemGeneratorRuntimeFactory mundaneGeneratorFactory)
+            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
