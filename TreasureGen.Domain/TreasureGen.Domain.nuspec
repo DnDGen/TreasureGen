@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DnDGen.TreasureGen.Domain</id>
-    <version>7.1.1</version>
+    <version>7.1.2</version>
     <title>TreasureGen.Domain</title>
     <authors>Karl M. Speer</authors>
     <owners>cidthecoatrack</owners>
