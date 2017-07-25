@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressWondrousItem()
         {
-            Stress(StressItem);
+            stressor.Stress(GenerateAndAssertItem);
         }
 
         protected override IEnumerable<string> GetItemNames()
@@ -33,7 +33,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressCustomWondrousItem()
         {
-            Stress(StressCustomItem);
+            stressor.Stress(GenerateAndAssertCustomItem);
         }
 
         protected override void MakeSpecificAssertionsAgainst(Item wondrousItem)
@@ -55,12 +55,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void BUG_CubicGateDoesNotDuplicateMaterialPlane()
         {
-            Stress(AssertCubicGatePlanesAreUnique);
+            stressor.Stress(AssertCubicGatePlanesAreUnique);
         }
 
         private void AssertCubicGatePlanesAreUnique()
         {
-            var cubicGate = Generate(GenerateItem, i => i.ItemType == itemType && i.Name == WondrousItemConstants.CubicGate);
+            var cubicGate = stressor.Generate(GenerateItem, i => i.ItemType == itemType && i.Name == WondrousItemConstants.CubicGate);
             Assert.That(cubicGate.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(cubicGate.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(cubicGate.Contents, Is.Unique);
@@ -70,7 +70,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressWondrousItemFromSubset()
         {
-            Stress(StressItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromSubset);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -18,20 +17,15 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private IChargesGenerator generator;
         private Mock<Dice> mockDice;
         private Mock<IRangeDataSelector> mockRangeDataSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private Mock<JustInTimeFactory> mockJustInTimeFactory;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
 
         [SetUp]
         public void Setup()
         {
             mockDice = new Mock<Dice>();
             mockRangeDataSelector = new Mock<IRangeDataSelector>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockJustInTimeFactory = new Mock<JustInTimeFactory>();
-            generator = new ChargesGenerator(mockDice.Object, mockJustInTimeFactory.Object);
-
-            mockJustInTimeFactory.Setup(f => f.Build<IBooleanPercentileSelector>()).Returns(mockBooleanPercentileSelector.Object);
-            mockJustInTimeFactory.Setup(f => f.Build<IRangeDataSelector>()).Returns(mockRangeDataSelector.Object);
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
+            generator = new ChargesGenerator(mockDice.Object, mockRangeDataSelector.Object, mockPercentileSelector.Object);
         }
 
         [TestCase(ItemTypeConstants.Wand, 1, 1)]
@@ -271,7 +265,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(27, 9266);
             SetUpRoll(1, 1);
 
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
 
             var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(34));
@@ -293,7 +287,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(27, 9266);
             SetUpRoll(1, 1);
 
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
 
             var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(9331));

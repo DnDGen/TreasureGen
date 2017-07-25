@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     public class ToolGeneratorTests
     {
         private MundaneItemGenerator toolGenerator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private ItemVerifier itemVerifier;
         private Generator generator;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
@@ -25,8 +25,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            generator = new ConfigurableIterativeGenerator(3);
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
+            generator = new IterativeGeneratorWithoutLogging(3);
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             toolGenerator = new ToolGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();

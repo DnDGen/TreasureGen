@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressWand()
         {
-            Stress(StressItem);
+            stressor.Stress(GenerateAndAssertItem);
         }
 
         protected override void MakeSpecificAssertionsAgainst(Item wand)
@@ -53,13 +53,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressCustomWand()
         {
-            Stress(StressCustomItem);
+            stressor.Stress(GenerateAndAssertCustomItem);
         }
 
         [Test]
         public void StressWandFromSubset()
         {
-            Stress(StressItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromSubset);
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -19,12 +20,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator magicalArmorGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
-        private Mock<IMundaneItemGeneratorFactory> mockMundaneGeneratorFactory;
+        private Mock<JustInTimeFactory> mockJustInTimeFactory;
         private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
@@ -33,17 +34,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
-            mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
+            mockJustInTimeFactory = new Mock<JustInTimeFactory>();
 
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
 
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             magicalArmorGenerator = new MagicalArmorGenerator(
                 mockTypeAndAmountPercentileSelector.Object,
                 mockPercentileSelector.Object,
@@ -51,7 +52,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockSpecialAbilitiesGenerator.Object,
                 mockSpecificGearGenerator.Object,
                 generator,
-                mockMundaneGeneratorFactory.Object);
+                mockJustInTimeFactory.Object);
 
             itemVerifier = new ItemVerifier();
 

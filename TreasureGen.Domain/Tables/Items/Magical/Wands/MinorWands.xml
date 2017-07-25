@@ -1,184 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Detect magic</content>
         <upper>2</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>3</lower>
         <content>Light</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Burning hands</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Charm animal</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Charm person</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Color spray</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Cure light wounds</content>
         <upper>19</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>20</lower>
         <content>Detect secret doors</content>
         <upper>22</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>23</lower>
         <content>Enlarge person</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Magic missile (1st)</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Shocking grasp</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Summon monster I</content>
         <upper>34</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>35</lower>
         <content>Magic missile (3rd)</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Magic missile (5th)</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Bear's endurance</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Bull's strength</content>
         <upper>43</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>44</lower>
         <content>Cat's grace</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Cure moderate wounds</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Darkness</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Daze monster</content>
         <upper>54</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>55</lower>
         <content>Delay poison</content>
         <upper>57</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>58</lower>
         <content>Eagle's splendor</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>False life</content>
         <upper>63</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>64</lower>
         <content>Fox's cunning</content>
         <upper>66</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>67</lower>
         <content>Ghoul touch</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Hold person</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Invisibility</content>
         <upper>74</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>75</lower>
         <content>Knock</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Levitate</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Acid arrow</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Mirror image</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Owl's wisdom</content>
         <upper>89</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>90</lower>
         <content>Shatter</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Silence</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Summon monster II</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Web</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

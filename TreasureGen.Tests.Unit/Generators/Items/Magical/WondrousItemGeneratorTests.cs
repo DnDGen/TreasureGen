@@ -1,10 +1,10 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class WondrousItemGeneratorTests
     {
         private MagicalItemGenerator wondrousItemGenerator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<Dice> mockDice;
@@ -33,10 +33,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             wondrousItemGenerator = new WondrousItemGenerator(
                 mockPercentileSelector.Object,
                 mockCollectionsSelector.Object,

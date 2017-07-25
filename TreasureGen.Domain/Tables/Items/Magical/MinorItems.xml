@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Armor</content>
     <upper>4</upper>
-  </object>
-    <object>
+  </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Weapon</content>
         <upper>9</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>10</lower>
         <content>Potion</content>
         <upper>44</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>45</lower>
         <content>Ring</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Scroll</content>
         <upper>81</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>82</lower>
         <content>Wand</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>WondrousItem</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

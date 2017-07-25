@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>ReplacementStrings</name>
-        <attribute>DESIGNATEDFOE</attribute>
-        <attribute>GENDER</attribute>
-        <attribute>HEIGHT</attribute>
-        <attribute>KNOWLEDGECATEGORY</attribute>
-        <attribute>ENERGY</attribute>
-        <attribute>PARTIALALIGNMENT</attribute>
-        <attribute>FULLALIGNMENT</attribute>
-    </object>
-    <object>
+        <entry>DESIGNATEDFOE</entry>
+        <entry>GENDER</entry>
+        <entry>HEIGHT</entry>
+        <entry>KNOWLEDGECATEGORY</entry>
+        <entry>ENERGY</entry>
+        <entry>PARTIALALIGNMENT</entry>
+        <entry>FULLALIGNMENT</entry>
+    </collection>
+    <collection>
         <name>DESIGNATEDFOE</name>
-        <attribute>DesignatedFoes</attribute>
-    </object>
-    <object>
+        <entry>DesignatedFoes</entry>
+    </collection>
+    <collection>
         <name>GENDER</name>
-        <attribute>Gender</attribute>
-    </object>
-    <object>
+        <entry>Gender</entry>
+    </collection>
+    <collection>
         <name>HEIGHT</name>
-        <attribute>CurseHeightChanges</attribute>
-    </object>
-    <object>
+        <entry>CurseHeightChanges</entry>
+    </collection>
+    <collection>
         <name>KNOWLEDGECATEGORY</name>
-        <attribute>KnowledgeCategories</attribute>
-    </object>
-    <object>
+        <entry>KnowledgeCategories</entry>
+    </collection>
+    <collection>
         <name>ENERGY</name>
-        <attribute>Elements</attribute>
-    </object>
-    <object>
+        <entry>Elements</entry>
+    </collection>
+    <collection>
         <name>PARTIALALIGNMENT</name>
-        <attribute>PartialAlignments</attribute>
-    </object>
-    <object>
+        <entry>PartialAlignments</entry>
+    </collection>
+    <collection>
         <name>FULLALIGNMENT</name>
-        <attribute>FullAlignments</attribute>
-    </object>
-</attributes>
+        <entry>FullAlignments</entry>
+    </collection>
+</collections>

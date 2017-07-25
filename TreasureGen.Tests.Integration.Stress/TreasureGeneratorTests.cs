@@ -14,7 +14,7 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void StressTreasure()
         {
-            Stress(GenerateAndAssertTreasure);
+            stressor.Stress(GenerateAndAssertTreasure);
         }
 
         private void GenerateAndAssertTreasure()
@@ -47,21 +47,21 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void TreasureHappens()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.IsAny);
+            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.IsAny);
             Assert.That(treasure.IsAny, Is.True);
         }
 
         [Test]
         public void TreasureDoesNotHappen()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => !t.IsAny);
+            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => !t.IsAny);
             Assert.That(treasure.IsAny, Is.False);
         }
 
         [Test]
         public void CoinHappens()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Coin.Quantity > 0);
+            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Coin.Quantity > 0);
             Assert.That(treasure.Coin.Quantity, Is.Positive);
             Assert.That(treasure.Coin.Currency, Is.Not.Empty);
         }
@@ -69,7 +69,7 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void GoodsHappen()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Goods.Any());
+            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Goods.Any());
             Assert.That(treasure.Goods, Is.Not.Empty);
             Assert.That(treasure.Goods, Is.All.Not.Null);
             Assert.That(treasure.Goods, Is.Unique);
@@ -78,7 +78,7 @@ namespace TreasureGen.Tests.Integration.Stress
         [Test]
         public void ItemsHappen()
         {
-            var treasure = GenerateOrFail(() => GenerateTreasure(), t => t.Items.Any());
+            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Items.Any());
             Assert.That(treasure.Items, Is.Not.Empty);
             Assert.That(treasure.Items, Is.All.Not.Null);
             Assert.That(treasure.Items, Is.Unique);

@@ -1,80 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-  <object>
+<collections>
+  <collection>
     <name>Banded mail</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Breastplate</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Buckler</name>
-    <attribute>Wood</attribute>
-    <attribute>Shield</attribute>
-  </object>
-  <object>
+    <entry>Wood</entry>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
     <name>Chainmail</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Chain shirt</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Full plate</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Half-plate</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Heavy steel shield</name>
-    <attribute>Metal</attribute>
-    <attribute>Shield</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
     <name>Heavy wooden shield</name>
-    <attribute>Wood</attribute>
-    <attribute>Shield</attribute>
-  </object>
-  <object>
+    <entry>Wood</entry>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
     <name>Light steel shield</name>
-    <attribute>Metal</attribute>
-    <attribute>Shield</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
     <name>Light wooden shield</name>
-    <attribute>Wood</attribute>
-    <attribute>Shield</attribute>
-  </object>
-  <object>
+    <entry>Wood</entry>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
     <name>Scale mail</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Splint mail</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Studded leather armor</name>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Tower shield</name>
-    <attribute>Wood</attribute>
-    <attribute>Shield</attribute>
-    <attribute>Tower shield</attribute>
-  </object>
-  <object>
+    <entry>Wood</entry>
+    <entry>Shield</entry>
+    <entry>Tower shield</entry>
+  </collection>
+  <collection>
     <name>Hide armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Leather armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Padded armor</name>
-  </object>
-</attributes>
+  </collection>
+</collections>

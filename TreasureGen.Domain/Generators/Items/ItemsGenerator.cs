@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Generators;
+using System.Collections.Generic;
 using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -10,18 +11,16 @@ namespace TreasureGen.Domain.Generators.Items
 {
     internal class ItemsGenerator : IItemsGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private IPercentileSelector percentileSelector;
-        private IMundaneItemGeneratorFactory mundaneItemGeneratorFactory;
-        private IMagicalItemGeneratorFactory magicalItemGeneratorFactory;
-        private IRangeDataSelector rangeDataSelector;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
+        private readonly JustInTimeFactory justInTimeFactory;
+        private readonly IRangeDataSelector rangeDataSelector;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IMundaneItemGeneratorFactory mundaneItemGeneratorFactory, IPercentileSelector percentileSelector, IMagicalItemGeneratorFactory magicalItemGeneratorFactory, IRangeDataSelector rangeDataSelector)
+        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, JustInTimeFactory justInTimeFactory, ITreasurePercentileSelector percentileSelector, IRangeDataSelector rangeDataSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.mundaneItemGeneratorFactory = mundaneItemGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
             this.percentileSelector = percentileSelector;
-            this.magicalItemGeneratorFactory = magicalItemGeneratorFactory;
             this.rangeDataSelector = rangeDataSelector;
         }
 
@@ -69,7 +68,7 @@ namespace TreasureGen.Domain.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane);
             var itemType = percentileSelector.SelectFrom(tableName);
-            var generator = mundaneItemGeneratorFactory.CreateGeneratorOf(itemType);
+            var generator = justInTimeFactory.Build<MundaneItemGenerator>(itemType);
 
             return generator.Generate();
         }
@@ -78,7 +77,7 @@ namespace TreasureGen.Domain.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, power);
             var itemType = percentileSelector.SelectFrom(tableName);
-            var magicalItemGenerator = magicalItemGeneratorFactory.CreateGeneratorOf(itemType);
+            var magicalItemGenerator = justInTimeFactory.Build<MagicalItemGenerator>(itemType);
 
             return magicalItemGenerator.GenerateAtPower(power);
         }

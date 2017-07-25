@@ -1,149 +1,149 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Rod of cancellation,0</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Rod of metamagic: Enlarge,0</content>
         <upper>6</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>7</lower>
         <content>Rod of metamagic: Extend,0</content>
         <upper>8</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>9</lower>
         <content>Rod of metamagic: Silent,0</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Rod of wonder,0</content>
         <upper>14</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>15</lower>
         <content>Rod of the python,1</content>
         <upper>18</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>19</lower>
         <content>Rod of flame extinguishing,0</content>
         <upper>21</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>22</lower>
         <content>Rod of the viper,2</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Rod of enemy detection,0</content>
         <upper>30</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>31</lower>
         <content>Rod of greater metamagic: Enlarge,0</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Rod of greater metamagic: Extend,0</content>
         <upper>42</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>43</lower>
         <content>Rod of greater metamagic: Silent,0</content>
         <upper>48</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>49</lower>
         <content>Rod of splendor,4</content>
         <upper>53</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>54</lower>
         <content>Rod of withering,1</content>
         <upper>58</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>59</lower>
         <content>Rod of metamagic: Empower,0</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Rod of thunder and lightning,2</content>
         <upper>69</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>70</lower>
         <content>Rod of lesser metamagic: Quicken,0</content>
         <upper>73</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>74</lower>
         <content>Rod of negation,0</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Rod of absorption,0</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Rod of flailing,3</content>
         <upper>84</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>85</lower>
         <content>Rod of metamagic: Maximize,0</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Rod of rulership,0</content>
         <upper>88</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>89</lower>
         <content>Rod of security,0</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Rod of lordly might,2</content>
         <upper>92</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>93</lower>
         <content>Rod of greater metamagic: Empower,0</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Rod of metamagic: Quicken,0</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Rod of alertness,1</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Rod of greater metamagic: Maximize,0</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>Rod of greater metamagic: Quicken,0</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

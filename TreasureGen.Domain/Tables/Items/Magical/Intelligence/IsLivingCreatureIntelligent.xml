@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>False</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

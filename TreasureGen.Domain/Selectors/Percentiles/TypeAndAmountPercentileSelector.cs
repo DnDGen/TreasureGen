@@ -8,10 +8,10 @@ namespace TreasureGen.Domain.Selectors.Percentiles
 {
     internal class TypeAndAmountPercentileSelector : ITypeAndAmountPercentileSelector
     {
-        private IPercentileSelector percentileSelector;
-        private Dice dice;
+        private readonly ITreasurePercentileSelector percentileSelector;
+        private readonly Dice dice;
 
-        public TypeAndAmountPercentileSelector(IPercentileSelector percentileSelector, Dice dice)
+        public TypeAndAmountPercentileSelector(ITreasurePercentileSelector percentileSelector, Dice dice)
         {
             this.percentileSelector = percentileSelector;
             this.dice = dice;

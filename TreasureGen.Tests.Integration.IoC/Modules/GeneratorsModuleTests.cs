@@ -3,7 +3,6 @@ using RollGen;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators;
 using TreasureGen.Domain.Generators.Coins;
-using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Goods;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -92,18 +91,6 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
-        public void MundaneGearGeneratorRuntimeFactoryNotConstructedAsSingleton()
-        {
-            AssertNotSingleton<IMundaneItemGeneratorFactory>();
-        }
-
-        [Test]
-        public void MagicalItemGeneratorRuntimeFactoryNotConstructedAsSingleton()
-        {
-            AssertNotSingleton<IMagicalItemGeneratorFactory>();
-        }
-
-        [Test]
         public void SpecialMaterialGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpecialMaterialGenerator>();
@@ -158,6 +145,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
             AssertNotSingleton<ISpecificGearGenerator>();
         }
 
+        [Test]
+        public void SpecificGearGeneratorIsDecorated()
+        {
+            var generator = InjectAndAssertDuration<ISpecificGearGenerator>();
+            Assert.That(generator, Is.InstanceOf<SpecificGearGeneratorEventDecorator>());
+        }
+
         [TestCase(ItemTypeConstants.Armor)]
         [TestCase(ItemTypeConstants.Potion)]
         [TestCase(ItemTypeConstants.Ring)]
@@ -185,25 +179,6 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         public void MagicalItemGeneratorIsNotConstructedAsSingleton(string itemType)
         {
             AssertNotSingleton<MagicalItemGenerator>(itemType);
-        }
-
-        [Test]
-        public void GeneratorIsNotConstructedAsASingleton()
-        {
-            AssertNotSingleton<Generator>();
-        }
-
-        [Test]
-        public void JustInTimeFactoryIsInjected()
-        {
-            AssertNotSingleton<JustInTimeFactory>();
-        }
-
-        [Test]
-        public void JustInTimeFactoryIsDecorated()
-        {
-            var factory = InjectAndAssertDuration<JustInTimeFactory>();
-            Assert.That(factory, Is.InstanceOf<JustInTimeFactoryEventDecorator>());
         }
 
         [Test]

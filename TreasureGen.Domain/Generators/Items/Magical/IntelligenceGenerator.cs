@@ -1,4 +1,5 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class IntelligenceGenerator : IIntelligenceGenerator
     {
         private readonly Dice dice;
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly IIntelligenceDataSelector intelligenceDataSelector;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
 
-        public IntelligenceGenerator(Dice dice, IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public IntelligenceGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.intelligenceDataSelector = intelligenceDataSelector;
-            this.booleanPercentileSelector = booleanPercentileSelector;
         }
 
         public bool IsIntelligent(string itemType, IEnumerable<string> attributes, bool isMagical)
@@ -41,7 +40,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 itemType = AttributeConstants.Ranged;
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            return booleanPercentileSelector.SelectFrom(tableName);
+            return percentileSelector.SelectFrom<bool>(tableName);
         }
 
         public Intelligence GenerateFor(Item item)

@@ -1,9 +1,10 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -17,8 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private ICurseGenerator curseGenerator;
         private Mock<Dice> mockDice;
-        private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
@@ -28,18 +28,17 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void Setup()
         {
             mockDice = new Mock<Dice>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
 
-            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
+            var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
-            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockBooleanPercentileSelector.Object, mockCollectionsSelector.Object, generator, mockMundaneGeneratorFactory.Object);
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, generator, mockJustInTimeFactory.Object);
 
             itemVerifier = new ItemVerifier();
         }
@@ -47,7 +46,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NotCursedIfNoMagic()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
             var cursed = curseGenerator.HasCurse(false);
             Assert.That(cursed, Is.False);
         }
@@ -55,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void NotCursedIfSelectorSaySo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(false);
             var cursed = curseGenerator.HasCurse(true);
             Assert.That(cursed, Is.False);
         }
@@ -63,7 +62,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CursedIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
             var cursed = curseGenerator.HasCurse(true);
             Assert.That(cursed, Is.True);
         }

@@ -1,54 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>DESIGNATEDFOEbane</content>
         <upper>12</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>13</lower>
         <content>Distance</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Flaming</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Frost</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Merciful</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Returning</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Shock</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Seeking</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Thundering</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>BonusSpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

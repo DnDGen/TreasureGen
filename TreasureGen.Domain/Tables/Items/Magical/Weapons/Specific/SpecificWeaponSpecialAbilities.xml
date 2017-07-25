@@ -1,127 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<collections>
+  <collection>
     <name>Flame tongue</name>
-    <attribute>Flaming burst</attribute>
-  </object>
-  <object>
+    <entry>Flaming burst</entry>
+  </collection>
+  <collection>
     <name>Rapier of puncturing</name>
-    <attribute>Wounding</attribute>
-  </object>
-  <object>
+    <entry>Wounding</entry>
+  </collection>
+  <collection>
     <name>Frost brand</name>
-    <attribute>Frost</attribute>
-  </object>
-  <object>
+    <entry>Frost</entry>
+  </collection>
+  <collection>
     <name>Shatterspike</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Assassin's dagger</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Battleaxe</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Dagger</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Dagger of venom</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Silver dagger</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Dwarven thrower</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Greater slaying arrow</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Holy avenger</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Javelin of lightning</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Life-drinker</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Longsword</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Luck blade (0 wishes)</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Luck blade (1 wish)</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Luck blade (2 wishes)</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Luck blade (3 wishes)</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Luck blade</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Mace of smiting</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Mace of terror</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Nine lives stealer</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Screaming bolt</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Oathbow</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Shifter's sorrow</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Slaying arrow</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sleep arrow</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sun blade</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sword of life stealing</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sword of the planes</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sword of subtlety</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Sylvan scimitar</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Trident of warning</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Trident of fish command</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Berserking sword</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Cursed -2 sword</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Cursed backbiter spear</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Net of snaring</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Mace of blood</name>
-  </object>
-</percentile>
+  </collection>
+</collections>

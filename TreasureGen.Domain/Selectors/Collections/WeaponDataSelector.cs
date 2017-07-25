@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using DnDGen.Core.Selectors.Collections;
+using System.Linq;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;

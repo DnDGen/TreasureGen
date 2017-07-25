@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Silver</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Brass</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Bronze</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Iron</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

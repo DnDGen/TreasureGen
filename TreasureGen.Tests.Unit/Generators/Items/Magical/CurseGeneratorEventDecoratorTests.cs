@@ -159,26 +159,28 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void LogEventsWhenCheckingForSpecificCursedItem()
         {
             var template = new Item();
+            template.Name = Guid.NewGuid().ToString();
             mockInnerGenerator.Setup(g => g.IsSpecificCursedItem(template)).Returns(true);
 
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.True);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Determining if template is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Template is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is a specific cursed item"), Times.Once);
         }
 
         [Test]
         public void LogEventsWhenCheckingForNotSpecificCursedItem()
         {
             var template = new Item();
+            template.Name = Guid.NewGuid().ToString();
             mockInnerGenerator.Setup(g => g.IsSpecificCursedItem(template)).Returns(false);
 
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.False);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Determining if template is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Template is not a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is not a specific cursed item"), Times.Once);
         }
     }
 }

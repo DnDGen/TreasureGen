@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Tables;
@@ -41,7 +42,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void IsSpecialAbility()
         {
-            mockInnerSelector.Setup(s => s.Exists(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(true);
+            mockInnerSelector.Setup(s => s.IsCollection(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(true);
             var isSpecialAbility = selector.IsSpecialAbility("name");
             Assert.That(isSpecialAbility, Is.True);
         }
@@ -49,7 +50,7 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void IsNotSpecialAbility()
         {
-            mockInnerSelector.Setup(s => s.Exists(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(false);
+            mockInnerSelector.Setup(s => s.IsCollection(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(false);
             var isSpecialAbility = selector.IsSpecialAbility("name");
             Assert.That(isSpecialAbility, Is.False);
         }

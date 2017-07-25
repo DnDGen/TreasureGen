@@ -1,114 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Item can detect opposing alignment at will</content>
     <upper>6</upper>
-  </object>
-    <object>
+  </percentile>
+    <percentile>
         <lower>7</lower>
         <content>Item can Detect Undead at will</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Item can Cause Fear in an enemy at will</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Item can use Dimensional Anchor on a foe 1/day</content>
         <upper>18</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>19</lower>
         <content>Item can use Dismissal on a foe 1/day</content>
         <upper>23</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>24</lower>
         <content>Item can use Lesser Globe of Invulnerability 1/day</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Item can use Arcane Eye 1/day</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Item has continuous Detect Scrying effect</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Item creates Wall of Fire in a ring with the wielder at the center 1/day</content>
         <upper>41</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>42</lower>
         <content>Item can use Quench on fires 3/day</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Item has Status effect, usable at will</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Item can use Gust of Wind 3/day</content>
         <upper>54</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>55</lower>
         <content>Item can use Clairvoyance 3/day</content>
         <upper>59</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>60</lower>
         <content>Item can create Magic Circle against opposing alignment at will</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Item can use Haste on its owner 3/day</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Item can create Daylight 3/day</content>
         <upper>73</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>74</lower>
         <content>Item can create Deeper Darkness 3/day</content>
         <upper>76</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>77</lower>
         <content>Item can use Invisibility Purge (30 ft. range) 3/day</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Item can use Slow on its enemies 3/day</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Item can Locate Creature 3/day</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Item can use Fear against foes 3/day</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Item can use Detect Thoughts at will</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

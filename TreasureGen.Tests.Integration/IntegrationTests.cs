@@ -1,4 +1,5 @@
-﻿using EventGen.IoC;
+﻿using DnDGen.Core.IoC;
+using EventGen.IoC;
 using Ninject;
 using NUnit.Framework;
 using RollGen.Domain.IoC;
@@ -17,6 +18,9 @@ namespace TreasureGen.Tests.Integration
 
             var rollGenModuleLoader = new RollGenModuleLoader();
             rollGenModuleLoader.LoadModules(kernel);
+
+            var coreModuleLoader = new CoreModuleLoader();
+            coreModuleLoader.LoadModules(kernel);
 
             var eventGenModuleLoader = new EventGenModuleLoader();
             eventGenModuleLoader.LoadModules(kernel);

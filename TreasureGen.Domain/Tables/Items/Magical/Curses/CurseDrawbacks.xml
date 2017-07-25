@@ -1,159 +1,159 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Character's hair grows 1 inch longer. Only happens once.</content>
     <upper>4</upper>
-  </object>
-    <object>
+  </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Character HEIGHTs 1/2 inch. Only happens once.</content>
         <upper>9</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>10</lower>
         <content>Temperature around item is 10 degrees cooler than normal</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Temperature around item is 10 degrees warmer than normal</content>
         <upper>17</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>18</lower>
         <content>Character's hair color changes</content>
         <upper>21</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>22</lower>
         <content>Character's skin color changes</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Character now bears an identifying mark (tattoo, weird glow, or the like)</content>
         <upper>29</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>30</lower>
         <content>Character's gender changes</content>
         <upper>32</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>33</lower>
         <content>Character's race or kind changes</content>
         <upper>34</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>35</lower>
         <content>Character is afflicted with a random disease that cannot be cured</content>
         <upper>35</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>36</lower>
         <content>Item continually emits a disturbing sound (moaning, weeping, screaming, cursing, insults, etc.)</content>
         <upper>39</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>40</lower>
         <content>Item looks ridiculous (garishly colored, silly shape, glows bright pink, etc.)</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Character becomes selfishly possessive of the item</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Character becomes paranoid about losing the item and afraid of damage occurring to it</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Character's alignment changes</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Character must attack nearest creature (5% chance each day)</content>
         <upper>54</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>55</lower>
         <content>Character is stunned for 1d4 rounds once item function is finished (or randomly 1/day)</content>
         <upper>57</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>58</lower>
         <content>Character's vision is blurry (-2 penalty on attack rolls, saves, and skill checks requiring vision)</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Character gains one negative level</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Character gains two negative levels</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Character must make a Will save (DC 20) each day or take 1 point of Intelligence damage</content>
         <upper>70</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>71</lower>
         <content>Character must make a Will save (DC 20) each day or take 1 point of Wisdom damage</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Character must make a Will save (DC 20) each day or take 1 point of Charisma damage</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Character must make a Fortitude save (DC 20) each day or take 1 point of Constitution damage</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Character must make a Fortitude save (DC 20) each day or take 1 point of Strength damage</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Character must make a Fortitude save (DC 20) each day or take 1 point of Dexterity damage</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Character is polymorphed into a specific creature (5% chance each day)</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Character cannot cast arcane spells</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Character cannot cast divine spells</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Character cannot cast any spells</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>Item casts Harm on the wielder 1/day</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

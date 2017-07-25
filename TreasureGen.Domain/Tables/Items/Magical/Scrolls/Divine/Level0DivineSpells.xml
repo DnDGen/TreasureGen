@@ -1,74 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Create water</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Cure minor wounds</content>
         <upper>14</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>15</lower>
         <content>Detect magic</content>
         <upper>22</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>23</lower>
         <content>Detect poison</content>
         <upper>29</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>30</lower>
         <content>Flare</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Guidance</content>
         <upper>43</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>44</lower>
         <content>Inflict minor wounds</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Know direction</content>
         <upper>57</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>58</lower>
         <content>Light</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Mending</content>
         <upper>72</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>73</lower>
         <content>Purify food and drink</content>
         <upper>79</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>80</lower>
         <content>Read magic</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Resistance</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Virtue</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

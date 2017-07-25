@@ -1,134 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<collections>
+    <collection>
         <name>Bracelet of friends</name>
-        <attribute>1</attribute>
-        <attribute>4</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>4</entry>
+    </collection>
+    <collection>
         <name>Brooch of shielding</name>
-        <attribute>1</attribute>
-        <attribute>101</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>101</entry>
+    </collection>
+    <collection>
         <name>Chime of opening</name>
-        <attribute>1</attribute>
-        <attribute>10</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>10</entry>
+    </collection>
+    <collection>
         <name>Deck of illusions</name>
-        <attribute>14</attribute>
-        <attribute>33</attribute>
-    </object>
-    <object>
+        <entry>14</entry>
+        <entry>33</entry>
+    </collection>
+    <collection>
         <name>Gem of brightness</name>
-        <attribute>1</attribute>
-        <attribute>50</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>50</entry>
+    </collection>
+    <collection>
         <name>Keoghtom's ointment</name>
-        <attribute>1</attribute>
-        <attribute>5</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>5</entry>
+    </collection>
+    <collection>
         <name>Ring of Ram</name>
-        <attribute>1</attribute>
-        <attribute>50</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>50</entry>
+    </collection>
+    <collection>
         <name>Scarab of protection</name>
-        <attribute>1</attribute>
-        <attribute>12</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>12</entry>
+    </collection>
+    <collection>
         <name>Ring of Three wishes</name>
-        <attribute>1</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Luck blade (0 wishes)</name>
-        <attribute>0</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Luck blade (1 wish)</name>
-        <attribute>1</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Luck blade (2 wishes)</name>
-        <attribute>2</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Luck blade (3 wishes)</name>
-        <attribute>3</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Luck blade</name>
-        <attribute>0</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Deck of illusions (max)</name>
-        <attribute>34</attribute>
-        <attribute>34</attribute>
-    </object>
-    <object>
+        <entry>34</entry>
+        <entry>34</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type I</name>
-        <attribute>1</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type II</name>
-        <attribute>1</attribute>
-        <attribute>5</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>5</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type III</name>
-        <attribute>1</attribute>
-        <attribute>7</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>7</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type IV</name>
-        <attribute>1</attribute>
-        <attribute>9</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>9</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type V</name>
-        <attribute>1</attribute>
-        <attribute>7</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>7</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type VI</name>
-        <attribute>1</attribute>
-        <attribute>9</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>9</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type VII</name>
-        <attribute>1</attribute>
-        <attribute>9</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>9</entry>
+    </collection>
+    <collection>
         <name>Robe of bones</name>
-        <attribute>1</attribute>
-        <attribute>12</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>12</entry>
+    </collection>
+    <collection>
         <name>Rod of absorption</name>
-        <attribute>1</attribute>
-        <attribute>50</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>50</entry>
+    </collection>
+    <collection>
         <name>Rod of absorption (max)</name>
-        <attribute>50</attribute>
-        <attribute>50</attribute>
-    </object>
-    <object>
+        <entry>50</entry>
+        <entry>50</entry>
+    </collection>
+    <collection>
         <name>Rod of rulership</name>
-        <attribute>1</attribute>
-        <attribute>500</attribute>
-    </object>
-</percentile>
+        <entry>1</entry>
+        <entry>500</entry>
+    </collection>
+</collections>

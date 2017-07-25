@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>2</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>3</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>4</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>5</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

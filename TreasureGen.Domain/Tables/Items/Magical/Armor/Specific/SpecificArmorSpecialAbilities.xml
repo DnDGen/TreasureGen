@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-  <object>
+<collections>
+  <collection>
     <name>Banded mail of luck</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Breastplate of command</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Breastplate</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Celestial armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Demon armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Dwarven plate</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Elven chain</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Full plate of speed</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Plate armor of the deep</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Rhino hide</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Chain shirt</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Full plate</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Armor of rage</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Armor of arrow attraction</name>
-  </object>
-</attributes>
+  </collection>
+</collections>

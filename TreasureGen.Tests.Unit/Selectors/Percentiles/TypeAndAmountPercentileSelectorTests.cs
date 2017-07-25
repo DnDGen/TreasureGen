@@ -10,14 +10,14 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
     [TestFixture]
     public class TypeAndAmountPercentileSelectorTests
     {
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private Mock<Dice> mockDice;
 
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockDice = new Mock<Dice>();
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object, mockDice.Object);
 

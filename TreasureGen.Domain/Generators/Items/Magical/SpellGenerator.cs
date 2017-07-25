@@ -6,9 +6,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class SpellGenerator : ISpellGenerator
     {
-        private IPercentileSelector percentileSelector;
+        private ITreasurePercentileSelector percentileSelector;
 
-        public SpellGenerator(IPercentileSelector percentileSelector)
+        public SpellGenerator(ITreasurePercentileSelector percentileSelector)
         {
             this.percentileSelector = percentileSelector;
         }

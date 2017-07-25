@@ -1,70 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-  <object>
+<collections>
+  <collection>
     <name>1d91+9</name>
-    <attribute>silver ewer</attribute>
-    <attribute>carved bone statuette</attribute>
-    <attribute>carved ivory statuette</attribute>
-    <attribute>finely wrought small gold bracelet</attribute>
-  </object>
-  <object>
+    <entry>silver ewer</entry>
+    <entry>carved bone statuette</entry>
+    <entry>carved ivory statuette</entry>
+    <entry>finely wrought small gold bracelet</entry>
+  </collection>
+  <collection>
       <name>3d51+27</name>
-      <attribute>cloth of gold vestments</attribute>
-      <attribute>black velvet mask with numerous citrines</attribute>
-      <attribute>silver chalice with lapis lazuli gems</attribute>
-  </object>
-  <object>
+      <entry>cloth of gold vestments</entry>
+      <entry>black velvet mask with numerous citrines</entry>
+      <entry>silver chalice with lapis lazuli gems</entry>
+  </collection>
+  <collection>
       <name>1d501+99</name>
-      <attribute>large well-done wool tapestry</attribute>
-      <attribute>brass mug with jade inlays</attribute>
-  </object>
-  <object>
+      <entry>large well-done wool tapestry</entry>
+      <entry>brass mug with jade inlays</entry>
+  </collection>
+  <collection>
       <name>1d901+99</name>
-      <attribute>silver comb with moonstones</attribute>
-      <attribute>silver-plated steel longsword with jet jewel in hilt</attribute>
-  </object>
-  <object>
+      <entry>silver comb with moonstones</entry>
+      <entry>silver-plated steel longsword with jet jewel in hilt</entry>
+  </collection>
+  <collection>
       <name>2d501+198</name>
-      <attribute>carved harp of exotic wood with ivory inlay and zircon gems</attribute>
-      <attribute>10 lb. solid gold idol</attribute>
-  </object>
-  <object>
+      <entry>carved harp of exotic wood with ivory inlay and zircon gems</entry>
+      <entry>10 lb. solid gold idol</entry>
+  </collection>
+  <collection>
     <name>3d501+297</name>
-    <attribute>gold dragon comb with red garnet eye</attribute>
-    <attribute>gold and topaz bottle stopper cork</attribute>
-    <attribute>ceremonial electrum dagger with a star ruby in the pommel</attribute>
-  </object>
-  <object>
+    <entry>gold dragon comb with red garnet eye</entry>
+    <entry>gold and topaz bottle stopper cork</entry>
+    <entry>ceremonial electrum dagger with a star ruby in the pommel</entry>
+  </collection>
+  <collection>
       <name>4d501+396</name>
-      <attribute>eyepatch with mock eye of sapphire and moonstone</attribute>
-      <attribute>fire opal pendant on a fine gold chain</attribute>
-      <attribute>old masterpiece painting</attribute>
-  </object>
-  <object>
+      <entry>eyepatch with mock eye of sapphire and moonstone</entry>
+      <entry>fire opal pendant on a fine gold chain</entry>
+      <entry>old masterpiece painting</entry>
+  </collection>
+  <collection>
       <name>5d501+495</name>
-      <attribute>embroidered silk and velvet mantle with numerous moonstones</attribute>
-      <attribute>sapphire pendant on gold chain</attribute>
-  </object>
-  <object>
+      <entry>embroidered silk and velvet mantle with numerous moonstones</entry>
+      <entry>sapphire pendant on gold chain</entry>
+  </collection>
+  <collection>
     <name>1d3001+999</name>
-    <attribute>embroidered and bejeweled glove</attribute>
-    <attribute>jeweled anklet</attribute>
-    <attribute>gold music box</attribute>
-  </object>
-  <object>
+    <entry>embroidered and bejeweled glove</entry>
+    <entry>jeweled anklet</entry>
+    <entry>gold music box</entry>
+  </collection>
+  <collection>
       <name>1d5001+999</name>
-      <attribute>golden circlet with four aquamarines</attribute>
-      <attribute>a necklace of small pink pearls</attribute>
-  </object>
-  <object>
+      <entry>golden circlet with four aquamarines</entry>
+      <entry>a necklace of small pink pearls</entry>
+  </collection>
+  <collection>
       <name>2d3001+1998</name>
-      <attribute>jeweled gold crown</attribute>
-      <attribute>jeweled electrum ring</attribute>
-  </object>
-  <object>
+      <entry>jeweled gold crown</entry>
+      <entry>jeweled electrum ring</entry>
+  </collection>
+  <collection>
       <name>2d5001+1998</name>
-      <attribute>gold and ruby ring</attribute>
-      <attribute>gold cup set with emeralds</attribute>
-  </object>
-</attributes>
+      <entry>gold and ruby ring</entry>
+      <entry>gold cup set with emeralds</entry>
+  </collection>
+</collections>

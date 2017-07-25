@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -12,21 +13,21 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class MagicalArmorGenerator : MagicalItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
+        private readonly JustInTimeFactory justInTimeFactory;
 
         public MagicalArmorGenerator(
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            IPercentileSelector percentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             Generator generator,
-            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
+            JustInTimeFactory justInTimeFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
@@ -34,7 +35,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.generator = generator;
-            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -56,7 +57,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, selection.Type);
             template.Name = percentileSelector.SelectFrom(tableName);
 
-            var mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
             armor.Magic.Bonus = selection.Amount;
             armor.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(armor, power, abilityCount);
@@ -76,7 +77,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 return specificArmor;
             }
 
-            var mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
             armor.IsMagical = true;
             armor.Magic.Bonus = template.Magic.Bonus;
@@ -97,6 +98,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 a => subset.Any(n => a.NameMatches(n)),
                 () => CreateDefaultArmor(power, subset),
+                a => $"{a.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Magical armor from [{string.Join(", ", subset)}]");
 
             return armor;

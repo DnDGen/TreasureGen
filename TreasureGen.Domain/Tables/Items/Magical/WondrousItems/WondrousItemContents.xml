@@ -1,141 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Robe of useful items</name>
-        <attribute>Dagger</attribute>
-        <attribute>Dagger</attribute>
-        <attribute>Bullseye lantern (filled and lit)</attribute>
-        <attribute>Bullseye lantern (filled and lit)</attribute>
-        <attribute>Highly polished 2-foot-by-4-foot steel mirror</attribute>
-        <attribute>Highly polished 2-foot-by-4-foot steel mirror</attribute>
-        <attribute>10-foot pole</attribute>
-        <attribute>10-foot pole</attribute>
-        <attribute>50-foot hempen rope</attribute>
-        <attribute>50-foot hempen rope</attribute>
-        <attribute>Sack</attribute>
-        <attribute>Sack</attribute>
-    </object>
-    <object>
+        <entry>Dagger</entry>
+        <entry>Dagger</entry>
+        <entry>Bullseye lantern (filled and lit)</entry>
+        <entry>Bullseye lantern (filled and lit)</entry>
+        <entry>Highly polished 2-foot-by-4-foot steel mirror</entry>
+        <entry>Highly polished 2-foot-by-4-foot steel mirror</entry>
+        <entry>10-foot pole</entry>
+        <entry>10-foot pole</entry>
+        <entry>50-foot hempen rope</entry>
+        <entry>50-foot hempen rope</entry>
+        <entry>Sack</entry>
+        <entry>Sack</entry>
+    </collection>
+    <collection>
         <name>Robe of bones</name>
-        <attribute>Small goblin skeleton</attribute>
-        <attribute>Small goblin skeleton</attribute>
-        <attribute>Medium human commoner skeleton</attribute>
-        <attribute>Medium human commoner skeleton</attribute>
-        <attribute>Medium wolf skeleton</attribute>
-        <attribute>Medium wolf skeleton</attribute>
-        <attribute>Small goblin zombie</attribute>
-        <attribute>Small goblin zombie</attribute>
-        <attribute>Medium human commoner zombie</attribute>
-        <attribute>Medium human commoner zombie</attribute>
-        <attribute>Medium wolf zombie</attribute>
-        <attribute>Medium wolf zombie</attribute>
-    </object>
-    <object>
+        <entry>Small goblin skeleton</entry>
+        <entry>Small goblin skeleton</entry>
+        <entry>Medium human commoner skeleton</entry>
+        <entry>Medium human commoner skeleton</entry>
+        <entry>Medium wolf skeleton</entry>
+        <entry>Medium wolf skeleton</entry>
+        <entry>Small goblin zombie</entry>
+        <entry>Small goblin zombie</entry>
+        <entry>Medium human commoner zombie</entry>
+        <entry>Medium human commoner zombie</entry>
+        <entry>Medium wolf zombie</entry>
+        <entry>Medium wolf zombie</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type I</name>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>5d6</attribute>
-    </object>
-    <object>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>5d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type II</name>
-        <attribute>2d6</attribute>
-        <attribute>2d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>6d6</attribute>
-    </object>
-    <object>
+        <entry>2d6</entry>
+        <entry>2d6</entry>
+        <entry>4d6</entry>
+        <entry>4d6</entry>
+        <entry>6d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type III</name>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>7d6</attribute>
-    </object>
-    <object>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>5d6</entry>
+        <entry>5d6</entry>
+        <entry>7d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type IV</name>
-        <attribute>2d6</attribute>
-        <attribute>2d6</attribute>
-        <attribute>2d6</attribute>
-        <attribute>2d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>6d6</attribute>
-        <attribute>6d6</attribute>
-        <attribute>8d6</attribute>
-    </object>
-    <object>
+        <entry>2d6</entry>
+        <entry>2d6</entry>
+        <entry>2d6</entry>
+        <entry>2d6</entry>
+        <entry>4d6</entry>
+        <entry>4d6</entry>
+        <entry>6d6</entry>
+        <entry>6d6</entry>
+        <entry>8d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type V</name>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>7d6</attribute>
-        <attribute>7d6</attribute>
-        <attribute>9d6</attribute>
-    </object>
-    <object>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>5d6</entry>
+        <entry>5d6</entry>
+        <entry>7d6</entry>
+        <entry>7d6</entry>
+        <entry>9d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type VI</name>
-        <attribute>4d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>4d6</attribute>
-        <attribute>6d6</attribute>
-        <attribute>6d6</attribute>
-        <attribute>8d6</attribute>
-        <attribute>8d6</attribute>
-        <attribute>10d6</attribute>
-    </object>
-    <object>
+        <entry>4d6</entry>
+        <entry>4d6</entry>
+        <entry>4d6</entry>
+        <entry>4d6</entry>
+        <entry>6d6</entry>
+        <entry>6d6</entry>
+        <entry>8d6</entry>
+        <entry>8d6</entry>
+        <entry>10d6</entry>
+    </collection>
+    <collection>
         <name>Necklace of fireballs type VII</name>
-        <attribute>3d6</attribute>
-        <attribute>3d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>5d6</attribute>
-        <attribute>7d6</attribute>
-        <attribute>7d6</attribute>
-        <attribute>9d6</attribute>
-        <attribute>9d6</attribute>
-        <attribute>10d6</attribute>
-    </object>
-    <object>
+        <entry>3d6</entry>
+        <entry>3d6</entry>
+        <entry>5d6</entry>
+        <entry>5d6</entry>
+        <entry>7d6</entry>
+        <entry>7d6</entry>
+        <entry>9d6</entry>
+        <entry>9d6</entry>
+        <entry>10d6</entry>
+    </collection>
+    <collection>
         <name>Deck of illusions</name>
-        <attribute>Ace of hearts</attribute>
-        <attribute>King of hearts</attribute>
-        <attribute>Queen of hearts</attribute>
-        <attribute>Jack of hearts</attribute>
-        <attribute>10 of hearts</attribute>
-        <attribute>9 of hearts</attribute>
-        <attribute>8 of hearts</attribute>
-        <attribute>2 of hearts</attribute>
-        <attribute>Ace of diamonds</attribute>
-        <attribute>King of diamonds</attribute>
-        <attribute>Queen of diamonds</attribute>
-        <attribute>Jack of diamonds</attribute>
-        <attribute>10 of diamonds</attribute>
-        <attribute>9 of diamonds</attribute>
-        <attribute>8 of diamonds</attribute>
-        <attribute>2 of diamonds</attribute>
-        <attribute>Ace of spades</attribute>
-        <attribute>King of spades</attribute>
-        <attribute>Queen of spades</attribute>
-        <attribute>Jack of spades</attribute>
-        <attribute>10 of spades</attribute>
-        <attribute>9 of spades</attribute>
-        <attribute>8 of spades</attribute>
-        <attribute>2 of spades</attribute>
-        <attribute>Ace of clubs</attribute>
-        <attribute>King of clubs</attribute>
-        <attribute>Queen of clubs</attribute>
-        <attribute>Jack of clubs</attribute>
-        <attribute>10 of clubs</attribute>
-        <attribute>9 of clubs</attribute>
-        <attribute>8 of clubs</attribute>
-        <attribute>2 of clubs</attribute>
-        <attribute>Joker</attribute>
-        <attribute>Joker</attribute>
-    </object>
-</attributes>
+        <entry>Ace of hearts</entry>
+        <entry>King of hearts</entry>
+        <entry>Queen of hearts</entry>
+        <entry>Jack of hearts</entry>
+        <entry>10 of hearts</entry>
+        <entry>9 of hearts</entry>
+        <entry>8 of hearts</entry>
+        <entry>2 of hearts</entry>
+        <entry>Ace of diamonds</entry>
+        <entry>King of diamonds</entry>
+        <entry>Queen of diamonds</entry>
+        <entry>Jack of diamonds</entry>
+        <entry>10 of diamonds</entry>
+        <entry>9 of diamonds</entry>
+        <entry>8 of diamonds</entry>
+        <entry>2 of diamonds</entry>
+        <entry>Ace of spades</entry>
+        <entry>King of spades</entry>
+        <entry>Queen of spades</entry>
+        <entry>Jack of spades</entry>
+        <entry>10 of spades</entry>
+        <entry>9 of spades</entry>
+        <entry>8 of spades</entry>
+        <entry>2 of spades</entry>
+        <entry>Ace of clubs</entry>
+        <entry>King of clubs</entry>
+        <entry>Queen of clubs</entry>
+        <entry>Jack of clubs</entry>
+        <entry>10 of clubs</entry>
+        <entry>9 of clubs</entry>
+        <entry>8 of clubs</entry>
+        <entry>2 of clubs</entry>
+        <entry>Joker</entry>
+        <entry>Joker</entry>
+    </collection>
+</collections>

@@ -1,99 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Arrow</content>
     <upper>5</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>6</lower>
     <content>Crossbow bolt</content>
     <upper>8</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>9</lower>
     <content>Sling bullet</content>
     <upper>10</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>11</lower>
     <content>Throwing axe</content>
     <upper>15</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>16</lower>
     <content>Heavy crossbow</content>
     <upper>25</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>26</lower>
     <content>Light crossbow</content>
     <upper>35</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>36</lower>
     <content>Dart</content>
     <upper>39</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>40</lower>
     <content>Javelin</content>
     <upper>41</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>42</lower>
     <content>Shortbow</content>
     <upper>46</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>47</lower>
     <content>Composite (+0) shortbow</content>
     <upper>51</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>52</lower>
     <content>Composite (+1) shortbow</content>
     <upper>56</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>57</lower>
     <content>Composite (+2) shortbow</content>
     <upper>61</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>62</lower>
     <content>Sling</content>
     <upper>65</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>66</lower>
     <content>Longbow</content>
     <upper>75</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>76</lower>
     <content>Composite (+0) longbow</content>
     <upper>80</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>81</lower>
     <content>Composite (+1) longbow</content>
     <upper>85</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>86</lower>
     <content>Composite (+2) longbow</content>
     <upper>90</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>91</lower>
     <content>Composite (+3) longbow</content>
     <upper>95</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>96</lower>
     <content>Composite (+4) longbow</content>
     <upper>100</upper>
-  </object>
-</percentile>
+  </percentile>
+</percentiles>

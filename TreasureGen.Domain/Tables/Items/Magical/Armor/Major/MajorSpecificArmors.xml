@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Breastplate,0</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Dwarven plate,0</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>Banded mail of luck,3</content>
         <upper>32</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>33</lower>
         <content>Celestial armor,3</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Plate armor of the deep,1</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Breastplate of command,2</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Full plate of speed,1</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Demon armor,4</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

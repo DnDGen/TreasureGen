@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -16,26 +17,26 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly IChargesGenerator chargesGenerator;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
+        private readonly JustInTimeFactory justInTimeFactory;
 
         public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionsSelector collectionsSelector,
             IChargesGenerator chargesGenerator,
-            IBooleanPercentileSelector booleanPercentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             Generator generator,
-            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
+            JustInTimeFactory justInTimeFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.chargesGenerator = chargesGenerator;
-            this.booleanPercentileSelector = booleanPercentileSelector;
+            this.percentileSelector = percentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.generator = generator;
-            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -60,7 +61,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             if (rod.Name == RodConstants.Absorption)
             {
-                var containsSpellLevels = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
+                var containsSpellLevels = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
                     var maxCharges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption);
@@ -83,7 +84,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var template = new Weapon();
             template.Name = weapons.Intersect(rod.BaseNames).First();
 
-            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);
@@ -137,6 +138,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 r => subset.Any(n => r.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Rod from [{string.Join(", ", subset)}]");
 
             return rod;

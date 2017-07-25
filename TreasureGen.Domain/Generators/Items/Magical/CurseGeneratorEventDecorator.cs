@@ -78,13 +78,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public bool IsSpecificCursedItem(Item template)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if template is a specific cursed item");
+            eventQueue.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item");
             var isSpecificCursed = innerGenerator.IsSpecificCursedItem(template);
 
             if (isSpecificCursed)
-                eventQueue.Enqueue("TreasureGen", $"Template is a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"{template.Name} is a specific cursed item");
             else
-                eventQueue.Enqueue("TreasureGen", $"Template is not a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"{template.Name} is not a specific cursed item");
 
             return isSpecificCursed;
         }

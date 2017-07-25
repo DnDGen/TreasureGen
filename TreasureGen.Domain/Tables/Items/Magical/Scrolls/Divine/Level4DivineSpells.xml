@@ -1,169 +1,169 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Air walk</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Antiplant shell</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Blight</content>
         <upper>9</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>10</lower>
         <content>Break enchantment</content>
         <upper>11</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>12</lower>
         <content>Command plants</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Control water</content>
         <upper>15</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>16</lower>
         <content>Cure critical wounds</content>
         <upper>21</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>22</lower>
         <content>Death ward</content>
         <upper>26</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>27</lower>
         <content>Dimensional anchor</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Discern lies</content>
         <upper>34</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>35</lower>
         <content>Dismissal</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Divination</content>
         <upper>39</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>40</lower>
         <content>Divine power</content>
         <upper>42</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>43</lower>
         <content>Freedom of movement</content>
         <upper>47</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>48</lower>
         <content>Giant vermin</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Holy sword</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Imbue with spell ability</content>
         <upper>54</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>55</lower>
         <content>Inflict critical wounds</content>
         <upper>57</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>58</lower>
         <content>Greater magic weapon</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Nondetection</content>
         <upper>62</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>63</lower>
         <content>Lesser planar ally</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Poison</content>
         <upper>67</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>68</lower>
         <content>Reincarnate</content>
         <upper>69</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>70</lower>
         <content>Repel vermin</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Restoration</content>
         <upper>76</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>77</lower>
         <content>Rusting grasp</content>
         <upper>78</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>79</lower>
         <content>Sending</content>
         <upper>81</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>82</lower>
         <content>Spell immunity</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Spike stones</content>
         <upper>87</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>88</lower>
         <content>Summon monster IV</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Summon nature's ally IV</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Tongues</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Tree stride</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

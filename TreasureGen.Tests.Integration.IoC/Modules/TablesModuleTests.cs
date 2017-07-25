@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.Core.Tables;
+using NUnit.Framework;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Tests.Integration.IoC.Modules
@@ -7,9 +8,16 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
     public class TablesModuleTests : IoCTests
     {
         [Test]
-        public void EmbeddedResourceStreamLoaderNotConstructedAsSingleton()
+        public void AssemblyLoaderNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IStreamLoader>();
+            AssertNotSingleton<AssemblyLoader>();
+        }
+
+        [Test]
+        public void AssemblyLoaderIsForTreasure()
+        {
+            var selector = InjectAndAssertDuration<AssemblyLoader>();
+            Assert.That(selector, Is.InstanceOf<TreasureGenAssemblyLoader>());
         }
     }
 }

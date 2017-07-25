@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Tiny</content>
     <upper>1</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>2</lower>
     <content>Small</content>
     <upper>11</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>12</lower>
     <content>Medium</content>
     <upper>87</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>88</lower>
     <content>Large</content>
     <upper>97</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>98</lower>
     <content>Huge</content>
     <upper>98</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>99</lower>
     <content>Gargantuan</content>
     <upper>99</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>100</lower>
     <content>Colossal</content>
     <upper>100</upper>
-  </object>
-</percentile>
+  </percentile>
+</percentiles>

@@ -1,89 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>DESIGNATEDFOEbane</content>
         <upper>8</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>9</lower>
         <content>Distance</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Flaming</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Frost</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Merciful</content>
         <upper>42</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>43</lower>
         <content>Returning</content>
         <upper>47</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>48</lower>
         <content>Shock</content>
         <upper>59</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>60</lower>
         <content>Seeking</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Thundering</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Anarchic</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Axiomatic</content>
         <upper>74</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>75</lower>
         <content>Flaming burst</content>
         <upper>79</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>80</lower>
         <content>Holy</content>
         <upper>82</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>83</lower>
         <content>Icy burst</content>
         <upper>87</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>88</lower>
         <content>Shocking burst</content>
         <upper>92</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>93</lower>
         <content>Unholy</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>BonusSpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

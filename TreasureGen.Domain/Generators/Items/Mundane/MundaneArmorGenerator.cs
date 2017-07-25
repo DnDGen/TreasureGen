@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Collections;
@@ -11,17 +13,15 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class MundaneArmorGenerator : MundaneItemGenerator
     {
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly Generator generator;
         private readonly IArmorDataSelector armorDataSelector;
 
-        public MundaneArmorGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector, Generator generator, IArmorDataSelector armorDataSelector)
+        public MundaneArmorGenerator(ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.booleanPercentileSelector = booleanPercentileSelector;
             this.generator = generator;
             this.armorDataSelector = armorDataSelector;
         }
@@ -36,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             armor = PopulateArmor(armor);
 
-            var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+            var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
@@ -74,7 +74,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             if (allowRandomDecoration)
             {
-                var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+                var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
                 if (isMasterwork)
                     armor.Traits.Add(TraitConstants.Masterwork);
             }
@@ -110,6 +110,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 Generate,
                 a => subset.Any(n => a.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                a => $"{a.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Mundane armor from [{string.Join(", ", subset)}]");
 
             return armor;

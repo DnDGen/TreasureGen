@@ -1,162 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Items</name>
-        <attribute>Celestial armor</attribute>
-        <attribute>Demon armor</attribute>
-        <attribute>Assassin's dagger</attribute>
-        <attribute>Holy avenger</attribute>
-        <attribute>Nine lives stealer</attribute>
-        <attribute>Sun blade</attribute>
-        <attribute>Rod of the python</attribute>
-        <attribute>Rod of the viper</attribute>
-        <attribute>Chaos diamond</attribute>
-        <attribute>Darkskull</attribute>
-        <attribute>Amulet of inescapable location</attribute>
-        <attribute>Armor of arrow attraction</attribute>
-        <attribute>Armor of rage</attribute>
-        <attribute>Boots of dancing</attribute>
-        <attribute>Bracers of defenselessness</attribute>
-        <attribute>Broom of animated attack</attribute>
-        <attribute>Cloak of poisonousness</attribute>
-        <attribute>Crystal hypnosis ball</attribute>
-        <attribute>Gauntlets of fumbling</attribute>
-        <attribute>Mace of blood</attribute>
-        <attribute>Medallion of thought projection</attribute>
-        <attribute>Necklace of strangulation</attribute>
-        <attribute>Periapt of foul rotting</attribute>
-        <attribute>Robe of powerlessness</attribute>
-        <attribute>Robe of vermin</attribute>
-        <attribute>Ring of Clumsiness</attribute>
-        <attribute>Scarab of death</attribute>
-        <attribute>Cursed backbiter spear</attribute>
-        <attribute>Stone of weight (loadstone)</attribute>
-        <attribute>Vacuous grimoire</attribute>
-        <attribute>Cursed -2 sword</attribute>
-    </object>
-    <object>
+        <entry>Celestial armor</entry>
+        <entry>Demon armor</entry>
+        <entry>Assassin's dagger</entry>
+        <entry>Holy avenger</entry>
+        <entry>Nine lives stealer</entry>
+        <entry>Sun blade</entry>
+        <entry>Rod of the python</entry>
+        <entry>Rod of the viper</entry>
+        <entry>Chaos diamond</entry>
+        <entry>Darkskull</entry>
+        <entry>Amulet of inescapable location</entry>
+        <entry>Armor of arrow attraction</entry>
+        <entry>Armor of rage</entry>
+        <entry>Boots of dancing</entry>
+        <entry>Bracers of defenselessness</entry>
+        <entry>Broom of animated attack</entry>
+        <entry>Cloak of poisonousness</entry>
+        <entry>Crystal hypnosis ball</entry>
+        <entry>Gauntlets of fumbling</entry>
+        <entry>Mace of blood</entry>
+        <entry>Medallion of thought projection</entry>
+        <entry>Necklace of strangulation</entry>
+        <entry>Periapt of foul rotting</entry>
+        <entry>Robe of powerlessness</entry>
+        <entry>Robe of vermin</entry>
+        <entry>Ring of Clumsiness</entry>
+        <entry>Scarab of death</entry>
+        <entry>Cursed backbiter spear</entry>
+        <entry>Stone of weight (loadstone)</entry>
+        <entry>Vacuous grimoire</entry>
+        <entry>Cursed -2 sword</entry>
+    </collection>
+    <collection>
         <name>Celestial armor</name>
-        <attribute>Good</attribute>
-    </object>
-    <object>
+        <entry>Good</entry>
+    </collection>
+    <collection>
         <name>Demon armor</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Assassin's dagger</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Holy avenger</name>
-        <attribute>Lawful Good</attribute>
-    </object>
-    <object>
+        <entry>Lawful Good</entry>
+    </collection>
+    <collection>
         <name>Nine lives stealer</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Sun blade</name>
-        <attribute>Good</attribute>
-    </object>
-    <object>
+        <entry>Good</entry>
+    </collection>
+    <collection>
         <name>Rod of the python</name>
-        <attribute>Good</attribute>
-    </object>
-    <object>
+        <entry>Good</entry>
+    </collection>
+    <collection>
         <name>Rod of the viper</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Chaos diamond</name>
-        <attribute>Chaotic</attribute>
-    </object>
-    <object>
+        <entry>Chaotic</entry>
+    </collection>
+    <collection>
         <name>Darkskull</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Amulet of inescapable location</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Armor of arrow attraction</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Armor of rage</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Boots of dancing</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Bracers of defenselessness</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Broom of animated attack</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Cloak of poisonousness</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Crystal hypnosis ball</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Gauntlets of fumbling</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Mace of blood</name>
-        <attribute>Chaotic Evil</attribute>
-    </object>
-    <object>
+        <entry>Chaotic Evil</entry>
+    </collection>
+    <collection>
         <name>Medallion of thought projection</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Necklace of strangulation</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Periapt of foul rotting</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Robe of powerlessness</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Robe of vermin</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Ring of Clumsiness</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Scarab of death</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Cursed backbiter spear</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Cursed -2 sword</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Stone of weight (loadstone)</name>
-        <attribute>Evil</attribute>
-    </object>
-    <object>
+        <entry>Evil</entry>
+    </collection>
+    <collection>
         <name>Vacuous grimoire</name>
-        <attribute>Evil</attribute>
-    </object>
-</attributes>
+        <entry>Evil</entry>
+    </collection>
+</collections>

@@ -1,104 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Ring of Counterspells,0</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Ring of Mind shielding,0</content>
         <upper>8</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>9</lower>
         <content>Ring of Protection,2</content>
         <upper>18</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>19</lower>
         <content>Ring of Force shield,0</content>
         <upper>23</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>24</lower>
         <content>Ring of Ram,0</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Ring of Improved climbing,0</content>
         <upper>34</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>35</lower>
         <content>Ring of Improved jumping,0</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Ring of Improved swimming,0</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Ring of Animal friendship,0</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Ring of Minor ENERGY resistance,0</content>
         <upper>56</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>57</lower>
         <content>Ring of Chameleon power,0</content>
         <upper>61</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>62</lower>
         <content>Ring of Water walking,0</content>
         <upper>66</upper>
-    </object>
-  <object>
+    </percentile>
+  <percentile>
     <lower>67</lower>
     <content>Ring of Protection,3</content>
     <upper>71</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>72</lower>
     <content>Ring of Minor spell storing,0</content>
     <upper>76</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>77</lower>
     <content>Ring of Invisibility,0</content>
     <upper>81</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>82</lower>
     <content>Ring of Wizardry (I),0</content>
     <upper>85</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>86</lower>
     <content>Ring of Evasion,0</content>
     <upper>90</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>91</lower>
     <content>Ring of X-ray vision,0</content>
     <upper>93</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>94</lower>
     <content>Ring of Blinking,0</content>
     <upper>97</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>98</lower>
     <content>Ring of Major ENERGY resistance,0</content>
     <upper>100</upper>
-  </object>
-</percentile>
+  </percentile>
+</percentiles>

@@ -1,6 +1,5 @@
 ﻿using RollGen;
 using System;
-using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
@@ -12,12 +11,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class ChargesGenerator : IChargesGenerator
     {
         private readonly Dice dice;
-        private readonly JustInTimeFactory justInTimeFactory;
+        private readonly IRangeDataSelector rangeDataSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
 
-        public ChargesGenerator(Dice dice, JustInTimeFactory justInTimeFactory)
+        public ChargesGenerator(Dice dice, IRangeDataSelector rangeDataSelector, ITreasurePercentileSelector percentileSelector)
         {
             this.dice = dice;
-            this.justInTimeFactory = justInTimeFactory;
+            this.rangeDataSelector = rangeDataSelector;
+            this.percentileSelector = percentileSelector;
         }
 
         public int GenerateFor(string itemType, string name)
@@ -27,14 +28,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             if (name == WondrousItemConstants.DeckOfIllusions)
             {
-                var booleanPercentileSelector = justInTimeFactory.Build<IBooleanPercentileSelector>();
-                var isFullyCharged = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
+                var isFullyCharged = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
 
                 if (isFullyCharged)
                     name = WondrousItemConstants.FullDeckOfIllusions;
             }
 
-            var rangeDataSelector = justInTimeFactory.Build<IRangeDataSelector>();
             var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
             var die = result.Maximum - result.Minimum + 1;
 

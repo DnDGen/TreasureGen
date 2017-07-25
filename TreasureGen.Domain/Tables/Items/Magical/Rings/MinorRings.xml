@@ -1,79 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Ring of Protection,1</content>
         <upper>18</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>19</lower>
         <content>Ring of Feather falling,0</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Ring of Sustenance,0</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Ring of Climbing,0</content>
         <upper>44</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>45</lower>
         <content>Ring of Jumping,0</content>
         <upper>52</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>53</lower>
         <content>Ring of Swimming,0</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Ring of Counterspells,0</content>
         <upper>70</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>71</lower>
         <content>Ring of Mind shielding,0</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Ring of Protection,2</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Ring of Force shield,0</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Ring of Ram,0</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Ring of Animal friendship,0</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Ring of Minor ENERGY resistance,0</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Ring of Chameleon power,0</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Ring of Water walking,0</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

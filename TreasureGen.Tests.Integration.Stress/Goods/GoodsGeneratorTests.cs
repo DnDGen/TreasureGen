@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void StressGoods()
         {
-            Stress(GenerateAndAssertGoods);
+            stressor.Stress(GenerateAndAssertGoods);
         }
 
         private void GenerateAndAssertGoods()
@@ -40,14 +40,14 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void GoodsHappen()
         {
-            var goods = GenerateOrFail(GenerateGoods, g => g.Any());
+            var goods = stressor.GenerateOrFail(GenerateGoods, g => g.Any());
             Assert.That(goods, Is.Not.Empty);
         }
 
         [Test]
         public void GoodsDoNotHappen()
         {
-            var goods = GenerateOrFail(GenerateGoods, g => !g.Any());
+            var goods = stressor.GenerateOrFail(GenerateGoods, g => !g.Any());
             Assert.That(goods, Is.Empty);
         }
     }

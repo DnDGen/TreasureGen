@@ -1,229 +1,229 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Magic missile (7th)</content>
         <upper>2</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>3</lower>
         <content>Magic missile (9th)</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Call lightning (5th)</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Heightened charm person (3rd-level spell)</content>
         <upper>8</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>9</lower>
         <content>Contagion</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Cure serious wounds</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Dispel magic</content>
         <upper>15</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>16</lower>
         <content>Fireball (5th)</content>
         <upper>17</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>18</lower>
         <content>Keen edge</content>
         <upper>19</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>20</lower>
         <content>Lightning bolt (5th)</content>
         <upper>21</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>22</lower>
         <content>Major image</content>
         <upper>23</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>24</lower>
         <content>Slow</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Suggestion</content>
         <upper>27</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>28</lower>
         <content>Summon monster III</content>
         <upper>29</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>30</lower>
         <content>Fireball (6th)</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Lightning bolt (6th)</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Searing light (6th)</content>
         <upper>35</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>36</lower>
         <content>Call lightning (8th)</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Fireball (8th)</content>
         <upper>39</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>40</lower>
         <content>Lightning bolt (8th)</content>
         <upper>41</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>42</lower>
         <content>Charm monster</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Cure critical wounds</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Dimensional anchor</content>
         <upper>52</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>53</lower>
         <content>Fear</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Greater invisibility</content>
         <upper>59</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>60</lower>
         <content>Heightened hold person (4th-level spell)</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Ice storm</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Inflict critical wounds</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Neutralize poison</content>
         <upper>72</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>73</lower>
         <content>Poison</content>
         <upper>74</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>75</lower>
         <content>Polymorph</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Heightened ray of enfeeblement (4th-level spell)</content>
         <upper>78</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>79</lower>
         <content>Heightened suggestion (4th-level spell)</content>
         <upper>79</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>80</lower>
         <content>Summon monster IV</content>
         <upper>82</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>83</lower>
         <content>Wall of fire</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Wall of ice</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Dispel magic (10th)</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Fireball (10th)</content>
         <upper>92</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>93</lower>
         <content>Lightning bolt (10th)</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Chaos hammer (10th)</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Holy smite (8th)</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Order's wrath (8th)</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Unholy blight (8th)</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Restoration</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>Stoneskin</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

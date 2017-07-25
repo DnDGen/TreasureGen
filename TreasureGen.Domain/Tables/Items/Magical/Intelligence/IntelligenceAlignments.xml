@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>Chaotic Good</content>
     <upper>5</upper>
-  </object>
-    <object>
+  </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Chaotic Neutral</content>
         <upper>15</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>16</lower>
         <content>Chaotic Evil</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>Neutral Evil</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Lawful Evil</content>
         <upper>30</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>31</lower>
         <content>Lawful Good</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Lawful Neutral</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Neutral Good</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>True Neutral</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

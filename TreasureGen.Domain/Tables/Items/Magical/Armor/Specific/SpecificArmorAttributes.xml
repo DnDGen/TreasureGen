@@ -1,72 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-  <object>
+<collections>
+  <collection>
     <name>Armor of arrow attraction</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Armor of rage</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Banded mail of luck</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Breastplate of command</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Breastplate</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Celestial armor</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Demon armor</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Dwarven plate</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Elven chain</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Full plate of speed</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Plate armor of the deep</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Rhino hide</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Chain shirt</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Full plate</name>
-    <attribute>Specific</attribute>
-  </object>
-</attributes>
+    <entry>Specific</entry>
+  </collection>
+</collections>

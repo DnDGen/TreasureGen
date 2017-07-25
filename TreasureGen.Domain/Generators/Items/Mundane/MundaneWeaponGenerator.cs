@@ -1,4 +1,6 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +14,21 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class MundaneWeaponGenerator : MundaneItemGenerator
     {
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly Dice dice;
         private readonly Generator generator;
         private readonly IWeaponDataSelector weaponDataSelector;
 
         public MundaneWeaponGenerator(
-            IPercentileSelector percentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
-            IBooleanPercentileSelector booleanPercentileSelector,
             Dice dice,
             Generator generator,
             IWeaponDataSelector weaponDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.booleanPercentileSelector = booleanPercentileSelector;
             this.generator = generator;
             this.dice = dice;
             this.weaponDataSelector = weaponDataSelector;
@@ -44,10 +43,11 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var weapon = new Weapon();
             weapon.Name = weaponName;
             weapon.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+
             weapon = PopulateWeapon(weapon);
             weapon.Quantity = GetQuantity(weapon);
 
-            var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+            var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
             if (isMasterwork)
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
@@ -141,7 +141,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
             if (allowRandomDecoration)
             {
-                var isMasterwork = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsMasterwork);
+                var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
                 if (isMasterwork)
                     weapon.Traits.Add(TraitConstants.Masterwork);
             }
@@ -180,6 +180,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 Generate,
                 w => subset.Any(n => w.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Mundane weapon from [{string.Join(", ", subset)}]");
 
             return weapon;

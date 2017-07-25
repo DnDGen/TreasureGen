@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System.Linq;
 using TreasureGen.Domain.Generators.Goods;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -16,7 +16,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
     {
         private Mock<Dice> mockDice;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<ICollectionsSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
         private IGoodsGenerator generator;
 
         private TypeAndAmountSelection selection;
@@ -27,8 +27,8 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         {
             mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockAttributesSelector = new Mock<ICollectionsSelector>();
-            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockAttributesSelector.Object);
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
             selection = new TypeAndAmountSelection();
             valueSelection = new TypeAndAmountSelection();
 
@@ -43,7 +43,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
 
             var descriptions = new[] { "description 1", "description 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, selection.Type);
-            mockAttributesSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
             mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
         }
 

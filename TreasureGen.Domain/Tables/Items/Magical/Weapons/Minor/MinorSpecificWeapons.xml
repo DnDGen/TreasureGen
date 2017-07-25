@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Sleep arrow,1</content>
         <upper>15</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>16</lower>
         <content>Screaming bolt,2</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Silver dagger,0</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Longsword,0</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Javelin of lightning,0</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Slaying arrow,1</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Dagger,0</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Battleaxe,0</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

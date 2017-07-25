@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -22,7 +22,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
@@ -37,21 +37,21 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             selection = new TypeAndAmountSelection();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
-            generator = new ConfigurableIterativeGenerator(5);
+            generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
-            var mockMundaneItemGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
+            var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
 
-            mockMundaneItemGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
             rodGenerator = new RodGenerator(mockTypeAndAmountPercentileSelector.Object,
                 mockCollectionsSelector.Object,
                 mockChargesGenerator.Object,
-                mockBooleanPercentileSelector.Object,
+                mockPercentileSelector.Object,
                 mockSpecialAbilitiesGenerator.Object,
                 generator,
-                mockMundaneItemGeneratorFactory.Object);
+                mockJustInTimeFactory.Object);
             itemVerifier = new ItemVerifier();
 
             selection.Type = "rod of ability";
@@ -133,7 +133,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption)).Returns(50);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(true);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(42));
@@ -150,7 +150,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, selection.Type)).Returns(42);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption)).Returns(50);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels)).Returns(false);
 
             var rod = rodGenerator.GenerateAtPower(power);
             Assert.That(rod.Magic.Charges, Is.EqualTo(42));

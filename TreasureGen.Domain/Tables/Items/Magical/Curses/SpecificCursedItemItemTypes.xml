@@ -1,120 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<collections>
+    <collection>
         <name>Incense of obsession</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Ring of Clumsiness</name>
-        <attribute>Ring</attribute>
-    </object>
-    <object>
+        <entry>Ring</entry>
+    </collection>
+    <collection>
         <name>Amulet of inescapable location</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Stone of weight (loadstone)</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Bracers of defenselessness</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Gauntlets of fumbling</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Cursed -2 sword</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
+        <entry>Weapon</entry>
+    </collection>
+    <collection>
         <name>Armor of rage</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
+        <entry>Armor</entry>
+    </collection>
+    <collection>
         <name>Medallion of thought projection</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Flask of curses</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Dust of sneezing and choking</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Helm of opposite alignment</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Potion of poison</name>
-        <attribute>Potion</attribute>
-    </object>
-    <object>
+        <entry>Potion</entry>
+    </collection>
+    <collection>
         <name>Broom of animated attack</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Robe of powerlessness</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Vacuous grimoire</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Cursed backbiter spear</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
+        <entry>Weapon</entry>
+    </collection>
+    <collection>
         <name>Armor of arrow attraction</name>
-        <attribute>Armor</attribute>
-    </object>
-    <object>
+        <entry>Armor</entry>
+    </collection>
+    <collection>
         <name>Net of snaring</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
+        <entry>Weapon</entry>
+    </collection>
+    <collection>
         <name>Bag of devouring</name>
-        <attribute>LivingCreature</attribute>
-    </object>
-    <object>
+        <entry>LivingCreature</entry>
+    </collection>
+    <collection>
         <name>Mace of blood</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
+        <entry>Weapon</entry>
+    </collection>
+    <collection>
         <name>Robe of vermin</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Periapt of foul rotting</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Berserking sword</name>
-        <attribute>Weapon</attribute>
-    </object>
-    <object>
+        <entry>Weapon</entry>
+    </collection>
+    <collection>
         <name>Boots of dancing</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Crystal hypnosis ball</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Necklace of strangulation</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Cloak of poisonousness</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-    <object>
+        <entry>WondrousItem</entry>
+    </collection>
+    <collection>
         <name>Scarab of death</name>
-        <attribute>WondrousItem</attribute>
-    </object>
-</percentile>
+        <entry>WondrousItem</entry>
+    </collection>
+</collections>

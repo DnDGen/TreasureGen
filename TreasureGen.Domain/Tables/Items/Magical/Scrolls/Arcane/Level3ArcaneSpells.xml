@@ -1,239 +1,239 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Arcane sight</content>
         <upper>2</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>3</lower>
         <content>Blink</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Clairaudience/clairvoyance</content>
         <upper>6</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>7</lower>
         <content>Cure serious wounds</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Daylight</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Deep slumber</content>
         <upper>12</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>13</lower>
         <content>Dispel magic</content>
         <upper>15</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>16</lower>
         <content>Displacement</content>
         <upper>17</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>18</lower>
         <content>Explosive runes</content>
         <upper>18</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>19</lower>
         <content>Fireball</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>Flame arrow</content>
         <upper>22</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>23</lower>
         <content>Fly</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Gaseous form</content>
         <upper>27</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>28</lower>
         <content>Gentle repose</content>
         <upper>29</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>30</lower>
         <content>Glibness</content>
         <upper>30</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>31</lower>
         <content>Good hope</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Halt undead</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Haste</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Heroism</content>
         <upper>38</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>39</lower>
         <content>Hold person</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Illusory script</content>
         <upper>41</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>42</lower>
         <content>Invisibility sphere</content>
         <upper>44</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>45</lower>
         <content>Keen edge</content>
         <upper>47</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>48</lower>
         <content>Leomund's tiny hut</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Lightning bolt</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Magic circle against chaos/evil/good/law</content>
         <upper>59</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>60</lower>
         <content>Greater magic weapon</content>
         <upper>62</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>63</lower>
         <content>Major image</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Nondetection</content>
         <upper>66</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>67</lower>
         <content>Phantom steed</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Protection from energy</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Rage</content>
         <upper>73</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>74</lower>
         <content>Ray of exhaustion</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Sculpt sound</content>
         <upper>76</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>77</lower>
         <content>Secret page</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Sepia snake sigil</content>
         <upper>78</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>79</lower>
         <content>Shrink item</content>
         <upper>79</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>80</lower>
         <content>Sleet storm</content>
         <upper>81</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>82</lower>
         <content>Slow</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Speak with animals</content>
         <upper>84</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>85</lower>
         <content>Stinking cloud</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Suggestion</content>
         <upper>88</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>89</lower>
         <content>Summon monster III</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Tongues</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Vampiric touch</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Water breathing</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Wind wall</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

@@ -1,9 +1,9 @@
-﻿using Ninject;
+﻿using DnDGen.Core.Mappers.Percentiles;
+using Ninject;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TreasureGen.Domain.Mappers.Percentile;
 using TreasureGen.Domain.Selectors.Percentiles;
 
 namespace TreasureGen.Tests.Integration.Tables
@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Integration.Tables
     public abstract class PercentileTests : TableTests
     {
         [Inject]
-        internal IPercentileMapper PercentileMapper { get; set; }
+        public PercentileMapper PercentileMapper { get; set; }
 
         protected const string EmptyContent = "";
 

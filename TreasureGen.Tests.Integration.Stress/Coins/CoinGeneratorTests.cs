@@ -13,7 +13,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void StressCoins()
         {
-            Stress(GenerateAndAssertCoins);
+            stressor.Stress(GenerateAndAssertCoins);
         }
 
         private void GenerateAndAssertCoins()
@@ -32,7 +32,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void CurrencyHappens()
         {
-            var coin = GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency) == false);
+            var coin = stressor.GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency) == false);
             Assert.That(coin.Currency, Is.Not.Empty);
             Assert.That(coin.Quantity, Is.Positive);
         }
@@ -40,7 +40,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void CurrencyDoesNotHappen()
         {
-            var coin = GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency));
+            var coin = stressor.GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency));
             Assert.That(coin.Currency, Is.Empty);
             Assert.That(coin.Quantity, Is.EqualTo(0));
         }

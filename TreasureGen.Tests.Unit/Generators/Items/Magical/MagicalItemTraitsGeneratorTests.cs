@@ -14,14 +14,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class MagicalItemTraitsGeneratorTests
     {
         private IMagicalItemTraitsGenerator generator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private List<string> attributes;
         private string itemType;
 
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             generator = new MagicalItemTraitsGenerator(mockPercentileSelector.Object);
             attributes = new List<string>();
             itemType = "item type";

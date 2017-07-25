@@ -1,52 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>12</name>
-        <attribute>30 ft. vision and hearing</attribute>
-        <attribute>1</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>30 ft. vision and hearing</entry>
+        <entry>1</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>13</name>
-        <attribute>60 ft. vision and hearing</attribute>
-        <attribute>2</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>60 ft. vision and hearing</entry>
+        <entry>2</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>14</name>
-        <attribute>120 ft. vision and hearing</attribute>
-        <attribute>2</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>120 ft. vision and hearing</entry>
+        <entry>2</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>15</name>
-        <attribute>60 ft. darkvision and hearing</attribute>
-        <attribute>3</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>60 ft. darkvision and hearing</entry>
+        <entry>3</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>16</name>
-        <attribute>60 ft. darkvision and hearing</attribute>
-        <attribute>3</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>60 ft. darkvision and hearing</entry>
+        <entry>3</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>17</name>
-        <attribute>120 ft. darkvision and hearing</attribute>
-        <attribute>3</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>120 ft. darkvision and hearing</entry>
+        <entry>3</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>18</name>
-        <attribute>120 ft. darkvision, blindsense, and hearing</attribute>
-        <attribute>3</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>120 ft. darkvision, blindsense, and hearing</entry>
+        <entry>3</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>19</name>
-        <attribute>120 ft. darkvision, blindsense, and hearing</attribute>
-        <attribute>4</attribute>
-        <attribute>3</attribute>
-    </object>
-</attributes>
+        <entry>120 ft. darkvision, blindsense, and hearing</entry>
+        <entry>4</entry>
+        <entry>3</entry>
+    </collection>
+</collections>

@@ -1,184 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Animate objects</content>
         <upper>3</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>4</lower>
         <content>Antilife shell</content>
         <upper>6</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>7</lower>
         <content>Banishment</content>
         <upper>9</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>10</lower>
         <content>Mass bear's endurance</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Blade barrier</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Mass bull's strength</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>Mass cat's grace</content>
         <upper>24</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>25</lower>
         <content>Create undead</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Mass cure moderate wounds</content>
         <upper>29</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>30</lower>
         <content>Greater dispel magic</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Mass eagle's splendor</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Find the path</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Fire seeds</content>
         <upper>43</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>44</lower>
         <content>Forbiddance</content>
         <upper>44</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>45</lower>
         <content>Geas/quest</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Greater glyph of warding</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Harm</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Heal</content>
         <upper>52</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>53</lower>
         <content>Heroes' feast</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Mass inflict moderate wounds</content>
         <upper>58</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>59</lower>
         <content>Ironwood</content>
         <upper>61</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>62</lower>
         <content>Liveoak</content>
         <upper>62</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>63</lower>
         <content>Move earth</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Mass owl's wisdom</content>
         <upper>69</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>70</lower>
         <content>Planar ally</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Repel wood</content>
         <upper>74</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>75</lower>
         <content>Spellstaff</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Stone tell</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Summon monster VI</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Summon nature's ally VI</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Symbol of fear</content>
         <upper>87</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>88</lower>
         <content>Symbol of persuasion</content>
         <upper>88</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>89</lower>
         <content>Transport via plants</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Undeath to death</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Windwalk</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Word of recall</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -10,12 +11,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class WandGenerator : MagicalItemGenerator
     {
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly Generator generator;
         private readonly ICollectionsSelector collectionsSelector;
 
-        public WandGenerator(IPercentileSelector percentileSelector, IChargesGenerator chargesGenerator, Generator generator, ICollectionsSelector collectionsSelector)
+        public WandGenerator(ITreasurePercentileSelector percentileSelector, IChargesGenerator chargesGenerator, Generator generator, ICollectionsSelector collectionsSelector)
         {
             this.percentileSelector = percentileSelector;
             this.chargesGenerator = chargesGenerator;
@@ -57,6 +58,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 w => subset.Any(n => w.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Wand from [{string.Join(", ", subset)}]");
 
             return wand;

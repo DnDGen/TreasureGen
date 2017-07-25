@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System.Collections.Generic;
@@ -17,10 +18,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private IIntelligenceGenerator intelligenceGenerator;
         private Mock<Dice> mockDice;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IIntelligenceDataSelector> mockIntelligenceDataSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private List<string> attributes;
         private IntelligenceSelection intelligenceSelection;
         private Item item;
@@ -30,10 +30,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void Setup()
         {
             mockDice = new Mock<Dice>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockIntelligenceDataSelector = new Mock<IIntelligenceDataSelector>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             intelligenceSelection = new IntelligenceSelection();
             attributes = new List<string>();
             item = new Item();
@@ -46,15 +45,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockIntelligenceDataSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(intelligenceSelection);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(string.Empty);
 
-            intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object,
-                mockCollectionsSelector.Object, mockIntelligenceDataSelector.Object, mockBooleanPercentileSelector.Object);
+            intelligenceGenerator = new IntelligenceGenerator(mockDice.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, mockIntelligenceDataSelector.Object);
         }
 
         [Test]
         public void DetermineIntelligentFromBooleanSelector()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.True);
@@ -64,7 +62,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void DetermineNotIntelligentFromBooleanSelector()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(false);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.False);
@@ -75,7 +73,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Melee);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.True);
@@ -86,7 +84,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Ranged);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Ranged);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.True);
@@ -98,7 +96,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributes.Add(AttributeConstants.Melee);
             attributes.Add(AttributeConstants.Ranged);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, AttributeConstants.Melee);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.True);
@@ -109,7 +107,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Ammunition);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.False);
@@ -120,7 +118,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.OneTimeUse);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, true);
             Assert.That(isIntelligent, Is.False);
@@ -130,7 +128,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void NonMagicalItemsAreNotIntelligent()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IsITEMTYPEIntelligent, itemType);
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(tableName)).Returns(true);
 
             var isIntelligent = intelligenceGenerator.IsIntelligent(itemType, attributes, false);
             Assert.That(isIntelligent, Is.False);

@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void StressTool()
         {
-            Stress(StressItem);
+            stressor.Stress(GenerateAndAssertItem);
         }
 
         protected override void MakeSpecificAssertionsAgainst(Item tool)
@@ -37,13 +37,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         [Test]
         public void StressCustomTool()
         {
-            Stress(StressCustomItem);
+            stressor.Stress(GenerateAndAssertCustomItem);
         }
 
         [Test]
         public void StressToolFromSubset()
         {
-            Stress(StressItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromSubset);
         }
     }
 }

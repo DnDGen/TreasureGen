@@ -1,173 +1,173 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Ring of Ram</name>
-        <attribute>Charged</attribute>
-        <attribute>One-time use</attribute>
-    </object>
-    <object>
+        <entry>Charged</entry>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
         <name>Ring of Three wishes</name>
-        <attribute>Charged</attribute>
-        <attribute>One-time use</attribute>
-    </object>
-    <object>
+        <entry>Charged</entry>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
         <name>Ring of Feather falling</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Sustenance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Climbing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Jumping</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Swimming</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Counterspells</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Mind shielding</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Force shield</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Improved climbing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Improved jumping</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Improved swimming</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Animal friendship</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Chameleon power</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Water walking</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor Acid resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor Cold resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor Electricity resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor Fire resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor Sonic resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Minor spell storing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Invisibility</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Wizardry (I)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Evasion</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of X-ray vision</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Blinking</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major Acid resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major Cold resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major Electricity resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major Fire resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major Sonic resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Wizardry (II)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Freedom of movement</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Greater Acid resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Greater Cold resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Greater Electricity resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Greater Fire resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Greater Sonic resistance</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Friend shield (pair)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Protection</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Shooting stars</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Spell storing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Wizardry (III)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Telekinesis</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Regeneration</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Spell turning</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Wizardry (IV)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Djinni calling</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Elemental command (air)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Elemental command (earth)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Elemental command (fire)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Elemental command (water)</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Major spell storing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Ring of Clumsiness</name>
-    </object>
-</attributes>
+    </collection>
+</collections>

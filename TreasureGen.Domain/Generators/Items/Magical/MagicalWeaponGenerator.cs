@@ -1,8 +1,9 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -14,35 +15,32 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class MagicalWeaponGenerator : MagicalItemGenerator
     {
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
         private readonly ISpellGenerator spellGenerator;
         private readonly Dice dice;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
+        private readonly JustInTimeFactory justInTimeFactory;
 
         public MagicalWeaponGenerator(
             ICollectionsSelector collectionsSelector,
-            IPercentileSelector percentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
-            IBooleanPercentileSelector booleanPercentileSelector,
             ISpellGenerator spellGenerator,
             Dice dice,
             Generator generator,
-            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
+            JustInTimeFactory justInTimeFactory)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
-            this.booleanPercentileSelector = booleanPercentileSelector;
             this.spellGenerator = spellGenerator;
             this.dice = dice;
             this.generator = generator;
-            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -72,7 +70,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             if (weapon.Magic.SpecialAbilities.Any(a => a.Name == SpecialAbilityConstants.SpellStoring))
             {
-                var shouldStoreSpell = booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
+                var shouldStoreSpell = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
 
                 if (shouldStoreSpell)
                 {
@@ -98,7 +96,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 return specificWeapon;
             }
 
-            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.GenerateFrom(template, allowRandomDecoration);
             weapon.Magic.Bonus = template.Magic.Bonus;
             weapon.Magic.Charges = template.Magic.Charges;
@@ -121,6 +119,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 w => subset.Any(n => w.NameMatches(n)),
                 () => GetDefaultWeapon(power, subset),
+                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Magical weapon from [{string.Join(", ", subset)}]");
 
             return weapon;

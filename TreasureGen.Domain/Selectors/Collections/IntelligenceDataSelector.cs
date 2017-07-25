@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -7,7 +8,7 @@ namespace TreasureGen.Domain.Selectors.Collections
 {
     internal class IntelligenceDataSelector : IIntelligenceDataSelector
     {
-        private ICollectionsSelector innerSelector;
+        private readonly ICollectionsSelector innerSelector;
 
         public IntelligenceDataSelector(ICollectionsSelector innerSelector)
         {
@@ -18,7 +19,7 @@ namespace TreasureGen.Domain.Selectors.Collections
         {
             var data = innerSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceData, name).ToList();
 
-            if (data.Count < 3)
+            if (data.Count != 3)
                 throw new Exception("Data is not formatted for intelligence");
 
             var result = new IntelligenceSelection();

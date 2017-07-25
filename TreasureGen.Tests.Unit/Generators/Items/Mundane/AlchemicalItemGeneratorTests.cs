@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            generator = new ConfigurableIterativeGenerator(5);
+            generator = new IterativeGeneratorWithoutLogging(5);
             alchemicalItemGenerator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             selection = new TypeAndAmountSelection();
             itemVerifier = new ItemVerifier();

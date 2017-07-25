@@ -1,269 +1,269 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Oil of bless weapon,0</content>
         <upper>2</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>3</lower>
         <content>Potion of enlarge person,0</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Potion of reduce person,0</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Potion of aid,0</content>
         <upper>6</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>7</lower>
         <content>Potion of barkskin,2</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Potion of bear's endurance,0</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Potion of blur,0</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Potion of bull's strength,0</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Potion of cat's grace,0</content>
         <upper>19</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>20</lower>
         <content>Potion of cure moderate wounds,0</content>
         <upper>27</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>28</lower>
         <content>Oil of darkness,0</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Potion of darkvision,0</content>
         <upper>30</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>31</lower>
         <content>Potion of delay poison,0</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Potion of eagle's splendor,0</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Potion of fox's cunning,0</content>
         <upper>35</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>36</lower>
         <content>Potion of invisibility,0</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Oil of invisibility,0</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Potion of lesser restoration,0</content>
         <upper>38</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>39</lower>
         <content>Potion of levitate,0</content>
         <upper>39</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>40</lower>
         <content>Potion of misdirection,0</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Potion of owl's wisdom,0</content>
         <upper>42</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>43</lower>
         <content>Potion of protection from arrows 10/magic,0</content>
         <upper>43</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>44</lower>
         <content>Potion of remove paralysis,0</content>
         <upper>44</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>45</lower>
         <content>Potion of resist ENERGY 10,0</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Potion of shield of faith,3</content>
         <upper>48</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>49</lower>
         <content>Potion of spider climb,0</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Potion of undetectable alignment,0</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Potion of barkskin,3</content>
         <upper>51</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>52</lower>
         <content>Potion of shield of faith,4</content>
         <upper>52</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>53</lower>
         <content>Potion of resist ENERGY 20,0</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Potion of cure serious wounds,0</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Oil of daylight,0</content>
         <upper>61</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>62</lower>
         <content>Potion of displacement,0</content>
         <upper>64</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>65</lower>
         <content>Oil of flame arrow,0</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Potion of fly,0</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Potion of gaseous form,0</content>
         <upper>69</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>70</lower>
         <content>Potion of greater magic fang,1</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Oil of greater magic weapon,1</content>
         <upper>73</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>74</lower>
         <content>Potion of haste,0</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Potion of heroism,0</content>
         <upper>78</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>79</lower>
         <content>Oil of keen edge,0</content>
         <upper>80</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>81</lower>
         <content>Potion of magic circle against PARTIALALIGNMENT,0</content>
         <upper>81</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>82</lower>
         <content>Oil of magic vestment,1</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Potion of neutralize poison,0</content>
         <upper>86</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>87</lower>
         <content>Potion of nondetection,0</content>
         <upper>88</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>89</lower>
         <content>Potion of protection from ENERGY,0</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Potion of rage,0</content>
         <upper>93</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>94</lower>
         <content>Potion of remove blindness/deafness,0</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Potion of remove curse,0</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Potion of remove disease,0</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Potion of tongues,0</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Potion of water breathing,0</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>Potion of water walk,0</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

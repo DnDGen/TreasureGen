@@ -6,12 +6,10 @@ using System.Linq;
 using TreasureGen.Coins;
 using TreasureGen.Domain.Generators;
 using TreasureGen.Domain.Generators.Coins;
-using TreasureGen.Domain.Generators.Factories;
 using TreasureGen.Domain.Generators.Goods;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.IoC.Providers;
 using TreasureGen.Domain.Items.Mundane;
 using TreasureGen.Generators;
 using TreasureGen.Goods;
@@ -40,20 +38,15 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ICurseGenerator>().To<CurseGenerator>().WhenInjectedInto<CurseGeneratorEventDecorator>();
             Bind<ICurseGenerator>().To<CurseGeneratorEventDecorator>();
 
+            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>().WhenInjectedInto<SpecificGearGeneratorEventDecorator>();
+            Bind<ISpecificGearGenerator>().To<SpecificGearGeneratorEventDecorator>();
+
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
             Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
-            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
-            Bind<Generator>().To<IterativeGenerator>();
-
-            Bind<JustInTimeFactory>().ToProvider<JustInTimeFactoryProvider>().WhenInjectedInto<JustInTimeFactoryEventDecorator>();
-            Bind<JustInTimeFactory>().To<JustInTimeFactoryEventDecorator>();
-
-            Bind<IMundaneItemGeneratorFactory>().To<MundaneItemGeneratorFactory>();
-            Bind<IMagicalItemGeneratorFactory>().To<MagicalItemGeneratorFactory>();
 
             var decorators = new[]
             {
@@ -61,10 +54,10 @@ namespace TreasureGen.Domain.IoC.Modules
                 typeof(MundaneItemGeneratorEventDecorator),
             };
 
-            Decorate<MundaneItemGenerator, ToolGenerator>(ItemTypeConstants.Tool, decorators);
-            Decorate<MundaneItemGenerator, AlchemicalItemGenerator>(ItemTypeConstants.AlchemicalItem, decorators);
-            Decorate<MundaneItemGenerator, MundaneArmorGenerator>(ItemTypeConstants.Armor, decorators);
-            Decorate<MundaneItemGenerator, MundaneWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
+            NameAndDecorate<MundaneItemGenerator, ToolGenerator>(ItemTypeConstants.Tool, decorators);
+            NameAndDecorate<MundaneItemGenerator, AlchemicalItemGenerator>(ItemTypeConstants.AlchemicalItem, decorators);
+            NameAndDecorate<MundaneItemGenerator, MundaneArmorGenerator>(ItemTypeConstants.Armor, decorators);
+            NameAndDecorate<MundaneItemGenerator, MundaneWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
 
             decorators = new[]
             {
@@ -76,18 +69,18 @@ namespace TreasureGen.Domain.IoC.Modules
                 typeof(MagicalItemGeneratorEventDecorator),
             };
 
-            Decorate<MagicalItemGenerator, MagicalArmorGenerator>(ItemTypeConstants.Armor, decorators);
-            Decorate<MagicalItemGenerator, PotionGenerator>(ItemTypeConstants.Potion, decorators);
-            Decorate<MagicalItemGenerator, RingGenerator>(ItemTypeConstants.Ring, decorators);
-            Decorate<MagicalItemGenerator, RodGenerator>(ItemTypeConstants.Rod, decorators);
-            Decorate<MagicalItemGenerator, ScrollGenerator>(ItemTypeConstants.Scroll, decorators);
-            Decorate<MagicalItemGenerator, StaffGenerator>(ItemTypeConstants.Staff, decorators);
-            Decorate<MagicalItemGenerator, WandGenerator>(ItemTypeConstants.Wand, decorators);
-            Decorate<MagicalItemGenerator, MagicalWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
-            Decorate<MagicalItemGenerator, WondrousItemGenerator>(ItemTypeConstants.WondrousItem, decorators);
+            NameAndDecorate<MagicalItemGenerator, MagicalArmorGenerator>(ItemTypeConstants.Armor, decorators);
+            NameAndDecorate<MagicalItemGenerator, PotionGenerator>(ItemTypeConstants.Potion, decorators);
+            NameAndDecorate<MagicalItemGenerator, RingGenerator>(ItemTypeConstants.Ring, decorators);
+            NameAndDecorate<MagicalItemGenerator, RodGenerator>(ItemTypeConstants.Rod, decorators);
+            NameAndDecorate<MagicalItemGenerator, ScrollGenerator>(ItemTypeConstants.Scroll, decorators);
+            NameAndDecorate<MagicalItemGenerator, StaffGenerator>(ItemTypeConstants.Staff, decorators);
+            NameAndDecorate<MagicalItemGenerator, WandGenerator>(ItemTypeConstants.Wand, decorators);
+            NameAndDecorate<MagicalItemGenerator, MagicalWeaponGenerator>(ItemTypeConstants.Weapon, decorators);
+            NameAndDecorate<MagicalItemGenerator, WondrousItemGenerator>(ItemTypeConstants.WondrousItem, decorators);
         }
 
-        private void Decorate<S, T>(string name, params Type[] decorators)
+        private void NameAndDecorate<S, T>(string name, params Type[] decorators)
             where T : S
         {
             var implementations = new[] { typeof(T) }.Union(decorators).Take(decorators.Length);

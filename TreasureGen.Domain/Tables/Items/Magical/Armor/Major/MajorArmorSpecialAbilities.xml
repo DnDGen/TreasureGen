@@ -1,174 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Glamered</content>
         <upper>3</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>4</lower>
         <content>Light fortification</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Improved slick</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Improved shadow</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Improved silent moves</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Acid resistance</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Cold resistance</content>
         <upper>19</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>20</lower>
         <content>Electricity resistance</content>
         <upper>22</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>23</lower>
         <content>Fire resistance</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Sonic resistance</content>
         <upper>28</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>29</lower>
         <content>Ghost touch (armor)</content>
         <upper>33</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>34</lower>
         <content>Invulnerability</content>
         <upper>35</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>36</lower>
         <content>Moderate fortification</content>
         <upper>40</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>41</lower>
         <content>Spell resistance (15)</content>
         <upper>42</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>43</lower>
         <content>Wild</content>
         <upper>43</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>44</lower>
         <content>Greater slick</content>
         <upper>48</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>49</lower>
         <content>Greater shadow</content>
         <upper>53</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>54</lower>
         <content>Greater silent moves</content>
         <upper>58</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>59</lower>
         <content>Improved acid resistance</content>
         <upper>63</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>64</lower>
         <content>Improved cold resistance</content>
         <upper>68</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>69</lower>
         <content>Improved electricity resistance</content>
         <upper>73</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>74</lower>
         <content>Improved fire resistance</content>
         <upper>78</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>79</lower>
         <content>Improved sonic resistance</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Spell resistance (17)</content>
         <upper>88</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>89</lower>
         <content>Etherealness</content>
         <upper>89</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>90</lower>
         <content>Undead controlling</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Heavy fortification</content>
         <upper>92</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>93</lower>
         <content>Spell resistance (19)</content>
         <upper>94</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>95</lower>
         <content>Greater acid resistance</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Greater cold resistance</content>
         <upper>96</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>97</lower>
         <content>Greater electricity resistance</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Greater fire resistance</content>
         <upper>98</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>99</lower>
         <content>Greater sonic resistance</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>BonusSpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

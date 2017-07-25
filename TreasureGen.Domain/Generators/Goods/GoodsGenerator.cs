@@ -1,7 +1,7 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Goods;
@@ -10,16 +10,15 @@ namespace TreasureGen.Domain.Generators.Goods
 {
     internal class GoodsGenerator : IGoodsGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private Dice dice;
-        private ICollectionsSelector attributesSelector;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly Dice dice;
+        private readonly ICollectionsSelector collectionSelector;
 
-        public GoodsGenerator(Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            ICollectionsSelector attributesSelector)
+        public GoodsGenerator(Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionSelector)
         {
             this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.attributesSelector = attributesSelector;
+            this.collectionSelector = collectionSelector;
         }
 
         public IEnumerable<Good> GenerateAtLevel(int level)
@@ -37,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Goods
             while (result.Amount-- > 0)
             {
                 var valueResult = typeAndAmountPercentileSelector.SelectFrom(valueTableName);
-                var descriptions = attributesSelector.SelectFrom(descriptionTableName, valueResult.Type);
+                var descriptions = collectionSelector.SelectFrom(descriptionTableName, valueResult.Type);
                 var descriptionIndex = dice.Roll().d(descriptions.Count()).AsSum() - 1;
 
                 var good = new Good();

@@ -1,8 +1,8 @@
-﻿using Ninject;
+﻿using DnDGen.Core.Mappers.Collections;
+using Ninject;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Mappers.Collections;
 
 namespace TreasureGen.Tests.Integration.Tables
 {
@@ -10,7 +10,7 @@ namespace TreasureGen.Tests.Integration.Tables
     public abstract class CollectionsTests : TableTests
     {
         [Inject]
-        internal ICollectionsMapper CollectionsMapper { get; set; }
+        public CollectionsMapper CollectionsMapper { get; set; }
 
         private Dictionary<string, IEnumerable<string>> table;
 

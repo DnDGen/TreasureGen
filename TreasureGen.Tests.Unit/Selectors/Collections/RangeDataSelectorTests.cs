@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Collections;

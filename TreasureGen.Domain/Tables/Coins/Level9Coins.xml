@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content></content>
         <upper>10</upper>
-    </object>
-  <object>
+    </percentile>
+  <percentile>
     <lower>11</lower>
     <content>Copper,2d50001+19998</content>
     <upper>15</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>16</lower>
     <content>Silver,2d7001+1998</content>
     <upper>29</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>30</lower>
     <content>Gold,5d301+495</content>
     <upper>85</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>86</lower>
     <content>Platinum,2d111+18</content>
     <upper>100</upper>
-  </object>
-</percentile>
+  </percentile>
+</percentiles>

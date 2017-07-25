@@ -34,8 +34,12 @@
       <HintPath>..\packages\Albatross.Expression.1.3.6218.36673\lib\net40\Albatross.Expression.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnDGen.Core.1.1.0\lib\DnDGen.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EventGen.1.0.0\lib\EventGen.dll</HintPath>
+      <HintPath>..\packages\EventGen.2.0.1\lib\EventGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -58,13 +62,8 @@
   <ItemGroup>
     <Compile Include="Generators\Coins\CoinGenerator.cs" />
     <Compile Include="Generators\Coins\CoinGeneratorEventDecorator.cs" />
-    <Compile Include="Generators\Factories\JustInTimeFactory.cs" />
-    <Compile Include="Generators\Factories\JustInTimeFactoryEventDecorator.cs" />
-    <Compile Include="Generators\Factories\NinjectJustInTimeFactory.cs" />
     <Compile Include="Generators\Goods\GoodsGeneratorEventDecorator.cs" />
-    <Compile Include="Generators\Items\Generator.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventDecorator.cs" />
-    <Compile Include="Generators\Items\IterativeGenerator.cs" />
     <Compile Include="Generators\Items\Magical\CurseGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventDecorator.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorMundaneProxy.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorTraitsDecorator.cs" />
-    <Compile Include="Generators\Items\Magical\MagicalItemGeneratorFactory.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorSpecialMaterialDecorator.cs" />
     <Compile Include="Generators\Goods\GoodsGenerator.cs" />
@@ -95,7 +93,7 @@
     <Compile Include="Generators\Items\Magical\RodGenerator.cs" />
     <Compile Include="Generators\Items\Magical\ScrollGenerator.cs" />
     <Compile Include="Generators\Items\Magical\SpecialAbilitiesGenerator.cs" />
-    <Compile Include="Generators\Items\Mundane\MundaneItemGeneratorFactory.cs" />
+    <Compile Include="Generators\Items\SpecificGearGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\SpecificGearGenerator.cs" />
     <Compile Include="Generators\Items\Magical\SpellGenerator.cs" />
     <Compile Include="Generators\Items\Magical\StaffGenerator.cs" />
@@ -109,36 +107,23 @@
     <Compile Include="Generators\Items\Mundane\ToolGenerator.cs" />
     <Compile Include="Generators\TreasureGenerator.cs" />
     <Compile Include="Generators\TreasureGeneratorEventDecorator.cs" />
-    <Compile Include="IoC\Providers\JustInTimeFactoryProvider.cs" />
     <Compile Include="IoC\Modules\GeneratorsModule.cs" />
-    <Compile Include="IoC\Modules\MappersModule.cs" />
     <Compile Include="IoC\Modules\SelectorsModule.cs" />
     <Compile Include="IoC\Modules\TablesModule.cs" />
     <Compile Include="IoC\TreasureGenModuleLoader.cs" />
-    <Compile Include="Mappers\Collection\CollectionsMapperCachingProxy.cs" />
-    <Compile Include="Mappers\Collection\CollectionsXmlMapper.cs" />
-    <Compile Include="Mappers\Collection\ICollectionsMapper.cs" />
-    <Compile Include="Mappers\Percentile\IPercentileMapper.cs" />
-    <Compile Include="Mappers\Percentile\PercentileMapperCachingProxy.cs" />
-    <Compile Include="Mappers\Percentile\PercentileXmlMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectors\Collections\ArmorDataSelector.cs" />
-    <Compile Include="Selectors\Collections\CollectionsSelector.cs" />
     <Compile Include="Selectors\Collections\IArmorDataSelector.cs" />
     <Compile Include="Selectors\Collections\IWeaponDataSelector.cs" />
     <Compile Include="Selectors\Collections\WeaponDataSelector.cs" />
-    <Compile Include="Selectors\Percentiles\BooleanPercentileSelector.cs" />
+    <Compile Include="Selectors\Percentiles\ITreasurePercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
-    <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecorator.cs" />
-    <Compile Include="Selectors\Collections\ICollectionsSelector.cs" />
-    <Compile Include="Selectors\Percentiles\IBooleanPercentileSelector.cs" />
+    <Compile Include="Selectors\Percentiles\PercentileSelectorStringReplacementDecorator.cs" />
     <Compile Include="Selectors\Collections\IIntelligenceDataSelector.cs" />
     <Compile Include="Selectors\Collections\IntelligenceDataSelector.cs" />
-    <Compile Include="Selectors\Percentiles\IPercentileSelector.cs" />
     <Compile Include="Selectors\Collections\IRangeDataSelector.cs" />
     <Compile Include="Selectors\Collections\ISpecialAbilityDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\ITypeAndAmountPercentileSelector.cs" />
-    <Compile Include="Selectors\Percentiles\PercentileSelector.cs" />
     <Compile Include="Selectors\Collections\RangeDataSelector.cs" />
     <Compile Include="Selectors\Selections\ArmorSelection.cs" />
     <Compile Include="Selectors\Selections\IntelligenceSelection.cs" />
@@ -150,9 +135,8 @@
     <Compile Include="Selectors\Selections\WeaponSelection.cs" />
     <Compile Include="Tables\AmountConstants.cs" />
     <Compile Include="Tables\DataIndexConstants.cs" />
-    <Compile Include="Tables\EmbeddedResourceStreamLoader.cs" />
-    <Compile Include="Tables\IStreamLoader.cs" />
     <Compile Include="Tables\TableNameConstants.cs" />
+    <Compile Include="Tables\TreasureGenAssemblyLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Coins\Level10Coins.xml" />

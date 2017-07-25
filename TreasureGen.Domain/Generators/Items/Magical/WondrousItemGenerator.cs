@@ -1,7 +1,8 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -12,7 +13,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class WondrousItemGenerator : MagicalItemGenerator
     {
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly Dice dice;
@@ -21,7 +22,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly Generator generator;
 
         public WondrousItemGenerator(
-            IPercentileSelector percentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
             IChargesGenerator chargesGenerator,
             Dice dice,
@@ -217,6 +218,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 i => subset.Any(n => i.NameMatches(n)),
                 () => CreateDefaultWondrousItem(power, subset),
+                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Wondrous item from [{string.Join(", ", subset)}]");
 
             return item;

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -11,11 +12,11 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class ToolGenerator : MundaneItemGenerator
     {
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
 
-        public ToolGenerator(IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
+        public ToolGenerator(ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -52,6 +53,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 Generate,
                 t => subset.Any(n => t.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                t => $"{t.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Tool from [{string.Join(", ", subset)}]");
 
             return tool;

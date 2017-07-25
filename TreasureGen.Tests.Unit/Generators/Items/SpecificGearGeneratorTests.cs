@@ -1,4 +1,6 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System;
@@ -6,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -25,8 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
         private TypeAndAmountSelection selection;
@@ -46,15 +46,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockDice = new Mock<Dice>();
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
-            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
+            var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
 
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
             specificGearGenerator = new SpecificGearGenerator(
                 mockTypeAndAmountPercentileSelector.Object,
@@ -62,10 +61,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 mockChargesGenerator.Object,
                 mockPercentileSelector.Object,
                 mockSpellGenerator.Object,
-                mockBooleanPercentileSelector.Object,
                 mockDice.Object,
                 mockSpecialAbilitiesGenerator.Object,
-                mockMundaneGeneratorFactory.Object);
+                mockJustInTimeFactory.Object);
+
             selection = new TypeAndAmountSelection();
             itemVerifier = new ItemVerifier();
             baseNames = new List<string> { "base name" };
@@ -389,7 +388,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes)).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(false);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);
@@ -404,7 +403,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes)).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Medium)).Returns(42);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 42)).Returns("spell");
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.CastersShieldContainsSpell)).Returns(true);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(power, gearType);

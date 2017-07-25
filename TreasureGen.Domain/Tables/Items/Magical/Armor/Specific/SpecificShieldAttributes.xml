@@ -1,52 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Absorbing shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Metal</entry>
+    </collection>
+    <collection>
         <name>Buckler</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Wood</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Wood</entry>
+    </collection>
+    <collection>
         <name>Caster's shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Wood</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Wood</entry>
+    </collection>
+    <collection>
         <name>Heavy steel shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Metal</entry>
+    </collection>
+    <collection>
         <name>Heavy wooden shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Wood</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Wood</entry>
+    </collection>
+    <collection>
         <name>Lion's shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Metal</entry>
+    </collection>
+    <collection>
         <name>Spined shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Metal</attribute>
-    </object>
-    <object>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Metal</entry>
+    </collection>
+    <collection>
         <name>Winged shield</name>
-        <attribute>Shield</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Wood</attribute>
-    </object>
-</attributes>
+        <entry>Shield</entry>
+        <entry>Specific</entry>
+        <entry>Wood</entry>
+    </collection>
+</collections>

@@ -14,22 +14,16 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
-        public void PercentileSelectorNotConstructedAsSingleton()
+        public void TreasurePercentileSelectorNotConstructedAsSingleton()
         {
-            AssertNotSingleton<IPercentileSelector>();
+            AssertNotSingleton<ITreasurePercentileSelector>();
         }
 
         [Test]
-        public void PercentileSelectorHasReplacementDecorator()
+        public void TreasurePercentileSelectorHasReplacementDecorator()
         {
-            var selector = InjectAndAssertDuration<IPercentileSelector>();
-            Assert.That(selector, Is.InstanceOf<ReplacePercentileSelectorDecorator>());
-        }
-
-        [Test]
-        public void CollectionsSelectorNotConstructedAsSingleton()
-        {
-            AssertNotSingleton<ICollectionsSelector>();
+            var selector = InjectAndAssertDuration<ITreasurePercentileSelector>();
+            Assert.That(selector, Is.InstanceOf<PercentileSelectorStringReplacementDecorator>());
         }
 
         [Test]
@@ -48,12 +42,6 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         public void RangeDataSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<IRangeDataSelector>();
-        }
-
-        [Test]
-        public void BooleanPercentileSelectorIsNotConstructedAsSingleton()
-        {
-            AssertNotSingleton<IBooleanPercentileSelector>();
         }
 
         [Test]

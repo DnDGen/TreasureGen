@@ -1,11 +1,12 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -18,11 +19,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class MagicalWeaponGeneratorTests
     {
         private MagicalItemGenerator magicalWeaponGenerator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ISpecialAbilitiesGenerator> mockSpecialAbilitiesGenerator;
         private Mock<ISpecificGearGenerator> mockSpecificGearGenerator;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
         private string power;
@@ -33,28 +33,26 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockDice = new Mock<Dice>();
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
-            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
+            var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
             magicalWeaponGenerator = new MagicalWeaponGenerator(
                 mockCollectionsSelector.Object,
                 mockPercentileSelector.Object,
                 mockSpecialAbilitiesGenerator.Object,
                 mockSpecificGearGenerator.Object,
-                mockBooleanPercentileSelector.Object,
                 mockSpellGenerator.Object,
                 mockDice.Object,
                 generator,
-                mockMundaneGeneratorFactory.Object);
+                mockJustInTimeFactory.Object);
 
             itemVerifier = new ItemVerifier();
 
@@ -127,7 +125,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringWeaponHasSpellIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(true);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("9266");
 
@@ -145,7 +143,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringWeaponDoesNotHaveSpellIfSelectorSaysSo()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(false);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("9266");
 

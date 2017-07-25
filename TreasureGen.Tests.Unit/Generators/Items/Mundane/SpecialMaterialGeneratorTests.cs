@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Items.Mundane;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private ISpecialMaterialGenerator specialMaterialsGenerator;
         private Mock<Dice> mockDice;
         private Mock<ICollectionsSelector> mockAttributesSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
 
         private List<string> mithralAttributes;
         private List<string> adamantineAttributes;
@@ -32,7 +32,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mithralAttributes = new List<string>() { "type 1", "type 2" };
             adamantineAttributes = new List<string>() { "type 3", "type 2" };
             otherMaterialAttributes = new List<string>() { "type 3", "type 2", "other attribute" };
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockAttributesSelector = new Mock<ICollectionsSelector>();
             traits = new List<string>();
 
@@ -40,13 +40,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Mithral)).Returns(mithralAttributes);
             mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Adamantine)).Returns(adamantineAttributes);
 
-            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockBooleanPercentileSelector.Object);
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockPercentileSelector.Object);
         }
 
         [Test]
         public void ArmorHasSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -54,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void WeaponHasSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Weapon, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -62,7 +62,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void NotWeaponOrArmor_DoesNotHaveSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial("item type", mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
         }
@@ -70,7 +70,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetTrueFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.True);
         }
@@ -78,7 +78,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GetFalseFromBooleanSelector()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(false);
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
         }
@@ -86,7 +86,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void HasSpecialMaterialReturnsFalseIfGivenAttributesDoNotMatchAnySpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             var newAttributes = new[] { "other type", "type 2" };
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, newAttributes, traits);
             Assert.That(hasSpecialMaterial, Is.False);
@@ -95,7 +95,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfAlreadyHasASpecialMaterial()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.SpecialMaterials.ColdIron);
 
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
@@ -105,7 +105,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void IgnoreNonMaterialTraits()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add("not a material trait");
 
             var hasSpecialMaterial = specialMaterialsGenerator.CanHaveSpecialMaterial(ItemTypeConstants.Armor, mithralAttributes, traits);
@@ -115,7 +115,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void HaveSpecialMaterialIfDoubleWeaponAndAlreadyHasOneSpecialMaterial()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.SpecialMaterials.ColdIron);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
@@ -127,7 +127,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasTwoSpecialMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.SpecialMaterials.ColdIron);
             traits.Add(TraitConstants.SpecialMaterials.Darkwood);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
@@ -139,7 +139,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void DoesNotHaveSpecialMaterialIfDoubleWeaponAndAlreadyHasAllAvailableMaterials()
         {
-            mockBooleanPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)).Returns(true);
             traits.Add(TraitConstants.SpecialMaterials.Mithral);
             mithralAttributes.Add(AttributeConstants.DoubleWeapon);
 

@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using RollGen;
 using System.Collections.Generic;
@@ -18,9 +19,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
-        private Mock<IPercentileSelector> mockPercentileSelector;
-        private Mock<IBooleanPercentileSelector> mockBooleanPercentileSelector;
-        private Mock<ISpecialAbilityDataSelector> mockSpecialAbilityAttributesSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
+        private Mock<ISpecialAbilityDataSelector> mockSpecialAbilityDataSelector;
         private Mock<Dice> mockDice;
 
         private List<string> itemAttributes;
@@ -34,11 +34,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             itemAttributes = new List<string>();
 
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
-            mockBooleanPercentileSelector = new Mock<IBooleanPercentileSelector>();
-            mockSpecialAbilityAttributesSelector = new Mock<ISpecialAbilityDataSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
+            mockSpecialAbilityDataSelector = new Mock<ISpecialAbilityDataSelector>();
             mockDice = new Mock<Dice>();
-            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityAttributesSelector.Object, mockBooleanPercentileSelector.Object, mockDice.Object);
+            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityDataSelector.Object, mockDice.Object);
             names = new List<string>();
             item = new Item();
 
@@ -175,12 +174,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var meleeResult = new SpecialAbilitySelection();
             meleeResult.BaseName = "melee ability";
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(meleeResult.BaseName)).Returns(meleeResult);
+            mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(meleeResult.BaseName)).Returns(meleeResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, meleeResult.BaseName)).Returns(itemAttributes);
 
             var rangedResult = new SpecialAbilitySelection();
             rangedResult.BaseName = "ranged ability";
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
+            mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
 
             mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
@@ -549,7 +548,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             result.Power = power;
             names.Add(name);
 
-            mockSpecialAbilityAttributesSelector.Setup(s => s.SelectFrom(name)).Returns(result);
+            mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(name)).Returns(result);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, result.BaseName)).Returns(itemAttributes);
         }
 
@@ -565,9 +564,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributeRequirements.Add(new[] { "other type 2", "type 2" });
             attributeRequirements.Add(new[] { "other type 3", "type 3" });
 
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
@@ -614,9 +613,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributeRequirements.Add(new[] { "other type 2", "type 2" });
             attributeRequirements.Add(new[] { "other type 3", "type 3" });
 
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(false);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(false);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(false);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(false);
 
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
@@ -663,9 +662,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             attributeRequirements.Add(new[] { "other type 2", "type 2" });
             attributeRequirements.Add(new[] { "other type 3", "type 3" });
 
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
-            mockSpecialAbilityAttributesSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
+            mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);

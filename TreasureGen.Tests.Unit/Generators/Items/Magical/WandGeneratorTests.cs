@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class WandGeneratorTests
     {
         private MagicalItemGenerator wandGenerator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private string power;
@@ -24,10 +24,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             wandGenerator = new WandGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object, generator, mockCollectionsSelector.Object);
             power = "power";
             itemVerifier = new ItemVerifier();

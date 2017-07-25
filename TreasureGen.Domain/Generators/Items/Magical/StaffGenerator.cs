@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -18,21 +19,21 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ICollectionsSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
+        private readonly JustInTimeFactory justInTimeFactory;
 
         public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IChargesGenerator chargesGenerator,
             ICollectionsSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             Generator generator,
-            IMundaneItemGeneratorFactory mundaneGeneratorFactory)
+            JustInTimeFactory justInTimeFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.chargesGenerator = chargesGenerator;
             this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.generator = generator;
-            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
         }
 
         public Item GenerateAtPower(string power)
@@ -74,7 +75,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var template = new Weapon();
             template.Name = weapons.Intersect(staff.BaseNames).First();
 
-            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             staff.Attributes = staff.Attributes.Union(mundaneWeapon.Attributes).Except(new[] { AttributeConstants.OneTimeUse });
@@ -106,6 +107,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 s => subset.Any(n => s.NameMatches(n)),
                 () => GenerateDefaultFrom(power, subset),
+                s => $"{s.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"{power} Staff from [{string.Join(", ", subset)}]");
 
             return staff;

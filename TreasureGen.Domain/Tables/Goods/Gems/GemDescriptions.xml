@@ -1,90 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>4d4</name>
-        <attribute>banded agate</attribute>
-        <attribute>eye agate</attribute>
-        <attribute>moss agate</attribute>
-        <attribute>azurite</attribute>
-        <attribute>blue quartz</attribute>
-        <attribute>hematite</attribute>
-        <attribute>lapis lazuli</attribute>
-        <attribute>malachite</attribute>
-        <attribute>obsidian</attribute>
-        <attribute>rhodochrosite</attribute>
-        <attribute>tiger eye turquoise</attribute>
-        <attribute>irregular freshwater pearl</attribute>
-    </object>
-    <object>
+        <entry>banded agate</entry>
+        <entry>eye agate</entry>
+        <entry>moss agate</entry>
+        <entry>azurite</entry>
+        <entry>blue quartz</entry>
+        <entry>hematite</entry>
+        <entry>lapis lazuli</entry>
+        <entry>malachite</entry>
+        <entry>obsidian</entry>
+        <entry>rhodochrosite</entry>
+        <entry>tiger eye turquoise</entry>
+        <entry>irregular freshwater pearl</entry>
+    </collection>
+    <collection>
         <name>2d31+18</name>
-        <attribute>bloodstone</attribute>
-        <attribute>carnelian</attribute>
-        <attribute>chalcedony</attribute>
-        <attribute>chrysoprase</attribute>
-        <attribute>citrine</attribute>
-        <attribute>iolite</attribute>
-        <attribute>jasper</attribute>
-        <attribute>moonstone</attribute>
-        <attribute>onyx</attribute>
-        <attribute>peridot</attribute>
-        <attribute>clear quartz rock crystal</attribute>
-        <attribute>sard</attribute>
-        <attribute>sardonyx</attribute>
-        <attribute>rose quartz</attribute>
-        <attribute>smoky rose quartz</attribute>
-        <attribute>star rose quartz</attribute>
-        <attribute>zircon</attribute>
-    </object>
-    <object>
+        <entry>bloodstone</entry>
+        <entry>carnelian</entry>
+        <entry>chalcedony</entry>
+        <entry>chrysoprase</entry>
+        <entry>citrine</entry>
+        <entry>iolite</entry>
+        <entry>jasper</entry>
+        <entry>moonstone</entry>
+        <entry>onyx</entry>
+        <entry>peridot</entry>
+        <entry>clear quartz rock crystal</entry>
+        <entry>sard</entry>
+        <entry>sardonyx</entry>
+        <entry>rose quartz</entry>
+        <entry>smoky rose quartz</entry>
+        <entry>star rose quartz</entry>
+        <entry>zircon</entry>
+    </collection>
+    <collection>
         <name>4d31+36</name>
-        <attribute>amber</attribute>
-        <attribute>amethyst</attribute>
-        <attribute>chrysoberyl</attribute>
-        <attribute>coral</attribute>
-        <attribute>red garnet</attribute>
-        <attribute>brown-green garnet</attribute>
-        <attribute>jade</attribute>
-        <attribute>jet</attribute>
-        <attribute>white pearl</attribute>
-        <attribute>golden pearl</attribute>
-        <attribute>pink pearl</attribute>
-        <attribute>silver pearl</attribute>
-        <attribute>red spinel</attribute>
-        <attribute>red-brown spinel</attribute>
-        <attribute>deep green spinel</attribute>
-        <attribute>tourmaline</attribute>
-    </object>
-    <object>
+        <entry>amber</entry>
+        <entry>amethyst</entry>
+        <entry>chrysoberyl</entry>
+        <entry>coral</entry>
+        <entry>red garnet</entry>
+        <entry>brown-green garnet</entry>
+        <entry>jade</entry>
+        <entry>jet</entry>
+        <entry>white pearl</entry>
+        <entry>golden pearl</entry>
+        <entry>pink pearl</entry>
+        <entry>silver pearl</entry>
+        <entry>red spinel</entry>
+        <entry>red-brown spinel</entry>
+        <entry>deep green spinel</entry>
+        <entry>tourmaline</entry>
+    </collection>
+    <collection>
         <name>2d301+198</name>
-        <attribute>alexandrite</attribute>
-        <attribute>aquamarine</attribute>
-        <attribute>violet garnet</attribute>
-        <attribute>black pearl</attribute>
-        <attribute>deep blue spinel</attribute>
-        <attribute>golden yellow topaz</attribute>
-    </object>
-    <object>
+        <entry>alexandrite</entry>
+        <entry>aquamarine</entry>
+        <entry>violet garnet</entry>
+        <entry>black pearl</entry>
+        <entry>deep blue spinel</entry>
+        <entry>golden yellow topaz</entry>
+    </collection>
+    <collection>
         <name>4d301+396</name>
-        <attribute>emerald</attribute>
-        <attribute>white opal</attribute>
-        <attribute>black opal</attribute>
-        <attribute>fire opal</attribute>
-        <attribute>blue sapphire</attribute>
-        <attribute>fiery yellow corundum</attribute>
-        <attribute>rich purple corundum</attribute>
-        <attribute>blue star sapphire</attribute>
-        <attribute>black star sapphire</attribute>
-        <attribute>star ruby</attribute>
-    </object>
-    <object>
+        <entry>emerald</entry>
+        <entry>white opal</entry>
+        <entry>black opal</entry>
+        <entry>fire opal</entry>
+        <entry>blue sapphire</entry>
+        <entry>fiery yellow corundum</entry>
+        <entry>rich purple corundum</entry>
+        <entry>blue star sapphire</entry>
+        <entry>black star sapphire</entry>
+        <entry>star ruby</entry>
+    </collection>
+    <collection>
         <name>2d3001+1998</name>
-        <attribute>clearest bright green emerald</attribute>
-        <attribute>blue-white diamond</attribute>
-        <attribute>canary diamond</attribute>
-        <attribute>pink diamond</attribute>
-        <attribute>brown diamond</attribute>
-        <attribute>blue diamond</attribute>
-        <attribute>jacinth</attribute>
-    </object>
-</attributes>
+        <entry>clearest bright green emerald</entry>
+        <entry>blue-white diamond</entry>
+        <entry>canary diamond</entry>
+        <entry>pink diamond</entry>
+        <entry>brown diamond</entry>
+        <entry>blue diamond</entry>
+        <entry>jacinth</entry>
+    </collection>
+</collections>

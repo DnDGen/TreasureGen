@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -11,7 +12,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class RingGenerator : MagicalItemGenerator
     {
-        private IPercentileSelector percentileSelector;
+        private ITreasurePercentileSelector percentileSelector;
         private ICollectionsSelector collectionsSelector;
         private ISpellGenerator spellGenerator;
         private IChargesGenerator chargesGenerator;
@@ -19,7 +20,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private Generator generator;
 
         public RingGenerator(
-            IPercentileSelector percentileSelector,
+            ITreasurePercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
             ISpellGenerator spellGenerator,
             IChargesGenerator chargesGenerator,
@@ -128,6 +129,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 r => subset.Any(n => r.NameMatches(n)),
                 () => CreateDefaultRing(power, subset),
+                r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Ring from [{string.Join(", ", subset)}]");
 
             return ring;

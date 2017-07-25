@@ -1,4 +1,5 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Collections;
@@ -15,17 +16,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         private ICollectionsSelector collectionsSelector;
         private ISpecialAbilityDataSelector specialAbilityAttributesSelector;
-        private IPercentileSelector percentileSelector;
-        private IBooleanPercentileSelector booleanPercentileSelector;
+        private ITreasurePercentileSelector percentileSelector;
         private Dice dice;
 
-        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, IPercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityAttributesSelector,
-            IBooleanPercentileSelector booleanPercentileSelector, Dice dice)
+        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityAttributesSelector, Dice dice)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
             this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
-            this.booleanPercentileSelector = booleanPercentileSelector;
             this.dice = dice;
         }
 

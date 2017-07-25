@@ -1,124 +1,124 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Animate plants</content>
         <upper>5</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>6</lower>
         <content>Blasphemy</content>
         <upper>9</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>10</lower>
         <content>Changestaff</content>
         <upper>14</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>15</lower>
         <content>Control weather</content>
         <upper>16</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>17</lower>
         <content>Creeping doom</content>
         <upper>21</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>22</lower>
         <content>Mass cure serious wounds</content>
         <upper>27</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>28</lower>
         <content>Destruction</content>
         <upper>32</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>33</lower>
         <content>Dictum</content>
         <upper>36</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>37</lower>
         <content>Ethereal jaunt</content>
         <upper>41</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>42</lower>
         <content>Holy word</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Mass inflict serious wounds</content>
         <upper>50</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>51</lower>
         <content>Refuge</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Regenerate</content>
         <upper>60</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>61</lower>
         <content>Repulsion</content>
         <upper>65</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>66</lower>
         <content>Greater restoration</content>
         <upper>69</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>70</lower>
         <content>Resurrection</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Greater scrying</content>
         <upper>76</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>77</lower>
         <content>Summon monster VII</content>
         <upper>81</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>82</lower>
         <content>Summon nature's ally VII</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Sunbeam</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Symbol of stunning</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Symbol of weakness</content>
         <upper>92</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>93</lower>
         <content>Transmute metal to wood</content>
         <upper>97</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>98</lower>
         <content>Word of chaos</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

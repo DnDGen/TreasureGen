@@ -21,7 +21,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressPotion()
         {
-            Stress(StressItem);
+            stressor.Stress(GenerateAndAssertItem);
         }
 
         protected override void MakeSpecificAssertionsAgainst(Item potion)
@@ -41,13 +41,13 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         [Test]
         public void StressCustomPotion()
         {
-            Stress(StressCustomItem);
+            stressor.Stress(GenerateAndAssertCustomItem);
         }
 
         [Test]
         public void StressPotionFromSubset()
         {
-            Stress(StressItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromSubset);
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -54,6 +55,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 Generate,
                 i => subset.Any(n => i.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
+                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Alchemical item from [{string.Join(", ", subset)}]");
 
             return item;

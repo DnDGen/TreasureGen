@@ -11,13 +11,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class SpellGeneratorTests
     {
         private ISpellGenerator generator;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private string power;
 
         [SetUp]
         public void Setup()
         {
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             generator = new SpellGenerator(mockPercentileSelector.Object);
             power = "power";
         }

@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>1</content>
         <upper>70</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>71</lower>
         <content>2</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Weapon</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>SpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

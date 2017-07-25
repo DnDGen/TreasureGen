@@ -1,99 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Antipathy</content>
         <upper>4</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>5</lower>
         <content>Astral projection</content>
         <upper>7</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>8</lower>
         <content>Elemental swarm</content>
         <upper>13</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>14</lower>
         <content>Energy drain</content>
         <upper>19</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>20</lower>
         <content>Etherealness</content>
         <upper>25</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>26</lower>
         <content>Foresight</content>
         <upper>31</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>32</lower>
         <content>Gate</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Mass heal</content>
         <upper>46</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>47</lower>
         <content>Implosion</content>
         <upper>53</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>54</lower>
         <content>Miracle</content>
         <upper>55</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>56</lower>
         <content>Regenerate</content>
         <upper>61</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>62</lower>
         <content>Shambler</content>
         <upper>66</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>67</lower>
         <content>Shapechange</content>
         <upper>72</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>73</lower>
         <content>Soul bind</content>
         <upper>77</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>78</lower>
         <content>Storm of vengeance</content>
         <upper>83</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>84</lower>
         <content>Summon monster IX</content>
         <upper>89</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>90</lower>
         <content>Summon nature's ally IX</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Sympathy</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>True resurrection</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

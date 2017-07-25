@@ -26,9 +26,9 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             specialAbilities = SpecialAbilityConstants.GetAllAbilities();
         }
 
-        protected void StressItem()
+        protected void GenerateAndAssertItem()
         {
-            var item = Generate(GenerateItem, i => i.ItemType == itemType);
+            var item = stressor.Generate(GenerateItem, i => i.ItemType == itemType);
             AssertItem(item);
         }
 
@@ -49,7 +49,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             return template;
         }
 
-        protected void StressCustomItem()
+        protected void GenerateAndAssertCustomItem()
         {
             var name = GetRandomName();
             var template = GetRandomTemplate(name);
@@ -63,7 +63,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
                 ItemVerifier.AssertMagicalItemFromTemplate(item, template);
         }
 
-        protected void StressItemFromSubset()
+        protected void GenerateAndAssertItemFromSubset()
         {
             var names = GetItemNames();
             var subset = GetRandomSubset(names);

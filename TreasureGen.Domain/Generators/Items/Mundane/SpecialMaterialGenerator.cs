@@ -1,9 +1,9 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Items.Mundane;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -14,12 +14,12 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     {
         private readonly Dice dice;
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
 
-        public SpecialMaterialGenerator(Dice dice, ICollectionsSelector collectionsSelector, IBooleanPercentileSelector booleanPercentileSelector)
+        public SpecialMaterialGenerator(Dice dice, ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector)
         {
             this.dice = dice;
-            this.booleanPercentileSelector = booleanPercentileSelector;
+            this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
         }
 
@@ -29,7 +29,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 return false;
 
             var attributesWithType = attributes.Union(new[] { itemType });
-            return booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HasSpecialMaterial)
+            return percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)
                    && AttributesAllowForSpecialMaterials(attributesWithType)
                    && TraitsAllowForSpecialMaterials(attributesWithType, traits);
         }

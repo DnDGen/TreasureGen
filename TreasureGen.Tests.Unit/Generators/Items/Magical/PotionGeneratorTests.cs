@@ -1,10 +1,10 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator potionGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private string power;
         private ItemVerifier itemVerifier;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
@@ -28,9 +28,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            generator = new ConfigurableIterativeGenerator(5);
+            generator = new IterativeGeneratorWithoutLogging(5);
             potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();
 

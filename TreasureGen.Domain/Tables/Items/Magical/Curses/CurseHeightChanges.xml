@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<percentiles>
+  <percentile>
     <lower>1</lower>
     <content>shrink</content>
     <upper>50</upper>
-  </object>
-    <object>
+  </percentile>
+    <percentile>
         <lower>51</lower>
         <content>grow</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

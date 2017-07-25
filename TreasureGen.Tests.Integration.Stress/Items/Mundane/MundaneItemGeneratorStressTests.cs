@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             materials = TraitConstants.SpecialMaterials.All();
         }
 
-        protected void StressItem()
+        protected void GenerateAndAssertItem()
         {
             var item = GenerateItem();
             AssertItem(item);
@@ -29,7 +29,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             return mundaneItemGenerator.Generate();
         }
 
-        protected void StressCustomItem()
+        protected void GenerateAndAssertCustomItem()
         {
             var name = GetRandomName();
             var template = ItemVerifier.CreateRandomTemplate(name);
@@ -40,7 +40,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             ItemVerifier.AssertMundaneItemFromTemplate(item, template);
         }
 
-        protected void StressItemFromSubset()
+        protected void GenerateAndAssertItemFromSubset()
         {
             var names = GetItemNames();
             var subset = GetRandomSubset(names);
@@ -53,6 +53,5 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         {
             return mundaneItemGenerator.GenerateFrom(subset);
         }
-
     }
 }

@@ -1,140 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-  <object>
+<collections>
+  <collection>
     <name>Incense of obsession</name>
-    <attribute>Specific</attribute>
-    <attribute>One-time use</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
     <name>Ring of Clumsiness</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Amulet of inescapable location</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Stone of weight (loadstone)</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Bracers of defenselessness</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Gauntlets of fumbling</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Cursed -2 sword</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-    <attribute>Melee</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
     <name>Armor of rage</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Medallion of thought projection</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Flask of curses</name>
-    <attribute>Specific</attribute>
-    <attribute>One-time use</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
     <name>Dust of sneezing and choking</name>
-    <attribute>Specific</attribute>
-    <attribute>One-time use</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
     <name>Helm of opposite alignment</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Potion of poison</name>
-    <attribute>Specific</attribute>
-    <attribute>One-time use</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
     <name>Broom of animated attack</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Robe of powerlessness</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Vacuous grimoire</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Cursed backbiter spear</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-    <attribute>Wood</attribute>
-    <attribute>Melee</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Thrown</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+    <entry>Wood</entry>
+    <entry>Melee</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+  </collection>
+  <collection>
     <name>Armor of arrow attraction</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
     <name>Net of snaring</name>
-    <attribute>Specific</attribute>
-    <attribute>Ranged</attribute>
-    <attribute>Thrown</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Two-Handed</entry>
+  </collection>
+  <collection>
     <name>Bag of devouring</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Mace of blood</name>
-    <attribute>Specific</attribute>
-    <attribute>Melee</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
     <name>Robe of vermin</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Periapt of foul rotting</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Berserking sword</name>
-    <attribute>Specific</attribute>
-    <attribute>Metal</attribute>
-    <attribute>Melee</attribute>
-    <attribute>Two-Handed</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+    <entry>Metal</entry>
+    <entry>Melee</entry>
+    <entry>Two-Handed</entry>
+  </collection>
+  <collection>
     <name>Boots of dancing</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Crystal hypnosis ball</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Necklace of strangulation</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Cloak of poisonousness</name>
-    <attribute>Specific</attribute>
-  </object>
-  <object>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
     <name>Scarab of death</name>
-    <attribute>Specific</attribute>
-  </object>
-</percentile>
+    <entry>Specific</entry>
+  </collection>
+</collections>

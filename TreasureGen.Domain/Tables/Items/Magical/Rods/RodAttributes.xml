@@ -1,146 +1,146 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Rod of lesser metamagic: Enlarge</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lesser metamagic: Extend</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lesser metamagic: Silent</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lesser metamagic: Empower</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lesser metamagic: Maximize</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lesser metamagic: Quicken</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Enlarge</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Extend</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Silent</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Empower</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Maximize</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metamagic: Quicken</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Enlarge</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Extend</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Silent</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Empower</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Maximize</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of greater metamagic: Quicken</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Immovable rod</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of metal and mineral detection</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of cancellation</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of wonder</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of the python</name>
-        <attribute>Double weapon</attribute>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Wood</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
+        <entry>Double weapon</entry>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Wood</entry>
+        <entry>Specific</entry>
+    </collection>
+    <collection>
         <name>Rod of the viper</name>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+    </collection>
+    <collection>
         <name>Rod of flame extinguishing</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of enemy detection</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of splendor</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of withering</name>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+    </collection>
+    <collection>
         <name>Rod of thunder and lightning</name>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+    </collection>
+    <collection>
         <name>Rod of negation</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of flailing</name>
-        <attribute>Double weapon</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-        <attribute>Uncommon</attribute>
-    </object>
-    <object>
+        <entry>Double weapon</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+        <entry>Uncommon</entry>
+    </collection>
+    <collection>
         <name>Rod of absorption</name>
-        <attribute>Charged</attribute>
-        <attribute>One-time use</attribute>
-    </object>
-    <object>
+        <entry>Charged</entry>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
         <name>Rod of rulership</name>
-        <attribute>Charged</attribute>
-        <attribute>One-time use</attribute>
-    </object>
-    <object>
+        <entry>Charged</entry>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
         <name>Rod of security</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Rod of lordly might</name>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-    </object>
-    <object>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+    </collection>
+    <collection>
         <name>Rod of alertness</name>
-        <attribute>Common</attribute>
-        <attribute>Melee</attribute>
-        <attribute>Metal</attribute>
-        <attribute>Specific</attribute>
-    </object>
-</attributes>
+        <entry>Common</entry>
+        <entry>Melee</entry>
+        <entry>Metal</entry>
+        <entry>Specific</entry>
+    </collection>
+</collections>

@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>Buckler</name>
-        <attribute>Darkwood</attribute>
-    </object>
-    <object>
+        <entry>Darkwood</entry>
+    </collection>
+    <collection>
         <name>Heavy steel shield</name>
-        <attribute>Mithral</attribute>
-    </object>
-    <object>
+        <entry>Mithral</entry>
+    </collection>
+    <collection>
         <name>Heavy wooden shield</name>
-        <attribute>Darkwood</attribute>
-    </object>
-    <object>
+        <entry>Darkwood</entry>
+    </collection>
+    <collection>
         <name>Absorbing shield</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Caster's shield</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Lion's shield</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Spined shield</name>
-    </object>
-    <object>
+    </collection>
+    <collection>
         <name>Winged shield</name>
-    </object>
-</attributes>
+    </collection>
+</collections>

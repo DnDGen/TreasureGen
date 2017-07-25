@@ -1,7 +1,8 @@
-﻿using RollGen;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using RollGen;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
@@ -13,25 +14,23 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class CurseGenerator : ICurseGenerator
     {
         private readonly Dice dice;
-        private readonly IPercentileSelector percentileSelector;
-        private readonly IBooleanPercentileSelector booleanPercentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
-        private readonly IMundaneItemGeneratorFactory mundaneGeneratorFactory;
+        private readonly JustInTimeFactory justInTimeFactory;
 
-        public CurseGenerator(Dice dice, IPercentileSelector percentileSelector, IBooleanPercentileSelector booleanPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IMundaneItemGeneratorFactory mundaneGeneratorFactory)
+        public CurseGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator, JustInTimeFactory justInTimeFactory)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
-            this.booleanPercentileSelector = booleanPercentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.generator = generator;
-            this.mundaneGeneratorFactory = mundaneGeneratorFactory;
+            this.justInTimeFactory = justInTimeFactory;
         }
 
         public bool HasCurse(bool isMagical)
         {
-            return isMagical && booleanPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IsItemCursed);
+            return isMagical && percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
         public string GenerateCurse()
@@ -84,7 +83,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var template = new Armor();
             template.Name = cursedItem.BaseNames.First();
 
-            var mundaneArmorGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Armor);
+            var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
 
             cursedItem.Clone(armor);
@@ -100,7 +99,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var template = new Weapon();
             template.Name = cursedItem.BaseNames.First();
 
-            var mundaneWeaponGenerator = mundaneGeneratorFactory.CreateGeneratorOf(ItemTypeConstants.Weapon);
+            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             cursedItem.Quantity = weapon.Quantity;
@@ -144,6 +143,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 Generate,
                 i => subset.Any(n => i.NameMatches(n)),
                 () => null,
+                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Cannot generate a specific cursed item from [{string.Join(", ", subset)}]");
 
             return specificCursedItem;

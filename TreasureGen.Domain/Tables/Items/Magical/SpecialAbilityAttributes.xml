@@ -1,622 +1,622 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<abilities>
-    <object>
+<collections>
+    <collection>
         <name>Acid resistance</name>
-        <attribute>0</attribute>
-        <attribute>Acid resistance</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Acid resistance</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Anarchic</name>
-        <attribute>2</attribute>
-        <attribute>Anarchic</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Anarchic</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Animated</name>
-        <attribute>2</attribute>
-        <attribute>Animated</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Animated</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Arrow catching</name>
-        <attribute>1</attribute>
-        <attribute>Arrow catching</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Arrow catching</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Arrow deflection</name>
-        <attribute>2</attribute>
-        <attribute>Arrow deflection</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Arrow deflection</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Axiomatic</name>
-        <attribute>2</attribute>
-        <attribute>Axiomatic</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Axiomatic</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Aberrationbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Animalbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Constructbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Dragonbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Elementalbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Feybane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Giantbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Aquatic-humanoidbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Dwarfbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Elfbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Gnollbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Gnomebane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Goblinoidbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Halflingbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Humanbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Reptilian-humanoidbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Orcbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Magical-beastbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Monstrous-humanoidbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Oozebane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Air-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Chaotic-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Earth-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Fire-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Lawful-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Good-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Evil-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Water-outsiderbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Plantbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Undeadbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Verminbane</name>
-        <attribute>1</attribute>
-        <attribute>Bane</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bane</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Bashing</name>
-        <attribute>1</attribute>
-        <attribute>Bashing</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Bashing</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Blinding</name>
-        <attribute>1</attribute>
-        <attribute>Blinding</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Blinding</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Brilliant energy</name>
-        <attribute>4</attribute>
-        <attribute>Brilliant energy</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>4</entry>
+        <entry>Brilliant energy</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Cold resistance</name>
-        <attribute>0</attribute>
-        <attribute>Cold resistance</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Cold resistance</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Dancing</name>
-        <attribute>4</attribute>
-        <attribute>Dancing</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>4</entry>
+        <entry>Dancing</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Defending</name>
-        <attribute>1</attribute>
-        <attribute>Defending</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Defending</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Disruption</name>
-        <attribute>2</attribute>
-        <attribute>Disruption</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Disruption</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Distance</name>
-        <attribute>1</attribute>
-        <attribute>Distance</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Distance</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Electricity resistance</name>
-        <attribute>0</attribute>
-        <attribute>Electricity resistance</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Electricity resistance</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Etherealness</name>
-        <attribute>0</attribute>
-        <attribute>Etherealness</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Etherealness</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Fire resistance</name>
-        <attribute>0</attribute>
-        <attribute>Fire resistance</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Fire resistance</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Flaming burst</name>
-        <attribute>2</attribute>
-        <attribute>Flaming</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Flaming</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Flaming</name>
-        <attribute>1</attribute>
-        <attribute>Flaming</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Flaming</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Frost</name>
-        <attribute>1</attribute>
-        <attribute>Frost</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Frost</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Ghost touch (armor)</name>
-        <attribute>3</attribute>
-        <attribute>Ghost touch</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Ghost touch</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Ghost touch (weapon)</name>
-        <attribute>1</attribute>
-        <attribute>Ghost touch</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Ghost touch</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Glamered</name>
-        <attribute>0</attribute>
-        <attribute>Glamered</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Glamered</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Greater acid resistance</name>
-        <attribute>0</attribute>
-        <attribute>Acid resistance</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Acid resistance</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater cold resistance</name>
-        <attribute>0</attribute>
-        <attribute>Cold resistance</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Cold resistance</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater electricity resistance</name>
-        <attribute>0</attribute>
-        <attribute>Electricity resistance</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Electricity resistance</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater fire resistance</name>
-        <attribute>0</attribute>
-        <attribute>Fire resistance</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Fire resistance</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater slick</name>
-        <attribute>0</attribute>
-        <attribute>Slick</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Slick</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater shadow</name>
-        <attribute>0</attribute>
-        <attribute>Shadow</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Shadow</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater silent moves</name>
-        <attribute>0</attribute>
-        <attribute>Silent moves</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Silent moves</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Greater sonic resistance</name>
-        <attribute>0</attribute>
-        <attribute>Sonic resistance</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Sonic resistance</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Heavy fortification</name>
-        <attribute>5</attribute>
-        <attribute>Fortification</attribute>
-        <attribute>3</attribute>
-    </object>
-    <object>
+        <entry>5</entry>
+        <entry>Fortification</entry>
+        <entry>3</entry>
+    </collection>
+    <collection>
         <name>Holy</name>
-        <attribute>2</attribute>
-        <attribute>Holy</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Holy</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Icy burst</name>
-        <attribute>2</attribute>
-        <attribute>Frost</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Frost</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved acid resistance</name>
-        <attribute>0</attribute>
-        <attribute>Acid resistance</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Acid resistance</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved cold resistance</name>
-        <attribute>0</attribute>
-        <attribute>Cold resistance</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Cold resistance</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved electricity resistance</name>
-        <attribute>0</attribute>
-        <attribute>Electricity resistance</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Electricity resistance</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved fire resistance</name>
-        <attribute>0</attribute>
-        <attribute>Fire resistance</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Fire resistance</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved slick</name>
-        <attribute>0</attribute>
-        <attribute>Slick</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Slick</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved shadow</name>
-        <attribute>0</attribute>
-        <attribute>Shadow</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Shadow</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved silent moves</name>
-        <attribute>0</attribute>
-        <attribute>Silent moves</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Silent moves</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Improved sonic resistance</name>
-        <attribute>0</attribute>
-        <attribute>Sonic resistance</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Sonic resistance</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Invulnerability</name>
-        <attribute>3</attribute>
-        <attribute>Invulnerability</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Invulnerability</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Keen</name>
-        <attribute>1</attribute>
-        <attribute>Keen</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Keen</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Ki focus</name>
-        <attribute>1</attribute>
-        <attribute>Ki focus</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Ki focus</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Light fortification</name>
-        <attribute>1</attribute>
-        <attribute>Fortification</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Fortification</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Merciful</name>
-        <attribute>1</attribute>
-        <attribute>Merciful</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Merciful</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Mighty cleaving</name>
-        <attribute>1</attribute>
-        <attribute>Mighty cleaving</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Mighty cleaving</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Moderate fortification</name>
-        <attribute>3</attribute>
-        <attribute>Fortification</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Fortification</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Reflecting</name>
-        <attribute>5</attribute>
-        <attribute>Reflecting</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>5</entry>
+        <entry>Reflecting</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Returning</name>
-        <attribute>1</attribute>
-        <attribute>Returning</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Returning</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Seeking</name>
-        <attribute>1</attribute>
-        <attribute>Seeking</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Seeking</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Shadow</name>
-        <attribute>0</attribute>
-        <attribute>Shadow</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Shadow</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Shock</name>
-        <attribute>1</attribute>
-        <attribute>Shock</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Shock</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Shocking burst</name>
-        <attribute>2</attribute>
-        <attribute>Shock</attribute>
-        <attribute>2</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Shock</entry>
+        <entry>2</entry>
+    </collection>
+    <collection>
         <name>Silent moves</name>
-        <attribute>0</attribute>
-        <attribute>Silent moves</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Silent moves</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Slick</name>
-        <attribute>0</attribute>
-        <attribute>Slick</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Slick</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Sonic resistance</name>
-        <attribute>0</attribute>
-        <attribute>Sonic resistance</attribute>
-        <attribute>1</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Sonic resistance</entry>
+        <entry>1</entry>
+    </collection>
+    <collection>
         <name>Speed</name>
-        <attribute>3</attribute>
-        <attribute>Speed</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Speed</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Spell resistance (13)</name>
-        <attribute>2</attribute>
-        <attribute>Spell resistance</attribute>
-        <attribute>13</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Spell resistance</entry>
+        <entry>13</entry>
+    </collection>
+    <collection>
         <name>Spell resistance (15)</name>
-        <attribute>3</attribute>
-        <attribute>Spell resistance</attribute>
-        <attribute>15</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Spell resistance</entry>
+        <entry>15</entry>
+    </collection>
+    <collection>
         <name>Spell resistance (17)</name>
-        <attribute>4</attribute>
-        <attribute>Spell resistance</attribute>
-        <attribute>17</attribute>
-    </object>
-    <object>
+        <entry>4</entry>
+        <entry>Spell resistance</entry>
+        <entry>17</entry>
+    </collection>
+    <collection>
         <name>Spell resistance (19)</name>
-        <attribute>5</attribute>
-        <attribute>Spell resistance</attribute>
-        <attribute>19</attribute>
-    </object>
-    <object>
+        <entry>5</entry>
+        <entry>Spell resistance</entry>
+        <entry>19</entry>
+    </collection>
+    <collection>
         <name>Spell storing</name>
-        <attribute>1</attribute>
-        <attribute>Spell storing</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Spell storing</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Throwing</name>
-        <attribute>1</attribute>
-        <attribute>Throwing</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Throwing</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Thundering</name>
-        <attribute>1</attribute>
-        <attribute>Thundering</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Thundering</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Undead controlling</name>
-        <attribute>0</attribute>
-        <attribute>Undead controlling</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>0</entry>
+        <entry>Undead controlling</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Unholy</name>
-        <attribute>2</attribute>
-        <attribute>Unholy</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>2</entry>
+        <entry>Unholy</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Vicious</name>
-        <attribute>1</attribute>
-        <attribute>Vicious</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>1</entry>
+        <entry>Vicious</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Vorpal</name>
-        <attribute>5</attribute>
-        <attribute>Vorpal</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>5</entry>
+        <entry>Vorpal</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Wild</name>
-        <attribute>3</attribute>
-        <attribute>Wild</attribute>
-        <attribute>0</attribute>
-    </object>
-    <object>
+        <entry>3</entry>
+        <entry>Wild</entry>
+        <entry>0</entry>
+    </collection>
+    <collection>
         <name>Wounding</name>
-        <attribute>2</attribute>
-        <attribute>Wounding</attribute>
-        <attribute>0</attribute>
-    </object>
-</abilities>
+        <entry>2</entry>
+        <entry>Wounding</entry>
+        <entry>0</entry>
+    </collection>
+</collections>

@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator ringGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<IPercentileSelector> mockPercentileSelector;
+        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
@@ -32,9 +32,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockPercentileSelector = new Mock<IPercentileSelector>();
+            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             selection = new TypeAndAmountSelection();
-            var generator = new ConfigurableIterativeGenerator(5);
+            var generator = new IterativeGeneratorWithoutLogging(5);
             ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object, generator);
             power = "power";
             itemVerifier = new ItemVerifier();

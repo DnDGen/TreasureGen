@@ -18,12 +18,11 @@ namespace TreasureGen.Tests.Integration.Stress.Items
         [Test]
         public void StressItems()
         {
-            Stress(GenerateAndAssertItems);
+            stressor.Stress(() => GenerateAndAssertItems());
         }
 
-        private void GenerateAndAssertItems()
+        private void GenerateAndAssertItems(int level = 0)
         {
-            var level = GetNewLevel();
             var items = GenerateItems(level);
             Assert.That(items, Is.Not.Null);
 
@@ -45,14 +44,14 @@ namespace TreasureGen.Tests.Integration.Stress.Items
         [Test]
         public void ItemsHappen()
         {
-            var items = GenerateOrFail(() => GenerateItems(), i => i.Any());
+            var items = stressor.GenerateOrFail(() => GenerateItems(), i => i.Any());
             Assert.That(items, Is.Not.Empty);
         }
 
         [Test]
         public void ItemsDoNotHappen()
         {
-            var items = GenerateOrFail(() => GenerateItems(), i => !i.Any());
+            var items = stressor.GenerateOrFail(() => GenerateItems(), i => !i.Any());
             Assert.That(items, Is.Empty);
         }
     }

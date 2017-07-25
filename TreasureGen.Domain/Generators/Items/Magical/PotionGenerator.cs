@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -12,11 +13,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class PotionGenerator : MagicalItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly IPercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
 
-        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, IPercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
+        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
@@ -58,6 +59,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateAtPower(power),
                 p => subset.Any(n => p.NameMatches(n)),
                 () => GenerateDefaultFrom(power, subset),
+                p => $"{p.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Potion from [{string.Join(", ", subset)}]");
 
             return potion;

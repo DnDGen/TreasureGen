@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using DnDGen.Core.Tables;
+using Ninject.Modules;
 using TreasureGen.Domain.Tables;
 
 namespace TreasureGen.Domain.IoC.Modules
@@ -7,7 +8,7 @@ namespace TreasureGen.Domain.IoC.Modules
     {
         public override void Load()
         {
-            Bind<IStreamLoader>().To<EmbeddedResourceStreamLoader>();
+            Bind<AssemblyLoader>().To<TreasureGenAssemblyLoader>();
         }
     }
 }

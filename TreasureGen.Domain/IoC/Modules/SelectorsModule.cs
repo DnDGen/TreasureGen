@@ -12,13 +12,9 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<IIntelligenceDataSelector>().To<IntelligenceDataSelector>();
             Bind<IRangeDataSelector>().To<RangeDataSelector>();
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
-            Bind<ICollectionsSelector>().To<CollectionsSelector>();
-            Bind<IBooleanPercentileSelector>().To<BooleanPercentileSelector>();
             Bind<IArmorDataSelector>().To<ArmorDataSelector>();
             Bind<IWeaponDataSelector>().To<WeaponDataSelector>();
-
-            Bind<IPercentileSelector>().To<PercentileSelector>().WhenInjectedInto<ReplacePercentileSelectorDecorator>();
-            Bind<IPercentileSelector>().To<ReplacePercentileSelectorDecorator>();
+            Bind<ITreasurePercentileSelector>().To<PercentileSelectorStringReplacementDecorator>();
         }
     }
 }

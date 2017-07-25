@@ -1,79 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>DESIGNATEDFOEbane</content>
         <upper>10</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>11</lower>
         <content>Defending</content>
         <upper>17</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>18</lower>
         <content>Flaming</content>
         <upper>27</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>28</lower>
         <content>Frost</content>
         <upper>37</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>38</lower>
         <content>Shock</content>
         <upper>47</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>48</lower>
         <content>Ghost touch (weapon)</content>
         <upper>56</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>57</lower>
         <content>Keen</content>
         <upper>67</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>68</lower>
         <content>Ki focus</content>
         <upper>71</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>72</lower>
         <content>Merciful</content>
         <upper>75</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>76</lower>
         <content>Mighty cleaving</content>
         <upper>82</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>83</lower>
         <content>Spell storing</content>
         <upper>87</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>88</lower>
         <content>Throwing</content>
         <upper>91</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>92</lower>
         <content>Thundering</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Vicious</content>
         <upper>99</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>100</lower>
         <content>BonusSpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

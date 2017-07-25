@@ -1,52 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-  <object>
+<collections>
+  <collection>
     <name>Breastplate</name>
-    <attribute>Adamantine</attribute>
-  </object>
-  <object>
+    <entry>Adamantine</entry>
+  </collection>
+  <collection>
     <name>Dwarven plate</name>
-    <attribute>Adamantine</attribute>
-  </object>
-  <object>
+    <entry>Adamantine</entry>
+  </collection>
+  <collection>
     <name>Elven chain</name>
-    <attribute>Mithral</attribute>
-  </object>
-  <object>
+    <entry>Mithral</entry>
+  </collection>
+  <collection>
     <name>Full plate of speed</name>
-    <attribute>Mithral</attribute>
-  </object>
-  <object>
+    <entry>Mithral</entry>
+  </collection>
+  <collection>
     <name>Chain shirt</name>
-    <attribute>Mithral</attribute>
-  </object>
-  <object>
+    <entry>Mithral</entry>
+  </collection>
+  <collection>
     <name>Full plate</name>
-    <attribute>Dragonhide</attribute>
-  </object>
-  <object>
+    <entry>Dragonhide</entry>
+  </collection>
+  <collection>
     <name>Banded mail of luck</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Breastplate of command</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Celestial armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Demon armor</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Plate armor of the deep</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Rhino hide</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Armor of rage</name>
-  </object>
-  <object>
+  </collection>
+  <collection>
     <name>Armor of arrow attraction</name>
-  </object>
-</attributes>
+  </collection>
+</collections>

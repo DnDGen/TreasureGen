@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>Buckler,0</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>Heavy wooden shield,0</content>
         <upper>45</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>46</lower>
         <content>Heavy steel shield,0</content>
         <upper>70</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>71</lower>
         <content>Caster's shield,1</content>
         <upper>85</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>86</lower>
         <content>Spined shield,1</content>
         <upper>90</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>91</lower>
         <content>Lion's shield,2</content>
         <upper>95</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>96</lower>
         <content>Winged shield,3</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

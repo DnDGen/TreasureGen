@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content>3</content>
         <upper>20</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>21</lower>
         <content>4</content>
         <upper>38</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>39</lower>
         <content>5</content>
         <upper>49</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>50</lower>
         <content>Weapon</content>
         <upper>63</upper>
-    </object>
-    <object>
+    </percentile>
+    <percentile>
         <lower>64</lower>
         <content>SpecialAbility</content>
         <upper>100</upper>
-    </object>
-</percentile>
+    </percentile>
+</percentiles>

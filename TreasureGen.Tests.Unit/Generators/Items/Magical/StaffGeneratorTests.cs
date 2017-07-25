@@ -1,10 +1,10 @@
-﻿using Moq;
+﻿using DnDGen.Core.Generators;
+using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items;
 using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
 using TreasureGen.Domain.Selectors.Percentiles;
 using TreasureGen.Domain.Selectors.Selections;
 using TreasureGen.Domain.Tables;
@@ -35,13 +35,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
-            generator = new ConfigurableIterativeGenerator(5);
+            generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
-            var mockMundaneGeneratorFactory = new Mock<IMundaneItemGeneratorFactory>();
+            var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
 
-            mockMundaneGeneratorFactory.Setup(f => f.CreateGeneratorOf(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
-            staffGenerator = new StaffGenerator(mockTypeAndAmountPercentileSelector.Object, mockChargesGenerator.Object, mockCollectionsSelector.Object, mockSpecialAbilitiesGenerator.Object, generator, mockMundaneGeneratorFactory.Object);
+            staffGenerator = new StaffGenerator(mockTypeAndAmountPercentileSelector.Object, mockChargesGenerator.Object, mockCollectionsSelector.Object, mockSpecialAbilitiesGenerator.Object, generator, mockJustInTimeFactory.Object);
             power = "power";
             itemVerifier = new ItemVerifier();
             selection = new TypeAndAmountSelection();

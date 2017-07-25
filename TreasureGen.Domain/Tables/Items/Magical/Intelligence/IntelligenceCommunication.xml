@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<attributes>
-    <object>
+<collections>
+    <collection>
         <name>12</name>
-        <attribute>Empathy</attribute>
-    </object>
-    <object>
+        <entry>Empathy</entry>
+    </collection>
+    <collection>
         <name>13</name>
-        <attribute>Empathy</attribute>
-    </object>
-    <object>
+        <entry>Empathy</entry>
+    </collection>
+    <collection>
         <name>14</name>
-        <attribute>Speech</attribute>
-    </object>
-    <object>
+        <entry>Speech</entry>
+    </collection>
+    <collection>
         <name>15</name>
-        <attribute>Speech</attribute>
-    </object>
-    <object>
+        <entry>Speech</entry>
+    </collection>
+    <collection>
         <name>16</name>
-        <attribute>Speech</attribute>
-        <attribute>Read</attribute>
-    </object>
-    <object>
+        <entry>Speech</entry>
+        <entry>Read</entry>
+    </collection>
+    <collection>
         <name>17</name>
-        <attribute>Speech</attribute>
-        <attribute>Read</attribute>
-        <attribute>Telepathy</attribute>
-    </object>
-    <object>
+        <entry>Speech</entry>
+        <entry>Read</entry>
+        <entry>Telepathy</entry>
+    </collection>
+    <collection>
         <name>18</name>
-        <attribute>Speech</attribute>
-        <attribute>Read all languages</attribute>
-        <attribute>Read magic</attribute>
-        <attribute>Telepathy</attribute>
-    </object>
-    <object>
+        <entry>Speech</entry>
+        <entry>Read all languages</entry>
+        <entry>Read magic</entry>
+        <entry>Telepathy</entry>
+    </collection>
+    <collection>
         <name>19</name>
-        <attribute>Speech</attribute>
-        <attribute>Read all languages</attribute>
-        <attribute>Read magic</attribute>
-        <attribute>Telepathy</attribute>
-    </object>
-</attributes>
+        <entry>Speech</entry>
+        <entry>Read all languages</entry>
+        <entry>Read magic</entry>
+        <entry>Telepathy</entry>
+    </collection>
+</collections>

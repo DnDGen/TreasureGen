@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<percentile>
-    <object>
+<percentiles>
+    <percentile>
         <lower>1</lower>
         <content></content>
         <upper>4</upper>
-    </object>
-  <object>
+    </percentile>
+  <percentile>
     <lower>5</lower>
     <content>Gem,4d8</content>
     <upper>63</upper>
-  </object>
-  <object>
+  </percentile>
+  <percentile>
     <lower>64</lower>
     <content>Art,3d8</content>
     <upper>100</upper>
-  </object>
-</percentile>
+  </percentile>
+</percentiles>
