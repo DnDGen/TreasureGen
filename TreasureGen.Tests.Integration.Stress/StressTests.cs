@@ -20,17 +20,20 @@ namespace TreasureGen.Tests.Integration.Stress
         [OneTimeSetUp]
         public void StressSetup()
         {
-            var runningAssembly = Assembly.GetExecutingAssembly();
+            var options = new StressorWithEventsOptions();
+            options.RunningAssembly = Assembly.GetExecutingAssembly();
 
 #if STRESS
-            var isFullStress = true;
+            options.IsFullStress = true;
 #else
-            var isFullStress = false;
+            options.IsFullStress = false;
 #endif
 
-            var clientIdManager = GetNewInstanceOf<ClientIDManager>();
-            var eventQueue = GetNewInstanceOf<GenEventQueue>();
-            stressor = new StressorWithEvents(isFullStress, runningAssembly, clientIdManager, eventQueue, "TreasureGen");
+            options.ClientIdManager = GetNewInstanceOf<ClientIDManager>();
+            options.EventQueue = GetNewInstanceOf<GenEventQueue>();
+            options.Source = "TreasureGen";
+
+            stressor = new StressorWithEvents(options);
         }
 
         protected int GetNewLevel()
