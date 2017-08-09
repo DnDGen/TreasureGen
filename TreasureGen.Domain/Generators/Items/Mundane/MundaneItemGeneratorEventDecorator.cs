@@ -7,8 +7,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class MundaneItemGeneratorEventDecorator : MundaneItemGenerator
     {
-        private GenEventQueue eventQueue;
-        private MundaneItemGenerator innerGenerator;
+        private readonly GenEventQueue eventQueue;
+        private readonly MundaneItemGenerator innerGenerator;
 
         public MundaneItemGeneratorEventDecorator(MundaneItemGenerator innerGenerator, GenEventQueue eventQueue)
         {

@@ -43,7 +43,7 @@
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>WondrousItem</content>
+        <content>Wondrous Item</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

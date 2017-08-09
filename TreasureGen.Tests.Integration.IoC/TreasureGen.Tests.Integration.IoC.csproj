@@ -45,7 +45,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Core.1.1.0\lib\DnDGen.Core.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Core.2.2.0\lib\DnDGen.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -80,7 +80,6 @@
     <Compile Include="IoCTests.cs" />
     <Compile Include="Modules\GeneratorsModuleTests.cs" />
     <Compile Include="Modules\SelectorsModuleTests.cs" />
-    <Compile Include="Modules\TablesModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

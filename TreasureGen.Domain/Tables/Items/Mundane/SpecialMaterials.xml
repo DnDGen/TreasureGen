@@ -1,30 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <collections>
-    <collection>
-        <name>Adamantine</name>
-        <entry>Metal</entry>
-    </collection>
-    <collection>
-        <name>Dragonhide</name>
-        <entry>Armor</entry>
-    </collection>
-    <collection>
-        <name>Cold iron</name>
-        <entry>Weapon</entry>
-        <entry>Metal</entry>
-    </collection>
-    <collection>
-        <name>Mithral</name>
-        <entry>Metal</entry>
-    </collection>
-    <collection>
-        <name>Alchemical silver</name>
-        <entry>Weapon</entry>
-        <entry>Metal</entry>
-    </collection>
-    <collection>
-        <name>Darkwood</name>
-        <entry>Wood</entry>
-    </collection>
+  <collection>
+    <name>Adamantine</name>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
+    <name>Dragonhide</name>
+    <entry>Armor</entry>
+  </collection>
+  <collection>
+    <name>Cold iron</name>
+    <entry>Weapon</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
+    <name>Mithral</name>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
+    <name>Alchemical silver</name>
+    <entry>Weapon</entry>
+    <entry>Metal</entry>
+  </collection>
+  <collection>
+    <name>Darkwood</name>
+    <entry>Wood</entry>
+  </collection>
+  <collection>
+    <name>Masterwork</name>
+    <entry>Adamantine</entry>
+    <entry>Darkwood</entry>
+    <entry>Dragonhide</entry>
+    <entry>Mithral</entry>
+  </collection>
 </collections>

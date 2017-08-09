@@ -13,14 +13,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class PotionGenerator : MagicalItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly Generator generator;
 
-        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
+        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.generator = generator;
         }

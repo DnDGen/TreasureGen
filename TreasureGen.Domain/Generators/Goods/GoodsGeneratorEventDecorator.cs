@@ -7,8 +7,8 @@ namespace TreasureGen.Domain.Generators.Goods
 {
     internal class GoodsGeneratorEventDecorator : IGoodsGenerator
     {
-        private GenEventQueue eventQueue;
-        private IGoodsGenerator innerGenerator;
+        private readonly GenEventQueue eventQueue;
+        private readonly IGoodsGenerator innerGenerator;
 
         public GoodsGeneratorEventDecorator(IGoodsGenerator innerGenerator, GenEventQueue eventQueue)
         {

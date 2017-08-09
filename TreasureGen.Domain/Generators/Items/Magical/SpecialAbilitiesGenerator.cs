@@ -14,10 +14,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private const int MaxBonus = 10;
 
-        private ICollectionsSelector collectionsSelector;
-        private ISpecialAbilityDataSelector specialAbilityAttributesSelector;
-        private ITreasurePercentileSelector percentileSelector;
-        private Dice dice;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ISpecialAbilityDataSelector specialAbilityAttributesSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
+        private readonly Dice dice;
 
         public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityAttributesSelector, Dice dice)
         {

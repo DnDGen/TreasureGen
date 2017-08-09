@@ -5,8 +5,8 @@ namespace TreasureGen.Domain.Generators.Coins
 {
     internal class CoinGeneratorEventDecorator : ICoinGenerator
     {
-        private GenEventQueue eventQueue;
-        private ICoinGenerator innerGenerator;
+        private readonly GenEventQueue eventQueue;
+        private readonly ICoinGenerator innerGenerator;
 
         public CoinGeneratorEventDecorator(ICoinGenerator innerGenerator, GenEventQueue eventQueue)
         {

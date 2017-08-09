@@ -6,7 +6,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class SpellGenerator : ISpellGenerator
     {
-        private ITreasurePercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
 
         public SpellGenerator(ITreasurePercentileSelector percentileSelector)
         {

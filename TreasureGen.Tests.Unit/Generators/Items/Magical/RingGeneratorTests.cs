@@ -17,7 +17,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator ringGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
@@ -32,10 +31,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             selection = new TypeAndAmountSelection();
             var generator = new IterativeGeneratorWithoutLogging(5);
-            ringGenerator = new RingGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object, generator);
+            ringGenerator = new RingGenerator(mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object, generator);
             power = "power";
             itemVerifier = new ItemVerifier();
 

@@ -1,6 +1,5 @@
 ﻿using DnDGen.Core.Generators;
 using DnDGen.Core.Selectors.Collections;
-using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +20,6 @@ namespace TreasureGen.Domain.Generators.Items
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpellGenerator spellGenerator;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private readonly Dice dice;
         private readonly JustInTimeFactory justInTimeFactory;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
@@ -29,7 +27,6 @@ namespace TreasureGen.Domain.Generators.Items
             IChargesGenerator chargesGenerator,
             ITreasurePercentileSelector percentileSelector,
             ISpellGenerator spellGenerator,
-            Dice dice,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             JustInTimeFactory justInTimeFactory)
         {
@@ -38,7 +35,6 @@ namespace TreasureGen.Domain.Generators.Items
             this.chargesGenerator = chargesGenerator;
             this.percentileSelector = percentileSelector;
             this.spellGenerator = spellGenerator;
-            this.dice = dice;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.justInTimeFactory = justInTimeFactory;
         }

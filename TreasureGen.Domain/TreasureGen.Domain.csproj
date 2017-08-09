@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Core.1.1.0\lib\DnDGen.Core.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Core.2.2.0\lib\DnDGen.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -109,7 +109,6 @@
     <Compile Include="Generators\TreasureGeneratorEventDecorator.cs" />
     <Compile Include="IoC\Modules\GeneratorsModule.cs" />
     <Compile Include="IoC\Modules\SelectorsModule.cs" />
-    <Compile Include="IoC\Modules\TablesModule.cs" />
     <Compile Include="IoC\TreasureGenModuleLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectors\Collections\ArmorDataSelector.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="Tables\AmountConstants.cs" />
     <Compile Include="Tables\DataIndexConstants.cs" />
     <Compile Include="Tables\TableNameConstants.cs" />
-    <Compile Include="Tables\TreasureGenAssemblyLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Coins\Level10Coins.xml" />
@@ -432,7 +430,7 @@
     <EmbeddedResource Include="Tables\Items\Magical\Curses\IsItemCursed.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\Curses\LivingCreatureTraits.xml">
+    <EmbeddedResource Include="Tables\Items\Magical\Curses\Living CreatureTraits.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -476,7 +474,7 @@
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsArmorIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsLivingCreatureIntelligent.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsLiving CreatureIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsMeleeIntelligent.xml" />
@@ -491,7 +489,7 @@
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRodIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsWondrousItemIntelligent.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsWondrous ItemIntelligent.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\ItemAlignmentRequirements.xml" />
@@ -747,13 +745,13 @@
     <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\IsDeckOfIllusionsFullyCharged.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MajorWondrousItems.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MajorWondrous Items.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MediumWondrousItems.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MediumWondrous Items.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MinorWondrousItems.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\MinorWondrous Items.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\Planes.xml" />
@@ -765,13 +763,13 @@
     <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\RobeOfUsefulItemsExtraItems.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemAttributes.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\Wondrous ItemAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemContents.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\WondrousItemTraits.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\WondrousItems\Wondrous ItemTraits.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Tables\Items\Mundane\Alchemical\AlchemicalItems.xml" />

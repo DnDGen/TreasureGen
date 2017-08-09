@@ -5,8 +5,8 @@ namespace TreasureGen.Domain.Generators
 {
     internal class TreasureGeneratorEventDecorator : ITreasureGenerator
     {
-        private GenEventQueue eventQueue;
-        private ITreasureGenerator innerGenerator;
+        private readonly GenEventQueue eventQueue;
+        private readonly ITreasureGenerator innerGenerator;
 
         public TreasureGeneratorEventDecorator(ITreasureGenerator innerGenerator, GenEventQueue eventQueue)
         {

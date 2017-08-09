@@ -6,8 +6,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorTraitsDecorator : MagicalItemGenerator
     {
-        private MagicalItemGenerator innerGenerator;
-        private IMagicalItemTraitsGenerator traitsGenerator;
+        private readonly MagicalItemGenerator innerGenerator;
+        private readonly IMagicalItemTraitsGenerator traitsGenerator;
 
         public MagicalItemGeneratorTraitsDecorator(MagicalItemGenerator innerGenerator, IMagicalItemTraitsGenerator traitsGenerator)
         {
@@ -40,7 +40,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item GenerateAtPower(string power)
         {
             var item = innerGenerator.GenerateAtPower(power);
-            if (item.IsMagical == false)
+            if (!item.IsMagical)
                 return item;
 
             item = AddTraits(item);
@@ -51,7 +51,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public Item GenerateFromSubset(string power, IEnumerable<string> subset)
         {
             var item = innerGenerator.GenerateFromSubset(power, subset);
-            if (item.IsMagical == false)
+            if (!item.IsMagical)
                 return item;
 
             item = AddTraits(item);

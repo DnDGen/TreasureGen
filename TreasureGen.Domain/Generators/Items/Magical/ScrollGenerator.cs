@@ -9,8 +9,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class ScrollGenerator : MagicalItemGenerator
     {
-        private Dice dice;
-        private ISpellGenerator spellGenerator;
+        private readonly Dice dice;
+        private readonly ISpellGenerator spellGenerator;
 
         public ScrollGenerator(Dice dice, ISpellGenerator spellGenerator)
         {

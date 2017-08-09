@@ -6,7 +6,7 @@ namespace TreasureGen.Domain.Generators.Coins
 {
     internal class CoinGenerator : ICoinGenerator
     {
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
 
         public CoinGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {

@@ -8,7 +8,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorMundaneProxy : MagicalItemGenerator
     {
-        private MagicalItemGenerator innerGenerator;
+        private readonly MagicalItemGenerator innerGenerator;
 
         public MagicalItemGeneratorMundaneProxy(MagicalItemGenerator innerGenerator)
         {

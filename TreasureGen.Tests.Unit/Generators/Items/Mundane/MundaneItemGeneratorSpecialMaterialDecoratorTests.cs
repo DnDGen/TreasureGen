@@ -1,8 +1,10 @@
-﻿using Moq;
+﻿using DnDGen.Core.Selectors.Collections;
+using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using TreasureGen.Domain.Generators.Items.Mundane;
 using TreasureGen.Domain.Items.Mundane;
+using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
 
@@ -15,16 +17,22 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<ISpecialMaterialGenerator> mockMaterialGenerator;
         private Mock<MundaneItemGenerator> mockInnerGenerator;
         private Item item;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private List<string> masterworkMaterials;
 
         [SetUp]
         public void Setup()
         {
             mockMaterialGenerator = new Mock<ISpecialMaterialGenerator>();
             mockInnerGenerator = new Mock<MundaneItemGenerator>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            decorator = new MundaneItemGeneratorSpecialMaterialDecorator(mockInnerGenerator.Object, mockMaterialGenerator.Object, mockCollectionsSelector.Object);
+
             item = new Item();
-            decorator = new MundaneItemGeneratorSpecialMaterialDecorator(mockInnerGenerator.Object, mockMaterialGenerator.Object);
+            masterworkMaterials = new List<string>();
 
             mockInnerGenerator.Setup(g => g.Generate()).Returns(item);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork)).Returns(masterworkMaterials);
         }
 
         [Test]
@@ -223,59 +231,55 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(decoratedItem.Attributes, Is.All.Not.EqualTo(AttributeConstants.Wood));
         }
 
-        [TestCase(TraitConstants.SpecialMaterials.Adamantine)]
-        [TestCase(TraitConstants.SpecialMaterials.Darkwood)]
-        [TestCase(TraitConstants.SpecialMaterials.Dragonhide)]
-        [TestCase(TraitConstants.SpecialMaterials.Mithral)]
-        public void SpecialMaterialIsMasterwork(string material)
+        [Test]
+        public void SpecialMaterialIsMasterwork()
         {
+            masterworkMaterials.Add("special material");
+
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true)
                 .Returns(false);
-            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(material);
+            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
 
             var decoratedItem = decorator.Generate();
-            Assert.That(decoratedItem.Traits, Contains.Item(material));
+            Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
-        [TestCase(TraitConstants.SpecialMaterials.Adamantine)]
-        [TestCase(TraitConstants.SpecialMaterials.Darkwood)]
-        [TestCase(TraitConstants.SpecialMaterials.Dragonhide)]
-        [TestCase(TraitConstants.SpecialMaterials.Mithral)]
-        public void SpecialMaterialFromItemIsMasterwork(string material)
+        [Test]
+        public void SpecialMaterialFromItemIsMasterwork()
         {
+            masterworkMaterials.Add("special material");
+
             mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(false);
-            item.Traits.Add(material);
+            item.Traits.Add("special material");
 
             var decoratedItem = decorator.Generate();
-            Assert.That(decoratedItem.Traits, Contains.Item(material));
+            Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
-        [TestCase(TraitConstants.SpecialMaterials.AlchemicalSilver)]
-        [TestCase(TraitConstants.SpecialMaterials.ColdIron)]
-        public void SpecialMaterialIsNotMasterwork(string material)
+        [Test]
+        public void SpecialMaterialIsNotMasterwork()
         {
             mockMaterialGenerator.SetupSequence(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>()))
                 .Returns(true)
                 .Returns(false);
-            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(material);
+            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
 
             var decoratedItem = decorator.Generate();
-            Assert.That(decoratedItem.Traits, Contains.Item(material));
+            Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
         }
 
-        [TestCase(TraitConstants.SpecialMaterials.AlchemicalSilver)]
-        [TestCase(TraitConstants.SpecialMaterials.ColdIron)]
-        public void SpecialMaterialFromItemIsNotMasterwork(string material)
+        [Test]
+        public void SpecialMaterialFromItemIsNotMasterwork()
         {
             mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(false);
-            item.Traits.Add(material);
+            item.Traits.Add("special material");
 
             var decoratedItem = decorator.Generate();
-            Assert.That(decoratedItem.Traits, Contains.Item(material));
+            Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
         }
     }

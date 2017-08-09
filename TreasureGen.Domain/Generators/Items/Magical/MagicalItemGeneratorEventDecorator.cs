@@ -7,8 +7,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorEventDecorator : MagicalItemGenerator
     {
-        private GenEventQueue eventQueue;
-        private MagicalItemGenerator innerGenerator;
+        private readonly GenEventQueue eventQueue;
+        private readonly MagicalItemGenerator innerGenerator;
 
         public MagicalItemGeneratorEventDecorator(MagicalItemGenerator innerGenerator, GenEventQueue eventQueue)
         {

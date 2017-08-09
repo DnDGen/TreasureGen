@@ -2,7 +2,6 @@
 using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         private TypeAndAmountSelection selection;
         private string power;
         private string gearType;
-        private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
         private List<string> baseNames;
         private Armor mundaneArmor;
@@ -47,7 +45,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockDice = new Mock<Dice>();
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
             var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
@@ -61,7 +58,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items
                 mockChargesGenerator.Object,
                 mockPercentileSelector.Object,
                 mockSpellGenerator.Object,
-                mockDice.Object,
                 mockSpecialAbilitiesGenerator.Object,
                 mockJustInTimeFactory.Object);
 

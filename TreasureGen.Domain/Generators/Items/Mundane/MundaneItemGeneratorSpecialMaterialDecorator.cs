@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Items.Mundane;
+using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
 
@@ -10,20 +12,13 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     {
         private readonly MundaneItemGenerator innerGenerator;
         private readonly ISpecialMaterialGenerator specialMaterialGenerator;
-        private readonly IEnumerable<string> masterworkMaterials;
+        private readonly ICollectionsSelector collectionsSelector;
 
-        public MundaneItemGeneratorSpecialMaterialDecorator(MundaneItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
+        public MundaneItemGeneratorSpecialMaterialDecorator(MundaneItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator, ICollectionsSelector collectionsSelector)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;
-
-            masterworkMaterials = new[]
-            {
-                TraitConstants.SpecialMaterials.Adamantine,
-                TraitConstants.SpecialMaterials.Darkwood,
-                TraitConstants.SpecialMaterials.Dragonhide,
-                TraitConstants.SpecialMaterials.Mithral,
-            };
+            this.collectionsSelector = collectionsSelector;
         }
 
         public Item Generate()
@@ -48,6 +43,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 }
             }
 
+            var masterworkMaterials = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork);
             if (item.Traits.Intersect(masterworkMaterials).Any())
                 item.Traits.Add(TraitConstants.Masterwork);
 

@@ -7,9 +7,9 @@ namespace TreasureGen.Domain.Generators
 {
     internal class TreasureGenerator : ITreasureGenerator
     {
-        private ICoinGenerator coinFactory;
-        private IGoodsGenerator goodsFactory;
-        private IItemsGenerator itemsFactory;
+        private readonly ICoinGenerator coinFactory;
+        private readonly IGoodsGenerator goodsFactory;
+        private readonly IItemsGenerator itemsFactory;
 
         public TreasureGenerator(ICoinGenerator coinFactory, IGoodsGenerator goodsFactory, IItemsGenerator itemsFactory)
         {

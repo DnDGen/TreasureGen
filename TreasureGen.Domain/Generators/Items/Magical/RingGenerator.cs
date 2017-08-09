@@ -12,22 +12,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class RingGenerator : MagicalItemGenerator
     {
-        private ITreasurePercentileSelector percentileSelector;
-        private ICollectionsSelector collectionsSelector;
-        private ISpellGenerator spellGenerator;
-        private IChargesGenerator chargesGenerator;
-        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private Generator generator;
+        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ISpellGenerator spellGenerator;
+        private readonly IChargesGenerator chargesGenerator;
+        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly Generator generator;
 
         public RingGenerator(
-            ITreasurePercentileSelector percentileSelector,
             ICollectionsSelector collectionsSelector,
             ISpellGenerator spellGenerator,
             IChargesGenerator chargesGenerator,
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             Generator generator)
         {
-            this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.spellGenerator = spellGenerator;
             this.chargesGenerator = chargesGenerator;

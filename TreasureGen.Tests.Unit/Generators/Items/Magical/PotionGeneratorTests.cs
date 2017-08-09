@@ -18,7 +18,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     {
         private MagicalItemGenerator potionGenerator;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private string power;
         private ItemVerifier itemVerifier;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
@@ -28,10 +27,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             generator = new IterativeGeneratorWithoutLogging(5);
-            potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
+            potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();
 
             var result = new TypeAndAmountSelection();

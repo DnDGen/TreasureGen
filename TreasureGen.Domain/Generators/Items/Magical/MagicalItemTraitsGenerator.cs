@@ -8,7 +8,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemTraitsGenerator : IMagicalItemTraitsGenerator
     {
-        private ITreasurePercentileSelector percentileSelector;
+        private readonly ITreasurePercentileSelector percentileSelector;
 
         public MagicalItemTraitsGenerator(ITreasurePercentileSelector percentileSelector)
         {

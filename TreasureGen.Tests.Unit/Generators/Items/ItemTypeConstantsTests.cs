@@ -1,13 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
 using TreasureGen.Items;
-using NUnit.Framework;
 
 namespace TreasureGen.Tests.Unit.Generators.Items
 {
     [TestFixture]
     public class ItemTypeConstantsTests
     {
-        [TestCase(ItemTypeConstants.AlchemicalItem, "AlchemicalItem")]
+        [TestCase(ItemTypeConstants.AlchemicalItem, "Alchemical Item")]
         [TestCase(ItemTypeConstants.Armor, "Armor")]
         [TestCase(ItemTypeConstants.Weapon, "Weapon")]
         [TestCase(ItemTypeConstants.Tool, "Tool")]
@@ -17,9 +16,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(ItemTypeConstants.Scroll, "Scroll")]
         [TestCase(ItemTypeConstants.Staff, "Staff")]
         [TestCase(ItemTypeConstants.Wand, "Wand")]
-        [TestCase(ItemTypeConstants.WondrousItem, "WondrousItem")]
-        [TestCase(ItemTypeConstants.LivingCreature, "LivingCreature")]
-        public void Constant(String constant, String value)
+        [TestCase(ItemTypeConstants.WondrousItem, "Wondrous Item")]
+        [TestCase(ItemTypeConstants.LivingCreature, "Living Creature")]
+        public void ItemTypeConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
         }

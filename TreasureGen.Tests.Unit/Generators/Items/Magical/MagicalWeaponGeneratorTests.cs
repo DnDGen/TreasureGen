@@ -2,7 +2,6 @@
 using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using RollGen;
 using System;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items;
@@ -26,7 +25,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ISpellGenerator> mockSpellGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
         private string power;
-        private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
         private Weapon mundaneWeapon;
 
@@ -38,7 +36,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            mockDice = new Mock<Dice>();
             var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
             var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
@@ -50,7 +47,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockSpecialAbilitiesGenerator.Object,
                 mockSpecificGearGenerator.Object,
                 mockSpellGenerator.Object,
-                mockDice.Object,
                 generator,
                 mockJustInTimeFactory.Object);
 

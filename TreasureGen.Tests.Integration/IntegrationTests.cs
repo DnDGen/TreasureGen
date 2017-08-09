@@ -10,7 +10,7 @@ namespace TreasureGen.Tests.Integration
     [TestFixture]
     public abstract class IntegrationTests
     {
-        private IKernel kernel;
+        protected IKernel kernel;
 
         public IntegrationTests()
         {

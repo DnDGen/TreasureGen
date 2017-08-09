@@ -7,8 +7,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorCurseDecorator : MagicalItemGenerator
     {
-        private MagicalItemGenerator innerGenerator;
-        private ICurseGenerator curseGenerator;
+        private readonly MagicalItemGenerator innerGenerator;
+        private readonly ICurseGenerator curseGenerator;
 
         public MagicalItemGeneratorCurseDecorator(MagicalItemGenerator innerGenerator, ICurseGenerator curseGenerator)
         {

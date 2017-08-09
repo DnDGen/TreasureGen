@@ -50,11 +50,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Stress, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Stress.2.0.0\lib\DnDGen.Stress.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Stress.2.0.1\lib\DnDGen.Stress.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Stress.Events, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Stress.Events.2.0.0\lib\DnDGen.Stress.Events.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Stress.Events.2.0.1\lib\DnDGen.Stress.Events.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

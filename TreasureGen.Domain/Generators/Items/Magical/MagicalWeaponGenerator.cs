@@ -1,6 +1,5 @@
 ﻿using DnDGen.Core.Generators;
 using DnDGen.Core.Selectors.Collections;
-using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
         private readonly ISpellGenerator spellGenerator;
-        private readonly Dice dice;
         private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
@@ -29,7 +27,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             ISpellGenerator spellGenerator,
-            Dice dice,
             Generator generator,
             JustInTimeFactory justInTimeFactory)
         {
@@ -38,7 +35,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.spellGenerator = spellGenerator;
-            this.dice = dice;
             this.generator = generator;
             this.justInTimeFactory = justInTimeFactory;
         }

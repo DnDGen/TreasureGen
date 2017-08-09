@@ -3,7 +3,7 @@
 <collections>
     <collection>
         <name>Incense of obsession</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Ring of Clumsiness</name>
@@ -11,19 +11,19 @@
     </collection>
     <collection>
         <name>Amulet of inescapable location</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Stone of weight (loadstone)</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Bracers of defenselessness</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Gauntlets of fumbling</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Cursed -2 sword</name>
@@ -35,19 +35,19 @@
     </collection>
     <collection>
         <name>Medallion of thought projection</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Flask of curses</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Dust of sneezing and choking</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Helm of opposite alignment</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Potion of poison</name>
@@ -55,15 +55,15 @@
     </collection>
     <collection>
         <name>Broom of animated attack</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Robe of powerlessness</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Vacuous grimoire</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Cursed backbiter spear</name>
@@ -79,7 +79,7 @@
     </collection>
     <collection>
         <name>Bag of devouring</name>
-        <entry>LivingCreature</entry>
+        <entry>Living Creature</entry>
     </collection>
     <collection>
         <name>Mace of blood</name>
@@ -87,11 +87,11 @@
     </collection>
     <collection>
         <name>Robe of vermin</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Periapt of foul rotting</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Berserking sword</name>
@@ -99,22 +99,22 @@
     </collection>
     <collection>
         <name>Boots of dancing</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Crystal hypnosis ball</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Necklace of strangulation</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Cloak of poisonousness</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
     <collection>
         <name>Scarab of death</name>
-        <entry>WondrousItem</entry>
+        <entry>Wondrous Item</entry>
     </collection>
 </collections>

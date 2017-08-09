@@ -6,8 +6,8 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalItemGeneratorIntelligenceDecorator : MagicalItemGenerator
     {
-        private MagicalItemGenerator innerGenerator;
-        private IIntelligenceGenerator intelligenceGenerator;
+        private readonly MagicalItemGenerator innerGenerator;
+        private readonly IIntelligenceGenerator intelligenceGenerator;
 
         public MagicalItemGeneratorIntelligenceDecorator(MagicalItemGenerator innerGenerator, IIntelligenceGenerator intelligenceGenerator)
         {

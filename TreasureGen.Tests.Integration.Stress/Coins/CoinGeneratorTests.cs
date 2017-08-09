@@ -32,7 +32,7 @@ namespace TreasureGen.Tests.Integration.Stress.Coins
         [Test]
         public void CurrencyHappens()
         {
-            var coin = stressor.GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency) == false);
+            var coin = stressor.GenerateOrFail(GenerateCoin, c => !string.IsNullOrEmpty(c.Currency));
             Assert.That(coin.Currency, Is.Not.Empty);
             Assert.That(coin.Quantity, Is.Positive);
         }

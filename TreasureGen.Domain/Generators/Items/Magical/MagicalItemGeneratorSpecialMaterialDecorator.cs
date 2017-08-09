@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.Core.Selectors.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Items.Mundane;
+using TreasureGen.Domain.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
@@ -10,20 +12,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private readonly MagicalItemGenerator innerGenerator;
         private readonly ISpecialMaterialGenerator specialMaterialGenerator;
-        private readonly IEnumerable<string> masterworkMaterials;
+        private readonly ICollectionsSelector collectionsSelector;
 
-        public MagicalItemGeneratorSpecialMaterialDecorator(MagicalItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator)
+        public MagicalItemGeneratorSpecialMaterialDecorator(MagicalItemGenerator innerGenerator, ISpecialMaterialGenerator specialMaterialGenerator, ICollectionsSelector collectionsSelector)
         {
             this.innerGenerator = innerGenerator;
             this.specialMaterialGenerator = specialMaterialGenerator;
-
-            masterworkMaterials = new[]
-            {
-                TraitConstants.SpecialMaterials.Adamantine,
-                TraitConstants.SpecialMaterials.Darkwood,
-                TraitConstants.SpecialMaterials.Dragonhide,
-                TraitConstants.SpecialMaterials.Mithral,
-            };
+            this.collectionsSelector = collectionsSelector;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
@@ -31,9 +26,6 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             item = AddSpecialMaterials(item, allowRandomDecoration);
-
-            if (item.Traits.Intersect(masterworkMaterials).Any())
-                item.Traits.Add(TraitConstants.Masterwork);
 
             return item;
         }
@@ -52,6 +44,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 }
             }
 
+            var masterworkMaterials = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork);
             if (item.Traits.Intersect(masterworkMaterials).Any())
                 item.Traits.Add(TraitConstants.Masterwork);
 

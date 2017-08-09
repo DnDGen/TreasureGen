@@ -69,6 +69,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
+        [Ignore("Shurikens are rare enough that they do not always occur within the time limit.")]
         public void BUG_ShurikenWithQuantityGreaterThan20Happens()
         {
             var shuriken = stressor.GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);

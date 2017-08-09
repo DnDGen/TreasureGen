@@ -2,7 +2,7 @@
 {
     public static class ItemTypeConstants
     {
-        public const string AlchemicalItem = "AlchemicalItem";
+        public const string AlchemicalItem = "Alchemical Item";
         public const string Armor = "Armor";
         public const string Weapon = "Weapon";
         public const string Tool = "Tool";
@@ -12,7 +12,7 @@
         public const string Scroll = "Scroll";
         public const string Staff = "Staff";
         public const string Wand = "Wand";
-        public const string WondrousItem = "WondrousItem";
-        public const string LivingCreature = "LivingCreature";
+        public const string WondrousItem = "Wondrous Item";
+        public const string LivingCreature = "Living Creature";
     }
 }

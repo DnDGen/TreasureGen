@@ -9,7 +9,6 @@ namespace TreasureGen.Domain.IoC
         {
             kernel.Load<GeneratorsModule>();
             kernel.Load<SelectorsModule>();
-            kernel.Load<TablesModule>();
         }
     }
 }
