@@ -24,7 +24,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.collectionsSelector = collectionsSelector;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var wand = new Item();
             wand.ItemType = ItemTypeConstants.Wand;
@@ -40,7 +40,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return wand;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var wand = template.Clone();
             wand.IsMagical = true;
@@ -52,10 +52,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return wand.SmartClone();
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var wand = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 w => subset.Any(n => w.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
                 w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -70,7 +70,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             template.Name = collectionsSelector.SelectRandomFrom(subset);
             template.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Wand, template.Name);
 
-            var defaultWand = Generate(template);
+            var defaultWand = GenerateFrom(template);
             return defaultWand;
         }
     }

@@ -18,7 +18,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.spellGenerator = spellGenerator;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var scroll = template.Clone();
             scroll.IsMagical = true;
@@ -30,7 +30,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return scroll.SmartClone();
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
@@ -53,12 +53,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return scroll;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             if (!subset.Contains(ItemTypeConstants.Scroll))
                 throw new ArgumentException("Cannot generate a non-scroll item");
 
-            var scroll = GenerateAtPower(power);
+            var scroll = GenerateFrom(power);
             return scroll;
         }
 

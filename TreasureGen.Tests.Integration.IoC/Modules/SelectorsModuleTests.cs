@@ -14,6 +14,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
+        public void TypeAndAmountPercentileSelectorIsDecorated()
+        {
+            var selector = InjectAndAssertDuration<ITypeAndAmountPercentileSelector>();
+            Assert.That(selector, Is.InstanceOf<TypeAndAmountPercentileSelectorEventDecorator>());
+        }
+
+        [Test]
         public void TreasurePercentileSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ITreasurePercentileSelector>();
@@ -30,6 +37,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         public void SpecialAbilityDataSelectorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ISpecialAbilityDataSelector>();
+        }
+
+        [Test]
+        public void SpecialAbilityDataSelectorIsDecorated()
+        {
+            var selector = InjectAndAssertDuration<ISpecialAbilityDataSelector>();
+            Assert.That(selector, Is.InstanceOf<SpecialAbilityDataSelectorEventDecorator>());
         }
 
         [Test]

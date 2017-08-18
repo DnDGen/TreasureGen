@@ -23,7 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.generator = generator;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -39,7 +39,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return potion;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var potion = template.Clone();
             potion.BaseNames = new[] { potion.Name };
@@ -51,10 +51,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return potion.SmartClone();
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var potion = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 p => subset.Any(n => p.NameMatches(n)),
                 () => GenerateDefaultFrom(power, subset),
                 p => $"{p.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -71,7 +71,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var result = GetResult(power, template.Name);
             template.Magic.Bonus = result.Amount;
 
-            var defaultPotion = Generate(template);
+            var defaultPotion = GenerateFrom(template);
             return defaultPotion;
         }
 
@@ -84,17 +84,38 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (result != null)
                 return result;
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion);
-            var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            if (power != PowerConstants.Minor)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion);
+                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Potion);
-            var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                result = minorResults.FirstOrDefault(r => r.Type == name);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion);
-            var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                if (result != null)
+                    return result;
+            }
 
-            results = minorResults.Union(mediumResults).Union(majorResults);
-            result = results.FirstOrDefault(r => r.Type == name);
+            if (power != PowerConstants.Medium)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Potion);
+                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = mediumResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
+
+            if (power != PowerConstants.Major)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion);
+                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = majorResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
 
             //INFO: This means the potion name replaces some fillable field such as ALIGNMENT, so we will assume a bonus of 0
             if (result == null)

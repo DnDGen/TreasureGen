@@ -35,15 +35,22 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override Item GenerateItem()
         {
             var power = GetNewPower(allowMinor);
-            return magicalItemGenerator.GenerateAtPower(power);
+            return magicalItemGenerator.GenerateFrom(power);
         }
 
         private Item GetRandomTemplate(string name)
         {
             var template = ItemVerifier.CreateRandomTemplate(name);
 
-            var abilitiesCount = Random.Next(specialAbilities.Count()) + 1;
-            var abilityNames = specialAbilities.Take(abilitiesCount);
+            var abilitiesCount = Random.Next(10) + 1;
+            var abilityNames = new HashSet<string>();
+
+            while (abilityNames.Count < abilitiesCount)
+            {
+                var abilityName = GetRandom(specialAbilities);
+                abilityNames.Add(abilityName);
+            }
+
             template.Magic.SpecialAbilities = abilityNames.Select(n => new SpecialAbility { Name = n });
 
             return template;
@@ -55,7 +62,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
             var template = GetRandomTemplate(name);
             var allowDecoration = Convert.ToBoolean(Random.Next(2));
 
-            var item = magicalItemGenerator.Generate(template, allowDecoration);
+            var item = magicalItemGenerator.GenerateFrom(template, allowDecoration);
             AssertItem(item);
             Assert.That(item.Name, Is.EqualTo(name));
 
@@ -77,7 +84,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
         {
             var power = GetNewPower(allowMinor);
-            return magicalItemGenerator.GenerateFromSubset(power, subset);
+            return magicalItemGenerator.GenerateFrom(power, subset);
         }
     }
 }

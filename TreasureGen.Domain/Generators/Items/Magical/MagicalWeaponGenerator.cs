@@ -39,7 +39,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             var bonus = percentileSelector.SelectFrom(tablename);
@@ -59,7 +59,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             var name = percentileSelector.SelectFrom(tablename);
             var template = CreateTemplate(name, power);
-            var weapon = Generate(template);
+            var weapon = GenerateFrom(template);
 
             weapon.Magic.Bonus = Convert.ToInt32(bonus);
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon, power, specialAbilitiesCount);
@@ -84,7 +84,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return weapon;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             if (specificGearGenerator.TemplateIsSpecific(template))
             {
@@ -109,10 +109,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return weapon;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var weapon = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 w => subset.Any(n => w.NameMatches(n)),
                 () => GetDefaultWeapon(power, subset),
                 w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -125,7 +125,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         {
             var name = collectionsSelector.SelectRandomFrom(subset);
             var template = CreateTemplate(name, power);
-            var defaultWeapon = Generate(template);
+            var defaultWeapon = GenerateFrom(template);
 
             return defaultWeapon;
         }

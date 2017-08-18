@@ -36,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staves");
@@ -87,7 +87,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return mundaneWeapon;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var staff = template.Clone();
             staff = BuildStaff(staff);
@@ -98,13 +98,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return staff.SmartClone();
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staffs");
 
             var staff = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 s => subset.Any(n => s.NameMatches(n)),
                 () => GenerateDefaultFrom(power, subset),
                 s => $"{s.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -128,7 +128,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             template.Magic.Bonus = selection.Amount;
 
-            var defaultStaff = Generate(template);
+            var defaultStaff = GenerateFrom(template);
 
             return defaultStaff;
         }

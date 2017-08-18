@@ -44,7 +44,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GeneratePotion()
         {
-            var potion = potionGenerator.GenerateAtPower(power);
+            var potion = potionGenerator.GenerateFrom(power);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -60,7 +60,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var potion = potionGenerator.Generate(template);
+            var potion = potionGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
             Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -75,7 +75,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var potion = potionGenerator.Generate(template, true);
+            var potion = potionGenerator.GenerateFrom(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
             Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -102,7 +102,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other potion", "potion" };
 
-            var potion = potionGenerator.GenerateFromSubset(power, subset);
+            var potion = potionGenerator.GenerateFrom(power, subset);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -127,7 +127,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other potion", "potion" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var potion = potionGenerator.GenerateFromSubset(power, subset);
+            var potion = potionGenerator.GenerateFrom(power, subset);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -169,7 +169,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other potion", "potion" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var potion = potionGenerator.GenerateFromSubset(power, subset);
+            var potion = potionGenerator.GenerateFrom(power, subset);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));

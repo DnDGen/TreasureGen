@@ -30,9 +30,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.GenerateAtPower("power")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power")).Returns(innerItem);
 
-            var item = decorator.GenerateAtPower("power");
+            var item = decorator.GenerateFrom("power");
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning power magical item generation"), Times.Once);
@@ -50,9 +50,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             template.Name = Guid.NewGuid().ToString();
             template.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(innerItem);
 
-            var item = decorator.Generate(template);
+            var item = decorator.GenerateFrom(template);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning magical item generation from template: {template.ItemType} {template.Name}"), Times.Once);
@@ -70,9 +70,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             template.Name = Guid.NewGuid().ToString();
             template.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
 
-            var Items = decorator.Generate(template, true);
+            var Items = decorator.GenerateFrom(template, true);
             Assert.That(Items, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning magical item generation from template: {template.ItemType} {template.Name}"), Times.Once);
@@ -87,9 +87,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             innerItem.ItemType = Guid.NewGuid().ToString();
 
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFromSubset("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
 
-            var item = decorator.GenerateFromSubset("power", subset);
+            var item = decorator.GenerateFrom("power", subset);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning power magical item generation from [{string.Join(", ", subset)}]"), Times.Once);

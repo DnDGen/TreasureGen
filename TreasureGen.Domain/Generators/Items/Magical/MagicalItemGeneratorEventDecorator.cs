@@ -16,28 +16,28 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.innerGenerator = innerGenerator;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning magical item generation from template: {template.ItemType} {template.Name}");
-            var item = innerGenerator.Generate(template, allowRandomDecoration);
+            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation");
-            var item = innerGenerator.GenerateAtPower(power);
+            var item = innerGenerator.GenerateFrom(power);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {power} {item.ItemType} {item.Name}");
 
             return item;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation from [{string.Join(", ", subset)}]");
-            var item = innerGenerator.GenerateFromSubset(power, subset);
+            var item = innerGenerator.GenerateFrom(power, subset);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {power} {item.ItemType} {item.Name}");
 
             return item;

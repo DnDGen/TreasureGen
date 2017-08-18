@@ -8,13 +8,17 @@ namespace TreasureGen.Domain.IoC.Modules
     {
         public override void Load()
         {
-            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>();
             Bind<IIntelligenceDataSelector>().To<IntelligenceDataSelector>();
             Bind<IRangeDataSelector>().To<RangeDataSelector>();
-            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
             Bind<IArmorDataSelector>().To<ArmorDataSelector>();
             Bind<IWeaponDataSelector>().To<WeaponDataSelector>();
             Bind<ITreasurePercentileSelector>().To<PercentileSelectorStringReplacementDecorator>();
+
+            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>().WhenInjectedInto<TypeAndAmountPercentileSelectorEventDecorator>();
+            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelectorEventDecorator>();
+
+            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>().WhenInjectedInto<SpecialAbilityDataSelectorEventDecorator>();
+            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelectorEventDecorator>();
         }
     }
 }

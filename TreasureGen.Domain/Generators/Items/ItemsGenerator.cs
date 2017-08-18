@@ -79,7 +79,7 @@ namespace TreasureGen.Domain.Generators.Items
             var itemType = percentileSelector.SelectFrom(tableName);
             var magicalItemGenerator = justInTimeFactory.Build<MagicalItemGenerator>(itemType);
 
-            return magicalItemGenerator.GenerateAtPower(power);
+            return magicalItemGenerator.GenerateFrom(power);
         }
     }
 }

@@ -17,11 +17,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning specific cursed item generation from template: {template.ItemType} {template.Name}");
+            eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item from template: {template.ItemType} {template.Name}");
             var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
             if (item != null)
-                eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
+                eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
             else
                 eventQueue.Enqueue("TreasureGen", $"No specific cursed item was generated");
 
@@ -30,11 +30,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate()
         {
-            eventQueue.Enqueue("TreasureGen", "Beginning specific cursed item generation");
+            eventQueue.Enqueue("TreasureGen", "Generating a specific cursed item");
             var item = innerGenerator.Generate();
 
             if (item != null)
-                eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
+                eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
             else
                 eventQueue.Enqueue("TreasureGen", $"No specific cursed item was generated");
 
@@ -43,11 +43,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(IEnumerable<string> subset)
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning specific cursed item generation from [{string.Join(", ", subset)}]");
+            eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]");
             var item = innerGenerator.GenerateFrom(subset);
 
             if (item != null)
-                eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
+                eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
             else
                 eventQueue.Enqueue("TreasureGen", $"No specific cursed item was generated");
 
@@ -56,9 +56,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public string GenerateCurse()
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning curse generation");
+            eventQueue.Enqueue("TreasureGen", $"Generating a curse");
             var curse = innerGenerator.GenerateCurse();
-            eventQueue.Enqueue("TreasureGen", $"Completed generation of {curse}");
+            eventQueue.Enqueue("TreasureGen", $"Generated a curse of {curse}");
 
             return curse;
         }

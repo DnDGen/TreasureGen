@@ -1,5 +1,4 @@
 ﻿using DnDGen.Core.Selectors.Collections;
-using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Collections;
@@ -15,21 +14,19 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private const int MaxBonus = 10;
 
         private readonly ICollectionsSelector collectionsSelector;
-        private readonly ISpecialAbilityDataSelector specialAbilityAttributesSelector;
+        private readonly ISpecialAbilityDataSelector specialAbilityDataSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly Dice dice;
 
-        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityAttributesSelector, Dice dice)
+        public SpecialAbilitiesGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityDataSelector)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
-            this.specialAbilityAttributesSelector = specialAbilityAttributesSelector;
-            this.dice = dice;
+            this.specialAbilityDataSelector = specialAbilityDataSelector;
         }
 
         public IEnumerable<SpecialAbility> GenerateFor(Item targetItem, string power, int quantity)
         {
-            if (targetItem.Magic.Bonus <= 0)
+            if (targetItem.Magic.Bonus <= 0 || quantity <= 0)
                 return Enumerable.Empty<SpecialAbility>();
 
             var tableNames = GetTableNames(targetItem, power);
@@ -135,7 +132,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private SpecialAbility GetSpecialAbility(string abilityName)
         {
             var ability = new SpecialAbility();
-            var abilitySelection = specialAbilityAttributesSelector.SelectFrom(abilityName);
+            var abilitySelection = specialAbilityDataSelector.SelectFrom(abilityName);
 
             ability.Name = abilityName;
             ability.BaseName = abilitySelection.BaseName;
@@ -172,8 +169,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             do
             {
-                var index = dice.Roll().d(tableNames.Count()).AsSum() - 1;
-                var tableName = tableNames.ElementAt(index);
+                var tableName = collectionsSelector.SelectRandomFrom(tableNames);
 
                 abilityName = percentileSelector.SelectFrom(tableName);
 
@@ -190,7 +186,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             foreach (var abilityPrototype in abilityPrototypes)
             {
-                if (specialAbilityAttributesSelector.IsSpecialAbility(abilityPrototype.Name))
+                if (specialAbilityDataSelector.IsSpecialAbility(abilityPrototype.Name))
                 {
                     var ability = GetSpecialAbility(abilityPrototype.Name);
                     abilities.Add(ability);

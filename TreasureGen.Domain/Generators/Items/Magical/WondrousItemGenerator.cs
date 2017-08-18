@@ -1,6 +1,7 @@
 ﻿using DnDGen.Core.Generators;
 using DnDGen.Core.Selectors.Collections;
 using RollGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -39,7 +40,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.generator = generator;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -199,7 +200,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return planes;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var item = template.Clone();
             item.IsMagical = true;
@@ -212,10 +213,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item.SmartClone();
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var item = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 i => subset.Any(n => i.NameMatches(n)),
                 () => CreateDefaultWondrousItem(power, subset),
                 i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -244,17 +245,40 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (result != null)
                 return result;
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.WondrousItem);
-            var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            if (power != PowerConstants.Minor)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.WondrousItem);
+                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.WondrousItem);
-            var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                result = minorResults.FirstOrDefault(r => r.Type == name);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.WondrousItem);
-            var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                if (result != null)
+                    return result;
+            }
 
-            results = minorResults.Union(mediumResults).Union(majorResults);
-            return results.First(r => r.Type == name);
+            if (power != PowerConstants.Medium)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.WondrousItem);
+                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = mediumResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
+
+            if (power != PowerConstants.Major)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.WondrousItem);
+                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = majorResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
+
+            throw new ArgumentException($"{name} is not a Wondrous Item");
         }
     }
 }

@@ -38,7 +38,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
             var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -68,7 +68,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return armor;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             if (specificGearGenerator.TemplateIsSpecific(template))
             {
@@ -92,10 +92,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return armor;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var armor = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 a => subset.Any(n => a.NameMatches(n)),
                 () => CreateDefaultArmor(power, subset),
                 a => $"{a.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -116,7 +116,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 template.Magic.Bonus = results.Where(r => r.Type != "SpecialAbility" && r.Amount > 0).Select(r => r.Amount).Min();
             }
 
-            var armor = Generate(template);
+            var armor = GenerateFrom(template);
             return armor;
         }
     }

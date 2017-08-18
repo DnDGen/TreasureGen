@@ -59,7 +59,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateWondrousItem()
         {
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(selection.Type));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -73,7 +73,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Attributes, Is.EqualTo(attributes));
         }
 
@@ -86,7 +86,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, "wondrous item")).Returns(9266);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Magic.Charges, Is.EqualTo(0));
         }
 
@@ -99,7 +99,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(9266);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Magic.Charges, Is.EqualTo(9266));
         }
 
@@ -107,7 +107,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetBonus()
         {
             selection.Amount = 90210;
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Magic.Bonus, Is.EqualTo(90210));
         }
 
@@ -117,7 +117,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.HornOfValhalla;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes)).Returns("metallic");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.Traits, Contains.Item("metallic"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
@@ -129,7 +129,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns("contents");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.Contents, Contains.Item("contents"));
         }
@@ -140,7 +140,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns(string.Empty);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.Contents, Is.Empty);
         }
@@ -151,7 +151,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.IronFlask;
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns("contents").Returns("more contents");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.Contents, Contains.Item("contents"));
             Assert.That(item.Contents.Count, Is.EqualTo(1));
@@ -164,7 +164,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents)).Returns(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend)).Returns("balor or pit fiend");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.Contents, Contains.Item("balor or pit fiend"));
         }
@@ -177,7 +177,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var items = new[] { "item 1", "item 1", "item 2", "item 2", "item 3", "item 3" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Is.SupersetOf(items));
         }
@@ -189,7 +189,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(4, 4, 2);
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1").Returns("item 2");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("item 1"));
             Assert.That(item.Contents, Contains.Item("item 2"));
@@ -203,7 +203,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(4, 4, 2);
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems)).Returns("item 1");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("item 1"));
             Assert.That(item.Contents.Count(i => i == "item 1"), Is.EqualTo(2));
@@ -220,7 +220,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("spell type scroll of spell (9266)"));
         }
@@ -232,7 +232,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Planes)).Returns("plane 1").Returns("plane 2").Returns("plane 3")
                 .Returns("plane 4").Returns("plane 5");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
@@ -250,7 +250,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Planes)).Returns("plane 1").Returns("plane 1").Returns("plane 2")
                 .Returns("plane 3").Returns("plane 4").Returns("plane 5");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("Material Plane"));
             Assert.That(item.Contents, Contains.Item("plane 1"));
@@ -272,7 +272,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 3, 1);
             SetUpRoll(1, 2, 2);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("card 1"));
             Assert.That(item.Contents, Contains.Item("card 2"));
@@ -292,7 +292,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 3, 1);
             SetUpRoll(1, 2, 2);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("small sphere"));
             Assert.That(item.Contents, Contains.Item("normal sphere"));
@@ -320,7 +320,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(1, 4, 1);
             SetUpRoll(1, 3, 2);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("undead 1"));
             Assert.That(item.Contents.Count(c => c == "undead 1"), Is.EqualTo(2));
@@ -337,7 +337,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Contents, Contains.Item("undead 1"));
             Assert.That(item.Contents.Count(c => c == "undead 1"), Is.EqualTo(2));
@@ -355,7 +355,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.CandleOfInvocation;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns("alignment");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Traits, Contains.Item("alignment"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
@@ -367,7 +367,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             selection.Type = WondrousItemConstants.RobeOfTheArchmagi;
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors)).Returns("color (alignment)");
 
-            var item = wondrousItemGenerator.GenerateAtPower(power);
+            var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.Traits, Contains.Item("color (alignment)"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
@@ -383,7 +383,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
-            var wondrousItem = wondrousItemGenerator.Generate(template);
+            var wondrousItem = wondrousItemGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
             Assert.That(wondrousItem.Name, Is.EqualTo(name));
             Assert.That(wondrousItem.BaseNames.Single(), Is.EqualTo(name));
@@ -402,7 +402,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
-            var wondrousItem = wondrousItemGenerator.Generate(template, true);
+            var wondrousItem = wondrousItemGenerator.GenerateFrom(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(wondrousItem, template);
             Assert.That(wondrousItem.Name, Is.EqualTo(name));
             Assert.That(wondrousItem.BaseNames.Single(), Is.EqualTo(name));
@@ -428,7 +428,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", "wondrous item" };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -455,7 +455,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", "wondrous item" };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -484,7 +484,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.HornOfValhalla };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -515,7 +515,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.IronFlask };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -548,7 +548,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfUsefulItems };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfUsefulItems));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfUsefulItems));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -585,7 +585,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.CubicGate };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -624,7 +624,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.DeckOfIllusions };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.DeckOfIllusions));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.DeckOfIllusions));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -662,7 +662,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", name };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(name));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -700,7 +700,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfBones };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfBones));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfBones));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -734,7 +734,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.CandleOfInvocation };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -765,7 +765,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfTheArchmagi };
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -798,7 +798,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", "wondrous item" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -829,7 +829,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", "wondrous item" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -862,7 +862,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.HornOfValhalla };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -897,7 +897,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.IronFlask };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.IronFlask));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -934,7 +934,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfUsefulItems };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfUsefulItems));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfUsefulItems));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -975,7 +975,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.CubicGate };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1018,7 +1018,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.DeckOfIllusions };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.DeckOfIllusions));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.DeckOfIllusions));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1060,7 +1060,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", name };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(name));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1102,7 +1102,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfBones };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfBones));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfBones));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1140,7 +1140,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.CandleOfInvocation };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1175,7 +1175,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", WondrousItemConstants.RobeOfTheArchmagi };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
@@ -1223,7 +1223,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var subset = new[] { "other wondrous item", "wondrous item" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
 
-            var item = wondrousItemGenerator.GenerateFromSubset(power, subset);
+            var item = wondrousItemGenerator.GenerateFrom(power, subset);
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));

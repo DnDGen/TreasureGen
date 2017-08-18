@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Core.2.2.0\lib\DnDGen.Core.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Core.2.2.1\lib\DnDGen.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -66,6 +66,7 @@
     <Compile Include="Generators\Items\ItemsGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Magical\CurseGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorCurseDecorator.cs" />
+    <Compile Include="Generators\Items\Magical\SpecialAbilitiesGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorEventDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorIntelligenceDecorator.cs" />
     <Compile Include="Generators\Items\Magical\MagicalItemGeneratorMundaneProxy.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Selectors\Collections\ArmorDataSelector.cs" />
     <Compile Include="Selectors\Collections\IArmorDataSelector.cs" />
     <Compile Include="Selectors\Collections\IWeaponDataSelector.cs" />
+    <Compile Include="Selectors\Collections\SpecialAbilityDataSelectorEventDecorator.cs" />
     <Compile Include="Selectors\Collections\WeaponDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\ITreasurePercentileSelector.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstants.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Selectors\Collections\ISpecialAbilityDataSelector.cs" />
     <Compile Include="Selectors\Percentiles\ITypeAndAmountPercentileSelector.cs" />
     <Compile Include="Selectors\Collections\RangeDataSelector.cs" />
+    <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelectorEventDecorator.cs" />
     <Compile Include="Selectors\Selections\ArmorSelection.cs" />
     <Compile Include="Selectors\Selections\IntelligenceSelection.cs" />
     <Compile Include="Selectors\Selections\RangeSelection.cs" />

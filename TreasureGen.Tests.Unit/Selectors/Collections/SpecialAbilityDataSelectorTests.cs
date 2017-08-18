@@ -7,7 +7,7 @@ using TreasureGen.Domain.Tables;
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {
     [TestFixture]
-    public class SpecialAbilityCollectionsSelectorTests
+    public class SpecialAbilityDataSelectorTests
     {
         private ISpecialAbilityDataSelector selector;
         private Mock<ICollectionsSelector> mockInnerSelector;

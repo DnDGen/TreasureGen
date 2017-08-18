@@ -16,9 +16,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.curseGenerator = curseGenerator;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
-            var item = innerGenerator.GenerateAtPower(power);
+            var item = innerGenerator.GenerateFrom(power);
 
             if (curseGenerator.HasCurse(item.IsMagical))
             {
@@ -32,12 +32,12 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             if (curseGenerator.IsSpecificCursedItem(template))
                 return curseGenerator.GenerateFrom(template);
 
-            var item = innerGenerator.Generate(template, allowRandomDecoration);
+            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
             if (allowRandomDecoration && curseGenerator.HasCurse(item.IsMagical))
             {
@@ -48,9 +48,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
-            var item = innerGenerator.GenerateFromSubset(power, subset);
+            var item = innerGenerator.GenerateFrom(power, subset);
 
             if (!curseGenerator.HasCurse(item.IsMagical))
                 return item;

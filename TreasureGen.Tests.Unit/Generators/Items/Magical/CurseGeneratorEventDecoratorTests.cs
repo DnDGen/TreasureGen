@@ -35,8 +35,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.Generate();
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning specific cursed item generation"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Generating a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.Generate();
             Assert.That(item, Is.Null);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning specific cursed item generation"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Generating a specific cursed item"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"No specific cursed item was generated"), Times.Once);
         }
 
@@ -69,8 +69,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom(template, allowDecoration);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning specific cursed item generation from template: {template.ItemType} {template.Name}"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from template: {template.ItemType} {template.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
         [TestCase(true)]
@@ -88,7 +88,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom(template, allowDecoration);
             Assert.That(item, Is.Null);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning specific cursed item generation from template: {template.ItemType} {template.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from template: {template.ItemType} {template.Name}"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"No specific cursed item was generated"), Times.Once);
         }
 
@@ -105,8 +105,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom(subset);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning specific cursed item generation from [{string.Join(", ", subset)}]"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom(subset);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning specific cursed item generation from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"No specific cursed item was generated"), Times.Once);
         }
 
@@ -151,8 +151,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var curse = decorator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("terrible curse of terribleness"));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning curse generation"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of terrible curse of terribleness"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Generating a curse"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated a curse of terrible curse of terribleness"), Times.Once);
         }
 
         [Test]

@@ -41,10 +41,12 @@ namespace TreasureGen.Domain.IoC.Modules
             Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>().WhenInjectedInto<SpecificGearGeneratorEventDecorator>();
             Bind<ISpecificGearGenerator>().To<SpecificGearGeneratorEventDecorator>();
 
+            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>().WhenInjectedInto<SpecialAbilitiesGeneratorEventDecorator>();
+            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGeneratorEventDecorator>();
+
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
-            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<ISpecialMaterialGenerator>().To<SpecialMaterialGenerator>();
             Bind<ISpellGenerator>().To<SpellGenerator>();
 

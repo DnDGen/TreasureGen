@@ -103,6 +103,13 @@ namespace TreasureGen.Tests.Integration.IoC.Modules
         }
 
         [Test]
+        public void SpecialAbilitiesGeneratorISDecorated()
+        {
+            var generator = InjectAndAssertDuration<ISpecialAbilitiesGenerator>();
+            Assert.That(generator, Is.InstanceOf<SpecialAbilitiesGeneratorEventDecorator>());
+        }
+
+        [Test]
         public void CurseGeneratorNotConstructedAsSingleton()
         {
             AssertNotSingleton<ICurseGenerator>();

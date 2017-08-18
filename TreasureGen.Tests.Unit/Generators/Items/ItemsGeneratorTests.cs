@@ -44,7 +44,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(ItemTypeConstants.WondrousItem);
 
             var dummyMagicalMock = new Mock<MagicalItemGenerator>();
-            dummyMagicalMock.Setup(m => m.GenerateAtPower(It.IsAny<string>())).Returns(() => new Item { Name = "magical item" });
+            dummyMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "magical item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>(It.IsAny<string>())).Returns(dummyMagicalMock.Object);
 
             var dummyMundaneMock = new Mock<MundaneItemGenerator>();
@@ -130,7 +130,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, selection.Type);
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("magic item type");
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("magic item type")).Returns(mockMagicalItemGenerator.Object);
-            mockMagicalItemGenerator.Setup(g => g.GenerateAtPower(selection.Type)).Returns(magicalItem);
+            mockMagicalItemGenerator.Setup(g => g.GenerateFrom(selection.Type)).Returns(magicalItem);
 
             var items = itemsGenerator.GenerateAtLevel(1);
             Assert.That(items.Single(), Is.EqualTo(magicalItem));
@@ -146,7 +146,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
 
             var epicMagicalMock = new Mock<MagicalItemGenerator>();
-            epicMagicalMock.Setup(m => m.GenerateAtPower(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            epicMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
 
             var items = itemsGenerator.GenerateAtLevel(9266);
@@ -169,7 +169,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
 
             var epicMagicalMock = new Mock<MagicalItemGenerator>();
-            epicMagicalMock.Setup(m => m.GenerateAtPower(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            epicMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
 
             var items = itemsGenerator.GenerateAtLevel(9266);

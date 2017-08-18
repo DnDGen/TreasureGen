@@ -15,9 +15,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.traitsGenerator = traitsGenerator;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.Generate(template, allowRandomDecoration);
+            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
             if (allowRandomDecoration)
             {
@@ -37,9 +37,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
-            var item = innerGenerator.GenerateAtPower(power);
+            var item = innerGenerator.GenerateFrom(power);
             if (!item.IsMagical)
                 return item;
 
@@ -48,9 +48,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
-            var item = innerGenerator.GenerateFromSubset(power, subset);
+            var item = innerGenerator.GenerateFrom(power, subset);
             if (!item.IsMagical)
                 return item;
 

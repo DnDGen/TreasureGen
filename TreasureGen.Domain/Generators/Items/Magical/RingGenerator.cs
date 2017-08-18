@@ -32,7 +32,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.generator = generator;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -106,7 +106,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return spells;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var ring = template.Clone();
             ring.BaseNames = new[] { ring.Name };
@@ -120,10 +120,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return ring.SmartClone();
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             var ring = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 r => subset.Any(n => r.NameMatches(n)),
                 () => CreateDefaultRing(power, subset),
                 r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -152,17 +152,38 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (result != null)
                 return result;
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Ring);
-            var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            if (power != PowerConstants.Minor)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Ring);
+                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Ring);
-            var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                result = minorResults.FirstOrDefault(r => r.Type == name);
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Ring);
-            var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                if (result != null)
+                    return result;
+            }
 
-            results = minorResults.Union(mediumResults).Union(majorResults);
-            result = results.FirstOrDefault(r => r.Type == name);
+            if (power != PowerConstants.Medium)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Ring);
+                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = mediumResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
+
+            if (power != PowerConstants.Major)
+            {
+                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Ring);
+                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                result = majorResults.FirstOrDefault(r => r.Type == name);
+
+                if (result != null)
+                    return result;
+            }
 
             //INFO: This means the ring name replaces some fillable field such as ALIGNMENT, so we will assume a bonus of 0
             if (result == null)

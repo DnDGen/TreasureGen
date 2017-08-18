@@ -39,7 +39,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
@@ -96,7 +96,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return mundaneWeapon;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var rod = template.Clone();
             rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
@@ -129,13 +129,13 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return mediumResults.Union(majorResults);
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
 
             var rod = generator.Generate(
-                () => GenerateAtPower(power),
+                () => GenerateFrom(power),
                 r => subset.Any(n => r.NameMatches(n)),
                 () => GenerateDefaultFrom(subset),
                 r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
@@ -149,7 +149,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var template = new Item();
             template.Name = collectionsSelector.SelectRandomFrom(subset);
 
-            var defaultRod = Generate(template);
+            var defaultRod = GenerateFrom(template);
             return defaultRod;
         }
     }

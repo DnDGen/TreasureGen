@@ -45,7 +45,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Core.2.2.0\lib\DnDGen.Core.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Core.2.2.1\lib\DnDGen.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -82,6 +82,7 @@
     <Compile Include="Generators\Coins\CoinGeneratorTests.cs" />
     <Compile Include="Generators\Coins\CoinTests.cs" />
     <Compile Include="Generators\Items\ArmorTests.cs" />
+    <Compile Include="Generators\Items\Magical\SpecialAbilitiesGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Items\SpecificGearGeneratorEventDecoratorTests.cs" />
     <Compile Include="Generators\Items\IterativeGeneratorWithoutLogging.cs" />
     <Compile Include="Generators\Items\ItemsGeneratorEventDecoratorTests.cs" />
@@ -147,12 +148,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generators\TreasureTests.cs" />
     <Compile Include="Selectors\Collections\ArmorDataSelectorTests.cs" />
+    <Compile Include="Selectors\Collections\SpecialAbilityDataSelectorEventDecoratorTests.cs" />
     <Compile Include="Selectors\Collections\WeaponDataSelectorTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacementStringConstantsTests.cs" />
     <Compile Include="Selectors\Percentiles\ReplacePercentileSelectorDecoratorTests.cs" />
     <Compile Include="Selectors\Collections\IntelligenceCollectionsSelectorTests.cs" />
     <Compile Include="Selectors\Collections\RangeDataSelectorTests.cs" />
-    <Compile Include="Selectors\Collections\SpecialAbilityCollectionsSelectorTests.cs" />
+    <Compile Include="Selectors\Collections\SpecialAbilityDataSelectorTests.cs" />
+    <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelectorEventDecoratorTests.cs" />
     <Compile Include="Selectors\Percentiles\TypeAndAmountPercentileSelectorTests.cs" />
     <Compile Include="Tables\AmountConstantsTests.cs" />
     <Compile Include="Tables\DataIndexConstantsTests.cs" />

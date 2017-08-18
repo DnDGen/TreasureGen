@@ -36,7 +36,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateWand()
         {
-            var wand = wandGenerator.GenerateAtPower(power);
+            var wand = wandGenerator.GenerateFrom(power);
 
             Assert.That(wand.Name, Does.StartWith("Wand of "));
             Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
@@ -54,7 +54,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wand spell");
 
-            var wand = wandGenerator.GenerateAtPower(power);
+            var wand = wandGenerator.GenerateFrom(power);
             Assert.That(wand.Name, Is.EqualTo("Wand of wand spell"));
         }
 
@@ -65,7 +65,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wand spell");
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of wand spell")).Returns(9266);
 
-            var wand = wandGenerator.GenerateAtPower(power);
+            var wand = wandGenerator.GenerateFrom(power);
             Assert.That(wand.Magic.Charges, Is.EqualTo(9266));
         }
 
@@ -75,7 +75,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var wand = wandGenerator.Generate(template);
+            var wand = wandGenerator.GenerateFrom(template);
             itemVerifier.AssertMagicalItemFromTemplate(wand, template);
             Assert.That(wand.Name, Is.EqualTo(name));
             Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
@@ -93,7 +93,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var wand = wandGenerator.Generate(template, true);
+            var wand = wandGenerator.GenerateFrom(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(wand, template);
             Assert.That(wand.Name, Is.EqualTo(name));
             Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
@@ -120,7 +120,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of spell")).Returns(9266);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of other spell")).Returns(90210);
 
-            var wand = wandGenerator.GenerateFromSubset(power, subset);
+            var wand = wandGenerator.GenerateFrom(power, subset);
             Assert.That(wand.Name, Is.EqualTo("Wand of spell"));
             Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));
@@ -146,7 +146,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of spell")).Returns(9266);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of other spell")).Returns(90210);
 
-            var wand = wandGenerator.GenerateFromSubset(power, subset);
+            var wand = wandGenerator.GenerateFrom(power, subset);
             Assert.That(wand.Name, Does.StartWith("Wand of spell"));
             Assert.That(wand.BaseNames.Single(), Is.EqualTo(ItemTypeConstants.Wand));
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));

@@ -1,7 +1,6 @@
 ﻿using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -21,7 +20,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ISpecialAbilityDataSelector> mockSpecialAbilityDataSelector;
-        private Mock<Dice> mockDice;
 
         private List<string> itemAttributes;
         private List<string> names;
@@ -36,8 +34,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockSpecialAbilityDataSelector = new Mock<ISpecialAbilityDataSelector>();
-            mockDice = new Mock<Dice>();
-            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityDataSelector.Object, mockDice.Object);
+            specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityDataSelector.Object);
             names = new List<string>();
             item = new Item();
 
@@ -47,7 +44,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             item.Magic.Bonus = 1;
 
             mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(names);
-            mockDice.Setup(d => d.Roll(1).d(It.IsAny<int>()).AsSum()).Returns(1);
+
+            var count = 0;
+
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<string>>())).Returns((IEnumerable<string> ss) => ss.ElementAt(count++ % ss.Count()));
         }
 
         [Test]
@@ -58,6 +58,19 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void ReturnEmptyIfQuantityIsNone()
+        {
+            CreateSpecialAbility("name", "base name", 9, 266);
+
+            var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 0);
+            Assert.That(abilities, Is.Empty);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -181,8 +194,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             rangedResult.BaseName = "ranged ability";
             mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
             mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
-
-            mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             Assert.That(abilities, Is.Not.Empty);

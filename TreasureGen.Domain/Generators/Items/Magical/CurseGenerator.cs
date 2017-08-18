@@ -139,6 +139,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(IEnumerable<string> subset)
         {
+            var itemGroups = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ItemGroups);
+            var specificCursedItemNames = itemGroups[CurseConstants.SpecificCursedItem];
+            var specificCursedItemGroups = itemGroups.Where(g => specificCursedItemNames.Contains(g.Key));
+            var specificCursedItemBaseNames = specificCursedItemGroups.SelectMany(g => g.Value);
+
+            if (!specificCursedItemNames.Intersect(subset).Any() && !specificCursedItemBaseNames.Intersect(subset).Any())
+                return null;
+
             var specificCursedItem = generator.Generate(
                 Generate,
                 i => subset.Any(n => i.NameMatches(n)),

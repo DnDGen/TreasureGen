@@ -32,10 +32,8 @@ namespace TreasureGen.Domain.Selectors.Percentiles
             if (string.IsNullOrEmpty(percentileResult))
                 return result;
 
-            if (percentileResult.Contains(",") == false)
-            {
+            if (!percentileResult.Contains(","))
                 throw new FormatException($"{percentileResult} is not formatted for type and amount parsing");
-            }
 
             var parsedResult = percentileResult.Split(',');
 

@@ -15,20 +15,20 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             this.innerGenerator = innerGenerator;
         }
 
-        public Item Generate(Item template, bool allowRandomDecoration = false)
+        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
-            return innerGenerator.Generate(template, allowRandomDecoration);
+            return innerGenerator.GenerateFrom(template, allowRandomDecoration);
         }
 
-        public Item GenerateAtPower(string power)
+        public Item GenerateFrom(string power)
         {
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
 
-            return innerGenerator.GenerateAtPower(power);
+            return innerGenerator.GenerateFrom(power);
         }
 
-        public Item GenerateFromSubset(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
@@ -36,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
 
-            return innerGenerator.GenerateFromSubset(power, subset);
+            return innerGenerator.GenerateFrom(power, subset);
         }
     }
 }
