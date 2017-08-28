@@ -51,7 +51,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        //[Ignore("Ammunition does not always appear within the time limit")]
+        [Ignore("Ammunition does not always appear within the time limit")]
         public void BUG_AmmunitionWithQuantityGreaterThan1Happens()
         {
             var ammunition = stressor.GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Ammunition) && w.Quantity > 1);
@@ -61,7 +61,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        //[Ignore("Thrown weapon does not always appear within the time limit")]
+        [Ignore("Thrown weapon does not always appear within the time limit")]
         public void BUG_ThrownWeaponWithQuantityGreaterThan1Happens()
         {
             var thrownWeapon = stressor.GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee) && w.Quantity > 1);
@@ -112,7 +112,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("Shuriken does not always appear within the time limit.  Mundane weapon tests verify this quantity")]
+        //[Ignore("Shuriken does not always appear within the time limit.  Mundane weapon tests verify this quantity")]
         public void BUG_ShurikenFromSubsetWithQuantityGreaterThan20Happens()
         {
             var shuriken = stressor.GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);

@@ -88,7 +88,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);
-            rod.Clone(mundaneWeapon);
+            rod.CloneInto(mundaneWeapon);
 
             if (mundaneWeapon.IsMagical)
                 mundaneWeapon.Traits.Add(TraitConstants.Masterwork);
@@ -137,14 +137,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var rod = generator.Generate(
                 () => GenerateFrom(power),
                 r => subset.Any(n => r.NameMatches(n)),
-                () => GenerateDefaultFrom(subset),
+                () => CreateDefaultRod(subset),
                 r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Rod from [{string.Join(", ", subset)}]");
 
             return rod;
         }
 
-        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        private Item CreateDefaultRod(IEnumerable<string> subset)
         {
             var template = new Item();
             template.Name = collectionsSelector.SelectRandomFrom(subset);

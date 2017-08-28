@@ -57,6 +57,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
+        [Ignore("There is no currently-known use case where we generate a wand from a subset")]
         public void StressWandFromSubset()
         {
             stressor.Stress(GenerateAndAssertItemFromSubset);

@@ -424,8 +424,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomArmorTemplate(name);
-            var templateArmor = template as Armor;
-            templateArmor.Size = "custom size";
+            template.Size = "custom size";
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
@@ -658,7 +657,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("armor"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
-            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
             Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));
@@ -698,7 +697,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(armor, Is.Not.Null);
             Assert.That(armor.Name, Is.EqualTo("shield"));
             Assert.That(armor.BaseNames, Is.EqualTo(baseNames));
-            Assert.That(armor.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
             Assert.That(armor.Traits, Is.All.Not.EqualTo("size"));
             Assert.That(armor.Size, Is.EqualTo("size"));
             Assert.That(armor.Attributes, Is.EqualTo(attributes));

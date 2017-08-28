@@ -30,7 +30,7 @@
         public override Item Clone()
         {
             var clone = new Weapon();
-            base.Clone(clone);
+            base.CloneInto(clone);
             CloneWeapon(clone);
 
             return clone;
@@ -51,15 +51,15 @@
         public override Item MundaneClone()
         {
             var clone = new Weapon();
-            MundaneClone(clone);
+            MundaneCloneInto(clone);
             CloneWeapon(clone);
 
             return clone;
         }
 
-        public override Item MundaneClone(Item target)
+        public override Item MundaneCloneInto(Item target)
         {
-            base.MundaneClone(target);
+            base.MundaneCloneInto(target);
 
             if (target is Weapon)
                 CloneWeapon(target as Weapon);
@@ -70,7 +70,7 @@
         public override Item SmartClone()
         {
             var clone = new Weapon();
-            base.SmartClone(clone);
+            base.SmartCloneInto(clone);
             CloneWeapon(clone);
 
             return clone;

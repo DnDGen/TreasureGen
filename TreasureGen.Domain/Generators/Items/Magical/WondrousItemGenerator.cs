@@ -215,6 +215,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            if (!results.Any(r => subset.Any(n => r.Type == n)))
+            {
+                return CreateDefaultWondrousItem(power, subset);
+            }
+
             var item = generator.Generate(
                 () => GenerateFrom(power),
                 i => subset.Any(n => i.NameMatches(n)),

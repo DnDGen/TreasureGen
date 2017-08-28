@@ -41,6 +41,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
+        [Ignore("There is no currently-known use case where we generate an alchemical item from a subset")]
         public void StressAlchemicalItemFromSubset()
         {
             stressor.Stress(GenerateAndAssertItemFromSubset);

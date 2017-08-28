@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         public void AssertItem(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.ItemType, Is.Not.Empty, item.Name);
+            Assert.That(item.ItemType, Is.Not.Empty, $"{item.Name} item type");
             Assert.That(item.BaseNames, Is.Not.Empty, item.Name);
             Assert.That(item.BaseNames, Is.All.Not.Empty, item.Name);
             Assert.That(item.BaseNames, Is.Unique, item.Name);
@@ -37,7 +37,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             foreach (var ability in item.Magic.SpecialAbilities)
             {
-                Assert.That(ability.Name, Is.Not.Empty, item.Name);
+                Assert.That(ability.Name, Is.Not.Empty, $"{item.Name} ability name");
                 Assert.That(ability.BonusEquivalent, Is.Not.Negative, ability.Name);
                 Assert.That(ability.AttributeRequirements, Is.Not.Null, ability.Name);
                 Assert.That(ability.AttributeRequirements, Is.All.Not.Empty, ability.Name);
@@ -73,11 +73,11 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             var weapon = item as Weapon;
             Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Name);
-            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, weapon.Name);
-            Assert.That(weapon.Size, Is.Not.Empty, weapon.Name);
-            Assert.That(weapon.Damage, Is.Not.Empty, weapon.Name);
-            Assert.That(weapon.DamageType, Is.Not.Empty, weapon.Name);
-            Assert.That(weapon.ThreatRange, Is.Not.Empty, weapon.Name);
+            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, $"{weapon.Name} critical multiplier");
+            Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Name} size");
+            Assert.That(weapon.Damage, Is.Not.Empty, $"{weapon.Name} damage");
+            Assert.That(weapon.DamageType, Is.Not.Empty, $"{weapon.Name} damage type");
+            Assert.That(weapon.ThreatRange, Is.Not.Empty, $"{weapon.Name} threat range");
             Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Name);
 
             if (weapon.IsMagical)

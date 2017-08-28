@@ -108,7 +108,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
 
-            var newClone = template.SmartClone(clone);
+            var newClone = template.SmartCloneInto(clone);
             Assert.That(newClone, Is.EqualTo(clone));
             itemVerifier.AssertMagicalItemFromTemplate(clone, template);
             Assert.That(clone.ItemType, Is.EqualTo(template.ItemType));
@@ -321,7 +321,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
 
-            var newClone = template.MundaneClone(clone);
+            var newClone = template.MundaneCloneInto(clone);
 
             Assert.That(newClone, Is.EqualTo(clone));
             itemVerifier.AssertMundaneItemFromTemplate(clone, template);
@@ -727,7 +727,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var newClone = template.Clone(clone);
+            var newClone = template.CloneInto(clone);
             Assert.That(newClone, Is.EqualTo(clone));
             Assert.That(clone, Is.Not.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));

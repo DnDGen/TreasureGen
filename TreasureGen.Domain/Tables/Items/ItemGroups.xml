@@ -10,6 +10,14 @@
     <entry>Amulet of inescapable location</entry>
   </collection>
   <collection>
+    <name>Shield</name>
+    <entry>Absorbing shield</entry>
+    <entry>Caster's shield</entry>
+    <entry>Lion's shield</entry>
+    <entry>Spined shield</entry>
+    <entry>Winged shield</entry>
+  </collection>
+  <collection>
     <name>Armor</name>
     <entry>Armor of arrow attraction</entry>
     <entry>Armor of rage</entry>
@@ -740,14 +748,6 @@
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Shield</name>
-    <entry>Absorbing shield</entry>
-    <entry>Caster's shield</entry>
-    <entry>Lion's shield</entry>
-    <entry>Spined shield</entry>
-    <entry>Winged shield</entry>
-  </collection>
-  <collection>
     <name>Shifter's sorrow</name>
     <entry>Two-bladed sword</entry>
   </collection>
@@ -834,6 +834,10 @@
     <entry>Life-drinker</entry>
     <entry>Lion's shield</entry>
     <entry>Luck blade</entry>
+    <entry>Luck blade (0 wishes)</entry>
+    <entry>Luck blade (1 wish)</entry>
+    <entry>Luck blade (2 wishes)</entry>
+    <entry>Luck blade (3 wishes)</entry>
     <entry>Mace of blood</entry>
     <entry>Mace of smiting</entry>
     <entry>Mace of terror</entry>
@@ -853,6 +857,7 @@
     <entry>Screaming bolt</entry>
     <entry>Shatterspike</entry>
     <entry>Shifter's sorrow</entry>
+    <entry>Silver dagger</entry>
     <entry>Slaying arrow</entry>
     <entry>Sleep arrow</entry>
     <entry>Spined shield</entry>
@@ -1076,6 +1081,10 @@
     <entry>Javelin of lightning</entry>
     <entry>Life-drinker</entry>
     <entry>Luck blade</entry>
+    <entry>Luck blade (0 wishes)</entry>
+    <entry>Luck blade (1 wish)</entry>
+    <entry>Luck blade (2 wishes)</entry>
+    <entry>Luck blade (3 wishes)</entry>
     <entry>Mace of blood</entry>
     <entry>Mace of smiting</entry>
     <entry>Mace of terror</entry>
@@ -1085,6 +1094,7 @@
     <entry>Screaming bolt</entry>
     <entry>Shatterspike</entry>
     <entry>Shifter's sorrow</entry>
+    <entry>Silver dagger</entry>
     <entry>Slaying arrow</entry>
     <entry>Sleep arrow</entry>
     <entry>Sun blade</entry>

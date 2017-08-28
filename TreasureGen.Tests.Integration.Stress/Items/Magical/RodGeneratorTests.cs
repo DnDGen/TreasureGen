@@ -53,6 +53,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
+        [Ignore("There is no currently-known use case where we generate a rod from a subset")]
         public void StressRodFromSubset()
         {
             stressor.Stress(GenerateAndAssertItemFromSubset);

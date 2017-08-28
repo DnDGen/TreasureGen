@@ -361,10 +361,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 })
-                .Returns(new TypeAndAmountSelection { Type = "ring", Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "other ring", Amount = 90210 });
+                .Returns(selections[0])
+                .Returns(selections[1])
+                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -388,10 +396,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateChargedFromSubset()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 })
-                .Returns(new TypeAndAmountSelection { Type = "ring", Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "other ring", Amount = 90210 });
+                .Returns(selections[0])
+                .Returns(selections[1])
+                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.Charged };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -422,10 +438,18 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = name, Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
             mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 })
-                .Returns(new TypeAndAmountSelection { Type = name, Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "other ring", Amount = 90210 });
+                .Returns(selections[0])
+                .Returns(selections[1])
+                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);

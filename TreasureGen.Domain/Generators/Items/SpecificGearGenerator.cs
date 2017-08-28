@@ -1,6 +1,5 @@
 ﻿using DnDGen.Core.Generators;
 using DnDGen.Core.Selectors.Collections;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
@@ -39,7 +38,7 @@ namespace TreasureGen.Domain.Generators.Items
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateFrom(string power, string specificGearType)
+        public Item GenerateRandomPrototypeFrom(string power, string specificGearType)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
             var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -47,21 +46,16 @@ namespace TreasureGen.Domain.Generators.Items
             var gear = new Item();
             gear.Name = selection.Type;
             gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
-            gear.Magic.Bonus = selection.Amount;
-            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
             gear.ItemType = GetItemType(specificGearType);
+            gear.Magic.Bonus = selection.Amount;
+            gear.Quantity = 0;
 
-            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
-            gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
+            return gear;
+        }
 
-            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
-            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
-
-            foreach (var trait in traits)
-                gear.Traits.Add(trait);
-
-            if (gear.Attributes.Contains(AttributeConstants.Charged))
-                gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, gear.Name);
+        private Item SetPrototypeAttributes(Item prototype, string specificGearType)
+        {
+            var gear = prototype.Clone();
 
             if (gear.Name == WeaponConstants.JavelinOfLightning)
             {
@@ -82,6 +76,19 @@ namespace TreasureGen.Domain.Generators.Items
             }
 
             gear.Name = RenameGear(gear.Name);
+            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
+            gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
+
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
+            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
+
+            foreach (var trait in traits)
+                gear.Traits.Add(trait);
+
+            if (gear.Attributes.Contains(AttributeConstants.Charged))
+                gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, gear.Name);
 
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
@@ -99,36 +106,46 @@ namespace TreasureGen.Domain.Generators.Items
             if (gear.ItemType == ItemTypeConstants.Weapon)
                 return GetWeapon(gear);
 
+            if (gear.Quantity == 0)
+                gear.Quantity = 1;
+
             return gear;
         }
 
-        private Item GetArmor(Item gear)
+        private Armor GetArmor(Item gear)
         {
             var template = new Armor();
             template.Name = gear.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.GenerateFrom(template);
+            var armor = mundaneArmorGenerator.GenerateFrom(template) as Armor;
 
-            gear.Clone(armor);
+            gear.CloneInto(armor);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            return armor;
+            return armor as Armor;
         }
 
-        private Item GetWeapon(Item gear)
+        private Weapon GetWeapon(Item gear)
         {
             var template = new Weapon();
             template.Name = gear.BaseNames.First();
-            template.Quantity = 0;
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template) as Weapon;
+            var weapon = new Weapon();
 
-            gear.Quantity = weapon.Quantity;
-            gear.Clone(weapon);
+            gear.CloneInto(weapon);
+
+            weapon.Quantity = mundaneWeapon.Quantity;
+            weapon.Ammunition = mundaneWeapon.Ammunition;
+            weapon.CriticalMultiplier = mundaneWeapon.CriticalMultiplier;
+            weapon.Damage = mundaneWeapon.Damage;
+            weapon.DamageType = mundaneWeapon.DamageType;
+            weapon.Size = mundaneWeapon.Size;
+            weapon.ThreatRange = mundaneWeapon.ThreatRange;
 
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
@@ -136,7 +153,7 @@ namespace TreasureGen.Domain.Generators.Items
             if (weapon.Attributes.Contains(AttributeConstants.Ammunition) || weapon.Attributes.Contains(AttributeConstants.OneTimeUse))
                 weapon.Magic.Intelligence = new Intelligence();
 
-            return weapon;
+            return weapon as Weapon;
         }
 
         private string RenameGear(string oldName)
@@ -170,23 +187,9 @@ namespace TreasureGen.Domain.Generators.Items
             gear.ItemType = GetItemType(specificGearType);
             gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, gear.Name);
 
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
-            gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
-            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
+            gear = SetPrototypeAttributes(gear, specificGearType);
 
-            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
-            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
-
-            foreach (var trait in traits)
-                gear.Traits.Add(trait);
-
-            if (gear.ItemType == ItemTypeConstants.Armor)
-                return GetArmor(gear);
-
-            if (gear.ItemType == ItemTypeConstants.Weapon)
-                return GetWeapon(gear);
-
-            return gear.SmartClone();
+            return gear;
         }
 
         private string GetItemType(string specificGearType)
@@ -199,22 +202,11 @@ namespace TreasureGen.Domain.Generators.Items
 
         private string GetSpecificGearType(string name)
         {
-            var shields = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Shield);
-            if (shields.Contains(name))
-                return AttributeConstants.Shield;
-
-            var armors = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Armor);
-            if (armors.Contains(name))
-                return ItemTypeConstants.Armor;
-
-            var weapons = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, ItemTypeConstants.Weapon);
-            if (weapons.Contains(name))
-                return ItemTypeConstants.Weapon;
-
-            throw new ArgumentException($"Specific gear {name} is not a shield, armor, or weapon");
+            var gearType = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, name, AttributeConstants.Shield, ItemTypeConstants.Armor, ItemTypeConstants.Weapon);
+            return gearType;
         }
 
-        public bool TemplateIsSpecific(Item template)
+        public bool IsSpecific(Item template)
         {
             var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
             return specificItems.Contains(template.Name);

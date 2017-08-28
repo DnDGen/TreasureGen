@@ -24,23 +24,21 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void LogGenerationEventsForSpecificGear()
+        public void DoNotLogGenerationEventsForSpecificGearPrototype()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "gear type")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateRandomPrototypeFrom("power", "gear type")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", "gear type");
+            var item = decorator.GenerateRandomPrototypeFrom("power", "gear type");
             Assert.That(item, Is.EqualTo(innerItem));
-            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning power specific gear type generation"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Test]
-        public void LogGenerationEventsForSpecificCursedItemFromTemplate()
+        public void LogGenerationEventsForSpecificGearFromTemplate()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
@@ -55,29 +53,23 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom(template);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning specific gear generation from template: {template.ItemType} {template.Name}"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating specific gear from template: {template.ItemType} {template.Name}"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
         [TestCase(false)]
         [TestCase(true)]
-        public void LogEventsWhenCheckingIfSpecificGear(bool shouldBeSpecific)
+        public void DoNotLogEventsWhenCheckingIfSpecificGear(bool shouldBeSpecific)
         {
             var template = new Item();
             template.Name = Guid.NewGuid().ToString();
             template.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.TemplateIsSpecific(template)).Returns(shouldBeSpecific);
+            mockInnerGenerator.Setup(g => g.IsSpecific(template)).Returns(shouldBeSpecific);
 
-            var isSpecific = decorator.TemplateIsSpecific(template);
+            var isSpecific = decorator.IsSpecific(template);
             Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
-            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific gear"), Times.Once);
-
-            if (shouldBeSpecific)
-                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is a specific gear"), Times.Once);
-            else
-                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is not a specific gear"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
     }
 }

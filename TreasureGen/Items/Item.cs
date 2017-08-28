@@ -62,9 +62,9 @@ namespace TreasureGen.Items
             ItemType = string.Empty;
         }
 
-        public virtual Item Clone(Item target)
+        public virtual Item CloneInto(Item target)
         {
-            var clone = MundaneClone(target);
+            var clone = MundaneCloneInto(target);
             clone.Magic.Bonus = Magic.Bonus;
             clone.Magic.Charges = Magic.Charges;
             clone.Magic.Curse = Magic.Curse;
@@ -78,7 +78,7 @@ namespace TreasureGen.Items
         public virtual Item Clone()
         {
             var clone = new Item();
-            clone = Clone(clone);
+            clone = CloneInto(clone);
 
             return clone;
         }
@@ -86,14 +86,14 @@ namespace TreasureGen.Items
         public virtual Item SmartClone()
         {
             var clone = new Item();
-            clone = SmartClone(clone);
+            clone = SmartCloneInto(clone);
 
             return clone;
         }
 
-        public virtual Item SmartClone(Item target)
+        public virtual Item SmartCloneInto(Item target)
         {
-            var clone = MundaneClone(target);
+            var clone = MundaneCloneInto(target);
 
             clone.Magic.Curse = Magic.Curse;
             clone.IsMagical = isMagical;
@@ -120,12 +120,12 @@ namespace TreasureGen.Items
         public virtual Item MundaneClone()
         {
             var clone = new Item();
-            clone = MundaneClone(clone);
+            clone = MundaneCloneInto(clone);
 
             return clone;
         }
 
-        public virtual Item MundaneClone(Item target)
+        public virtual Item MundaneCloneInto(Item target)
         {
             target.Attributes = Attributes.ToArray();
             target.Contents.AddRange(Contents);

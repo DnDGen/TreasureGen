@@ -122,11 +122,16 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             selection.Amount = 0;
 
-            var specificArmor = new Item();
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(power, selection.Type)).Returns(specificArmor);
+            var specificArmor = new Armor();
+            specificArmor.Name = "specific armor";
+
+            mockSpecificGearGenerator.Setup(g => g.GenerateRandomPrototypeFrom(power, selection.Type)).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.NameMatches("specific armor")))).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.NameMatches("specific armor")))).Returns(true);
 
             var armor = magicalArmorGenerator.GenerateFrom(power);
             Assert.That(armor, Is.EqualTo(specificArmor));
+            mockSpecialAbilitiesGenerator.Verify(g => g.GenerateFor(It.IsAny<Item>(), It.IsAny<string>(), It.IsAny<int>()), Times.Never);
         }
 
         [Test]
@@ -144,9 +149,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
 
-            var templateMundaneArmor = new Item();
+            var templateMundaneArmor = new Armor();
             templateMundaneArmor.Name = name;
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(templateMundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.NameMatches(name)), false)).Returns(templateMundaneArmor);
 
             var armor = magicalArmorGenerator.GenerateFrom(template);
             Assert.That(armor, Is.EqualTo(templateMundaneArmor));
@@ -154,7 +159,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(armor.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
             Assert.That(armor.Magic.Charges, Is.EqualTo(template.Magic.Charges));
             Assert.That(armor.Magic.Curse, Is.EqualTo(template.Magic.Curse));
-            Assert.That(armor.Magic.Intelligence, Is.EqualTo(template.Magic.Intelligence));
+            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
 
             //INFO: Custom magic armor should be masterwork
@@ -176,7 +181,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
 
-            var templateMundaneArmor = new Item();
+            var templateMundaneArmor = new Armor();
             templateMundaneArmor.Name = name;
             mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.NameMatches(name)), false)).Returns(templateMundaneArmor);
 
@@ -186,7 +191,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(armor.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
             Assert.That(armor.Magic.Charges, Is.EqualTo(template.Magic.Charges));
             Assert.That(armor.Magic.Curse, Is.EqualTo(template.Magic.Curse));
-            Assert.That(armor.Magic.Intelligence, Is.EqualTo(template.Magic.Intelligence));
+            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
 
             //INFO: Custom magic armor should be masterwork
@@ -211,10 +216,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
 
-            var specificArmor = itemVerifier.CreateRandomTemplate(name);
+            var specificArmor = itemVerifier.CreateRandomArmorTemplate(name);
             specificArmor.ItemType = ItemTypeConstants.Armor;
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(template)).Returns(specificArmor);
-            mockSpecificGearGenerator.Setup(g => g.TemplateIsSpecific(template)).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.NameMatches(name)))).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.NameMatches(name)))).Returns(true);
 
             var armor = magicalArmorGenerator.GenerateFrom(template, true);
             Assert.That(armor.Quantity, Is.EqualTo(1));
@@ -277,8 +282,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<Item>(), power, 2)).Returns(abilities);
 
             var subset = new[] { "other armor name", "base name" };
-
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = new[] { "from mundane", "base name" } });
+            var baseNames = new[] { "from mundane", "base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = baseNames });
 
             var armor = magicalArmorGenerator.GenerateFrom(power, subset);
             Assert.That(armor.Name, Is.EqualTo("armor name"));
@@ -313,7 +319,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "type 1", "type 2" };
             var abilities = new[] { new SpecialAbility(), new SpecialAbility() };
 
-            var specificArmor = new Item();
+            var specificArmor = new Armor();
             specificArmor.Name = "armor name";
             specificArmor.BaseNames = baseNames;
             specificArmor.ItemType = ItemTypeConstants.Armor;
@@ -321,7 +327,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.Bonus = 42;
             specificArmor.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(power, "armor type")).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.GenerateRandomPrototypeFrom(power, "armor type")).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(specificArmor);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
 
             var subset = new[] { "other armor name", "armor name" };
 
@@ -438,7 +446,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "type 1", "type 2" };
             var abilities = new[] { new SpecialAbility(), new SpecialAbility() };
 
-            var specificArmor = new Item();
+            var specificArmor = new Armor();
             specificArmor.Name = "armor name";
             specificArmor.BaseNames = baseNames;
             specificArmor.ItemType = ItemTypeConstants.Armor;
@@ -446,7 +454,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.Bonus = 42;
             specificArmor.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.TemplateIsSpecific(It.Is<Item>(i => i.Name == "armor name"))).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "armor name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "armor name"))).Returns(specificArmor);
 
             var subset = new[] { "other armor name", "armor name" };

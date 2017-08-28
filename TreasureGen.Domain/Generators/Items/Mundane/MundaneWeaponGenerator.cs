@@ -36,31 +36,56 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item Generate()
         {
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
-            var weaponName = percentileSelector.SelectFrom(tableName);
-
-            var weapon = new Weapon();
-            weapon.Name = weaponName;
-            weapon.Size = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-
-            weapon = PopulateWeapon(weapon);
-            weapon.Quantity = GetQuantity(weapon);
-
-            var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
-            if (isMasterwork)
-                weapon.Traits.Add(TraitConstants.Masterwork);
+            var weapon = GenerateRandomPrototype();
+            weapon = GenerateFromPrototype(weapon, true);
 
             return weapon;
         }
 
-        private Weapon PopulateWeapon(Weapon weapon)
+        private Weapon GenerateRandomPrototype()
         {
-            if (string.IsNullOrEmpty(weapon.Name) || string.IsNullOrEmpty(weapon.Size))
-                throw new ArgumentException("Weapon name and weapon size cannot be empty - they must be filled before calling this method");
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            var weaponName = percentileSelector.SelectFrom(tableName);
 
+            var weapon = GeneratePrototype(weaponName);
+
+            return weapon;
+        }
+
+        private Weapon GeneratePrototype(string name)
+        {
+            var weapon = new Weapon();
+            weapon.Name = name;
+            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            weapon.Quantity = 0;
+
+            return weapon;
+        }
+
+        private Weapon GenerateFromPrototype(Weapon prototype, bool allowDecoration)
+        {
+            var weapon = SetWeaponAttributes(prototype);
+            weapon.Quantity = GetQuantity(weapon);
+
+            if (allowDecoration)
+            {
+                var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
+                if (isMasterwork)
+                    weapon.Traits.Add(TraitConstants.Masterwork);
+            }
+
+            return weapon;
+        }
+
+        private Weapon SetWeaponAttributes(Weapon weapon)
+        {
+            if (string.IsNullOrEmpty(weapon.Name))
+                throw new ArgumentException("Weapon name cannot be empty - it must be filled before calling this method");
+
+            weapon.Size = GetSize(weapon);
+            weapon.Traits.Remove(weapon.Size);
             weapon.ItemType = ItemTypeConstants.Weapon;
-            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, weapon.Name);
 
             if (weapon.Name.Contains("Composite"))
             {
@@ -87,7 +112,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         private int GetQuantity(Weapon weapon)
         {
-            if (weapon.Quantity > 1)
+            if (weapon.Quantity > 0)
                 return weapon.Quantity;
 
             if (weapon.Attributes.Contains(AttributeConstants.Ammunition))
@@ -132,42 +157,39 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
+            template.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name);
+
             var weapon = new Weapon();
-            template.MundaneClone(weapon);
 
-            weapon.Size = GetSize(template);
-            weapon.Traits.Remove(weapon.Size);
-            weapon = PopulateWeapon(weapon);
+            if (template is Weapon)
+                weapon = template.MundaneClone() as Weapon;
+            else
+                template.MundaneCloneInto(weapon);
 
-            if (allowRandomDecoration)
-            {
-                var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
-                if (isMasterwork)
-                    weapon.Traits.Add(TraitConstants.Masterwork);
-            }
-
-            if (weapon.Quantity == 0)
-                weapon.Quantity = GetQuantity(weapon);
+            weapon = GenerateFromPrototype(weapon, allowRandomDecoration);
 
             return weapon;
         }
 
-        private string GetSize(Item template)
+        private string GetSize(Weapon template)
         {
-            if (template is Weapon)
-            {
-                var weapon = template as Weapon;
+            if (!string.IsNullOrEmpty(template.Size))
+                return template.Size;
 
-                if (!string.IsNullOrEmpty(weapon.Size))
-                    return weapon.Size;
-            }
+            if (!template.Traits.Any())
+                return GetRandomSize();
 
             var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-            var sizes = template.Traits.Intersect(allSizes);
+            var sizeTraits = template.Traits.Intersect(allSizes);
 
-            if (sizes.Any())
-                return sizes.Single();
+            if (sizeTraits.Any())
+                return sizeTraits.Single();
 
+            return GetRandomSize();
+        }
+
+        private string GetRandomSize()
+        {
             return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
         }
 
@@ -176,24 +198,36 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
 
-            var weapon = generator.Generate(
-                Generate,
-                w => subset.Any(n => w.NameMatches(n)),
-                () => GenerateDefaultFrom(subset),
-                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Mundane weapon from [{string.Join(", ", subset)}]");
+            var prototype = new Weapon();
+
+            if (subset.Count() == 1)
+            {
+                var name = subset.Single();
+                prototype = GeneratePrototype(name);
+            }
+            else
+            {
+                prototype = generator.Generate(
+                    GenerateRandomPrototype,
+                    w => subset.Any(n => w.NameMatches(n)),
+                    () => GenerateDefaultFrom(subset),
+                    w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
+                    $"Mundane weapon from [{string.Join(", ", subset)}]");
+            }
+
+            var weapon = GenerateFromPrototype(prototype, true);
 
             return weapon;
         }
 
-        private Item GenerateDefaultFrom(IEnumerable<string> subset)
+        private Weapon GenerateDefaultFrom(IEnumerable<string> subset)
         {
-            var template = new Item();
+            var template = new Weapon();
             template.Name = collectionsSelector.SelectRandomFrom(subset);
             template.Quantity = 0;
 
             var defaultWeapon = GenerateFrom(template);
-            return defaultWeapon;
+            return defaultWeapon as Weapon;
         }
     }
 }

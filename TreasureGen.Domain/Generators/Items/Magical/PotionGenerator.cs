@@ -53,17 +53,25 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            if (!results.Any(r => subset.Any(n => r.Type == n)))
+            {
+                return CreateDefaultPotion(power, subset);
+            }
+
             var potion = generator.Generate(
                 () => GenerateFrom(power),
                 p => subset.Any(n => p.NameMatches(n)),
-                () => GenerateDefaultFrom(power, subset),
+                () => CreateDefaultPotion(power, subset),
                 p => $"{p.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Potion from [{string.Join(", ", subset)}]");
 
             return potion;
         }
 
-        private Item GenerateDefaultFrom(string power, IEnumerable<string> subset)
+        private Item CreateDefaultPotion(string power, IEnumerable<string> subset)
         {
             var template = new Item();
             template.Name = collectionsSelector.SelectRandomFrom(subset);

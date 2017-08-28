@@ -122,6 +122,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(string power, IEnumerable<string> subset)
         {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            if (!results.Any(r => subset.Any(n => r.Type == n)))
+            {
+                return CreateDefaultRing(power, subset);
+            }
+
             var ring = generator.Generate(
                 () => GenerateFrom(power),
                 r => subset.Any(n => r.NameMatches(n)),

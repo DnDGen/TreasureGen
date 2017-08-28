@@ -14,35 +14,27 @@ namespace TreasureGen.Domain.Generators.Items
             this.eventQueue = eventQueue;
         }
 
-        public Item GenerateFrom(string power, string specificGearType)
-        {
-            eventQueue.Enqueue("TreasureGen", $"Beginning {power} specific {specificGearType} generation");
-            var item = innerGenerator.GenerateFrom(power, specificGearType);
-            eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
-
-            return item;
-        }
-
         public Item GenerateFrom(Item template)
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning specific gear generation from template: {template.ItemType} {template.Name}");
+            eventQueue.Enqueue("TreasureGen", $"Generating specific gear from template: {template.ItemType} {template.Name}");
             var item = innerGenerator.GenerateFrom(template);
-            eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
+            eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
 
             return item;
         }
 
-        public bool TemplateIsSpecific(Item template)
+        public bool IsSpecific(Item template)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific gear");
-            var isSpecific = innerGenerator.TemplateIsSpecific(template);
-
-            if (isSpecific)
-                eventQueue.Enqueue("TreasureGen", $"{template.Name} is a specific gear");
-            else
-                eventQueue.Enqueue("TreasureGen", $"{template.Name} is not a specific gear");
+            var isSpecific = innerGenerator.IsSpecific(template);
 
             return isSpecific;
+        }
+
+        public Item GenerateRandomPrototypeFrom(string power, string specificGearType)
+        {
+            var prototype = innerGenerator.GenerateRandomPrototypeFrom(power, specificGearType);
+
+            return prototype;
         }
     }
 }

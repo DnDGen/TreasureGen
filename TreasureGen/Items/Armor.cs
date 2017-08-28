@@ -68,7 +68,7 @@ namespace TreasureGen.Items
         public override Item Clone()
         {
             var clone = new Armor();
-            base.Clone(clone);
+            base.CloneInto(clone);
             CloneArmor(clone);
 
             return clone;
@@ -87,7 +87,7 @@ namespace TreasureGen.Items
         public override Item MundaneClone()
         {
             var clone = new Armor();
-            base.MundaneClone(clone);
+            base.MundaneCloneInto(clone);
             CloneArmor(clone);
 
             return clone;
@@ -96,7 +96,7 @@ namespace TreasureGen.Items
         public override Item SmartClone()
         {
             var clone = new Armor();
-            base.SmartClone(clone);
+            base.SmartCloneInto(clone);
             CloneArmor(clone);
 
             return clone;

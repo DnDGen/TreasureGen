@@ -41,6 +41,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
+        [Ignore("There is no currently-known use case where we generate a tool from a subset")]
         public void StressToolFromSubset()
         {
             stressor.Stress(GenerateAndAssertItemFromSubset);

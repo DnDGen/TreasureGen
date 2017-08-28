@@ -86,7 +86,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
             var armor = mundaneArmorGenerator.GenerateFrom(template);
 
-            cursedItem.Clone(armor);
+            cursedItem.CloneInto(armor);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
@@ -103,7 +103,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var weapon = mundaneWeaponGenerator.GenerateFrom(template);
 
             cursedItem.Quantity = weapon.Quantity;
-            cursedItem.Clone(weapon);
+            cursedItem.CloneInto(weapon);
 
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
