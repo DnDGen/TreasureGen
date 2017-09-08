@@ -22,7 +22,6 @@ namespace TreasureGen.Tests.Integration.Stress
         {
             var options = new StressorWithEventsOptions();
             options.RunningAssembly = Assembly.GetExecutingAssembly();
-            options.TimeLimitPercentage = .90;
 
 #if STRESS
             options.IsFullStress = true;
