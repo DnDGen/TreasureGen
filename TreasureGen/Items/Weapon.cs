@@ -1,13 +1,16 @@
-﻿namespace TreasureGen.Items
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TreasureGen.Items
 {
     public class Weapon : Item
     {
+        public string Ammunition { get; set; }
+        public string CriticalMultiplier { get; set; }
         public string Damage { get; set; }
+        public string DamageType { get; set; }
         public string Size { get; set; }
         public string ThreatRange { get; set; }
-        public string CriticalMultiplier { get; set; }
-        public string DamageType { get; set; }
-        public string Ammunition { get; set; }
 
         public override bool CanBeUsedAsWeaponOrArmor
         {
@@ -17,14 +20,26 @@
             }
         }
 
+        public IEnumerable<string> CombatTypes
+        {
+            get
+            {
+                return Attributes.Intersect(combatTypes);
+            }
+        }
+
+        private readonly IEnumerable<string> combatTypes;
+
         public Weapon()
         {
-            Size = string.Empty;
-            Damage = string.Empty;
-            ThreatRange = string.Empty;
-            DamageType = string.Empty;
-            CriticalMultiplier = string.Empty;
             Ammunition = string.Empty;
+            CriticalMultiplier = string.Empty;
+            Damage = string.Empty;
+            DamageType = string.Empty;
+            Size = string.Empty;
+            ThreatRange = string.Empty;
+
+            combatTypes = new[] { AttributeConstants.Ranged, AttributeConstants.Melee };
         }
 
         public override Item Clone()
@@ -38,12 +53,12 @@
 
         private Weapon CloneWeapon(Weapon target)
         {
-            target.Damage = Damage;
-            target.ThreatRange = ThreatRange;
-            target.CriticalMultiplier = CriticalMultiplier;
-            target.Size = Size;
-            target.DamageType = DamageType;
             target.Ammunition = Ammunition;
+            target.CriticalMultiplier = CriticalMultiplier;
+            target.Damage = Damage;
+            target.DamageType = DamageType;
+            target.Size = Size;
+            target.ThreatRange = ThreatRange;
 
             return target;
         }

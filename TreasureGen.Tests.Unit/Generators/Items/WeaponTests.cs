@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 
@@ -28,6 +29,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.ThreatRange, Is.Empty);
             Assert.That(weapon.CriticalMultiplier, Is.Empty);
             Assert.That(weapon.ItemType, Is.Empty); //INFO: Weapon could be a rod or staff
+            Assert.That(weapon.CombatTypes, Is.Empty);
         }
 
         [Test]
@@ -48,12 +50,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomWeaponTemplate(name);
 
+            template.Ammunition = "nerf bullets";
+            template.CriticalMultiplier = "over 9000!!!";
             template.Damage = "a ton";
             template.DamageType = "stabbing";
-            template.ThreatRange = "all the threat";
-            template.CriticalMultiplier = "over 9000!!!";
             template.Size = "massive";
-            template.Ammunition = "nerf bullets";
+            template.ThreatRange = "all the threat";
 
             var clone = template.Clone();
             Assert.That(clone, Is.Not.EqualTo(template));
@@ -81,12 +83,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
 
             var cloneWeapon = clone as Weapon;
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
             Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
 
         [Test]
@@ -116,12 +118,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
 
             var cloneWeapon = clone as Weapon;
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
             Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
 
         [Test]
@@ -145,12 +147,37 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
 
             var cloneWeapon = clone as Weapon;
+            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
             Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+        }
+
+        [Test]
+        public void IsMelee()
+        {
+            weapon.Attributes = new[] { "some attribute", AttributeConstants.Melee };
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee));
+            Assert.That(weapon.CombatTypes.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void IsRanged()
+        {
+            weapon.Attributes = new[] { "some attribute", AttributeConstants.Ranged };
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Ranged));
+            Assert.That(weapon.CombatTypes.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void IsMeleeAndRanged()
+        {
+            weapon.Attributes = new[] { "some attribute", AttributeConstants.Melee, "other attribute", AttributeConstants.Ranged };
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee));
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Ranged));
+            Assert.That(weapon.CombatTypes.Count, Is.EqualTo(2));
         }
     }
 }

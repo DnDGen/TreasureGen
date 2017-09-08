@@ -83,9 +83,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             if (weapon.IsMagical)
                 Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Name);
 
+            Assert.That(weapon.Attributes, Is.Not.Empty, $"{weapon.Name} attributes");
             Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Bludgeoning), weapon.Name);
             Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Piercing), weapon.Name);
             Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+
+            Assert.That(weapon.CombatTypes, Is.Not.Empty, $"{weapon.Name} combat types");
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
+            Assert.That(weapon.CombatTypes.Count, Is.InRange(1, 2));
 
             if (weapon.Damage != "0")
             {
