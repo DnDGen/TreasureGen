@@ -83,9 +83,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             intelligence.Powers.AddRange(lesserPowers);
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
+            var chance = intelligenceAttributesResult.GreaterPowersCount / 4d;
+            var hasSpecialPurpose = percentileSelector.SelectFrom(chance);
 
-            var roll = dice.Roll().d4().AsSum();
-            if (roll <= intelligenceAttributesResult.GreaterPowersCount)
+            if (hasSpecialPurpose)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes);

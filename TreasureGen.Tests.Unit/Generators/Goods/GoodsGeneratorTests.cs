@@ -1,7 +1,7 @@
 ﻿using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using RollGen;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Goods;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -14,21 +14,20 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
     [TestFixture]
     public class GoodsGeneratorTests
     {
-        private Mock<Dice> mockDice;
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private Mock<ICollectionsSelector> mockCollectionsSelector;
         private IGoodsGenerator generator;
 
         private TypeAndAmountSelection selection;
         private TypeAndAmountSelection valueSelection;
+        private List<string> descriptions;
 
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<Dice>();
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionsSelector>();
-            generator = new GoodsGenerator(mockDice.Object, mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
+            generator = new GoodsGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
             selection = new TypeAndAmountSelection();
             valueSelection = new TypeAndAmountSelection();
 
@@ -41,10 +40,11 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, selection.Type);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(valueSelection);
 
-            var descriptions = new[] { "description 1", "description 2" };
+            descriptions = new List<string> { "description 1", "description 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, selection.Type);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, It.IsAny<string>())).Returns(descriptions);
-            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
+
+            var count = 0;
+            mockCollectionsSelector.Setup(p => p.SelectRandomFrom(tableName, It.IsAny<string>())).Returns(() => descriptions[count++ % descriptions.Count]);
         }
 
         [Test]
@@ -99,8 +99,6 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         [Test]
         public void DescriptionDeterminedByValueResult()
         {
-            mockDice.SetupSequence(d => d.Roll(1).d(2).AsSum()).Returns(1).Returns(2);
-
             var goods = generator.GenerateAtLevel(1);
             var firstGood = goods.First();
             var secondGood = goods.Last();

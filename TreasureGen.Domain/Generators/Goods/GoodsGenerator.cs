@@ -1,5 +1,4 @@
 ﻿using DnDGen.Core.Selectors.Collections;
-using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -11,12 +10,10 @@ namespace TreasureGen.Domain.Generators.Goods
     internal class GoodsGenerator : IGoodsGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly Dice dice;
         private readonly ICollectionsSelector collectionSelector;
 
-        public GoodsGenerator(Dice dice, ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionSelector)
+        public GoodsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionSelector)
         {
-            this.dice = dice;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionSelector = collectionSelector;
         }
@@ -24,24 +21,22 @@ namespace TreasureGen.Domain.Generators.Goods
         public IEnumerable<Good> GenerateAtLevel(int level)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
-            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
+            var typeAndAmountSelection = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
-            if (string.IsNullOrEmpty(result.Type))
+            if (string.IsNullOrEmpty(typeAndAmountSelection.Type))
                 return Enumerable.Empty<Good>();
 
             var goods = new List<Good>();
-            var valueTableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, result.Type);
-            var descriptionTableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, result.Type);
+            var valueTableName = string.Format(TableNameConstants.Percentiles.Formattable.GOODTYPEValues, typeAndAmountSelection.Type);
+            var descriptionTableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, typeAndAmountSelection.Type);
 
-            while (result.Amount-- > 0)
+            while (typeAndAmountSelection.Amount-- > 0)
             {
-                var valueResult = typeAndAmountPercentileSelector.SelectFrom(valueTableName);
-                var descriptions = collectionSelector.SelectFrom(descriptionTableName, valueResult.Type);
-                var descriptionIndex = dice.Roll().d(descriptions.Count()).AsSum() - 1;
+                var valueSelection = typeAndAmountPercentileSelector.SelectFrom(valueTableName);
 
                 var good = new Good();
-                good.Description = descriptions.ElementAt(descriptionIndex);
-                good.ValueInGold = valueResult.Amount;
+                good.Description = collectionSelector.SelectRandomFrom(descriptionTableName, valueSelection.Type);
+                good.ValueInGold = valueSelection.Amount;
 
                 goods.Add(good);
             }

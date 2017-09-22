@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DnDGen.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.Core.2.2.1\lib\DnDGen.Core.dll</HintPath>
+      <HintPath>..\packages\DnDGen.Core.2.4.0\lib\DnDGen.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EventGen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -46,8 +46,8 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RollGen, Version=12.1.6247.28555, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DnDGen.RollGen.13.3.0\lib\RollGen.dll</HintPath>
+    <Reference Include="RollGen, Version=12.1.6473.39742, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnDGen.RollGen.13.4.0\lib\RollGen.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

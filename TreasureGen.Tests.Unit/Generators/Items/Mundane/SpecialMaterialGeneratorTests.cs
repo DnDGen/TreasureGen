@@ -1,7 +1,6 @@
 ﻿using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using RollGen;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Mundane;
@@ -16,8 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     public class SpecialMaterialGeneratorTests
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
-        private Mock<Dice> mockDice;
-        private Mock<ICollectionsSelector> mockAttributesSelector;
+        private Mock<ICollectionsSelector> mockCollectionsSelector;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
 
         private List<string> mithralAttributes;
@@ -28,19 +26,21 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [SetUp]
         public void Setup()
         {
-            mockDice = new Mock<Dice>();
             mithralAttributes = new List<string>() { "type 1", "type 2" };
             adamantineAttributes = new List<string>() { "type 3", "type 2" };
             otherMaterialAttributes = new List<string>() { "type 3", "type 2", "other attribute" };
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockAttributesSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionsSelector>();
             traits = new List<string>();
 
-            mockAttributesSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Mithral)).Returns(mithralAttributes);
-            mockAttributesSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Adamantine)).Returns(adamantineAttributes);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Mithral)).Returns(mithralAttributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.SpecialMaterials.Adamantine)).Returns(adamantineAttributes);
 
-            specialMaterialsGenerator = new SpecialMaterialGenerator(mockDice.Object, mockAttributesSelector.Object, mockPercentileSelector.Object);
+            specialMaterialsGenerator = new SpecialMaterialGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object);
+
+            var count = 0;
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<string>>())).Returns((IEnumerable<string> c) => c.ElementAt(count++ % c.Count()));
         }
 
         [Test]
@@ -199,7 +199,6 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void NonMaterialTraitsDoNotMatter()
         {
-            mockDice.Setup(d => d.Roll(It.IsAny<int>()).d(It.IsAny<int>()).AsSum()).Returns(1);
             traits.Add("not a material trait");
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
 
@@ -208,15 +207,12 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void IfMultipleMatchingMaterials_RollsToDetermineWhichOne()
+        public void IfMultipleMatchingMaterials_DetermineRandomly()
         {
             var inputAttributes = mithralAttributes.Union(adamantineAttributes);
-            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(1);
 
             var material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.SpecialMaterials.Adamantine));
-
-            mockDice.Setup(d => d.Roll(1).d(2).AsSum()).Returns(2);
 
             material = specialMaterialsGenerator.GenerateFor(ItemTypeConstants.Armor, inputAttributes, traits);
             Assert.That(material, Is.EqualTo(TraitConstants.SpecialMaterials.Mithral));

@@ -117,5 +117,10 @@ namespace TreasureGen.Domain.Selectors.Percentiles
         {
             return innerSelector.SelectAllFrom<T>(tableName);
         }
+
+        public bool SelectFrom(double chance)
+        {
+            return innerSelector.SelectFrom(chance);
+        }
     }
 }

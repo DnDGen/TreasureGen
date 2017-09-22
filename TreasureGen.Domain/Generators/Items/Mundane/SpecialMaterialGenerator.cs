@@ -1,5 +1,4 @@
 ﻿using DnDGen.Core.Selectors.Collections;
-using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +11,11 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
-        private readonly Dice dice;
         private readonly ICollectionsSelector collectionsSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
 
-        public SpecialMaterialGenerator(Dice dice, ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector)
+        public SpecialMaterialGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector)
         {
-            this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
         }
@@ -102,11 +99,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             var filteredSpecialMaterials = GetAllowedMaterials(attributesWithType);
             var allowedSpecialMaterials = filteredSpecialMaterials.Except(traits);
 
-            if (allowedSpecialMaterials.Count() == 1)
-                return allowedSpecialMaterials.First();
-
-            var index = dice.Roll().d(allowedSpecialMaterials.Count()).AsSum() - 1;
-            return allowedSpecialMaterials.ElementAt(index);
+            var specialMaterial = collectionsSelector.SelectRandomFrom(allowedSpecialMaterials);
+            return specialMaterial;
         }
     }
 }
