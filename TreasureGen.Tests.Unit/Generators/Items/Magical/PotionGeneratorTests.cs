@@ -20,14 +20,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private string power;
         private ItemVerifier itemVerifier;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Generator generator;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             generator = new IterativeGeneratorWithoutLogging(5);
             potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();

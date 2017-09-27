@@ -36,7 +36,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane
         public void TableContainsAllSpecialMaterials()
         {
             var materials = TraitConstants.SpecialMaterials.All();
-            var table = CollectionsMapper.Map(tableName);
+            var table = CollectionMapper.Map(tableName);
             Assert.That(table.Keys, Is.SupersetOf(materials));
         }
     }

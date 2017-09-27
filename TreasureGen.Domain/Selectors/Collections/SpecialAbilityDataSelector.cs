@@ -8,9 +8,9 @@ namespace TreasureGen.Domain.Selectors.Collections
 {
     internal class SpecialAbilityDataSelector : ISpecialAbilityDataSelector
     {
-        private readonly ICollectionsSelector innerSelector;
+        private readonly ICollectionSelector innerSelector;
 
-        public SpecialAbilityDataSelector(ICollectionsSelector innerSelector)
+        public SpecialAbilityDataSelector(ICollectionSelector innerSelector)
         {
             this.innerSelector = innerSelector;
         }

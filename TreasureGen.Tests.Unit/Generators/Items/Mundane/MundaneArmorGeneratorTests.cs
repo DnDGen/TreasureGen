@@ -18,7 +18,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     {
         private MundaneItemGenerator mundaneArmorGenerator;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<IArmorDataSelector> mockArmorDataSelector;
         private ItemVerifier itemVerifier;
         private ArmorSelection armorSelection;
@@ -27,7 +27,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void Setup()
         {
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             var generator = new IterativeGeneratorWithoutLogging(5);
             mockArmorDataSelector = new Mock<IArmorDataSelector>();
             mundaneArmorGenerator = new MundaneArmorGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, generator, mockArmorDataSelector.Object);

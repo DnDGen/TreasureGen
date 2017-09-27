@@ -10,14 +10,14 @@ namespace TreasureGen.Tests.Integration.Tables
     public abstract class CollectionsTests : TableTests
     {
         [Inject]
-        public CollectionsMapper CollectionsMapper { get; set; }
+        public CollectionMapper CollectionMapper { get; set; }
 
         private Dictionary<string, IEnumerable<string>> table;
 
         [SetUp]
         public void Setup()
         {
-            table = CollectionsMapper.Map(tableName);
+            table = CollectionMapper.Map(tableName);
         }
 
         protected IEnumerable<string> GetKeys()

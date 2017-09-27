@@ -19,7 +19,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private IIntelligenceGenerator intelligenceGenerator;
         private Mock<Dice> mockDice;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<IIntelligenceDataSelector> mockIntelligenceDataSelector;
         private List<string> attributes;
         private IntelligenceSelection intelligenceSelection;
@@ -31,7 +31,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             mockIntelligenceDataSelector = new Mock<IIntelligenceDataSelector>();
             intelligenceSelection = new IntelligenceSelection();
             attributes = new List<string>();

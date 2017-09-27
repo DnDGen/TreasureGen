@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
     public class SpecialAbilitiesGeneratorTests
     {
         private ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<ISpecialAbilityDataSelector> mockSpecialAbilityDataSelector;
 
@@ -31,7 +31,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             itemAttributes = new List<string>();
 
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockSpecialAbilityDataSelector = new Mock<ISpecialAbilityDataSelector>();
             specialAbilitiesGenerator = new SpecialAbilitiesGenerator(mockCollectionsSelector.Object, mockPercentileSelector.Object, mockSpecialAbilityDataSelector.Object);

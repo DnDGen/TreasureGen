@@ -8,9 +8,9 @@ namespace TreasureGen.Domain.Selectors.Collections
 {
     internal class RangeDataSelector : IRangeDataSelector
     {
-        private readonly ICollectionsSelector innerSelector;
+        private readonly ICollectionSelector innerSelector;
 
-        public RangeDataSelector(ICollectionsSelector innerSelector)
+        public RangeDataSelector(ICollectionSelector innerSelector)
         {
             this.innerSelector = innerSelector;
         }

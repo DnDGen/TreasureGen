@@ -208,7 +208,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
         [TestCase(WeaponConstants.CursedMinus2Sword)]
         public void SpecificCursedWeaponMatchesAttributes(string item)
         {
-            var specificCursedAttributes = CollectionsMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificCursedAttributes = CollectionMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
             var specificAttributes = GetCollection(item);
 
             Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));

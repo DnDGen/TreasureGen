@@ -15,14 +15,14 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     internal class MundaneWeaponGenerator : MundaneItemGenerator
     {
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly Dice dice;
         private readonly Generator generator;
         private readonly IWeaponDataSelector weaponDataSelector;
 
         public MundaneWeaponGenerator(
             ITreasurePercentileSelector percentileSelector,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             Dice dice,
             Generator generator,
             IWeaponDataSelector weaponDataSelector)

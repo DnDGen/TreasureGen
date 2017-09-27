@@ -61,7 +61,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
         [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
         public void SpecificCursedArmorMatchesAttributes(string item)
         {
-            var specificCursedAttributes = CollectionsMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificCursedAttributes = CollectionMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
             var specificAttributes = GetCollection(item);
 
             Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));

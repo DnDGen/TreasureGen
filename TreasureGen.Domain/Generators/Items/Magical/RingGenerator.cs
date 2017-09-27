@@ -12,14 +12,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class RingGenerator : MagicalItemGenerator
     {
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly ISpellGenerator spellGenerator;
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly Generator generator;
 
         public RingGenerator(
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             ISpellGenerator spellGenerator,
             IChargesGenerator chargesGenerator,
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,

@@ -11,12 +11,12 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
     public class WeaponDataSelectorTests
     {
         private IWeaponDataSelector weaponDataSelector;
-        private Mock<ICollectionsSelector> mockInnerSelector;
+        private Mock<ICollectionSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerSelector = new Mock<ICollectionsSelector>();
+            mockInnerSelector = new Mock<ICollectionSelector>();
             weaponDataSelector = new WeaponDataSelector(mockInnerSelector.Object);
         }
 

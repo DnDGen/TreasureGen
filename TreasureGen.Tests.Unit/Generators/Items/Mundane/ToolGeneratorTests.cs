@@ -20,14 +20,14 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private ItemVerifier itemVerifier;
         private Generator generator;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             generator = new IterativeGeneratorWithoutLogging(3);
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             toolGenerator = new ToolGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             itemVerifier = new ItemVerifier();
         }

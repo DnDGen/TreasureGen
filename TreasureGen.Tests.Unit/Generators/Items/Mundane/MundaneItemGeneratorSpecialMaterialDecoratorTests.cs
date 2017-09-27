@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<ISpecialMaterialGenerator> mockMaterialGenerator;
         private Mock<MundaneItemGenerator> mockInnerGenerator;
         private Item item;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private List<string> masterworkMaterials;
 
         [SetUp]
@@ -25,7 +25,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockMaterialGenerator = new Mock<ISpecialMaterialGenerator>();
             mockInnerGenerator = new Mock<MundaneItemGenerator>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             decorator = new MundaneItemGeneratorSpecialMaterialDecorator(mockInnerGenerator.Object, mockMaterialGenerator.Object, mockCollectionsSelector.Object);
 
             item = new Item();

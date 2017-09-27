@@ -16,14 +16,14 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly IChargesGenerator chargesGenerator;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
         public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IChargesGenerator chargesGenerator,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             Generator generator,
             JustInTimeFactory justInTimeFactory)

@@ -14,7 +14,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
         private readonly Generator generator;
@@ -23,7 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         public MagicalArmorGenerator(
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ITreasurePercentileSelector percentileSelector,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             Generator generator,

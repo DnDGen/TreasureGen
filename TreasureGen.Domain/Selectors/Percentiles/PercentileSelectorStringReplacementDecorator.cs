@@ -9,9 +9,9 @@ namespace TreasureGen.Domain.Selectors.Percentiles
     internal class PercentileSelectorStringReplacementDecorator : ITreasurePercentileSelector
     {
         private readonly IPercentileSelector innerSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
 
-        public PercentileSelectorStringReplacementDecorator(IPercentileSelector innerSelector, ICollectionsSelector collectionsSelector)
+        public PercentileSelectorStringReplacementDecorator(IPercentileSelector innerSelector, ICollectionSelector collectionsSelector)
         {
             this.innerSelector = innerSelector;
             this.collectionsSelector = collectionsSelector;

@@ -14,9 +14,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly Generator generator;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
 
-        public WandGenerator(ITreasurePercentileSelector percentileSelector, IChargesGenerator chargesGenerator, Generator generator, ICollectionsSelector collectionsSelector)
+        public WandGenerator(ITreasurePercentileSelector percentileSelector, IChargesGenerator chargesGenerator, Generator generator, ICollectionSelector collectionsSelector)
         {
             this.percentileSelector = percentileSelector;
             this.chargesGenerator = chargesGenerator;

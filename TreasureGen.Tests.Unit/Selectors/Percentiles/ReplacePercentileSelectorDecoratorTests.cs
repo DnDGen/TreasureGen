@@ -13,13 +13,13 @@ namespace TreasureGen.Tests.Unit.Selectors.Percentiles
     {
         private ITreasurePercentileSelector decorator;
         private Mock<IPercentileSelector> mockInnerSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
 
         [SetUp]
         public void Setup()
         {
             mockInnerSelector = new Mock<IPercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
 
             var replacementStrings = new[] { "FIRST", "SECOND" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ReplacementStrings, TableNameConstants.Collections.Set.ReplacementStrings))

@@ -15,11 +15,11 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private readonly Dice dice;
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
-        public CurseGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator, JustInTimeFactory justInTimeFactory)
+        public CurseGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, Generator generator, JustInTimeFactory justInTimeFactory)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;

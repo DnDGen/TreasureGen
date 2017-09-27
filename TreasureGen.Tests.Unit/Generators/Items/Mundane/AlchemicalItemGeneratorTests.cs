@@ -22,13 +22,13 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         private TypeAndAmountSelection selection;
         private ItemVerifier itemVerifier;
         private Generator generator;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             generator = new IterativeGeneratorWithoutLogging(5);
             alchemicalItemGenerator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
             selection = new TypeAndAmountSelection();

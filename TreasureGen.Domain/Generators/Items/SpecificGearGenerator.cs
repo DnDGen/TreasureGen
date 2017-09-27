@@ -14,7 +14,7 @@ namespace TreasureGen.Domain.Generators.Items
     internal class SpecificGearGenerator : ISpecificGearGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpellGenerator spellGenerator;
@@ -22,7 +22,7 @@ namespace TreasureGen.Domain.Generators.Items
         private readonly JustInTimeFactory justInTimeFactory;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             IChargesGenerator chargesGenerator,
             ITreasurePercentileSelector percentileSelector,
             ISpellGenerator spellGenerator,

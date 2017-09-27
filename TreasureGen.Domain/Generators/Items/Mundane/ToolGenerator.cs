@@ -13,10 +13,10 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     internal class ToolGenerator : MundaneItemGenerator
     {
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly Generator generator;
 
-        public ToolGenerator(ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator)
+        public ToolGenerator(ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, Generator generator)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;

@@ -15,10 +15,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     {
         private readonly Dice dice;
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly IIntelligenceDataSelector intelligenceDataSelector;
 
-        public IntelligenceGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector)
+        public IntelligenceGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;

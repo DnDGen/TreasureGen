@@ -10,12 +10,12 @@ namespace TreasureGen.Tests.Unit.Selectors.Collections
     public class IntelligenceCollectionsSelectorTests
     {
         private IIntelligenceDataSelector selector;
-        private Mock<ICollectionsSelector> mockInnerSelector;
+        private Mock<ICollectionSelector> mockInnerSelector;
 
         [SetUp]
         public void Setup()
         {
-            mockInnerSelector = new Mock<ICollectionsSelector>();
+            mockInnerSelector = new Mock<ICollectionSelector>();
             selector = new IntelligenceDataSelector(mockInnerSelector.Object);
         }
 

@@ -13,7 +13,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 {
     internal class MagicalWeaponGenerator : MagicalItemGenerator
     {
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
@@ -22,7 +22,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly JustInTimeFactory justInTimeFactory;
 
         public MagicalWeaponGenerator(
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             ITreasurePercentileSelector percentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,

@@ -15,7 +15,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class RodGenerator : MagicalItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
@@ -23,7 +23,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
         private readonly JustInTimeFactory justInTimeFactory;
 
         public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             IChargesGenerator chargesGenerator,
             ITreasurePercentileSelector percentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,

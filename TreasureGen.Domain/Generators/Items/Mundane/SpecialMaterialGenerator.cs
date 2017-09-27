@@ -11,10 +11,10 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
 {
     internal class SpecialMaterialGenerator : ISpecialMaterialGenerator
     {
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
 
-        public SpecialMaterialGenerator(ICollectionsSelector collectionsSelector, ITreasurePercentileSelector percentileSelector)
+        public SpecialMaterialGenerator(ICollectionSelector collectionsSelector, ITreasurePercentileSelector percentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;

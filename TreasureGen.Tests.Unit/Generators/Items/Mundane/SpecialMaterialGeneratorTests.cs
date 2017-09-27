@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     public class SpecialMaterialGeneratorTests
     {
         private ISpecialMaterialGenerator specialMaterialsGenerator;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
 
         private List<string> mithralAttributes;
@@ -30,7 +30,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
             adamantineAttributes = new List<string>() { "type 3", "type 2" };
             otherMaterialAttributes = new List<string>() { "type 3", "type 2", "other attribute" };
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             traits = new List<string>();
 
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, It.IsAny<string>())).Returns(otherMaterialAttributes);

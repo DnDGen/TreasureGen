@@ -20,7 +20,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private ICurseGenerator curseGenerator;
         private Mock<Dice> mockDice;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
         private ItemVerifier itemVerifier;
@@ -31,7 +31,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();

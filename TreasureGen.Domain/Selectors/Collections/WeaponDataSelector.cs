@@ -8,9 +8,9 @@ namespace TreasureGen.Domain.Selectors.Collections
 {
     internal class WeaponDataSelector : IWeaponDataSelector
     {
-        private readonly ICollectionsSelector innerSelector;
+        private readonly ICollectionSelector innerSelector;
 
-        public WeaponDataSelector(ICollectionsSelector innerSelector)
+        public WeaponDataSelector(ICollectionSelector innerSelector)
         {
             this.innerSelector = innerSelector;
         }

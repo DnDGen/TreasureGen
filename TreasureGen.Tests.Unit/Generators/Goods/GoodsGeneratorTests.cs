@@ -15,7 +15,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
     public class GoodsGeneratorTests
     {
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private IGoodsGenerator generator;
 
         private TypeAndAmountSelection selection;
@@ -26,7 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Goods
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             generator = new GoodsGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
             selection = new TypeAndAmountSelection();
             valueSelection = new TypeAndAmountSelection();

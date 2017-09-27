@@ -17,7 +17,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         private MagicalItemGenerator wandGenerator;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private string power;
         private ItemVerifier itemVerifier;
 
@@ -26,7 +26,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             var generator = new IterativeGeneratorWithoutLogging(5);
             wandGenerator = new WandGenerator(mockPercentileSelector.Object, mockChargesGenerator.Object, generator, mockCollectionsSelector.Object);
             power = "power";

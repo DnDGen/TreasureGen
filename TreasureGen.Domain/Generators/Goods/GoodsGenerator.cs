@@ -10,9 +10,9 @@ namespace TreasureGen.Domain.Generators.Goods
     internal class GoodsGenerator : IGoodsGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ICollectionsSelector collectionSelector;
+        private readonly ICollectionSelector collectionSelector;
 
-        public GoodsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionsSelector collectionSelector)
+        public GoodsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionSelector = collectionSelector;

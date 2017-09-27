@@ -15,7 +15,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
     internal class WondrousItemGenerator : MagicalItemGenerator
     {
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly IChargesGenerator chargesGenerator;
         private readonly Dice dice;
         private readonly ISpellGenerator spellGenerator;
@@ -24,7 +24,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public WondrousItemGenerator(
             ITreasurePercentileSelector percentileSelector,
-            ICollectionsSelector collectionsSelector,
+            ICollectionSelector collectionsSelector,
             IChargesGenerator chargesGenerator,
             Dice dice,
             ISpellGenerator spellGenerator,

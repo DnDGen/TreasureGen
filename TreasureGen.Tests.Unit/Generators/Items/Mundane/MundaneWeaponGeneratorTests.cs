@@ -21,7 +21,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
     {
         private MundaneItemGenerator mundaneWeaponGenerator;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
-        private Mock<ICollectionsSelector> mockCollectionsSelector;
+        private Mock<ICollectionSelector> mockCollectionsSelector;
         private string expectedTableName;
         private Mock<Dice> mockDice;
         private ItemVerifier itemVerifier;
@@ -33,7 +33,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void Setup()
         {
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionsSelector>();
+            mockCollectionsSelector = new Mock<ICollectionSelector>();
             mockDice = new Mock<Dice>();
             generator = new IterativeGeneratorWithoutLogging(5);
             mockWeaponDataSelector = new Mock<IWeaponDataSelector>();

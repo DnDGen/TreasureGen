@@ -14,11 +14,11 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
     internal class MundaneArmorGenerator : MundaneItemGenerator
     {
         private readonly ITreasurePercentileSelector percentileSelector;
-        private readonly ICollectionsSelector collectionsSelector;
+        private readonly ICollectionSelector collectionsSelector;
         private readonly Generator generator;
         private readonly IArmorDataSelector armorDataSelector;
 
-        public MundaneArmorGenerator(ITreasurePercentileSelector percentileSelector, ICollectionsSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
+        public MundaneArmorGenerator(ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
