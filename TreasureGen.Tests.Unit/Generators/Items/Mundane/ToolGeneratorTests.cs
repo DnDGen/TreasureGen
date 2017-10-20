@@ -121,5 +121,48 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             Assert.That(() => toolGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
         }
+
+        [Test]
+        public void GenerateFromSubsetWithTraits()
+        {
+            var subset = new[] { "other tool", "tool" };
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
+                .Returns("wrong tool")
+                .Returns("tool")
+                .Returns("other tool");
+
+            var tool = toolGenerator.GenerateFrom(subset, "my trait", "my other trait");
+            Assert.That(tool.Name, Is.EqualTo("tool"));
+            Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
+            Assert.That(tool.Attributes, Is.Empty);
+            Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
+            Assert.That(tool.IsMagical, Is.False);
+            Assert.That(tool.Contents, Is.Empty);
+            Assert.That(tool.Quantity, Is.EqualTo(1));
+            Assert.That(tool.Traits, Contains.Item("my trait"));
+            Assert.That(tool.Traits, Contains.Item("my other trait"));
+            Assert.That(tool.Traits.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GenerateFromSubsetWithDuplicateTraits()
+        {
+            var subset = new[] { "other tool", "tool" };
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
+                .Returns("wrong tool")
+                .Returns("tool")
+                .Returns("other tool");
+
+            var tool = toolGenerator.GenerateFrom(subset, "my trait", "my trait");
+            Assert.That(tool.Name, Is.EqualTo("tool"));
+            Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
+            Assert.That(tool.Attributes, Is.Empty);
+            Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
+            Assert.That(tool.IsMagical, Is.False);
+            Assert.That(tool.Contents, Is.Empty);
+            Assert.That(tool.Quantity, Is.EqualTo(1));
+            Assert.That(tool.Traits, Contains.Item("my trait"));
+            Assert.That(tool.Traits.Count, Is.EqualTo(1));
+        }
     }
 }

@@ -53,12 +53,16 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return scroll;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             if (!subset.Contains(ItemTypeConstants.Scroll))
                 throw new ArgumentException("Cannot generate a non-scroll item");
 
             var scroll = GenerateFrom(power);
+
+            foreach (var trait in traits)
+                scroll.Traits.Add(trait);
+
             return scroll;
         }
 

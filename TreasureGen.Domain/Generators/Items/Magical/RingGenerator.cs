@@ -120,7 +120,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return ring.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -136,6 +136,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => CreateDefaultRing(power, subset),
                 r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Ring from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                ring.Traits.Add(trait);
 
             return ring;
         }

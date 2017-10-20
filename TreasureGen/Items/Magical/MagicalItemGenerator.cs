@@ -6,6 +6,6 @@ namespace TreasureGen.Items.Magical
     {
         Item GenerateFrom(string power);
         Item GenerateFrom(Item template, bool allowRandomDecoration = false);
-        Item GenerateFrom(string power, IEnumerable<string> subset);
+        Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits);
     }
 }

@@ -121,7 +121,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return armor;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             var prototype = generator.Generate(
                 () => GenerateRandomPrototype(power),
@@ -130,6 +130,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 a => $"{a.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Magical armor from [{string.Join(", ", subset)}]");
 
+            prototype.Traits = new HashSet<string>(traits);
             var armor = GenerateFromPrototype(prototype);
 
             if (!specificGearGenerator.IsSpecific(armor))

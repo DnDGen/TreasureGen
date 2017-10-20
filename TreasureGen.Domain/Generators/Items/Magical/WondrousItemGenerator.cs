@@ -213,7 +213,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -229,6 +229,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => CreateDefaultWondrousItem(power, subset),
                 i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Wondrous item from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                item.Traits.Add(trait);
 
             return item;
         }

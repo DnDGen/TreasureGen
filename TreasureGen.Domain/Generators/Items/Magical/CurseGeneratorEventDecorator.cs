@@ -41,10 +41,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
         {
             eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]");
-            var item = innerGenerator.GenerateFrom(subset);
+            var item = innerGenerator.GenerateFrom(subset, traits);
 
             if (item != null)
                 eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");

@@ -62,10 +62,32 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item Generate()
         {
+            var prototype = GenerateRandomPrototype();
+            var specificCursedItem = GenerateFromPrototype(prototype);
+            return specificCursedItem;
+        }
+
+        private Item GeneratePrototype(string name)
+        {
             var specificCursedItem = new Item();
-            specificCursedItem.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            specificCursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificCursedItem.Name);
+            specificCursedItem.Name = name;
+            specificCursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
             specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
+
+            return specificCursedItem;
+        }
+
+        private Item GenerateRandomPrototype()
+        {
+            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var specificCursedItem = GeneratePrototype(name);
+
+            return specificCursedItem;
+        }
+
+        private Item GenerateFromPrototype(Item prototype)
+        {
+            var specificCursedItem = prototype.Clone();
             specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
             specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 
@@ -119,25 +141,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
         public Item GenerateFrom(Item template, bool allowDecoration = false)
         {
-            var cursedItem = template.SmartClone();
-            cursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, cursedItem.Name).Single();
-            cursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, cursedItem.Name);
-            cursedItem.Quantity = 1;
-            cursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
-            cursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, cursedItem.Name);
-            cursedItem.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            var prototype = template.SmartClone();
+            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);
+            prototype.Magic.Curse = CurseConstants.SpecificCursedItem;
+            prototype.Quantity = 1;
+            prototype.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
-            if (cursedItem.ItemType == ItemTypeConstants.Armor)
-                return GetArmor(cursedItem);
-
-            if (cursedItem.ItemType == ItemTypeConstants.Weapon)
-                return GetWeapon(cursedItem);
+            var cursedItem = GenerateFromPrototype(prototype);
 
             return cursedItem;
-
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
         {
             var itemGroups = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ItemGroups);
             var specificCursedItemNames = itemGroups[CurseConstants.SpecificCursedItem];
@@ -147,12 +162,18 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (!specificCursedItemNames.Intersect(subset).Any() && !specificCursedItemBaseNames.Intersect(subset).Any())
                 return null;
 
-            var specificCursedItem = generator.Generate(
-                Generate,
+            var prototype = generator.Generate(
+                GenerateRandomPrototype,
                 i => subset.Any(n => i.NameMatches(n)),
                 () => null,
                 i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Cannot generate a specific cursed item from [{string.Join(", ", subset)}]");
+
+            if (prototype == null)
+                return null;
+
+            prototype.Traits = new HashSet<string>(traits);
+            var specificCursedItem = GenerateFromPrototype(prototype);
 
             return specificCursedItem;
         }

@@ -28,7 +28,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return innerGenerator.GenerateFrom(power);
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
@@ -36,7 +36,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
 
-            return innerGenerator.GenerateFrom(power, subset);
+            return innerGenerator.GenerateFrom(power, subset, traits);
         }
     }
 }

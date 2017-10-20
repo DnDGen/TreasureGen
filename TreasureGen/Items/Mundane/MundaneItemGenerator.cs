@@ -6,6 +6,6 @@ namespace TreasureGen.Items.Mundane
     {
         Item Generate();
         Item GenerateFrom(Item template, bool allowRandomDecoration = false);
-        Item GenerateFrom(IEnumerable<string> subset);
+        Item GenerateFrom(IEnumerable<string> subset, params string[] traits);
     }
 }

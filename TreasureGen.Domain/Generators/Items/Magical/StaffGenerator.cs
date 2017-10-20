@@ -98,7 +98,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return staff.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staffs");
@@ -109,6 +109,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => CreateDefaultStaff(power, subset),
                 s => $"{s.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"{power} Staff from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                staff.Traits.Add(trait);
 
             return staff;
         }

@@ -193,7 +193,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
         {
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
@@ -215,6 +215,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                     $"Mundane weapon from [{string.Join(", ", subset)}]");
             }
 
+            prototype.Traits = new HashSet<string>(traits);
             var weapon = GenerateFromPrototype(prototype, true);
 
             return weapon;

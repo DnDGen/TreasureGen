@@ -48,9 +48,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(power, subset);
+            var item = innerGenerator.GenerateFrom(power, subset, traits);
 
             if (!curseGenerator.HasCurse(item.IsMagical))
                 return item;
@@ -58,7 +58,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             var curse = curseGenerator.GenerateCurse();
             if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
             {
-                var specificCursedItem = curseGenerator.GenerateFrom(subset);
+                var specificCursedItem = curseGenerator.GenerateFrom(subset, traits);
                 if (specificCursedItem == null)
                     return item;
 

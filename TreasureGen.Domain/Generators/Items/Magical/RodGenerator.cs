@@ -129,7 +129,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return mediumResults.Union(majorResults);
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
@@ -140,6 +140,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => CreateDefaultRod(subset),
                 r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Rod from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                rod.Traits.Add(trait);
 
             return rod;
         }

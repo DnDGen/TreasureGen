@@ -52,7 +52,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return wand.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             var wand = generator.Generate(
                 () => GenerateFrom(power),
@@ -60,6 +60,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => GenerateDefaultFrom(subset),
                 w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Wand from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                wand.Traits.Add(trait);
 
             return wand;
         }

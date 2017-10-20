@@ -44,7 +44,7 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return tool;
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
         {
             if (!subset.Any())
                 throw new ArgumentException("Cannot generate from an empty collection subset");
@@ -55,6 +55,8 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
                 () => GenerateDefaultFrom(subset),
                 t => $"{t.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Tool from [{string.Join(", ", subset)}]");
+
+            tool.Traits = new HashSet<string>(traits);
 
             return tool;
         }

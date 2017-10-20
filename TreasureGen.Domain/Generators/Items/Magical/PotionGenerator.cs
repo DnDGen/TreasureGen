@@ -51,7 +51,7 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             return potion.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset)
+        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -67,6 +67,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
                 () => CreateDefaultPotion(power, subset),
                 p => $"{p.Name} is not in subset [{string.Join(", ", subset)}]",
                 $"Potion from [{string.Join(", ", subset)}]");
+
+            foreach (var trait in traits)
+                potion.Traits.Add(trait);
 
             return potion;
         }

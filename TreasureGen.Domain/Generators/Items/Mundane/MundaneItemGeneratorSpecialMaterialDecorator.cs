@@ -62,9 +62,9 @@ namespace TreasureGen.Domain.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset)
+        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(subset);
+            var item = innerGenerator.GenerateFrom(subset, traits);
             item = AddSpecialMaterials(item);
 
             return item;
