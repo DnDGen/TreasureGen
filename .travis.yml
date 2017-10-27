@@ -1,6 +1,4 @@
 language: csharp
-mono:
-  - 5.2.0
 solution: TreasureGen.sln
 install:
   - nuget restore TreasureGen.sln
