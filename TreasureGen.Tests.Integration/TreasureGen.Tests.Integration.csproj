@@ -82,14 +82,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreasureGen.Domain\TreasureGen.Domain.csproj">
-      <Project>{9b207ac5-2bdc-4c03-833a-a4dc96bb9f23}</Project>
-      <Name>TreasureGen.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TreasureGen\TreasureGen.csproj">
+      <Project>{a8e27feb-c25e-4315-aace-7cd6f72e9fc9}</Project>
+      <Name>TreasureGen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 using TreasureGen.Goods;
 
 namespace TreasureGen.Tests.Integration.Tables.Goods.Art

@@ -1,6 +1,6 @@
 ﻿using DnDGen.Core.Tables;
 using System.Reflection;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables
 {

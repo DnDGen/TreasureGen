@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Intelligence

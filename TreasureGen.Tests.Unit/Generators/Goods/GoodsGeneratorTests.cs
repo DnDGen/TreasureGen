@@ -3,10 +3,10 @@ using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Generators.Goods;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Goods;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
+using TreasureGen.Tables;
 using TreasureGen.Goods;
 
 namespace TreasureGen.Tests.Unit.Generators.Goods

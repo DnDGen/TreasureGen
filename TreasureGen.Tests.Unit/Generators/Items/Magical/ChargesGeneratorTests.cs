@@ -1,11 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
 using RollGen;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Collections;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

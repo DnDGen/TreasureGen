@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DnDGen.TreasureGen</id>
-    <version>8.2.0</version>
+    <version>9.0.0</version>
     <title>TreasureGen</title>
     <authors>Karl M. Speer</authors>
     <owners>cidthecoatrack</owners>
@@ -10,7 +10,7 @@
       This generates items for the Dungeons and Dragons 3.5 system. One can generate treasure or individual items such as coins, goods, weapons, armor, and magical items.
     </description>
     <releaseNotes>
-      Feature #64
+      Feature #65, #66, #67
     </releaseNotes>
     <summary>
       This generates items for the Dungeons and Dragons 3.5 system.
@@ -22,6 +22,10 @@
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <copyright>Copyright 2016</copyright>
     <dependencies>
+      <dependency id="DnDGen.Core" version="3.2.0" />
+      <dependency id="DnDGen.RollGen" version="14.0.2" />
+      <dependency id="EventGen" version="2.0.1" />
+      <dependency id="Ninject" version="3.3.4" />
     </dependencies>
     <references></references>
     <tags>item equipment treasure generator dice dungeons dragons d20 dnd 3.5 equip gen</tags>

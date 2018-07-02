@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{90036B3D-3487-407A-A371-5E7B0E579D03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen.Domain", "TreasureGen.Domain\TreasureGen.Domain.csproj", "{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureGen", "TreasureGen\TreasureGen.csproj", "{A8E27FEB-C25E-4315-AACE-7CD6F72E9FC9}"
 EndProject
@@ -26,12 +24,6 @@ Global
 		Stress|Any CPU = Stress|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Stress|Any CPU.ActiveCfg = Release|Any CPU
-		{9B207AC5-2BDC-4C03-833A-A4DC96BB9F23}.Stress|Any CPU.Build.0 = Release|Any CPU
 		{A8E27FEB-C25E-4315-AACE-7CD6F72E9FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8E27FEB-C25E-4315-AACE-7CD6F72E9FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8E27FEB-C25E-4315-AACE-7CD6F72E9FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,5 +63,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F246E74-BBBA-44D4-A3A6-823C66ABC3C2}
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using TreasureGen.Coins;
-using TreasureGen.Domain.Generators.Coins;
+using TreasureGen.Generators.Coins;
 
 namespace TreasureGen.Tests.Unit.Generators.Coins
 {

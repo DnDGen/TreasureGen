@@ -77,10 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreasureGen.Domain\TreasureGen.Domain.csproj">
-      <Project>{9b207ac5-2bdc-4c03-833a-a4dc96bb9f23}</Project>
-      <Name>TreasureGen.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TreasureGen.Tests.Integration\TreasureGen.Tests.Integration.csproj">
       <Project>{4386b84e-fcca-4fc2-84d7-bd4161ca4612}</Project>
       <Name>TreasureGen.Tests.Integration</Name>

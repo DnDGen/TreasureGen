@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables
 {

@@ -1,9 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {

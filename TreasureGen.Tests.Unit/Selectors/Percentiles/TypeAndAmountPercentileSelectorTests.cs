@@ -3,7 +3,7 @@ using NUnit.Framework;
 using RollGen;
 using System;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Selectors.Percentiles;
 
 namespace TreasureGen.Tests.Unit.Selectors.Percentiles
 {

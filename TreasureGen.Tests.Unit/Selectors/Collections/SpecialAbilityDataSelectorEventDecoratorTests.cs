@@ -1,8 +1,8 @@
 ﻿using EventGen;
 using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Collections;
-using TreasureGen.Domain.Selectors.Selections;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Selectors.Selections;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {

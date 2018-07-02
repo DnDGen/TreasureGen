@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

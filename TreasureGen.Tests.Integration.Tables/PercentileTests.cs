@@ -4,7 +4,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Selectors.Percentiles;
 
 namespace TreasureGen.Tests.Integration.Tables
 {

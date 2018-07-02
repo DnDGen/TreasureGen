@@ -1,8 +1,8 @@
 ﻿using EventGen;
 using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
 
 namespace TreasureGen.Tests.Unit.Selectors.Percentiles
 {

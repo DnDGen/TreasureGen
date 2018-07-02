@@ -3,7 +3,7 @@ using EventGen.IoC;
 using Ninject;
 using NUnit.Framework;
 using RollGen.IoC;
-using TreasureGen.Domain.IoC;
+using TreasureGen.IoC;
 
 namespace TreasureGen.Tests.Integration
 {

@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System;
-using TreasureGen.Domain.Generators.Items.Mundane;
+using TreasureGen.Generators.Items.Mundane;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
 

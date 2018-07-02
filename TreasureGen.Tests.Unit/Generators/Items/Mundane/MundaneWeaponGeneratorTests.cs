@@ -6,11 +6,11 @@ using RollGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items.Mundane;
-using TreasureGen.Domain.Selectors.Collections;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Mundane;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Mundane;
 

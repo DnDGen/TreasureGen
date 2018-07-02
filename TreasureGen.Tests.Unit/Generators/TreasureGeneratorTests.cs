@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using TreasureGen.Coins;
-using TreasureGen.Domain.Generators;
+using TreasureGen.Generators;
 using TreasureGen.Generators;
 using TreasureGen.Goods;
 using TreasureGen.Items;

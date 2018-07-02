@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Collections;
+using TreasureGen.Selectors.Collections;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {

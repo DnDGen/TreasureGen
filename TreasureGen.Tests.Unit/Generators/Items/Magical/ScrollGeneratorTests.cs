@@ -3,7 +3,7 @@ using NUnit.Framework;
 using RollGen;
 using System;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items.Magical;
+using TreasureGen.Generators.Items.Magical;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

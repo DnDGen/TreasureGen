@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses

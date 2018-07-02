@@ -2,9 +2,9 @@
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Items.Mundane;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Items.Mundane;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

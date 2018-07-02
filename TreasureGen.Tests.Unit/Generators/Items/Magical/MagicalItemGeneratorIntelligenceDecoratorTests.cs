@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Generators.Items.Magical;
+using TreasureGen.Generators.Items.Magical;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

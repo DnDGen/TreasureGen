@@ -3,8 +3,8 @@ using DnDGen.Core.Selectors.Percentiles;
 using Moq;
 using NUnit.Framework;
 using System.Linq;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Selectors.Percentiles
 {

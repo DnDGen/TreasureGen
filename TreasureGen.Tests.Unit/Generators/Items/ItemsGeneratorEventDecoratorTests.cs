@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
-using TreasureGen.Domain.Generators.Items;
+using TreasureGen.Generators.Items;
 using TreasureGen.Items;
 
 namespace TreasureGen.Tests.Unit.Generators.Items

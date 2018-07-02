@@ -1,10 +1,10 @@
 ﻿using Moq;
 using NUnit.Framework;
 using TreasureGen.Coins;
-using TreasureGen.Domain.Generators.Coins;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Coins;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Generators.Coins
 {

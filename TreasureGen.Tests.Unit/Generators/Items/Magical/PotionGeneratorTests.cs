@@ -4,10 +4,10 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
-using TreasureGen.Domain.Generators.Items.Magical;
-using TreasureGen.Domain.Selectors.Percentiles;
-using TreasureGen.Domain.Selectors.Selections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Selectors.Percentiles;
+using TreasureGen.Selectors.Selections;
+using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
 

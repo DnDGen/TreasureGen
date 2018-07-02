@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using TreasureGen.Coins;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Coins
 {

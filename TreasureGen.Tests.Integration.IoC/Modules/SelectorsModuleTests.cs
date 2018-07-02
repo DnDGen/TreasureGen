@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Collections;
-using TreasureGen.Domain.Selectors.Percentiles;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Selectors.Percentiles;
 
 namespace TreasureGen.Tests.Integration.IoC.Modules
 {

@@ -1,8 +1,8 @@
 ﻿using DnDGen.Core.Selectors.Collections;
 using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Selectors.Collections;
-using TreasureGen.Domain.Tables;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Unit.Selectors.Collections
 {

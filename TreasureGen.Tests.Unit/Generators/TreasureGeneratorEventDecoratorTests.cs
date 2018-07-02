@@ -1,7 +1,7 @@
 ﻿using EventGen;
 using Moq;
 using NUnit.Framework;
-using TreasureGen.Domain.Generators;
+using TreasureGen.Generators;
 using TreasureGen.Generators;
 
 namespace TreasureGen.Tests.Unit.Generators
