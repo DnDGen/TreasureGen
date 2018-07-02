@@ -1,10 +1,12 @@
 language: csharp
 solution: TreasureGen.sln
-install:
-  - nuget restore TreasureGen.sln
-  - nuget install NUnit.Runners -OutputDirectory testrunner
+mono: latest
+install: 
+  - curl -O https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  - mono ./nuget.exe restore TreasureGen.sln
+  - mono ./nuget.exe install NUnit.Runners -OutputDirectory testrunner
 script:
-  - xbuild TreasureGen.sln /p:TargetFrameworkVersion="v4.5" /p:Configuration=Stress
+  - msbuild TreasureGen.sln /p:TargetFrameworkVersion="v4.5" /p:Configuration=Stress
   - set -e
   - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Unit/bin/Stress/TreasureGen.Tests.Unit.dll
   - set -e
