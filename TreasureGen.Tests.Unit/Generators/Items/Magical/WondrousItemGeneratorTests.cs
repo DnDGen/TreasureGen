@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using RollGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Domain.Generators.Items.Magical;
 using TreasureGen.Domain.Selectors.Percentiles;
@@ -268,9 +269,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(cards);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(cards, 0, 1, 3);
 
             var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
@@ -287,10 +286,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(spheres);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(spheres, 0, 1, 2, 4);
 
             var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
@@ -315,10 +311,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, selection.Type)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, selection.Type)).Returns(items);
-            SetUpRoll(1, 6, 1);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 2);
+            SetUpRandomSelections(items, 0, 1, 2, 4);
 
             var item = wondrousItemGenerator.GenerateFrom(power);
             Assert.That(item.Name, Is.EqualTo(selection.Type));
@@ -656,9 +649,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, WondrousItemConstants.DeckOfIllusions)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.DeckOfIllusions)).Returns(cards);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(cards, 0, 1, 3);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var selections = new[]
@@ -694,6 +685,21 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Contents.Count, Is.EqualTo(3));
         }
 
+        private void SetUpRandomSelections(string[] collection, params int[] selectedIndices)
+        {
+            for (var i = 0; i < selectedIndices.Length; i++)
+            {
+                var index = selectedIndices[i];
+                var skipAmount = i;
+
+                mockCollectionsSelector
+                    .Setup(s =>
+                        s.SelectRandomFrom(It.Is<IEnumerable<string>>(c =>
+                            c.Count() == collection.Length - skipAmount))
+                    ).Returns(collection[index]);
+            }
+        }
+
         [Test]
         public void GenerateNecklaceOfFireballsFromSubset()
         {
@@ -701,10 +707,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, name)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name)).Returns(spheres);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(spheres, 0, 1, 2, 4);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var selections = new[]
@@ -747,10 +750,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, WondrousItemConstants.RobeOfBones)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfBones)).Returns(items);
-            SetUpRoll(1, 6, 1);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 2);
+            SetUpRandomSelections(items, 0, 1, 2, 4);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var selections = new[]
@@ -1086,9 +1086,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, WondrousItemConstants.DeckOfIllusions)).Returns(3);
             var cards = new[] { "card 1", "card 2", "card 3", "card 4" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.DeckOfIllusions)).Returns(cards);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(cards, 0, 1, 3);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
@@ -1127,10 +1125,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, name)).Returns(4);
             var spheres = new[] { "small sphere", "big sphere", "normal sphere", "normal sphere", "big sphere" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name)).Returns(spheres);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 1);
-            SetUpRoll(1, 2, 2);
+            SetUpRandomSelections(spheres, 0, 1, 2, 4);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });
@@ -1169,10 +1164,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.WondrousItem, WondrousItemConstants.RobeOfBones)).Returns(4);
             var items = new[] { "undead 1", "undead 1", "undead 2", "undead 2", "undead 3", "undead 3" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfBones)).Returns(items);
-            SetUpRoll(1, 6, 1);
-            SetUpRoll(1, 5, 1);
-            SetUpRoll(1, 4, 1);
-            SetUpRoll(1, 3, 2);
+            SetUpRandomSelections(items, 0, 1, 2, 4);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 });

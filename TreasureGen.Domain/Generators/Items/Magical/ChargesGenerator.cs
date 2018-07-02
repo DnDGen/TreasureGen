@@ -35,10 +35,9 @@ namespace TreasureGen.Domain.Generators.Items.Magical
             }
 
             var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
-            var difference = result.Minimum - 1;
-            var die = result.Maximum - difference;
+            var roll = RollHelper.GetRoll(result.Minimum, result.Maximum);
 
-            return dice.Roll().d(die).AsSum() + difference;
+            return dice.Roll(roll).AsSum();
         }
 
         private int PercentileCharges()

@@ -139,10 +139,10 @@ namespace TreasureGen.Domain.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var index = dice.Roll().d(fullContents.Count).AsSum() - 1;
+                var randomContents = collectionsSelector.SelectRandomFrom(fullContents);
 
-                contents.Add(fullContents[index]);
-                fullContents.RemoveAt(index);
+                contents.Add(randomContents);
+                fullContents.Remove(randomContents);
             }
 
             return contents;
