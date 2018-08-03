@@ -28,7 +28,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected void GenerateAndAssertItem()
         {
-            var item = stressor.Generate(GenerateItem, i => i.ItemType == itemType);
+            var item = GenerateItem(i => i.ItemType == itemType);
             AssertItem(item);
         }
 

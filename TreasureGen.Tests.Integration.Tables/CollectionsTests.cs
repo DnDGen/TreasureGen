@@ -12,7 +12,7 @@ namespace TreasureGen.Tests.Integration.Tables
         [Inject]
         public CollectionMapper CollectionMapper { get; set; }
 
-        private Dictionary<string, IEnumerable<string>> table;
+        protected Dictionary<string, IEnumerable<string>> table;
 
         [SetUp]
         public void Setup()
@@ -38,24 +38,14 @@ namespace TreasureGen.Tests.Integration.Tables
 
         protected void AssertCollection(IEnumerable<string> actual, IEnumerable<string> expected)
         {
-            if (actual.Count() <= 10 && expected.Count() <= 10)
-            {
-                Assert.That(actual, Is.EquivalentTo(expected));
-                return;
-            }
-
-            var missingItems = expected.Except(actual);
-            Assert.That(missingItems, Is.Empty, $"{missingItems.Count()} missing items");
+            Assert.That(actual, Is.EquivalentTo(expected));
 
             foreach (var item in expected)
             {
-                var actualAttributeCount = actual.Count(a => a == item);
-                var expectedAttributeCount = expected.Count(a => a == item);
-                Assert.That(actualAttributeCount, Is.EqualTo(expectedAttributeCount), item);
+                var actualCount = actual.Count(a => a == item);
+                var expectedCount = expected.Count(a => a == item);
+                Assert.That(actualCount, Is.EqualTo(expectedCount), item);
             }
-
-            var extraItems = actual.Except(expected);
-            Assert.That(extraItems, Is.Empty, $"{extraItems.Count()} extra items in collection");
         }
 
         public virtual void OrderedCollections(string name, params string[] items)

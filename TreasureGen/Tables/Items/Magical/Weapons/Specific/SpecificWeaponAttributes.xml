@@ -5,6 +5,7 @@
     <name>Berserking sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
@@ -12,6 +13,8 @@
     <name>Cursed -2 sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
     <entry>Melee</entry>
   </collection>
   <collection>
@@ -20,25 +23,32 @@
     <entry>Metal</entry>
     <entry>Wood</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
     <entry>Ranged</entry>
+    <entry>One-Handed</entry>
     <entry>Thrown</entry>
   </collection>
   <collection>
     <name>Mace of blood</name>
     <entry>Specific</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Metal</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Net of snaring</name>
     <entry>Specific</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
-    <entry>Two-Handed</entry>
+    <entry>Exotic</entry>
   </collection>
   <collection>
     <name>Shatterspike</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
     <entry>Melee</entry>
   </collection>
   <collection>
@@ -46,54 +56,79 @@
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Battleaxe</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Dagger</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Dagger of venom</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Silver dagger</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Dwarven thrower</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Flame tongue</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Rapier of puncturing</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Frost brand</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
@@ -103,12 +138,15 @@
     <entry>Metal</entry>
     <entry>Wood</entry>
     <entry>Ranged</entry>
+    <entry>Martial</entry>
   </collection>
   <collection>
     <name>Holy avenger</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Javelin of lightning</name>
@@ -117,6 +155,7 @@
     <entry>Ranged</entry>
     <entry>Wood</entry>
     <entry>Thrown</entry>
+    <entry>Simple</entry>
     <entry>One-time use</entry>
   </collection>
   <collection>
@@ -124,6 +163,7 @@
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
@@ -131,6 +171,8 @@
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Luck blade (0 wishes)</name>
@@ -138,6 +180,8 @@
     <entry>Metal</entry>
     <entry>Melee</entry>
     <entry>Charged</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Luck blade (1 wish)</name>
@@ -145,6 +189,8 @@
     <entry>Metal</entry>
     <entry>Melee</entry>
     <entry>Charged</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Luck blade (2 wishes)</name>
@@ -152,6 +198,8 @@
     <entry>Metal</entry>
     <entry>Melee</entry>
     <entry>Charged</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Luck blade</name>
@@ -159,6 +207,8 @@
     <entry>Metal</entry>
     <entry>Melee</entry>
     <entry>Charged</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Luck blade (3 wishes)</name>
@@ -166,24 +216,32 @@
     <entry>Metal</entry>
     <entry>Melee</entry>
     <entry>Charged</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Mace of smiting</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Mace of terror</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Nine lives stealer</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Screaming bolt</name>
@@ -191,18 +249,21 @@
     <entry>Ammunition</entry>
     <entry>Metal</entry>
     <entry>Ranged</entry>
+    <entry>Simple</entry>
   </collection>
   <collection>
     <name>Oathbow</name>
     <entry>Specific</entry>
     <entry>Wood</entry>
     <entry>Ranged</entry>
-    <entry>Two-Handed</entry>
+    <entry>Martial</entry>
+    <entry>Projectile</entry>
   </collection>
   <collection>
     <name>Shifter's sorrow</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -214,6 +275,7 @@
     <entry>Metal</entry>
     <entry>Wood</entry>
     <entry>Ranged</entry>
+    <entry>Martial</entry>
   </collection>
   <collection>
     <name>Sleep arrow</name>
@@ -222,47 +284,69 @@
     <entry>Metal</entry>
     <entry>Wood</entry>
     <entry>Ranged</entry>
+    <entry>Martial</entry>
   </collection>
   <collection>
     <name>Sun blade</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Exotic</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
+    <entry>One-Handed</entry>
+    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Sword of life stealing</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Sword of the planes</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Sword of subtlety</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Sylvan scimitar</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Trident of warning</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Trident of fish command</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Melee</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
   </collection>
 </collections>

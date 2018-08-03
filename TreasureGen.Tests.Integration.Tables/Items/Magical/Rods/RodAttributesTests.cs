@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
 {
@@ -37,27 +37,31 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
         [TestCase(RodConstants.Wonder)]
         [TestCase(RodConstants.Python,
             AttributeConstants.DoubleWeapon,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Wood,
+            AttributeConstants.TwoHanded,
             AttributeConstants.Specific)]
         [TestCase(RodConstants.Viper,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.OneHanded,
             AttributeConstants.Specific)]
         [TestCase(RodConstants.FlameExtinguishing)]
         [TestCase(RodConstants.EnemyDetection)]
         [TestCase(RodConstants.Splendor)]
         [TestCase(RodConstants.Withering,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.Light,
             AttributeConstants.Specific)]
         [TestCase(RodConstants.ThunderAndLightning,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.Light,
             AttributeConstants.Specific)]
         [TestCase(RodConstants.Negation)]
         [TestCase(RodConstants.Flailing,
@@ -65,7 +69,8 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
             AttributeConstants.Melee,
             AttributeConstants.Metal,
             AttributeConstants.Specific,
-            AttributeConstants.Uncommon)]
+            AttributeConstants.TwoHanded,
+            AttributeConstants.Exotic)]
         [TestCase(RodConstants.Absorption,
             AttributeConstants.Charged,
             AttributeConstants.OneTimeUse)]
@@ -74,18 +79,38 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
             AttributeConstants.OneTimeUse)]
         [TestCase(RodConstants.Security)]
         [TestCase(RodConstants.LordlyMight,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.Light,
             AttributeConstants.Specific)]
         [TestCase(RodConstants.Alertness,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.Light,
             AttributeConstants.Specific)]
         public void RodAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [TestCase(RodConstants.Alertness, WeaponConstants.LightMace)]
+        [TestCase(RodConstants.Flailing, WeaponConstants.DireFlail)]
+        [TestCase(RodConstants.LordlyMight, WeaponConstants.LightMace)]
+        [TestCase(RodConstants.Python, WeaponConstants.Quarterstaff)]
+        [TestCase(RodConstants.ThunderAndLightning, WeaponConstants.LightMace)]
+        [TestCase(RodConstants.Viper, WeaponConstants.HeavyMace)]
+        [TestCase(RodConstants.Withering, WeaponConstants.LightMace)]
+        public void AttributesMatchWeapon(string rod, string weapon)
+        {
+            var rodAttributes = table[rod];
+
+            var weaponAttributesTableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            var weaponAttributesTable = CollectionMapper.Map(weaponAttributesTableName);
+            var weaponAttributes = weaponAttributesTable[weapon];
+
+            Assert.That(rodAttributes, Is.SupersetOf(weaponAttributes));
         }
     }
 }

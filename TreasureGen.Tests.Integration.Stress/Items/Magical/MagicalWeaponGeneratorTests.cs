@@ -27,22 +27,32 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override void MakeSpecificAssertionsAgainst(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Common).Or.Contains(AttributeConstants.Uncommon).Or.Contains(AttributeConstants.Specific));
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
-            Assert.That(item.Contents, Is.Not.Null);
-            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
-            Assert.That(item.Traits, Is.Not.Null);
-            Assert.That(item.Magic.Charges, Is.Not.Negative);
-            Assert.That(item.Magic.SpecialAbilities, Is.Not.Null);
-            Assert.That(item, Is.InstanceOf<Weapon>());
+            Assert.That(item.Attributes, Is.Not.Empty, item.Name);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Simple)
+                .Or.Contains(AttributeConstants.Martial)
+                .Or.Contains(AttributeConstants.Exotic), item.Name);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Light)
+                .Or.Contains(AttributeConstants.OneHanded)
+                .Or.Contains(AttributeConstants.TwoHanded)
+                .Or.Contains(AttributeConstants.Ranged), item.Name);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged), item.Name);
+            Assert.That(item.Contents, Is.Not.Null, item.Name);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon), item.Name);
+            Assert.That(item.Traits, Is.Not.Null, item.Name);
+            Assert.That(item.Magic.Charges, Is.Not.Negative, item.Name);
+            Assert.That(item.Magic.SpecialAbilities, Is.Not.Null, item.Name);
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
 
             var weapon = item as Weapon;
-            Assert.That(weapon.BaseNames, Is.Not.Empty);
-            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty);
-            Assert.That(weapon.Damage, Is.Not.Empty);
-            Assert.That(weapon.DamageType, Is.Not.Empty);
-            Assert.That(weapon.Size, Is.Not.Empty);
-            Assert.That(weapon.ThreatRange, Is.Not.Empty);
+            Assert.That(weapon.BaseNames, Is.Not.Empty, item.Name);
+            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, item.Name);
+            Assert.That(weapon.Damage, Is.Not.Empty, item.Name);
+            Assert.That(weapon.DamageType, Is.Not.Empty, item.Name);
+            Assert.That(weapon.DamageType, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), item.Name);
+            Assert.That(weapon.Size, Is.Not.Empty, item.Name);
+            Assert.That(weapon.ThreatRange, Is.Not.Empty, item.Name);
         }
 
         protected override IEnumerable<string> GetItemNames()
@@ -51,20 +61,26 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("Ammunition does not always appear within the time limit")]
+        //[Ignore("Ammunition does not always appear within the time limit")]
         public void BUG_AmmunitionWithQuantityGreaterThan1Happens()
         {
-            var ammunition = stressor.GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Ammunition) && w.Quantity > 1);
+            var ammunition = stressor.GenerateOrFail(
+                () => GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Ammunition)),
+                w => w.Quantity > 1);
+
             AssertItem(ammunition);
             Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ammunition), ammunition.Name);
             Assert.That(ammunition.Quantity, Is.InRange(2, 50), ammunition.Name);
         }
 
         [Test]
-        [Ignore("Thrown weapon does not always appear within the time limit")]
+        //[Ignore("Thrown weapon does not always appear within the time limit")]
         public void BUG_ThrownWeaponWithQuantityGreaterThan1Happens()
         {
-            var thrownWeapon = stressor.GenerateOrFail(GenerateItem, w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee) && w.Quantity > 1);
+            var thrownWeapon = stressor.GenerateOrFail(
+                () => GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee)),
+                w => w.Quantity > 1);
+
             AssertItem(thrownWeapon);
             Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
             Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
@@ -75,17 +91,20 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("Shurikens are rare enough that they do not always occur within the time limit.  Mundane weapon tests verify this quantity")]
-        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
+        public void BUG_ThrownMeleeWeaponDoesNotGetQuantityGreaterThan1()
         {
-            var shuriken = stressor.GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
-            AssertItem(shuriken);
-            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
+            stressor.Stress(GenerateAndAssertThrownMeleeWeapon);
+        }
+
+        private void GenerateAndAssertThrownMeleeWeapon()
+        {
+            var thrownWeapon = GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && w.Attributes.Contains(AttributeConstants.Melee));
+
+            AssertItem(thrownWeapon);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Melee), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Quantity, Is.EqualTo(1), thrownWeapon.Name);
         }
 
         [Test]
@@ -113,7 +132,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Magical
 
         [Test]
         //[Ignore("Shuriken does not always appear within the time limit.  Mundane weapon tests verify this quantity")]
-        public void BUG_ShurikenFromSubsetWithQuantityGreaterThan20Happens()
+        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
         {
             var shuriken = stressor.GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
             AssertItem(shuriken);

@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Items;
@@ -51,6 +52,12 @@ namespace TreasureGen.Tests.Integration.Stress.Items
             var name = GetRandom(names);
 
             return name;
+        }
+
+        protected Item GenerateItem(Func<Item, bool> additionalFilters)
+        {
+            var item = stressor.Generate(GenerateItem, i => additionalFilters(i));
+            return item;
         }
     }
 }

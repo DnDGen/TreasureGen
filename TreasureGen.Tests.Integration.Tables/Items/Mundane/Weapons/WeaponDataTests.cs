@@ -1,12 +1,18 @@
-﻿using NUnit.Framework;
-using TreasureGen.Tables;
+﻿using Ninject;
+using NUnit.Framework;
+using System.Linq;
 using TreasureGen.Items;
+using TreasureGen.Selectors.Collections;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
     [TestFixture]
     public class WeaponDataTests : CollectionsTests
     {
+        [Inject]
+        internal IWeaponDataSelector WeaponDataSelector { get; set; }
+
         protected override string tableName
         {
             get { return TableNameConstants.Collections.Set.WeaponData; }
@@ -99,6 +105,57 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             var weapons = WeaponConstants.GetBaseNames();
             var keys = GetKeys();
             AssertCollection(keys, weapons);
+        }
+
+        [Test]
+        public void BludgeoningWeaponsMatchConstants()
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            var bludgeoning = WeaponConstants.GetAllBludgeoning();
+
+            foreach (var weapon in weapons)
+            {
+                var data = WeaponDataSelector.Select(weapon);
+
+                var isBludgeoning = bludgeoning.Contains(weapon);
+                var hasBludgeoning = data.DamageType.Contains(AttributeConstants.DamageTypes.Bludgeoning);
+
+                Assert.That(hasBludgeoning, Is.EqualTo(isBludgeoning), weapon);
+            }
+        }
+
+        [Test]
+        public void PiercingWeaponsMatchConstants()
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            var piercing = WeaponConstants.GetAllPiercing();
+
+            foreach (var weapon in weapons)
+            {
+                var data = WeaponDataSelector.Select(weapon);
+
+                var isPiercing = piercing.Contains(weapon);
+                var hasPiercing = data.DamageType.Contains(AttributeConstants.DamageTypes.Piercing);
+
+                Assert.That(hasPiercing, Is.EqualTo(isPiercing), weapon);
+            }
+        }
+
+        [Test]
+        public void SlashingWeaponsMatchConstants()
+        {
+            var weapons = WeaponConstants.GetBaseNames();
+            var slashing = WeaponConstants.GetAllSlashing();
+
+            foreach (var weapon in weapons)
+            {
+                var data = WeaponDataSelector.Select(weapon);
+
+                var isSlashing = slashing.Contains(weapon);
+                var hasSlashing = data.DamageType.Contains(AttributeConstants.DamageTypes.Slashing);
+
+                Assert.That(hasSlashing, Is.EqualTo(isSlashing), weapon);
+            }
         }
     }
 }

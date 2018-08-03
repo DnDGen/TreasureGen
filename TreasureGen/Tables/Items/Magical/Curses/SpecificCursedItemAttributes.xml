@@ -30,6 +30,8 @@
     <name>Cursed -2 sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Martial</entry>
+    <entry>One-Handed</entry>
     <entry>Melee</entry>
   </collection>
   <collection>
@@ -78,7 +80,9 @@
     <entry>Metal</entry>
     <entry>Wood</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
     <entry>Ranged</entry>
+    <entry>One-Handed</entry>
     <entry>Thrown</entry>
   </collection>
   <collection>
@@ -91,7 +95,7 @@
     <entry>Specific</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
-    <entry>Two-Handed</entry>
+    <entry>Exotic</entry>
   </collection>
   <collection>
     <name>Bag of devouring</name>
@@ -101,6 +105,9 @@
     <name>Mace of blood</name>
     <entry>Specific</entry>
     <entry>Melee</entry>
+    <entry>Simple</entry>
+    <entry>Metal</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Robe of vermin</name>
@@ -114,6 +121,7 @@
     <name>Berserking sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>

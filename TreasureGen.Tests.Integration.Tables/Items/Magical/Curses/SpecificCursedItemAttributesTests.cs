@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
@@ -26,27 +26,35 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WeaponConstants.BerserkingSword,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
+            AttributeConstants.Martial,
             AttributeConstants.Metal,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.CursedBackbiterSpear,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
+            AttributeConstants.Simple,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
             AttributeConstants.Ranged,
+            AttributeConstants.OneHanded,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.CursedMinus2Sword,
             AttributeConstants.Specific,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.MaceOfBlood,
             AttributeConstants.Specific,
+            AttributeConstants.Metal,
+            AttributeConstants.Simple,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.NetOfSnaring,
             AttributeConstants.Specific,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Exotic)]
         [TestCase(WondrousItemConstants.AmuletOfInescapableLocation, AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.BagOfDevouring, AttributeConstants.Specific)]
         [TestCase(WondrousItemConstants.BootsOfDancing, AttributeConstants.Specific)]
@@ -76,6 +84,37 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         public void SpecificCursedItemAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [TestCase(WeaponConstants.BerserkingSword, WeaponConstants.Greatsword)]
+        [TestCase(WeaponConstants.MaceOfBlood, WeaponConstants.HeavyMace)]
+        [TestCase(WeaponConstants.NetOfSnaring, WeaponConstants.Net)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear, WeaponConstants.Shortspear)]
+        [TestCase(WeaponConstants.CursedMinus2Sword, WeaponConstants.Longsword)]
+        public void AttributesMatchWeapon(string specificWeapon, string weapon)
+        {
+            var specificWeaponAttributes = table[specificWeapon];
+
+            var weaponAttributesTableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            var weaponAttributesTable = CollectionMapper.Map(weaponAttributesTableName);
+            var weaponAttributes = weaponAttributesTable[weapon];
+
+            Assert.That(specificWeaponAttributes, Is.SupersetOf(weaponAttributes));
+        }
+
+        [TestCase(WeaponConstants.BerserkingSword)]
+        [TestCase(WeaponConstants.MaceOfBlood)]
+        [TestCase(WeaponConstants.NetOfSnaring)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear)]
+        [TestCase(WeaponConstants.CursedMinus2Sword)]
+        public void SpecificCursedWeaponMatchesAttributes(string item)
+        {
+            var specificWeaponAttributesTable = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+
+            var specificWeaponAttributes = CollectionMapper.Map(specificWeaponAttributesTable);
+            var specificCursedAttributes = GetCollection(item);
+
+            Assert.That(specificCursedAttributes, Is.EquivalentTo(specificWeaponAttributes[item]));
         }
     }
 }

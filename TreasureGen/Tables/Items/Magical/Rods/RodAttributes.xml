@@ -1,146 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <collections>
-    <collection>
-        <name>Rod of lesser metamagic: Enlarge</name>
-    </collection>
-    <collection>
-        <name>Rod of lesser metamagic: Extend</name>
-    </collection>
-    <collection>
-        <name>Rod of lesser metamagic: Silent</name>
-    </collection>
-    <collection>
-        <name>Rod of lesser metamagic: Empower</name>
-    </collection>
-    <collection>
-        <name>Rod of lesser metamagic: Maximize</name>
-    </collection>
-    <collection>
-        <name>Rod of lesser metamagic: Quicken</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Enlarge</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Extend</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Silent</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Empower</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Maximize</name>
-    </collection>
-    <collection>
-        <name>Rod of metamagic: Quicken</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Enlarge</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Extend</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Silent</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Empower</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Maximize</name>
-    </collection>
-    <collection>
-        <name>Rod of greater metamagic: Quicken</name>
-    </collection>
-    <collection>
-        <name>Immovable rod</name>
-    </collection>
-    <collection>
-        <name>Rod of metal and mineral detection</name>
-    </collection>
-    <collection>
-        <name>Rod of cancellation</name>
-    </collection>
-    <collection>
-        <name>Rod of wonder</name>
-    </collection>
-    <collection>
-        <name>Rod of the python</name>
-        <entry>Double weapon</entry>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Wood</entry>
-        <entry>Specific</entry>
-    </collection>
-    <collection>
-        <name>Rod of the viper</name>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-    </collection>
-    <collection>
-        <name>Rod of flame extinguishing</name>
-    </collection>
-    <collection>
-        <name>Rod of enemy detection</name>
-    </collection>
-    <collection>
-        <name>Rod of splendor</name>
-    </collection>
-    <collection>
-        <name>Rod of withering</name>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-    </collection>
-    <collection>
-        <name>Rod of thunder and lightning</name>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-    </collection>
-    <collection>
-        <name>Rod of negation</name>
-    </collection>
-    <collection>
-        <name>Rod of flailing</name>
-        <entry>Double weapon</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-        <entry>Uncommon</entry>
-    </collection>
-    <collection>
-        <name>Rod of absorption</name>
-        <entry>Charged</entry>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Rod of rulership</name>
-        <entry>Charged</entry>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Rod of security</name>
-    </collection>
-    <collection>
-        <name>Rod of lordly might</name>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-    </collection>
-    <collection>
-        <name>Rod of alertness</name>
-        <entry>Common</entry>
-        <entry>Melee</entry>
-        <entry>Metal</entry>
-        <entry>Specific</entry>
-    </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Enlarge</name>
+  </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Extend</name>
+  </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Silent</name>
+  </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Empower</name>
+  </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Maximize</name>
+  </collection>
+  <collection>
+    <name>Rod of lesser metamagic: Quicken</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Enlarge</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Extend</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Silent</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Empower</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Maximize</name>
+  </collection>
+  <collection>
+    <name>Rod of metamagic: Quicken</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Enlarge</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Extend</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Silent</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Empower</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Maximize</name>
+  </collection>
+  <collection>
+    <name>Rod of greater metamagic: Quicken</name>
+  </collection>
+  <collection>
+    <name>Immovable rod</name>
+  </collection>
+  <collection>
+    <name>Rod of metal and mineral detection</name>
+  </collection>
+  <collection>
+    <name>Rod of cancellation</name>
+  </collection>
+  <collection>
+    <name>Rod of wonder</name>
+  </collection>
+  <collection>
+    <name>Rod of the python</name>
+    <entry>Double weapon</entry>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Wood</entry>
+    <entry>Specific</entry>
+    <entry>Two-Handed</entry>
+  </collection>
+  <collection>
+    <name>Rod of the viper</name>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Specific</entry>
+    <entry>One-Handed</entry>
+  </collection>
+  <collection>
+    <name>Rod of flame extinguishing</name>
+  </collection>
+  <collection>
+    <name>Rod of enemy detection</name>
+  </collection>
+  <collection>
+    <name>Rod of splendor</name>
+  </collection>
+  <collection>
+    <name>Rod of withering</name>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Specific</entry>
+    <entry>Light</entry>
+  </collection>
+  <collection>
+    <name>Rod of thunder and lightning</name>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Specific</entry>
+    <entry>Light</entry>
+  </collection>
+  <collection>
+    <name>Rod of negation</name>
+  </collection>
+  <collection>
+    <name>Rod of flailing</name>
+    <entry>Double weapon</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Specific</entry>
+    <entry>Exotic</entry>
+    <entry>Two-Handed</entry>
+  </collection>
+  <collection>
+    <name>Rod of absorption</name>
+    <entry>Charged</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
+    <name>Rod of rulership</name>
+    <entry>Charged</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
+    <name>Rod of security</name>
+  </collection>
+  <collection>
+    <name>Rod of lordly might</name>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Specific</entry>
+    <entry>Light</entry>
+  </collection>
+  <collection>
+    <name>Rod of alertness</name>
+    <entry>Simple</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Light</entry>
+    <entry>Specific</entry>
+  </collection>
 </collections>

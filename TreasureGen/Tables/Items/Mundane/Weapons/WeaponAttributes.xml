@@ -3,75 +3,62 @@
 <collections>
   <collection>
     <name>Arrow</name>
-    <entry>Weapon</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Ranged</entry>
     <entry>Ammunition</entry>
     <entry>Wood</entry>
     <entry>Metal</entry>
   </collection>
   <collection>
-    <name>Crossbow bolt</name>
-    <entry>Weapon</entry>
-    <entry>Common</entry>
-    <entry>Ranged</entry>
-    <entry>Ammunition</entry>
-    <entry>Metal</entry>
-  </collection>
-  <collection>
-    <name>Sling bullet</name>
-    <entry>Weapon</entry>
-    <entry>Common</entry>
-    <entry>Ranged</entry>
-    <entry>Ammunition</entry>
-    <entry>Metal</entry>
-  </collection>
-  <collection>
-    <name>Sai</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>Uncommon</entry>
-    <entry>Melee</entry>
-  </collection>
-  <collection>
     <name>Bolas</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>Uncommon</entry>
-    <entry>Melee</entry>
+    <entry>Thrown</entry>
+    <entry>Ranged</entry>
+    <entry>Exotic</entry>
   </collection>
   <collection>
     <name>Bastard sword</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
+    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Battleaxe</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Club</name>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
+    <entry>One-Handed</entry>
+  </collection>
+  <collection>
+    <name>Crossbow bolt</name>
+    <entry>Ranged</entry>
+    <entry>Simple</entry>
+    <entry>Ammunition</entry>
+    <entry>Metal</entry>
   </collection>
   <collection>
     <name>Dagger</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Dire flail</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -79,7 +66,7 @@
   <collection>
     <name>Dwarven urgrosh</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -87,33 +74,36 @@
   <collection>
     <name>Dwarven waraxe</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Falchion</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Gauntlet</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Glaive</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
+    <entry>Reach</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Gnome hooked hammer</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -121,175 +111,182 @@
   <collection>
     <name>Greataxe</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Greatclub</name>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Greatsword</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Guisarme</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Reach</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Halberd</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
-    <entry>Melee</entry>
-    <entry>Two-Handed</entry>
-  </collection>
-  <collection>
-    <name>Spear</name>
-    <entry>Metal</entry>
-    <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Handaxe</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Hand crossbow</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
   </collection>
   <collection>
     <name>Heavy flail</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Heavy mace</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Heavy pick</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Heavy repeating crossbow</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Kama</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Common</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Kukri</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Lance</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Reach</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Flail</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Light hammer</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Light mace</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Light pick</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Light repeating crossbow</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Longspear</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
+    <entry>Reach</entry>
   </collection>
   <collection>
     <name>Longsword</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Morningstar</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Net</name>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Nunchaku</name>
     <entry>Wood</entry>
-    <entry>Common</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Orc double axe</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -297,13 +294,14 @@
   <collection>
     <name>Punching dagger</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Quarterstaff</name>
     <entry>Wood</entry>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -312,32 +310,45 @@
     <name>Ranseur</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
+    <entry>Reach</entry>
   </collection>
   <collection>
     <name>Rapier</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
+  </collection>
+  <collection>
+    <name>Sai</name>
+    <entry>Exotic</entry>
+    <entry>Thrown</entry>
+    <entry>Ranged</entry>
+    <entry>Melee</entry>
+    <entry>Light</entry>
+    <entry>Metal</entry>
   </collection>
   <collection>
     <name>Sap</name>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Scimitar</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Scythe</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
@@ -345,21 +356,23 @@
     <name>Shortspear</name>
     <entry>Metal</entry>
     <entry>Wood</entry>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Short sword</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Shuriken</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Ranged</entry>
     <entry>Ammunition</entry>
     <entry>Thrown</entry>
@@ -367,40 +380,77 @@
   <collection>
     <name>Siangham</name>
     <entry>Metal</entry>
-    <entry>Common</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Sickle</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
-    <name>Spiked chain</name>
+    <name>Sling</name>
+    <entry>Simple</entry>
+    <entry>Projectile</entry>
+    <entry>Ranged</entry>
+  </collection>
+  <collection>
+    <name>Sling bullet</name>
+    <entry>Ranged</entry>
+    <entry>Ammunition</entry>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
+  </collection>
+  <collection>
+    <name>Spear</name>
+    <entry>Metal</entry>
+    <entry>Wood</entry>
+    <entry>Simple</entry>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
     <entry>Melee</entry>
     <entry>Two-Handed</entry>
   </collection>
   <collection>
+    <name>Spiked chain</name>
+    <entry>Metal</entry>
+    <entry>Exotic</entry>
+    <entry>Melee</entry>
+    <entry>Two-Handed</entry>
+    <entry>Reach</entry>
+  </collection>
+  <collection>
     <name>Spiked gauntlet</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Simple</entry>
     <entry>Melee</entry>
+    <entry>Light</entry>
+  </collection>
+  <collection>
+    <name>Throwing axe</name>
+    <entry>Martial</entry>
+    <entry>Ranged</entry>
+    <entry>Melee</entry>
+    <entry>Metal</entry>
+    <entry>Thrown</entry>
+    <entry>Light</entry>
   </collection>
   <collection>
     <name>Trident</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Two-bladed sword</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
     <entry>Double weapon</entry>
     <entry>Two-Handed</entry>
@@ -408,81 +458,71 @@
   <collection>
     <name>Warhammer</name>
     <entry>Metal</entry>
-    <entry>Uncommon</entry>
+    <entry>Martial</entry>
     <entry>Melee</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Whip</name>
-    <entry>Uncommon</entry>
+    <entry>Exotic</entry>
     <entry>Melee</entry>
+    <entry>Reach</entry>
+    <entry>One-Handed</entry>
   </collection>
   <collection>
     <name>Composite longbow</name>
-    <entry>Common</entry>
+    <entry>Martial</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Composite shortbow</name>
-    <entry>Common</entry>
+    <entry>Martial</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Longbow</name>
-    <entry>Common</entry>
+    <entry>Martial</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Shortbow</name>
-    <entry>Common</entry>
+    <entry>Martial</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Dart</name>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Ranged</entry>
     <entry>Metal</entry>
     <entry>Thrown</entry>
   </collection>
   <collection>
     <name>Heavy crossbow</name>
-    <entry>Common</entry>
+    <entry>Simple</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Light crossbow</name>
-    <entry>Common</entry>
+    <entry>Simple</entry>
+    <entry>Projectile</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Two-Handed</entry>
   </collection>
   <collection>
     <name>Javelin</name>
-    <entry>Common</entry>
+    <entry>Simple</entry>
     <entry>Ranged</entry>
     <entry>Wood</entry>
-    <entry>Metal</entry>
-    <entry>Thrown</entry>
-  </collection>
-  <collection>
-    <name>Sling</name>
-    <entry>Common</entry>
-    <entry>Ranged</entry>
-    <entry>Two-Handed</entry>
-  </collection>
-  <collection>
-    <name>Throwing axe</name>
-    <entry>Common</entry>
-    <entry>Ranged</entry>
     <entry>Metal</entry>
     <entry>Thrown</entry>
   </collection>

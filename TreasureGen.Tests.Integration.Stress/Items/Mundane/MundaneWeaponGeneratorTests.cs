@@ -24,21 +24,26 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         protected override void MakeSpecificAssertionsAgainst(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
-            Assert.That(item.Quantity, Is.Positive);
-            Assert.That(item.IsMagical, Is.False);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Common)
-                .Or.Contains(AttributeConstants.Uncommon));
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon), item.Name);
+            Assert.That(item.Quantity, Is.Positive, item.Name);
+            Assert.That(item.IsMagical, Is.False, item.Name);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Simple)
+                .Or.Contains(AttributeConstants.Martial)
+                .Or.Contains(AttributeConstants.Exotic), item.Name);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Light)
+                .Or.Contains(AttributeConstants.OneHanded)
+                .Or.Contains(AttributeConstants.TwoHanded)
+                .Or.Contains(AttributeConstants.Ranged), item.Name);
             Assert.That(item.Attributes, Contains.Item(AttributeConstants.Melee)
-                .Or.Contains(AttributeConstants.Ranged));
+                .Or.Contains(AttributeConstants.Ranged), item.Name);
 
             var sizes = TraitConstants.Sizes.All();
             Assert.That(item.Traits.Intersect(sizes), Is.Empty);
-            Assert.That(item, Is.InstanceOf<Weapon>());
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
 
             var weapon = item as Weapon;
             Assert.That(weapon.Size, Is.Not.Empty);
-            Assert.That(sizes, Contains.Item(weapon.Size));
+            Assert.That(sizes, Contains.Item(weapon.Size), item.Name);
         }
 
         protected override IEnumerable<string> GetItemNames()
@@ -69,20 +74,6 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        //[Ignore("Shurikens are rare enough that they do not always occur within the time limit.")]
-        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
-        {
-            var shuriken = stressor.GenerateOrFail(GenerateItem, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
-            AssertItem(shuriken);
-            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
-        }
-
-        [Test]
         public void RequiredAmmunitionHappens()
         {
             var item = stressor.GenerateOrFail(GenerateItem, w => w is Weapon && !string.IsNullOrEmpty((w as Weapon).Ammunition));
@@ -106,7 +97,7 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void BUG_ShurikenFromSubsetWithQuantityGreaterThan20Happens()
+        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
         {
             var shuriken = stressor.GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
             AssertItem(shuriken);
@@ -124,6 +115,23 @@ namespace TreasureGen.Tests.Integration.Stress.Items.Mundane
             var shuriken = mundaneItemGenerator.GenerateFrom(subset);
 
             return shuriken;
+        }
+
+        [Test]
+        public void BUG_ThrownMeleeWeaponDoesNotGetQuantityGreaterThan1()
+        {
+            stressor.Stress(GenerateAndAssertThrownMeleeWeapon);
+        }
+
+        private void GenerateAndAssertThrownMeleeWeapon()
+        {
+            var thrownWeapon = GenerateItem(w => w.ItemType == ItemTypeConstants.Weapon && w.Attributes.Contains(AttributeConstants.Thrown) && w.Attributes.Contains(AttributeConstants.Melee));
+
+            AssertItem(thrownWeapon);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Melee), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Quantity, Is.EqualTo(1), thrownWeapon.Name);
         }
     }
 }

@@ -4,12 +4,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Items;
+using TreasureGen.Items.Magical;
 using TreasureGen.Selectors.Collections;
 using TreasureGen.Selectors.Percentiles;
 using TreasureGen.Selectors.Selections;
 using TreasureGen.Tables;
-using TreasureGen.Items;
-using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {
@@ -226,7 +226,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void AccumulateAbilities()
+        public void AccumulateSpecialAbilities()
         {
             item.Magic.Bonus = 5;
 
@@ -303,7 +303,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void AbilitiesMaxOutAtBonusOf10()
+        public void SpecialAbilitiesMaxOutAtBonusOf10()
         {
             CreateSpecialAbility("ability 1", bonus: 2);
             CreateSpecialAbility("ability 2", bonus: 2);
@@ -359,7 +359,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void AbilitiesFilteredByAttributeRequirementsFromBaseName()
+        public void SpecialAbilitiesFilteredByAttributeRequirementsFromBaseName()
         {
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
@@ -377,7 +377,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void AbilitiesFilteredByEitherAttributeRequirementsFromBaseName()
+        public void SpecialAbilitiesFilteredByEitherAttributeRequirementsFromBaseName()
         {
             itemAttributes.Add("or");
 

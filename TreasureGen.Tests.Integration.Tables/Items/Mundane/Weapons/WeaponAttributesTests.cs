@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Tables;
+using System.Collections.Generic;
+using System.Linq;
 using TreasureGen.Items;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -14,339 +16,389 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 
         [TestCase(WeaponConstants.Dagger,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Ranged,
+            AttributeConstants.Light,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Greataxe,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Greatsword,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Kama,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Exotic,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Longsword,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.LightMace,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.HeavyMace,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Nunchaku,
             AttributeConstants.Wood,
-            AttributeConstants.Common,
+            AttributeConstants.Exotic,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Quarterstaff,
             AttributeConstants.Wood,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Rapier,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Scimitar,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Shortspear,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Ranged,
+            AttributeConstants.OneHanded,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Siangham,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Exotic,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.BastardSword,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Exotic,
+            AttributeConstants.OneHanded,
+            AttributeConstants.TwoHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.ShortSword,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.DwarvenWaraxe,
             AttributeConstants.Metal,
-            AttributeConstants.Common,
+            AttributeConstants.Exotic,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.OrcDoubleAxe,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Battleaxe,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.SpikedChain,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Club,
             AttributeConstants.Wood,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
             AttributeConstants.Ranged,
+            AttributeConstants.OneHanded,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.HandCrossbow,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
+            AttributeConstants.Projectile,
             AttributeConstants.Ranged)]
         [TestCase(WeaponConstants.HeavyRepeatingCrossbow,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Ranged,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.LightRepeatingCrossbow,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Ranged,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.PunchingDagger,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Falchion,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.DireFlail,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.HeavyFlail,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Flail,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Gauntlet,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.SpikedGauntlet,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Glaive,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Greatclub,
             AttributeConstants.Wood,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Guisarme,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Halberd,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Spear,
             AttributeConstants.Metal,
             AttributeConstants.Wood,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.Ranged,
+            AttributeConstants.Thrown,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.GnomeHookedHammer,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.LightHammer,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.Ranged,
+            AttributeConstants.Light,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Handaxe,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Kukri,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Lance,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Longspear,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Morningstar,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Net,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Ranged,
-            AttributeConstants.Thrown,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.HeavyPick,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.LightPick,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Ranseur,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
+            AttributeConstants.Reach,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Sap,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Scythe,
             AttributeConstants.Wood,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Shuriken,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Ranged,
             AttributeConstants.Ammunition,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Sickle,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Simple,
+            AttributeConstants.Light,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.TwoBladedSword,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Trident,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
             AttributeConstants.Melee,
             AttributeConstants.Ranged,
+            AttributeConstants.OneHanded,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.DwarvenUrgrosh,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
             AttributeConstants.Melee,
             AttributeConstants.DoubleWeapon,
             AttributeConstants.TwoHanded)]
         [TestCase(WeaponConstants.Warhammer,
             AttributeConstants.Metal,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Martial,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.Whip,
-            AttributeConstants.Uncommon,
+            AttributeConstants.Exotic,
+            AttributeConstants.Reach,
+            AttributeConstants.OneHanded,
             AttributeConstants.Melee)]
         [TestCase(WeaponConstants.ThrowingAxe,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
+            AttributeConstants.Melee,
             AttributeConstants.Metal,
+            AttributeConstants.Light,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.HeavyCrossbow,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.LightCrossbow,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.Dart,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Metal,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Javelin,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Metal,
             AttributeConstants.Wood,
             AttributeConstants.Thrown)]
         [TestCase(WeaponConstants.Shortbow,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.CompositeShortbow,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.Sling,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.Longbow,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.CompositeLongbow,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
             AttributeConstants.Wood,
-            AttributeConstants.TwoHanded)]
+            AttributeConstants.Projectile)]
         [TestCase(WeaponConstants.Arrow,
-            ItemTypeConstants.Weapon,
-            AttributeConstants.Common,
+            AttributeConstants.Martial,
             AttributeConstants.Ranged,
             AttributeConstants.Ammunition,
             AttributeConstants.Metal,
             AttributeConstants.Wood)]
         [TestCase(WeaponConstants.CrossbowBolt,
-            ItemTypeConstants.Weapon,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Ammunition,
             AttributeConstants.Metal)]
         [TestCase(WeaponConstants.SlingBullet,
-            ItemTypeConstants.Weapon,
-            AttributeConstants.Common,
+            AttributeConstants.Simple,
             AttributeConstants.Ranged,
             AttributeConstants.Ammunition,
             AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.Sai,
+            AttributeConstants.Exotic,
+            AttributeConstants.Melee,
+            AttributeConstants.Ranged,
+            AttributeConstants.Thrown,
+            AttributeConstants.Light,
+            AttributeConstants.Metal)]
+        [TestCase(WeaponConstants.Bolas,
+            AttributeConstants.Exotic,
+            AttributeConstants.Ranged,
+            AttributeConstants.Thrown)]
         public void WeaponAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
@@ -358,6 +410,111 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             var weapons = WeaponConstants.GetBaseNames();
             var keys = GetKeys();
             AssertCollection(keys, weapons);
+        }
+
+        [Test]
+        public void MeleeWeaponsMatchConstants()
+        {
+            var melee = WeaponConstants.GetAllMelee();
+            VerifyAttribute(melee, AttributeConstants.Melee);
+        }
+
+        private void VerifyAttribute(IEnumerable<string> weaponsWith, string attribute)
+        {
+            var keys = GetKeys();
+
+            var entriesWith = table.Where(kvp => kvp.Value.Contains(attribute));
+            var entriesWithout = table.Except(entriesWith);
+
+            var weapons = WeaponConstants.GetBaseNames();
+            var weaponsWithout = weapons.Except(weaponsWith);
+
+            AssertCollection(entriesWith.Select(kvp => kvp.Key), weaponsWith);
+            AssertCollection(entriesWithout.Select(kvp => kvp.Key), weaponsWithout);
+        }
+
+        [Test]
+        public void RangedWeaponsMatchConstants()
+        {
+            var ranged = WeaponConstants.GetAllRanged();
+            VerifyAttribute(ranged, AttributeConstants.Ranged);
+        }
+
+        [Test]
+        public void SimpleWeaponsMatchConstants()
+        {
+            var simple = WeaponConstants.GetAllSimple();
+            VerifyAttribute(simple, AttributeConstants.Simple);
+        }
+
+        [Test]
+        public void MartialWeaponsMatchConstants()
+        {
+            var martial = WeaponConstants.GetAllMartial();
+            VerifyAttribute(martial, AttributeConstants.Martial);
+        }
+
+        [Test]
+        public void ExoticWeaponsMatchConstants()
+        {
+            var exotic = WeaponConstants.GetAllExotic();
+            VerifyAttribute(exotic, AttributeConstants.Exotic);
+        }
+
+        [Test]
+        public void LightWeaponsMatchConstants()
+        {
+            var light = WeaponConstants.GetAllLight();
+            VerifyAttribute(light, AttributeConstants.Light);
+        }
+
+        [Test]
+        public void OneHandedWeaponsMatchConstants()
+        {
+            var oneHanded = WeaponConstants.GetAllOneHanded();
+            VerifyAttribute(oneHanded, AttributeConstants.OneHanded);
+        }
+
+        [Test]
+        public void TwoHandedWeaponsMatchConstants()
+        {
+            var twoHanded = WeaponConstants.GetAllTwoHanded();
+            VerifyAttribute(twoHanded, AttributeConstants.TwoHanded);
+        }
+
+        [Test]
+        public void DoubleWeaponsMatchConstants()
+        {
+            var doubleWeapons = WeaponConstants.GetAllDouble();
+            VerifyAttribute(doubleWeapons, AttributeConstants.DoubleWeapon);
+        }
+
+        [Test]
+        public void ReachWeaponsMatchConstants()
+        {
+            var reach = WeaponConstants.GetAllReach();
+            VerifyAttribute(reach, AttributeConstants.Reach);
+        }
+
+        [Test]
+        public void ThrownWeaponsMatchConstants()
+        {
+            var thrown = WeaponConstants.GetAllThrown();
+            VerifyAttribute(thrown, AttributeConstants.Thrown);
+        }
+
+        [Test]
+        public void ProjectileWeaponsMatchConstants()
+        {
+            var projectiles = WeaponConstants.GetAllProjectile();
+            VerifyAttribute(projectiles, AttributeConstants.Projectile);
+        }
+
+        [Test]
+        public void AmmunitionWeaponsMatchConstants()
+        {
+            var ammunitions = WeaponConstants.GetAllAmmunition();
+            VerifyAttribute(ammunitions, AttributeConstants.Ammunition);
         }
     }
 }

@@ -125,76 +125,135 @@ namespace TreasureGen.Items
         {
             return new[]
             {
-                Dagger,
-                Greataxe,
-                Greatsword,
-                Kama,
-                Longsword,
-                LightMace,
-                HeavyMace,
-                Nunchaku,
-                Quarterstaff,
-                Rapier,
-                Scimitar,
-                Shortspear,
-                Siangham,
-                BastardSword,
-                ShortSword,
-                DwarvenWaraxe,
-                OrcDoubleAxe,
-                Battleaxe,
-                SpikedChain,
-                Club,
-                HandCrossbow,
-                HeavyRepeatingCrossbow,
-                LightRepeatingCrossbow,
-                PunchingDagger,
-                Falchion,
-                DireFlail,
-                HeavyFlail,
-                Flail,
                 Gauntlet,
+                Dagger,
+                PunchingDagger,
                 SpikedGauntlet,
-                Glaive,
-                Greatclub,
-                Guisarme,
-                Halberd,
-                Spear,
-                GnomeHookedHammer,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                Lance,
-                Longspear,
-                Morningstar,
-                Net,
-                HeavyPick,
-                LightPick,
-                Ranseur,
-                Sap,
-                Scythe,
-                Shuriken,
+                LightMace,
                 Sickle,
-                TwoBladedSword,
-                Trident,
-                DwarvenUrgrosh,
-                Warhammer,
-                Whip,
-                Arrow,
-                CrossbowBolt,
-                SlingBullet,
-                ThrowingAxe,
+                Club,
+                HeavyMace,
+                Morningstar,
+                Shortspear,
+                Longspear,
+                Spear,
+                Quarterstaff,
                 HeavyCrossbow,
+                CrossbowBolt,
                 LightCrossbow,
                 Dart,
                 Javelin,
+                Sling,
+                SlingBullet,
+                ThrowingAxe,
+                LightHammer,
+                Handaxe,
+                Kukri,
+                LightPick,
+                Sap,
+                ShortSword,
+                Battleaxe,
+                Flail,
+                Longsword,
+                HeavyPick,
+                Rapier,
+                Scimitar,
+                Trident,
+                Warhammer,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatclub,
+                HeavyFlail,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                Longbow,
+                Arrow,
+                CompositeLongbow,
                 Shortbow,
                 CompositeShortbow,
-                Sling,
-                Longbow,
-                CompositeLongbow,
+                Kama,
+                Nunchaku,
                 Sai,
+                Siangham,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+                OrcDoubleAxe,
+                SpikedChain,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
                 Bolas,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+                Net,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllMelee()
+        {
+            return new[]
+            {
+                Gauntlet,
+                Dagger,
+                PunchingDagger,
+                SpikedGauntlet,
+                LightMace,
+                Sickle,
+                Club,
+                HeavyMace,
+                Morningstar,
+                Shortspear,
+                Longspear,
+                Spear,
+                Quarterstaff,
+                ThrowingAxe,
+                LightHammer,
+                Handaxe,
+                Kukri,
+                LightPick,
+                Sap,
+                ShortSword,
+                Battleaxe,
+                Flail,
+                Longsword,
+                HeavyPick,
+                Rapier,
+                Scimitar,
+                Trident,
+                Warhammer,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatclub,
+                HeavyFlail,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                Kama,
+                Nunchaku,
+                Sai,
+                Siangham,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+                OrcDoubleAxe,
+                SpikedChain,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
             };
         }
 
@@ -237,6 +296,376 @@ namespace TreasureGen.Items
                 NetOfSnaring,
                 MaceOfBlood,
             });
+        }
+
+        public static IEnumerable<string> GetAllRanged()
+        {
+            return new[]
+            {
+                Dagger,
+                Club,
+                Shortspear,
+                Spear,
+                HeavyCrossbow,
+                CrossbowBolt,
+                LightCrossbow,
+                Dart,
+                Javelin,
+                Sling,
+                SlingBullet,
+                ThrowingAxe,
+                LightHammer,
+                Trident,
+                Longbow,
+                Arrow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+                Sai,
+                Bolas,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+                Net,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllLight()
+        {
+            return new[]
+            {
+                Gauntlet,
+                Dagger,
+                PunchingDagger,
+                SpikedGauntlet,
+                LightMace,
+                Sickle,
+                ThrowingAxe,
+                LightHammer,
+                Handaxe,
+                Kukri,
+                LightPick,
+                Sap,
+                ShortSword,
+                Kama,
+                Nunchaku,
+                Sai,
+                Siangham,
+            };
+        }
+
+        public static IEnumerable<string> GetAllOneHanded()
+        {
+            return new[]
+            {
+                Club,
+                HeavyMace,
+                Morningstar,
+                Shortspear,
+                Battleaxe,
+                Flail,
+                Longsword,
+                HeavyPick,
+                Rapier,
+                Scimitar,
+                Trident,
+                Warhammer,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+            };
+        }
+
+        public static IEnumerable<string> GetAllTwoHanded()
+        {
+            return new[]
+            {
+                Longspear,
+                Quarterstaff,
+                Spear,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatclub,
+                HeavyFlail,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                OrcDoubleAxe,
+                SpikedChain,
+                BastardSword,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
+            };
+        }
+
+        public static IEnumerable<string> GetAllSimple()
+        {
+            return new[]
+            {
+                Gauntlet,
+                Dagger,
+                PunchingDagger,
+                SpikedGauntlet,
+                LightMace,
+                Sickle,
+                Club,
+                HeavyMace,
+                Morningstar,
+                Shortspear,
+                Longspear,
+                Spear,
+                Quarterstaff,
+                HeavyCrossbow,
+                CrossbowBolt,
+                LightCrossbow,
+                Dart,
+                Javelin,
+                Sling,
+                SlingBullet,
+            };
+        }
+
+        public static IEnumerable<string> GetAllMartial()
+        {
+            return new[]
+            {
+                ThrowingAxe,
+                LightHammer,
+                Handaxe,
+                Kukri,
+                LightPick,
+                Sap,
+                ShortSword,
+                Battleaxe,
+                Flail,
+                Longsword,
+                HeavyPick,
+                Rapier,
+                Scimitar,
+                Trident,
+                Warhammer,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatclub,
+                HeavyFlail,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                Longbow,
+                Arrow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+            };
+        }
+
+        public static IEnumerable<string> GetAllExotic()
+        {
+            return new[]
+            {
+                Kama,
+                Nunchaku,
+                Sai,
+                Siangham,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+                OrcDoubleAxe,
+                SpikedChain,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
+                Bolas,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+                Net,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllDouble()
+        {
+            return new[]
+            {
+                Quarterstaff,
+                OrcDoubleAxe,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
+            };
+        }
+
+        public static IEnumerable<string> GetAllReach()
+        {
+            return new[]
+            {
+                Longspear,
+                Glaive,
+                Guisarme,
+                Lance,
+                Ranseur,
+                Whip,
+                SpikedChain,
+            };
+        }
+
+        public static IEnumerable<string> GetAllProjectile()
+        {
+            return new[]
+            {
+                HeavyCrossbow,
+                LightCrossbow,
+                Sling,
+                Longbow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+            };
+        }
+
+        public static IEnumerable<string> GetAllAmmunition()
+        {
+            return new[]
+            {
+                CrossbowBolt,
+                SlingBullet,
+                Arrow,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllThrown()
+        {
+            return new[]
+            {
+                Dagger,
+                Club,
+                Shortspear,
+                Spear,
+                Dart,
+                Javelin,
+                ThrowingAxe,
+                LightHammer,
+                Trident,
+                Sai,
+                Bolas,
+                Net,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllBludgeoning()
+        {
+            return new[]
+            {
+                Gauntlet,
+                LightMace,
+                Club,
+                HeavyMace,
+                Morningstar,
+                Quarterstaff,
+                Sling,
+                SlingBullet,
+                LightHammer,
+                Sap,
+                Flail,
+                Warhammer,
+                Greatclub,
+                HeavyFlail,
+                Nunchaku,
+                Sai,
+                DireFlail,
+                GnomeHookedHammer,
+                Bolas,
+                Net,
+            };
+        }
+
+        public static IEnumerable<string> GetAllPiercing()
+        {
+            return new[]
+            {
+                Dagger,
+                PunchingDagger,
+                SpikedGauntlet,
+                Morningstar,
+                Shortspear,
+                Longspear,
+                Spear,
+                HeavyCrossbow,
+                CrossbowBolt,
+                LightCrossbow,
+                Dart,
+                Javelin,
+                LightPick,
+                ShortSword,
+                HeavyPick,
+                Rapier,
+                Trident,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                Longbow,
+                Arrow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+                Siangham,
+                SpikedChain,
+                GnomeHookedHammer,
+                DwarvenUrgrosh,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+                Shuriken,
+            };
+        }
+
+        public static IEnumerable<string> GetAllSlashing()
+        {
+            return new[]
+            {
+                Dagger,
+                Sickle,
+                ThrowingAxe,
+                Handaxe,
+                Kukri,
+                Battleaxe,
+                Longsword,
+                Scimitar,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Scythe,
+                Kama,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+                OrcDoubleAxe,
+                TwoBladedSword,
+                DwarvenUrgrosh,
+            };
         }
     }
 }
