@@ -122,6 +122,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.TwoBladedSword, "Two-bladed sword")]
         [TestCase(WeaponConstants.Warhammer, "Warhammer")]
         [TestCase(WeaponConstants.Whip, "Whip")]
+        [TestCase(WeaponConstants.PincerStaff, "Pincer staff")]
         public void WeaponConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));
@@ -234,6 +235,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.CursedMinus2Sword));
             Assert.That(weapons, Contains.Item(WeaponConstants.MaceOfBlood));
             Assert.That(weapons, Contains.Item(WeaponConstants.NetOfSnaring));
+            Assert.That(weapons, Contains.Item(WeaponConstants.PincerStaff));
 
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.SilverDagger));
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.LuckBlade0));
@@ -249,7 +251,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus3Longbow));
             Assert.That(weapons, Is.All.Not.EqualTo(WeaponConstants.CompositePlus4Longbow));
 
-            Assert.That(weapons.Count(), Is.EqualTo(102));
+            Assert.That(weapons.Count(), Is.EqualTo(103));
         }
 
         [Test]
@@ -327,8 +329,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapons, Contains.Item(WeaponConstants.LightRepeatingCrossbow));
             Assert.That(weapons, Contains.Item(WeaponConstants.Net));
             Assert.That(weapons, Contains.Item(WeaponConstants.Shuriken));
+            Assert.That(weapons, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(weapons.Count(), Is.EqualTo(70));
+            Assert.That(weapons.Count(), Is.EqualTo(71));
         }
 
         [Test]
@@ -388,8 +391,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(melee, Contains.Item(WeaponConstants.GnomeHookedHammer));
             Assert.That(melee, Contains.Item(WeaponConstants.TwoBladedSword));
             Assert.That(melee, Contains.Item(WeaponConstants.DwarvenUrgrosh));
+            Assert.That(melee, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(melee.Count(), Is.EqualTo(52));
+            Assert.That(melee.Count(), Is.EqualTo(53));
 
             var weapons = WeaponConstants.GetBaseNames();
             Assert.That(melee, Is.SubsetOf(weapons));
@@ -544,8 +548,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(exotic, Contains.Item(WeaponConstants.LightRepeatingCrossbow));
             Assert.That(exotic, Contains.Item(WeaponConstants.Net));
             Assert.That(exotic, Contains.Item(WeaponConstants.Shuriken));
+            Assert.That(exotic, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(exotic.Count(), Is.EqualTo(19));
+            Assert.That(exotic.Count(), Is.EqualTo(20));
 
             var weapons = WeaponConstants.GetBaseNames();
             Assert.That(exotic, Is.SubsetOf(weapons));
@@ -654,8 +659,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(twoHanded, Contains.Item(WeaponConstants.GnomeHookedHammer));
             Assert.That(twoHanded, Contains.Item(WeaponConstants.TwoBladedSword));
             Assert.That(twoHanded, Contains.Item(WeaponConstants.DwarvenUrgrosh));
+            Assert.That(twoHanded, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(twoHanded.Count(), Is.EqualTo(21));
+            Assert.That(twoHanded.Count(), Is.EqualTo(22));
 
             var weapons = WeaponConstants.GetBaseNames();
             Assert.That(twoHanded, Is.SubsetOf(weapons));
@@ -703,8 +709,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(reach, Contains.Item(WeaponConstants.Ranseur));
             Assert.That(reach, Contains.Item(WeaponConstants.Whip));
             Assert.That(reach, Contains.Item(WeaponConstants.SpikedChain));
+            Assert.That(reach, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(reach.Count(), Is.EqualTo(7));
+            Assert.That(reach.Count(), Is.EqualTo(8));
 
             var weapons = WeaponConstants.GetBaseNames();
             Assert.That(reach, Is.SubsetOf(weapons));
@@ -822,8 +829,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items
             Assert.That(bludgeoning, Contains.Item(WeaponConstants.GnomeHookedHammer));
             Assert.That(bludgeoning, Contains.Item(WeaponConstants.Bolas));
             Assert.That(bludgeoning, Contains.Item(WeaponConstants.Net));
+            Assert.That(bludgeoning, Contains.Item(WeaponConstants.PincerStaff));
 
-            Assert.That(bludgeoning.Count(), Is.EqualTo(20));
+            Assert.That(bludgeoning.Count(), Is.EqualTo(21));
 
             var weapons = WeaponConstants.GetBaseNames();
             Assert.That(bludgeoning, Is.SubsetOf(weapons));

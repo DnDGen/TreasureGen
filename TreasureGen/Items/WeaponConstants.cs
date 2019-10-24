@@ -26,6 +26,7 @@ namespace TreasureGen.Items
         public const string Bolas = "Bolas";
         public const string Sai = "Sai";
         public const string SpikedChain = "Spiked chain";
+        public const string PincerStaff = "Pincer staff";
         public const string Club = "Club";
         public const string HandCrossbow = "Hand crossbow";
         public const string HeavyRepeatingCrossbow = "Heavy repeating crossbow";
@@ -195,6 +196,7 @@ namespace TreasureGen.Items
                 LightRepeatingCrossbow,
                 Net,
                 Shuriken,
+                PincerStaff,
             };
         }
 
@@ -254,6 +256,7 @@ namespace TreasureGen.Items
                 GnomeHookedHammer,
                 TwoBladedSword,
                 DwarvenUrgrosh,
+                PincerStaff,
             };
         }
 
@@ -402,6 +405,7 @@ namespace TreasureGen.Items
                 GnomeHookedHammer,
                 TwoBladedSword,
                 DwarvenUrgrosh,
+                PincerStaff,
             };
         }
 
@@ -493,6 +497,7 @@ namespace TreasureGen.Items
                 LightRepeatingCrossbow,
                 Net,
                 Shuriken,
+                PincerStaff,
             };
         }
 
@@ -520,6 +525,7 @@ namespace TreasureGen.Items
                 Ranseur,
                 Whip,
                 SpikedChain,
+                PincerStaff,
             };
         }
 
@@ -595,6 +601,7 @@ namespace TreasureGen.Items
                 GnomeHookedHammer,
                 Bolas,
                 Net,
+                PincerStaff,
             };
         }
 
