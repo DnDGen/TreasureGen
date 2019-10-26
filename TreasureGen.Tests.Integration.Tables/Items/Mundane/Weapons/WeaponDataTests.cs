@@ -88,6 +88,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.Arrow, AttributeConstants.DamageTypes.Piercing, "20", "x3", "")]
         [TestCase(WeaponConstants.CrossbowBolt, AttributeConstants.DamageTypes.Piercing, "19-20", "x2", "")]
         [TestCase(WeaponConstants.SlingBullet, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2", "")]
+        [TestCase(WeaponConstants.PincerStaff, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2", "")]
         public void WeaponData(string weapon, string damageType, string threatRange, string criticalMultiplier, string ammunition)
         {
             var collection = new string[4];

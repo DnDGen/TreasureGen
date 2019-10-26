@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using TreasureGen.Tables;
 using TreasureGen.Items;
 using TreasureGen.Items.Magical;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items
 {
@@ -216,6 +216,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items
         [TestCase(WeaponConstants.Nunchaku, WeaponConstants.Nunchaku)]
         [TestCase(WeaponConstants.Oathbow, WeaponConstants.CompositeLongbow)]
         [TestCase(WeaponConstants.OrcDoubleAxe, WeaponConstants.OrcDoubleAxe)]
+        [TestCase(WeaponConstants.PincerStaff, WeaponConstants.PincerStaff)]
         [TestCase(WeaponConstants.PunchingDagger, WeaponConstants.PunchingDagger)]
         [TestCase(WeaponConstants.Quarterstaff, WeaponConstants.Quarterstaff)]
         [TestCase(WeaponConstants.Ranseur, WeaponConstants.Ranseur)]

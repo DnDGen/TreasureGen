@@ -292,6 +292,14 @@
     <entry>Two-Handed</entry>
   </collection>
   <collection>
+    <name>Pincer staff</name>
+    <entry>Metal</entry>
+    <entry>Exotic</entry>
+    <entry>Reach</entry>
+    <entry>Melee</entry>
+    <entry>Two-Handed</entry>
+  </collection>
+  <collection>
     <name>Punching dagger</name>
     <entry>Metal</entry>
     <entry>Simple</entry>

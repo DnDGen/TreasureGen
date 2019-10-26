@@ -399,6 +399,12 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AttributeConstants.Exotic,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
+        [TestCase(WeaponConstants.PincerStaff,
+            AttributeConstants.Metal,
+            AttributeConstants.Exotic,
+            AttributeConstants.Melee,
+            AttributeConstants.Reach,
+            AttributeConstants.TwoHanded)]
         public void WeaponAttributes(string name, params string[] attributes)
         {
             base.Collections(name, attributes);

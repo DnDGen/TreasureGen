@@ -462,6 +462,16 @@
     <entry>6d6/6d6</entry>
   </collection>
   <collection>
+    <name>Pincer staff</name>
+    <entry>1d6</entry>
+    <entry>1d8</entry>
+    <entry>1d10</entry>
+    <entry>2d8</entry>
+    <entry>3d8</entry>
+    <entry>4d8</entry>
+    <entry>6d8</entry>
+  </collection>
+  <collection>
     <name>Punching dagger</name>
     <entry>1d2</entry>
     <entry>1d3</entry>

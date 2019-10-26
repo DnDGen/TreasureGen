@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Linq;
-using TreasureGen.Tables;
 using TreasureGen.Items;
+using TreasureGen.Tables;
 
 namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -83,6 +83,7 @@ namespace TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.Arrow, "0", "0", "0", "0", "0", "0", "0")]
         [TestCase(WeaponConstants.CrossbowBolt, "0", "0", "0", "0", "0", "0", "0")]
         [TestCase(WeaponConstants.SlingBullet, "0", "0", "0", "0", "0", "0", "0")]
+        [TestCase(WeaponConstants.PincerStaff, "1d6", "1d8", "1d10", "2d8", "3d8", "4d8", "6d8")]
         public void WeaponDamages(string weapon, params string[] damages)
         {
             var sizes = TraitConstants.Sizes.All();

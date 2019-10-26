@@ -324,6 +324,13 @@
     <entry></entry>
   </collection>
   <collection>
+    <name>Pincer staff</name>
+    <entry>Bludgeoning</entry>
+    <entry>20</entry>
+    <entry>x2</entry>
+    <entry></entry>
+  </collection>
+  <collection>
     <name>Punching dagger</name>
     <entry>Piercing</entry>
     <entry>20</entry>
