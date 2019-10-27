@@ -4,12 +4,12 @@ using NUnit.Framework;
 using RollGen;
 using System.Collections.Generic;
 using TreasureGen.Generators.Items.Magical;
+using TreasureGen.Items;
+using TreasureGen.Items.Magical;
 using TreasureGen.Selectors.Collections;
 using TreasureGen.Selectors.Percentiles;
 using TreasureGen.Selectors.Selections;
 using TreasureGen.Tables;
-using TreasureGen.Items;
-using TreasureGen.Items.Magical;
 
 namespace TreasureGen.Tests.Unit.Generators.Items.Magical
 {
@@ -41,6 +41,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             var fillerValues = new[] { "0" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(fillerValues);
             mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(4);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(3);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceStrongStats)).Returns("10");
             mockIntelligenceDataSelector.Setup(s => s.SelectFrom(It.IsAny<string>())).Returns(intelligenceSelection);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments)).Returns(string.Empty);
@@ -208,10 +209,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Languages)).Returns("english").Returns("german");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Languages, Contains.Item("Common"));
-            Assert.That(intelligence.Languages, Contains.Item("english"));
-            Assert.That(intelligence.Languages, Contains.Item("german"));
-            Assert.That(intelligence.Languages.Count, Is.EqualTo(3));
+            Assert.That(intelligence.Languages, Has.Count.EqualTo(3)
+                .And.Contains("Common")
+                .And.Contains("english")
+                .And.Contains("german"));
         }
 
         [Test]
@@ -224,10 +225,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns("english").Returns("english").Returns("german");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Languages, Contains.Item("Common"));
-            Assert.That(intelligence.Languages, Contains.Item("english"));
-            Assert.That(intelligence.Languages, Contains.Item("german"));
-            Assert.That(intelligence.Languages.Count, Is.EqualTo(3));
+            Assert.That(intelligence.Languages, Has.Count.EqualTo(3)
+                .And.Contains("Common")
+                .And.Contains("english")
+                .And.Contains("german"));
         }
 
         [Test]
@@ -246,7 +247,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(2));
         }
 
         [Test]
@@ -257,9 +258,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("power 1"));
-            Assert.That(intelligence.Powers, Contains.Item("power 2"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(2)
+                .And.Contains("power 1")
+                .And.Contains("power 2"));
         }
 
         [Test]
@@ -270,7 +271,7 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(2));
         }
 
         [Test]
@@ -281,9 +282,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName)).Returns("power 1").Returns("power 1").Returns("power 2");
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("power 1"));
-            Assert.That(intelligence.Powers, Contains.Item("power 2"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(2)
+                .And.Contains("power 1")
+                .And.Contains("power 2"));
         }
 
         [Test]
@@ -315,8 +316,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.25)).Returns(false);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("greater power"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(1));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(1)
+                .And.Contains("greater power"));
             Assert.That(intelligence.SpecialPurpose, Is.Empty);
             Assert.That(intelligence.DedicatedPower, Is.Empty);
         }
@@ -333,8 +334,8 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(1));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(1)
+                .And.Contains("greater power 1"));
             Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose"));
             Assert.That(intelligence.DedicatedPower, Is.EqualTo("dedicated power"));
         }
@@ -353,9 +354,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
-                Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
-                Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
-                Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+                Assert.That(intelligence.Powers, Has.Count.EqualTo(2)
+                    .And.Contains("greater power 1")
+                    .And.Contains("greater power 2"));
                 Assert.That(intelligence.SpecialPurpose, Is.Empty);
                 Assert.That(intelligence.DedicatedPower, Is.Empty);
             }
@@ -375,9 +376,9 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.75)).Returns(true);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
-            Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
-            Assert.That(intelligence.Powers.Count, Is.EqualTo(2));
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(2)
+                .And.Contains("greater power 1")
+                .And.Contains("greater power 2"));
             Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose"));
             Assert.That(intelligence.DedicatedPower, Is.EqualTo("dedicated power"));
         }
@@ -398,10 +399,10 @@ namespace TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
 
                 var intelligence = intelligenceGenerator.GenerateFor(item);
-                Assert.That(intelligence.Powers, Contains.Item("greater power 1"));
-                Assert.That(intelligence.Powers, Contains.Item("greater power 2"));
-                Assert.That(intelligence.Powers, Contains.Item("greater power 3"));
-                Assert.That(intelligence.Powers.Count, Is.EqualTo(3));
+                Assert.That(intelligence.Powers, Has.Count.EqualTo(3)
+                    .And.Contains("greater power 1")
+                    .And.Contains("greater power 2")
+                    .And.Contains("greater power 3"));
                 Assert.That(intelligence.SpecialPurpose, Is.Empty);
                 Assert.That(intelligence.DedicatedPower, Is.Empty);
             }
