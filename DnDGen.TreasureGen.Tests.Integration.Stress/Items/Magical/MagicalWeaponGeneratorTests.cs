@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -58,42 +58,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override IEnumerable<string> GetItemNames()
         {
             return WeaponConstants.GetAllWeapons();
-        }
-
-        [Test]
-        //[Ignore("Ammunition does not always appear within the time limit")]
-        public void BUG_AmmunitionWithQuantityGreaterThan1Happens()
-        {
-            var ammunition = stressor.GenerateOrFail(
-                () => GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Ammunition)),
-                w => w.Quantity > 1);
-
-            AssertItem(ammunition);
-            Assert.That(ammunition.Attributes, Contains.Item(AttributeConstants.Ammunition), ammunition.Name);
-            Assert.That(ammunition.Quantity, Is.InRange(2, 50), ammunition.Name);
-        }
-
-        [Test]
-        //[Ignore("Thrown weapon does not always appear within the time limit")]
-        public void BUG_ThrownWeaponWithQuantityGreaterThan1Happens()
-        {
-            var thrownWeapon = stressor.GenerateOrFail(
-                () => GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee)),
-                w => w.Quantity > 1);
-
-            AssertItem(thrownWeapon);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), thrownWeapon.Name);
-
-            var topRange = thrownWeapon.NameMatches(WeaponConstants.Shuriken) ? 50 : 20;
-            Assert.That(thrownWeapon.Quantity, Is.InRange(2, topRange), thrownWeapon.Name);
-        }
-
-        [Test]
-        public void BUG_ThrownMeleeWeaponDoesNotGetQuantityGreaterThan1()
-        {
-            stressor.Stress(GenerateAndAssertThrownMeleeWeapon);
         }
 
         private void GenerateAndAssertThrownMeleeWeapon()

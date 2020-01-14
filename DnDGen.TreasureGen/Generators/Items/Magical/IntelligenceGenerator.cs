@@ -1,13 +1,13 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.RollGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -83,10 +83,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             intelligence.Powers.AddRange(lesserPowers);
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
-            var chance = intelligenceAttributesResult.GreaterPowersCount / 4d;
-            var hasSpecialPurpose = percentileSelector.SelectFrom(chance);
+            var threshold = 100 - intelligenceAttributesResult.GreaterPowersCount * 25;
+            var hasSpecialPurpose = percentileSelector.SelectFrom(threshold);
 
-            if (hasSpecialPurpose)
+            if (greaterPowers.Any() && hasSpecialPurpose)
             {
                 greaterPowers.RemoveAt(greaterPowers.Count - 1);
                 intelligence.SpecialPurpose = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes);

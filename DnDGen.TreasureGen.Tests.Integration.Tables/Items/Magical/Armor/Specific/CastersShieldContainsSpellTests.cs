@@ -1,6 +1,5 @@
-﻿using NUnit.Framework;
-using System;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specific
 {
@@ -20,7 +19,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Specif
 
         [TestCase(false, 1, 50)]
         [TestCase(true, 51, 100)]
-        public override void BooleanPercentile(Boolean isTrue, int lower, int upper)
+        public override void BooleanPercentile(bool isTrue, int lower, int upper)
         {
             base.BooleanPercentile(isTrue, lower, upper);
         }
