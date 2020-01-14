@@ -1,7 +1,8 @@
-﻿using Ninject;
-using NUnit.Framework;
-using System.Linq;
+﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Generators;
+using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
+using Ninject;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress
 {
@@ -10,6 +11,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
     {
         [Inject]
         public ITreasureGenerator TreasureGenerator { get; set; }
+
+        private ItemVerifier itemVerifier;
+
+        [SetUp]
+        public void Setup()
+        {
+            itemVerifier = new ItemVerifier();
+        }
 
         [Test]
         public void StressTreasure()
@@ -20,68 +29,37 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         private void GenerateAndAssertTreasure()
         {
             var level = GetNewLevel();
-            var treasure = GenerateTreasure(level);
-            Assert.That(treasure.Coin.Currency, Is.Not.Null, "currency");
-            Assert.That(treasure.Coin.Quantity, Is.Not.Negative);
+            var treasure = TreasureGenerator.GenerateAtLevel(level);
+
+            if (string.IsNullOrEmpty(treasure.Coin.Currency))
+            {
+                Assert.That(treasure.Coin.Currency, Is.Empty);
+                Assert.That(treasure.Coin.Quantity, Is.Zero);
+            }
+            else
+            {
+                Assert.That(treasure.Coin.Currency, Is.EqualTo(CoinConstants.Copper)
+                    .Or.EqualTo(CoinConstants.Gold)
+                    .Or.EqualTo(CoinConstants.Platinum)
+                    .Or.EqualTo(CoinConstants.Silver));
+                Assert.That(treasure.Coin.Quantity, Is.Positive);
+            }
+
             Assert.That(treasure.Goods, Is.Not.Null, "goods");
+
+            foreach (var good in treasure.Goods)
+            {
+                Assert.That(good.Description, Is.Not.Empty);
+                Assert.That(good.ValueInGold, Is.Positive);
+            }
+
             Assert.That(treasure.Items, Is.Not.Null, "items");
 
             if (level > 20)
-            {
-                Assert.That(treasure.Items, Is.Not.Empty, "epic items");
-                Assert.That(treasure.Items, Is.All.Not.Null, "epic items");
-                Assert.That(treasure.Items, Is.Unique, "epic items");
-            }
-        }
+                Assert.That(treasure.Items, Is.Not.Empty, $"Level {level}");
 
-        private Treasure GenerateTreasure(int level = 0)
-        {
-            if (level == 0)
-                level = GetNewLevel();
-
-            var treasure = TreasureGenerator.GenerateAtLevel(level);
-
-            return treasure;
-        }
-
-        [Test]
-        public void TreasureHappens()
-        {
-            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.IsAny);
-            Assert.That(treasure.IsAny, Is.True);
-        }
-
-        [Test]
-        public void TreasureDoesNotHappen()
-        {
-            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(1), t => !t.IsAny);
-            Assert.That(treasure.IsAny, Is.False);
-        }
-
-        [Test]
-        public void CoinHappens()
-        {
-            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Coin.Quantity > 0);
-            Assert.That(treasure.Coin.Quantity, Is.Positive);
-            Assert.That(treasure.Coin.Currency, Is.Not.Empty);
-        }
-
-        [Test]
-        public void GoodsHappen()
-        {
-            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Goods.Any());
-            Assert.That(treasure.Goods, Is.Not.Empty);
-            Assert.That(treasure.Goods, Is.All.Not.Null);
-            Assert.That(treasure.Goods, Is.Unique);
-        }
-
-        [Test]
-        public void ItemsHappen()
-        {
-            var treasure = stressor.GenerateOrFail(() => GenerateTreasure(), t => t.Items.Any());
-            Assert.That(treasure.Items, Is.Not.Empty);
-            Assert.That(treasure.Items, Is.All.Not.Null);
-            Assert.That(treasure.Items, Is.Unique);
+            foreach (var item in treasure.Items)
+                itemVerifier.AssertItem(item);
         }
     }
 }

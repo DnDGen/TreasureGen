@@ -8,17 +8,17 @@
     </percentile>
   <percentile>
     <lower>9</lower>
-    <content>Silver,3d9001+2997</content>
+    <content>Silver,271d100+9d20+2720</content>
     <upper>14</upper>
   </percentile>
   <percentile>
     <lower>15</lower>
-    <content>Gold,4d701+396</content>
+    <content>Gold,28d100+1d20+1d10+370</content>
     <upper>75</upper>
   </percentile>
   <percentile>
     <lower>76</lower>
-    <content>Platinum,4d91+36</content>
+    <content>Platinum,3d100+3d20+2d4+32</content>
     <upper>100</upper>
   </percentile>
 </percentiles>

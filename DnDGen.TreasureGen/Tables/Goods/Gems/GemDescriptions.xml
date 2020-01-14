@@ -17,7 +17,7 @@
         <entry>irregular freshwater pearl</entry>
     </collection>
     <collection>
-        <name>2d31+18</name>
+        <name>2d4*10</name>
         <entry>bloodstone</entry>
         <entry>carnelian</entry>
         <entry>chalcedony</entry>
@@ -37,7 +37,7 @@
         <entry>zircon</entry>
     </collection>
     <collection>
-        <name>4d31+36</name>
+        <name>4d4*10</name>
         <entry>amber</entry>
         <entry>amethyst</entry>
         <entry>chrysoberyl</entry>
@@ -56,7 +56,7 @@
         <entry>tourmaline</entry>
     </collection>
     <collection>
-        <name>2d301+198</name>
+        <name>2d4*100</name>
         <entry>alexandrite</entry>
         <entry>aquamarine</entry>
         <entry>violet garnet</entry>
@@ -65,7 +65,7 @@
         <entry>golden yellow topaz</entry>
     </collection>
     <collection>
-        <name>4d301+396</name>
+        <name>4d4*100</name>
         <entry>emerald</entry>
         <entry>white opal</entry>
         <entry>black opal</entry>
@@ -78,7 +78,7 @@
         <entry>star ruby</entry>
     </collection>
     <collection>
-        <name>2d3001+1998</name>
+        <name>2d4*1000</name>
         <entry>clearest bright green emerald</entry>
         <entry>blue-white diamond</entry>
         <entry>canary diamond</entry>

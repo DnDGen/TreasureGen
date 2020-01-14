@@ -18,31 +18,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
 
         private void GenerateAndAssertCoins()
         {
-            var coin = GenerateCoin();
-            Assert.That(coin.Currency, Is.Not.Null);
-            Assert.That(coin.Quantity, Is.Not.Negative);
-        }
-
-        private Coin GenerateCoin()
-        {
             var level = GetNewLevel();
-            return CoinGenerator.GenerateAtLevel(level);
-        }
+            var coin = CoinGenerator.GenerateAtLevel(level);
 
-        [Test]
-        public void CurrencyHappens()
-        {
-            var coin = stressor.GenerateOrFail(GenerateCoin, c => !string.IsNullOrEmpty(c.Currency));
-            Assert.That(coin.Currency, Is.Not.Empty);
-            Assert.That(coin.Quantity, Is.Positive);
-        }
-
-        [Test]
-        public void CurrencyDoesNotHappen()
-        {
-            var coin = stressor.GenerateOrFail(GenerateCoin, c => string.IsNullOrEmpty(c.Currency));
-            Assert.That(coin.Currency, Is.Empty);
-            Assert.That(coin.Quantity, Is.EqualTo(0));
+            if (string.IsNullOrEmpty(coin.Currency))
+            {
+                Assert.That(coin.Currency, Is.Empty);
+                Assert.That(coin.Quantity, Is.Zero);
+            }
+            else
+            {
+                Assert.That(coin.Currency, Is.EqualTo(CoinConstants.Copper)
+                    .Or.EqualTo(CoinConstants.Gold)
+                    .Or.EqualTo(CoinConstants.Platinum)
+                    .Or.EqualTo(CoinConstants.Silver));
+                Assert.That(coin.Quantity, Is.Positive);
+            }
         }
     }
 }

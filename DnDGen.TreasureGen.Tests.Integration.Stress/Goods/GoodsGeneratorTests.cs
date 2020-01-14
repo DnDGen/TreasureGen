@@ -1,8 +1,6 @@
-﻿using Ninject;
+﻿using DnDGen.TreasureGen.Goods;
+using Ninject;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Goods;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
 {
@@ -20,7 +18,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
 
         private void GenerateAndAssertGoods()
         {
-            var goods = GenerateGoods();
+            var level = GetNewLevel();
+            var goods = GoodsGenerator.GenerateAtLevel(level);
 
             Assert.That(goods, Is.Not.Null);
 
@@ -29,26 +28,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
                 Assert.That(good.Description, Is.Not.Empty);
                 Assert.That(good.ValueInGold, Is.Positive);
             }
-        }
-
-        private IEnumerable<Good> GenerateGoods()
-        {
-            var level = GetNewLevel();
-            return GoodsGenerator.GenerateAtLevel(level);
-        }
-
-        [Test]
-        public void GoodsHappen()
-        {
-            var goods = stressor.GenerateOrFail(GenerateGoods, g => g.Any());
-            Assert.That(goods, Is.Not.Empty);
-        }
-
-        [Test]
-        public void GoodsDoNotHappen()
-        {
-            var goods = stressor.GenerateOrFail(GenerateGoods, g => !g.Any());
-            Assert.That(goods, Is.Empty);
         }
     }
 }

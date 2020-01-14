@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Goods;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
 {
@@ -12,7 +12,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
             get { return string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, GoodsConstants.Gem); }
         }
 
-        [TestCase(AmountConstants.Range4d4, "eye agate",
+        [TestCase("4d4", "eye agate",
                          "moss agate",
                          "banded agate",
                          "azurite",
@@ -24,7 +24,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
                          "rhodochrosite",
                          "tiger eye turquoise",
                          "irregular freshwater pearl")]
-        [TestCase(AmountConstants.Range2d4x10, "bloodstone",
+        [TestCase("2d4*10", "bloodstone",
                             "carnelian",
                             "chalcedony",
                             "chrysoprase",
@@ -41,7 +41,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
                             "smoky rose quartz",
                             "star rose quartz",
                             "zircon")]
-        [TestCase(AmountConstants.Range4d4x10, "amber",
+        [TestCase("4d4*10", "amber",
                             "amethyst",
                             "chrysoberyl",
                             "coral",
@@ -57,13 +57,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
                             "red-brown spinel",
                             "deep green spinel",
                             "tourmaline")]
-        [TestCase(AmountConstants.Range2d4x100, "alexandrite",
+        [TestCase("2d4*100", "alexandrite",
                              "aquamarine",
                              "violet garnet",
                              "black pearl",
                              "deep blue spinel",
                              "golden yellow topaz")]
-        [TestCase(AmountConstants.Range4d4x100, "emerald",
+        [TestCase("4d4*100", "emerald",
                              "white opal",
                              "black opal",
                              "fire opal",
@@ -73,7 +73,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
                              "blue star sapphire",
                              "black star sapphire",
                              "star ruby")]
-        [TestCase(AmountConstants.Range2d4x1000, "clearest bright green emerald",
+        [TestCase("2d4*1000", "clearest bright green emerald",
                               "blue-white diamond",
                               "canary diamond",
                               "pink diamond",

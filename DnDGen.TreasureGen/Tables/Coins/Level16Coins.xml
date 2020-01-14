@@ -8,12 +8,12 @@
     </percentile>
   <percentile>
     <lower>4</lower>
-    <content>Gold,1d11001+999</content>
+    <content>Gold,111d100+1d12+888</content>
     <upper>74</upper>
   </percentile>
   <percentile>
     <lower>75</lower>
-    <content>Platinum,3d301+297</content>
+    <content>Platinum,9d100+1d10+290</content>
     <upper>100</upper>
   </percentile>
 </percentiles>

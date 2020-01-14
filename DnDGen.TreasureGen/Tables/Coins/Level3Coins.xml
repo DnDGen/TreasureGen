@@ -8,22 +8,22 @@
     </percentile>
   <percentile>
     <lower>12</lower>
-    <content>Copper,2d9001+1998</content>
+    <content>Copper,181d100+4d20+1d6+1814</content>
     <upper>21</upper>
   </percentile>
   <percentile>
     <lower>22</lower>
-    <content>Silver,4d701+396</content>
+    <content>Silver,28d100+1d20+1d10+370</content>
     <upper>41</upper>
   </percentile>
   <percentile>
     <lower>42</lower>
-    <content>Gold,1d301+99</content>
+    <content>Gold,3d100+1d4+96</content>
     <upper>95</upper>
   </percentile>
   <percentile>
     <lower>96</lower>
-    <content>Platinum,1d91+9</content>
+    <content>Platinum,4d20+2d8+4</content>
     <upper>100</upper>
   </percentile>
 </percentiles>

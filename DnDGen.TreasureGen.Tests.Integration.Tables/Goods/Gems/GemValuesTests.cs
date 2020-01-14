@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Goods;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
 {
@@ -24,20 +24,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Gems
             AssertTableIsComplete();
         }
 
-        [TestCase(AmountConstants.Range4d4, AmountConstants.Range4d4, 1, 25)]
-        [TestCase(AmountConstants.Range2d4x10, AmountConstants.Range2d4x10, 26, 50)]
-        [TestCase(AmountConstants.Range4d4x10, AmountConstants.Range4d4x10, 51, 70)]
-        [TestCase(AmountConstants.Range2d4x100, AmountConstants.Range2d4x100, 71, 90)]
-        [TestCase(AmountConstants.Range4d4x100, AmountConstants.Range4d4x100, 91, 99)]
+        [TestCase("4d4", AmountConstants.Range4d4, 1, 25)]
+        [TestCase("2d4*10", AmountConstants.Range2d4x10, 26, 50)]
+        [TestCase("4d4*10", AmountConstants.Range4d4x10, 51, 70)]
+        [TestCase("2d4*100", AmountConstants.Range2d4x100, 71, 90)]
+        [TestCase("4d4*100", AmountConstants.Range4d4x100, 91, 99)]
+        [TestCase("2d4*1000", AmountConstants.Range2d4x1000, 100, 100)]
         public override void TypeAndAmountPercentile(string type, string value, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, value, lower, upper);
-        }
-
-        [TestCase(AmountConstants.Range2d4x1000, AmountConstants.Range2d4x1000, 100)]
-        public override void TypeAndAmountPercentile(string type, string value, int roll)
-        {
-            base.TypeAndAmountPercentile(type, value, roll);
         }
     }
 }

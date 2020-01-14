@@ -1,9 +1,7 @@
-﻿using Ninject;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
+using Ninject;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
 {
@@ -21,38 +19,18 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
             stressor.Stress(() => GenerateAndAssertItems());
         }
 
-        private void GenerateAndAssertItems(int level = 0)
+        private void GenerateAndAssertItems()
         {
-            var items = GenerateItems(level);
+            var level = GetNewLevel();
+            var items = ItemsGenerator.GenerateAtLevel(level);
+
             Assert.That(items, Is.Not.Null);
+
+            if (level > 20)
+                Assert.That(items, Is.Not.Empty, $"Level {level}");
 
             foreach (var item in items)
                 ItemVerifier.AssertItem(item);
-
-            if (level > 20)
-                Assert.That(items, Is.Not.Empty);
-        }
-
-        private IEnumerable<Item> GenerateItems(int level = 0)
-        {
-            if (level == 0)
-                level = GetNewLevel();
-
-            return ItemsGenerator.GenerateAtLevel(level);
-        }
-
-        [Test]
-        public void ItemsHappen()
-        {
-            var items = stressor.GenerateOrFail(() => GenerateItems(), i => i.Any());
-            Assert.That(items, Is.Not.Empty);
-        }
-
-        [Test]
-        public void ItemsDoNotHappen()
-        {
-            var items = stressor.GenerateOrFail(() => GenerateItems(), i => !i.Any());
-            Assert.That(items, Is.Empty);
         }
     }
 }
