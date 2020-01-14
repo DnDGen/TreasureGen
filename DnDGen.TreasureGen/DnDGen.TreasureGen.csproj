@@ -17,6 +17,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <!--Needed for Framework compatibility when building in Travis-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="Tables\Coins\Level10Coins.xml" />
     <None Remove="Tables\Coins\Level11Coins.xml" />
