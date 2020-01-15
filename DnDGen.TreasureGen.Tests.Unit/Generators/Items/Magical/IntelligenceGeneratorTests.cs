@@ -434,7 +434,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.25)).Returns(true);
 
             var intelligence = intelligenceGenerator.GenerateFor(item);
-            Assert.That(intelligence.Powers, Has.Count.EqualTo(2)
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(4)
+                .And.Contains("power 1")
+                .And.Contains("power 2")
                 .And.Contains("greater power 1")
                 .And.Contains("greater power 2"));
             Assert.That(intelligence.SpecialPurpose, Is.EqualTo("purpose"));
@@ -444,28 +446,29 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void ThreeGreaterPowerMeans25PercentChanceForGreaterPower()
         {
+            intelligenceSelection.LesserPowersCount = 2;
             intelligenceSelection.GreaterPowersCount = 3;
+
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceSpecialPurposes)).Returns("purpose");
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceDedicatedPowers)).Returns("dedicated power");
 
+            var lesserTableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Lesser");
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(lesserTableName)).Returns("power 1").Returns("power 2");
+
+            var greaterTableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(greaterTableName)).Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
+
             mockPercentileSelector.Setup(s => s.SelectFrom(.25)).Returns(false);
 
-            for (var roll = 4; roll > 3; roll--)
-            {
-                var tableName = string.Format(TableNameConstants.Percentiles.Formattable.IntelligencePOWERPowers, "Greater");
-                mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
-                    .Returns("greater power 1").Returns("greater power 2").Returns("greater power 3");
-
-                mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(roll);
-
-                var intelligence = intelligenceGenerator.GenerateFor(item);
-                Assert.That(intelligence.Powers, Has.Count.EqualTo(3)
-                    .And.Contains("greater power 1")
-                    .And.Contains("greater power 2")
-                    .And.Contains("greater power 3"));
-                Assert.That(intelligence.SpecialPurpose, Is.Empty);
-                Assert.That(intelligence.DedicatedPower, Is.Empty);
-            }
+            var intelligence = intelligenceGenerator.GenerateFor(item);
+            Assert.That(intelligence.Powers, Has.Count.EqualTo(5)
+                .And.Contains("power 1")
+                .And.Contains("power 2")
+                .And.Contains("greater power 1")
+                .And.Contains("greater power 2")
+                .And.Contains("greater power 3"));
+            Assert.That(intelligence.SpecialPurpose, Is.Empty);
+            Assert.That(intelligence.DedicatedPower, Is.Empty);
         }
 
         [Test]
