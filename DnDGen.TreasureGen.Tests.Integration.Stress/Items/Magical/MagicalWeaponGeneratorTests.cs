@@ -1,7 +1,6 @@
 ﻿using DnDGen.TreasureGen.Items;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -60,17 +59,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             return WeaponConstants.GetAllWeapons();
         }
 
-        private void GenerateAndAssertThrownMeleeWeapon()
-        {
-            var thrownWeapon = GenerateItem(w => w.ItemType == itemType && w.Attributes.Contains(AttributeConstants.Thrown) && w.Attributes.Contains(AttributeConstants.Melee));
-
-            AssertItem(thrownWeapon);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Melee), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Quantity, Is.EqualTo(1), thrownWeapon.Name);
-        }
-
         [Test]
         public void RequiredAmmunitionHappens()
         {
@@ -92,29 +80,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         public void StressWeaponFromSubset()
         {
             stressor.Stress(GenerateAndAssertItemFromSubset);
-        }
-
-        [Test]
-        //[Ignore("Shuriken does not always appear within the time limit.  Mundane weapon tests verify this quantity")]
-        public void BUG_ShurikenWithQuantityGreaterThan20Happens()
-        {
-            var shuriken = stressor.GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
-            AssertItem(shuriken);
-            Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
-            Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
-        }
-
-        private Item GenerateShuriken()
-        {
-            var subset = new[] { WeaponConstants.Shuriken };
-            var power = GetNewPower();
-            var shuriken = magicalItemGenerator.GenerateFrom(power, subset);
-
-            return shuriken;
         }
     }
 }

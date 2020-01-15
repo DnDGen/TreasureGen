@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -28,8 +28,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override void MakeSpecificAssertionsAgainst(Item wand)
         {
             Assert.That(wand.Name, Does.StartWith("Wand of"));
-            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
-            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.Charged));
+            Assert.That(wand.Attributes, Contains.Item(AttributeConstants.OneTimeUse)
+                .And.Contains(AttributeConstants.Charged));
             Assert.That(wand.Contents, Is.Empty);
             Assert.That(wand.IsMagical, Is.True);
             Assert.That(wand.ItemType, Is.EqualTo(ItemTypeConstants.Wand));

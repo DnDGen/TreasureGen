@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -61,13 +61,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void BUG_ThrownWeaponWithQuantityGreaterThan1Happens()
+        public void BUG_ThrownRangedWeaponWithQuantityGreaterThan1Happens()
         {
             var thrownWeapon = stressor.GenerateOrFail(GenerateItem, w => w.ItemType == ItemTypeConstants.Weapon && w.Attributes.Contains(AttributeConstants.Thrown) && !w.Attributes.Contains(AttributeConstants.Melee) && w.Quantity > 1);
             AssertItem(thrownWeapon);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown)
+                .And.Contains(AttributeConstants.Ranged)
+                .And.Not.Contains(AttributeConstants.Melee), thrownWeapon.Name);
 
             var topRange = thrownWeapon.NameMatches(WeaponConstants.Shuriken) ? 50 : 20;
             Assert.That(thrownWeapon.Quantity, Is.InRange(2, topRange), thrownWeapon.Name);
@@ -102,10 +102,10 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             var shuriken = stressor.GenerateOrFail(GenerateShuriken, w => w.NameMatches(WeaponConstants.Shuriken) && w.Quantity > 20);
             AssertItem(shuriken);
             Assert.That(shuriken.NameMatches(WeaponConstants.Shuriken), Is.True);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ranged), shuriken.Name);
-            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Ammunition), shuriken.Name);
-            Assert.That(shuriken.Attributes, Is.All.Not.EqualTo(AttributeConstants.Melee), shuriken.Name);
+            Assert.That(shuriken.Attributes, Contains.Item(AttributeConstants.Thrown)
+                .And.Contains(AttributeConstants.Ranged)
+                .And.Contains(AttributeConstants.Ammunition)
+                .And.Not.Contains(AttributeConstants.Melee), shuriken.Name);
             Assert.That(shuriken.Quantity, Is.InRange(21, 50), shuriken.Name);
         }
 
@@ -117,6 +117,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             return shuriken;
         }
 
+        //INFO: This would include weapons that are mostly melee, but can be thrown, such as daggers
         [Test]
         public void BUG_ThrownMeleeWeaponDoesNotGetQuantityGreaterThan1()
         {
@@ -128,9 +129,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             var thrownWeapon = GenerateItem(w => w.ItemType == ItemTypeConstants.Weapon && w.Attributes.Contains(AttributeConstants.Thrown) && w.Attributes.Contains(AttributeConstants.Melee));
 
             AssertItem(thrownWeapon);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Ranged), thrownWeapon.Name);
-            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Melee), thrownWeapon.Name);
+            Assert.That(thrownWeapon.Attributes, Contains.Item(AttributeConstants.Thrown)
+                .And.Contains(AttributeConstants.Ranged)
+                .And.Contains(AttributeConstants.Melee), thrownWeapon.Name);
             Assert.That(thrownWeapon.Quantity, Is.EqualTo(1), thrownWeapon.Name);
         }
     }
