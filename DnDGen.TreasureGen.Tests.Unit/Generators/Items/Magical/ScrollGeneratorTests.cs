@@ -26,7 +26,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             itemVerifier = new ItemVerifier();
 
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(1);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorScrollsHave1d3Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
             AssertScroll(scroll);
@@ -72,7 +72,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MediumScrollsHave1d4Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d(4).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(4).AsSum<int>()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Medium);
             AssertScroll(scroll);
@@ -82,7 +82,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MajorScrollsHave1d6Spells()
         {
-            mockDice.Setup(d => d.Roll(1).d(6).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(6).AsSum<int>()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Major);
             AssertScroll(scroll);
@@ -98,7 +98,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateSpellTypeOnce()
         {
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
             AssertScroll(scroll);
@@ -108,7 +108,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateLevelAndSpellEachTime()
         {
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
             AssertScroll(scroll);

@@ -297,15 +297,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         private void SetUpRoll(int die, int result)
         {
             var mockPartial = new Mock<PartialRoll>();
-            mockPartial.Setup(p => p.AsSum()).Returns(result);
+            mockPartial.Setup(p => p.AsSum<int>()).Returns(result);
             mockDice.Setup(d => d.Roll(1).d(die)).Returns(mockPartial.Object);
         }
 
         private void SetUpRoll(int lower, int upper, int result)
         {
             var mockPartial = new Mock<PartialRoll>();
-            mockPartial.Setup(p => p.AsSum()).Returns(result);
-            var roll = RollHelper.GetRoll(lower, upper);
+            mockPartial.Setup(p => p.AsSum<int>()).Returns(result);
+            var roll = RollHelper.GetRollWithMostEvenDistribution(lower, upper);
 
             mockDice.Setup(d => d.Roll(roll)).Returns(mockPartial.Object);
         }

@@ -216,7 +216,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
 
-            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(roll);
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum<int>()).Returns(roll);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(quantity));
@@ -228,7 +228,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var attributes = new[] { "type 1", AttributeConstants.Thrown };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(9266));
@@ -240,7 +240,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var attributes = new[] { "type 1", AttributeConstants.Thrown, AttributeConstants.Melee };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "weapon name")).Returns(attributes);
-            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Quantity, Is.EqualTo(1));
@@ -392,7 +392,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(p => p.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
             mockWeaponDataSelector.Setup(s => s.Select(name)).Returns(weaponSelection);
-            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
 
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
@@ -430,7 +430,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(p => p.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
             mockWeaponDataSelector.Setup(s => s.Select(name)).Returns(weaponSelection);
-            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum<int>()).Returns(9266);
 
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
@@ -759,7 +759,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum<int>()).Returns(9266);
 
             var subset = new[] { "other weapon name", "weapon name" };
 
@@ -808,7 +808,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
 
             var subset = new[] { "other weapon name", "weapon name" };
 
@@ -887,7 +887,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            mockDice.Setup(d => d.Roll(1).d(100).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(100).AsSum<int>()).Returns(9266);
 
             var subset = new[] { "other weapon name", "weapon name" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
@@ -928,7 +928,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
 
-            mockDice.Setup(d => d.Roll(1).d(20).AsSum()).Returns(9266);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
 
             var subset = new[] { "other weapon name", "weapon name" };
             mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());

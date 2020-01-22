@@ -82,7 +82,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         {
             var lower = quantity * multiplier;
             var upper = quantity * die * multiplier;
-            var roll = RollHelper.GetRoll(lower, upper);
+            var roll = RollHelper.GetRollWithFewestDice(lower, upper);
 
             Assert.That(constant, Is.EqualTo(roll));
         }

@@ -565,7 +565,7 @@
   <ItemGroup>
     <PackageReference Include="DnDGen.EventGen" Version="3.0.0" />
     <PackageReference Include="DnDGen.Infrastructure" Version="4.0.0" />
-    <PackageReference Include="DnDGen.RollGen" Version="15.0.0" />
+    <PackageReference Include="DnDGen.RollGen" Version="15.1.0" />
   </ItemGroup>
 
 </Project>

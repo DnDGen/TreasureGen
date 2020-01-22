@@ -88,7 +88,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void IfIntermittentFunctioning_1OnD3IsUnreliable()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(1);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(1);
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Unreliable)"));
@@ -98,7 +98,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void IfIntermittentFunctioning_2OnD3IsDependent()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(2);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(2);
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations)).Returns("situation");
 
             var curse = curseGenerator.GenerateCurse();
@@ -109,7 +109,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void IfIntermittentFunctioning_3OnD3IsUncontrolled()
         {
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.Curses)).Returns("Intermittent Functioning");
-            mockDice.Setup(d => d.Roll(1).d(3).AsSum()).Returns(3);
+            mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(3);
 
             var curse = curseGenerator.GenerateCurse();
             Assert.That(curse, Is.EqualTo("Intermittent Functioning (Uncontrolled)"));

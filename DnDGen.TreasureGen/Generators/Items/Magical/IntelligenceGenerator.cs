@@ -18,8 +18,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly ICollectionSelector collectionsSelector;
         private readonly IIntelligenceDataSelector intelligenceDataSelector;
 
-        //INFO: Double because it is used for percentage division
-        private const double MaxGreaterPowers = 3;
+        private const int MaxGreaterPowers = 3;
 
         public IntelligenceGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, IIntelligenceDataSelector intelligenceDataSelector)
         {
@@ -86,8 +85,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             intelligence.Powers.AddRange(lesserPowers);
 
             var greaterPowers = GeneratePowers("Greater", intelligenceAttributesResult.GreaterPowersCount);
-            var threshold = 1 - intelligenceAttributesResult.GreaterPowersCount / (MaxGreaterPowers + 1);
-            var hasSpecialPurpose = percentileSelector.SelectFrom(threshold);
+            var threshold = MaxGreaterPowers + 2 - intelligenceAttributesResult.GreaterPowersCount;
+            var hasSpecialPurpose = dice.Roll().d(MaxGreaterPowers + 1).AsTrueOrFalse(threshold);
 
             if (greaterPowers.Any() && hasSpecialPurpose)
             {

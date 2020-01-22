@@ -28,7 +28,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         private void SetUpRoll(string roll, int amount)
         {
             var partial = new Mock<PartialRoll>();
-            partial.Setup(p => p.AsSum()).Returns(amount);
+            partial.Setup(p => p.AsSum<int>()).Returns(amount);
             mockDice.Setup(d => d.Roll(roll)).Returns(partial.Object);
         }
 

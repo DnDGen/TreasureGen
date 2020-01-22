@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <percentiles>
-    <percentile>
-        <lower>1</lower>
-        <content></content>
-        <upper>2</upper>
-    </percentile>
+  <percentile>
+    <lower>1</lower>
+    <content></content>
+    <upper>2</upper>
+  </percentile>
   <percentile>
     <lower>3</lower>
-    <content>Gold,211d100+5d20+1d10+1d8+2782</content>
+    <content>Gold,3000d8</content>
     <upper>65</upper>
   </percentile>
   <percentile>
     <lower>66</lower>
-    <content>Platinum,27d100+3d10+270</content>
+    <content>Platinum,300d10</content>
     <upper>100</upper>
   </percentile>
 </percentiles>

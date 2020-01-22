@@ -300,7 +300,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         private void SetUpRoll(int quantity, int die, int result)
         {
             var mockPartial = new Mock<PartialRoll>();
-            mockPartial.Setup(p => p.AsSum()).Returns(result);
+            mockPartial.Setup(p => p.AsSum<int>()).Returns(result);
             mockDice.Setup(d => d.Roll(quantity).d(die)).Returns(mockPartial.Object);
         }
 
@@ -1029,7 +1029,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Attributes, Is.EqualTo(attributes));
             Assert.That(item.IsMagical, Is.True);
             Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
-            Assert.That(item.Magic.Charges, Is.EqualTo(0));
+            Assert.That(item.Magic.Charges, Is.Zero);
             Assert.That(item.Contents, Is.SupersetOf(items));
             Assert.That(item.Contents, Contains.Item("extra item 1"));
             Assert.That(item.Contents, Contains.Item("extra item 2"));

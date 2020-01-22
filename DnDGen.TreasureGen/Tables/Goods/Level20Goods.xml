@@ -13,7 +13,7 @@
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Art,1d20+1d10+1d8+4</content>
+        <content>Art,5d8+2</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

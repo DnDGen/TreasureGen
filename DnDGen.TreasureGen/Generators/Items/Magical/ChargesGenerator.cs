@@ -1,10 +1,10 @@
 ﻿using DnDGen.RollGen;
-using System;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
+using System;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
-            var roll = RollHelper.GetRoll(result.Minimum, result.Maximum);
+            var roll = RollHelper.GetRollWithMostEvenDistribution(result.Minimum, result.Maximum);
 
             return dice.Roll(roll).AsSum();
         }
