@@ -1,14 +1,12 @@
 ﻿using DnDGen.Infrastructure.Generators;
 using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Selectors.Selections;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -18,21 +16,18 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly IChargesGenerator chargesGenerator;
         private readonly ICollectionSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
         public StaffGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             IChargesGenerator chargesGenerator,
             ICollectionSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
-            Generator generator,
             JustInTimeFactory justInTimeFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.chargesGenerator = chargesGenerator;
             this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
-            this.generator = generator;
             this.justInTimeFactory = justInTimeFactory;
         }
 
@@ -44,13 +39,36 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
             var selection = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
+            return GenerateStaff(selection.Type, selection.Amount);
+        }
+
+        private Item GenerateStaff(string name, int bonus)
+        {
             var staff = new Item();
-            staff.Name = selection.Type;
-            staff.Magic.Bonus = selection.Amount;
+            staff.Name = name;
+            staff.Magic.Bonus = bonus;
             staff = BuildStaff(staff);
-            staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, staff.Name);
+            staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, name);
 
             return staff;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            if (power == PowerConstants.Minor)
+                throw new ArgumentException("Cannot generate minor staves");
+
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            var selections = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
+            var matches = selections.Where(s => s.Type == itemName);
+
+            if (!matches.Any())
+            {
+                throw new ArgumentException($"{itemName} is not a valid {power} Staff");
+            }
+
+            var selection = collectionsSelector.SelectRandomFrom(matches);
+            return GenerateStaff(itemName, selection.Amount);
         }
 
         private Item BuildStaff(Item staff)
@@ -72,11 +90,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (!weapons.Intersect(staff.BaseNames).Any())
                 return staff;
 
-            var template = new Weapon();
-            template.Name = weapons.Intersect(staff.BaseNames).First();
+            var weaponName = weapons.Intersect(staff.BaseNames).First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName);
 
             staff.Attributes = staff.Attributes.Union(mundaneWeapon.Attributes).Except(new[] { AttributeConstants.OneTimeUse });
             staff.CloneInto(mundaneWeapon);
@@ -96,56 +113,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
-        }
-
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
-        {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor staffs");
-
-            var staff = generator.Generate(
-                () => GenerateFrom(power),
-                s => subset.Any(n => s.NameMatches(n)),
-                () => CreateDefaultStaff(power, subset),
-                s => $"{s.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"{power} Staff from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                staff.Traits.Add(trait);
-
-            return staff;
-        }
-
-        private Item CreateDefaultStaff(string power, IEnumerable<string> subset)
-        {
-            var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-            template.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Staff, template.Name);
-
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-            var allSelections = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var selection = allSelections.FirstOrDefault(s => s.Type == template.Name);
-
-            if (selection == null)
-                selection = GetSelectionFromAllPowers(template.Name);
-
-            template.Magic.Bonus = selection.Amount;
-
-            var defaultStaff = GenerateFrom(template);
-
-            return defaultStaff;
-        }
-
-        private TypeAndAmountSelection GetSelectionFromAllPowers(string name)
-        {
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Staff);
-            var mediumStaves = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-
-            tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Staff);
-            var majorStaves = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-
-            var staves = mediumStaves.Union(majorStaves);
-            return staves.First(s => s.Type == name);
         }
     }
 }

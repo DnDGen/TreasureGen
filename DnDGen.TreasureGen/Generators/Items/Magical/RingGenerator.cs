@@ -1,12 +1,11 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Selectors.Selections;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -16,20 +15,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly ISpellGenerator spellGenerator;
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly Generator generator;
 
         public RingGenerator(
             ICollectionSelector collectionsSelector,
             ISpellGenerator spellGenerator,
             IChargesGenerator chargesGenerator,
-            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            Generator generator)
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.collectionsSelector = collectionsSelector;
             this.spellGenerator = spellGenerator;
             this.chargesGenerator = chargesGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.generator = generator;
         }
 
         public Item GenerateFrom(string power)
@@ -38,6 +34,25 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var ring = BuildRing(result.Type, power);
+            ring.Magic.Bonus = result.Amount;
+
+            return ring;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var matches = results.Where(r => r.Type == itemName);
+
+            if (!matches.Any())
+            {
+                throw new ArgumentException($"{itemName} is not a valid {power} Ring");
+            }
+
+            var result = collectionsSelector.SelectRandomFrom(matches);
+
+            var ring = BuildRing(itemName, power);
             ring.Magic.Bonus = result.Amount;
 
             return ring;
@@ -118,89 +133,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ring.Attributes = collectionsSelector.SelectFrom(tableName, ring.Name);
 
             return ring.SmartClone();
-        }
-
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-            if (!results.Any(r => subset.Any(n => r.Type == n)))
-            {
-                return CreateDefaultRing(power, subset);
-            }
-
-            var ring = generator.Generate(
-                () => GenerateFrom(power),
-                r => subset.Any(n => r.NameMatches(n)),
-                () => CreateDefaultRing(power, subset),
-                r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Ring from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                ring.Traits.Add(trait);
-
-            return ring;
-        }
-
-        private Item CreateDefaultRing(string power, IEnumerable<string> subset)
-        {
-            var name = collectionsSelector.SelectRandomFrom(subset);
-            var item = BuildRing(name, power);
-            var result = GetResult(power, item.Name);
-
-            item.Magic.Bonus = result.Amount;
-
-            return item;
-        }
-
-        private TypeAndAmountSelection GetResult(string power, string name)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var result = results.FirstOrDefault(r => r.Type == name);
-
-            if (result != null)
-                return result;
-
-            if (power != PowerConstants.Minor)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Ring);
-                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = minorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Medium)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Ring);
-                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = mediumResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Major)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Ring);
-                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = majorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            //INFO: This means the ring name replaces some fillable field such as ALIGNMENT, so we will assume a bonus of 0
-            if (result == null)
-                return new TypeAndAmountSelection();
-
-            return result;
         }
     }
 }

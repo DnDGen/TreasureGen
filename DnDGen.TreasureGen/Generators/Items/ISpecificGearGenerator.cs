@@ -4,8 +4,11 @@ namespace DnDGen.TreasureGen.Generators.Items
 {
     internal interface ISpecificGearGenerator
     {
-        Item GenerateRandomPrototypeFrom(string power, string specificGearType);
+        Item GeneratePrototypeFrom(string power, string specificGearType, string name);
+        string GenerateRandomNameFrom(string power, string specificGearType);
+        string GenerateNameFrom(string power, string specificGearType, string baseType);
         Item GenerateFrom(Item template);
         bool IsSpecific(Item template);
+        bool IsSpecific(string specificGearType, string itemName);
     }
 }

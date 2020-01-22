@@ -63,9 +63,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public Item GenerateFrom(string power, string itemName)
         {
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
+            var item = innerGenerator.GenerateFrom(power, itemName);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;

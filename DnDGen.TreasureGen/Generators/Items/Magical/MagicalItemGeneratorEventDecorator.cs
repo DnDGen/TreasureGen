@@ -1,5 +1,4 @@
 ﻿using DnDGen.EventGen;
-using System.Collections.Generic;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 
@@ -34,10 +33,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public Item GenerateFrom(string power, string itemName)
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation from [{string.Join(", ", subset)}]");
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
+            eventQueue.Enqueue("TreasureGen", $"Beginning {power} magical item generation ({itemName})");
+            var item = innerGenerator.GenerateFrom(power, itemName);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {power} {item.ItemType} {item.Name}");
 
             return item;

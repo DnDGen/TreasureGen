@@ -1,37 +1,37 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
 {
     internal class AlchemicalItemGenerator : MundaneItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ICollectionSelector collectionsSelector;
-        private readonly Generator generator;
 
-        public AlchemicalItemGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionsSelector, Generator generator)
+        public AlchemicalItemGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
         }
 
         public Item Generate()
         {
             var result = typeAndAmountPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems);
 
+            return Generate(result.Type);
+        }
+
+        public Item Generate(string itemName)
+        {
+            var selections = typeAndAmountPercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems);
+            var selection = selections.First(s => s.Type == itemName);
+
             var item = new Item();
-            item.Name = result.Type;
-            item.Quantity = result.Amount;
+            item.Name = itemName;
+            item.Quantity = selection.Amount;
             item.ItemType = ItemTypeConstants.AlchemicalItem;
-            item.BaseNames = new[] { item.Name };
+            item.BaseNames = new[] { itemName };
 
             return item;
         }
@@ -44,32 +44,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             item.Attributes = Enumerable.Empty<string>();
 
             return item;
-        }
-
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
-        {
-            if (!subset.Any())
-                throw new ArgumentException("Cannot generate from an empty collection subset");
-
-            var item = generator.Generate(
-                Generate,
-                i => subset.Any(n => i.NameMatches(n)),
-                () => GenerateDefaultFrom(subset),
-                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Alchemical item from [{string.Join(", ", subset)}]");
-
-            item.Traits = new HashSet<string>(traits);
-
-            return item;
-        }
-
-        private Item GenerateDefaultFrom(IEnumerable<string> subset)
-        {
-            var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-
-            var defaultItem = GenerateFrom(template);
-            return defaultItem;
         }
     }
 }

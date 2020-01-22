@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -32,6 +31,19 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
+        public Item GenerateFrom(string power, string itemName)
+        {
+            var item = innerGenerator.GenerateFrom(power, itemName);
+
+            if (curseGenerator.HasCurse(item.IsMagical))
+            {
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            }
+
+            return item;
+        }
+
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             if (curseGenerator.IsSpecificCursedItem(template))
@@ -44,28 +56,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 do item.Magic.Curse = curseGenerator.GenerateCurse();
                 while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
             }
-
-            return item;
-        }
-
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
-        {
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
-
-            if (!curseGenerator.HasCurse(item.IsMagical))
-                return item;
-
-            var curse = curseGenerator.GenerateCurse();
-            if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-            {
-                var specificCursedItem = curseGenerator.GenerateFrom(subset, traits);
-                if (specificCursedItem == null)
-                    return item;
-
-                return specificCursedItem;
-            }
-
-            item.Magic.Curse = curse;
 
             return item;
         }

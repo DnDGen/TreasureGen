@@ -1,13 +1,10 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
 {
@@ -15,20 +12,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
     {
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionSelector collectionsSelector;
-        private readonly Generator generator;
         private readonly IArmorDataSelector armorDataSelector;
 
-        public MundaneArmorGenerator(ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, Generator generator, IArmorDataSelector armorDataSelector)
+        public MundaneArmorGenerator(ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, IArmorDataSelector armorDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
             this.armorDataSelector = armorDataSelector;
         }
 
         public Item Generate()
         {
-            var armor = GenerateRandomPrototype();
+            var name = GetRandomName();
+            return Generate(name);
+        }
+
+        public Item Generate(string itemName)
+        {
+            var armor = GeneratePrototype(itemName);
             armor = GenerateFromPrototype(armor, true);
 
             return armor;
@@ -105,42 +106,21 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return armor;
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
+        private string GetRandomName()
         {
-            if (!subset.Any())
-                throw new ArgumentException("Cannot generate from an empty collection subset");
+            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
 
-            var armorPrototype = generator.Generate(
-                GenerateRandomPrototype,
-                a => subset.Any(n => a.NameMatches(n)),
-                () => GenerateDefaultPrototypeFrom(subset),
-                a => $"{a.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Mundane armor from [{string.Join(", ", subset)}]");
+            if (name == AttributeConstants.Shield)
+                name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields);
 
-            armorPrototype.Traits = new HashSet<string>(traits);
-            var armor = GenerateFromPrototype(armorPrototype, true);
-
-            return armor;
+            return name;
         }
 
-        private Armor GenerateDefaultPrototypeFrom(IEnumerable<string> subset)
-        {
-            var template = new Armor();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-            template.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name);
-
-            return template;
-        }
-
-        private Armor GenerateRandomPrototype()
+        private Armor GeneratePrototype(string itemName)
         {
             var armor = new Armor();
-            armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneArmors);
-
-            if (armor.Name == AttributeConstants.Shield)
-                armor.Name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneShields);
-
-            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armor.Name);
+            armor.Name = itemName;
+            armor.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
 
             return armor;
         }

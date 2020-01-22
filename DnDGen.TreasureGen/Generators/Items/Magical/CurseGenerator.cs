@@ -1,13 +1,12 @@
 ﻿using DnDGen.Infrastructure.Generators;
 using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.RollGen;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -16,15 +15,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly Dice dice;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionSelector collectionsSelector;
-        private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
-        public CurseGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, Generator generator, JustInTimeFactory justInTimeFactory)
+        public CurseGenerator(Dice dice, ITreasurePercentileSelector percentileSelector, ICollectionSelector collectionsSelector, JustInTimeFactory justInTimeFactory)
         {
             this.dice = dice;
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
             this.justInTimeFactory = justInTimeFactory;
         }
 
@@ -62,7 +59,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate()
         {
-            var prototype = GenerateRandomPrototype();
+            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            return Generate(name);
+        }
+
+        public Item Generate(string itemName)
+        {
+            var prototype = GeneratePrototype(itemName);
             var specificCursedItem = GenerateFromPrototype(prototype);
             return specificCursedItem;
         }
@@ -73,14 +76,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             specificCursedItem.Name = name;
             specificCursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
             specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
-
-            return specificCursedItem;
-        }
-
-        private Item GenerateRandomPrototype()
-        {
-            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            var specificCursedItem = GeneratePrototype(name);
 
             return specificCursedItem;
         }
@@ -150,32 +145,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var cursedItem = GenerateFromPrototype(prototype);
 
             return cursedItem;
-        }
-
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
-        {
-            var itemGroups = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ItemGroups);
-            var specificCursedItemNames = itemGroups[CurseConstants.SpecificCursedItem];
-            var specificCursedItemGroups = itemGroups.Where(g => specificCursedItemNames.Contains(g.Key));
-            var specificCursedItemBaseNames = specificCursedItemGroups.SelectMany(g => g.Value);
-
-            if (!specificCursedItemNames.Intersect(subset).Any() && !specificCursedItemBaseNames.Intersect(subset).Any())
-                return null;
-
-            var prototype = generator.Generate(
-                GenerateRandomPrototype,
-                i => subset.Any(n => i.NameMatches(n)),
-                () => null,
-                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Cannot generate a specific cursed item from [{string.Join(", ", subset)}]");
-
-            if (prototype == null)
-                return null;
-
-            prototype.Traits = new HashSet<string>(traits);
-            var specificCursedItem = GenerateFromPrototype(prototype);
-
-            return specificCursedItem;
         }
     }
 }

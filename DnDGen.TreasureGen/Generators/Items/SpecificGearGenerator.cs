@@ -1,13 +1,14 @@
 ﻿using DnDGen.Infrastructure.Generators;
 using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using DnDGen.TreasureGen.Generators.Items.Magical;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items
 {
@@ -36,21 +37,6 @@ namespace DnDGen.TreasureGen.Generators.Items
             this.spellGenerator = spellGenerator;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.justInTimeFactory = justInTimeFactory;
-        }
-
-        public Item GenerateRandomPrototypeFrom(string power, string specificGearType)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
-            var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
-
-            var gear = new Item();
-            gear.Name = selection.Type;
-            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
-            gear.ItemType = GetItemType(specificGearType);
-            gear.Magic.Bonus = selection.Amount;
-            gear.Quantity = 0;
-
-            return gear;
         }
 
         private Item SetPrototypeAttributes(Item prototype, string specificGearType)
@@ -210,6 +196,68 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
             return specificItems.Contains(template.Name);
+        }
+
+        public Item GeneratePrototypeFrom(string power, string specificGearType, string name)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var selection = selections.FirstOrDefault(s => s.Type == name);
+
+            if (selection == null)
+            {
+                throw new ArgumentException($"{name} is not a valid {power} specific {specificGearType}");
+            }
+
+            var gear = new Item();
+            gear.Name = name;
+            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            gear.ItemType = GetItemType(specificGearType);
+            gear.Magic.Bonus = selection.Amount;
+            gear.Quantity = 0;
+
+            return gear;
+        }
+
+        public string GenerateRandomNameFrom(string power, string specificGearType)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
+
+            return selection.Type;
+        }
+
+        public string GenerateNameFrom(string power, string specificGearType, string baseType)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            var names = new List<string>();
+
+            foreach (var selection in selections)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
+                if (baseNames.Contains(baseType))
+                    names.Add(selection.Type);
+            }
+
+            if (!names.Any())
+            {
+                throw new ArgumentException($"No {power} specific {specificGearType} has base type {baseType}");
+            }
+
+            var name = collectionsSelector.SelectRandomFrom(names);
+
+            return name;
+        }
+
+        public bool IsSpecific(string specificGearType, string itemName)
+        {
+            var specificCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
+            var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
+
+            return specificCollection.Contains(itemName)
+                && gearTypeCollection.Contains(itemName);
         }
     }
 }

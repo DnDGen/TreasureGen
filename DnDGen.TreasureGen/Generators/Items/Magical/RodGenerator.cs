@@ -1,14 +1,14 @@
 ﻿using DnDGen.Infrastructure.Generators;
 using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Selectors.Selections;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Selectors.Selections;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -19,7 +19,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
-        private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
 
         public RodGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
@@ -27,7 +26,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             IChargesGenerator chargesGenerator,
             ITreasurePercentileSelector percentileSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
-            Generator generator,
             JustInTimeFactory justInTimeFactory)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
@@ -35,7 +33,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.chargesGenerator = chargesGenerator;
             this.percentileSelector = percentileSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
-            this.generator = generator;
             this.justInTimeFactory = justInTimeFactory;
         }
 
@@ -47,19 +44,25 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
+            return GenerateRod(result.Type, result.Amount);
+        }
+
+        private Item GenerateRod(string name, int bonus)
+        {
             var rod = new Item();
             rod.ItemType = ItemTypeConstants.Rod;
-            rod.Name = result.Type;
-            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
+            rod.Name = name;
+            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
             rod.IsMagical = true;
-            rod.Magic.Bonus = result.Amount;
-            tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
+            rod.Magic.Bonus = bonus;
+
+            var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            rod.Attributes = collectionsSelector.SelectFrom(tablename, name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
-                rod.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, rod.Name);
+                rod.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, name);
 
-            if (rod.Name == RodConstants.Absorption)
+            if (name == RodConstants.Absorption)
             {
                 var containsSpellLevels = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
@@ -73,6 +76,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             rod = GetWeapon(rod);
 
             return rod;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            if (power == PowerConstants.Minor)
+                throw new ArgumentException("Cannot generate minor rods");
+
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
+            var matches = results.Where(r => r.Type == itemName);
+
+            if (!matches.Any())
+            {
+                throw new ArgumentException($"{itemName} is not a valid {power} Rod");
+            }
+
+            var result = collectionsSelector.SelectRandomFrom(matches);
+            return GenerateRod(itemName, result.Amount);
         }
 
         private Item GetWeapon(Item rod)
@@ -127,33 +148,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
 
             return mediumResults.Union(majorResults);
-        }
-
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
-        {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor rods");
-
-            var rod = generator.Generate(
-                () => GenerateFrom(power),
-                r => subset.Any(n => r.NameMatches(n)),
-                () => CreateDefaultRod(subset),
-                r => $"{r.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Rod from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                rod.Traits.Add(trait);
-
-            return rod;
-        }
-
-        private Item CreateDefaultRod(IEnumerable<string> subset)
-        {
-            var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-
-            var defaultRod = GenerateFrom(template);
-            return defaultRod;
         }
     }
 }

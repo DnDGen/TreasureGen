@@ -1,14 +1,12 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.RollGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
 {
@@ -17,40 +15,41 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionSelector collectionsSelector;
         private readonly Dice dice;
-        private readonly Generator generator;
         private readonly IWeaponDataSelector weaponDataSelector;
 
         public MundaneWeaponGenerator(
             ITreasurePercentileSelector percentileSelector,
             ICollectionSelector collectionsSelector,
             Dice dice,
-            Generator generator,
             IWeaponDataSelector weaponDataSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
             this.dice = dice;
             this.weaponDataSelector = weaponDataSelector;
         }
 
         public Item Generate()
         {
-            var weapon = GenerateRandomPrototype();
+            var name = GetRandomName();
+            return Generate(name);
+        }
+
+        public Item Generate(string itemName)
+        {
+            var weapon = GeneratePrototype(itemName);
             weapon = GenerateFromPrototype(weapon, true);
 
             return weapon;
         }
 
-        private Weapon GenerateRandomPrototype()
+        private string GetRandomName()
         {
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var weaponName = percentileSelector.SelectFrom(tableName);
 
-            var weapon = GeneratePrototype(weaponName);
-
-            return weapon;
+            return weaponName;
         }
 
         private Weapon GeneratePrototype(string name)
@@ -191,44 +190,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         private string GetRandomSize()
         {
             return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-        }
-
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
-        {
-            if (!subset.Any())
-                throw new ArgumentException("Cannot generate from an empty collection subset");
-
-            var prototype = new Weapon();
-
-            if (subset.Count() == 1)
-            {
-                var name = subset.Single();
-                prototype = GeneratePrototype(name);
-            }
-            else
-            {
-                prototype = generator.Generate(
-                    GenerateRandomPrototype,
-                    w => subset.Any(n => w.NameMatches(n)),
-                    () => GenerateDefaultFrom(subset),
-                    w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
-                    $"Mundane weapon from [{string.Join(", ", subset)}]");
-            }
-
-            prototype.Traits = new HashSet<string>(traits);
-            var weapon = GenerateFromPrototype(prototype, true);
-
-            return weapon;
-        }
-
-        private Weapon GenerateDefaultFrom(IEnumerable<string> subset)
-        {
-            var template = new Weapon();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-            template.Quantity = 0;
-
-            var defaultWeapon = GenerateFrom(template);
-            return defaultWeapon as Weapon;
         }
     }
 }
