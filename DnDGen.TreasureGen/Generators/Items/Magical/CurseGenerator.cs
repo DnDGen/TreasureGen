@@ -6,6 +6,8 @@ using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
@@ -65,9 +67,34 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string itemName)
         {
-            var prototype = GeneratePrototype(itemName);
+            if (!CanBeSpecificCursedItem(itemName))
+                return null;
+
+            var cursedName = GetCursedName(itemName);
+            var prototype = GeneratePrototype(cursedName);
             var specificCursedItem = GenerateFromPrototype(prototype);
+
             return specificCursedItem;
+        }
+
+        private string GetCursedName(string itemName)
+        {
+            if (IsSpecificCursedItem(itemName))
+                return itemName;
+
+            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            var cursedNames = new List<string>();
+
+            foreach (var cursedName in cursedItems)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, cursedName);
+                if (baseNames.Contains(itemName))
+                    cursedNames.Add(cursedName);
+            }
+
+            var name = collectionsSelector.SelectRandomFrom(cursedNames);
+
+            return name;
         }
 
         private Item GeneratePrototype(string name)
@@ -130,8 +157,29 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public bool IsSpecificCursedItem(Item template)
         {
+            return IsSpecificCursedItem(template.Name);
+        }
+
+        public bool IsSpecificCursedItem(string itemName)
+        {
             var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
-            return cursedItems.Contains(template.Name);
+            return cursedItems.Contains(itemName);
+        }
+
+        public bool CanBeSpecificCursedItem(string itemName)
+        {
+            if (IsSpecificCursedItem(itemName))
+                return true;
+
+            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            foreach (var item in cursedItems)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, item);
+                if (baseNames.Contains(itemName))
+                    return true;
+            }
+
+            return false;
         }
 
         public Item GenerateFrom(Item template, bool allowDecoration = false)

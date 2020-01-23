@@ -7,6 +7,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
     {
         bool HasCurse(bool isMagical);
         bool IsSpecificCursedItem(Item template);
+        bool IsSpecificCursedItem(string itemName);
+        bool CanBeSpecificCursedItem(string itemName);
         string GenerateCurse();
     }
 }

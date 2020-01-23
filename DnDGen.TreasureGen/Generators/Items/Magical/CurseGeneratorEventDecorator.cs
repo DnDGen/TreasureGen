@@ -87,5 +87,31 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return isSpecificCursed;
         }
+
+        public bool IsSpecificCursedItem(string itemName)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Determining if {itemName} is a specific cursed item");
+            var isSpecificCursed = innerGenerator.IsSpecificCursedItem(itemName);
+
+            if (isSpecificCursed)
+                eventQueue.Enqueue("TreasureGen", $"{itemName} is a specific cursed item");
+            else
+                eventQueue.Enqueue("TreasureGen", $"{itemName} is not a specific cursed item");
+
+            return isSpecificCursed;
+        }
+
+        public bool CanBeSpecificCursedItem(string itemName)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Determining if {itemName} can be a specific cursed item");
+            var canBeSpecificCursed = innerGenerator.CanBeSpecificCursedItem(itemName);
+
+            if (canBeSpecificCursed)
+                eventQueue.Enqueue("TreasureGen", $"{itemName} can be a specific cursed item");
+            else
+                eventQueue.Enqueue("TreasureGen", $"{itemName} cannot be a specific cursed item");
+
+            return canBeSpecificCursed;
+        }
     }
 }

@@ -93,19 +93,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void LogGenerationEventsForSpecificCursedItemFromSubset()
+        public void LogGenerationEventsForSpecificCursedItemFromName()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(innerItem);
+            var itemName = "item name";
+            mockInnerGenerator.Setup(g => g.Generate(itemName)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(subset);
+            var item = decorator.Generate(itemName);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
@@ -114,13 +114,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             Item innerItem = null;
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(innerItem);
+            var itemName = "item name";
+            mockInnerGenerator.Setup(g => g.Generate(itemName)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(subset);
+            var item = decorator.Generate(itemName);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"No specific cursed item was generated"), Times.Once);
         }
 

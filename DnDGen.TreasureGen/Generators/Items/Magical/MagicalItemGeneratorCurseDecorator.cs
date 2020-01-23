@@ -33,12 +33,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power, string itemName)
         {
+            if (curseGenerator.IsSpecificCursedItem(itemName))
+                return curseGenerator.Generate(itemName);
+
             var item = innerGenerator.GenerateFrom(power, itemName);
 
-            if (curseGenerator.HasCurse(item.IsMagical))
+            if (curseGenerator.HasCurse(item.IsMagical) && curseGenerator.CanBeSpecificCursedItem(itemName))
             {
-                do item.Magic.Curse = curseGenerator.GenerateCurse();
-                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
+                var curse = curseGenerator.GenerateCurse();
+                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                {
+                    var cursedItem = curseGenerator.Generate(itemName);
+                    if (cursedItem != null)
+                        return cursedItem;
+                }
             }
 
             return item;
