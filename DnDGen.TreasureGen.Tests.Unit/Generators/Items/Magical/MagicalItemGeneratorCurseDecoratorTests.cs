@@ -26,6 +26,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             innerItem = new Item();
             itemVerifier = new ItemVerifier();
 
+            innerItem.ItemType = "item type";
+            innerItem.Name = "item name";
+
             mockInnerGenerator.Setup(g => g.GenerateFrom("power")).Returns(innerItem);
         }
 
@@ -39,7 +42,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGetCurseIfNotCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = decorator.GenerateFrom("power");
@@ -49,7 +52,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GetCurseIfCursed()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var item = decorator.GenerateFrom("power");
@@ -57,10 +60,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GetSpecificCursedItems()
+        public void GetSpecificCursedItem_CanBeSpecific()
         {
             var specificCursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
+            mockCurseGenerator.Setup(g => g.ItemTypeCanBeSpecificCursedItem(innerItem.ItemType)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             mockCurseGenerator.Setup(g => g.Generate()).Returns(specificCursedItem);
 
@@ -69,12 +73,28 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void DoNotGetSpecificCursedItem_CannotBeSpecific()
+        {
+            var specificCursedItem = new Item();
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
+            mockCurseGenerator.Setup(g => g.ItemTypeCanBeSpecificCursedItem(innerItem.ItemType)).Returns(false);
+            mockCurseGenerator.SetupSequence(g => g.GenerateCurse())
+                .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                .Returns("cursed");
+
+            var item = decorator.GenerateFrom("power");
+            Assert.That(item, Is.EqualTo(innerItem));
+            Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
+        }
+
+        [Test]
         public void DecorateCustomItem()
         {
             var template = new Item();
 
             mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var decoratedItem = decorator.GenerateFrom(template, allowRandomDecoration: true);
@@ -89,7 +109,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var template = new Item();
 
             mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(innerItem);
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
             var decoratedItem = decorator.GenerateFrom(template);
@@ -105,8 +125,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificCursedItem = new Item();
 
             mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.SetupSequence(g => g.GenerateCurse())
+                .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
                 .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
                 .Returns("cursed");
             mockCurseGenerator.Setup(g => g.Generate()).Returns(specificCursedItem);
@@ -134,62 +155,65 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateNoCurseFromSubset()
+        public void GenerateNoCurseFromName()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(false);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", subset);
+            var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.Empty);
         }
 
         [Test]
-        public void GenerateCurseFromSubset()
+        public void GenerateCurseFromName()
         {
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", subset);
+            var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
 
         [Test]
-        public void GenerateSpecificFromSubset()
+        public void GenerateSpecificFromName_CanBeSpecific()
         {
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
             var specificCursedItem = new Item();
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
+            mockCurseGenerator.Setup(g => g.CanBeSpecificCursedItem("item name")).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            mockCurseGenerator.Setup(g => g.GenerateFrom(subset)).Returns(specificCursedItem);
+            mockCurseGenerator.Setup(g => g.Generate("item name")).Returns(specificCursedItem);
 
-            var item = decorator.GenerateFrom("power", subset);
+            var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(specificCursedItem));
         }
 
         [Test]
-        public void GenerateDefaultSpecificFromSubset()
+        public void DoNotGenerateSpecificFromName_CannotBeSpecific()
         {
             var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
-            Item noSpecificCursedItem = null;
-            mockCurseGenerator.Setup(g => g.HasCurse(It.IsAny<bool>())).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            mockCurseGenerator.Setup(g => g.GenerateFrom(subset)).Returns(noSpecificCursedItem);
+            var specificCursedItem = new Item();
+            mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
+            mockCurseGenerator.Setup(g => g.CanBeSpecificCursedItem("item name")).Returns(false);
+            mockCurseGenerator.SetupSequence(g => g.GenerateCurse())
+                .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                .Returns("cursed");
+            mockCurseGenerator.Setup(g => g.Generate("item name")).Returns(specificCursedItem);
 
-            var item = decorator.GenerateFrom("power", subset);
+            var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
-            Assert.That(item.Magic.Curse, Is.Empty);
+            Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
     }
 }

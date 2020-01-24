@@ -62,56 +62,82 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return curse;
         }
 
-        public bool HasCurse(bool isMagical)
+        public bool HasCurse(Item item)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if item is cursed");
-            var isCursed = innerGenerator.HasCurse(isMagical);
+            eventQueue.Enqueue("TreasureGen", $"Determining if item {item.Name} is cursed");
+            var isCursed = innerGenerator.HasCurse(item);
 
             if (isCursed)
-                eventQueue.Enqueue("TreasureGen", $"Item is cursed");
+                eventQueue.Enqueue("TreasureGen", $"Item {item.Name} is cursed");
             else
-                eventQueue.Enqueue("TreasureGen", $"Item is not cursed");
+                eventQueue.Enqueue("TreasureGen", $"Item {item.Name} is not cursed");
 
             return isCursed;
         }
 
         public bool IsSpecificCursedItem(Item template)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item");
+            eventQueue.Enqueue("TreasureGen", $"Determining if item {template.Name} is a specific cursed item");
             var isSpecificCursed = innerGenerator.IsSpecificCursedItem(template);
 
             if (isSpecificCursed)
-                eventQueue.Enqueue("TreasureGen", $"{template.Name} is a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {template.Name} is a specific cursed item");
             else
-                eventQueue.Enqueue("TreasureGen", $"{template.Name} is not a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {template.Name} is not a specific cursed item");
 
             return isSpecificCursed;
         }
 
         public bool IsSpecificCursedItem(string itemName)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if {itemName} is a specific cursed item");
+            eventQueue.Enqueue("TreasureGen", $"Determining if item {itemName} is a specific cursed item");
             var isSpecificCursed = innerGenerator.IsSpecificCursedItem(itemName);
 
             if (isSpecificCursed)
-                eventQueue.Enqueue("TreasureGen", $"{itemName} is a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {itemName} is a specific cursed item");
             else
-                eventQueue.Enqueue("TreasureGen", $"{itemName} is not a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {itemName} is not a specific cursed item");
 
             return isSpecificCursed;
         }
 
         public bool CanBeSpecificCursedItem(string itemName)
         {
-            eventQueue.Enqueue("TreasureGen", $"Determining if {itemName} can be a specific cursed item");
+            eventQueue.Enqueue("TreasureGen", $"Determining if item {itemName} can be a specific cursed item");
             var canBeSpecificCursed = innerGenerator.CanBeSpecificCursedItem(itemName);
 
             if (canBeSpecificCursed)
-                eventQueue.Enqueue("TreasureGen", $"{itemName} can be a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {itemName} can be a specific cursed item");
             else
-                eventQueue.Enqueue("TreasureGen", $"{itemName} cannot be a specific cursed item");
+                eventQueue.Enqueue("TreasureGen", $"Item {itemName} cannot be a specific cursed item");
 
             return canBeSpecificCursed;
+        }
+
+        public bool ItemTypeCanBeSpecificCursedItem(string itemType)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Determining if Item Type {itemType} can be a specific cursed item");
+            var canBeSpecificCursed = innerGenerator.ItemTypeCanBeSpecificCursedItem(itemType);
+
+            if (canBeSpecificCursed)
+                eventQueue.Enqueue("TreasureGen", $"Item Type {itemType} can be a specific cursed item");
+            else
+                eventQueue.Enqueue("TreasureGen", $"Item Type {itemType} cannot be a specific cursed item");
+
+            return canBeSpecificCursed;
+        }
+
+        public Item GenerateSpecificCursedItem(string itemType)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item (type {itemType})");
+            var item = innerGenerator.GenerateSpecificCursedItem(itemType);
+
+            if (item != null)
+                eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
+            else
+                eventQueue.Enqueue("TreasureGen", $"No specific cursed item was generated");
+
+            return item;
         }
     }
 }

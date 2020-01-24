@@ -27,9 +27,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public bool HasCurse(bool isMagical)
+        public bool HasCurse(Item item)
         {
-            return isMagical && percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed);
+            return item.IsMagical && percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
         public string GenerateCurse()
@@ -182,6 +182,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return false;
         }
 
+        public bool ItemTypeCanBeSpecificCursedItem(string itemType)
+        {
+            var itemTypes = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
+            return itemTypes.Values.SelectMany(v => v).Contains(itemType);
+        }
+
         public Item GenerateFrom(Item template, bool allowDecoration = false)
         {
             var prototype = template.SmartClone();
@@ -193,6 +199,30 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var cursedItem = GenerateFromPrototype(prototype);
 
             return cursedItem;
+        }
+
+        public Item GenerateSpecificCursedItem(string itemType)
+        {
+            if (!ItemTypeCanBeSpecificCursedItem(itemType))
+                return null;
+
+            var cursedName = GetCursedNameFromItemType(itemType);
+            var prototype = GeneratePrototype(cursedName);
+            var specificCursedItem = GenerateFromPrototype(prototype);
+
+            return specificCursedItem;
+        }
+
+        private string GetCursedNameFromItemType(string itemType)
+        {
+            var cursedItems = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
+            var cursedNames = cursedItems
+                .Where(kvp => kvp.Value.Contains(itemType))
+                .Select(kvp => kvp.Key);
+
+            var name = collectionsSelector.SelectRandomFrom(cursedNames);
+
+            return name;
         }
     }
 }

@@ -36,7 +36,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilitiesGenerator = new Mock<ISpecialAbilitiesGenerator>();
             mockSpecificGearGenerator = new Mock<ISpecificGearGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
-            var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
             var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
@@ -47,7 +46,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 mockSpecialAbilitiesGenerator.Object,
                 mockSpecificGearGenerator.Object,
                 mockSpellGenerator.Object,
-                generator,
                 mockJustInTimeFactory.Object);
 
             itemVerifier = new ItemVerifier();
@@ -93,7 +91,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GetSpecificItemsFromGenerator()
+        public void GetSpecificWeaponFromGenerator()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(ItemTypeConstants.Weapon);
@@ -101,7 +99,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = Guid.NewGuid().ToString();
 
-            mockSpecificGearGenerator.Setup(g => g.GenerateRandomPrototypeFrom(power, ItemTypeConstants.Weapon)).Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, specificWeapon.Name)).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificWeapon.Name))).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificWeapon.Name))).Returns(true);
 

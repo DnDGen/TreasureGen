@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
 {
     [TestFixture]
-    public class MajorArmorsTests : TypeAndAmountPercentileTests
+    public class MajorArmorsTests : PercentileTests
     {
         protected override string tableName
         {
@@ -18,18 +18,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
             AssertReplacementStringsAreValid();
         }
 
-        [TestCase(AttributeConstants.Shield, 3, 1, 8)]
-        [TestCase(ItemTypeConstants.Armor, 3, 9, 16)]
-        [TestCase(AttributeConstants.Shield, 4, 17, 27)]
-        [TestCase(ItemTypeConstants.Armor, 4, 28, 38)]
-        [TestCase(AttributeConstants.Shield, 5, 39, 49)]
-        [TestCase(ItemTypeConstants.Armor, 5, 50, 57)]
-        [TestCase(ItemTypeConstants.Armor, 0, 58, 60)]
-        [TestCase(AttributeConstants.Shield, 0, 61, 63)]
+        [TestCase("3", 1, 16)]
+        [TestCase("4", 17, 38)]
+        [TestCase("5", 39, 57)]
+        [TestCase(ItemTypeConstants.Armor, 58, 63)]
         [TestCase("SpecialAbility", 1, 64, 100)]
-        public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
+        public override void Percentile(string value, int lower, int upper)
         {
-            base.TypeAndAmountPercentile(type, amount, lower, upper);
+            base.Percentile(value, lower, upper);
         }
 
         [Test]

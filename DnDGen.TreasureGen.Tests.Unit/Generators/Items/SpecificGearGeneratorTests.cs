@@ -814,5 +814,35 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.Quantity, Is.EqualTo(mundaneWeapon.Quantity));
             Assert.That(mundaneWeapon.Quantity, Is.AtLeast(2));
         }
+
+        [Test]
+        public void NameIsSpecific_ReturnsTrue()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void NameIsSpecific_ReturnsFalse()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void CanBeSpecific_ReturnsTrue_IsSpecific()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void CanBeSpecific_ReturnsTrue_BaseNameMatches()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void CanBeSpecific_ReturnsFalse()
+        {
+            Assert.Fail("not yet written");
+        }
     }
 }

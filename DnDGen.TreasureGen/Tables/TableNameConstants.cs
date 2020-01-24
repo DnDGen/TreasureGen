@@ -15,6 +15,7 @@
                 public const string LevelXGoods = "Level{0}Goods";
                 public const string LevelXItems = "Level{0}Items";
                 public const string LevelXSPELLTYPESpells = "Level{0}{1}Spells";
+                public const string POWERArmorTypes = "{0}ArmorTypes";
                 public const string POWERItems = "{0}Items";
                 public const string POWERITEMTYPEs = "{0}{1}s";
                 public const string POWERATTRIBUTESpecialAbilities = "{0}{1}SpecialAbilities";

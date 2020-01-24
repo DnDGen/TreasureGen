@@ -259,5 +259,22 @@ namespace DnDGen.TreasureGen.Generators.Items
             return specificCollection.Contains(itemName)
                 && gearTypeCollection.Contains(itemName);
         }
+
+        public bool CanBeSpecific(string power, string specificGearType, string itemName)
+        {
+            if (IsSpecific(specificGearType, itemName))
+                return true;
+
+            var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
+
+            foreach (var name in gearTypeCollection)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+                if (baseNames.Contains(itemName))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

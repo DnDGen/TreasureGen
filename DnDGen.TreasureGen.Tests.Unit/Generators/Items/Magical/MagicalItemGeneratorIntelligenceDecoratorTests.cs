@@ -100,27 +100,25 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
-            var item = intelligenceDecorator.GenerateFrom("power", subset);
+            var item = intelligenceDecorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
         }
 
         [Test]
         public void SubsetDoesNotGetIntelligenceIfNotIntelligent()
         {
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
             var intelligence = new Intelligence();
             intelligence.Ego = 9266;
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(innerItem.ItemType, innerItem.Attributes, It.IsAny<bool>())).Returns(false);
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Item>())).Returns(intelligence);
 
-            var item = intelligenceDecorator.GenerateFrom("power", subset);
+            var item = intelligenceDecorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Intelligence, Is.Not.EqualTo(intelligence));
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(0));
@@ -129,15 +127,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SubsetGetsIntelligenceIfIntelligent()
         {
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
             var intelligence = new Intelligence();
             intelligence.Ego = 9266;
             mockIntelligenceGenerator.Setup(g => g.IsIntelligent(innerItem.ItemType, innerItem.Attributes, It.IsAny<bool>())).Returns(true);
             mockIntelligenceGenerator.Setup(g => g.GenerateFor(It.IsAny<Item>())).Returns(intelligence);
 
-            var item = intelligenceDecorator.GenerateFrom("power", subset);
+            var item = intelligenceDecorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Intelligence, Is.EqualTo(intelligence));
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(9266));

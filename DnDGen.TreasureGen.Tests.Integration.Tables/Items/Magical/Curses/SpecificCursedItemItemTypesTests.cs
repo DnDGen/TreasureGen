@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
@@ -29,7 +29,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WeaponConstants.CursedBackbiterSpear, ItemTypeConstants.Weapon)]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction, ItemTypeConstants.Armor)]
         [TestCase(WeaponConstants.NetOfSnaring, ItemTypeConstants.Weapon)]
-        [TestCase(WondrousItemConstants.BagOfDevouring, ItemTypeConstants.LivingCreature)]
+        [TestCase(WondrousItemConstants.BagOfDevouring, ItemTypeConstants.WondrousItem, ItemTypeConstants.LivingCreature)]
         [TestCase(WeaponConstants.MaceOfBlood, ItemTypeConstants.Weapon)]
         [TestCase(WondrousItemConstants.RobeOfVermin, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.PeriaptOfFoulRotting, ItemTypeConstants.WondrousItem)]

@@ -40,7 +40,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item GenerateFrom(string power)
         {
             var nameResult = GenerateRandomName(power);
-            return GenerateArmor(power, nameResult.Name, nameResult.ArmorType, nameResult.IsSpecific);
+            return GenerateArmor(power, nameResult.Name, nameResult.ArmorType, false);
         }
 
         public Item GenerateFrom(string power, string itemName)
@@ -88,27 +88,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return armor;
         }
 
-        private (string Name, string ArmorType, bool IsSpecific) GenerateRandomName(string power)
+        private (string Name, string ArmorType) GenerateRandomName(string power)
         {
-            var armorTypeTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
-            var selection = typeAndAmountPercentileSelector.SelectFrom(armorTypeTableName);
-
-            while (selection.Type == SpecialAbility)
-            {
-                selection = typeAndAmountPercentileSelector.SelectFrom(armorTypeTableName);
-            }
-
-            var armorType = selection.Type;
-            if (selection.Amount == 0)
-            {
-                var specificName = specificGearGenerator.GenerateRandomNameFrom(power, armorType);
-                return (specificName, armorType, true);
-            }
+            var armorTypeTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERArmorTypes, power, ItemTypeConstants.Armor);
+            var armorType = percentileSelector.SelectFrom(armorTypeTableName);
 
             var nameTableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, armorType);
             var name = percentileSelector.SelectFrom(nameTableName);
 
-            return (name, armorType, false);
+            return (name, armorType);
         }
 
         private Armor GeneratePrototype(string power, string itemName, string armorType, bool isSpecific)
@@ -123,17 +111,23 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 return prototype;
             }
 
+            var canBeSpecific = specificGearGenerator.CanBeSpecific(power, armorType, itemName);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Armor);
-            var selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
+            var bonus = string.Empty;
             var abilityCount = 0;
 
-            while (selection.Type == SpecialAbility)
+            do bonus = percentileSelector.SelectFrom(tableName);
+            while (!canBeSpecific && bonus == ItemTypeConstants.Armor);
+
+            while (bonus == SpecialAbility)
             {
-                abilityCount += selection.Amount;
-                selection = typeAndAmountPercentileSelector.SelectFrom(tableName);
+                abilityCount++;
+
+                do bonus = percentileSelector.SelectFrom(tableName);
+                while (!canBeSpecific && bonus == ItemTypeConstants.Armor);
             }
 
-            if (selection.Amount == 0)
+            if (bonus == ItemTypeConstants.Armor && canBeSpecific)
             {
                 var specificName = specificGearGenerator.GenerateNameFrom(power, armorType, itemName);
                 var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, armorType, specificName);
@@ -144,7 +138,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             prototype.Name = itemName;
             prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
-            prototype.Magic.Bonus = selection.Amount;
+            prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), abilityCount);
 
             return prototype;

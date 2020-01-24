@@ -39,8 +39,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power)
         {
-            var nameResult = GenerateRandomName(power);
-            return GenerateWeapon(power, nameResult.Name, nameResult.IsSpecific);
+            var name = GenerateRandomName(power);
+            return GenerateWeapon(power, name, false);
         }
 
         public Item GenerateFrom(string power, string itemName)
@@ -62,22 +62,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return weapon;
         }
 
-        private (string Name, bool IsSpecific) GenerateRandomName(string power)
+        private string GenerateRandomName(string power)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            var bonus = percentileSelector.SelectFrom(tableName);
-
-            if (bonus == ItemTypeConstants.Weapon)
-            {
-                var specificName = specificGearGenerator.GenerateRandomNameFrom(power, ItemTypeConstants.Weapon);
-                return (specificName, true);
-            }
-
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var name = percentileSelector.SelectFrom(tableName);
 
-            return (name, false);
+            return name;
         }
 
         private Weapon GeneratePrototype(string power, string itemName, bool isSpecific)
@@ -92,17 +83,23 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 return prototype;
             }
 
+            var canBeSpecific = specificGearGenerator.CanBeSpecific(power, ItemTypeConstants.Weapon, itemName);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            var bonus = percentileSelector.SelectFrom(tableName);
+            var bonus = string.Empty;
             var specialAbilitiesCount = 0;
+
+            do bonus = percentileSelector.SelectFrom(tableName);
+            while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
 
             while (bonus == SpecialAbility)
             {
                 specialAbilitiesCount++;
-                bonus = percentileSelector.SelectFrom(tableName);
+
+                do bonus = percentileSelector.SelectFrom(tableName);
+                while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
             }
 
-            if (bonus == ItemTypeConstants.Weapon)
+            if (bonus == ItemTypeConstants.Weapon && canBeSpecific)
             {
                 var specificName = specificGearGenerator.GenerateNameFrom(power, ItemTypeConstants.Weapon, itemName);
                 var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, specificName);

@@ -19,13 +19,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             var item = innerGenerator.GenerateFrom(power);
 
-            if (curseGenerator.HasCurse(item.IsMagical))
+            if (curseGenerator.HasCurse(item))
             {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-                    return curseGenerator.Generate();
+                var canBeSpecific = curseGenerator.ItemTypeCanBeSpecificCursedItem(item.ItemType);
 
-                item.Magic.Curse = curse;
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && !canBeSpecific);
+
+                if (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && canBeSpecific)
+                {
+                    return curseGenerator.GenerateSpecificCursedItem(item.ItemType);
+                }
             }
 
             return item;
@@ -38,14 +42,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var item = innerGenerator.GenerateFrom(power, itemName);
 
-            if (curseGenerator.HasCurse(item.IsMagical) && curseGenerator.CanBeSpecificCursedItem(itemName))
+            if (curseGenerator.HasCurse(item))
             {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
+                var canBeSpecific = curseGenerator.CanBeSpecificCursedItem(itemName);
+
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && !canBeSpecific);
+
+                if (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && canBeSpecific)
                 {
                     var cursedItem = curseGenerator.Generate(itemName);
-                    if (cursedItem != null)
-                        return cursedItem;
+                    return cursedItem;
                 }
             }
 
@@ -59,7 +66,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
-            if (allowRandomDecoration && curseGenerator.HasCurse(item.IsMagical))
+            if (allowRandomDecoration && curseGenerator.HasCurse(item))
             {
                 do item.Magic.Curse = curseGenerator.GenerateCurse();
                 while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
