@@ -14,6 +14,13 @@ namespace DnDGen.TreasureGen.Generators.Items
             this.eventQueue = eventQueue;
         }
 
+        public bool CanBeSpecific(string power, string specificGearType, string itemName)
+        {
+            var canBeSpecific = innerGenerator.CanBeSpecific(power, specificGearType, itemName);
+
+            return canBeSpecific;
+        }
+
         public Item GenerateFrom(Item template)
         {
             eventQueue.Enqueue("TreasureGen", $"Generating specific gear from template: {template.ItemType} {template.Name}");

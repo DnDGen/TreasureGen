@@ -27,9 +27,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return item;
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
-            var item = innerGenerator.Generate(itemName);
+            var item = innerGenerator.Generate(itemName, traits);
             item = AddSpecialMaterials(item);
 
             return item;

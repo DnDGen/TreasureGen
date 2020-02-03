@@ -1,7 +1,9 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
@@ -22,16 +24,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return Generate(result.Type);
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems);
-            var selection = selections.First(s => s.Type == itemName);
+            var selection = selections.FirstOrDefault(s => s.Type == itemName);
+
+            if (selection == null)
+            {
+                selection = new TypeAndAmountSelection();
+                selection.Type = itemName;
+                selection.Amount = 1;
+            }
 
             var item = new Item();
             item.Name = itemName;
             item.Quantity = selection.Amount;
             item.ItemType = ItemTypeConstants.AlchemicalItem;
             item.BaseNames = new[] { itemName };
+            item.Traits = new HashSet<string>(traits);
 
             return item;
         }

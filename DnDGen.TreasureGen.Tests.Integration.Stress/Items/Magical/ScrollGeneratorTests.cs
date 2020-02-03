@@ -63,7 +63,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         [Ignore("There is no currently-known use case where we generate a scroll from a subset")]
         public void StressScrollFromSubset()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

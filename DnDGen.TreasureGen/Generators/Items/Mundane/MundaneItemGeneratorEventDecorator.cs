@@ -33,10 +33,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return item;
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation ({itemName})");
-            var item = innerGenerator.Generate(itemName);
+            var item = innerGenerator.Generate(itemName, traits);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;

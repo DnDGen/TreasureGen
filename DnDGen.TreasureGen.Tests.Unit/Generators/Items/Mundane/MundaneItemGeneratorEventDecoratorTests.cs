@@ -80,19 +80,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void LogGenerationEventsFromSubset()
+        public void LogGenerationEventsFromName()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("item name")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(subset);
+            var item = decorator.Generate("item name");
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning mundane item generation from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning mundane item generation (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of {innerItem.ItemType} {innerItem.Name}"), Times.Once);
         }
     }

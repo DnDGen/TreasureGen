@@ -40,10 +40,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
             eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item ({itemName})");
-            var item = innerGenerator.Generate(itemName);
+            var item = innerGenerator.Generate(itemName, traits);
 
             if (item != null)
                 eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");

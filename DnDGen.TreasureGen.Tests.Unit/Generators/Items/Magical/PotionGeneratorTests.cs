@@ -1,5 +1,4 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Generators.Items.Magical;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
@@ -21,15 +20,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         private string power;
         private ItemVerifier itemVerifier;
         private Mock<ICollectionSelector> mockCollectionsSelector;
-        private Generator generator;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionSelector>();
-            generator = new IterativeGeneratorWithoutLogging(5);
-            potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
+            potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
             itemVerifier = new ItemVerifier();
 
             var result = new TypeAndAmountSelection();
@@ -85,7 +82,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             mockTypeAndAmountPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
@@ -100,9 +97,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
             });
 
-            var subset = new[] { "other potion", "potion" };
-
-            var potion = potionGenerator.GenerateFrom(power, subset);
+            var potion = potionGenerator.GenerateFrom(power, "potion");
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -113,70 +108,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateDefaultFromSubset()
+        public void GenerateFromName_MultipleOfPower()
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong potion", Amount = 9266 });
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
-                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
-                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
-            });
-
-            var subset = new[] { "other potion", "potion" };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
-
-            var potion = potionGenerator.GenerateFrom(power, subset);
-            Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
-            Assert.That(potion.IsMagical, Is.True);
-            Assert.That(potion.Name, Is.EqualTo("potion"));
-            Assert.That(potion.BaseNames.Single(), Is.EqualTo("potion"));
-            Assert.That(potion.Magic.Bonus, Is.EqualTo(90210));
-            Assert.That(potion.Quantity, Is.EqualTo(1));
-            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
+            Assert.Fail("not yet written");
         }
 
         [Test]
-        public void GenerateDefaultFromSubsetWithDifferentPower()
+        public void GenerateFromName_NoneOfPower()
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong potion", Amount = 9266 });
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
-                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
-            });
-
-            var subset = new[] { "other potion", "potion" };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
-
-            var potion = potionGenerator.GenerateFrom(power, subset);
-            Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
-            Assert.That(potion.IsMagical, Is.True);
-            Assert.That(potion.Name, Is.EqualTo("potion"));
-            Assert.That(potion.BaseNames.Single(), Is.EqualTo("potion"));
-            Assert.That(potion.Magic.Bonus, Is.EqualTo(90210));
-            Assert.That(potion.Quantity, Is.EqualTo(1));
-            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
+            Assert.Fail("not yet written");
         }
     }
 }

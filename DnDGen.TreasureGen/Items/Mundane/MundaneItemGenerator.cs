@@ -3,7 +3,7 @@
     public interface MundaneItemGenerator
     {
         Item Generate();
-        Item Generate(string itemName);
+        Item Generate(string itemName, params string[] traits);
         Item GenerateFrom(Item template, bool allowRandomDecoration = false);
     }
 }

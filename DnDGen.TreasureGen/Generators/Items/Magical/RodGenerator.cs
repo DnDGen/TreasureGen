@@ -85,15 +85,25 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = results.Where(r => r.Type == itemName);
+            var matches = results.Where(r => r.Type == itemName).ToList();
+
+            if (!matches.Any())
+            {
+                foreach (var result in results)
+                {
+                    var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
+                    if (baseNames.Contains(itemName))
+                        matches.Add(result);
+                }
+            }
 
             if (!matches.Any())
             {
                 throw new ArgumentException($"{itemName} is not a valid {power} Rod");
             }
 
-            var result = collectionsSelector.SelectRandomFrom(matches);
-            return GenerateRod(itemName, result.Amount);
+            var match = collectionsSelector.SelectRandomFrom(matches);
+            return GenerateRod(match.Type, match.Amount);
         }
 
         private Item GetWeapon(Item rod)

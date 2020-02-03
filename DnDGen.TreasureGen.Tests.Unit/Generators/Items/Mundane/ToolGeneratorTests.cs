@@ -1,6 +1,4 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using DnDGen.TreasureGen.Generators.Items.Mundane;
+﻿using DnDGen.TreasureGen.Generators.Items.Mundane;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
@@ -8,7 +6,6 @@ using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
@@ -19,16 +16,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         private MundaneItemGenerator toolGenerator;
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private ItemVerifier itemVerifier;
-        private Generator generator;
-        private Mock<ICollectionSelector> mockCollectionsSelector;
 
         [SetUp]
         public void Setup()
         {
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
-            generator = new IterativeGeneratorWithoutLogging(3);
-            mockCollectionsSelector = new Mock<ICollectionSelector>();
-            toolGenerator = new ToolGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, generator);
+            toolGenerator = new ToolGenerator(mockPercentileSelector.Object);
             itemVerifier = new ItemVerifier();
         }
 
@@ -79,15 +72,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
-            var subset = new[] { "other tool", "tool" };
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
-                .Returns("wrong tool")
-                .Returns("tool")
-                .Returns("other tool");
-
-            var tool = toolGenerator.GenerateFrom(subset);
+            var tool = toolGenerator.Generate("tool");
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);
@@ -99,31 +86,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateDefaultFromSubset()
-        {
-            var subset = new[] { "other tool", "tool" };
-            mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools)).Returns("wrong tool");
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
-
-            var tool = toolGenerator.GenerateFrom(subset);
-            Assert.That(tool.Name, Is.EqualTo("tool"));
-            Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
-            Assert.That(tool.Attributes, Is.Empty);
-            Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
-            Assert.That(tool.IsMagical, Is.False);
-            Assert.That(tool.Contents, Is.Empty);
-            Assert.That(tool.Quantity, Is.EqualTo(1));
-            Assert.That(tool.Traits, Is.Empty);
-        }
-
-        [Test]
-        public void GenerateFromEmptySubset()
-        {
-            Assert.That(() => toolGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
-        }
-
-        [Test]
-        public void GenerateFromSubsetWithTraits()
+        public void GenerateFromNameWithTraits()
         {
             var subset = new[] { "other tool", "tool" };
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
@@ -131,7 +94,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns("tool")
                 .Returns("other tool");
 
-            var tool = toolGenerator.GenerateFrom(subset, "my trait", "my other trait");
+            var tool = toolGenerator.Generate("tool", "my trait", "my other trait");
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);
@@ -145,15 +108,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateFromSubsetWithDuplicateTraits()
+        public void GenerateFromNameWithDuplicateTraits()
         {
-            var subset = new[] { "other tool", "tool" };
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
-                .Returns("wrong tool")
-                .Returns("tool")
-                .Returns("other tool");
-
-            var tool = toolGenerator.GenerateFrom(subset, "my trait", "my trait");
+            var tool = toolGenerator.Generate("tool", "my trait", "my trait");
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);

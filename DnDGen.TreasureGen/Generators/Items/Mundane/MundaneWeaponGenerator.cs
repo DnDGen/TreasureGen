@@ -6,6 +6,7 @@ using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
@@ -35,9 +36,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return Generate(name);
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
             var weapon = GeneratePrototype(itemName);
+            weapon.Traits = new HashSet<string>(traits);
+
             weapon = GenerateFromPrototype(weapon, true);
 
             return weapon;

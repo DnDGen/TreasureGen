@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -43,15 +42,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         protected void GenerateAndAssertItemFromSubset()
         {
             var names = GetItemNames();
-            var subset = GetRandomSubset(names);
-            var item = GenerateItemFromSubset(subset);
+            var name = GetRandom(names);
+            var item = GenerateItemFromName(name);
             AssertItem(item);
-            Assert.That(subset.Any(n => item.NameMatches(n)), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from [{string.Join(", ", subset)}]");
+            Assert.That(item.NameMatches(name), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from '{name}'");
         }
 
-        protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
+        protected override Item GenerateItemFromName(string name)
         {
-            return mundaneItemGenerator.GenerateFrom(subset);
+            return mundaneItemGenerator.Generate(name);
         }
     }
 }

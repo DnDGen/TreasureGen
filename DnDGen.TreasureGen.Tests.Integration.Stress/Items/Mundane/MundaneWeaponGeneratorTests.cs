@@ -111,8 +111,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         private Item GenerateShuriken()
         {
-            var subset = new[] { WeaponConstants.Shuriken };
-            var shuriken = mundaneItemGenerator.GenerateFrom(subset);
+            var shuriken = mundaneItemGenerator.Generate(WeaponConstants.Shuriken);
 
             return shuriken;
         }

@@ -48,7 +48,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         [Ignore("There is no currently-known use case where we generate a potion from a subset")]
         public void StressPotionFromSubset()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

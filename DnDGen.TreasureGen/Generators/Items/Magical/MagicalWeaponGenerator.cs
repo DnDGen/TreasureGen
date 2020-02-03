@@ -39,7 +39,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power)
         {
-            var name = GenerateRandomName(power);
+            var name = GenerateRandomName();
             return GenerateWeapon(power, name, false);
         }
 
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return weapon;
         }
 
-        private string GenerateRandomName(string power)
+        private string GenerateRandomName()
         {
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);

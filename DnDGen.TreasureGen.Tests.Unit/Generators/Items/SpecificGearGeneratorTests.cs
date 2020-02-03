@@ -100,7 +100,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void ReturnPrototype()
         {
-            var prototype = specificGearGenerator.GenerateRandomPrototypeFrom(power, gearType);
+            var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "item name");
             Assert.That(prototype, Is.Not.Null);
             Assert.That(prototype.BaseNames, Is.EqualTo(baseNames));
             Assert.That(prototype.Name, Is.EqualTo("specific gear"));
@@ -113,10 +113,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [TestCase(ItemTypeConstants.Weapon, ItemTypeConstants.Weapon)]
         public void CorrectItemType(string gearType, string itemType)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(selection);
+            selection.Type = "item name";
 
-            var prototype = specificGearGenerator.GenerateRandomPrototypeFrom(power, gearType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "another item name", Amount = 9266 },
+                    selection
+                });
+
+            var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "item name");
             Assert.That(prototype.ItemType, Is.EqualTo(itemType));
         }
 
@@ -125,7 +133,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             selection.Amount = 0;
 
-            var prototype = specificGearGenerator.GenerateRandomPrototypeFrom(power, gearType);
+            var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "item name");
             Assert.That(prototype, Is.Not.Null);
             Assert.That(prototype.BaseNames, Is.EqualTo(baseNames));
             Assert.That(prototype.Name, Is.EqualTo("specific gear"));
@@ -818,31 +826,177 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void NameIsSpecific_ReturnsTrue()
         {
-            Assert.Fail("not yet written");
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "item name" });
+
+            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+            Assert.That(isSpecific, Is.True);
         }
 
         [Test]
-        public void NameIsSpecific_ReturnsFalse()
+        public void NameIsSpecific_ReturnsFalse_NotSpecific()
         {
-            Assert.Fail("not yet written");
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "wrong item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "item name" });
+
+            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+            Assert.That(isSpecific, Is.False);
+        }
+
+        [Test]
+        public void NameIsSpecific_ReturnsFalse_NotOfType()
+        {
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "wrong item name" });
+
+            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+            Assert.That(isSpecific, Is.False);
         }
 
         [Test]
         public void CanBeSpecific_ReturnsTrue_IsSpecific()
         {
-            Assert.Fail("not yet written");
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "item name" });
+
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            Assert.That(canBeSpecific, Is.True);
         }
 
         [Test]
         public void CanBeSpecific_ReturnsTrue_BaseNameMatches()
         {
-            Assert.Fail("not yet written");
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "wrong item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "wrong item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "wrong item name")).
+                Returns(new[] { "base name", "wrong base name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
+                Returns(new[] { "base name", "item name" });
+
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            Assert.That(canBeSpecific, Is.True);
         }
 
         [Test]
         public void CanBeSpecific_ReturnsFalse()
         {
-            Assert.Fail("not yet written");
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
+                Returns(new[] { "other item name", "wrong item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
+                Returns(new[] { "another item name", "wrong item name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "wrong item name")).
+                Returns(new[] { "base name", "wrong base name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
+                Returns(new[] { "base name", "another base name" });
+
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            Assert.That(canBeSpecific, Is.False);
+        }
+
+        [Test]
+        public void GenerateNameFrom_1Option()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "another item name", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
+                });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
+                Returns(new[] { "other base name", "wrong base name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "item name")).
+                Returns(new[] { "other base name", "base name" });
+
+            var name = specificGearGenerator.GenerateNameFrom("power", "gear type", "base name");
+            Assert.That(name, Is.EqualTo("item name"));
+        }
+
+        [Test]
+        public void GenerateNameFrom_2Options_SelectsRandomly()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "another item name", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
+                });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
+                Returns(new[] { "base name", "wrong base name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "item name")).
+                Returns(new[] { "other base name", "base name" });
+
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<string>>())).Returns((IEnumerable<string> c) => c.Last());
+
+            var name = specificGearGenerator.GenerateNameFrom("power", "gear type", "base name");
+            Assert.That(name, Is.EqualTo("another item name"));
+        }
+
+        [Test]
+        public void GenerateNameFrom_ThrowsArgumentException_WhenCannotBeSpecific()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "another item name", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
+                });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
+                Returns(new[] { "other base name", "wrong base name" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "item name")).
+                Returns(new[] { "other base name", "wrong base name" });
+
+            Assert.That(() => specificGearGenerator.GenerateNameFrom("power", "gear type", "base name"),
+                Throws.ArgumentException.With.Message.EqualTo($"No power specific gear type has base type base name"));
+        }
+
+        [Test]
+        public void GenerateRandomNameFrom_ReturnsRandomName()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectFrom(tableName))
+                .Returns(new TypeAndAmountSelection { Type = "item name", Amount = 90210 });
+
+            var name = specificGearGenerator.GenerateRandomNameFrom("power", "gear type");
+            Assert.That(name, Is.EqualTo("item name"));
         }
     }
 }

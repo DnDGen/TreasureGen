@@ -23,17 +23,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             decorator = new SpecificGearGeneratorEventDecorator(mockInnerGenerator.Object, mockEventQueue.Object);
         }
 
-        [Test]
-        public void DoNotLogGenerationEventsForSpecificGearPrototype()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void DoNotLogEventsWhenCheckingIfCanBeSpecificGear(bool shouldBeSpecific)
         {
-            var innerItem = new Item();
-            innerItem.Name = Guid.NewGuid().ToString();
-            innerItem.ItemType = Guid.NewGuid().ToString();
+            mockInnerGenerator.Setup(g => g.CanBeSpecific("power", "gear type", "item name")).Returns(shouldBeSpecific);
 
-            mockInnerGenerator.Setup(g => g.GenerateRandomPrototypeFrom("power", "gear type")).Returns(innerItem);
-
-            var item = decorator.GenerateRandomPrototypeFrom("power", "gear type");
-            Assert.That(item, Is.EqualTo(innerItem));
+            var isSpecific = decorator.CanBeSpecific("power", "gear type", "item name");
+            Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
@@ -57,9 +54,43 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
+        [Test]
+        public void DoNotLogGenerationEventsForRandomName()
+        {
+            mockInnerGenerator.Setup(g => g.GenerateRandomNameFrom("power", "gear type")).Returns("random name");
+
+            var name = decorator.GenerateRandomNameFrom("power", "gear type");
+            Assert.That(name, Is.EqualTo("random name"));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void DoNotLogGenerationEventsForSpecificGearPrototype()
+        {
+            var innerItem = new Item();
+            innerItem.Name = Guid.NewGuid().ToString();
+            innerItem.ItemType = Guid.NewGuid().ToString();
+
+            mockInnerGenerator.Setup(g => g.GeneratePrototypeFrom("power", "gear type", "item name")).Returns(innerItem);
+
+            var item = decorator.GeneratePrototypeFrom("power", "gear type", "item name");
+            Assert.That(item, Is.EqualTo(innerItem));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [Test]
+        public void DoNotLogGenerationEventsForNameFrom()
+        {
+            mockInnerGenerator.Setup(g => g.GenerateNameFrom("power", "gear type", "item name")).Returns("specific name");
+
+            var name = decorator.GenerateNameFrom("power", "gear type", "item name");
+            Assert.That(name, Is.EqualTo("specific name"));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+
         [TestCase(false)]
         [TestCase(true)]
-        public void DoNotLogEventsWhenCheckingIfSpecificGear(bool shouldBeSpecific)
+        public void DoNotLogEventsWhenCheckingIfSpecificGear_Template(bool shouldBeSpecific)
         {
             var template = new Item();
             template.Name = Guid.NewGuid().ToString();
@@ -68,6 +99,17 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockInnerGenerator.Setup(g => g.IsSpecific(template)).Returns(shouldBeSpecific);
 
             var isSpecific = decorator.IsSpecific(template);
+            Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void DoNotLogEventsWhenCheckingIfSpecificGear_Name(bool shouldBeSpecific)
+        {
+            mockInnerGenerator.Setup(g => g.IsSpecific("gear type", "item name")).Returns(shouldBeSpecific);
+
+            var isSpecific = decorator.IsSpecific("gear type", "item name");
             Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }

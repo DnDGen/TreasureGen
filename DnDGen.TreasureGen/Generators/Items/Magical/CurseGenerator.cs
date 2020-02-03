@@ -65,13 +65,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return Generate(name);
         }
 
-        public Item Generate(string itemName)
+        public Item Generate(string itemName, params string[] traits)
         {
             if (!CanBeSpecificCursedItem(itemName))
                 return null;
 
             var cursedName = GetCursedName(itemName);
             var prototype = GeneratePrototype(cursedName);
+            prototype.Traits = new HashSet<string>(traits);
+
             var specificCursedItem = GenerateFromPrototype(prototype);
 
             return specificCursedItem;

@@ -8,6 +8,7 @@ using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -32,8 +33,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
             selection = new TypeAndAmountSelection();
-            var generator = new IterativeGeneratorWithoutLogging(5);
-            ringGenerator = new RingGenerator(mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object, generator);
+            ringGenerator = new RingGenerator(mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
             power = "power";
             itemVerifier = new ItemVerifier();
 
@@ -358,7 +358,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var selections = new[]
@@ -369,10 +369,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             };
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(selections[0])
-                .Returns(selections[1])
-                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -380,9 +376,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
 
-            var subset = new[] { "other ring", "ring" };
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, subset);
+            var ring = ringGenerator.GenerateFrom(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -393,7 +391,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateChargedFromSubset()
+        public void GenerateChargedFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var selections = new[]
@@ -404,10 +402,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             };
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(selections[0])
-                .Returns(selections[1])
-                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.Charged };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -415,9 +409,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring")).Returns(42);
 
-            var subset = new[] { "other ring", "ring" };
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, subset);
+            var ring = ringGenerator.GenerateFrom(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -431,7 +427,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(RingConstants.SpellStoring, 5)]
         [TestCase(RingConstants.SpellStoring_Major, 10)]
         [TestCase(RingConstants.Counterspells, 1)]
-        public void GenerateRingWithSpellFromSubset(string name, int totalSpells)
+        public void GenerateRingWithSpellFromName(string name, int totalSpells)
         {
             mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
@@ -446,10 +442,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             };
 
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(tableName))
-                .Returns(selections[0])
-                .Returns(selections[1])
-                .Returns(selections[2]);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -457,9 +449,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
 
-            var subset = new[] { "other ring", name };
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, subset);
+            var ring = ringGenerator.GenerateFrom(power, name);
             Assert.That(ring.Name, Is.EqualTo(name));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.IsMagical, Is.True);
@@ -472,16 +466,17 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateDefaultFromSubset()
+        public void GenerateFromName_MultipleOfPower()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 });
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
+            var selections = new[]
             {
                 new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
                 new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
-                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 },
-            });
+                new TypeAndAmountSelection { Type = "ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
@@ -489,127 +484,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
 
-            var subset = new[] { "other ring", "ring" };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, subset);
-            Assert.That(ring.Name, Is.EqualTo("ring"));
-            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
-            Assert.That(ring.IsMagical, Is.True);
-            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
-            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
-            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
-            Assert.That(ring.Attributes, Is.EqualTo(attributes));
-        }
-
-        [Test]
-        public void GenerateDefaultChargedFromSubset()
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 });
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
-                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
-                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 },
-            });
-
-            var attributes = new[] { "attribute 1", "attribute 2", AttributeConstants.Charged };
-            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
-
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring")).Returns(42);
-
-            var subset = new[] { "other ring", "ring" };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
-
-            var ring = ringGenerator.GenerateFrom(power, subset);
-            Assert.That(ring.Name, Is.EqualTo("ring"));
-            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
-            Assert.That(ring.IsMagical, Is.True);
-            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
-            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
-            Assert.That(ring.Magic.Charges, Is.EqualTo(42));
-            Assert.That(ring.Attributes, Is.EqualTo(attributes));
-        }
-
-        [TestCase(RingConstants.SpellStoring_Minor, 3)]
-        [TestCase(RingConstants.SpellStoring, 5)]
-        [TestCase(RingConstants.SpellStoring_Major, 10)]
-        [TestCase(RingConstants.Counterspells, 1)]
-        public void GenerateDefaultRingWithSpellFromSubset(string name, int totalSpells)
-        {
-            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
-            mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
-            mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 });
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
-                new TypeAndAmountSelection { Type = name, Amount = 9266 },
-                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 },
-            });
-
-            var attributes = new[] { "attribute 1", "attribute 2" };
-            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
-
-            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
-
-            var subset = new[] { "other ring", name };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
-
-            var ring = ringGenerator.GenerateFrom(power, subset);
-            Assert.That(ring.Name, Is.EqualTo(name));
-            Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
-            Assert.That(ring.IsMagical, Is.True);
-            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
-            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
-            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
-            Assert.That(ring.Attributes, Is.EqualTo(attributes));
-            Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)").Or.Contain("spell"));
-            Assert.That(ring.Contents.Count, Is.EqualTo(totalSpells));
-        }
-
-        [Test]
-        public void GenerateDefaultFromSubsetWithDifferentPower()
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(new TypeAndAmountSelection { Type = "wrong ring", Amount = 9266 });
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 666, Type = "wrong ring" },
-                new TypeAndAmountSelection { Amount = 42, Type = "other ring" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 666, Type = "wrong ring" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 42, Type = "other ring" },
-            });
-
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Ring);
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
-            {
-                new TypeAndAmountSelection { Amount = 90210, Type = "ring" },
-            });
-
-            var attributes = new[] { "attribute 1", "attribute 2" };
-            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
-
-            var subset = new[] { "other ring", "ring" };
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns(subset.Last());
-
-            var ring = ringGenerator.GenerateFrom(power, subset);
+            var ring = ringGenerator.GenerateFrom(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -617,6 +496,32 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Magic.Bonus, Is.EqualTo(90210));
             Assert.That(ring.Magic.Charges, Is.EqualTo(0));
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateFromName_NoneOfPower()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
+
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom<string>(It.IsAny<IEnumerable<string>>()))
+                .Returns((IEnumerable<string> c) => c.Last());
+
+            Assert.That(() => ringGenerator.GenerateFrom(power, "ring"),
+                Throws.ArgumentException.With.Message.EqualTo("ring is not a valid power Ring"));
         }
     }
 }

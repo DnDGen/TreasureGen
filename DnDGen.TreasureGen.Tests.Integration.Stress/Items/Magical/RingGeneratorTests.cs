@@ -57,7 +57,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         [Ignore("There is no currently-known use case where we generate a ring from a subset")]
         public void StressRingFromSubset()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }
