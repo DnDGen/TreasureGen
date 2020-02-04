@@ -134,5 +134,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return ring.SmartClone();
         }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+            return results.Any(r => r.Type == itemName);
+        }
     }
 }

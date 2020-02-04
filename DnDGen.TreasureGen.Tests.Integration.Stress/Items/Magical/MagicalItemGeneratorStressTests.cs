@@ -81,9 +81,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(item.NameMatches(name), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from '{name}'");
         }
 
-        protected override Item GenerateItemFromName(string name)
+        protected override Item GenerateItemFromName(string name, string power = null)
         {
-            var power = GetNewPower(allowMinor);
+            power = power ?? GetNewPower(allowMinor);
+
+            while (!magicalItemGenerator.IsItemOfPower(name, power))
+            {
+                power = GetNewPower(allowMinor);
+            }
+
             return magicalItemGenerator.GenerateFrom(power, name);
         }
     }

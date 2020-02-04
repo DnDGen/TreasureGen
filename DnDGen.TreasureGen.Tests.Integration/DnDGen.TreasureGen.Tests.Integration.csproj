@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DnDGen.TreasureGen.Tests.Unit\DnDGen.TreasureGen.Tests.Unit.csproj" />
     <ProjectReference Include="..\DnDGen.TreasureGen\DnDGen.TreasureGen.csproj" />
   </ItemGroup>
 

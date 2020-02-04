@@ -66,7 +66,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.ItemTypeCanBeSpecificCursedItem(innerItem.ItemType)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            mockCurseGenerator.Setup(g => g.Generate()).Returns(specificCursedItem);
+            mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem(innerItem.ItemType)).Returns(specificCursedItem);
 
             var item = decorator.GenerateFrom("power");
             Assert.That(item, Is.EqualTo(specificCursedItem));
@@ -183,7 +183,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateSpecificFromName_CanBeSpecific()
         {
-            var subset = new[] { "item 1", "item 2" };
             mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
             var specificCursedItem = new Item();
@@ -199,7 +198,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGenerateSpecificFromName_CannotBeSpecific()
         {
-            var subset = new[] { "item 1", "item 2" };
             mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
             var specificCursedItem = new Item();
@@ -214,6 +212,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_IsSpecific()
+        {
+            mockCurseGenerator
+                .Setup(g => g.IsSpecificCursedItem("item name"))
+                .Returns(true);
+
+            var isOfPower = decorator.IsItemOfPower("item name", "power");
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
+        {
+            mockCurseGenerator
+                .Setup(g => g.IsSpecificCursedItem("item name"))
+                .Returns(false);
+
+            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
+
+            var isOfPower = decorator.IsItemOfPower("item name", "power");
+            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
         }
     }
 }

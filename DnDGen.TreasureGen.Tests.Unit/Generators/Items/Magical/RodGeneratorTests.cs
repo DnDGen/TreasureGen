@@ -575,5 +575,64 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(() => rodGenerator.GenerateFrom(power, "rod"),
                 Throws.ArgumentException.With.Message.EqualTo("rod is not a valid power Rod"));
         }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse_WhenMinorPower()
+        {
+            var isOfPower = rodGenerator.IsItemOfPower("rod", PowerConstants.Minor);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "other rod", Amount = 42 },
+                });
+
+            var isOfPower = rodGenerator.IsItemOfPower("rod", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_Name()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "rod", Amount = 90210 },
+                    new TypeAndAmountSelection { Type = "other rod", Amount = 42 },
+                });
+
+            var isOfPower = rodGenerator.IsItemOfPower("rod", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_BaseName()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong rod", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "other rod", Amount = 42 },
+                });
+
+            var baseNames = new[] { "base name", "rod" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "other rod")).Returns(baseNames);
+
+            var isOfPower = rodGenerator.IsItemOfPower("rod", power);
+            Assert.That(isOfPower, Is.True);
+        }
     }
 }

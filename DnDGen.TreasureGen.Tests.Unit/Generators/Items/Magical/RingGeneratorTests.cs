@@ -523,5 +523,38 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(() => ringGenerator.GenerateFrom(power, "ring"),
                 Throws.ArgumentException.With.Message.EqualTo("ring is not a valid power Ring"));
         }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var isOfPower = ringGenerator.IsItemOfPower("ring", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var isOfPower = ringGenerator.IsItemOfPower("ring", power);
+            Assert.That(isOfPower, Is.True);
+        }
     }
 }

@@ -12,7 +12,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
     internal class MagicalArmorGenerator : MagicalItemGenerator
     {
-        private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionSelector collectionsSelector;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
@@ -22,14 +21,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private const string SpecialAbility = "SpecialAbility";
 
         public MagicalArmorGenerator(
-            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ITreasurePercentileSelector percentileSelector,
             ICollectionSelector collectionsSelector,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             JustInTimeFactory justInTimeFactory)
         {
-            this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
@@ -45,22 +42,22 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power, string itemName)
         {
-            var armorType = GetArmorType(itemName);
-            var isSpecific = specificGearGenerator.IsSpecific(armorType, itemName);
+            var armorType = GetArmorType(power, itemName);
+            var isSpecific = specificGearGenerator.IsSpecific(power, armorType, itemName);
 
             return GenerateArmor(power, itemName, armorType, isSpecific);
         }
 
-        private string GetArmorType(string itemName)
+        private string GetArmorType(string power, string itemName)
         {
-            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Armor, itemName))
-            {
-                return ItemTypeConstants.Armor;
-            }
-
-            if (specificGearGenerator.IsSpecific(AttributeConstants.Shield, itemName))
+            if (specificGearGenerator.IsSpecific(power, AttributeConstants.Shield, itemName))
             {
                 return AttributeConstants.Shield;
+            }
+
+            if (specificGearGenerator.IsSpecific(power, ItemTypeConstants.Armor, itemName))
+            {
+                return ItemTypeConstants.Armor;
             }
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
@@ -180,6 +177,22 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             armor.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return armor;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            if (specificGearGenerator.IsSpecific(AttributeConstants.Shield, itemName))
+            {
+                return specificGearGenerator.IsSpecific(power, AttributeConstants.Shield, itemName);
+            }
+
+            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Armor, itemName))
+            {
+                return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Armor, itemName);
+            }
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
+            return collectionsSelector.IsCollection(tableName, itemName);
         }
     }
 }

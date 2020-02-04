@@ -60,7 +60,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = selections.Where(s => s.Type == itemName);
+            var matches = selections.Where(s => s.Type == itemName).ToList();
+
+            if (!matches.Any())
+            {
+                foreach (var result in selections)
+                {
+                    var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
+                    if (baseNames.Contains(itemName))
+                        matches.Add(result);
+                }
+            }
 
             if (!matches.Any())
             {
@@ -68,7 +78,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var selection = collectionsSelector.SelectRandomFrom(matches);
-            return GenerateStaff(itemName, selection.Amount);
+            return GenerateStaff(selection.Type, selection.Amount);
         }
 
         private Item BuildStaff(Item staff)
@@ -113,6 +123,28 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            if (power == PowerConstants.Minor)
+                return false;
+
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
+            var matches = results.Where(r => r.Type == itemName);
+
+            if (results.Any(r => r.Type == itemName))
+                return true;
+
+            foreach (var result in results)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
+                if (baseNames.Contains(itemName))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

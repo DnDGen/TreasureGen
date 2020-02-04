@@ -899,5 +899,38 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Traits, Contains.Item("color (alignment)"));
             Assert.That(item.Traits.Count, Is.EqualTo(1));
         }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var isOfPower = wondrousItemGenerator.IsItemOfPower("wondrous item", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var isOfPower = wondrousItemGenerator.IsItemOfPower("wondrous item", power);
+            Assert.That(isOfPower, Is.True);
+        }
     }
 }

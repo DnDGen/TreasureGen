@@ -123,16 +123,19 @@
     <None Remove="Tables\Items\Magical\Armor\ArmorTypes.xml" />
     <None Remove="Tables\Items\Magical\Armor\Major\MajorArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Major\MajorArmorSpecialAbilities.xml" />
+    <None Remove="Tables\Items\Magical\Armor\Major\MajorArmorTypes.xml" />
     <None Remove="Tables\Items\Magical\Armor\Major\MajorShieldSpecialAbilities.xml" />
     <None Remove="Tables\Items\Magical\Armor\Major\MajorSpecificArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Major\MajorSpecificShields.xml" />
     <None Remove="Tables\Items\Magical\Armor\Medium\MediumArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Medium\MediumArmorSpecialAbilities.xml" />
+    <None Remove="Tables\Items\Magical\Armor\Medium\MediumArmorTypes.xml" />
     <None Remove="Tables\Items\Magical\Armor\Medium\MediumShieldSpecialAbilities.xml" />
     <None Remove="Tables\Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Medium\MediumSpecificShields.xml" />
     <None Remove="Tables\Items\Magical\Armor\Minor\MinorArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Minor\MinorArmorSpecialAbilities.xml" />
+    <None Remove="Tables\Items\Magical\Armor\Minor\MinorArmorTypes.xml" />
     <None Remove="Tables\Items\Magical\Armor\Minor\MinorShieldSpecialAbilities.xml" />
     <None Remove="Tables\Items\Magical\Armor\Minor\MinorSpecificArmors.xml" />
     <None Remove="Tables\Items\Magical\Armor\Minor\MinorSpecificShields.xml" />
@@ -152,7 +155,6 @@
     <None Remove="Tables\Items\Magical\Curses\Curses.xml" />
     <None Remove="Tables\Items\Magical\Curses\Gender.xml" />
     <None Remove="Tables\Items\Magical\Curses\IsItemCursed.xml" />
-    <None Remove="Tables\Items\Magical\Curses\Living CreatureTraits.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItemAttributes.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
@@ -167,7 +169,6 @@
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceSpecialPurposes.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceStrongStats.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IsArmorIntelligent.xml" />
-    <None Remove="Tables\Items\Magical\Intelligence\IsLiving CreatureIntelligent.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IsMeleeIntelligent.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IsRangedIntelligent.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IsRingIntelligent.xml" />
@@ -388,16 +389,19 @@
     <EmbeddedResource Include="Tables\Items\Level9Items.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\ArmorTraits.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\ArmorTypes.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorArmorTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorArmors.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorArmorSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorShieldSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorSpecificArmors.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Major\MajorSpecificShields.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumArmorTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumArmors.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumArmorSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumShieldSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumSpecificArmors.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Medium\MediumSpecificShields.xml" />
+    <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorArmorTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorArmors.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorArmorSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Armor\Minor\MinorShieldSpecialAbilities.xml" />
@@ -419,9 +423,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\Curses\Curses.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\Gender.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\IsItemCursed.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\Curses\Living CreatureTraits.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemAttributes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
@@ -436,7 +437,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceSpecialPurposes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceStrongStats.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsArmorIntelligent.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsLiving CreatureIntelligent.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsMeleeIntelligent.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRangedIntelligent.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRingIntelligent.xml" />

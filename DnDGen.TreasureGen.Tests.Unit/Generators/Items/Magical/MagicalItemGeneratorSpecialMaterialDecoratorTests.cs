@@ -162,11 +162,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName()
         {
-            var subsetItem = new Item();
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(subsetItem);
+            var namedItem = new Item();
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(namedItem);
 
             var decoratedItem = decorator.GenerateFrom("power", "item name");
-            Assert.That(decoratedItem, Is.EqualTo(subsetItem));
+            Assert.That(decoratedItem, Is.EqualTo(namedItem));
         }
 
         [Test]
@@ -314,6 +314,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var decoratedItem = decorator.GenerateFrom("power");
             Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
+        {
+            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
+            var isOfPower = decorator.IsItemOfPower("item name", "power");
+            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
         }
     }
 }

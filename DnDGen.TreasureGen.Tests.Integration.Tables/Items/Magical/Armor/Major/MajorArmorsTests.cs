@@ -22,7 +22,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Major
         [TestCase("4", 17, 38)]
         [TestCase("5", 39, 57)]
         [TestCase(ItemTypeConstants.Armor, 58, 63)]
-        [TestCase("SpecialAbility", 1, 64, 100)]
+        [TestCase("SpecialAbility", 64, 100)]
         public override void Percentile(string value, int lower, int upper)
         {
             base.Percentile(value, lower, upper);

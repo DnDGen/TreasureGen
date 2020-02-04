@@ -346,9 +346,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void MinorPowerFromSubsetThrowsError()
+        public void MinorPowerFromNameThrowsError()
         {
-            Assert.That(() => staffGenerator.GenerateFrom(PowerConstants.Minor, "staff"), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staffs"));
+            Assert.That(() => staffGenerator.GenerateFrom(PowerConstants.Minor, "staff"), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staves"));
         }
 
         [Test]
@@ -412,6 +412,65 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             Assert.That(() => staffGenerator.GenerateFrom(power, "staff"),
                 Throws.ArgumentException.With.Message.EqualTo("staff is not a valid power Staff"));
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse_WhenMinorPower()
+        {
+            var isOfPower = staffGenerator.IsItemOfPower("staff", PowerConstants.Minor);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong staff", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "other staff", Amount = 42 },
+                });
+
+            var isOfPower = staffGenerator.IsItemOfPower("staff", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_Name()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong staff", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "staff", Amount = 90210 },
+                    new TypeAndAmountSelection { Type = "other staff", Amount = 42 },
+                });
+
+            var isOfPower = staffGenerator.IsItemOfPower("staff", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_BaseName()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            mockTypeAndAmountPercentileSelector
+                .Setup(s => s.SelectAllFrom(tableName))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong staff", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "other staff", Amount = 42 },
+                });
+
+            var baseNames = new[] { "base name", "staff" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "other staff")).Returns(baseNames);
+
+            var isOfPower = staffGenerator.IsItemOfPower("staff", power);
+            Assert.That(isOfPower, Is.True);
         }
     }
 }

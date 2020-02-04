@@ -147,9 +147,9 @@ namespace DnDGen.TreasureGen.Generators.Items
             switch (oldName)
             {
                 case WeaponConstants.SilverDagger: return WeaponConstants.Dagger;
-                case WeaponConstants.LuckBlade0: return WeaponConstants.LuckBlade;
-                case WeaponConstants.LuckBlade1: return WeaponConstants.LuckBlade;
-                case WeaponConstants.LuckBlade2: return WeaponConstants.LuckBlade;
+                case WeaponConstants.LuckBlade0:
+                case WeaponConstants.LuckBlade1:
+                case WeaponConstants.LuckBlade2:
                 case WeaponConstants.LuckBlade3: return WeaponConstants.LuckBlade;
                 default: return oldName;
             }
@@ -195,7 +195,10 @@ namespace DnDGen.TreasureGen.Generators.Items
         public bool IsSpecific(Item template)
         {
             var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
-            return specificItems.Contains(template.Name);
+            var changedName = RenameGear(template.Name);
+
+            return specificItems.Contains(template.Name)
+                || specificItems.Contains(changedName);
         }
 
         public Item GeneratePrototypeFrom(string power, string specificGearType, string name)
@@ -255,21 +258,35 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var specificCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
             var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
+            var changedName = RenameGear(itemName);
 
-            return specificCollection.Contains(itemName)
-                && gearTypeCollection.Contains(itemName);
+            return (specificCollection.Contains(itemName)
+                    && gearTypeCollection.Contains(itemName))
+                || (specificCollection.Contains(changedName)
+                    && gearTypeCollection.Contains(changedName));
+        }
+
+        public bool IsSpecific(string power, string specificGearType, string itemName)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var powerSelections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var changedName = RenameGear(itemName);
+
+            return IsSpecific(specificGearType, itemName)
+                && powerSelections.Any(s => s.Type == itemName || s.Type == changedName);
         }
 
         public bool CanBeSpecific(string power, string specificGearType, string itemName)
         {
-            if (IsSpecific(specificGearType, itemName))
+            if (IsSpecific(power, specificGearType, itemName))
                 return true;
 
-            var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var powerSelections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            foreach (var name in gearTypeCollection)
+            foreach (var selection in powerSelections)
             {
-                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
                 if (baseNames.Contains(itemName))
                     return true;
             }

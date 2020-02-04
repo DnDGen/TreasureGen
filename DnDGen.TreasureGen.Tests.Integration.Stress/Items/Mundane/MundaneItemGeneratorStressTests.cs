@@ -39,7 +39,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             ItemVerifier.AssertMundaneItemFromTemplate(item, template);
         }
 
-        protected void GenerateAndAssertItemFromSubset()
+        protected void GenerateAndAssertItemFromName()
         {
             var names = GetItemNames();
             var name = GetRandom(names);
@@ -48,7 +48,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             Assert.That(item.NameMatches(name), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from '{name}'");
         }
 
-        protected override Item GenerateItemFromName(string name)
+        protected override Item GenerateItemFromName(string name, string power = null)
         {
             return mundaneItemGenerator.Generate(name);
         }

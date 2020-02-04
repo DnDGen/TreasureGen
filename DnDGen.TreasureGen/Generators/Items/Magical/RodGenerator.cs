@@ -159,5 +159,27 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return mediumResults.Union(majorResults);
         }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            if (power == PowerConstants.Minor)
+                return false;
+
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
+            var matches = results.Where(r => r.Type == itemName);
+
+            if (results.Any(r => r.Type == itemName))
+                return true;
+
+            foreach (var result in results)
+            {
+                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
+                if (baseNames.Contains(itemName))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

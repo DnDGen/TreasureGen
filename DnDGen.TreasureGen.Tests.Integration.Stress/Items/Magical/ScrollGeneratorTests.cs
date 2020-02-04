@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -60,8 +60,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate a scroll from a subset")]
-        public void StressScrollFromSubset()
+        public void StressScrollFromName()
         {
             stressor.Stress(GenerateAndAssertItemFromName);
         }

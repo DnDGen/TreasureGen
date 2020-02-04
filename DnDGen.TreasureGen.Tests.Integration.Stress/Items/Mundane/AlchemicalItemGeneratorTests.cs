@@ -41,10 +41,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate an alchemical item from a subset")]
-        public void StressAlchemicalItemFromSubset()
+        public void StressAlchemicalItemFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

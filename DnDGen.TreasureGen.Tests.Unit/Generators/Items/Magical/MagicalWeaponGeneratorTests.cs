@@ -99,9 +99,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = Guid.NewGuid().ToString();
 
+            mockSpecificGearGenerator.Setup(g => g.CanBeSpecific(power, ItemTypeConstants.Weapon, "weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom(power, ItemTypeConstants.Weapon, "weapon name")).Returns(specificWeapon.Name);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, specificWeapon.Name)).Returns(specificWeapon);
-            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificWeapon.Name))).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificWeapon.Name))).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificWeapon.Name))).Returns(specificWeapon);
 
             var weapon = magicalWeaponGenerator.GenerateFrom(power);
             Assert.That(weapon, Is.EqualTo(specificWeapon));
@@ -319,7 +321,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
             specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(specificWeapon);
@@ -338,7 +340,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
             specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific(power, ItemTypeConstants.Weapon, "base name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom(power, ItemTypeConstants.Weapon, "base name")).Returns("specific weapon name");
@@ -413,7 +415,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var abilities = new[] { new SpecialAbility(), new SpecialAbility() };
             specificWeapon.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific(power, ItemTypeConstants.Weapon, "base name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom(power, ItemTypeConstants.Weapon, "base name")).Returns("specific weapon name");
@@ -425,6 +427,103 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Quantity, Is.EqualTo(1337));
             Assert.That(weapon.BaseNames, Is.EquivalentTo(specificWeapon.BaseNames));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_IsSpecific()
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "item name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "item name")).Returns(true);
+
+            var isOfPower = magicalWeaponGenerator.IsItemOfPower("item name", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse_IsSpecific()
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "item name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "item name")).Returns(false);
+
+            var isOfPower = magicalWeaponGenerator.IsItemOfPower("item name", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue_NotSpecific()
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "item name")).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, "item name"))
+                .Returns(true);
+
+            var isOfPower = magicalWeaponGenerator.IsItemOfPower("item name", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void IsItemOfPower_ReturnsFalse_NotSpecific()
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "item name")).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, "item name"))
+                .Returns(false);
+
+            var isOfPower = magicalWeaponGenerator.IsItemOfPower("item name", power);
+            Assert.That(isOfPower, Is.False);
+        }
+
+        [TestCase(WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus0Longbow)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow)]
+        [TestCase(WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow)]
+        public void BUG_IsItemOfPower_ReturnsTrue_NotSpecific_CompositeBow(string bowName)
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, bowName)).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, bowName))
+                .Returns(false);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, WeaponConstants.CompositeLongbow))
+                .Returns(true);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, WeaponConstants.CompositeShortbow))
+                .Returns(true);
+
+            var isOfPower = magicalWeaponGenerator.IsItemOfPower(bowName, power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void BUG_IsItemOfPower_ThrowsException_WhenNotValidCompositeBow()
+        {
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "Composite (+5) longbow")).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, "Composite (+5) longbow"))
+                .Returns(false);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, WeaponConstants.CompositeLongbow))
+                .Returns(true);
+            mockCollectionsSelector
+                .Setup(s => s.IsCollection(tableName, WeaponConstants.CompositeShortbow))
+                .Returns(true);
+
+            Assert.That(() => magicalWeaponGenerator.IsItemOfPower("Composite (+5) longbow", power),
+                Throws.ArgumentException.With.Message.EqualTo($"Composite bow Composite (+5) longbow does not map to a known bow"));
         }
     }
 }

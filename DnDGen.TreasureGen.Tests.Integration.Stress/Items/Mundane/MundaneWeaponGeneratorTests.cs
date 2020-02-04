@@ -91,9 +91,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void StressMundaneWeaponFromSubset()
+        public void StressMundaneWeaponFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
 
         [Test]

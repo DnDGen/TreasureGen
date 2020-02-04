@@ -1,10 +1,9 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Items.Mundane;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Tables;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -73,6 +72,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             item = AddSpecialMaterials(item, true);
 
             return item;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            return innerGenerator.IsItemOfPower(itemName, power);
         }
     }
 }

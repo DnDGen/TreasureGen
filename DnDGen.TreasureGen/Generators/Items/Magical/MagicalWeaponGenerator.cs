@@ -45,7 +45,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power, string itemName)
         {
-            var isSpecific = specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, itemName);
+            var isSpecific = specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
             return GenerateWeapon(power, itemName, isSpecific);
         }
 
@@ -181,6 +181,40 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return weapon;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, itemName))
+            {
+                return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
+            }
+
+            if (itemName.Contains("Composite"))
+            {
+                itemName = GetCompositeBowName(itemName);
+            }
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            return collectionsSelector.IsCollection(tableName, itemName);
+        }
+
+        private string GetCompositeBowName(string weaponName)
+        {
+            switch (weaponName)
+            {
+                case WeaponConstants.CompositeLongbow:
+                case WeaponConstants.CompositePlus0Longbow:
+                case WeaponConstants.CompositePlus1Longbow:
+                case WeaponConstants.CompositePlus2Longbow:
+                case WeaponConstants.CompositePlus3Longbow:
+                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
+                case WeaponConstants.CompositeShortbow:
+                case WeaponConstants.CompositePlus0Shortbow:
+                case WeaponConstants.CompositePlus1Shortbow:
+                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
+                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
+            }
         }
     }
 }

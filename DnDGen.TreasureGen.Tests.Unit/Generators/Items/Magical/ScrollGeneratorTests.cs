@@ -163,5 +163,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, "my special thing");
             AssertScroll(scroll, "my special thing");
         }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue()
+        {
+            var isItemOfPower = scrollGenerator.IsItemOfPower("item name", "power");
+            Assert.That(isItemOfPower, Is.True);
+        }
     }
 }

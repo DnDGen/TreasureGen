@@ -52,6 +52,13 @@ namespace DnDGen.TreasureGen.Generators.Items
             return isSpecific;
         }
 
+        public bool IsSpecific(string power, string specificGearType, string itemName)
+        {
+            var isSpecific = innerGenerator.IsSpecific(power, specificGearType, itemName);
+
+            return isSpecific;
+        }
+
         public bool IsSpecific(string specificGearType, string itemName)
         {
             var isSpecific = innerGenerator.IsSpecific(specificGearType, itemName);

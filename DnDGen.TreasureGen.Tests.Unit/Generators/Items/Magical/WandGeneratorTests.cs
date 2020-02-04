@@ -125,5 +125,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(wand.Contents, Is.Empty);
             Assert.That(wand.Magic.Charges, Is.EqualTo(9266));
         }
+
+        [Test]
+        public void IsItemOfPower_ReturnsTrue()
+        {
+            var isItemOfPower = wandGenerator.IsItemOfPower("item name", "power");
+            Assert.That(isItemOfPower, Is.True);
+        }
     }
 }

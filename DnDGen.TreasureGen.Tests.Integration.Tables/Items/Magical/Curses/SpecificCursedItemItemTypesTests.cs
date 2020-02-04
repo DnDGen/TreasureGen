@@ -29,7 +29,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         [TestCase(WeaponConstants.CursedBackbiterSpear, ItemTypeConstants.Weapon)]
         [TestCase(ArmorConstants.ArmorOfArrowAttraction, ItemTypeConstants.Armor)]
         [TestCase(WeaponConstants.NetOfSnaring, ItemTypeConstants.Weapon)]
-        [TestCase(WondrousItemConstants.BagOfDevouring, ItemTypeConstants.WondrousItem, ItemTypeConstants.LivingCreature)]
+        [TestCase(WondrousItemConstants.BagOfDevouring, ItemTypeConstants.WondrousItem)]
         [TestCase(WeaponConstants.MaceOfBlood, ItemTypeConstants.Weapon)]
         [TestCase(WondrousItemConstants.RobeOfVermin, ItemTypeConstants.WondrousItem)]
         [TestCase(WondrousItemConstants.PeriaptOfFoulRotting, ItemTypeConstants.WondrousItem)]
@@ -45,6 +45,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         public override void Collections(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+            Assert.That(attributes, Has.Length.EqualTo(1));
         }
     }
 }

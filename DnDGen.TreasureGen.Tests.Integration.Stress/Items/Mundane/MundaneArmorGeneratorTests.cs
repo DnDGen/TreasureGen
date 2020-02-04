@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -54,9 +54,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void StressMundaneArmorFromSubset()
+        public void StressMundaneArmorFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

@@ -113,5 +113,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void DoNotLogEventsWhenCheckingIfSpecificGear_NameAndPower(bool shouldBeSpecific)
+        {
+            mockInnerGenerator.Setup(g => g.IsSpecific("power", "gear type", "item name")).Returns(shouldBeSpecific);
+
+            var isSpecific = decorator.IsSpecific("power", "gear type", "item name");
+            Assert.That(isSpecific, Is.EqualTo(shouldBeSpecific));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
     }
 }

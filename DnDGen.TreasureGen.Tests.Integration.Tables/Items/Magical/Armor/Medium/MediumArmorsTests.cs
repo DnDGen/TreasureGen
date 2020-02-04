@@ -24,12 +24,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor.Medium
             AssertTableIsComplete();
         }
 
-        [TestCase("1", 1, 1, 10)]
-        [TestCase("2", 2, 11, 20)]
-        [TestCase("3", 3, 31, 50)]
+        [TestCase("1", 1, 10)]
+        [TestCase("2", 11, 20)]
+        [TestCase("3", 31, 50)]
         [TestCase("4", 51, 57)]
-        [TestCase(ItemTypeConstants.Armor, 0, 58, 63)]
-        [TestCase("SpecialAbility", 1, 64, 100)]
+        [TestCase(ItemTypeConstants.Armor, 58, 63)]
+        [TestCase("SpecialAbility", 64, 100)]
         public override void Percentile(string value, int lower, int upper)
         {
             base.Percentile(value, lower, upper);

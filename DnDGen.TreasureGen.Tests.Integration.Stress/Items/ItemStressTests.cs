@@ -15,7 +15,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         public ItemVerifier ItemVerifier { get; set; }
 
         protected abstract Item GenerateItem();
-        protected abstract Item GenerateItemFromName(string name);
+        protected abstract Item GenerateItemFromName(string name, string power = null);
         protected abstract IEnumerable<string> GetItemNames();
         protected abstract void MakeSpecificAssertionsAgainst(Item item);
 

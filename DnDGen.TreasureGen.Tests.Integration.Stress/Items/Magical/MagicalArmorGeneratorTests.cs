@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 using System.Collections.Generic;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -41,7 +41,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void StressArmorFromSubset()
+        public void StressArmorFromName()
         {
             stressor.Stress(GenerateAndAssertItemFromName);
         }

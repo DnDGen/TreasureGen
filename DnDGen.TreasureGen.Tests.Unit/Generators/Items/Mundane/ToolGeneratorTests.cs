@@ -88,12 +88,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         [Test]
         public void GenerateFromNameWithTraits()
         {
-            var subset = new[] { "other tool", "tool" };
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools))
-                .Returns("wrong tool")
-                .Returns("tool")
-                .Returns("other tool");
-
             var tool = toolGenerator.Generate("tool", "my trait", "my other trait");
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));

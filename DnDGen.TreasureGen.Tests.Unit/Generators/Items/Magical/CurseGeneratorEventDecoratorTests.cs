@@ -110,7 +110,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void LogGenerationEventsForNoSpecificCursedItemFromSubset()
+        public void LogGenerationEventsForNoSpecificCursedItemFromName()
         {
             Item innerItem = null;
 
@@ -169,8 +169,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.True);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if item {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item {template.Name} is a specific cursed item"), Times.Once);
         }
 
         [Test]
@@ -183,8 +183,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.False);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is not a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if item {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item {template.Name} is not a specific cursed item"), Times.Once);
         }
     }
 }
