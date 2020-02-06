@@ -196,7 +196,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(WeaponConstants.Longsword, PowerConstants.Minor)]
         [TestCase(WeaponConstants.Longsword, PowerConstants.Medium)]
         [TestCase(WeaponConstants.Longsword, PowerConstants.Major)]
-        [TestCase(WeaponConstants.LuckBlade, PowerConstants.Minor)]
         [TestCase(WeaponConstants.LuckBlade, PowerConstants.Medium)]
         [TestCase(WeaponConstants.LuckBlade, PowerConstants.Major)]
         [TestCase(WeaponConstants.LuckBlade0, PowerConstants.Medium)]

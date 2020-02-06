@@ -61,6 +61,7 @@ namespace DnDGen.TreasureGen.Generators.Items
                 }
             }
 
+            var templateName = gear.Name;
             gear.Name = RenameGear(gear.Name);
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
@@ -74,7 +75,7 @@ namespace DnDGen.TreasureGen.Generators.Items
                 gear.Traits.Add(trait);
 
             if (gear.Attributes.Contains(AttributeConstants.Charged))
-                gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, gear.Name);
+                gear.Magic.Charges = chargesGenerator.GenerateFor(specificGearType, templateName);
 
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
@@ -205,21 +206,30 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var selection = selections.FirstOrDefault(s => s.Type == name);
+            selections = selections.Where(s => NameMatches(s.Type, name));
 
-            if (selection == null)
+            if (!selections.Any())
             {
                 throw new ArgumentException($"{name} is not a valid {power} specific {specificGearType}");
             }
 
+            var selection = collectionsSelector.SelectRandomFrom(selections);
+
             var gear = new Item();
-            gear.Name = name;
-            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            gear.Name = selection.Type;
+            gear.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type);
             gear.ItemType = GetItemType(specificGearType);
             gear.Magic.Bonus = selection.Amount;
             gear.Quantity = 0;
 
             return gear;
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            return source == target
+                || source == RenameGear(target)
+                || RenameGear(source) == target;
         }
 
         public string GenerateRandomNameFrom(string power, string specificGearType)
@@ -270,10 +280,9 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
             var powerSelections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var changedName = RenameGear(itemName);
 
             return IsSpecific(specificGearType, itemName)
-                && powerSelections.Any(s => s.Type == itemName || s.Type == changedName);
+                && powerSelections.Any(s => NameMatches(s.Type, itemName));
         }
 
         public bool CanBeSpecific(string power, string specificGearType, string itemName)
