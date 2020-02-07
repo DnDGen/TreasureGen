@@ -28,6 +28,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         private Mock<ITreasurePercentileSelector> mockPercentileSelector;
         private Mock<MundaneItemGenerator> mockMundaneArmorGenerator;
         private Mock<MundaneItemGenerator> mockMundaneWeaponGenerator;
+        private Mock<IReplacementSelector> mockReplacementSelector;
         private TypeAndAmountSelection selection;
         private string power;
         private string gearType;
@@ -49,6 +50,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
             var mockJustInTimeFactory = new Mock<JustInTimeFactory>();
+            mockReplacementSelector = new Mock<IReplacementSelector>();
 
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
@@ -60,7 +62,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 mockPercentileSelector.Object,
                 mockSpellGenerator.Object,
                 mockSpecialAbilitiesGenerator.Object,
-                mockJustInTimeFactory.Object);
+                mockJustInTimeFactory.Object,
+                mockReplacementSelector.Object);
 
             selection = new TypeAndAmountSelection();
             itemVerifier = new ItemVerifier();
@@ -105,6 +108,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> ss) => ss.Last());
+
+            mockReplacementSelector
+                .Setup(s => s.SelectSingle(It.IsAny<string>()))
+                .Returns((string s) => s);
         }
 
         [Test]
@@ -469,6 +476,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Name = originalName;
             template.ItemType = ItemTypeConstants.Weapon;
 
+            mockReplacementSelector.Setup(s => s.SelectSingle(originalName)).Returns(newName);
+
             var gear = specificGearGenerator.GenerateFrom(template);
             Assert.That(gear.Name, Is.EqualTo(newName));
         }
@@ -517,7 +526,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Name = WeaponConstants.SlayingArrow;
             template.ItemType = ItemTypeConstants.Weapon;
 
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(TableNameConstants.Collections.Set.ReplacementStrings, ReplacementStringConstants.DesignatedFoe))
+                .Returns("foe");
 
             var gear = specificGearGenerator.GenerateFrom(template);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.SlayingArrow));
@@ -530,7 +541,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Name = WeaponConstants.GreaterSlayingArrow;
             template.ItemType = ItemTypeConstants.Weapon;
 
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes)).Returns("foe");
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(TableNameConstants.Collections.Set.ReplacementStrings, ReplacementStringConstants.DesignatedFoe))
+                .Returns("foe");
 
             var gear = specificGearGenerator.GenerateFrom(template);
             Assert.That(gear.Name, Is.EqualTo(WeaponConstants.GreaterSlayingArrow));
@@ -1162,6 +1175,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var item = new Item();
             item.Name = WeaponConstants.LuckBlade3;
+
+            mockReplacementSelector
+                .Setup(s => s.SelectSingle(WeaponConstants.LuckBlade3))
+                .Returns(WeaponConstants.LuckBlade);
 
             mockChargesGenerator
                 .Setup(g => g.GenerateFor(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade3))

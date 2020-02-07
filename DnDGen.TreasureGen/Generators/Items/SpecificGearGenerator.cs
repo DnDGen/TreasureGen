@@ -21,6 +21,7 @@ namespace DnDGen.TreasureGen.Generators.Items
         private readonly ISpellGenerator spellGenerator;
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly JustInTimeFactory justInTimeFactory;
+        private readonly IReplacementSelector replacementSelector;
 
         public SpecificGearGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             ICollectionSelector collectionsSelector,
@@ -28,7 +29,8 @@ namespace DnDGen.TreasureGen.Generators.Items
             ITreasurePercentileSelector percentileSelector,
             ISpellGenerator spellGenerator,
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
-            JustInTimeFactory justInTimeFactory)
+            JustInTimeFactory justInTimeFactory,
+            IReplacementSelector replacementSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -37,6 +39,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             this.spellGenerator = spellGenerator;
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.justInTimeFactory = justInTimeFactory;
+            this.replacementSelector = replacementSelector;
         }
 
         private Item SetPrototypeAttributes(Item prototype, string specificGearType)
@@ -62,7 +65,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             }
 
             var templateName = gear.Name;
-            gear.Name = RenameGear(gear.Name);
+            gear.Name = replacementSelector.SelectSingle(templateName);
             gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
@@ -79,7 +82,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
-                var designatedFoe = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.DesignatedFoes);
+                var designatedFoe = collectionsSelector.SelectRandomFrom(TableNameConstants.Collections.Set.ReplacementStrings, ReplacementStringConstants.DesignatedFoe);
                 var trait = string.Format("Designated Foe: {0}", designatedFoe);
                 gear.Traits.Add(trait);
             }

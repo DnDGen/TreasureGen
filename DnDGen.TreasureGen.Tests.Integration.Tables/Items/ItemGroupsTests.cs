@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 {
@@ -347,6 +347,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 ArmorConstants.RhinoHide,
                 ArmorConstants.SpinedShield,
                 ArmorConstants.WingedShield,
+                PotionConstants.Poison,
                 RingConstants.Clumsiness,
                 WeaponConstants.AssassinsDagger,
                 WeaponConstants.BerserkingSword,
@@ -421,6 +422,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 WeaponConstants.CursedBackbiterSpear,
                 WeaponConstants.CursedMinus2Sword,
                 WeaponConstants.NetOfSnaring,
+                PotionConstants.Poison,
                 RingConstants.Clumsiness,
                 WondrousItemConstants.AmuletOfInescapableLocation,
                 WondrousItemConstants.BagOfDevouring,

@@ -21,13 +21,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         private string power;
         private ItemVerifier itemVerifier;
         private Mock<ICollectionSelector> mockCollectionsSelector;
+        private Mock<IReplacementSelector> mockReplacementSelector;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionSelector>();
-            potionGenerator = new PotionGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object);
+            mockReplacementSelector = new Mock<IReplacementSelector>();
+            potionGenerator = new PotionGenerator(
+                mockTypeAndAmountPercentileSelector.Object,
+                mockCollectionsSelector.Object,
+                mockReplacementSelector.Object);
             itemVerifier = new ItemVerifier();
 
             var result = new TypeAndAmountSelection();
@@ -151,6 +156,39 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void BUG_GenerateFromName_NeedsReplacement()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
+            });
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll("needs replacement"))
+                .Returns(new[]
+                {
+                    "other wrong potion",
+                    "potion",
+                });
+
+            var potion = potionGenerator.GenerateFrom(power, "needs replacement");
+            Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(potion.IsMagical, Is.True);
+            Assert.That(potion.Name, Is.EqualTo("potion"));
+            Assert.That(potion.BaseNames.Single(), Is.EqualTo("potion"));
+            Assert.That(potion.Magic.Bonus, Is.EqualTo(90210));
+            Assert.That(potion.Quantity, Is.EqualTo(1));
+            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
+        }
+
+        [Test]
         public void IsItemOfPower_ReturnsFalse()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
@@ -176,6 +214,29 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             });
 
             var isOfPower = potionGenerator.IsItemOfPower("potion", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void BUG_IsItemOfPower_ReturnsTrue_WithReplacement()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
+            });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll("needs replacement"))
+                .Returns(new[]
+                {
+                    "other wrong potion",
+                    "potion",
+                });
+
+            var isOfPower = potionGenerator.IsItemOfPower("needs replacement", power);
             Assert.That(isOfPower, Is.True);
         }
     }

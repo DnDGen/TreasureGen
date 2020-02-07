@@ -17,17 +17,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         private readonly ICollectionSelector collectionsSelector;
         private readonly Dice dice;
         private readonly IWeaponDataSelector weaponDataSelector;
+        private readonly IReplacementSelector replacementSelector;
 
         public MundaneWeaponGenerator(
             ITreasurePercentileSelector percentileSelector,
             ICollectionSelector collectionsSelector,
             Dice dice,
-            IWeaponDataSelector weaponDataSelector)
+            IWeaponDataSelector weaponDataSelector,
+            IReplacementSelector replacementSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
             this.dice = dice;
             this.weaponDataSelector = weaponDataSelector;
+            this.replacementSelector = replacementSelector;
         }
 
         public Item Generate()
@@ -89,11 +92,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Traits.Remove(weapon.Size);
             weapon.ItemType = ItemTypeConstants.Weapon;
 
-            if (weapon.Name.Contains("Composite"))
+            if (NameMatches(weapon.Name, WeaponConstants.CompositeLongbow)
+                || NameMatches(weapon.Name, WeaponConstants.CompositeShortbow))
             {
-                var name = weapon.Name;
-                weapon.Name = GetCompositeBowName(name);
-                var compositeStrengthBonus = GetCompositeBowBonus(name);
+                var oldName = weapon.Name;
+                weapon.Name = replacementSelector.SelectSingle(oldName);
+                var compositeStrengthBonus = GetCompositeBowBonus(oldName);
 
                 if (!string.IsNullOrEmpty(compositeStrengthBonus))
                     weapon.Traits.Add(compositeStrengthBonus);
@@ -110,6 +114,16 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Ammunition = weaponSelection.Ammunition;
 
             return weapon;
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source);
+            var targetReplacements = replacementSelector.SelectAll(target);
+
+            return source == target
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         private int GetQuantity(Weapon weapon)
@@ -137,24 +151,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
             var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
             return $"{compositeBonus} Strength bonus";
-        }
-
-        private string GetCompositeBowName(string weaponName)
-        {
-            switch (weaponName)
-            {
-                case WeaponConstants.CompositeLongbow:
-                case WeaponConstants.CompositePlus0Longbow:
-                case WeaponConstants.CompositePlus1Longbow:
-                case WeaponConstants.CompositePlus2Longbow:
-                case WeaponConstants.CompositePlus3Longbow:
-                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
-                case WeaponConstants.CompositeShortbow:
-                case WeaponConstants.CompositePlus0Shortbow:
-                case WeaponConstants.CompositePlus1Shortbow:
-                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
-                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
-            }
         }
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)

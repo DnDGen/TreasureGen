@@ -21,6 +21,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         private Mock<ICollectionSelector> mockCollectionsSelector;
         private Mock<IChargesGenerator> mockChargesGenerator;
         private Mock<ISpellGenerator> mockSpellGenerator;
+        private Mock<IReplacementSelector> mockReplacementSelector;
         private TypeAndAmountSelection selection;
         private string power;
         private ItemVerifier itemVerifier;
@@ -32,8 +33,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
             mockChargesGenerator = new Mock<IChargesGenerator>();
             mockSpellGenerator = new Mock<ISpellGenerator>();
+            mockReplacementSelector = new Mock<IReplacementSelector>();
             selection = new TypeAndAmountSelection();
-            ringGenerator = new RingGenerator(mockCollectionsSelector.Object, mockSpellGenerator.Object, mockChargesGenerator.Object, mockTypeAndAmountPercentileSelector.Object);
+            ringGenerator = new RingGenerator(
+                mockCollectionsSelector.Object,
+                mockSpellGenerator.Object,
+                mockChargesGenerator.Object,
+                mockTypeAndAmountPercentileSelector.Object,
+                mockReplacementSelector.Object);
             power = "power";
             itemVerifier = new ItemVerifier();
 
@@ -410,7 +417,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, "ring")).Returns(42);
 
             mockCollectionsSelector
-                .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
             var ring = ringGenerator.GenerateFrom(power, "ring");
@@ -450,7 +457,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
 
             mockCollectionsSelector
-                .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
             var ring = ringGenerator.GenerateFrom(power, name);
@@ -463,6 +470,43 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)").Or.Contain("spell"));
             Assert.That(ring.Contents.Count, Is.EqualTo(totalSpells));
+        }
+
+        [Test]
+        public void BUG_GenerateFromName_NeedsReplacement()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong ring" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "ring" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other ring" },
+            });
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll("needs replacement"))
+                .Returns(new[]
+                {
+                    "other wrong ring",
+                    "ring",
+                });
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
+
+            var ring = ringGenerator.GenerateFrom(power, "needs replacement");
+            Assert.That(ring.Name, Is.EqualTo("ring"));
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(90210));
+            Assert.That(ring.Magic.Charges, Is.Zero);
+            Assert.That(ring.Attributes, Is.EqualTo(attributes));
         }
 
         [Test]
@@ -554,6 +598,29 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
 
             var isOfPower = ringGenerator.IsItemOfPower("ring", power);
+            Assert.That(isOfPower, Is.True);
+        }
+
+        [Test]
+        public void BUG_IsItemOfPower_ReturnsTrue_WithReplacement()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong ring" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "ring" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other ring" },
+            });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll("needs replacement"))
+                .Returns(new[]
+                {
+                    "other wrong ring",
+                    "ring",
+                });
+
+            var isOfPower = ringGenerator.IsItemOfPower("needs replacement", power);
             Assert.That(isOfPower, Is.True);
         }
     }

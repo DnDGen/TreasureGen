@@ -24,6 +24,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         private ItemVerifier itemVerifier;
         private WeaponSelection weaponSelection;
         private Mock<IWeaponDataSelector> mockWeaponDataSelector;
+        private Mock<IReplacementSelector> mockReplacementSelector;
 
         [SetUp]
         public void Setup()
@@ -32,7 +33,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector = new Mock<ICollectionSelector>();
             mockDice = new Mock<Dice>();
             mockWeaponDataSelector = new Mock<IWeaponDataSelector>();
-            mundaneWeaponGenerator = new MundaneWeaponGenerator(mockPercentileSelector.Object, mockCollectionsSelector.Object, mockDice.Object, mockWeaponDataSelector.Object);
+            mockReplacementSelector = new Mock<IReplacementSelector>();
+            mundaneWeaponGenerator = new MundaneWeaponGenerator(
+                mockPercentileSelector.Object,
+                mockCollectionsSelector.Object,
+                mockDice.Object,
+                mockWeaponDataSelector.Object,
+                mockReplacementSelector.Object);
             itemVerifier = new ItemVerifier();
             weaponSelection = new WeaponSelection();
 
@@ -53,6 +60,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockWeaponDataSelector.Setup(s => s.Select(It.IsAny<string>())).Returns(defaultSelection);
             mockWeaponDataSelector.Setup(s => s.Select("weapon name")).Returns(weaponSelection);
+
+            mockReplacementSelector
+                .Setup(s => s.SelectSingle(It.IsAny<string>()))
+                .Returns((string s) => s);
         }
 
         [Test]
@@ -258,6 +269,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, compositeBow)).Returns(attributes);
 
             mockWeaponDataSelector.Setup(s => s.Select(compositeBow)).Returns(weaponSelection);
+            mockReplacementSelector.Setup(s => s.SelectSingle(compositeBowWithBonus)).Returns(compositeBow);
+            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus)).Returns(new[] { compositeBow });
 
             var weapon = mundaneWeaponGenerator.Generate();
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));
@@ -589,6 +602,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var template = new Item();
             template.Name = compositeBowWithBonus;
+
+            mockReplacementSelector.Setup(s => s.SelectSingle(compositeBowWithBonus)).Returns(compositeBow);
+            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus)).Returns(new[] { compositeBow });
 
             var weapon = mundaneWeaponGenerator.GenerateFrom(template);
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));

@@ -15,17 +15,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly ISpellGenerator spellGenerator;
         private readonly IChargesGenerator chargesGenerator;
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private readonly IReplacementSelector replacementSelector;
 
         public RingGenerator(
             ICollectionSelector collectionsSelector,
             ISpellGenerator spellGenerator,
             IChargesGenerator chargesGenerator,
-            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            IReplacementSelector replacementSelector)
         {
             this.collectionsSelector = collectionsSelector;
             this.spellGenerator = spellGenerator;
             this.chargesGenerator = chargesGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
+            this.replacementSelector = replacementSelector;
         }
 
         public Item GenerateFrom(string power)
@@ -41,21 +44,29 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power, string itemName)
         {
+            if (!IsItemOfPower(itemName, power))
+                throw new ArgumentException($"{itemName} is not a valid {power} Ring");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var matches = results.Where(r => r.Type == itemName);
-
-            if (!matches.Any())
-            {
-                throw new ArgumentException($"{itemName} is not a valid {power} Ring");
-            }
+            var matches = results.Where(r => NameMatches(r.Type, itemName));
 
             var result = collectionsSelector.SelectRandomFrom(matches);
 
-            var ring = BuildRing(itemName, power);
+            var ring = BuildRing(result.Type, power);
             ring.Magic.Bonus = result.Amount;
 
             return ring;
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source);
+            var targetReplacements = replacementSelector.SelectAll(target);
+
+            return source == target
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         private Item BuildRing(string name, string power)
@@ -140,7 +151,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            return results.Any(r => r.Type == itemName);
+            return results.Any(r => NameMatches(r.Type, itemName));
         }
     }
 }

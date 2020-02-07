@@ -12,11 +12,16 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ICollectionSelector collectionSelector;
+        private readonly IReplacementSelector replacementSelector;
 
-        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionSelector)
+        public PotionGenerator(
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            ICollectionSelector collectionSelector,
+            IReplacementSelector replacementSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.collectionSelector = collectionSelector;
+            this.replacementSelector = replacementSelector;
         }
 
         public Item GenerateFrom(string power)
@@ -43,18 +48,25 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateFrom(string power, string itemName)
         {
+            if (!IsItemOfPower(itemName, power))
+                throw new ArgumentException($"{itemName} is not a valid {power} Potion");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var matches = results.Where(r => r.Type == itemName);
-
-            if (!matches.Any())
-            {
-                throw new ArgumentException($"{itemName} is not a valid {power} Potion");
-            }
-
+            var matches = results.Where(r => NameMatches(r.Type, itemName));
             var result = collectionSelector.SelectRandomFrom(matches);
 
-            return GeneratePotion(itemName, result.Amount);
+            return GeneratePotion(result.Type, result.Amount);
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source);
+            var targetReplacements = replacementSelector.SelectAll(target);
+
+            return source == target
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
@@ -74,7 +86,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            return results.Any(r => r.Type == itemName);
+            return results.Any(r => NameMatches(r.Type, itemName));
         }
     }
 }

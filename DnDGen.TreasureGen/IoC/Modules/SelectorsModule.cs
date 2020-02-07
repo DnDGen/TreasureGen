@@ -1,6 +1,6 @@
-﻿using Ninject.Modules;
-using DnDGen.TreasureGen.Selectors.Collections;
+﻿using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
+using Ninject.Modules;
 
 namespace DnDGen.TreasureGen.IoC.Modules
 {
@@ -13,6 +13,7 @@ namespace DnDGen.TreasureGen.IoC.Modules
             Bind<IArmorDataSelector>().To<ArmorDataSelector>();
             Bind<IWeaponDataSelector>().To<WeaponDataSelector>();
             Bind<ITreasurePercentileSelector>().To<PercentileSelectorStringReplacementDecorator>();
+            Bind<IReplacementSelector>().To<ReplacementSelector>();
 
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>().WhenInjectedInto<TypeAndAmountPercentileSelectorEventDecorator>();
             Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelectorEventDecorator>();

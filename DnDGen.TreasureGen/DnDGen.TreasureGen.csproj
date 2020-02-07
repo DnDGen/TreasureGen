@@ -151,7 +151,6 @@
     <None Remove="Tables\Items\Magical\ChargeLimits.xml" />
     <None Remove="Tables\Items\Magical\Curses\CursedDependentSituations.xml" />
     <None Remove="Tables\Items\Magical\Curses\CurseDrawbacks.xml" />
-    <None Remove="Tables\Items\Magical\Curses\CurseHeightChanges.xml" />
     <None Remove="Tables\Items\Magical\Curses\Curses.xml" />
     <None Remove="Tables\Items\Magical\Curses\Gender.xml" />
     <None Remove="Tables\Items\Magical\Curses\IsItemCursed.xml" />
@@ -159,7 +158,6 @@
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
     <None Remove="Tables\Items\Magical\EpicItems.xml" />
-    <None Remove="Tables\Items\Magical\FullAlignments.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceData.xml" />
@@ -175,18 +173,15 @@
     <None Remove="Tables\Items\Magical\Intelligence\IsRodIntelligent.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IsWondrous ItemIntelligent.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\ItemAlignmentRequirements.xml" />
-    <None Remove="Tables\Items\Magical\Intelligence\KnowledgeCategories.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\Languages.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\PersonalityTraits.xml" />
     <None Remove="Tables\Items\Magical\MajorItems.xml" />
     <None Remove="Tables\Items\Magical\MediumItems.xml" />
     <None Remove="Tables\Items\Magical\MinorItems.xml" />
-    <None Remove="Tables\Items\Magical\PartialAlignments.xml" />
     <None Remove="Tables\Items\Magical\Potions\MajorPotions.xml" />
     <None Remove="Tables\Items\Magical\Potions\MediumPotions.xml" />
     <None Remove="Tables\Items\Magical\Potions\MinorPotions.xml" />
     <None Remove="Tables\Items\Magical\Potions\PotionTraits.xml" />
-    <None Remove="Tables\Items\Magical\Rings\Elements.xml" />
     <None Remove="Tables\Items\Magical\Rings\MajorRings.xml" />
     <None Remove="Tables\Items\Magical\Rings\MediumRings.xml" />
     <None Remove="Tables\Items\Magical\Rings\MinorRings.xml" />
@@ -231,7 +226,6 @@
     <None Remove="Tables\Items\Magical\Wands\MediumWands.xml" />
     <None Remove="Tables\Items\Magical\Wands\MinorWands.xml" />
     <None Remove="Tables\Items\Magical\Wands\WandTraits.xml" />
-    <None Remove="Tables\Items\Magical\Weapons\DesignatedFoes.xml" />
     <None Remove="Tables\Items\Magical\Weapons\MagicalWeaponTypes.xml" />
     <None Remove="Tables\Items\Magical\Weapons\Major\MajorMeleeSpecialAbilities.xml" />
     <None Remove="Tables\Items\Magical\Weapons\Major\MajorRangedSpecialAbilities.xml" />
@@ -419,7 +413,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\ChargeLimits.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\CursedDependentSituations.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\CurseDrawbacks.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\Curses\CurseHeightChanges.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\Curses.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\Gender.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\IsItemCursed.xml" />
@@ -427,7 +420,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\EpicItems.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\FullAlignments.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceData.xml" />
@@ -443,13 +435,11 @@
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsRodIntelligent.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IsWondrous ItemIntelligent.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\ItemAlignmentRequirements.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\Intelligence\KnowledgeCategories.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\Languages.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\PersonalityTraits.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\MajorItems.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\MediumItems.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\MinorItems.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\PartialAlignments.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Potions\MajorPotions.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -460,7 +450,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\Potions\PotionTraits.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tables\Items\Magical\Rings\Elements.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Rings\MajorRings.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Rings\MediumRings.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Rings\MinorRings.xml" />
@@ -507,7 +496,6 @@
     <EmbeddedResource Include="Tables\Items\Magical\Wands\MediumWands.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Wands\MinorWands.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Wands\WandTraits.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\Weapons\DesignatedFoes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Weapons\MagicalWeaponTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorMeleeSpecialAbilities.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Weapons\Major\MajorRangedSpecialAbilities.xml" />
