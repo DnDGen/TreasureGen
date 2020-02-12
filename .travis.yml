@@ -1,20 +1,15 @@
 language: csharp
-solution: TreasureGen.sln
-mono: latest
-install: 
-  - curl -O https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-  - mono ./nuget.exe restore TreasureGen.sln
-  - mono ./nuget.exe install NUnit.Runners -OutputDirectory testrunner
+solution: DnDGen.TreasureGen.sln
+mono: none
+dotnet: 3.1
+
 script:
-  - msbuild TreasureGen.sln /p:TargetFrameworkVersion="v4.5" /p:Configuration=Stress
-  - set -e
-  - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Unit/bin/Stress/TreasureGen.Tests.Unit.dll
-  - set -e
-  - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.IoC/bin/Stress/TreasureGen.Tests.Integration.IoC.dll
-  - set -e
-  - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.Tables/bin/Stress/TreasureGen.Tests.Integration.Tables.dll
-  - set -e
-  - mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./TreasureGen.Tests.Integration.Stress/bin/Stress/TreasureGen.Tests.Integration.Stress.dll
+  - dotnet build DnDGen.TreasureGen.sln -c Release
+    && dotnet test ./DnDGen.TreasureGen.Tests.Unit/DnDGen.TreasureGen.Tests.Unit.csproj -v normal
+    && dotnet test ./DnDGen.TreasureGen.Tests.Integration.IoC/DnDGen.TreasureGen.Tests.Integration.IoC.csproj -v normal
+    && dotnet test ./DnDGen.TreasureGen.Tests.Integration.Tables/DnDGen.TreasureGen.Tests.Integration.Tables.csproj -v normal
+    && dotnet test ./DnDGen.TreasureGen.Tests.Integration/DnDGen.TreasureGen.Tests.Integration.csproj -v normal
+    && dotnet test ./DnDGen.TreasureGen.Tests.Integration.Stress/DnDGen.TreasureGen.Tests.Integration.Stress.csproj -v normal -c Stress
 deploy:
   skip_cleanup: true
   provider: script

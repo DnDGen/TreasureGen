@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<collections>
+  <collection>
+    <name>DESIGNATEDFOE</name>
+    <entry>Aquatic-humanoid</entry>
+    <entry>Gnoll</entry>
+    <entry>Gnome</entry>
+    <entry>Halfling</entry>
+    <entry>Air-outsider</entry>
+    <entry>Earth-outsider</entry>
+    <entry>Fire-outsider</entry>
+    <entry>Water-outsider</entry>
+    <entry>Aberration</entry>
+    <entry>Aberration</entry>
+    <entry>Aberration</entry>
+    <entry>Aberration</entry>
+    <entry>Aberration</entry>
+    <entry>Animal</entry>
+    <entry>Animal</entry>
+    <entry>Animal</entry>
+    <entry>Animal</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Construct</entry>
+    <entry>Dragon</entry>
+    <entry>Dragon</entry>
+    <entry>Dragon</entry>
+    <entry>Dragon</entry>
+    <entry>Dragon</entry>
+    <entry>Dragon</entry>
+    <entry>Elemental</entry>
+    <entry>Elemental</entry>
+    <entry>Elemental</entry>
+    <entry>Elemental</entry>
+    <entry>Elemental</entry>
+    <entry>Fey</entry>
+    <entry>Fey</entry>
+    <entry>Fey</entry>
+    <entry>Fey</entry>
+    <entry>Fey</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Giant</entry>
+    <entry>Dwarf</entry>
+    <entry>Dwarf</entry>
+    <entry>Elf</entry>
+    <entry>Elf</entry>
+    <entry>Goblinoid</entry>
+    <entry>Goblinoid</entry>
+    <entry>Goblinoid</entry>
+    <entry>Human</entry>
+    <entry>Human</entry>
+    <entry>Human</entry>
+    <entry>Human</entry>
+    <entry>Reptilian-humanoid</entry>
+    <entry>Reptilian-humanoid</entry>
+    <entry>Reptilian-humanoid</entry>
+    <entry>Orc</entry>
+    <entry>Orc</entry>
+    <entry>Orc</entry>
+    <entry>Magical-beast</entry>
+    <entry>Magical-beast</entry>
+    <entry>Magical-beast</entry>
+    <entry>Magical-beast</entry>
+    <entry>Magical-beast</entry>
+    <entry>Monstrous-humanoid</entry>
+    <entry>Monstrous-humanoid</entry>
+    <entry>Monstrous-humanoid</entry>
+    <entry>Monstrous-humanoid</entry>
+    <entry>Monstrous-humanoid</entry>
+    <entry>Ooze</entry>
+    <entry>Ooze</entry>
+    <entry>Chaotic-outsider</entry>
+    <entry>Chaotic-outsider</entry>
+    <entry>Chaotic-outsider</entry>
+    <entry>Evil-outsider</entry>
+    <entry>Evil-outsider</entry>
+    <entry>Evil-outsider</entry>
+    <entry>Lawful-outsider</entry>
+    <entry>Lawful-outsider</entry>
+    <entry>Lawful-outsider</entry>
+    <entry>Good-outsider</entry>
+    <entry>Good-outsider</entry>
+    <entry>Good-outsider</entry>
+    <entry>Plant</entry>
+    <entry>Plant</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Undead</entry>
+    <entry>Vermin</entry>
+    <entry>Vermin</entry>
+  </collection>
+  <collection>
+    <name>GENDER</name>
+    <entry>Male</entry>
+    <entry>Female</entry>
+  </collection>
+  <collection>
+    <name>HEIGHT</name>
+    <entry>shrink</entry>
+    <entry>grow</entry>
+  </collection>
+  <collection>
+    <name>KNOWLEDGECATEGORY</name>
+    <entry>Arcana</entry>
+    <entry>Architecture</entry>
+    <entry>Dungeoneering</entry>
+    <entry>Geography</entry>
+    <entry>History</entry>
+    <entry>Local</entry>
+    <entry>Nature</entry>
+    <entry>Nobility</entry>
+    <entry>Religion</entry>
+    <entry>The Planes</entry>
+  </collection>
+  <collection>
+    <name>ENERGY</name>
+    <entry>Acid</entry>
+    <entry>Cold</entry>
+    <entry>Electricity</entry>
+    <entry>Fire</entry>
+    <entry>Sonic</entry>
+  </collection>
+  <collection>
+    <name>PARTIALALIGNMENT</name>
+    <entry>Chaos</entry>
+    <entry>Evil</entry>
+    <entry>Good</entry>
+    <entry>Law</entry>
+  </collection>
+  <collection>
+    <name>FULLALIGNMENT</name>
+    <entry>Lawful Good</entry>
+    <entry>Neutral Good</entry>
+    <entry>Chaotic Good</entry>
+    <entry>Lawful Neutral</entry>
+    <entry>True Neutral</entry>
+    <entry>Chaotic Neutral</entry>
+    <entry>Lawful Evil</entry>
+    <entry>Neutral Evil</entry>
+    <entry>Chaotic Evil</entry>
+  </collection>
+  <collection>
+    <name>Composite (+0) longbow</name>
+    <entry>Composite longbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+1) longbow</name>
+    <entry>Composite longbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+2) longbow</name>
+    <entry>Composite longbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+3) longbow</name>
+    <entry>Composite longbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+4) longbow</name>
+    <entry>Composite longbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+0) shortbow</name>
+    <entry>Composite shortbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+1) shortbow</name>
+    <entry>Composite shortbow</entry>
+  </collection>
+  <collection>
+    <name>Composite (+2) shortbow</name>
+    <entry>Composite shortbow</entry>
+  </collection>
+  <collection>
+    <name>Silver dagger</name>
+    <entry>Dagger</entry>
+  </collection>
+  <collection>
+    <name>Luck blade (0 wishes)</name>
+    <entry>Luck blade</entry>
+  </collection>
+  <collection>
+    <name>Luck blade (1 wish)</name>
+    <entry>Luck blade</entry>
+  </collection>
+  <collection>
+    <name>Luck blade (2 wishes)</name>
+    <entry>Luck blade</entry>
+  </collection>
+  <collection>
+    <name>Luck blade (3 wishes)</name>
+    <entry>Luck blade</entry>
+  </collection>
+</collections>
