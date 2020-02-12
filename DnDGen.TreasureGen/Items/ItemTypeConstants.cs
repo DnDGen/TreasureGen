@@ -13,6 +13,5 @@
         public const string Staff = "Staff";
         public const string Wand = "Wand";
         public const string WondrousItem = "Wondrous Item";
-        public const string LivingCreature = "Living Creature";
     }
 }

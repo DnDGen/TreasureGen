@@ -1,13 +1,12 @@
 ﻿using DnDGen.Infrastructure.Generators;
 using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -18,8 +17,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly ISpecialAbilitiesGenerator specialAbilitiesGenerator;
         private readonly ISpecificGearGenerator specificGearGenerator;
         private readonly ISpellGenerator spellGenerator;
-        private readonly Generator generator;
         private readonly JustInTimeFactory justInTimeFactory;
+
+        private const string SpecialAbility = "SpecialAbility";
 
         public MagicalWeaponGenerator(
             ICollectionSelector collectionsSelector,
@@ -27,7 +27,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ISpecialAbilitiesGenerator specialAbilitiesGenerator,
             ISpecificGearGenerator specificGearGenerator,
             ISpellGenerator spellGenerator,
-            Generator generator,
             JustInTimeFactory justInTimeFactory)
         {
             this.collectionsSelector = collectionsSelector;
@@ -35,13 +34,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.specialAbilitiesGenerator = specialAbilitiesGenerator;
             this.specificGearGenerator = specificGearGenerator;
             this.spellGenerator = spellGenerator;
-            this.generator = generator;
             this.justInTimeFactory = justInTimeFactory;
         }
 
         public Item GenerateFrom(string power)
         {
-            var prototype = GenerateRandomPrototype(power);
+            var name = GenerateRandomName();
+            return GenerateWeapon(power, name, false);
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            var isSpecific = specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
+            return GenerateWeapon(power, itemName, isSpecific);
+        }
+
+        private Item GenerateWeapon(string power, string name, bool isSpecific)
+        {
+            var prototype = GeneratePrototype(power, name, isSpecific);
             var weapon = GenerateFromPrototype(prototype, true);
 
             if (!specificGearGenerator.IsSpecific(prototype))
@@ -52,33 +62,54 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return weapon;
         }
 
-        private Weapon GenerateRandomPrototype(string power)
+        private string GenerateRandomName()
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            var bonus = percentileSelector.SelectFrom(tableName);
-            var specialAbilitiesCount = 0;
+            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            var name = percentileSelector.SelectFrom(tableName);
 
-            while (bonus == "SpecialAbility")
-            {
-                specialAbilitiesCount++;
-                bonus = percentileSelector.SelectFrom(tableName);
-            }
+            return name;
+        }
 
+        private Weapon GeneratePrototype(string power, string itemName, bool isSpecific)
+        {
             var prototype = new Weapon();
 
-            if (bonus == ItemTypeConstants.Weapon)
+            if (isSpecific)
             {
-                var specificPrototype = specificGearGenerator.GenerateRandomPrototypeFrom(power, ItemTypeConstants.Weapon);
-                specificPrototype.CloneInto(prototype);
+                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, itemName);
+                specificItem.CloneInto(prototype);
 
                 return prototype;
             }
 
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
+            var canBeSpecific = specificGearGenerator.CanBeSpecific(power, ItemTypeConstants.Weapon, itemName);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            var bonus = string.Empty;
+            var specialAbilitiesCount = 0;
 
-            prototype.Name = percentileSelector.SelectFrom(tableName);
-            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);
+            do bonus = percentileSelector.SelectFrom(tableName);
+            while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
+
+            while (bonus == SpecialAbility)
+            {
+                specialAbilitiesCount++;
+
+                do bonus = percentileSelector.SelectFrom(tableName);
+                while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
+            }
+
+            if (bonus == ItemTypeConstants.Weapon && canBeSpecific)
+            {
+                var specificName = specificGearGenerator.GenerateNameFrom(power, ItemTypeConstants.Weapon, itemName);
+                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, specificName);
+                specificItem.CloneInto(prototype);
+
+                return prototype;
+            }
+
+            prototype.Name = itemName;
+            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
             prototype.Quantity = 0;
             prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), specialAbilitiesCount);
@@ -152,44 +183,38 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return weapon;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public bool IsItemOfPower(string itemName, string power)
         {
-            var prototype = generator.Generate(
-                () => GenerateRandomPrototype(power),
-                w => subset.Any(n => w.NameMatches(n)),
-                () => CreateDefaultPrototype(power, subset),
-                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Magical weapon from [{string.Join(", ", subset)}]");
-
-            prototype.Traits = new HashSet<string>(traits);
-            var weapon = GenerateFromPrototype(prototype, true);
-
-            if (!specificGearGenerator.IsSpecific(prototype))
+            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, itemName))
             {
-                weapon = GenerateRandomSpecialAbilities(weapon, power);
+                return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
             }
 
-            return weapon;
+            if (itemName.Contains("Composite"))
+            {
+                itemName = GetCompositeBowName(itemName);
+            }
+
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            return collectionsSelector.IsCollection(tableName, itemName);
         }
 
-        private Item CreateDefaultPrototype(string power, IEnumerable<string> subset)
+        private string GetCompositeBowName(string weaponName)
         {
-            var prototype = new Item();
-            prototype.Name = collectionsSelector.SelectRandomFrom(subset);
-            prototype.Quantity = 0;
-            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);
-
-            if (!specificGearGenerator.IsSpecific(prototype))
+            switch (weaponName)
             {
-                var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-                var bonuses = percentileSelector.SelectAllFrom(tablename);
-                var junk = 0;
-                bonuses = bonuses.Where(b => int.TryParse(b, out junk));
-
-                prototype.Magic.Bonus = bonuses.Select(b => Convert.ToInt32(b)).Min();
+                case WeaponConstants.CompositeLongbow:
+                case WeaponConstants.CompositePlus0Longbow:
+                case WeaponConstants.CompositePlus1Longbow:
+                case WeaponConstants.CompositePlus2Longbow:
+                case WeaponConstants.CompositePlus3Longbow:
+                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
+                case WeaponConstants.CompositeShortbow:
+                case WeaponConstants.CompositePlus0Shortbow:
+                case WeaponConstants.CompositePlus1Shortbow:
+                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
+                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
             }
-
-            return prototype;
         }
     }
 }

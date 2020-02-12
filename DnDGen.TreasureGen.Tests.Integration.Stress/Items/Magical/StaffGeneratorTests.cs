@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -60,10 +60,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate a staff from a subset")]
-        public void StressStaffFromSubset()
+        public void StressStaffFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

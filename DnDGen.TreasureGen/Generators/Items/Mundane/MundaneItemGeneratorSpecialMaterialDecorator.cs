@@ -2,7 +2,6 @@
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tables;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
@@ -23,6 +22,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         public Item Generate()
         {
             var item = innerGenerator.Generate();
+            item = AddSpecialMaterials(item);
+
+            return item;
+        }
+
+        public Item Generate(string itemName, params string[] traits)
+        {
+            var item = innerGenerator.Generate(itemName, traits);
             item = AddSpecialMaterials(item);
 
             return item;
@@ -57,14 +64,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             {
                 item = AddSpecialMaterials(item);
             }
-
-            return item;
-        }
-
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
-        {
-            var item = innerGenerator.GenerateFrom(subset, traits);
-            item = AddSpecialMaterials(item);
 
             return item;
         }

@@ -1,14 +1,13 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.RollGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Mundane;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
 {
@@ -17,40 +16,46 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly ICollectionSelector collectionsSelector;
         private readonly Dice dice;
-        private readonly Generator generator;
         private readonly IWeaponDataSelector weaponDataSelector;
+        private readonly IReplacementSelector replacementSelector;
 
         public MundaneWeaponGenerator(
             ITreasurePercentileSelector percentileSelector,
             ICollectionSelector collectionsSelector,
             Dice dice,
-            Generator generator,
-            IWeaponDataSelector weaponDataSelector)
+            IWeaponDataSelector weaponDataSelector,
+            IReplacementSelector replacementSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
             this.dice = dice;
             this.weaponDataSelector = weaponDataSelector;
+            this.replacementSelector = replacementSelector;
         }
 
         public Item Generate()
         {
-            var weapon = GenerateRandomPrototype();
+            var name = GetRandomName();
+            return Generate(name);
+        }
+
+        public Item Generate(string itemName, params string[] traits)
+        {
+            var weapon = GeneratePrototype(itemName);
+            weapon.Traits = new HashSet<string>(traits);
+
             weapon = GenerateFromPrototype(weapon, true);
 
             return weapon;
         }
 
-        private Weapon GenerateRandomPrototype()
+        private string GetRandomName()
         {
             var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
             var weaponName = percentileSelector.SelectFrom(tableName);
 
-            var weapon = GeneratePrototype(weaponName);
-
-            return weapon;
+            return weaponName;
         }
 
         private Weapon GeneratePrototype(string name)
@@ -87,11 +92,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Traits.Remove(weapon.Size);
             weapon.ItemType = ItemTypeConstants.Weapon;
 
-            if (weapon.Name.Contains("Composite"))
+            if (NameMatches(weapon.Name, WeaponConstants.CompositeLongbow)
+                || NameMatches(weapon.Name, WeaponConstants.CompositeShortbow))
             {
-                var name = weapon.Name;
-                weapon.Name = GetCompositeBowName(name);
-                var compositeStrengthBonus = GetCompositeBowBonus(name);
+                var oldName = weapon.Name;
+                weapon.Name = replacementSelector.SelectSingle(oldName);
+                var compositeStrengthBonus = GetCompositeBowBonus(oldName);
 
                 if (!string.IsNullOrEmpty(compositeStrengthBonus))
                     weapon.Traits.Add(compositeStrengthBonus);
@@ -108,6 +114,16 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Ammunition = weaponSelection.Ammunition;
 
             return weapon;
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source);
+            var targetReplacements = replacementSelector.SelectAll(target);
+
+            return source == target
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         private int GetQuantity(Weapon weapon)
@@ -135,24 +151,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
             var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
             return $"{compositeBonus} Strength bonus";
-        }
-
-        private string GetCompositeBowName(string weaponName)
-        {
-            switch (weaponName)
-            {
-                case WeaponConstants.CompositeLongbow:
-                case WeaponConstants.CompositePlus0Longbow:
-                case WeaponConstants.CompositePlus1Longbow:
-                case WeaponConstants.CompositePlus2Longbow:
-                case WeaponConstants.CompositePlus3Longbow:
-                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
-                case WeaponConstants.CompositeShortbow:
-                case WeaponConstants.CompositePlus0Shortbow:
-                case WeaponConstants.CompositePlus1Shortbow:
-                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
-                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
-            }
         }
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
@@ -191,44 +189,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         private string GetRandomSize()
         {
             return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
-        }
-
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
-        {
-            if (!subset.Any())
-                throw new ArgumentException("Cannot generate from an empty collection subset");
-
-            var prototype = new Weapon();
-
-            if (subset.Count() == 1)
-            {
-                var name = subset.Single();
-                prototype = GeneratePrototype(name);
-            }
-            else
-            {
-                prototype = generator.Generate(
-                    GenerateRandomPrototype,
-                    w => subset.Any(n => w.NameMatches(n)),
-                    () => GenerateDefaultFrom(subset),
-                    w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
-                    $"Mundane weapon from [{string.Join(", ", subset)}]");
-            }
-
-            prototype.Traits = new HashSet<string>(traits);
-            var weapon = GenerateFromPrototype(prototype, true);
-
-            return weapon;
-        }
-
-        private Weapon GenerateDefaultFrom(IEnumerable<string> subset)
-        {
-            var template = new Weapon();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-            template.Quantity = 0;
-
-            var defaultWeapon = GenerateFrom(template);
-            return defaultWeapon as Weapon;
         }
     }
 }

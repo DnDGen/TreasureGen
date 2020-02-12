@@ -80,20 +80,28 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void LogGenerationEventsForSubset()
+        public void LogGenerationEventsForName()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", subset)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", subset);
+            var item = decorator.GenerateFrom("power", "item name");
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning power magical item generation from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning power magical item generation (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Completed generation of power {innerItem.ItemType} {innerItem.Name}"), Times.Once);
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
+        {
+            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
+            var isOfPower = decorator.IsItemOfPower("item name", "power");
+            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
         }
     }
 }

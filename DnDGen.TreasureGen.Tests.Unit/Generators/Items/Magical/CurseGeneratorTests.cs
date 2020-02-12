@@ -11,6 +11,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 {
@@ -32,7 +33,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockDice = new Mock<Dice>();
             mockPercentileSelector = new Mock<ITreasurePercentileSelector>();
             mockCollectionsSelector = new Mock<ICollectionSelector>();
-            var generator = new IterativeGeneratorWithoutLogging(5);
             mockMundaneArmorGenerator = new Mock<MundaneItemGenerator>();
             mockMundaneWeaponGenerator = new Mock<MundaneItemGenerator>();
 
@@ -40,7 +40,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Armor)).Returns(mockMundaneArmorGenerator.Object);
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon)).Returns(mockMundaneWeaponGenerator.Object);
 
-            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, generator, mockJustInTimeFactory.Object);
+            curseGenerator = new CurseGenerator(mockDice.Object, mockPercentileSelector.Object, mockCollectionsSelector.Object, mockJustInTimeFactory.Object);
 
             itemVerifier = new ItemVerifier();
             itemGroups = new Dictionary<string, IEnumerable<string>>();
@@ -49,29 +49,44 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockCollectionsSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.ItemGroups)).Returns(itemGroups);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, It.IsAny<string>())).Returns((string table, string name) => itemGroups[name]);
+
+            var count = 0;
+            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<string>>())).Returns((IEnumerable<string> c) => c.ElementAt(count++ % c.Count()));
         }
 
         [Test]
         public void NotCursedIfNoMagic()
         {
+            var item = new Item();
+            item.IsMagical = false;
+
             mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
-            var cursed = curseGenerator.HasCurse(false);
+
+            var cursed = curseGenerator.HasCurse(item);
             Assert.That(cursed, Is.False);
         }
 
         [Test]
         public void NotCursedIfSelectorSaySo()
         {
+            var item = new Item();
+            item.IsMagical = true;
+
             mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(false);
-            var cursed = curseGenerator.HasCurse(true);
+
+            var cursed = curseGenerator.HasCurse(item);
             Assert.That(cursed, Is.False);
         }
 
         [Test]
         public void CursedIfSelectorSaysSo()
         {
+            var item = new Item();
+            item.IsMagical = true;
+
             mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed)).Returns(true);
-            var cursed = curseGenerator.HasCurse(true);
+
+            var cursed = curseGenerator.HasCurse(item);
             Assert.That(cursed, Is.True);
         }
 
@@ -136,7 +151,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
 
             var cursedItem = curseGenerator.Generate();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -160,7 +178,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
             itemGroups["specific cursed item"] = new[] { "base name" };
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
@@ -196,7 +217,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
@@ -382,29 +406,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateSpecificFromSubset()
+        public void GenerateSpecificFromName()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
-
             var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
-            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
-            itemGroups["other specific cursed item"] = new[] { "other base name" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
             itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
 
-            var subset = new[] { "specific cursed item", "other specific cursed item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.Generate("specific cursed item");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.IsMagical, Is.True);
@@ -416,17 +429,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateSpecificFromSubsetWithBaseName()
+        public void GenerateSpecificFromBaseName()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
-
             var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
@@ -436,9 +442,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
             itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
 
-            var subset = new[] { "base name", "other specific cursed item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.Generate("base name");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.IsMagical, Is.True);
@@ -450,33 +454,53 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateSpecificArmorFromSubset()
+        public void GenerateSpecificFromAnyBaseName()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
-
             var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
+
+            var otherItemType = new[] { "other item type" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(otherItemType);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            var otherAttributes = new[] { "other attribute 1", "other attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "other specific cursed item")).Returns(otherAttributes);
+
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "base name" };
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "other specific cursed item", "specific cursed item" };
+
+            var cursedItem = curseGenerator.Generate("base name");
+            Assert.That(cursedItem.Name, Is.EqualTo("other specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["other specific cursed item"]));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo("other item type"));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(otherAttributes));
+            Assert.That(cursedItem, Is.Not.InstanceOf<Armor>());
+            Assert.That(cursedItem, Is.Not.InstanceOf<Weapon>());
+        }
+
+        [Test]
+        public void GenerateSpecificArmorFromName()
+        {
+            var itemType = new[] { "item type" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(new[] { ItemTypeConstants.Armor });
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
-            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
-            itemGroups["other specific cursed item"] = new[] { "other base name" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
             itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
-
-            var subset = new[] { "specific cursed item", "other specific cursed item" };
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
             mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.Generate("specific cursed item");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.IsMagical, Is.True);
@@ -496,34 +520,61 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateSpecificWeaponFromSubset()
+        public void GenerateSpecificArmorFromBaseName()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
-
             var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(new[] { ItemTypeConstants.Weapon });
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(new[] { ItemTypeConstants.Armor });
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
 
-            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
-            itemGroups["other specific cursed item"] = new[] { "other base name" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
             itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
+            itemGroups["another specific cursed item"] = new[] { "another base name", "other base name" };
 
-            var subset = new[] { "specific cursed item", "other specific cursed item" };
+            var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
+            mundaneArmor.Size = Guid.NewGuid().ToString();
+            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+
+            var cursedItem = curseGenerator.Generate("base name");
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem, Is.InstanceOf<Armor>());
+
+            var armor = cursedItem as Armor;
+            Assert.That(armor.ArmorBonus, Is.EqualTo(mundaneArmor.ArmorBonus));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(mundaneArmor.ArmorCheckPenalty));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(mundaneArmor.MaxDexterityBonus));
+            Assert.That(armor.Size, Is.EqualTo(mundaneArmor.Size));
+
+            //INFO: Because all specific cursed items are magical, they are also all masterwork
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GenerateSpecificWeaponFromName()
+        {
+            var itemType = new[] { "item type" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(new[] { ItemTypeConstants.Weapon });
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
             mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.Generate("specific cursed item");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.Quantity, Is.EqualTo(9266));
@@ -545,12 +596,49 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateDefaultSpecificFromSubset()
+        public void GenerateSpecificWeaponFromBaseName()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems)).Returns("wrong specific cursed item");
-
             var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(new[] { ItemTypeConstants.Weapon });
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+
+            var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
+            mundaneWeapon.Size = Guid.NewGuid().ToString();
+            mundaneWeapon.Quantity = 9266;
+            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+
+            var cursedItem = curseGenerator.Generate("base name");
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
+            Assert.That(cursedItem.Quantity, Is.EqualTo(9266));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem, Is.InstanceOf<Weapon>());
+
+            var weapon = cursedItem as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
+            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+
+            //INFO: Because all specific cursed items are magical, they are also all masterwork
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void DoNotGenerateSpecificFromName_IfNotSpecific_AndBaseNameDoesNotMatch()
+        {
+            var itemType = new[] { "item type" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
 
@@ -560,27 +648,234 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
             itemGroups["other specific cursed item"] = new[] { "other base name" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
-            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
 
-            var subset = new[] { "base name", "other specific cursed item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.Generate("wrong specific cursed item");
             Assert.That(cursedItem, Is.Null);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Exactly(5));
         }
 
         [Test]
-        public void DoNotGenerateSpecificIfNoNameOrBaseNameMatches()
+        public void IsSpecificCursedItem_ReturnsTrue()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
 
-            var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
+            var isSpecificCursed = curseGenerator.IsSpecificCursedItem("specific cursed item");
+            Assert.That(isSpecificCursed, Is.True);
+        }
+
+        [Test]
+        public void IsSpecificCursedItem_ReturnsFalse()
+        {
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
+
+            var isSpecificCursed = curseGenerator.IsSpecificCursedItem("wrong cursed item");
+            Assert.That(isSpecificCursed, Is.False);
+        }
+
+        [Test]
+        public void CanBeSpecificCursedItem_ReturnsTrue_IsSpecific()
+        {
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
+
+            var canBeSpecificCursed = curseGenerator.CanBeSpecificCursedItem("specific cursed item");
+            Assert.That(canBeSpecificCursed, Is.True);
+        }
+
+        [Test]
+        public void CanBeSpecificCursedItem_ReturnsTrue_BaseName()
+        {
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
+
+            var canBeSpecificCursed = curseGenerator.CanBeSpecificCursedItem("base name");
+            Assert.That(canBeSpecificCursed, Is.True);
+        }
+
+        [Test]
+        public void CanBeSpecificCursedItem_ReturnsFalse()
+        {
+            itemGroups["other specific cursed item"] = new[] { "other base name" };
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
+
+            var canBeSpecificCursed = curseGenerator.CanBeSpecificCursedItem("wrong name");
+            Assert.That(canBeSpecificCursed, Is.False);
+        }
+
+        [Test]
+        public void GenerateSpecificFromItemType()
+        {
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["specific cursed item"] = new[] { "item type" };
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["wrong specific cursed item"] = new[] { "wrong item type" };
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem("item type");
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem, Is.Not.InstanceOf<Armor>());
+            Assert.That(cursedItem, Is.Not.InstanceOf<Weapon>());
+        }
+
+        [Test]
+        public void GenerateSpecificFromAnyItemType()
+        {
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "item type" };
+            itemTypes["specific cursed item"] = new[] { "item type" };
+            itemTypes["wrong specific cursed item"] = new[] { "wrong item type" };
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            var otherAttributes = new[] { "other attribute 1", "other attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "other specific cursed item")).Returns(otherAttributes);
+
+            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
+            itemGroups["other specific cursed item"] = new[] { "base name" };
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "other specific cursed item", "specific cursed item" };
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem("item type");
+            Assert.That(cursedItem.Name, Is.EqualTo("other specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["other specific cursed item"]));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo("item type"));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(otherAttributes));
+            Assert.That(cursedItem, Is.Not.InstanceOf<Armor>());
+            Assert.That(cursedItem, Is.Not.InstanceOf<Weapon>());
+        }
+
+        [Test]
+        public void GenerateSpecificArmorFromItemType()
+        {
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["specific cursed item"] = new[] { ItemTypeConstants.Armor };
+            itemTypes["wrong specific cursed item"] = new[] { "wrong item type" };
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+
+            var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
+            mundaneArmor.Size = Guid.NewGuid().ToString();
+            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem(ItemTypeConstants.Armor);
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.Armor));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem, Is.InstanceOf<Armor>());
+
+            var armor = cursedItem as Armor;
+            Assert.That(armor.ArmorBonus, Is.EqualTo(mundaneArmor.ArmorBonus));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(mundaneArmor.ArmorCheckPenalty));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(mundaneArmor.MaxDexterityBonus));
+            Assert.That(armor.Size, Is.EqualTo(mundaneArmor.Size));
+
+            //INFO: Because all specific cursed items are magical, they are also all masterwork
+            Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void GenerateSpecificWeaponFromItemType()
+        {
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["specific cursed item"] = new[] { ItemTypeConstants.Weapon };
+            itemTypes["wrong specific cursed item"] = new[] { "wrong item type" };
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
+
+            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+
+            var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
+            mundaneWeapon.Size = Guid.NewGuid().ToString();
+            mundaneWeapon.Quantity = 9266;
+            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem(ItemTypeConstants.Weapon);
+            Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
+            Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
+            Assert.That(cursedItem.Quantity, Is.EqualTo(9266));
+            Assert.That(cursedItem.IsMagical, Is.True);
+            Assert.That(cursedItem.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem));
+            Assert.That(cursedItem.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(cursedItem.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(cursedItem, Is.InstanceOf<Weapon>());
+
+            var weapon = cursedItem as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
+            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+
+            //INFO: Because all specific cursed items are magical, they are also all masterwork
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+        }
+
+        [Test]
+        public void DoNotGenerateSpecificFromName_IfItemTypeDoesNotMatch()
+        {
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["specific cursed item"] = new[] { "item type" };
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
@@ -588,69 +883,46 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
             itemGroups["other specific cursed item"] = new[] { "other base name" };
             itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
-            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
+            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "specific cursed item", "other specific cursed item" };
 
-            var subset = new[] { "item", "other item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
+            var cursedItem = curseGenerator.GenerateSpecificCursedItem("wrong item type");
             Assert.That(cursedItem, Is.Null);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
-        public void GenerateSpecificIfNameMatches()
+        public void ItemTypeCanBeSpecificCursedItem_ReturnsTrue()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["specific cursed item"] = new[] { "item type" };
 
-            var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
 
-            var attributes = new[] { "attribute 1", "attribute 2" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
-
-            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
-            itemGroups["other specific cursed item"] = new[] { "other base name" };
-            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
-            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
-
-            var subset = new[] { "specific cursed item", "other item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
-            Assert.That(cursedItem, Is.Not.Null);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.AtLeastOnce);
+            var canBeSpecificCursed = curseGenerator.ItemTypeCanBeSpecificCursedItem("item type");
+            Assert.That(canBeSpecificCursed, Is.True);
         }
 
         [Test]
-        public void GenerateSpecificIfBaseNameMatches()
+        public void ItemTypeCanBeSpecificCursedItem_ReturnsFalse()
         {
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems))
-                .Returns("wrong specific cursed item")
-                .Returns("specific cursed item")
-                .Returns("other specific cursed item");
+            var itemTypes = new Dictionary<string, IEnumerable<string>>();
+            itemTypes["other specific cursed item"] = new[] { "other item type", "item type" };
+            itemTypes["specific cursed item"] = new[] { "item type" };
 
-            var itemType = new[] { "item type" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "wrong specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "specific cursed item")).Returns(itemType);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, "other specific cursed item")).Returns(itemType);
+            mockCollectionsSelector
+                .Setup(s => s.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes))
+                .Returns(itemTypes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, It.IsAny<string>()))
+                .Returns((string t, string n) => itemTypes[n]);
 
-            var attributes = new[] { "attribute 1", "attribute 2" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, "specific cursed item")).Returns(attributes);
-
-            itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
-            itemGroups["other specific cursed item"] = new[] { "other base name" };
-            itemGroups["specific cursed item"] = new[] { "base name", "other base name" };
-            itemGroups[CurseConstants.SpecificCursedItem] = new[] { "wrong specific cursed item", "specific cursed item", "other specific cursed item" };
-
-            var subset = new[] { "base name", "other item" };
-
-            var cursedItem = curseGenerator.GenerateFrom(subset);
-            Assert.That(cursedItem, Is.Not.Null);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.AtLeastOnce);
+            var canBeSpecificCursed = curseGenerator.ItemTypeCanBeSpecificCursedItem("wrong item type");
+            Assert.That(canBeSpecificCursed, Is.False);
         }
     }
 }

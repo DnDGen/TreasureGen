@@ -74,7 +74,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(WondrousItemConstants.Darkskull, "Darkskull")]
         [TestCase(WondrousItemConstants.DecanterOfEndlessWater, "Decanter of endless water")]
         [TestCase(WondrousItemConstants.DeckOfIllusions, "Deck of illusions")]
-        [TestCase(WondrousItemConstants.FullDeckOfIllusions, "Deck of illusions (max)")]
+        [TestCase(WondrousItemConstants.DeckOfIllusions_Full, "Deck of illusions (max)")]
         [TestCase(WondrousItemConstants.DimensionalShackles, "Dimensional shackles")]
         [TestCase(WondrousItemConstants.DruidsVestments, "Druid's vestments")]
         [TestCase(WondrousItemConstants.DrumsOfPanic, "Drums of panic")]

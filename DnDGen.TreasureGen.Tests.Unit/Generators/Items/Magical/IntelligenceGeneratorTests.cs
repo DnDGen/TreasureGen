@@ -136,6 +136,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void AmmunitionCannotBeIntelligent()
+        {
+            attributes.Add(AttributeConstants.Ammunition);
+
+            var canBeIntelligent = intelligenceGenerator.CanBeIntelligent(attributes, true);
+            Assert.That(canBeIntelligent, Is.False);
+        }
+
+        [Test]
+        public void OneTimeUseItemsCannotBeIntelligent()
+        {
+            attributes.Add(AttributeConstants.OneTimeUse);
+
+            var canBeIntelligent = intelligenceGenerator.CanBeIntelligent(attributes, true);
+            Assert.That(canBeIntelligent, Is.False);
+        }
+
+        [Test]
+        public void NonMagicalItemsCannotBeIntelligent()
+        {
+            var canBeIntelligent = intelligenceGenerator.CanBeIntelligent(attributes, false);
+            Assert.That(canBeIntelligent, Is.False);
+        }
+
+        [Test]
         public void ReturnIntelligence()
         {
             var intelligence = intelligenceGenerator.GenerateFor(item);

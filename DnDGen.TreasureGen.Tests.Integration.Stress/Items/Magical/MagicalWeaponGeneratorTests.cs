@@ -77,9 +77,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        public void StressWeaponFromSubset()
+        public void StressWeaponFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using DnDGen.EventGen;
+using DnDGen.TreasureGen.Items;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Generators.Items
 {
@@ -23,6 +23,15 @@ namespace DnDGen.TreasureGen.Generators.Items
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {items.Count()} level {level} items");
 
             return items;
+        }
+
+        public Item GenerateAtLevel(int level, string itemType, string itemName)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Beginning level {level} {itemType} generation ({itemName})");
+            var item = innerGenerator.GenerateAtLevel(level, itemType, itemName);
+            eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
+
+            return item;
         }
     }
 }

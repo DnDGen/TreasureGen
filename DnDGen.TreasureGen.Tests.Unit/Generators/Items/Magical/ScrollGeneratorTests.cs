@@ -36,10 +36,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             AssertScroll(scroll);
         }
 
-        private void AssertScroll(Item scroll)
+        private void AssertScroll(Item scroll, string name = ItemTypeConstants.Scroll)
         {
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
-            Assert.That(scroll.Name, Is.EqualTo(ItemTypeConstants.Scroll));
+            Assert.That(scroll.Name, Is.EqualTo(name));
             Assert.That(scroll.IsMagical, Is.True);
             Assert.That(scroll.Attributes.Single(), Is.EqualTo(AttributeConstants.OneTimeUse));
             Assert.That(scroll.Quantity, Is.EqualTo(1));
@@ -151,28 +151,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
-            var subset = new[] { ItemTypeConstants.Scroll };
-
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, subset);
+            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, ItemTypeConstants.Scroll);
             AssertScroll(scroll);
         }
 
         [Test]
-        public void GenerateFromNonScrollSubset()
+        public void GenerateFromNonScrollName()
         {
-            var subset = new[] { "not a scroll" };
-            Assert.That(() => scrollGenerator.GenerateFrom(PowerConstants.Minor, subset), Throws.ArgumentException.With.Message.EqualTo("Cannot generate a non-scroll item"));
+            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, "my special thing");
+            AssertScroll(scroll, "my special thing");
         }
 
         [Test]
-        public void GenerateFromScrollAndNonScrollSubset()
+        public void IsItemOfPower_ReturnsTrue()
         {
-            var subset = new[] { ItemTypeConstants.Scroll, "not a scroll" };
-
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, subset);
-            AssertScroll(scroll);
+            var isItemOfPower = scrollGenerator.IsItemOfPower("item name", "power");
+            Assert.That(isItemOfPower, Is.True);
         }
     }
 }

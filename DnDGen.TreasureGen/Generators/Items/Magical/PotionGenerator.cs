@@ -1,42 +1,72 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Selectors.Selections;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
     internal class PotionGenerator : MagicalItemGenerator
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly ICollectionSelector collectionsSelector;
-        private readonly Generator generator;
+        private readonly ICollectionSelector collectionSelector;
+        private readonly IReplacementSelector replacementSelector;
 
-        public PotionGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionsSelector, Generator generator)
+        public PotionGenerator(
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            ICollectionSelector collectionSelector,
+            IReplacementSelector replacementSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.collectionsSelector = collectionsSelector;
-            this.generator = generator;
+            this.collectionSelector = collectionSelector;
+            this.replacementSelector = replacementSelector;
         }
 
         public Item GenerateFrom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
+
+            return GeneratePotion(result.Type, result.Amount);
+        }
+
+        private Item GeneratePotion(string itemName, int bonus)
+        {
             var potion = new Item();
 
-            potion.Name = result.Type;
-            potion.BaseNames = new[] { result.Type };
+            potion.Name = itemName;
+            potion.BaseNames = new[] { itemName };
             potion.ItemType = ItemTypeConstants.Potion;
-            potion.Magic.Bonus = result.Amount;
+            potion.Magic.Bonus = bonus;
             potion.IsMagical = true;
             potion.Attributes = new[] { AttributeConstants.OneTimeUse };
 
             return potion;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            if (!IsItemOfPower(itemName, power))
+                throw new ArgumentException($"{itemName} is not a valid {power} Potion");
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var matches = results.Where(r => NameMatches(r.Type, itemName));
+            var result = collectionSelector.SelectRandomFrom(matches);
+
+            return GeneratePotion(result.Type, result.Amount);
+        }
+
+        private bool NameMatches(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source);
+            var targetReplacements = replacementSelector.SelectAll(target);
+
+            return source == target
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
@@ -51,88 +81,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return potion.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public bool IsItemOfPower(string itemName, string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            if (!results.Any(r => subset.Any(n => r.Type == n)))
-            {
-                return CreateDefaultPotion(power, subset);
-            }
-
-            var potion = generator.Generate(
-                () => GenerateFrom(power),
-                p => subset.Any(n => p.NameMatches(n)),
-                () => CreateDefaultPotion(power, subset),
-                p => $"{p.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Potion from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                potion.Traits.Add(trait);
-
-            return potion;
-        }
-
-        private Item CreateDefaultPotion(string power, IEnumerable<string> subset)
-        {
-            var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-
-            var result = GetResult(power, template.Name);
-            template.Magic.Bonus = result.Amount;
-
-            var defaultPotion = GenerateFrom(template);
-            return defaultPotion;
-        }
-
-        private TypeAndAmountSelection GetResult(string power, string name)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var result = results.FirstOrDefault(r => r.Type == name);
-
-            if (result != null)
-                return result;
-
-            if (power != PowerConstants.Minor)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.Potion);
-                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = minorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Medium)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Potion);
-                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = mediumResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Major)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.Potion);
-                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = majorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            //INFO: This means the potion name replaces some fillable field such as ALIGNMENT, so we will assume a bonus of 0
-            if (result == null)
-                return new TypeAndAmountSelection();
-
-            return result;
+            return results.Any(r => NameMatches(r.Type, itemName));
         }
     }
 }

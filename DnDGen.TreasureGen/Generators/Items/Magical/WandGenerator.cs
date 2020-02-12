@@ -1,11 +1,7 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -13,31 +9,38 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
     {
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly IChargesGenerator chargesGenerator;
-        private readonly Generator generator;
-        private readonly ICollectionSelector collectionsSelector;
 
-        public WandGenerator(ITreasurePercentileSelector percentileSelector, IChargesGenerator chargesGenerator, Generator generator, ICollectionSelector collectionsSelector)
+        public WandGenerator(ITreasurePercentileSelector percentileSelector, IChargesGenerator chargesGenerator)
         {
             this.percentileSelector = percentileSelector;
             this.chargesGenerator = chargesGenerator;
-            this.generator = generator;
-            this.collectionsSelector = collectionsSelector;
         }
 
         public Item GenerateFrom(string power)
         {
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
+            var spell = percentileSelector.SelectFrom(tablename);
+            var name = $"Wand of {spell}";
+
+            return GenerateWand(name);
+        }
+
+        private Item GenerateWand(string name)
+        {
             var wand = new Item();
             wand.ItemType = ItemTypeConstants.Wand;
             wand.IsMagical = true;
-
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            var spell = percentileSelector.SelectFrom(tablename);
-            wand.Name = $"Wand of {spell}";
-            wand.Magic.Charges = chargesGenerator.GenerateFor(wand.ItemType, wand.Name);
+            wand.Name = name;
+            wand.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Wand, name);
             wand.BaseNames = new[] { ItemTypeConstants.Wand };
             wand.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
 
             return wand;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            return GenerateWand(itemName);
         }
 
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
@@ -52,29 +55,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return wand.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public bool IsItemOfPower(string itemName, string power)
         {
-            var wand = generator.Generate(
-                () => GenerateFrom(power),
-                w => subset.Any(n => w.NameMatches(n)),
-                () => GenerateDefaultFrom(subset),
-                w => $"{w.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Wand from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                wand.Traits.Add(trait);
-
-            return wand;
-        }
-
-        private Item GenerateDefaultFrom(IEnumerable<string> subset)
-        {
-            var template = new Item();
-            template.Name = collectionsSelector.SelectRandomFrom(subset);
-            template.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Wand, template.Name);
-
-            var defaultWand = GenerateFrom(template);
-            return defaultWand;
+            return true;
         }
     }
 }

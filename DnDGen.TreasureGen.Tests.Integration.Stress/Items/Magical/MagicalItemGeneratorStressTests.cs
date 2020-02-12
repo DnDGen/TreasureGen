@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -70,21 +70,27 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
                 ItemVerifier.AssertMagicalItemFromTemplate(item, template);
         }
 
-        protected void GenerateAndAssertItemFromSubset()
+        protected void GenerateAndAssertItemFromName()
         {
             var names = GetItemNames();
-            var subset = GetRandomSubset(names);
+            var name = GetRandom(names);
 
-            var item = GenerateItemFromSubset(subset);
+            var item = GenerateItemFromName(name);
             AssertItem(item);
             Assert.That(item.ItemType, Is.EqualTo(itemType));
-            Assert.That(subset.Any(n => item.NameMatches(n)), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from [{string.Join(", ", subset)}]");
+            Assert.That(item.NameMatches(name), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from '{name}'");
         }
 
-        protected override Item GenerateItemFromSubset(IEnumerable<string> subset)
+        protected override Item GenerateItemFromName(string name, string power = null)
         {
-            var power = GetNewPower(allowMinor);
-            return magicalItemGenerator.GenerateFrom(power, subset);
+            power = power ?? GetNewPower(allowMinor);
+
+            while (!magicalItemGenerator.IsItemOfPower(name, power))
+            {
+                power = GetNewPower(allowMinor);
+            }
+
+            return magicalItemGenerator.GenerateFrom(power, name);
         }
     }
 }

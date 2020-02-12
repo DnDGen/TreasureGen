@@ -31,7 +31,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 var isFullyCharged = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
 
                 if (isFullyCharged)
-                    name = WondrousItemConstants.FullDeckOfIllusions;
+                    name = WondrousItemConstants.DeckOfIllusions_Full;
             }
 
             var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);

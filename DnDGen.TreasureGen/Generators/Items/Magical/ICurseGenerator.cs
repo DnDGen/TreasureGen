@@ -5,8 +5,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
     internal interface ICurseGenerator : MundaneItemGenerator
     {
-        bool HasCurse(bool isMagical);
+        bool HasCurse(Item item);
         bool IsSpecificCursedItem(Item template);
+        bool IsSpecificCursedItem(string itemName);
+        bool CanBeSpecificCursedItem(string itemName);
+        bool ItemTypeCanBeSpecificCursedItem(string itemType);
         string GenerateCurse();
+        Item GenerateSpecificCursedItem(string itemType);
     }
 }

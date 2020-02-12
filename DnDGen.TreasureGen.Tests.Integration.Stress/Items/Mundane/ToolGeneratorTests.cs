@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 {
@@ -41,10 +41,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate a tool from a subset")]
-        public void StressToolFromSubset()
+        public void StressToolFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

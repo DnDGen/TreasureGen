@@ -15,6 +15,7 @@
                 public const string LevelXGoods = "Level{0}Goods";
                 public const string LevelXItems = "Level{0}Items";
                 public const string LevelXSPELLTYPESpells = "Level{0}{1}Spells";
+                public const string POWERArmorTypes = "{0}ArmorTypes";
                 public const string POWERItems = "{0}Items";
                 public const string POWERITEMTYPEs = "{0}{1}s";
                 public const string POWERATTRIBUTESpecialAbilities = "{0}{1}SpecialAbilities";
@@ -30,12 +31,9 @@
                 public const string CastersShieldContainsSpell = "CastersShieldContainsSpell";
                 public const string CastersShieldSpellTypes = "CastersShieldSpellTypes";
                 public const string CurseDrawbacks = "CurseDrawbacks";
-                public const string CurseHeightChanges = "CurseHeightChanges";
                 public const string CursedDependentSituations = "CursedDependentSituations";
                 public const string Curses = "Curses";
                 public const string DarkwoodShields = "DarkwoodShields";
-                public const string DesignatedFoes = "DesignatedFoes";
-                public const string Elements = "Elements";
                 public const string Gender = "Gender";
                 public const string HasSpecialMaterial = "HasSpecialMaterial";
                 public const string HornOfValhallaTypes = "HornOfValhallaTypes";
@@ -47,7 +45,6 @@
                 public const string IsDeckOfIllusionsFullyCharged = "IsDeckOfIllusionsFullyCharged";
                 public const string IsItemCursed = "IsItemCursed";
                 public const string IsMasterwork = "IsMasterwork";
-                public const string KnowledgeCategories = "KnowledgeCategories";
                 public const string Languages = "Languages";
                 public const string MagicalWeaponTypes = "MagicalWeaponTypes";
                 public const string MeleeWeaponTraits = "MeleeWeaponTraits";
@@ -57,8 +54,6 @@
                 public const string MundaneWeaponTypes = "MundaneWeaponTypes";
                 public const string PersonalityTraits = "PersonalityTraits";
                 public const string Planes = "Planes";
-                public const string PartialAlignments = "PartialAlignments";
-                public const string FullAlignments = "FullAlignments";
                 public const string RangedWeaponTraits = "RangedWeaponTraits";
                 public const string RobeOfTheArchmagiColors = "RobeOfTheArchmagiColors";
                 public const string RobeOfUsefulItemsExtraItems = "RobeOfUsefulItemsExtraItems";

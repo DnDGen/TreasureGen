@@ -1,14 +1,12 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.RollGen;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Selectors.Selections;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -20,7 +18,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly Dice dice;
         private readonly ISpellGenerator spellGenerator;
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
-        private readonly Generator generator;
 
         public WondrousItemGenerator(
             ITreasurePercentileSelector percentileSelector,
@@ -28,8 +25,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             IChargesGenerator chargesGenerator,
             Dice dice,
             ISpellGenerator spellGenerator,
-            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
-            Generator generator)
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector)
         {
             this.percentileSelector = percentileSelector;
             this.collectionsSelector = collectionsSelector;
@@ -37,7 +33,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.dice = dice;
             this.spellGenerator = spellGenerator;
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
-            this.generator = generator;
         }
 
         public Item GenerateFrom(string power)
@@ -46,6 +41,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
             var item = BuildWondrousItem(result.Type);
+            item.Magic.Bonus = result.Amount;
+
+            return item;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var matches = results.Where(r => r.Type == itemName);
+
+            if (!matches.Any())
+            {
+                throw new ArgumentException($"{itemName} is not a valid {power} Wondrous Item");
+            }
+
+            var result = collectionsSelector.SelectRandomFrom(matches);
+            var item = BuildWondrousItem(itemName);
             item.Magic.Bonus = result.Amount;
 
             return item;
@@ -213,83 +226,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item.SmartClone();
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public bool IsItemOfPower(string itemName, string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-            if (!results.Any(r => subset.Any(n => r.Type == n)))
-            {
-                return CreateDefaultWondrousItem(power, subset);
-            }
-
-            var item = generator.Generate(
-                () => GenerateFrom(power),
-                i => subset.Any(n => i.NameMatches(n)),
-                () => CreateDefaultWondrousItem(power, subset),
-                i => $"{i.Name} is not in subset [{string.Join(", ", subset)}]",
-                $"Wondrous item from [{string.Join(", ", subset)}]");
-
-            foreach (var trait in traits)
-                item.Traits.Add(trait);
-
-            return item;
-        }
-
-        private Item CreateDefaultWondrousItem(string power, IEnumerable<string> subset)
-        {
-            var name = collectionsSelector.SelectRandomFrom(subset);
-            var item = BuildWondrousItem(name);
-            var result = GetResult(power, item.Name);
-
-            item.Magic.Bonus = result.Amount;
-
-            return item;
-        }
-
-        private TypeAndAmountSelection GetResult(string power, string name)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            var result = results.FirstOrDefault(r => r.Type == name);
-
-            if (result != null)
-                return result;
-
-            if (power != PowerConstants.Minor)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Minor, ItemTypeConstants.WondrousItem);
-                var minorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = minorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Medium)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.WondrousItem);
-                var mediumResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = mediumResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            if (power != PowerConstants.Major)
-            {
-                tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Major, ItemTypeConstants.WondrousItem);
-                var majorResults = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-                result = majorResults.FirstOrDefault(r => r.Type == name);
-
-                if (result != null)
-                    return result;
-            }
-
-            throw new ArgumentException($"{name} is not a Wondrous Item");
+            return results.Any(r => r.Type == itemName);
         }
     }
 }

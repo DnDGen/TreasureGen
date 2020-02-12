@@ -78,7 +78,7 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string Darkskull = "Darkskull";
         public const string DecanterOfEndlessWater = "Decanter of endless water";
         public const string DeckOfIllusions = "Deck of illusions";
-        public const string FullDeckOfIllusions = "Deck of illusions (max)";
+        internal const string DeckOfIllusions_Full = "Deck of illusions (max)";
         public const string DimensionalShackles = "Dimensional shackles";
         public const string DruidsVestments = "Druid's vestments";
         public const string DrumsOfPanic = "Drums of panic";
@@ -190,7 +190,7 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string MonksBelt = "Monk's belt";
         public const string MurlyndsSpoon = "Murlynd's spoon";
         public const string NecklaceOfAdaptation = "Necklace of adaptation";
-        public const string NecklaceOfFireballs = "Necklace of fireballs";
+        internal const string NecklaceOfFireballs = "Necklace of fireballs";
         public const string NecklaceOfFireballs_I = "Necklace of fireballs type I";
         public const string NecklaceOfFireballs_II = "Necklace of fireballs type II";
         public const string NecklaceOfFireballs_III = "Necklace of fireballs type III";

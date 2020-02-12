@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Selectors.Collections;
+﻿using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
 {
@@ -68,6 +68,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
         public void WeaponDataSelectorIsNotConstructedAsSingleton()
         {
             AssertNotSingleton<IWeaponDataSelector>();
+        }
+
+        [Test]
+        public void ReplacementSelectorIsNotConstructedAsSingleton()
+        {
+            AssertNotSingleton<IReplacementSelector>();
         }
     }
 }

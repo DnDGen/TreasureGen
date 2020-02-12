@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
@@ -48,15 +47,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public Item GenerateFrom(string power, string itemName)
         {
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
+            var item = innerGenerator.GenerateFrom(power, itemName);
             if (!item.IsMagical)
                 return item;
 
             item = AddTraits(item);
 
             return item;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            return innerGenerator.IsItemOfPower(itemName, power);
         }
     }
 }

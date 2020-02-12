@@ -1,5 +1,4 @@
 ﻿using DnDGen.EventGen;
-using System.Collections.Generic;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 
@@ -34,10 +33,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFrom(IEnumerable<string> subset, params string[] traits)
+        public Item Generate(string itemName, params string[] traits)
         {
-            eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation from [{string.Join(", ", subset)}]");
-            var item = innerGenerator.GenerateFrom(subset, traits);
+            eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation ({itemName})");
+            var item = innerGenerator.Generate(itemName, traits);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;

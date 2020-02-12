@@ -1,9 +1,7 @@
 ﻿using DnDGen.RollGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using System;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -53,17 +51,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return scroll;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public Item GenerateFrom(string power, string itemName)
         {
-            if (!subset.Contains(ItemTypeConstants.Scroll))
-                throw new ArgumentException("Cannot generate a non-scroll item");
-
             var scroll = GenerateFrom(power);
-
-            foreach (var trait in traits)
-                scroll.Traits.Add(trait);
+            scroll.Name = itemName;
 
             return scroll;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            return true;
         }
 
         private int GetQuantity(string power)

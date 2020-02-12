@@ -1,11 +1,11 @@
 ﻿using DnDGen.Infrastructure.Generators;
-using System.Collections.Generic;
-using DnDGen.TreasureGen.Selectors.Collections;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Selectors.Collections;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Generators.Items
 {
@@ -16,7 +16,11 @@ namespace DnDGen.TreasureGen.Generators.Items
         private readonly JustInTimeFactory justInTimeFactory;
         private readonly IRangeDataSelector rangeDataSelector;
 
-        public ItemsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, JustInTimeFactory justInTimeFactory, ITreasurePercentileSelector percentileSelector, IRangeDataSelector rangeDataSelector)
+        public ItemsGenerator(
+            ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
+            JustInTimeFactory justInTimeFactory,
+            ITreasurePercentileSelector percentileSelector,
+            IRangeDataSelector rangeDataSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.justInTimeFactory = justInTimeFactory;
@@ -68,18 +72,48 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane);
             var itemType = percentileSelector.SelectFrom(tableName);
-            var generator = justInTimeFactory.Build<MundaneItemGenerator>(itemType);
 
-            return generator.Generate();
+            return GenerateMundaneItem(itemType);
         }
 
         private Item GenerateMagicalItemAtPower(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, power);
             var itemType = percentileSelector.SelectFrom(tableName);
+
+            return GenerateMagicalItemAtPower(power, itemType);
+        }
+
+        public Item GenerateAtLevel(int level, string itemType, string itemName)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
+            var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
+            var power = result.Type;
+
+            if (power == PowerConstants.Mundane)
+                return GenerateMundaneItem(itemType, itemName);
+
+            return GenerateMagicalItemAtPower(power, itemType, itemName);
+        }
+
+        private Item GenerateMundaneItem(string itemType, string itemName = null)
+        {
+            var generator = justInTimeFactory.Build<MundaneItemGenerator>(itemType);
+
+            if (string.IsNullOrEmpty(itemName))
+                return generator.Generate();
+
+            return generator.Generate(itemName);
+        }
+
+        private Item GenerateMagicalItemAtPower(string power, string itemType, string itemName = null)
+        {
             var magicalItemGenerator = justInTimeFactory.Build<MagicalItemGenerator>(itemType);
 
-            return magicalItemGenerator.GenerateFrom(power);
+            if (string.IsNullOrEmpty(itemName))
+                return magicalItemGenerator.GenerateFrom(power);
+
+            return magicalItemGenerator.GenerateFrom(power, itemName);
         }
     }
 }

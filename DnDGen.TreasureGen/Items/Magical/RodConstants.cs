@@ -5,7 +5,7 @@ namespace DnDGen.TreasureGen.Items.Magical
     public static class RodConstants
     {
         public const string Absorption = "Rod of absorption";
-        public const string FullAbsorption = "Rod of absorption (max)";
+        internal const string Absorption_Full = "Rod of absorption (max)";
         public const string Alertness = "Rod of alertness";
         public const string Cancellation = "Rod of cancellation";
         public const string EnemyDetection = "Rod of enemy detection";

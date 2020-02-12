@@ -93,34 +93,34 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
-        public void LogGenerationEventsForSpecificCursedItemFromSubset()
+        public void LogGenerationEventsForSpecificCursedItemFromName()
         {
             var innerItem = new Item();
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(innerItem);
+            var itemName = "item name";
+            mockInnerGenerator.Setup(g => g.Generate(itemName)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(subset);
+            var item = decorator.Generate(itemName);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}"), Times.Once);
         }
 
         [Test]
-        public void LogGenerationEventsForNoSpecificCursedItemFromSubset()
+        public void LogGenerationEventsForNoSpecificCursedItemFromName()
         {
             Item innerItem = null;
 
-            var subset = new[] { "item 1", "item 2" };
-            mockInnerGenerator.Setup(g => g.GenerateFrom(subset)).Returns(innerItem);
+            var itemName = "item name";
+            mockInnerGenerator.Setup(g => g.Generate(itemName)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(subset);
+            var item = decorator.Generate(itemName);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item from [{string.Join(", ", subset)}]"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Generating a specific cursed item (item name)"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"No specific cursed item was generated"), Times.Once);
         }
 
@@ -130,17 +130,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(true, false)]
         public void LogEventsWhenCheckingForCurse(bool isMagical, bool hasCurse)
         {
-            mockInnerGenerator.Setup(g => g.HasCurse(isMagical)).Returns(hasCurse);
+            var item = new Item();
+            item.IsMagical = isMagical;
+            item.Name = "my name";
 
-            var isCursed = decorator.HasCurse(isMagical);
+            mockInnerGenerator.Setup(g => g.HasCurse(item)).Returns(hasCurse);
+
+            var isCursed = decorator.HasCurse(item);
             Assert.That(isCursed, Is.EqualTo(hasCurse));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Determining if item is cursed"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Determining if item my name is cursed"), Times.Once);
 
             if (hasCurse)
-                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item is cursed"), Times.Once);
+                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item my name is cursed"), Times.Once);
             else
-                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item is not cursed"), Times.Once);
+                mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item my name is not cursed"), Times.Once);
         }
 
         [Test]
@@ -165,8 +169,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.True);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if item {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item {template.Name} is a specific cursed item"), Times.Once);
         }
 
         [Test]
@@ -179,8 +183,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var isCursed = decorator.IsSpecificCursedItem(template);
             Assert.That(isCursed, Is.False);
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if {template.Name} is a specific cursed item"), Times.Once);
-            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"{template.Name} is not a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Determining if item {template.Name} is a specific cursed item"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Item {template.Name} is not a specific cursed item"), Times.Once);
         }
     }
 }

@@ -8,6 +8,7 @@ script:
     && dotnet test ./DnDGen.TreasureGen.Tests.Unit/DnDGen.TreasureGen.Tests.Unit.csproj -v normal
     && dotnet test ./DnDGen.TreasureGen.Tests.Integration.IoC/DnDGen.TreasureGen.Tests.Integration.IoC.csproj -v normal
     && dotnet test ./DnDGen.TreasureGen.Tests.Integration.Tables/DnDGen.TreasureGen.Tests.Integration.Tables.csproj -v normal
+    && dotnet test ./DnDGen.TreasureGen.Tests.Integration/DnDGen.TreasureGen.Tests.Integration.csproj -v normal
     && dotnet test ./DnDGen.TreasureGen.Tests.Integration.Stress/DnDGen.TreasureGen.Tests.Integration.Stress.csproj -v normal -c Stress
 deploy:
   skip_cleanup: true

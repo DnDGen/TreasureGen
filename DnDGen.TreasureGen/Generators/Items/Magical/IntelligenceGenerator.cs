@@ -28,12 +28,16 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.intelligenceDataSelector = intelligenceDataSelector;
         }
 
+        public bool CanBeIntelligent(IEnumerable<string> attributes, bool isMagical)
+        {
+            return isMagical
+                && !attributes.Contains(AttributeConstants.OneTimeUse)
+                && !attributes.Contains(AttributeConstants.Ammunition);
+        }
+
         public bool IsIntelligent(string itemType, IEnumerable<string> attributes, bool isMagical)
         {
-            if (!isMagical)
-                return false;
-
-            if (attributes.Contains(AttributeConstants.OneTimeUse) || attributes.Contains(AttributeConstants.Ammunition))
+            if (!CanBeIntelligent(attributes, isMagical))
                 return false;
 
             if (attributes.Contains(AttributeConstants.Melee))

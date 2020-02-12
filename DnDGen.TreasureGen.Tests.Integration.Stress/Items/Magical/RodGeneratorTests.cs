@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -53,10 +53,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate a rod from a subset")]
-        public void StressRodFromSubset()
+        public void StressRodFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

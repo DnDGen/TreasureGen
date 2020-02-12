@@ -1,10 +1,9 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Items.Mundane;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Items.Mundane;
+using DnDGen.TreasureGen.Tables;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -63,9 +62,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public Item GenerateFrom(string power, string itemName)
         {
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
+            var item = innerGenerator.GenerateFrom(power, itemName);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;
@@ -73,6 +72,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             item = AddSpecialMaterials(item, true);
 
             return item;
+        }
+
+        public bool IsItemOfPower(string itemName, string power)
+        {
+            return innerGenerator.IsItemOfPower(itemName, power);
         }
     }
 }

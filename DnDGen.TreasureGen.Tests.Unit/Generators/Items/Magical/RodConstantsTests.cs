@@ -8,7 +8,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
     public class RodConstantsTests
     {
         [TestCase(RodConstants.Absorption, "Rod of absorption")]
-        [TestCase(RodConstants.FullAbsorption, "Rod of absorption (max)")]
+        [TestCase(RodConstants.Absorption_Full, "Rod of absorption (max)")]
         [TestCase(RodConstants.Alertness, "Rod of alertness")]
         [TestCase(RodConstants.Cancellation, "Rod of cancellation")]
         [TestCase(RodConstants.EnemyDetection, "Rod of enemy detection")]

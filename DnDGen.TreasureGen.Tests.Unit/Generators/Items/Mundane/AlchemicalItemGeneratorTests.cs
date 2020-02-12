@@ -1,6 +1,4 @@
-﻿using DnDGen.Infrastructure.Generators;
-using DnDGen.Infrastructure.Selectors.Collections;
-using DnDGen.TreasureGen.Generators.Items.Mundane;
+﻿using DnDGen.TreasureGen.Generators.Items.Mundane;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
@@ -9,7 +7,6 @@ using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
@@ -21,16 +18,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         private Mock<ITypeAndAmountPercentileSelector> mockTypeAndAmountPercentileSelector;
         private TypeAndAmountSelection selection;
         private ItemVerifier itemVerifier;
-        private Generator generator;
-        private Mock<ICollectionSelector> mockCollectionsSelector;
 
         [SetUp]
         public void Setup()
         {
             mockTypeAndAmountPercentileSelector = new Mock<ITypeAndAmountPercentileSelector>();
-            mockCollectionsSelector = new Mock<ICollectionSelector>();
-            generator = new IterativeGeneratorWithoutLogging(5);
-            alchemicalItemGenerator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object, mockCollectionsSelector.Object, generator);
+            alchemicalItemGenerator = new AlchemicalItemGenerator(mockTypeAndAmountPercentileSelector.Object);
             selection = new TypeAndAmountSelection();
             itemVerifier = new ItemVerifier();
         }
@@ -40,7 +33,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             selection.Type = "alchemical item";
             selection.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems)).Returns(selection);
+            mockTypeAndAmountPercentileSelector
+                .Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(selection);
+            mockTypeAndAmountPercentileSelector
+                .Setup(p => p.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong item", Amount = 666 },
+                    selection
+                });
 
             var item = alchemicalItemGenerator.Generate();
             Assert.That(item.Name, Is.EqualTo(selection.Type));
@@ -78,41 +80,42 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateFromSubset()
+        public void GenerateFromName()
         {
-            var subset = new[] { "other alchemical item", "alchemical item" };
-
             selection.Type = "alchemical item";
             selection.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "alchemical item", Amount = 90210 })
-                .Returns(new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 });
+            mockTypeAndAmountPercentileSelector
+                .SetupSequence(p => p.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 666 },
+                    selection,
+                    new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 }
+                });
 
-            var item = alchemicalItemGenerator.GenerateFrom(subset);
+            var item = alchemicalItemGenerator.Generate("alchemical item");
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Contents, Is.Empty);
-            Assert.That(item.Quantity, Is.EqualTo(90210));
+            Assert.That(item.Quantity, Is.EqualTo(9266));
             Assert.That(item.Traits, Is.Empty);
         }
 
         [Test]
-        public void GenerateDefaultFromSubset()
+        public void GenerateFromName_IfNoneMatching_SetQuantityTo1()
         {
-            var subset = new[] { "other alchemical item", "alchemical item" };
+            mockTypeAndAmountPercentileSelector
+                .SetupSequence(p => p.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 },
+                    new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 }
+                });
 
-            selection.Type = "alchemical item";
-            selection.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 });
-
-            mockCollectionsSelector.Setup(s => s.SelectRandomFrom(subset)).Returns((IEnumerable<string> ss) => ss.Last());
-
-            var item = alchemicalItemGenerator.GenerateFrom(subset);
+            var item = alchemicalItemGenerator.Generate("alchemical item");
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
@@ -124,58 +127,56 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateFromEmptySubset()
+        public void GenerateFromNameWithTraits()
         {
-            Assert.That(() => alchemicalItemGenerator.GenerateFrom(Enumerable.Empty<string>()), Throws.ArgumentException.With.Message.EqualTo("Cannot generate from an empty collection subset"));
-        }
-
-        [Test]
-        public void GenerateFromSubsetWithTraits()
-        {
-            var subset = new[] { "other alchemical item", "alchemical item" };
-
             selection.Type = "alchemical item";
             selection.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "alchemical item", Amount = 90210 })
-                .Returns(new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 });
+            mockTypeAndAmountPercentileSelector
+                .SetupSequence(p => p.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 666 },
+                    selection,
+                    new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 }
+                });
 
-            var item = alchemicalItemGenerator.GenerateFrom(subset, "my trait", "my other trait");
+            var item = alchemicalItemGenerator.Generate("alchemical item", "my trait", "my other trait");
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Contents, Is.Empty);
-            Assert.That(item.Quantity, Is.EqualTo(90210));
-            Assert.That(item.Traits, Contains.Item("my trait"));
-            Assert.That(item.Traits, Contains.Item("my other trait"));
-            Assert.That(item.Traits.Count, Is.EqualTo(2));
+            Assert.That(item.Quantity, Is.EqualTo(9266));
+            Assert.That(item.Traits, Has.Count.EqualTo(2)
+                .And.Contains("my trait")
+                .And.Contains("my other trait"));
         }
 
         [Test]
-        public void GenerateFromSubsetWithDuplicateTraits()
+        public void GenerateFromNameWithDuplicateTraits()
         {
-            var subset = new[] { "other alchemical item", "alchemical item" };
-
             selection.Type = "alchemical item";
             selection.Amount = 9266;
-            mockTypeAndAmountPercentileSelector.SetupSequence(p => p.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
-                .Returns(new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 9266 })
-                .Returns(new TypeAndAmountSelection { Type = "alchemical item", Amount = 90210 })
-                .Returns(new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 });
+            mockTypeAndAmountPercentileSelector
+                .SetupSequence(p => p.SelectAllFrom(TableNameConstants.Percentiles.Set.AlchemicalItems))
+                .Returns(new[]
+                {
+                    new TypeAndAmountSelection { Type = "wrong alchemical item", Amount = 666 },
+                    selection,
+                    new TypeAndAmountSelection { Type = "other alchemical item", Amount = 42 }
+                });
 
-            var item = alchemicalItemGenerator.GenerateFrom(subset, "my trait", "my trait");
+            var item = alchemicalItemGenerator.Generate("alchemical item", "my trait", "my trait");
             Assert.That(item.Name, Is.EqualTo("alchemical item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("alchemical item"));
             Assert.That(item.Attributes, Is.Empty);
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
             Assert.That(item.IsMagical, Is.False);
             Assert.That(item.Contents, Is.Empty);
-            Assert.That(item.Quantity, Is.EqualTo(90210));
-            Assert.That(item.Traits, Contains.Item("my trait"));
-            Assert.That(item.Traits.Count, Is.EqualTo(1));
+            Assert.That(item.Quantity, Is.EqualTo(9266));
+            Assert.That(item.Traits, Has.Count.EqualTo(1)
+                .And.Contains("my trait"));
         }
     }
 }

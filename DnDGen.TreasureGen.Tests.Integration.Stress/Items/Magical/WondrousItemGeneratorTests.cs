@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 {
@@ -60,7 +60,10 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
         private void AssertCubicGatePlanesAreUnique()
         {
-            var cubicGate = stressor.Generate(GenerateItem, i => i.ItemType == itemType && i.Name == WondrousItemConstants.CubicGate);
+            var cubicGate = stressor.Generate(
+                () => GenerateItemFromName(WondrousItemConstants.CubicGate, PowerConstants.Major),
+                i => i.ItemType == itemType && i.Name == WondrousItemConstants.CubicGate);
+
             Assert.That(cubicGate.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
             Assert.That(cubicGate.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(cubicGate.Contents, Is.Unique);
@@ -68,10 +71,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         }
 
         [Test]
-        [Ignore("There is no currently-known use case where we generate a wondrous item from a subset")]
-        public void StressWondrousItemFromSubset()
+        public void StressWondrousItemFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
     }
 }

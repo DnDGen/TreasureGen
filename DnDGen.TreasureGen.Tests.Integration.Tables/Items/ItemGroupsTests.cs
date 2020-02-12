@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 {
@@ -86,7 +86,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         [TestCase(RodConstants.EnemyDetection, RodConstants.EnemyDetection)]
         [TestCase(RodConstants.Flailing, RodConstants.Flailing, WeaponConstants.DireFlail)]
         [TestCase(RodConstants.FlameExtinguishing, RodConstants.FlameExtinguishing)]
-        [TestCase(RodConstants.FullAbsorption, RodConstants.Absorption)]
+        [TestCase(RodConstants.Absorption_Full, RodConstants.Absorption)]
         [TestCase(RodConstants.ImmovableRod, RodConstants.ImmovableRod)]
         [TestCase(RodConstants.LordlyMight, RodConstants.LordlyMight, WeaponConstants.LightMace)]
         [TestCase(RodConstants.MetalAndMineralDetection, RodConstants.MetalAndMineralDetection)]
@@ -347,6 +347,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 ArmorConstants.RhinoHide,
                 ArmorConstants.SpinedShield,
                 ArmorConstants.WingedShield,
+                PotionConstants.Poison,
                 RingConstants.Clumsiness,
                 WeaponConstants.AssassinsDagger,
                 WeaponConstants.BerserkingSword,
@@ -421,6 +422,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 WeaponConstants.CursedBackbiterSpear,
                 WeaponConstants.CursedMinus2Sword,
                 WeaponConstants.NetOfSnaring,
+                PotionConstants.Poison,
                 RingConstants.Clumsiness,
                 WondrousItemConstants.AmuletOfInescapableLocation,
                 WondrousItemConstants.BagOfDevouring,

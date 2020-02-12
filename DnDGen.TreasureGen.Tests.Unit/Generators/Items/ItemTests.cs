@@ -339,7 +339,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
-        [TestCase(ItemTypeConstants.LivingCreature)]
         [TestCase(ItemTypeConstants.Potion)]
         [TestCase(ItemTypeConstants.Ring)]
         [TestCase(ItemTypeConstants.Rod)]
@@ -452,7 +451,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
-        [TestCase(ItemTypeConstants.LivingCreature)]
         [TestCase(ItemTypeConstants.Potion)]
         [TestCase(ItemTypeConstants.Ring)]
         [TestCase(ItemTypeConstants.Rod)]

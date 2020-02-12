@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -20,13 +19,41 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             var item = innerGenerator.GenerateFrom(power);
 
-            if (curseGenerator.HasCurse(item.IsMagical))
+            if (curseGenerator.HasCurse(item))
             {
-                var curse = curseGenerator.GenerateCurse();
-                if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-                    return curseGenerator.Generate();
+                var canBeSpecific = curseGenerator.ItemTypeCanBeSpecificCursedItem(item.ItemType);
 
-                item.Magic.Curse = curse;
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && !canBeSpecific);
+
+                if (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && canBeSpecific)
+                {
+                    return curseGenerator.GenerateSpecificCursedItem(item.ItemType);
+                }
+            }
+
+            return item;
+        }
+
+        public Item GenerateFrom(string power, string itemName)
+        {
+            if (curseGenerator.IsSpecificCursedItem(itemName))
+                return curseGenerator.Generate(itemName);
+
+            var item = innerGenerator.GenerateFrom(power, itemName);
+
+            if (curseGenerator.HasCurse(item))
+            {
+                var canBeSpecific = curseGenerator.CanBeSpecificCursedItem(itemName);
+
+                do item.Magic.Curse = curseGenerator.GenerateCurse();
+                while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && !canBeSpecific);
+
+                if (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && canBeSpecific)
+                {
+                    var cursedItem = curseGenerator.Generate(itemName);
+                    return cursedItem;
+                }
             }
 
             return item;
@@ -39,7 +66,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
 
-            if (allowRandomDecoration && curseGenerator.HasCurse(item.IsMagical))
+            if (allowRandomDecoration && curseGenerator.HasCurse(item))
             {
                 do item.Magic.Curse = curseGenerator.GenerateCurse();
                 while (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems);
@@ -48,26 +75,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, IEnumerable<string> subset, params string[] traits)
+        public bool IsItemOfPower(string itemName, string power)
         {
-            var item = innerGenerator.GenerateFrom(power, subset, traits);
+            if (curseGenerator.IsSpecificCursedItem(itemName))
+                return true;
 
-            if (!curseGenerator.HasCurse(item.IsMagical))
-                return item;
-
-            var curse = curseGenerator.GenerateCurse();
-            if (curse == TableNameConstants.Percentiles.Set.SpecificCursedItems)
-            {
-                var specificCursedItem = curseGenerator.GenerateFrom(subset, traits);
-                if (specificCursedItem == null)
-                    return item;
-
-                return specificCursedItem;
-            }
-
-            item.Magic.Curse = curse;
-
-            return item;
+            return innerGenerator.IsItemOfPower(itemName, power);
         }
     }
 }

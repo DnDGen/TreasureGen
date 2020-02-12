@@ -17,7 +17,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [TestCase(ItemTypeConstants.Staff, "Staff")]
         [TestCase(ItemTypeConstants.Wand, "Wand")]
         [TestCase(ItemTypeConstants.WondrousItem, "Wondrous Item")]
-        [TestCase(ItemTypeConstants.LivingCreature, "Living Creature")]
         public void ItemTypeConstant(string constant, string value)
         {
             Assert.That(constant, Is.EqualTo(value));

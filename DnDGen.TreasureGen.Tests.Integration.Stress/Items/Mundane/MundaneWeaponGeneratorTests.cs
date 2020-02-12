@@ -91,9 +91,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void StressMundaneWeaponFromSubset()
+        public void StressMundaneWeaponFromName()
         {
-            stressor.Stress(GenerateAndAssertItemFromSubset);
+            stressor.Stress(GenerateAndAssertItemFromName);
         }
 
         [Test]
@@ -111,8 +111,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         private Item GenerateShuriken()
         {
-            var subset = new[] { WeaponConstants.Shuriken };
-            var shuriken = mundaneItemGenerator.GenerateFrom(subset);
+            var shuriken = mundaneItemGenerator.Generate(WeaponConstants.Shuriken);
 
             return shuriken;
         }
