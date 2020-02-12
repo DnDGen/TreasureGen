@@ -115,5 +115,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = ArmorGenerator.GenerateFrom(power, itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [Test]
+        public void AllArmorsCanBeGenerated()
+        {
+            var armors = ArmorConstants.GetAllArmors(true);
+
+            foreach (var armor in armors)
+            {
+                var isMinor = ArmorGenerator.IsItemOfPower(armor, PowerConstants.Minor);
+                var isMedium = ArmorGenerator.IsItemOfPower(armor, PowerConstants.Medium);
+                var isMajor = ArmorGenerator.IsItemOfPower(armor, PowerConstants.Major);
+
+                Assert.That(true, Is.EqualTo(isMinor)
+                    .Or.EqualTo(isMedium)
+                    .Or.EqualTo(isMajor), armor);
+            }
+        }
     }
 }

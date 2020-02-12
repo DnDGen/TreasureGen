@@ -67,7 +67,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 var containsSpellLevels = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
-                    var maxCharges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, RodConstants.FullAbsorption);
+                    var maxCharges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, RodConstants.Absorption_Full);
                     var containedSpellLevels = (maxCharges - rod.Magic.Charges) / 2;
                     rod.Contents.Add($"{containedSpellLevels} spell levels");
                 }

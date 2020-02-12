@@ -118,5 +118,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = RingGenerator.GenerateFrom(power, itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [Test]
+        public void AllRingsCanBeGenerated()
+        {
+            var rings = RingConstants.GetAllRings();
+
+            foreach (var ring in rings)
+            {
+                var isMinor = RingGenerator.IsItemOfPower(ring, PowerConstants.Minor);
+                var isMedium = RingGenerator.IsItemOfPower(ring, PowerConstants.Medium);
+                var isMajor = RingGenerator.IsItemOfPower(ring, PowerConstants.Major);
+
+                Assert.That(true, Is.EqualTo(isMinor)
+                    .Or.EqualTo(isMedium)
+                    .Or.EqualTo(isMajor), ring);
+            }
+        }
     }
 }

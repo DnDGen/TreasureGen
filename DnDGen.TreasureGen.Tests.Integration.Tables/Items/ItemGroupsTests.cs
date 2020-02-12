@@ -86,7 +86,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         [TestCase(RodConstants.EnemyDetection, RodConstants.EnemyDetection)]
         [TestCase(RodConstants.Flailing, RodConstants.Flailing, WeaponConstants.DireFlail)]
         [TestCase(RodConstants.FlameExtinguishing, RodConstants.FlameExtinguishing)]
-        [TestCase(RodConstants.FullAbsorption, RodConstants.Absorption)]
+        [TestCase(RodConstants.Absorption_Full, RodConstants.Absorption)]
         [TestCase(RodConstants.ImmovableRod, RodConstants.ImmovableRod)]
         [TestCase(RodConstants.LordlyMight, RodConstants.LordlyMight, WeaponConstants.LightMace)]
         [TestCase(RodConstants.MetalAndMineralDetection, RodConstants.MetalAndMineralDetection)]

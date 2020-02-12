@@ -330,5 +330,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = WeaponGenerator.GenerateFrom(power, itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [Test]
+        public void AllWeaponsCanBeGenerated()
+        {
+            var weapons = WeaponConstants.GetAllWeapons();
+
+            foreach (var weapon in weapons)
+            {
+                var isMinor = WeaponGenerator.IsItemOfPower(weapon, PowerConstants.Minor);
+                var isMedium = WeaponGenerator.IsItemOfPower(weapon, PowerConstants.Medium);
+                var isMajor = WeaponGenerator.IsItemOfPower(weapon, PowerConstants.Major);
+
+                Assert.That(true, Is.EqualTo(isMinor)
+                    .Or.EqualTo(isMedium)
+                    .Or.EqualTo(isMajor), weapon);
+            }
+        }
     }
 }

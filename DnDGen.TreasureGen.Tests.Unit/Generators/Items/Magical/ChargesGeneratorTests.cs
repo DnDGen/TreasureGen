@@ -261,7 +261,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             fullResult.Minimum = 34;
 
             mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions_Full)).Returns(fullResult);
 
             SetUpRoll(66, 92, 9266);
             SetUpRoll(34, 34, 34);
@@ -283,7 +283,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             fullResult.Minimum = 34;
 
             mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions)).Returns(result);
-            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.FullDeckOfIllusions)).Returns(fullResult);
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, WondrousItemConstants.DeckOfIllusions_Full)).Returns(fullResult);
 
             SetUpRoll(66, 92, 9266);
             SetUpRoll(34, 34, 34);

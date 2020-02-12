@@ -17,9 +17,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
         {
             var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var canBeIntelligent = intelligenceGenerator.CanBeIntelligent(item.Attributes, item.IsMagical);
+            var isIntelligent = intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical);
 
-            if (allowRandomDecoration && intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
+            if (allowRandomDecoration && isIntelligent)
+            {
                 item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item);
+            }
+            else if (!canBeIntelligent)
+            {
+                item.Magic.Intelligence = new Intelligence();
+            }
 
             return item;
         }

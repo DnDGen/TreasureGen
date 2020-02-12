@@ -213,5 +213,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = PotionGenerator.GenerateFrom(power, itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [Test]
+        public void AllPotionsCanBeGenerated()
+        {
+            var potions = PotionConstants.GetAllPotions();
+
+            foreach (var potion in potions)
+            {
+                var isMinor = PotionGenerator.IsItemOfPower(potion, PowerConstants.Minor);
+                var isMedium = PotionGenerator.IsItemOfPower(potion, PowerConstants.Medium);
+                var isMajor = PotionGenerator.IsItemOfPower(potion, PowerConstants.Major);
+
+                Assert.That(true, Is.EqualTo(isMinor)
+                    .Or.EqualTo(isMedium)
+                    .Or.EqualTo(isMajor), potion);
+            }
+        }
     }
 }
