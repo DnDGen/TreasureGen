@@ -37,7 +37,7 @@ namespace DnDGen.TreasureGen.Items
             get
             {
                 var allWeapons = WeaponConstants.GetAllWeapons();
-                var allArmors = ArmorConstants.GetAllArmors(true);
+                var allArmors = ArmorConstants.GetAllArmorsAndShields(true);
 
                 return ItemType == ItemTypeConstants.Weapon
                     || ItemType == ItemTypeConstants.Armor

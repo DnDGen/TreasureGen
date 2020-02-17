@@ -31,7 +31,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override IEnumerable<string> GetItemNames()
         {
-            return ArmorConstants.GetAllArmors(true);
+            return ArmorConstants.GetAllArmorsAndShields(true);
         }
 
         [Test]

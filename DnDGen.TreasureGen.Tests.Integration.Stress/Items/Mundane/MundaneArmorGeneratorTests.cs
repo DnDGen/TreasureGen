@@ -44,7 +44,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected override IEnumerable<string> GetItemNames()
         {
-            return ArmorConstants.GetAllArmors(false);
+            return ArmorConstants.GetAllArmorsAndShields(false);
         }
 
         [Test]

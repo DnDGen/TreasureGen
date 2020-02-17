@@ -119,7 +119,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [Test]
         public void AllArmorsCanBeGenerated()
         {
-            var armors = ArmorConstants.GetAllArmors(true);
+            var armors = ArmorConstants.GetAllArmorsAndShields(true);
 
             foreach (var armor in armors)
             {
