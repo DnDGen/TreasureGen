@@ -191,6 +191,14 @@
     <entry>Dagger</entry>
   </collection>
   <collection>
+    <name>Adamantine dagger</name>
+    <entry>Dagger</entry>
+  </collection>
+  <collection>
+    <name>Adamantine battleaxe</name>
+    <entry>Battleaxe</entry>
+  </collection>
+  <collection>
     <name>Luck blade (0 wishes)</name>
     <entry>Luck blade</entry>
   </collection>

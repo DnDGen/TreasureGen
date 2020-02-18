@@ -56,7 +56,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override IEnumerable<string> GetItemNames()
         {
-            return WeaponConstants.GetAllWeapons();
+            return WeaponConstants.GetAllWeapons(true, true);
         }
 
         [Test]

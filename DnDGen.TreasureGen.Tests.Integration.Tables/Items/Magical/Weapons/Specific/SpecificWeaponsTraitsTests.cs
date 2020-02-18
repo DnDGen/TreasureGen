@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
@@ -14,12 +14,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
 
         [TestCase(WeaponConstants.SleepArrow)]
         [TestCase(WeaponConstants.ScreamingBolt)]
-        [TestCase(WeaponConstants.SilverDagger, TraitConstants.SpecialMaterials.AlchemicalSilver)]
+        [TestCase(WeaponConstants.Dagger_Silver, TraitConstants.SpecialMaterials.AlchemicalSilver)]
         [TestCase(WeaponConstants.Longsword, TraitConstants.Masterwork, TraitConstants.SpecialMaterials.ColdIron)]
         [TestCase(WeaponConstants.JavelinOfLightning)]
         [TestCase(WeaponConstants.SlayingArrow)]
-        [TestCase(WeaponConstants.Dagger, TraitConstants.SpecialMaterials.Adamantine)]
-        [TestCase(WeaponConstants.Battleaxe, TraitConstants.SpecialMaterials.Adamantine)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, TraitConstants.SpecialMaterials.Adamantine)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, TraitConstants.SpecialMaterials.Adamantine)]
         [TestCase(WeaponConstants.GreaterSlayingArrow)]
         [TestCase(WeaponConstants.Shatterspike)]
         [TestCase(WeaponConstants.DaggerOfVenom)]

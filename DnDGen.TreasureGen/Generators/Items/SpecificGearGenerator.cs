@@ -66,13 +66,13 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             var templateName = gear.Name;
             gear.Name = replacementSelector.SelectSingle(templateName);
-            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, gear.Name);
+            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, templateName);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
-            gear.Attributes = collectionsSelector.SelectFrom(tableName, gear.Name);
+            gear.Attributes = collectionsSelector.SelectFrom(tableName, templateName);
 
             tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, specificGearType);
-            var traits = collectionsSelector.SelectFrom(tableName, gear.Name);
+            var traits = collectionsSelector.SelectFrom(tableName, templateName);
 
             foreach (var trait in traits)
                 gear.Traits.Add(trait);
@@ -150,7 +150,7 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             switch (oldName)
             {
-                case WeaponConstants.SilverDagger: return WeaponConstants.Dagger;
+                case WeaponConstants.Dagger_Silver: return WeaponConstants.Dagger;
                 case WeaponConstants.LuckBlade0:
                 case WeaponConstants.LuckBlade1:
                 case WeaponConstants.LuckBlade2:

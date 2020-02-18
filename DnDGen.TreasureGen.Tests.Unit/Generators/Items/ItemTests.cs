@@ -356,7 +356,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void NamedWeaponCanBeUsedAsWeaponOrArmor()
         {
-            var allWeapons = WeaponConstants.GetAllWeapons();
+            var allWeapons = WeaponConstants.GetAllWeapons(true, true);
             foreach (var weapon in allWeapons)
             {
                 item.Name = weapon;
@@ -387,7 +387,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void BaseNamedWeaponCanBeUsedAsWeaponOrArmor()
         {
-            var allWeapons = WeaponConstants.GetAllWeapons();
+            var allWeapons = WeaponConstants.GetAllWeapons(true, true);
             foreach (var weapon in allWeapons)
             {
                 item.Name = "random name";
@@ -479,7 +479,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void SmartCloneWithNamedWeaponCanBeUsedAsWeaponOrArmor()
         {
-            var allWeapons = WeaponConstants.GetAllWeapons();
+            var allWeapons = WeaponConstants.GetAllWeapons(true, true);
             foreach (var weapon in allWeapons)
             {
                 var template = itemVerifier.CreateRandomTemplate(weapon);
@@ -583,7 +583,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void SmartCloneWithBaseNamedWeaponCanBeUsedAsWeaponOrArmor()
         {
-            var allWeapons = WeaponConstants.GetAllWeapons();
+            var allWeapons = WeaponConstants.GetAllWeapons(true, true);
             foreach (var weapon in allWeapons)
             {
                 var name = Guid.NewGuid().ToString();

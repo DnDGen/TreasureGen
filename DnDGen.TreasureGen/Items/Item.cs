@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.TreasureGen.Items.Magical;
+using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items.Magical;
 
 namespace DnDGen.TreasureGen.Items
 {
@@ -36,7 +36,7 @@ namespace DnDGen.TreasureGen.Items
         {
             get
             {
-                var allWeapons = WeaponConstants.GetAllWeapons();
+                var allWeapons = WeaponConstants.GetAllWeapons(true, true);
                 var allArmors = ArmorConstants.GetAllArmorsAndShields(true);
 
                 return ItemType == ItemTypeConstants.Weapon

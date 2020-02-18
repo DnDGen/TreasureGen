@@ -118,12 +118,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
         private bool NameMatches(string source, string target)
         {
-            var sourceReplacements = replacementSelector.SelectAll(source);
-            var targetReplacements = replacementSelector.SelectAll(target);
+            var sourceReplacement = replacementSelector.SelectSingle(source);
+            var targetReplacement = replacementSelector.SelectSingle(target);
 
             return source == target
-                || sourceReplacements.Any(s => s == target)
-                || targetReplacements.Any(t => t == source);
+                || sourceReplacement == target
+                || targetReplacement == source;
         }
 
         private int GetQuantity(Weapon weapon)
