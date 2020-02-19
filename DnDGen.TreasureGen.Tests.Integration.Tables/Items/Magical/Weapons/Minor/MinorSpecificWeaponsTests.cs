@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Minor
 {
@@ -26,12 +26,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Mino
 
         [TestCase(WeaponConstants.SleepArrow, 1, 1, 15)]
         [TestCase(WeaponConstants.ScreamingBolt, 2, 16, 25)]
-        [TestCase(WeaponConstants.SilverDagger, 0, 26, 45)]
+        [TestCase(WeaponConstants.Dagger_Silver, 0, 26, 45)]
         [TestCase(WeaponConstants.Longsword, 0, 46, 65)]
         [TestCase(WeaponConstants.JavelinOfLightning, 0, 66, 75)]
         [TestCase(WeaponConstants.SlayingArrow, 1, 76, 80)]
-        [TestCase(WeaponConstants.Dagger, 0, 81, 90)]
-        [TestCase(WeaponConstants.Battleaxe, 0, 91, 100)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, 0, 81, 90)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, 0, 91, 100)]
         public override void TypeAndAmountPercentile(string type, int amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);

@@ -277,7 +277,11 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(WeaponConstants.Sickle, PowerConstants.Minor)]
         [TestCase(WeaponConstants.Sickle, PowerConstants.Medium)]
         [TestCase(WeaponConstants.Sickle, PowerConstants.Major)]
-        [TestCase(WeaponConstants.SilverDagger, PowerConstants.Minor)]
+        [TestCase(WeaponConstants.Dagger_Silver, PowerConstants.Minor)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, PowerConstants.Minor)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, PowerConstants.Medium)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, PowerConstants.Minor)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, PowerConstants.Medium)]
         [TestCase(WeaponConstants.SlayingArrow, PowerConstants.Minor)]
         [TestCase(WeaponConstants.SlayingArrow, PowerConstants.Medium)]
         [TestCase(WeaponConstants.SleepArrow, PowerConstants.Minor)]
@@ -334,7 +338,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [Test]
         public void AllWeaponsCanBeGenerated()
         {
-            var weapons = WeaponConstants.GetAllWeapons();
+            var weapons = WeaponConstants.GetAllWeapons(true, true);
 
             foreach (var weapon in weapons)
             {

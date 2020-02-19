@@ -466,7 +466,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(gear.Magic.Charges, Is.EqualTo(0));
         }
 
-        [TestCase(WeaponConstants.SilverDagger, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
         [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
@@ -576,7 +578,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.SilverDagger)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
         [TestCase(WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade0)]
         [TestCase(WeaponConstants.LuckBlade1)]
@@ -586,7 +588,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             var template = itemVerifier.CreateRandomTemplate(oldName);
 
-            var specificItems = new[] { "other item", WeaponConstants.SilverDagger, WeaponConstants.LuckBlade };
+            var specificItems = new[] { "other item", WeaponConstants.Dagger_Silver, WeaponConstants.LuckBlade };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).Returns(specificItems);
 
             var isSpecific = specificGearGenerator.IsSpecific(template);
@@ -941,7 +943,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.SilverDagger)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
         [TestCase(WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade0)]
         [TestCase(WeaponConstants.LuckBlade1)]
@@ -951,10 +953,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var isSpecific = specificGearGenerator.IsSpecific("gear type", oldName);
             Assert.That(isSpecific, Is.True);
@@ -965,10 +967,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var isSpecific = specificGearGenerator.IsSpecific("gear type", oldName);
             Assert.That(isSpecific, Is.False);
@@ -1066,7 +1068,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.SilverDagger)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
         [TestCase(WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade0)]
         [TestCase(WeaponConstants.LuckBlade1)]
@@ -1076,10 +1078,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             mockTypeAndAmountPercentileSelector
@@ -1092,14 +1094,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade1, Amount = 1 },
                     new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade2, Amount = 2 },
                     new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade3, Amount = 3 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.SilverDagger, Amount = 600 },
+                    new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
                 });
 
             var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
             Assert.That(isSpecific, Is.True);
         }
 
-        [TestCase(WeaponConstants.SilverDagger)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
         [TestCase(WeaponConstants.LuckBlade0)]
         [TestCase(WeaponConstants.LuckBlade1)]
         [TestCase(WeaponConstants.LuckBlade2)]
@@ -1108,10 +1110,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             var selections = new[]
@@ -1122,7 +1124,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade1, Amount = 1 },
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade2, Amount = 2 },
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade3, Amount = 3 },
-                new TypeAndAmountSelection { Type = WeaponConstants.SilverDagger, Amount = 600 },
+                new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
             }.Where(s => s.Type != oldName);
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
@@ -1137,10 +1139,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             mockTypeAndAmountPercentileSelector
@@ -1150,7 +1152,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
                     new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
                     new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade, Amount = 42 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.SilverDagger, Amount = 600 },
+                    new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
                 });
 
             var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
@@ -1171,7 +1173,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var attributes = new[] { AttributeConstants.Charged };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.LuckBlade)).Returns(attributes);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, WeaponConstants.LuckBlade3)).Returns(attributes);
 
             var item = new Item();
             item.Name = WeaponConstants.LuckBlade3;
@@ -1195,10 +1197,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             var selections = new[]
@@ -1206,7 +1208,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
                 new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade0, Amount = 0 },
-                new TypeAndAmountSelection { Type = WeaponConstants.SilverDagger, Amount = 600 },
+                new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
             };
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
@@ -1222,10 +1224,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.SilverDagger });
+                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             var selections = new[]
@@ -1235,7 +1237,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade1, Amount = 1 },
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade2, Amount = 2 },
                 new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade3, Amount = 3 },
-                new TypeAndAmountSelection { Type = WeaponConstants.SilverDagger, Amount = 600 },
+                new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
             };
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))

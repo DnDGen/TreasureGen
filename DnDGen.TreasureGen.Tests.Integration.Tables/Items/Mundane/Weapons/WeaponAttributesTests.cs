@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Tables;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -413,7 +413,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void AllWeaponsAreInTable()
         {
-            var weapons = WeaponConstants.GetBaseNames();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var keys = GetKeys();
             AssertCollection(keys, weapons);
         }
@@ -421,7 +421,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void MeleeWeaponsMatchConstants()
         {
-            var melee = WeaponConstants.GetAllMelee();
+            var melee = WeaponConstants.GetAllMelee(false, false);
             VerifyAttribute(melee, AttributeConstants.Melee);
         }
 
@@ -432,7 +432,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             var entriesWith = table.Where(kvp => kvp.Value.Contains(attribute));
             var entriesWithout = table.Except(entriesWith);
 
-            var weapons = WeaponConstants.GetBaseNames();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var weaponsWithout = weapons.Except(weaponsWith);
 
             AssertCollection(entriesWith.Select(kvp => kvp.Key), weaponsWith);
@@ -442,84 +442,84 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void RangedWeaponsMatchConstants()
         {
-            var ranged = WeaponConstants.GetAllRanged();
+            var ranged = WeaponConstants.GetAllRanged(false, false);
             VerifyAttribute(ranged, AttributeConstants.Ranged);
         }
 
         [Test]
         public void SimpleWeaponsMatchConstants()
         {
-            var simple = WeaponConstants.GetAllSimple();
+            var simple = WeaponConstants.GetAllSimple(false, false);
             VerifyAttribute(simple, AttributeConstants.Simple);
         }
 
         [Test]
         public void MartialWeaponsMatchConstants()
         {
-            var martial = WeaponConstants.GetAllMartial();
+            var martial = WeaponConstants.GetAllMartial(false, false);
             VerifyAttribute(martial, AttributeConstants.Martial);
         }
 
         [Test]
         public void ExoticWeaponsMatchConstants()
         {
-            var exotic = WeaponConstants.GetAllExotic();
+            var exotic = WeaponConstants.GetAllExotic(false, false);
             VerifyAttribute(exotic, AttributeConstants.Exotic);
         }
 
         [Test]
         public void LightWeaponsMatchConstants()
         {
-            var light = WeaponConstants.GetAllLight();
+            var light = WeaponConstants.GetAllLightMelee(false, false);
             VerifyAttribute(light, AttributeConstants.Light);
         }
 
         [Test]
         public void OneHandedWeaponsMatchConstants()
         {
-            var oneHanded = WeaponConstants.GetAllOneHanded();
+            var oneHanded = WeaponConstants.GetAllOneHandedMelee(false, false);
             VerifyAttribute(oneHanded, AttributeConstants.OneHanded);
         }
 
         [Test]
         public void TwoHandedWeaponsMatchConstants()
         {
-            var twoHanded = WeaponConstants.GetAllTwoHanded();
+            var twoHanded = WeaponConstants.GetAllTwoHandedMelee(false, false);
             VerifyAttribute(twoHanded, AttributeConstants.TwoHanded);
         }
 
         [Test]
         public void DoubleWeaponsMatchConstants()
         {
-            var doubleWeapons = WeaponConstants.GetAllDouble();
+            var doubleWeapons = WeaponConstants.GetAllDouble(false, false);
             VerifyAttribute(doubleWeapons, AttributeConstants.DoubleWeapon);
         }
 
         [Test]
         public void ReachWeaponsMatchConstants()
         {
-            var reach = WeaponConstants.GetAllReach();
+            var reach = WeaponConstants.GetAllReach(false, false);
             VerifyAttribute(reach, AttributeConstants.Reach);
         }
 
         [Test]
         public void ThrownWeaponsMatchConstants()
         {
-            var thrown = WeaponConstants.GetAllThrown();
+            var thrown = WeaponConstants.GetAllThrown(false, false);
             VerifyAttribute(thrown, AttributeConstants.Thrown);
         }
 
         [Test]
         public void ProjectileWeaponsMatchConstants()
         {
-            var projectiles = WeaponConstants.GetAllProjectile();
+            var projectiles = WeaponConstants.GetAllProjectile(false, false);
             VerifyAttribute(projectiles, AttributeConstants.Projectile);
         }
 
         [Test]
         public void AmmunitionWeaponsMatchConstants()
         {
-            var ammunitions = WeaponConstants.GetAllAmmunition();
+            var ammunitions = WeaponConstants.GetAllAmmunition(false, false);
             VerifyAttribute(ammunitions, AttributeConstants.Ammunition);
         }
     }

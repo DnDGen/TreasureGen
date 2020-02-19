@@ -183,11 +183,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow)]
         [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow)]
         [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow)]
-        [TestCase(WeaponConstants.SilverDagger, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
         [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        [TestCase("whatever", "because I said so")]
         public void SelectSingle_ReplacesWholeString(string value, string replacement)
         {
             replacements[value] = new[] { replacement };
@@ -201,6 +204,100 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         {
             Assert.That(() => replacementSelector.SelectSingle("my SECOND value"),
                 Throws.Exception);
+        }
+
+        [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_SelectRandom_DoesNotReplaceWholeName(string value, string replacement)
+        {
+            replacements[value] = new[] { replacement };
+
+            var result = replacementSelector.SelectRandom(value);
+            Assert.That(result, Is.EqualTo(value));
+        }
+
+        [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_SelectRandom_DoesNotReplacePartialName(string partialValue, string replacement)
+        {
+            var value = $"{partialValue}/9266";
+            replacements[partialValue] = new[] { replacement };
+
+            var result = replacementSelector.SelectRandom(value);
+            Assert.That(result, Is.EqualTo(value));
+        }
+
+        [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_SelectAll_DoesNotReplaceWholeName(string value, string replacement)
+        {
+            replacements[value] = new[] { replacement };
+
+            var result = replacementSelector.SelectAll(value);
+            Assert.That(result.Single(), Is.EqualTo(value));
+        }
+
+        [TestCase(WeaponConstants.CompositePlus0Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus1Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus2Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus3Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus4Longbow, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositePlus0Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus1Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositePlus2Shortbow, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_SelectAll_DoesNotReplacePartialName(string partialValue, string replacement)
+        {
+            var value = $"{partialValue}/9266";
+            replacements[partialValue] = new[] { replacement };
+
+            var result = replacementSelector.SelectAll(value);
+            Assert.That(result.Single(), Is.EqualTo(value));
         }
     }
 }
