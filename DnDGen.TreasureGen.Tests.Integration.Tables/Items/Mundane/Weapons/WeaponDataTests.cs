@@ -1,9 +1,9 @@
-﻿using Ninject;
-using NUnit.Framework;
-using System.Linq;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Tables;
+using Ninject;
+using NUnit.Framework;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -103,7 +103,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void AllWeaponsAreInTable()
         {
-            var weapons = WeaponConstants.GetBaseNames();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var keys = GetKeys();
             AssertCollection(keys, weapons);
         }
@@ -111,8 +111,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void BludgeoningWeaponsMatchConstants()
         {
-            var weapons = WeaponConstants.GetBaseNames();
-            var bludgeoning = WeaponConstants.GetAllBludgeoning();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
+            var bludgeoning = WeaponConstants.GetAllBludgeoning(false, false);
 
             foreach (var weapon in weapons)
             {
@@ -128,8 +128,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void PiercingWeaponsMatchConstants()
         {
-            var weapons = WeaponConstants.GetBaseNames();
-            var piercing = WeaponConstants.GetAllPiercing();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
+            var piercing = WeaponConstants.GetAllPiercing(false, false);
 
             foreach (var weapon in weapons)
             {
@@ -145,8 +145,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void SlashingWeaponsMatchConstants()
         {
-            var weapons = WeaponConstants.GetBaseNames();
-            var slashing = WeaponConstants.GetAllSlashing();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
+            var slashing = WeaponConstants.GetAllSlashing(false, false);
 
             foreach (var weapon in weapons)
             {

@@ -784,6 +784,14 @@
     <entry>Dagger</entry>
   </collection>
   <collection>
+    <name>Adamantine dagger</name>
+    <entry>Dagger</entry>
+  </collection>
+  <collection>
+    <name>Adamantine battleaxe</name>
+    <entry>Battleaxe</entry>
+  </collection>
+  <collection>
     <name>Slaying arrow</name>
     <entry>Arrow</entry>
   </collection>
@@ -862,6 +870,8 @@
     <entry>Shatterspike</entry>
     <entry>Shifter's sorrow</entry>
     <entry>Silver dagger</entry>
+    <entry>Adamantine dagger</entry>
+    <entry>Adamantine battleaxe</entry>
     <entry>Slaying arrow</entry>
     <entry>Sleep arrow</entry>
     <entry>Spined shield</entry>
@@ -1101,6 +1111,8 @@
     <entry>Shatterspike</entry>
     <entry>Shifter's sorrow</entry>
     <entry>Silver dagger</entry>
+    <entry>Adamantine dagger</entry>
+    <entry>Adamantine battleaxe</entry>
     <entry>Slaying arrow</entry>
     <entry>Sleep arrow</entry>
     <entry>Sun blade</entry>

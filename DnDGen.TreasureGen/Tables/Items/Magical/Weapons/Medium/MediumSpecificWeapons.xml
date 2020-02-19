@@ -13,12 +13,12 @@
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Dagger,0</content>
+        <content>Adamantine dagger,0</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Battleaxe,0</content>
+        <content>Adamantine battleaxe,0</content>
         <upper>33</upper>
     </percentile>
     <percentile>

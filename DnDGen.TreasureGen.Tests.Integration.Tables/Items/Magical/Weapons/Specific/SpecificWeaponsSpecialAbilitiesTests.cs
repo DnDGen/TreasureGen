@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
@@ -15,12 +15,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
 
         [TestCase(WeaponConstants.SleepArrow)]
         [TestCase(WeaponConstants.ScreamingBolt)]
-        [TestCase(WeaponConstants.SilverDagger)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
+        [TestCase(WeaponConstants.Dagger_Adamantine)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine)]
         [TestCase(WeaponConstants.Longsword)]
         [TestCase(WeaponConstants.JavelinOfLightning)]
         [TestCase(WeaponConstants.SlayingArrow)]
-        [TestCase(WeaponConstants.Dagger)]
-        [TestCase(WeaponConstants.Battleaxe)]
         [TestCase(WeaponConstants.GreaterSlayingArrow)]
         [TestCase(WeaponConstants.Shatterspike)]
         [TestCase(WeaponConstants.DaggerOfVenom)]

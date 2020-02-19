@@ -96,7 +96,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private Item GetWeapon(Item staff)
         {
-            var weapons = WeaponConstants.GetBaseNames();
+            var weapons = WeaponConstants.GetAllMelee(false, false);
             if (!weapons.Intersect(staff.BaseNames).Any())
                 return staff;
 

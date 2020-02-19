@@ -86,7 +86,9 @@ namespace DnDGen.TreasureGen.Items
         public const string CompositePlus4Longbow = "Composite (+4) longbow";
         public const string SleepArrow = "Sleep arrow";
         public const string ScreamingBolt = "Screaming bolt";
-        public const string SilverDagger = "Silver dagger";
+        public const string Dagger_Silver = "Silver dagger";
+        public const string Dagger_Adamantine = "Adamantine dagger";
+        public const string Battleaxe_Adamantine = "Adamantine battleaxe";
         public const string JavelinOfLightning = "Javelin of lightning";
         public const string SlayingArrow = "Slaying arrow";
         public const string AssassinsDagger = "Assassin's dagger";
@@ -122,9 +124,259 @@ namespace DnDGen.TreasureGen.Items
         public const string MaceOfBlood = "Mace of blood";
         public const string BerserkingSword = "Berserking sword";
 
-        public static IEnumerable<string> GetBaseNames()
+        public static IEnumerable<string> GetAllWeapons(bool includeSpecific, bool includeTemplates)
         {
-            return new[]
+            var melee = GetAllMelee(includeSpecific, includeTemplates);
+            var ranged = GetAllRanged(includeSpecific, includeTemplates);
+
+            return melee.Union(ranged);
+        }
+
+        public static IEnumerable<string> GetAllMelee(bool includeSpecific, bool includeTemplates)
+        {
+            var light = GetAllLightMelee(includeSpecific, includeTemplates);
+            var oneHanded = GetAllOneHandedMelee(includeSpecific, includeTemplates);
+            var twoHanded = GetAllTwoHandedMelee(includeSpecific, includeTemplates);
+
+            return light.Union(oneHanded).Union(twoHanded);
+        }
+
+        public static IEnumerable<string> GetAllRanged(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> ranged = new[]
+            {
+                Dagger,
+                Club,
+                Shortspear,
+                Spear,
+                HeavyCrossbow,
+                CrossbowBolt,
+                LightCrossbow,
+                Dart,
+                Javelin,
+                Sling,
+                SlingBullet,
+                ThrowingAxe,
+                LightHammer,
+                Trident,
+                Longbow,
+                Arrow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+                Sai,
+                Bolas,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+                Net,
+                Shuriken,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    SleepArrow,
+                    ScreamingBolt,
+                    JavelinOfLightning,
+                    SlayingArrow,
+                    Oathbow,
+                    GreaterSlayingArrow,
+                    NetOfSnaring,
+                    DaggerOfVenom,
+                    AssassinsDagger,
+                    TridentOfFishCommand,
+                    TridentOfWarning,
+                    CursedBackbiterSpear,
+                };
+
+                ranged = ranged.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                    CompositePlus0Longbow,
+                    CompositePlus0Shortbow,
+                    CompositePlus1Longbow,
+                    CompositePlus1Shortbow,
+                    CompositePlus2Longbow,
+                    CompositePlus2Shortbow,
+                    CompositePlus3Longbow,
+                    CompositePlus4Longbow,
+                };
+
+                ranged = ranged.Union(templates);
+            }
+
+            return ranged;
+        }
+
+        public static IEnumerable<string> GetAllLightMelee(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> light = new[]
+            {
+                Gauntlet,
+                Dagger,
+                PunchingDagger,
+                SpikedGauntlet,
+                LightMace,
+                Sickle,
+                ThrowingAxe,
+                LightHammer,
+                Handaxe,
+                Kukri,
+                LightPick,
+                Sap,
+                ShortSword,
+                Kama,
+                Nunchaku,
+                Sai,
+                Siangham,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    AssassinsDagger,
+                    SwordOfSubtlety,
+                    SunBlade,
+                    LuckBlade,
+                    DaggerOfVenom,
+                };
+
+                light = light.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                    LuckBlade0,
+                    LuckBlade1,
+                    LuckBlade2,
+                    LuckBlade3,
+                };
+
+                light = light.Union(templates);
+            }
+
+            return light;
+        }
+
+        public static IEnumerable<string> GetAllOneHandedMelee(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> oneHanded = new[]
+            {
+                Club,
+                HeavyMace,
+                Morningstar,
+                Shortspear,
+                Battleaxe,
+                Flail,
+                Longsword,
+                HeavyPick,
+                Rapier,
+                Scimitar,
+                Trident,
+                Warhammer,
+                BastardSword,
+                DwarvenWaraxe,
+                Whip,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    TridentOfFishCommand,
+                    FlameTongue,
+                    SwordOfThePlanes,
+                    NineLivesStealer,
+                    SwordOfLifeStealing,
+                    MaceOfTerror,
+                    SylvanScimitar,
+                    RapierOfPuncturing,
+                    SunBlade,
+                    DwarvenThrower,
+                    MaceOfSmiting,
+                    HolyAvenger,
+                    Shatterspike,
+                    TridentOfWarning,
+                    CursedBackbiterSpear,
+                    CursedMinus2Sword,
+                    MaceOfBlood,
+                };
+
+                oneHanded = oneHanded.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Battleaxe_Adamantine,
+                };
+
+                oneHanded = oneHanded.Union(templates);
+            }
+
+            return oneHanded;
+        }
+
+        public static IEnumerable<string> GetAllTwoHandedMelee(bool includeSpecific, bool includeTemplates)
+        {
+            var twoHanded = new[]
+            {
+                Longspear,
+                Quarterstaff,
+                Spear,
+                Falchion,
+                Glaive,
+                Greataxe,
+                Greatclub,
+                HeavyFlail,
+                Greatsword,
+                Guisarme,
+                Halberd,
+                Lance,
+                Ranseur,
+                Scythe,
+                OrcDoubleAxe,
+                SpikedChain,
+                BastardSword,
+                DireFlail,
+                GnomeHookedHammer,
+                TwoBladedSword,
+                DwarvenUrgrosh,
+                PincerStaff,
+            };
+
+            if (!includeSpecific)
+                return twoHanded;
+
+            var specific = new[]
+            {
+                ShiftersSorrow,
+                LifeDrinker,
+                SunBlade,
+                FrostBrand,
+                BerserkingSword,
+            };
+
+            return twoHanded.Union(specific);
+        }
+
+        public static IEnumerable<string> GetAllSimple(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> simple = new[]
             {
                 Gauntlet,
                 Dagger,
@@ -146,6 +398,43 @@ namespace DnDGen.TreasureGen.Items
                 Javelin,
                 Sling,
                 SlingBullet,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    ScreamingBolt,
+                    JavelinOfLightning,
+                    AssassinsDagger,
+                    MaceOfTerror,
+                    MaceOfSmiting,
+                    DaggerOfVenom,
+                    CursedBackbiterSpear,
+                    MaceOfBlood,
+                };
+
+                simple = simple.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                };
+
+                simple = simple.Union(templates);
+            }
+
+            return simple;
+        }
+
+        public static IEnumerable<string> GetAllMartial(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> martial = new[]
+            {
                 ThrowingAxe,
                 LightHammer,
                 Handaxe,
@@ -177,6 +466,68 @@ namespace DnDGen.TreasureGen.Items
                 CompositeLongbow,
                 Shortbow,
                 CompositeShortbow,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    SleepArrow,
+                    SlayingArrow,
+                    TridentOfFishCommand,
+                    FlameTongue,
+                    SwordOfSubtlety,
+                    SwordOfThePlanes,
+                    NineLivesStealer,
+                    SwordOfLifeStealing,
+                    Oathbow,
+                    LifeDrinker,
+                    SylvanScimitar,
+                    RapierOfPuncturing,
+                    SunBlade,
+                    FrostBrand,
+                    DwarvenThrower,
+                    HolyAvenger,
+                    LuckBlade,
+                    GreaterSlayingArrow,
+                    Shatterspike,
+                    TridentOfWarning,
+                    BerserkingSword,
+                    CursedMinus2Sword,
+                };
+
+                martial = martial.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Battleaxe_Adamantine,
+                    CompositePlus0Longbow,
+                    CompositePlus0Shortbow,
+                    CompositePlus1Longbow,
+                    CompositePlus1Shortbow,
+                    CompositePlus2Longbow,
+                    CompositePlus2Shortbow,
+                    CompositePlus3Longbow,
+                    CompositePlus4Longbow,
+                    LuckBlade0,
+                    LuckBlade1,
+                    LuckBlade2,
+                    LuckBlade3,
+                };
+
+                martial = martial.Union(templates);
+            }
+
+            return martial;
+        }
+
+        public static IEnumerable<string> GetAllExotic(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> exotic = new[]
+            {
                 Kama,
                 Nunchaku,
                 Sai,
@@ -198,416 +549,224 @@ namespace DnDGen.TreasureGen.Items
                 Shuriken,
                 PincerStaff,
             };
+
+            if (!includeSpecific)
+                return exotic;
+
+            var specific = new[]
+            {
+                ShiftersSorrow,
+                SunBlade,
+                NetOfSnaring,
+            };
+
+            return exotic.Union(specific);
         }
 
-        public static IEnumerable<string> GetAllMelee()
+        public static IEnumerable<string> GetAllDouble(bool includeSpecific, bool includeTemplates)
         {
-            return new[]
+            IEnumerable<string> doubleWeapons = new[]
             {
-                Gauntlet,
-                Dagger,
-                PunchingDagger,
-                SpikedGauntlet,
-                LightMace,
-                Sickle,
-                Club,
-                HeavyMace,
-                Morningstar,
-                Shortspear,
-                Longspear,
-                Spear,
                 Quarterstaff,
-                ThrowingAxe,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                LightPick,
-                Sap,
-                ShortSword,
-                Battleaxe,
-                Flail,
-                Longsword,
-                HeavyPick,
-                Rapier,
-                Scimitar,
-                Trident,
-                Warhammer,
-                Falchion,
-                Glaive,
-                Greataxe,
-                Greatclub,
-                HeavyFlail,
-                Greatsword,
-                Guisarme,
-                Halberd,
-                Lance,
-                Ranseur,
-                Scythe,
-                Kama,
-                Nunchaku,
-                Sai,
-                Siangham,
-                BastardSword,
-                DwarvenWaraxe,
-                Whip,
                 OrcDoubleAxe,
-                SpikedChain,
                 DireFlail,
                 GnomeHookedHammer,
                 TwoBladedSword,
                 DwarvenUrgrosh,
-                PincerStaff,
             };
+
+            if (!includeSpecific)
+                return doubleWeapons;
+
+            var specific = new[]
+            {
+                ShiftersSorrow,
+            };
+
+            return doubleWeapons.Union(specific);
         }
 
-        public static IEnumerable<string> GetAllWeapons()
+        public static IEnumerable<string> GetAllReach(bool includeSpecific, bool includeTemplates)
         {
-            var baseNames = GetBaseNames();
+            var reach = new[]
+            {
+                Longspear,
+                Glaive,
+                Guisarme,
+                Lance,
+                Ranseur,
+                Whip,
+                SpikedChain,
+                PincerStaff,
+            };
 
-            return baseNames.Union(new[]
+            return reach;
+        }
+
+        public static IEnumerable<string> GetAllProjectile(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> projectile = new[]
+            {
+                HeavyCrossbow,
+                LightCrossbow,
+                Sling,
+                Longbow,
+                CompositeLongbow,
+                Shortbow,
+                CompositeShortbow,
+                HandCrossbow,
+                HeavyRepeatingCrossbow,
+                LightRepeatingCrossbow,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    Oathbow,
+                };
+
+                projectile = projectile.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    CompositePlus0Longbow,
+                    CompositePlus0Shortbow,
+                    CompositePlus1Longbow,
+                    CompositePlus1Shortbow,
+                    CompositePlus2Longbow,
+                    CompositePlus2Shortbow,
+                    CompositePlus3Longbow,
+                    CompositePlus4Longbow,
+                };
+
+                projectile = projectile.Union(templates);
+            }
+
+            return projectile;
+        }
+
+        public static IEnumerable<string> GetAllAmmunition(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> ammunition = new[]
+            {
+                CrossbowBolt,
+                SlingBullet,
+                Arrow,
+                Shuriken,
+            };
+
+            if (!includeSpecific)
+                return ammunition;
+
+            var specific = new[]
             {
                 SleepArrow,
                 ScreamingBolt,
-                JavelinOfLightning,
                 SlayingArrow,
-                AssassinsDagger,
-                ShiftersSorrow,
-                TridentOfFishCommand,
-                FlameTongue,
-                SwordOfSubtlety,
-                SwordOfThePlanes,
-                NineLivesStealer,
-                SwordOfLifeStealing,
-                Oathbow,
+                GreaterSlayingArrow,
+            };
+
+            return ammunition.Union(specific);
+        }
+
+        public static IEnumerable<string> GetAllThrown(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> thrown = new[]
+            {
+                Dagger,
+                Club,
+                Shortspear,
+                Spear,
+                Dart,
+                Javelin,
+                ThrowingAxe,
+                LightHammer,
+                Trident,
+                Sai,
+                Bolas,
+                Net,
+                Shuriken,
+            };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    JavelinOfLightning,
+                    AssassinsDagger,
+                    TridentOfFishCommand,
+                    DaggerOfVenom,
+                    TridentOfWarning,
+                    CursedBackbiterSpear,
+                    NetOfSnaring,
+                };
+
+                thrown = thrown.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                };
+
+                thrown = thrown.Union(templates);
+            }
+
+            return thrown;
+        }
+
+        public static IEnumerable<string> GetAllBludgeoning(bool includeSpecific, bool includeTemplates)
+        {
+            IEnumerable<string> bludgeoning = new[]
+            {
+                Gauntlet,
+                LightMace,
+                Club,
+                HeavyMace,
+                Morningstar,
+                Quarterstaff,
+                Sling,
+                SlingBullet,
+                LightHammer,
+                Sap,
+                Flail,
+                Warhammer,
+                Greatclub,
+                HeavyFlail,
+                Nunchaku,
+                Sai,
+                DireFlail,
+                GnomeHookedHammer,
+                Bolas,
+                Net,
+                PincerStaff,
+            };
+
+            if (!includeSpecific)
+                return bludgeoning;
+
+            var specific = new[]
+            {
                 MaceOfTerror,
-                LifeDrinker,
-                SylvanScimitar,
-                RapierOfPuncturing,
-                SunBlade,
-                FrostBrand,
                 DwarvenThrower,
                 MaceOfSmiting,
-                HolyAvenger,
-                LuckBlade,
-                GreaterSlayingArrow,
-                Shatterspike,
-                DaggerOfVenom,
-                TridentOfWarning,
-                BerserkingSword,
-                CursedBackbiterSpear,
-                CursedMinus2Sword,
                 NetOfSnaring,
                 MaceOfBlood,
-            });
-        }
-
-        public static IEnumerable<string> GetAllRanged()
-        {
-            return new[]
-            {
-                Dagger,
-                Club,
-                Shortspear,
-                Spear,
-                HeavyCrossbow,
-                CrossbowBolt,
-                LightCrossbow,
-                Dart,
-                Javelin,
-                Sling,
-                SlingBullet,
-                ThrowingAxe,
-                LightHammer,
-                Trident,
-                Longbow,
-                Arrow,
-                CompositeLongbow,
-                Shortbow,
-                CompositeShortbow,
-                Sai,
-                Bolas,
-                HandCrossbow,
-                HeavyRepeatingCrossbow,
-                LightRepeatingCrossbow,
-                Net,
-                Shuriken,
             };
+
+            return bludgeoning.Union(specific);
         }
 
-        public static IEnumerable<string> GetAllLight()
+        public static IEnumerable<string> GetAllPiercing(bool includeSpecific, bool includeTemplates)
         {
-            return new[]
-            {
-                Gauntlet,
-                Dagger,
-                PunchingDagger,
-                SpikedGauntlet,
-                LightMace,
-                Sickle,
-                ThrowingAxe,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                LightPick,
-                Sap,
-                ShortSword,
-                Kama,
-                Nunchaku,
-                Sai,
-                Siangham,
-            };
-        }
-
-        public static IEnumerable<string> GetAllOneHanded()
-        {
-            return new[]
-            {
-                Club,
-                HeavyMace,
-                Morningstar,
-                Shortspear,
-                Battleaxe,
-                Flail,
-                Longsword,
-                HeavyPick,
-                Rapier,
-                Scimitar,
-                Trident,
-                Warhammer,
-                BastardSword,
-                DwarvenWaraxe,
-                Whip,
-            };
-        }
-
-        public static IEnumerable<string> GetAllTwoHanded()
-        {
-            return new[]
-            {
-                Longspear,
-                Quarterstaff,
-                Spear,
-                Falchion,
-                Glaive,
-                Greataxe,
-                Greatclub,
-                HeavyFlail,
-                Greatsword,
-                Guisarme,
-                Halberd,
-                Lance,
-                Ranseur,
-                Scythe,
-                OrcDoubleAxe,
-                SpikedChain,
-                BastardSword,
-                DireFlail,
-                GnomeHookedHammer,
-                TwoBladedSword,
-                DwarvenUrgrosh,
-                PincerStaff,
-            };
-        }
-
-        public static IEnumerable<string> GetAllSimple()
-        {
-            return new[]
-            {
-                Gauntlet,
-                Dagger,
-                PunchingDagger,
-                SpikedGauntlet,
-                LightMace,
-                Sickle,
-                Club,
-                HeavyMace,
-                Morningstar,
-                Shortspear,
-                Longspear,
-                Spear,
-                Quarterstaff,
-                HeavyCrossbow,
-                CrossbowBolt,
-                LightCrossbow,
-                Dart,
-                Javelin,
-                Sling,
-                SlingBullet,
-            };
-        }
-
-        public static IEnumerable<string> GetAllMartial()
-        {
-            return new[]
-            {
-                ThrowingAxe,
-                LightHammer,
-                Handaxe,
-                Kukri,
-                LightPick,
-                Sap,
-                ShortSword,
-                Battleaxe,
-                Flail,
-                Longsword,
-                HeavyPick,
-                Rapier,
-                Scimitar,
-                Trident,
-                Warhammer,
-                Falchion,
-                Glaive,
-                Greataxe,
-                Greatclub,
-                HeavyFlail,
-                Greatsword,
-                Guisarme,
-                Halberd,
-                Lance,
-                Ranseur,
-                Scythe,
-                Longbow,
-                Arrow,
-                CompositeLongbow,
-                Shortbow,
-                CompositeShortbow,
-            };
-        }
-
-        public static IEnumerable<string> GetAllExotic()
-        {
-            return new[]
-            {
-                Kama,
-                Nunchaku,
-                Sai,
-                Siangham,
-                BastardSword,
-                DwarvenWaraxe,
-                Whip,
-                OrcDoubleAxe,
-                SpikedChain,
-                DireFlail,
-                GnomeHookedHammer,
-                TwoBladedSword,
-                DwarvenUrgrosh,
-                Bolas,
-                HandCrossbow,
-                HeavyRepeatingCrossbow,
-                LightRepeatingCrossbow,
-                Net,
-                Shuriken,
-                PincerStaff,
-            };
-        }
-
-        public static IEnumerable<string> GetAllDouble()
-        {
-            return new[]
-            {
-                Quarterstaff,
-                OrcDoubleAxe,
-                DireFlail,
-                GnomeHookedHammer,
-                TwoBladedSword,
-                DwarvenUrgrosh,
-            };
-        }
-
-        public static IEnumerable<string> GetAllReach()
-        {
-            return new[]
-            {
-                Longspear,
-                Glaive,
-                Guisarme,
-                Lance,
-                Ranseur,
-                Whip,
-                SpikedChain,
-                PincerStaff,
-            };
-        }
-
-        public static IEnumerable<string> GetAllProjectile()
-        {
-            return new[]
-            {
-                HeavyCrossbow,
-                LightCrossbow,
-                Sling,
-                Longbow,
-                CompositeLongbow,
-                Shortbow,
-                CompositeShortbow,
-                HandCrossbow,
-                HeavyRepeatingCrossbow,
-                LightRepeatingCrossbow,
-            };
-        }
-
-        public static IEnumerable<string> GetAllAmmunition()
-        {
-            return new[]
-            {
-                CrossbowBolt,
-                SlingBullet,
-                Arrow,
-                Shuriken,
-            };
-        }
-
-        public static IEnumerable<string> GetAllThrown()
-        {
-            return new[]
-            {
-                Dagger,
-                Club,
-                Shortspear,
-                Spear,
-                Dart,
-                Javelin,
-                ThrowingAxe,
-                LightHammer,
-                Trident,
-                Sai,
-                Bolas,
-                Net,
-                Shuriken,
-            };
-        }
-
-        public static IEnumerable<string> GetAllBludgeoning()
-        {
-            return new[]
-            {
-                Gauntlet,
-                LightMace,
-                Club,
-                HeavyMace,
-                Morningstar,
-                Quarterstaff,
-                Sling,
-                SlingBullet,
-                LightHammer,
-                Sap,
-                Flail,
-                Warhammer,
-                Greatclub,
-                HeavyFlail,
-                Nunchaku,
-                Sai,
-                DireFlail,
-                GnomeHookedHammer,
-                Bolas,
-                Net,
-                PincerStaff,
-            };
-        }
-
-        public static IEnumerable<string> GetAllPiercing()
-        {
-            return new[]
+            IEnumerable<string> piercing = new[]
             {
                 Dagger,
                 PunchingDagger,
@@ -644,11 +803,59 @@ namespace DnDGen.TreasureGen.Items
                 LightRepeatingCrossbow,
                 Shuriken,
             };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    SleepArrow,
+                    ScreamingBolt,
+                    JavelinOfLightning,
+                    SlayingArrow,
+                    AssassinsDagger,
+                    TridentOfFishCommand,
+                    SwordOfSubtlety,
+                    Oathbow,
+                    RapierOfPuncturing,
+                    LuckBlade,
+                    GreaterSlayingArrow,
+                    DaggerOfVenom,
+                    TridentOfWarning,
+                    CursedBackbiterSpear,
+                };
+
+                piercing = piercing.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                    CompositePlus0Longbow,
+                    CompositePlus0Shortbow,
+                    CompositePlus1Longbow,
+                    CompositePlus1Shortbow,
+                    CompositePlus2Longbow,
+                    CompositePlus2Shortbow,
+                    CompositePlus3Longbow,
+                    CompositePlus4Longbow,
+                    LuckBlade0,
+                    LuckBlade1,
+                    LuckBlade2,
+                    LuckBlade3,
+                };
+
+                piercing = piercing.Union(templates);
+            }
+
+            return piercing;
         }
 
-        public static IEnumerable<string> GetAllSlashing()
+        public static IEnumerable<string> GetAllSlashing(bool includeSpecific, bool includeTemplates)
         {
-            return new[]
+            IEnumerable<string> slashing = new[]
             {
                 Dagger,
                 Sickle,
@@ -673,6 +880,45 @@ namespace DnDGen.TreasureGen.Items
                 TwoBladedSword,
                 DwarvenUrgrosh,
             };
+
+            if (includeSpecific)
+            {
+                var specific = new[]
+                {
+                    AssassinsDagger,
+                    ShiftersSorrow,
+                    FlameTongue,
+                    SwordOfThePlanes,
+                    NineLivesStealer,
+                    SwordOfLifeStealing,
+                    LifeDrinker,
+                    SylvanScimitar,
+                    SunBlade,
+                    FrostBrand,
+                    HolyAvenger,
+                    LuckBlade,
+                    Shatterspike,
+                    DaggerOfVenom,
+                    BerserkingSword,
+                    CursedMinus2Sword,
+                };
+
+                slashing = slashing.Union(specific);
+            }
+
+            if (includeTemplates)
+            {
+                var templates = new[]
+                {
+                    Dagger_Adamantine,
+                    Dagger_Silver,
+                    Battleaxe_Adamantine,
+                };
+
+                slashing = slashing.Union(templates);
+            }
+
+            return slashing;
         }
     }
 }

@@ -40,12 +40,51 @@ namespace DnDGen.TreasureGen.Items
         public const string ArmorOfRage = "Armor of rage";
         public const string ArmorOfArrowAttraction = "Armor of arrow attraction";
 
-        public static IEnumerable<string> GetBaseNames()
+        public static IEnumerable<string> GetAllArmorsAndShields(bool includeSpecific)
         {
-            return GetAllArmors(false);
+            var armors = GetAllArmors(includeSpecific);
+            var shields = GetAllShields(includeSpecific);
+
+            return armors.Union(shields);
+        }
+
+        public static IEnumerable<string> GetAllShields(bool includeSpecific)
+        {
+            var shields = new[]
+            {
+                Buckler,
+                LightWoodenShield,
+                LightSteelShield,
+                HeavyWoodenShield,
+                HeavySteelShield,
+                TowerShield,
+            };
+
+            if (!includeSpecific)
+                return shields;
+
+            var specificShields = new[]
+            {
+                CastersShield,
+                SpinedShield,
+                LionsShield,
+                WingedShield,
+                AbsorbingShield,
+            };
+
+            return shields.Union(specificShields);
         }
 
         public static IEnumerable<string> GetAllArmors(bool includeSpecific)
+        {
+            var light = GetAllLightArmors(includeSpecific);
+            var medium = GetAllMediumArmors(includeSpecific);
+            var heavy = GetAllHeavyArmors(includeSpecific);
+
+            return light.Union(medium).Union(heavy);
+        }
+
+        public static IEnumerable<string> GetAllLightArmors(bool includeSpecific)
         {
             var armors = new[]
             {
@@ -53,62 +92,67 @@ namespace DnDGen.TreasureGen.Items
                 LeatherArmor,
                 StuddedLeatherArmor,
                 ChainShirt,
-                HideArmor,
-                ScaleMail,
-                Chainmail,
-                Breastplate,
-                SplintMail,
-                BandedMail,
-                HalfPlate,
-                FullPlate,
-                Buckler,
-                LightWoodenShield,
-                LightSteelShield,
-                HeavyWoodenShield,
-                HeavySteelShield,
-                TowerShield,
-                ElvenChain,
-                RhinoHide,
-                DwarvenPlate,
-                BandedMailOfLuck,
-                CelestialArmor,
-                PlateArmorOfTheDeep,
-                BreastplateOfCommand,
-                FullPlateOfSpeed,
-                DemonArmor,
-                CastersShield,
-                SpinedShield,
-                LionsShield,
-                WingedShield,
-                AbsorbingShield,
-                ArmorOfArrowAttraction,
-                ArmorOfRage
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
                 return armors;
 
             var specificArmors = new[]
             {
                 ElvenChain,
+                CelestialArmor,
+            };
+
+            return armors.Union(specificArmors);
+        }
+
+        public static IEnumerable<string> GetAllMediumArmors(bool includeSpecific)
+        {
+            var armors = new[]
+            {
+                HideArmor,
+                ScaleMail,
+                Chainmail,
+                Breastplate,
+            };
+
+            if (!includeSpecific)
+                return armors;
+
+            var specificArmors = new[]
+            {
                 RhinoHide,
+                BreastplateOfCommand,
+            };
+
+            return armors.Union(specificArmors);
+        }
+
+        public static IEnumerable<string> GetAllHeavyArmors(bool includeSpecific)
+        {
+            var armors = new[]
+            {
+                SplintMail,
+                BandedMail,
+                HalfPlate,
+                FullPlate,
+            };
+
+            if (!includeSpecific)
+                return armors;
+
+            var specificArmors = new[]
+            {
                 DwarvenPlate,
                 BandedMailOfLuck,
-                CelestialArmor,
                 PlateArmorOfTheDeep,
-                BreastplateOfCommand,
                 FullPlateOfSpeed,
                 DemonArmor,
-                CastersShield,
-                SpinedShield,
-                LionsShield,
-                WingedShield,
-                AbsorbingShield,
                 ArmorOfArrowAttraction,
                 ArmorOfRage
             };
 
-            return armors.Except(specificArmors);
+            return armors.Union(specificArmors);
         }
     }
 }

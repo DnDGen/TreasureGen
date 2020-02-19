@@ -64,7 +64,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
             var item = magicalItemGenerator.GenerateFrom(template, allowDecoration);
             AssertItem(item);
-            Assert.That(item.Name, Is.EqualTo(name));
+            Assert.That(item.ItemType, Is.EqualTo(itemType));
 
             if (!allowDecoration)
                 ItemVerifier.AssertMagicalItemFromTemplate(item, template);
@@ -78,7 +78,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             var item = GenerateItemFromName(name);
             AssertItem(item);
             Assert.That(item.ItemType, Is.EqualTo(itemType));
-            Assert.That(item.NameMatches(name), Is.True, $"{item.Name} ({string.Join(", ", item.BaseNames)}) from '{name}'");
         }
 
         protected override Item GenerateItemFromName(string name, string power = null)

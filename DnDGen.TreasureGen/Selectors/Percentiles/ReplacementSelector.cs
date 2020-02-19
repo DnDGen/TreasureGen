@@ -16,7 +16,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
 
         public string SelectRandom(string source)
         {
-            var replacementTables = GetReplacementTargetsAndTables(source);
+            var replacementTables = GetReplacementTargetsAndTables(source, false);
             var replaceTargets = replacementTables.Keys;
             var result = source;
 
@@ -28,26 +28,30 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
             return result;
         }
 
-        private Dictionary<string, IEnumerable<string>> GetReplacementTargetsAndTables(string source)
+        private Dictionary<string, IEnumerable<string>> GetReplacementTargetsAndTables(string source, bool allowSingle)
         {
             var replacements = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ReplacementStrings);
             var matchingReplacements = replacements
                 .Where(kvp => source.Contains(kvp.Key))
+                .Where(kvp => allowSingle || kvp.Value.Count() > 1)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             return matchingReplacements;
         }
 
-        public IEnumerable<string> SelectAll(string source) => SelectAll(new[] { source });
-        public string SelectSingle(string source) => SelectAll(source).Single();
+        private bool ShouldPerformReplace(string source, bool allowSingle) => GetReplacementTargetsAndTables(source, allowSingle).Any();
 
-        public IEnumerable<string> SelectAll(IEnumerable<string> sources)
+        public IEnumerable<string> SelectAll(string source) => SelectAll(new[] { source }, false);
+        public IEnumerable<string> SelectAll(IEnumerable<string> sources) => SelectAll(sources, false);
+        public string SelectSingle(string source) => SelectAll(new[] { source }, true).Single();
+
+        private IEnumerable<string> SelectAll(IEnumerable<string> sources, bool allowSingle)
         {
             var allResults = new List<string>();
             allResults.AddRange(sources);
-            var replacements = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ReplacementStrings);
+
             var resultsNeedingReplacement = allResults
-                .Where(r => replacements.Keys.Any(k => r.Contains(k)));
+                .Where(r => ShouldPerformReplace(r, allowSingle));
 
             while (resultsNeedingReplacement.Any())
             {
@@ -55,7 +59,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
                 foreach (var result in resultsNeedingReplacement.ToArray())
                 {
                     var replacedResult = result;
-                    var replacementTables = GetReplacementTargetsAndTables(result);
+                    var replacementTables = GetReplacementTargetsAndTables(result, allowSingle);
 
                     foreach (var replaceTarget in replacementTables.Keys)
                     {

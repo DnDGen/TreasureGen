@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Specific
 {
@@ -25,7 +25,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
             AttributeConstants.Specific,
             AttributeConstants.Ranged,
             AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.SilverDagger,
+        [TestCase(WeaponConstants.Dagger_Silver,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Simple,
@@ -54,7 +54,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
             AttributeConstants.Martial,
             AttributeConstants.Wood,
             AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.Dagger,
+        [TestCase(WeaponConstants.Dagger_Adamantine,
             AttributeConstants.Specific,
             AttributeConstants.Melee,
             AttributeConstants.Simple,
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
             AttributeConstants.Thrown,
             AttributeConstants.Light,
             AttributeConstants.Metal)]
-        [TestCase(WeaponConstants.Battleaxe,
+        [TestCase(WeaponConstants.Battleaxe_Adamantine,
             AttributeConstants.Specific,
             AttributeConstants.Martial,
             AttributeConstants.Melee,
@@ -298,8 +298,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
             Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));
         }
 
-        [TestCase(WeaponConstants.Battleaxe, WeaponConstants.Battleaxe)]
-        [TestCase(WeaponConstants.Dagger, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
         [TestCase(WeaponConstants.AssassinsDagger, WeaponConstants.Dagger)]
         [TestCase(WeaponConstants.DaggerOfVenom, WeaponConstants.Dagger)]
         [TestCase(WeaponConstants.DwarvenThrower, WeaponConstants.Warhammer)]
@@ -322,7 +322,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
         [TestCase(WeaponConstants.ScreamingBolt, WeaponConstants.CrossbowBolt)]
         [TestCase(WeaponConstants.Shatterspike, WeaponConstants.Longsword)]
         [TestCase(WeaponConstants.ShiftersSorrow, WeaponConstants.TwoBladedSword)]
-        [TestCase(WeaponConstants.SilverDagger, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
         [TestCase(WeaponConstants.SlayingArrow, WeaponConstants.Arrow)]
         [TestCase(WeaponConstants.GreaterSlayingArrow, WeaponConstants.Arrow)]
         [TestCase(WeaponConstants.SleepArrow, WeaponConstants.Arrow)]

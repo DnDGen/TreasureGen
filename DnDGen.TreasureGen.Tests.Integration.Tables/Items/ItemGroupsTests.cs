@@ -235,7 +235,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         [TestCase(WeaponConstants.Shuriken, WeaponConstants.Shuriken)]
         [TestCase(WeaponConstants.Siangham, WeaponConstants.Siangham)]
         [TestCase(WeaponConstants.Sickle, WeaponConstants.Sickle)]
-        [TestCase(WeaponConstants.SilverDagger, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
         [TestCase(WeaponConstants.SlayingArrow, WeaponConstants.Arrow)]
         [TestCase(WeaponConstants.SleepArrow, WeaponConstants.Arrow)]
         [TestCase(WeaponConstants.Sling, WeaponConstants.Sling)]
@@ -310,7 +312,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 WeaponConstants.ScreamingBolt,
                 WeaponConstants.Shatterspike,
                 WeaponConstants.ShiftersSorrow,
-                WeaponConstants.SilverDagger,
+                WeaponConstants.Dagger_Silver,
+                WeaponConstants.Dagger_Adamantine,
+                WeaponConstants.Battleaxe_Adamantine,
                 WeaponConstants.SlayingArrow,
                 WeaponConstants.SleepArrow,
                 WeaponConstants.SunBlade,
@@ -375,7 +379,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                 WeaponConstants.ScreamingBolt,
                 WeaponConstants.Shatterspike,
                 WeaponConstants.ShiftersSorrow,
-                WeaponConstants.SilverDagger,
+                WeaponConstants.Dagger_Silver,
+                WeaponConstants.Dagger_Adamantine,
+                WeaponConstants.Battleaxe_Adamantine,
                 WeaponConstants.SlayingArrow,
                 WeaponConstants.SleepArrow,
                 WeaponConstants.SunBlade,

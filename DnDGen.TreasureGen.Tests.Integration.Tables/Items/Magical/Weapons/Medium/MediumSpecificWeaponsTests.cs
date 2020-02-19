@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Medium
 {
@@ -26,8 +26,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Medi
 
         [TestCase(WeaponConstants.JavelinOfLightning, 0, 1, 9)]
         [TestCase(WeaponConstants.SlayingArrow, 1, 10, 15)]
-        [TestCase(WeaponConstants.Dagger, 0, 16, 24)]
-        [TestCase(WeaponConstants.Battleaxe, 0, 25, 33)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, 0, 16, 24)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, 0, 25, 33)]
         [TestCase(WeaponConstants.GreaterSlayingArrow, 1, 34, 37)]
         [TestCase(WeaponConstants.Shatterspike, 1, 38, 40)]
         [TestCase(WeaponConstants.DaggerOfVenom, 1, 41, 46)]

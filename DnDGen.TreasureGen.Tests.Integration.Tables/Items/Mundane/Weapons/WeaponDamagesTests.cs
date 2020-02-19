@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using System.Linq;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
 {
@@ -96,7 +96,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void AllWeaponsAreInTable()
         {
-            var weapons = WeaponConstants.GetBaseNames();
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var keys = GetKeys();
             AssertCollection(keys, weapons);
         }
