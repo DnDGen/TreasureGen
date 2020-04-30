@@ -1,7 +1,6 @@
 ﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Generators.Coins
 {
@@ -28,7 +27,5 @@ namespace DnDGen.TreasureGen.Generators.Coins
 
             return coin;
         }
-
-        public async Task<Coin> GenerateAtLevelAsync(int level) => await Task.Run(() => GenerateAtLevel(level));
     }
 }

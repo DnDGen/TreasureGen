@@ -33,7 +33,7 @@ namespace DnDGen.TreasureGen.Generators
         {
             var treasure = new Treasure();
 
-            var coinTask = coinFactory.GenerateAtLevelAsync(level);
+            var coinTask = Task.Run(() => coinFactory.GenerateAtLevel(level));
             var goodsTask = goodsFactory.GenerateAtLevelAsync(level);
             var itemsTask = itemsFactory.GenerateAtLevelAsync(level);
 
