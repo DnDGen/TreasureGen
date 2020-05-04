@@ -4,6 +4,7 @@ using DnDGen.TreasureGen.Goods;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
 {
@@ -31,8 +32,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
 
             mockInnerGenerator.Setup(g => g.GenerateAtLevel(9266)).Returns(innerGoods);
 
-            var Goods = decorator.GenerateAtLevel(9266);
-            Assert.That(Goods, Is.EqualTo(innerGoods));
+            var goods = decorator.GenerateAtLevel(9266);
+            Assert.That(goods, Is.EqualTo(innerGoods));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning level 9266 goods generation"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Completed generation of 2 level 9266 goods"), Times.Once);
+        }
+
+        [Test]
+        public async Task LogGenerationEventsAsync()
+        {
+            var innerGoods = new List<Good>();
+            innerGoods.Add(new Good());
+            innerGoods.Add(new Good());
+
+            mockInnerGenerator.Setup(g => g.GenerateAtLevelAsync(9266)).ReturnsAsync(innerGoods);
+
+            var goods = await decorator.GenerateAtLevelAsync(9266);
+            Assert.That(goods, Is.EqualTo(innerGoods));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning level 9266 goods generation"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Completed generation of 2 level 9266 goods"), Times.Once);

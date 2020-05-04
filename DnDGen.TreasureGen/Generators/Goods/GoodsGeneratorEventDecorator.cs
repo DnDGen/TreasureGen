@@ -2,6 +2,7 @@
 using DnDGen.TreasureGen.Goods;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Generators.Goods
 {
@@ -20,6 +21,15 @@ namespace DnDGen.TreasureGen.Generators.Goods
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} goods generation");
             var goods = innerGenerator.GenerateAtLevel(level);
+            eventQueue.Enqueue("TreasureGen", $"Completed generation of {goods.Count()} level {level} goods");
+
+            return goods;
+        }
+
+        public async Task<IEnumerable<Good>> GenerateAtLevelAsync(int level)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Beginning level {level} goods generation");
+            var goods = await innerGenerator.GenerateAtLevelAsync(level);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {goods.Count()} level {level} goods");
 
             return goods;

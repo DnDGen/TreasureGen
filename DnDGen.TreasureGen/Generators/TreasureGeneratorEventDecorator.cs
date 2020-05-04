@@ -1,5 +1,5 @@
 ﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Generators;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Generators
 {
@@ -18,6 +18,15 @@ namespace DnDGen.TreasureGen.Generators
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} treasure generation");
             var treasure = innerGenerator.GenerateAtLevel(level);
+            eventQueue.Enqueue("TreasureGen", $"Completed generation of level {level} treasure");
+
+            return treasure;
+        }
+
+        public async Task<Treasure> GenerateAtLevelAsync(int level)
+        {
+            eventQueue.Enqueue("TreasureGen", $"Beginning level {level} treasure generation");
+            var treasure = await innerGenerator.GenerateAtLevelAsync(level);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of level {level} treasure");
 
             return treasure;
