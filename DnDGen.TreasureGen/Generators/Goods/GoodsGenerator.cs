@@ -1,4 +1,5 @@
-﻿using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.EventGen;
+using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Selectors.Selections;
@@ -13,6 +14,7 @@ namespace DnDGen.TreasureGen.Generators.Goods
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ICollectionSelector collectionSelector;
+        private readonly ClientIDManager clientIDManager;
 
         public GoodsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionSelector)
         {
@@ -67,6 +69,8 @@ namespace DnDGen.TreasureGen.Generators.Goods
             while (typeAndAmountSelection.Amount-- > 0)
             {
                 var task = Task.Run(() => GenerateGood(typeAndAmountSelection));
+                var clientId = clientIDManager.GetClientID();
+                clientIDManager.SetClientID(clientId, task);
 
                 tasks.Add(task);
             }
