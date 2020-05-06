@@ -4,6 +4,7 @@ using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
@@ -24,7 +25,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.replacementSelector = replacementSelector;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -32,7 +33,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return GeneratePotion(result.Type, result.Amount);
         }
 
-        private Item GeneratePotion(string itemName, int bonus)
+        private Item GeneratePotion(string itemName, int bonus, params string[] traits)
         {
             var potion = new Item();
 
@@ -42,11 +43,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             potion.Magic.Bonus = bonus;
             potion.IsMagical = true;
             potion.Attributes = new[] { AttributeConstants.OneTimeUse };
+            potion.Traits = new HashSet<string>(traits);
 
             return potion;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (!IsItemOfPower(itemName, power))
                 throw new ArgumentException($"{itemName} is not a valid {power} Potion");
@@ -56,7 +58,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var matches = results.Where(r => NameMatches(r.Type, itemName));
             var result = collectionSelector.SelectRandomFrom(matches);
 
-            return GeneratePotion(result.Type, result.Amount);
+            return GeneratePotion(result.Type, result.Amount, traits);
         }
 
         private bool NameMatches(string source, string target)
@@ -69,7 +71,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 || targetReplacements.Any(t => t == source);
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var potion = template.Clone();
             potion.BaseNames = new[] { potion.Name };

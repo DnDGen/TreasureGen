@@ -22,7 +22,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             this.armorDataSelector = armorDataSelector;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             var name = GetRandomName();
             return Generate(name);
@@ -57,7 +57,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return armor;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             template.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name);
 

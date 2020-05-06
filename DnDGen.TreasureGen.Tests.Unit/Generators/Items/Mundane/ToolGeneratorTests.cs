@@ -30,7 +30,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         {
             mockPercentileSelector.Setup(p => p.SelectFrom(TableNameConstants.Percentiles.Set.Tools)).Returns("tool");
 
-            var tool = toolGenerator.Generate();
+            var tool = toolGenerator.GenerateRandom();
             Assert.That(tool.Name, Is.EqualTo("tool"));
             Assert.That(tool.BaseNames.Single(), Is.EqualTo("tool"));
             Assert.That(tool.Attributes, Is.Empty);
@@ -47,7 +47,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var tool = toolGenerator.GenerateFrom(template);
+            var tool = toolGenerator.Generate(template);
             itemVerifier.AssertMundaneItemFromTemplate(tool, template);
             Assert.That(tool.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var tool = toolGenerator.GenerateFrom(template, true);
+            var tool = toolGenerator.Generate(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(tool, template);
             Assert.That(tool.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(tool.ItemType, Is.EqualTo(ItemTypeConstants.Tool));

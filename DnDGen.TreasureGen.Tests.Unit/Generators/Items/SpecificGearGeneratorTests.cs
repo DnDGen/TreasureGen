@@ -99,11 +99,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     ItemTypeConstants.Weapon))
                 .Returns(ItemTypeConstants.Armor);
 
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.IsAny<Item>(), false)).Returns(new Armor());
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.IsAny<Item>(), false)).Returns(new Weapon());
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns(new Armor());
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns(new Weapon());
 
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == baseNames[0]), false)).Returns(mundaneArmor);
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == baseNames[0]), false)).Returns(mundaneWeapon);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == baseNames[0]), false)).Returns(mundaneArmor);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == baseNames[0]), false)).Returns(mundaneWeapon);
 
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
@@ -643,7 +643,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 )
             ).Returns(specialAbilities);
 
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneArmor);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(template);
@@ -698,7 +698,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 )
             ).Returns(specialAbilities);
 
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneArmor);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(template);
@@ -754,7 +754,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 )
             ).Returns(specialAbilities);
 
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(template);
@@ -813,7 +813,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 )
             ).Returns(specialAbilities);
 
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(template);
@@ -878,7 +878,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 )
             ).Returns(specialAbilities);
 
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(mundaneWeapon);
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var gear = specificGearGenerator.GenerateFrom(template);

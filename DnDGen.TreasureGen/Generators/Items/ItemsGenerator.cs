@@ -28,7 +28,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             this.rangeDataSelector = rangeDataSelector;
         }
 
-        public IEnumerable<Item> GenerateAtLevel(int level)
+        public IEnumerable<Item> GenerateRandomAtLevel(int level)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -36,7 +36,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             while (result.Amount-- > 0)
             {
-                var item = GenerateAtPower(result.Type);
+                var item = GenerateRandomAtPower(result.Type);
                 items.Add(item);
             }
 
@@ -53,22 +53,22 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             while (majorItemQuantity-- > 0)
             {
-                var epicItem = GenerateAtPower(PowerConstants.Major);
+                var epicItem = GenerateRandomAtPower(PowerConstants.Major);
                 epicItems.Add(epicItem);
             }
 
             return epicItems;
         }
 
-        private Item GenerateAtPower(string power)
+        private Item GenerateRandomAtPower(string power)
         {
             if (power == PowerConstants.Mundane)
-                return GenerateMundaneItem();
+                return GenerateRandomMundaneItem();
 
-            return GenerateMagicalItemAtPower(power);
+            return GenerateRandomMagicalItemAtPower(power);
         }
 
-        private Item GenerateMundaneItem()
+        private Item GenerateRandomMundaneItem()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane);
             var itemType = percentileSelector.SelectFrom(tableName);
@@ -76,7 +76,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             return GenerateMundaneItem(itemType);
         }
 
-        private Item GenerateMagicalItemAtPower(string power)
+        private Item GenerateRandomMagicalItemAtPower(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, power);
             var itemType = percentileSelector.SelectFrom(tableName);
@@ -84,36 +84,36 @@ namespace DnDGen.TreasureGen.Generators.Items
             return GenerateMagicalItemAtPower(power, itemType);
         }
 
-        public Item GenerateAtLevel(int level, string itemType, string itemName)
+        public Item GenerateAtLevel(int level, string itemType, string itemName, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var power = result.Type;
 
             if (power == PowerConstants.Mundane)
-                return GenerateMundaneItem(itemType, itemName);
+                return GenerateMundaneItem(itemType, itemName, traits);
 
-            return GenerateMagicalItemAtPower(power, itemType, itemName);
+            return GenerateMagicalItemAtPower(power, itemType, itemName, traits);
         }
 
-        private Item GenerateMundaneItem(string itemType, string itemName = null)
+        private Item GenerateMundaneItem(string itemType, string itemName = null, params string[] traits)
         {
             var generator = justInTimeFactory.Build<MundaneItemGenerator>(itemType);
 
             if (string.IsNullOrEmpty(itemName))
-                return generator.Generate();
+                return generator.GenerateRandom();
 
-            return generator.Generate(itemName);
+            return generator.Generate(itemName, traits);
         }
 
-        private Item GenerateMagicalItemAtPower(string power, string itemType, string itemName = null)
+        private Item GenerateMagicalItemAtPower(string power, string itemType, string itemName = null, params string[] traits)
         {
             var magicalItemGenerator = justInTimeFactory.Build<MagicalItemGenerator>(itemType);
 
             if (string.IsNullOrEmpty(itemName))
-                return magicalItemGenerator.GenerateFrom(power);
+                return magicalItemGenerator.GenerateRandom(power);
 
-            return magicalItemGenerator.GenerateFrom(power, itemName);
+            return magicalItemGenerator.Generate(power, itemName, traits);
         }
     }
 }

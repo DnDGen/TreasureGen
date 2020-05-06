@@ -19,9 +19,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             this.collectionsSelector = collectionsSelector;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
-            var item = innerGenerator.Generate();
+            var item = innerGenerator.GenerateRandom();
             item = AddSpecialMaterials(item);
 
             return item;
@@ -56,9 +56,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             if (allowRandomDecoration)
             {

@@ -1,5 +1,6 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -14,9 +15,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.traitsGenerator = traitsGenerator;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             if (allowRandomDecoration)
             {
@@ -36,9 +37,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
-            var item = innerGenerator.GenerateFrom(power);
+            var item = innerGenerator.GenerateRandom(power);
             if (!item.IsMagical)
                 return item;
 
@@ -47,10 +48,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(power, itemName);
-            if (!item.IsMagical)
+            var item = innerGenerator.Generate(power, itemName, traits);
+            if (!item.IsMagical || traits.Any())
                 return item;
 
             item = AddTraits(item);

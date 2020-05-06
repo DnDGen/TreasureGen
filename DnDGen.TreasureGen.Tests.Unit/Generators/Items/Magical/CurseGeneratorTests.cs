@@ -156,7 +156,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemGroups["wrong specific cursed item"] = new[] { "wrong base name", "other base name" };
             itemGroups["other specific cursed item"] = new[] { "other base name" };
 
-            var cursedItem = curseGenerator.Generate();
+            var cursedItem = curseGenerator.GenerateRandom();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.IsMagical, Is.True);
@@ -185,9 +185,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
-            var cursedItem = curseGenerator.Generate();
+            var cursedItem = curseGenerator.GenerateRandom();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.IsMagical, Is.True);
@@ -225,9 +225,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
-            var cursedItem = curseGenerator.Generate();
+            var cursedItem = curseGenerator.GenerateRandom();
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups["specific cursed item"]));
             Assert.That(cursedItem.Quantity, Is.EqualTo(9266));
@@ -287,7 +287,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var cursedItem = curseGenerator.GenerateFrom(template);
+            var cursedItem = curseGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(cursedItem, template);
             Assert.That(cursedItem.Name, Is.EqualTo(name));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(baseNames));
@@ -315,9 +315,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
-            var cursedItem = curseGenerator.GenerateFrom(template);
+            var cursedItem = curseGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(cursedItem, template);
             Assert.That(cursedItem.Name, Is.EqualTo(name));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups[name]));
@@ -354,9 +354,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
-            var cursedItem = curseGenerator.GenerateFrom(template);
+            var cursedItem = curseGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(cursedItem, template);
             Assert.That(cursedItem.Name, Is.EqualTo(name));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups[name]));
@@ -392,7 +392,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             itemGroups[name] = new[] { "base name", "other base name" };
 
-            var cursedItem = curseGenerator.GenerateFrom(template);
+            var cursedItem = curseGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(cursedItem, template);
             Assert.That(cursedItem.Name, Is.EqualTo(name));
             Assert.That(cursedItem.BaseNames, Is.EquivalentTo(itemGroups[name]));
@@ -498,7 +498,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
             var cursedItem = curseGenerator.Generate("specific cursed item");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -536,7 +536,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
             var cursedItem = curseGenerator.Generate("base name");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -572,7 +572,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
             var cursedItem = curseGenerator.Generate("specific cursed item");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -612,7 +612,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
             var cursedItem = curseGenerator.Generate("base name");
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -795,7 +795,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneArmor = itemVerifier.CreateRandomArmorTemplate("base name");
             mundaneArmor.Size = Guid.NewGuid().ToString();
-            mockMundaneArmorGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
+            mockMundaneArmorGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneArmor);
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem(ItemTypeConstants.Armor);
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));
@@ -840,7 +840,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate("base name");
             mundaneWeapon.Size = Guid.NewGuid().ToString();
             mundaneWeapon.Quantity = 9266;
-            mockMundaneWeaponGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == "base name"), false)).Returns(mundaneWeapon);
 
             var cursedItem = curseGenerator.GenerateSpecificCursedItem(ItemTypeConstants.Weapon);
             Assert.That(cursedItem.Name, Is.EqualTo("specific cursed item"));

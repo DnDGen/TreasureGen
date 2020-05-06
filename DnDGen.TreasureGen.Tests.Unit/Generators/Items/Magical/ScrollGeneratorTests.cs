@@ -32,7 +32,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateScroll()
         {
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Minor);
             AssertScroll(scroll);
         }
 
@@ -53,7 +53,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Minor);
             AssertScroll(scroll);
             Assert.That(scroll.Traits, Contains.Item("spell type"));
             Assert.That(scroll.Contents, Contains.Item("spell (9266)"));
@@ -64,7 +64,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Minor);
             AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
@@ -74,7 +74,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.Setup(d => d.Roll(1).d(4).AsSum<int>()).Returns(9266);
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Medium);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Medium);
             AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
@@ -84,7 +84,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.Setup(d => d.Roll(1).d(6).AsSum<int>()).Returns(9266);
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Major);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Major);
             AssertScroll(scroll);
             Assert.That(scroll.Contents.Count, Is.EqualTo(9266));
         }
@@ -92,7 +92,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void UnknownPowerThrowsError()
         {
-            Assert.That(() => scrollGenerator.GenerateFrom("power"), Throws.ArgumentException);
+            Assert.That(() => scrollGenerator.GenerateRandom("power"), Throws.ArgumentException);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Minor);
             AssertScroll(scroll);
             mockSpellGenerator.Verify(g => g.GenerateType(), Times.Once);
         }
@@ -110,7 +110,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             mockDice.Setup(d => d.Roll(1).d(3).AsSum<int>()).Returns(9266);
 
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor);
+            var scroll = scrollGenerator.GenerateRandom(PowerConstants.Minor);
             AssertScroll(scroll);
             mockSpellGenerator.Verify(g => g.GenerateLevel(PowerConstants.Minor), Times.Exactly(9266));
             mockSpellGenerator.Verify(g => g.Generate(It.IsAny<string>(), It.IsAny<int>()), Times.Exactly(9266));
@@ -122,7 +122,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var scroll = scrollGenerator.GenerateFrom(template);
+            var scroll = scrollGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(scroll, template);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.IsMagical, Is.True);
@@ -139,7 +139,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var scroll = scrollGenerator.GenerateFrom(template, true);
+            var scroll = scrollGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(scroll, template);
             Assert.That(scroll.ItemType, Is.EqualTo(ItemTypeConstants.Scroll));
             Assert.That(scroll.IsMagical, Is.True);
@@ -153,14 +153,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName()
         {
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, ItemTypeConstants.Scroll);
+            var scroll = scrollGenerator.Generate(PowerConstants.Minor, ItemTypeConstants.Scroll);
             AssertScroll(scroll);
         }
 
         [Test]
         public void GenerateFromNonScrollName()
         {
-            var scroll = scrollGenerator.GenerateFrom(PowerConstants.Minor, "my special thing");
+            var scroll = scrollGenerator.Generate(PowerConstants.Minor, "my special thing");
             AssertScroll(scroll, "my special thing");
         }
 

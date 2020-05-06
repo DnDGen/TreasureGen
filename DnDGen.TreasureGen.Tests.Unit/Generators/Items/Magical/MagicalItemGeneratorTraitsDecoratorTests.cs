@@ -25,13 +25,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             item.ItemType = "item type";
             item.IsMagical = true;
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power")).Returns(item);
+            mockInnerGenerator.Setup(g => g.GenerateRandom("power")).Returns(item);
         }
 
         [Test]
         public void GetItemFromInnerGenerator()
         {
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
             Assert.That(decoratedItem, Is.EqualTo(item));
         }
 
@@ -41,7 +41,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
             Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
         }
 
@@ -51,7 +51,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
 
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
 
             foreach (var trait in traits)
                 Assert.That(decoratedItem.Traits, Contains.Item(trait));
@@ -78,7 +78,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
             Assert.That(decoratedItem.Traits, Contains.Item("inner trait"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
         }
@@ -90,7 +90,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power");
+            var decoratedItem = decorator.GenerateRandom("power");
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
 
@@ -99,11 +99,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(item);
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom(template, allowRandomDecoration: true);
+            var decoratedItem = decorator.Generate(template, allowRandomDecoration: true);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
@@ -114,11 +114,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(item);
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom(template);
+            var decoratedItem = decorator.Generate(template);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
@@ -128,46 +128,46 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName()
         {
             var namedItem = new Item();
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(namedItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(namedItem);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
             Assert.That(decoratedItem, Is.EqualTo(namedItem));
         }
 
         [Test]
         public void GetTraitsForItemFromName()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
 
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
             Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
         }
 
         [Test]
         public void EmptyTraitsFromNameIsAlright()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
 
             var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
 
         [Test]
         public void ItemFromNameCanHaveTraitsFromInnerGenerator()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
 
             item.Traits.Add("inner trait");
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
 
             foreach (var trait in traits)
                 Assert.That(decoratedItem.Traits, Contains.Item(trait));
@@ -179,13 +179,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void EmptyGeneratedTraitsFromNameIsAlright()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
 
             item.Traits.Add("inner trait");
             var traits = Enumerable.Empty<string>();
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
             Assert.That(decoratedItem.Traits, Contains.Item("inner trait"));
             Assert.That(decoratedItem.Traits.Count, Is.EqualTo(1));
         }
@@ -193,13 +193,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotGetTraitsIfItemFromNameIsNotMagical()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(item);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
 
             item.IsMagical = false;
             var traits = new[] { "trait 1", "trait 2" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.GenerateFrom("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name");
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
 

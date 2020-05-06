@@ -14,10 +14,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.eventQueue = eventQueue;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             eventQueue.Enqueue("TreasureGen", $"Generating a specific cursed item from template: {template.ItemType} {template.Name}");
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             if (item != null)
                 eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");
@@ -27,10 +27,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             eventQueue.Enqueue("TreasureGen", "Generating a specific cursed item");
-            var item = innerGenerator.Generate();
+            var item = innerGenerator.GenerateRandom();
 
             if (item != null)
                 eventQueue.Enqueue("TreasureGen", $"Generated {item.ItemType} {item.Name}");

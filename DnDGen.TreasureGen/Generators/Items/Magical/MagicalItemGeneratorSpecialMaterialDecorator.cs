@@ -20,9 +20,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.collectionsSelector = collectionsSelector;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             item = AddSpecialMaterials(item, allowRandomDecoration);
 
@@ -50,9 +50,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
-            var item = innerGenerator.GenerateFrom(power);
+            var item = innerGenerator.GenerateRandom(power);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;
@@ -62,9 +62,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(power, itemName);
+            var item = innerGenerator.Generate(power, itemName, traits);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
                 return item;

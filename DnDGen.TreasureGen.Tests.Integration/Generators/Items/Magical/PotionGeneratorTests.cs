@@ -210,7 +210,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = PotionGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = PotionGenerator.GenerateFrom(power, itemName);
+            var item = PotionGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 

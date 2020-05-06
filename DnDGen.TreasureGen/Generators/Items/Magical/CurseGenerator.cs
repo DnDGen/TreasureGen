@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return $"Dependent: {situation}";
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             return Generate(name);
@@ -130,7 +130,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             template.Name = cursedItem.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.GenerateFrom(template);
+            var armor = mundaneArmorGenerator.Generate(template);
 
             cursedItem.CloneInto(armor);
 
@@ -146,7 +146,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             template.Name = cursedItem.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var weapon = mundaneWeaponGenerator.Generate(template);
 
             cursedItem.Quantity = weapon.Quantity;
             cursedItem.CloneInto(weapon);
@@ -190,7 +190,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return itemTypes.Values.SelectMany(v => v).Contains(itemType);
         }
 
-        public Item GenerateFrom(Item template, bool allowDecoration = false)
+        public Item Generate(Item template, bool allowDecoration = false)
         {
             var prototype = template.SmartClone();
             prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);

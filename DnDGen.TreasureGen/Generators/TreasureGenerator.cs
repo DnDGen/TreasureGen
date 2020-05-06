@@ -24,7 +24,7 @@ namespace DnDGen.TreasureGen.Generators
 
             treasure.Coin = coinFactory.GenerateAtLevel(level);
             treasure.Goods = goodsFactory.GenerateAtLevel(level);
-            treasure.Items = itemsFactory.GenerateAtLevel(level);
+            treasure.Items = itemsFactory.GenerateRandomAtLevel(level);
 
             return treasure;
         }

@@ -48,5 +48,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             var item = ArmorGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Tiny)]
+        public void GenerateArmorOfSize(string itemName, string size)
+        {
+            var item = ArmorGenerator.Generate(itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Armor>());
+
+            var armor = item as Armor;
+            Assert.That(armor.Size, Is.EqualTo(size));
+        }
     }
 }

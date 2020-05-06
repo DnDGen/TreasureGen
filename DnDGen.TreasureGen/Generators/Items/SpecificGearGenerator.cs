@@ -108,7 +108,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             template.Name = gear.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.GenerateFrom(template) as Armor;
+            var armor = mundaneArmorGenerator.Generate(template) as Armor;
 
             gear.CloneInto(armor);
 
@@ -124,7 +124,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             template.Name = gear.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template) as Weapon;
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(template) as Weapon;
             var weapon = new Weapon();
 
             gear.CloneInto(weapon);
@@ -205,7 +205,7 @@ namespace DnDGen.TreasureGen.Generators.Items
                 || specificItems.Contains(changedName);
         }
 
-        public Item GeneratePrototypeFrom(string power, string specificGearType, string name)
+        public Item GeneratePrototypeFrom(string power, string specificGearType, string name, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -224,6 +224,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             gear.ItemType = GetItemType(specificGearType);
             gear.Magic.Bonus = selection.Amount;
             gear.Quantity = 0;
+            gear.Traits = new HashSet<string>(traits);
 
             return gear;
         }

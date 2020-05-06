@@ -44,7 +44,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
                     selection
                 });
 
-            var item = alchemicalItemGenerator.Generate();
+            var item = alchemicalItemGenerator.GenerateRandom();
             Assert.That(item.Name, Is.EqualTo(selection.Type));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(selection.Type));
             Assert.That(item.Quantity, Is.EqualTo(9266));
@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var item = alchemicalItemGenerator.GenerateFrom(template);
+            var item = alchemicalItemGenerator.Generate(template);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));
@@ -72,7 +72,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var item = alchemicalItemGenerator.GenerateFrom(template, true);
+            var item = alchemicalItemGenerator.Generate(template, true);
             itemVerifier.AssertMundaneItemFromTemplate(item, template);
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.AlchemicalItem));

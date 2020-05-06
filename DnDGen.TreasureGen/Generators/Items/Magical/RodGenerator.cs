@@ -36,7 +36,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
@@ -47,7 +47,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return GenerateRod(result.Type, result.Amount);
         }
 
-        private Item GenerateRod(string name, int bonus)
+        private Item GenerateRod(string name, int bonus, params string[] traits)
         {
             var rod = new Item();
             rod.ItemType = ItemTypeConstants.Rod;
@@ -55,6 +55,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
             rod.IsMagical = true;
             rod.Magic.Bonus = bonus;
+            rod.Traits = new HashSet<string>(traits);
 
             var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
             rod.Attributes = collectionsSelector.SelectFrom(tablename, name);
@@ -78,7 +79,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return rod;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor rods");
@@ -103,20 +104,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var match = collectionsSelector.SelectRandomFrom(matches);
-            return GenerateRod(match.Type, match.Amount);
+            return GenerateRod(match.Type, match.Amount, traits);
         }
 
         private Item GetWeapon(Item rod)
         {
             var weapons = WeaponConstants.GetAllMelee(false, false);
-            if (!weapons.Intersect(rod.BaseNames).Any())
+            var weaponBaseNames = weapons.Intersect(rod.BaseNames);
+            if (!weaponBaseNames.Any())
                 return rod;
 
-            var template = new Weapon();
-            template.Name = weapons.Intersect(rod.BaseNames).First();
+            var weaponName = weaponBaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, rod.Traits.ToArray());
 
             rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);
             rod.CloneInto(mundaneWeapon);
@@ -127,7 +128,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return mundaneWeapon;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var rod = template.Clone();
             rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);

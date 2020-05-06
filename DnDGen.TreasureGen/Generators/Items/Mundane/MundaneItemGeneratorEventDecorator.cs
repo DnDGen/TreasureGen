@@ -15,19 +15,19 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             this.innerGenerator = innerGenerator;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning mundane item generation from template: {template.ItemType} {template.Name}");
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             eventQueue.Enqueue("TreasureGen", "Beginning mundane item generation");
-            var item = innerGenerator.Generate();
+            var item = innerGenerator.GenerateRandom();
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;

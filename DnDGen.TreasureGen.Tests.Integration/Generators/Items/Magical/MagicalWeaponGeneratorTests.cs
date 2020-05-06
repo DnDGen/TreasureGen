@@ -331,7 +331,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = WeaponGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = WeaponGenerator.GenerateFrom(power, itemName);
+            var item = WeaponGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -350,6 +350,40 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
                     .Or.EqualTo(isMedium)
                     .Or.EqualTo(isMajor), weapon);
             }
+        }
+
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Minor, TraitConstants.Sizes.Tiny)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Medium, TraitConstants.Sizes.Tiny)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
+        public void GenerateWeaponOfSize(string itemName, string power, string size)
+        {
+            var isOfPower = WeaponGenerator.IsItemOfPower(itemName, power);
+            Assert.That(isOfPower, Is.True);
+
+            var item = WeaponGenerator.Generate(power, itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size));
         }
     }
 }

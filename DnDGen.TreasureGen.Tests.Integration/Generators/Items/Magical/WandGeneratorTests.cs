@@ -33,7 +33,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = WandGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = WandGenerator.GenerateFrom(power, itemName);
+            var item = WandGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
     }

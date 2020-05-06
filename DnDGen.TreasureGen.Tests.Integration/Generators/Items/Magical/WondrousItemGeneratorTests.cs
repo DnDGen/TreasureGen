@@ -363,7 +363,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = WondrousItemGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = WondrousItemGenerator.GenerateFrom(power, itemName);
+            var item = WondrousItemGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 

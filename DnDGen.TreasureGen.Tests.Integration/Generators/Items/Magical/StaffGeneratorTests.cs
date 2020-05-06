@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = StaffGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = StaffGenerator.GenerateFrom(power, itemName);
+            var item = StaffGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -76,6 +76,26 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
                 Assert.That(true, Is.EqualTo(isMedium)
                     .Or.EqualTo(isMajor), staff);
             }
+        }
+
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Huge)]
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Large)]
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Medium)]
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Small)]
+        [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
+        public void GenerateWeaponOfSize(string itemName, string power, string size)
+        {
+            var isOfPower = StaffGenerator.IsItemOfPower(itemName, power);
+            Assert.That(isOfPower, Is.True);
+
+            var item = StaffGenerator.Generate(power, itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size));
+            Assert.That(weapon.Magic.Bonus, Is.Positive);
         }
     }
 }

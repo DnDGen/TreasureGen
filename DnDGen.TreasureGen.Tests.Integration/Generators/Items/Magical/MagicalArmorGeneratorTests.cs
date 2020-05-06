@@ -112,7 +112,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = ArmorGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = ArmorGenerator.GenerateFrom(power, itemName);
+            var item = ArmorGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -131,6 +131,40 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
                     .Or.EqualTo(isMedium)
                     .Or.EqualTo(isMajor), armor);
             }
+        }
+
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Minor, TraitConstants.Sizes.Tiny)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Medium, TraitConstants.Sizes.Tiny)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
+        public void GenerateArmorOfSize(string itemName, string power, string size)
+        {
+            var isOfPower = ArmorGenerator.IsItemOfPower(itemName, power);
+            Assert.That(isOfPower, Is.True);
+
+            var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Armor>());
+
+            var armor = item as Armor;
+            Assert.That(armor.Size, Is.EqualTo(size));
         }
     }
 }

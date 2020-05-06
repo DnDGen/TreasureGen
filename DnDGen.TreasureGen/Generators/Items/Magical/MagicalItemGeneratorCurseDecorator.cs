@@ -15,9 +15,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.curseGenerator = curseGenerator;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
-            var item = innerGenerator.GenerateFrom(power);
+            var item = innerGenerator.GenerateRandom(power);
 
             if (curseGenerator.HasCurse(item))
             {
@@ -35,12 +35,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (curseGenerator.IsSpecificCursedItem(itemName))
-                return curseGenerator.Generate(itemName);
+                return curseGenerator.Generate(itemName, traits);
 
-            var item = innerGenerator.GenerateFrom(power, itemName);
+            var item = innerGenerator.Generate(power, itemName, traits);
 
             if (curseGenerator.HasCurse(item))
             {
@@ -51,7 +51,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
                 if (item.Magic.Curse == TableNameConstants.Percentiles.Set.SpecificCursedItems && canBeSpecific)
                 {
-                    var cursedItem = curseGenerator.Generate(itemName);
+                    var cursedItem = curseGenerator.Generate(itemName, traits);
                     return cursedItem;
                 }
             }
@@ -59,12 +59,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             if (curseGenerator.IsSpecificCursedItem(template))
-                return curseGenerator.GenerateFrom(template);
+                return curseGenerator.Generate(template);
 
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             if (allowRandomDecoration && curseGenerator.HasCurse(item))
             {

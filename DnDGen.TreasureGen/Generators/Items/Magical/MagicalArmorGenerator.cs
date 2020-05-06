@@ -6,6 +6,7 @@ using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
@@ -34,13 +35,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             var nameResult = GenerateRandomName(power);
             return GenerateArmor(power, nameResult.Name, nameResult.ArmorType, false);
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             var armorType = GetArmorType(power, itemName);
             var isSpecific = specificGearGenerator.IsSpecific(power, armorType, itemName);
@@ -96,13 +97,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return (name, armorType);
         }
 
-        private Armor GeneratePrototype(string power, string itemName, string armorType, bool isSpecific)
+        private Armor GeneratePrototype(string power, string itemName, string armorType, bool isSpecific, params string[] traits)
         {
             var prototype = new Armor();
 
             if (isSpecific)
             {
-                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, armorType, itemName);
+                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, armorType, itemName, traits);
                 specificItem.CloneInto(prototype);
 
                 return prototype;
@@ -137,6 +138,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
             prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), abilityCount);
+            prototype.Traits = new HashSet<string>(traits);
 
             return prototype;
         }
@@ -151,7 +153,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.GenerateFrom(prototype);
+            var armor = mundaneArmorGenerator.Generate(prototype);
 
             armor.Magic.Bonus = prototype.Magic.Bonus;
             armor.Magic.Charges = prototype.Magic.Charges;
@@ -165,7 +167,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return armor as Armor;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var armorTemplate = new Armor();
             template.CloneInto(armorTemplate);

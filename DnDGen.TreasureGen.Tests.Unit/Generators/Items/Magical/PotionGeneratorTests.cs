@@ -47,7 +47,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GeneratePotion()
         {
-            var potion = potionGenerator.GenerateFrom(power);
+            var potion = potionGenerator.GenerateRandom(power);
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -63,7 +63,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var potion = potionGenerator.GenerateFrom(template);
+            var potion = potionGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
             Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -78,7 +78,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
-            var potion = potionGenerator.GenerateFrom(template, true);
+            var potion = potionGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(potion, template);
             Assert.That(potion.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
@@ -102,7 +102,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var potion = potionGenerator.GenerateFrom(power, "potion");
+            var potion = potionGenerator.Generate(power, "potion");
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -127,7 +127,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var potion = potionGenerator.GenerateFrom(power, "potion");
+            var potion = potionGenerator.Generate(power, "potion");
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));
@@ -151,7 +151,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            Assert.That(() => potionGenerator.GenerateFrom(power, "potion"),
+            Assert.That(() => potionGenerator.Generate(power, "potion"),
                 Throws.ArgumentException.With.Message.EqualTo("potion is not a valid power Potion"));
         }
 
@@ -178,7 +178,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                     "potion",
                 });
 
-            var potion = potionGenerator.GenerateFrom(power, "needs replacement");
+            var potion = potionGenerator.Generate(power, "needs replacement");
             Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
             Assert.That(potion.IsMagical, Is.True);
             Assert.That(potion.Name, Is.EqualTo("potion"));

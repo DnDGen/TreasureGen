@@ -115,7 +115,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = RingGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = RingGenerator.GenerateFrom(power, itemName);
+            var item = RingGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 

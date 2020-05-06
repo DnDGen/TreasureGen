@@ -16,19 +16,19 @@ namespace DnDGen.TreasureGen.Generators.Items
             this.innerGenerator = innerGenerator;
         }
 
-        public IEnumerable<Item> GenerateAtLevel(int level)
+        public IEnumerable<Item> GenerateRandomAtLevel(int level)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} items generation");
-            var items = innerGenerator.GenerateAtLevel(level);
+            var items = innerGenerator.GenerateRandomAtLevel(level);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {items.Count()} level {level} items");
 
             return items;
         }
 
-        public Item GenerateAtLevel(int level, string itemType, string itemName)
+        public Item GenerateAtLevel(int level, string itemType, string itemName, params string[] traits)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} {itemType} generation ({itemName})");
-            var item = innerGenerator.GenerateAtLevel(level, itemType, itemName);
+            var item = innerGenerator.GenerateAtLevel(level, itemType, itemName, traits);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;

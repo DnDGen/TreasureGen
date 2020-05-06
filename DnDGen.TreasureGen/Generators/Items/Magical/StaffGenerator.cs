@@ -6,6 +6,7 @@ using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
@@ -31,7 +32,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.justInTimeFactory = justInTimeFactory;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staves");
@@ -42,18 +43,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return GenerateStaff(selection.Type, selection.Amount);
         }
 
-        private Item GenerateStaff(string name, int bonus)
+        private Item GenerateStaff(string name, int bonus, params string[] traits)
         {
             var staff = new Item();
             staff.Name = name;
             staff.Magic.Bonus = bonus;
+            staff.Traits = new HashSet<string>(traits);
+
             staff = BuildStaff(staff);
             staff.Magic.Charges = chargesGenerator.GenerateFor(staff.ItemType, name);
 
             return staff;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (power == PowerConstants.Minor)
                 throw new ArgumentException("Cannot generate minor staves");
@@ -78,7 +81,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var selection = collectionsSelector.SelectRandomFrom(matches);
-            return GenerateStaff(selection.Type, selection.Amount);
+            return GenerateStaff(selection.Type, selection.Amount, traits);
         }
 
         private Item BuildStaff(Item staff)
@@ -103,7 +106,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var weaponName = weapons.Intersect(staff.BaseNames).First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName);
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, staff.Traits.ToArray());
 
             staff.Attributes = staff.Attributes.Union(mundaneWeapon.Attributes).Except(new[] { AttributeConstants.OneTimeUse });
             staff.CloneInto(mundaneWeapon);
@@ -114,7 +117,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return mundaneWeapon;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var staff = template.Clone();
             staff = BuildStaff(staff);

@@ -29,13 +29,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             innerItems.Add(new Item());
             innerItems.Add(new Item());
 
-            mockInnerGenerator.Setup(g => g.GenerateAtLevel(9266)).Returns(innerItems);
+            mockInnerGenerator.Setup(g => g.GenerateRandomAtLevel(9266)).Returns(innerItems);
 
-            var Items = decorator.GenerateAtLevel(9266);
-            Assert.That(Items, Is.EqualTo(innerItems));
+            var items = decorator.GenerateRandomAtLevel(9266);
+            Assert.That(items, Is.EqualTo(innerItems));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning level 9266 items generation"), Times.Once);
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Completed generation of 2 level 9266 items"), Times.Once);
+        }
+
+        [Test]
+        public void LogNamedGenerationEvents()
+        {
+            var innerItem = new Item();
+            innerItem.ItemType = "my item type";
+            innerItem.Name = "my item name";
+
+            mockInnerGenerator
+                .Setup(g => g.GenerateAtLevel(9266, "item type", "item name", "trait 1", "trait 2"))
+                .Returns(innerItem);
+
+            var item = decorator.GenerateAtLevel(9266, "item type", "item name", "trait 1", "trait 2");
+            Assert.That(item, Is.EqualTo(innerItem));
+            mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning level 9266 item type generation (item name)"), Times.Once);
+            mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Completed generation of my item type my item name"), Times.Once);
         }
     }
 }

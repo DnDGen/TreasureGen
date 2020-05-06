@@ -109,5 +109,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             var item = WeaponGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
         }
+
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Tiny)]
+        public void GenerateWeaponOfSize(string itemName, string size)
+        {
+            var item = WeaponGenerator.Generate(itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size));
+        }
     }
 }

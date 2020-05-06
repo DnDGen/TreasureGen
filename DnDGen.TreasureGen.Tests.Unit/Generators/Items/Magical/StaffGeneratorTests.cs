@@ -61,7 +61,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateStaff()
         {
-            var staff = staffGenerator.GenerateFrom(power);
+            var staff = staffGenerator.GenerateRandom(power);
             Assert.That(staff.Name, Is.EqualTo("staffiness"));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -76,7 +76,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void CannotGenerateMinorStaves()
         {
-            Assert.That(() => staffGenerator.GenerateFrom(PowerConstants.Minor), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staves"));
+            Assert.That(() => staffGenerator.GenerateRandom(PowerConstants.Minor), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staves"));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, selection.Type)).Returns(baseNames);
 
-            var staff = staffGenerator.GenerateFrom(power);
+            var staff = staffGenerator.GenerateRandom(power);
             Assert.That(staff.BaseNames, Is.EqualTo(baseNames));
         }
 
@@ -98,7 +98,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
             mockMundaneWeaponGenerator.Setup(g => g.Generate(WeaponConstants.Dagger)).Returns(mundaneWeapon);
 
-            var staff = staffGenerator.GenerateFrom(power);
+            var staff = staffGenerator.GenerateRandom(power);
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Is.EquivalentTo(mundaneWeapon.Attributes.Union(new[] { AttributeConstants.Charged })));
             Assert.That(staff.Magic.Bonus, Is.EqualTo(90210));
@@ -134,7 +134,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var staff = staffGenerator.GenerateFrom(template);
+            var staff = staffGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(staff, template);
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -166,7 +166,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
             mockMundaneWeaponGenerator.Setup(g => g.Generate(WeaponConstants.Dagger)).Returns(mundaneWeapon);
 
-            var staff = staffGenerator.GenerateFrom(template);
+            var staff = staffGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(staff, template);
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Is.EquivalentTo(mundaneWeapon.Attributes.Union(new[] { AttributeConstants.Charged })));
@@ -204,7 +204,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var baseNames = new[] { "base name", "other base name" };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
-            var staff = staffGenerator.GenerateFrom(template, true);
+            var staff = staffGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(staff, template);
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -239,7 +239,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var staff = staffGenerator.GenerateFrom(power, "staff");
+            var staff = staffGenerator.Generate(power, "staff");
             Assert.That(staff.Name, Is.EqualTo("staff"));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -278,7 +278,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var staff = staffGenerator.GenerateFrom(power, "staff");
+            var staff = staffGenerator.Generate(power, "staff");
             Assert.That(staff.Name, Is.EqualTo("staff"));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Is.EquivalentTo(quarterstaff.Attributes.Union(new[] { AttributeConstants.Charged })));
@@ -325,7 +325,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var staff = staffGenerator.GenerateFrom(power, WeaponConstants.Quarterstaff);
+            var staff = staffGenerator.Generate(power, WeaponConstants.Quarterstaff);
             Assert.That(staff.Name, Is.EqualTo("staff"));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Is.EquivalentTo(quarterstaff.Attributes.Union(new[] { AttributeConstants.Charged })));
@@ -348,7 +348,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void MinorPowerFromNameThrowsError()
         {
-            Assert.That(() => staffGenerator.GenerateFrom(PowerConstants.Minor, "staff"), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staves"));
+            Assert.That(() => staffGenerator.Generate(PowerConstants.Minor, "staff"), Throws.ArgumentException.With.Message.EqualTo("Cannot generate minor staves"));
         }
 
         [Test]
@@ -375,7 +375,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var staff = staffGenerator.GenerateFrom(power, "staff");
+            var staff = staffGenerator.Generate(power, "staff");
             Assert.That(staff.Name, Is.EqualTo("staff"));
             Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
             Assert.That(staff.Attributes, Contains.Item(AttributeConstants.Charged));
@@ -410,7 +410,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            Assert.That(() => staffGenerator.GenerateFrom(power, "staff"),
+            Assert.That(() => staffGenerator.Generate(power, "staff"),
                 Throws.ArgumentException.With.Message.EqualTo("staff is not a valid power Staff"));
         }
 
