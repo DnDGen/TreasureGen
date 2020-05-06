@@ -1,6 +1,5 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
-using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -51,7 +50,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item Generate(string power, string itemName, params string[] traits)
         {
             var item = innerGenerator.Generate(power, itemName, traits);
-            if (!item.IsMagical || traits.Any())
+            if (!item.IsMagical)
                 return item;
 
             item = AddTraits(item);

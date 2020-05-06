@@ -49,16 +49,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName()
         {
-            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
-            var item = mundaneProxy.Generate("power", "item name");
+            var item = mundaneProxy.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(innerItem));
         }
 
         [Test]
         public void ThrowArgumentExceptionIfPowerFromNameIsMundane()
         {
-            Assert.That(() => mundaneProxy.Generate(PowerConstants.Mundane, "item name"), Throws.ArgumentException);
+            Assert.That(() => mundaneProxy.Generate(PowerConstants.Mundane, "item name", "trait 1", "trait 2"), Throws.ArgumentException);
         }
 
         [TestCase(true)]

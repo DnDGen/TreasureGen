@@ -128,22 +128,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName()
         {
             var namedItem = new Item();
-            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(namedItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(namedItem);
 
-            var decoratedItem = decorator.Generate("power", "item name");
+            var decoratedItem = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(decoratedItem, Is.EqualTo(namedItem));
         }
 
         [Test]
         public void GetTraitsForItemFromName()
         {
-            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(item);
+            item.Traits.Add("trait 1");
+            item.Traits.Add("trait 2");
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(item);
 
-            var traits = new[] { "trait 1", "trait 2" };
+            var traits = new[] { "trait 3", "trait 4" };
             mockTraitsGenerator.Setup(g => g.GenerateFor(item.ItemType, item.Attributes)).Returns(traits);
 
-            var decoratedItem = decorator.Generate("power", "item name");
-            Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits));
+            var decoratedItem = decorator.Generate("power", "item name", "trait 1", "trait 2");
+            Assert.That(decoratedItem.Traits, Is.EquivalentTo(traits.Union(new[] { "trait 1", "trait 2" })));
         }
 
         [Test]

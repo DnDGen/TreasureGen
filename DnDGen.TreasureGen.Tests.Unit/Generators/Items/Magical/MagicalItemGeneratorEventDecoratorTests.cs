@@ -86,9 +86,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.Generate("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
-            var item = decorator.Generate("power", "item name");
+            var item = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning power magical item generation (item name)"), Times.Once);
