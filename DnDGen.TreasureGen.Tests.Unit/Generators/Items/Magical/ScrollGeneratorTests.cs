@@ -158,10 +158,40 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GenerateFromName_WithTraits()
+        {
+            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
+
+            var scroll = scrollGenerator.Generate(PowerConstants.Minor, ItemTypeConstants.Scroll, "trait 1", "trait 2");
+            AssertScroll(scroll);
+            Assert.That(scroll.Traits, Has.Count.EqualTo(3)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2")
+                .And.Contains("spell type"));
+        }
+
+        [Test]
         public void GenerateFromNonScrollName()
         {
             var scroll = scrollGenerator.Generate(PowerConstants.Minor, "my special thing");
             AssertScroll(scroll, "my special thing");
+        }
+
+        [Test]
+        public void GenerateFromNonScrollName_WithTraits()
+        {
+            mockSpellGenerator.Setup(g => g.GenerateType()).Returns("spell type");
+            mockSpellGenerator.Setup(g => g.GenerateLevel(PowerConstants.Minor)).Returns(9266);
+            mockSpellGenerator.Setup(g => g.Generate("spell type", 9266)).Returns("spell");
+
+            var scroll = scrollGenerator.Generate(PowerConstants.Minor, "my special thing", "trait 1", "trait 2");
+            AssertScroll(scroll, "my special thing");
+            Assert.That(scroll.Traits, Has.Count.EqualTo(3)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2")
+                .And.Contains("spell type"));
         }
 
         [Test]

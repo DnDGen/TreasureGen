@@ -398,6 +398,42 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GenerateFromName_WithTraits()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
+
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            var ring = ringGenerator.Generate(power, "ring", "trait 1", "trait 2");
+            Assert.That(ring.Name, Is.EqualTo("ring"));
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
+            Assert.That(ring.Attributes, Is.EqualTo(attributes));
+            Assert.That(ring.Traits, Has.Count.EqualTo(2)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2"));
+        }
+
+        [Test]
         public void GenerateChargedFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);

@@ -113,6 +113,34 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GenerateFromName_WithTraits()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 666, Type = "wrong potion" },
+                new TypeAndAmountSelection { Amount = 90210, Type = "potion" },
+                new TypeAndAmountSelection { Amount = 42, Type = "other potion" },
+            });
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            var potion = potionGenerator.Generate(power, "potion", "trait 1", "trait 2");
+            Assert.That(potion.Attributes, Contains.Item(AttributeConstants.OneTimeUse));
+            Assert.That(potion.IsMagical, Is.True);
+            Assert.That(potion.Name, Is.EqualTo("potion"));
+            Assert.That(potion.BaseNames.Single(), Is.EqualTo("potion"));
+            Assert.That(potion.Magic.Bonus, Is.EqualTo(90210));
+            Assert.That(potion.Quantity, Is.EqualTo(1));
+            Assert.That(potion.ItemType, Is.EqualTo(ItemTypeConstants.Potion));
+            Assert.That(potion.Traits, Has.Count.EqualTo(2)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2"));
+        }
+
+        [Test]
         public void GenerateFromName_MultipleOfPower()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);

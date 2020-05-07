@@ -288,13 +288,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
-                .Returns("weapon type");
+            //mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
+            //    .Returns("weapon type");
 
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+            //var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            //mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
 
-            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector
                 .SetupSequence(p => p.SelectFrom(tableName))
                 .Returns("SpecialAbility")
@@ -313,6 +313,45 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [Test]
+        public void GenerateFromName_WithTraits()
+        {
+            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
+                .Returns("weapon type");
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector
+                .SetupSequence(p => p.SelectFrom(tableName))
+                .Returns("SpecialAbility")
+                .Returns("SpecialAbility")
+                .Returns("9266");
+
+            var abilities = new[] { new SpecialAbility() };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<Item>(), power, 2)).Returns(abilities);
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(It.Is<Item>(i => i.NameMatches("weapon name")), true))
+                .Returns((Item t, bool d) => new Weapon
+                {
+                    Name = t.Name,
+                    Traits = t.Traits,
+                    BaseNames = new[] { "mundane base name" },
+                });
+
+            var weapon = magicalWeaponGenerator.Generate(power, "weapon name", "trait 1", "trait 2");
+            Assert.That(weapon.Name, Is.EqualTo("weapon name"));
+            Assert.That(weapon.BaseNames, Contains.Item("mundane base name"));
+            Assert.That(weapon.BaseNames.Count(), Is.EqualTo(1));
+            Assert.That(weapon.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Traits, Has.Count.EqualTo(2)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2"));
+        }
+
+        [Test]
         public void GenerateSpecificFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
@@ -327,6 +366,27 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(specificWeapon);
 
             var weapon = magicalWeaponGenerator.Generate(power, "specific weapon name");
+            Assert.That(weapon.Name, Is.EqualTo("specific weapon name"));
+            Assert.That(weapon, Is.EqualTo(specificWeapon));
+        }
+
+        [Test]
+        public void GenerateSpecificFromName_WithTraits()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+
+            var specificWeapon = new Weapon();
+            specificWeapon.Name = "specific weapon name";
+            specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
+            mockSpecificGearGenerator
+                .Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, "specific weapon name", "trait 1", "trait 2"))
+                .Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(specificWeapon);
+
+            var weapon = magicalWeaponGenerator.Generate(power, "specific weapon name", "trait 1", "trait 2");
             Assert.That(weapon.Name, Is.EqualTo("specific weapon name"));
             Assert.That(weapon, Is.EqualTo(specificWeapon));
         }
