@@ -164,7 +164,50 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(item, Is.InstanceOf<Armor>());
 
             var armor = item as Armor;
-            Assert.That(armor.Size, Is.EqualTo(size));
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
+            Assert.That(armor.NameMatches(itemName), Is.True, armor.Name);
+            Assert.That(armor.Size, Is.EqualTo(size), armor.Name);
+            Assert.That(armor.Traits, Does.Not.Contain(size)
+                .And.Contains("my trait"), armor.Name);
+        }
+
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Tiny)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Medium, TraitConstants.Sizes.Tiny)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
+        public void GenerateShieldOfSize(string itemName, string power, string size)
+        {
+            var isOfPower = ArmorGenerator.IsItemOfPower(itemName, power);
+            Assert.That(isOfPower, Is.True);
+
+            var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Armor>());
+
+            var armor = item as Armor;
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
+            Assert.That(armor.NameMatches(itemName), Is.True, armor.Name);
+            Assert.That(armor.Size, Is.EqualTo(size), armor.Name);
+            Assert.That(armor.Traits, Does.Not.Contain(size)
+                .And.Contains("my trait"), armor.Name);
+            Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Shield), armor.Name);
         }
     }
 }

@@ -165,7 +165,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.LightMace);
-            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == WeaponConstants.LightMace), false)).Returns(mundaneWeapon);
+            mundaneWeapon.Traits.Clear();
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.LightMace))
+                .Returns(mundaneWeapon);
 
             var rod = rodGenerator.GenerateRandom(power);
             Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
@@ -269,6 +273,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
+            template.Traits.Clear();
+
             var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
 
             var attributes = new[] { "attribute 1", "attribute 2" };
@@ -294,7 +300,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             });
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Club);
-            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == WeaponConstants.Club), false)).Returns(mundaneWeapon);
+            mundaneWeapon.Traits.Clear();
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.Club))
+                .Returns(mundaneWeapon);
 
             var rod = rodGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(rod, template);
@@ -314,7 +324,67 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork).And.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GenerateCustomRodThatCanBeAWeapon_WithTraits()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
+
+            var baseNames = new[] { "base name", "other base name", WeaponConstants.Club };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, PowerConstants.Medium, ItemTypeConstants.Rod);
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[]
+            {
+                new TypeAndAmountSelection { Amount = 90210, Type = "other rod" },
+                new TypeAndAmountSelection { Amount = 9266, Type = name },
+            });
+
+            var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Club);
+            mundaneWeapon.Traits.Clear();
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.Club, template.Traits.First(), template.Traits.Last()))
+                .Returns(mundaneWeapon);
+
+            var rod = rodGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(rod, template);
+            Assert.That(rod.Attributes, Is.SupersetOf(attributes));
+            Assert.That(rod.IsMagical, Is.True);
+            Assert.That(rod.ItemType, Is.EqualTo(ItemTypeConstants.Rod));
+            Assert.That(rod.Quantity, Is.EqualTo(1));
+            Assert.That(rod.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(rod.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(rod.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(rod, Is.InstanceOf<Weapon>());
+
+            var weapon = rod as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(mundaneWeapon.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
+            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
+                .And.SupersetOf(template.Traits)
+                .And.Count.EqualTo(3)
+                .And.Count.EqualTo(template.Traits.Count + 1));
         }
 
         [Test]
@@ -521,7 +591,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "rod")).Returns(attributes);
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.LightMace);
-            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == WeaponConstants.LightMace), false)).Returns(mundaneWeapon);
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.LightMace))
+                .Returns(mundaneWeapon);
 
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
@@ -567,6 +639,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, "rod")).Returns(attributes);
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.LightMace);
+            mundaneWeapon.Traits.Clear();
+            mundaneWeapon.Traits.Add("trait 1");
+            mundaneWeapon.Traits.Add("trait 2");
+
             mockMundaneWeaponGenerator.Setup(g => g.Generate(WeaponConstants.LightMace, "trait 1", "trait 2")).Returns(mundaneWeapon);
 
             mockCollectionsSelector

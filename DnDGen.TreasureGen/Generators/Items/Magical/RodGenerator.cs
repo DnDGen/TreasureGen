@@ -145,6 +145,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(rod.Magic.SpecialAbilities);
 
+            foreach (var trait in template.Traits)
+            {
+                rod.Traits.Add(trait);
+            }
+
             rod = GetWeapon(rod);
 
             return rod.SmartClone();

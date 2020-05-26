@@ -5,6 +5,7 @@ using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
 {
@@ -64,6 +65,30 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
 
             var armor = item as Armor;
             Assert.That(armor.Size, Is.EqualTo(size));
+            Assert.That(armor.Traits, Contains.Item("my trait")
+                .And.Not.Contains(size));
+        }
+
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Colossal)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Huge)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Large)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Medium)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Small)]
+        [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Tiny)]
+        public void GenerateArmorOfSize_FromTemplate(string itemName, string size)
+        {
+            var template = itemVerifier.CreateRandomArmorTemplate(itemName);
+            template.Traits.Add(size);
+
+            var item = ArmorGenerator.Generate(template);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Armor>());
+
+            var armor = item as Armor;
+            Assert.That(armor.Size, Is.EqualTo(size), armor.Name);
+            Assert.That(armor.Traits, Does.Not.Contain(size)
+                .And.SupersetOf(template.Traits.Take(2)), armor.Name);
         }
     }
 }

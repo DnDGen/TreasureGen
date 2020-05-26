@@ -280,7 +280,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(armor.BaseNames, Contains.Item("from mundane"));
             Assert.That(armor.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
-            Assert.That(armor.Traits, Has.Count.EqualTo(2).And.Contains("trait 1").And.Contains("trait 2"));
+            Assert.That(armor.Traits, Has.Count.EqualTo(3)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2")
+                .And.Contains(TraitConstants.Masterwork));
             Assert.That(armor, Is.InstanceOf<Armor>());
             Assert.That((armor as Armor).Size, Is.EqualTo("armor size"));
         }
@@ -339,7 +342,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(armor.BaseNames, Contains.Item("from mundane"));
             Assert.That(armor.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
-            Assert.That(armor.Traits, Has.Count.EqualTo(2).And.Contains("trait 1").And.Contains("trait 2"));
+            Assert.That(armor.Traits, Has.Count.EqualTo(3)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2")
+                .And.Contains(TraitConstants.Masterwork));
             Assert.That(armor, Is.InstanceOf<Armor>());
             Assert.That((armor as Armor).Size, Is.EqualTo("shield size"));
         }

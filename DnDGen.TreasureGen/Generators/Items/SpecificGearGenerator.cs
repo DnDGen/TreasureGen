@@ -122,6 +122,7 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var template = new Weapon();
             template.Name = gear.BaseNames.First();
+            template.Traits = new HashSet<string>(gear.Traits);
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var mundaneWeapon = mundaneWeaponGenerator.Generate(template) as Weapon;

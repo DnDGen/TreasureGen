@@ -46,7 +46,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var armorType = GetArmorType(power, itemName);
             var isSpecific = specificGearGenerator.IsSpecific(power, armorType, itemName);
 
-            return GenerateArmor(power, itemName, armorType, isSpecific);
+            return GenerateArmor(power, itemName, armorType, isSpecific, traits);
         }
 
         private string GetArmorType(string power, string itemName)
@@ -72,9 +72,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return ItemTypeConstants.Armor;
         }
 
-        private Item GenerateArmor(string power, string itemName, string armorType, bool isSpecific)
+        private Item GenerateArmor(string power, string itemName, string armorType, bool isSpecific, params string[] traits)
         {
-            var prototype = GeneratePrototype(power, itemName, armorType, isSpecific);
+            var prototype = GeneratePrototype(power, itemName, armorType, isSpecific, traits);
             var armor = GenerateFromPrototype(prototype);
 
             if (!specificGearGenerator.IsSpecific(armor))
@@ -149,6 +149,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 var specificArmor = specificGearGenerator.GenerateFrom(prototype);
                 specificArmor.Quantity = 1;
+
                 return specificArmor as Armor;
             }
 

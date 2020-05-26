@@ -346,9 +346,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.BaseNames.Count(), Is.EqualTo(1));
             Assert.That(weapon.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
-            Assert.That(weapon.Traits, Has.Count.EqualTo(2)
+            Assert.That(weapon.Traits, Has.Count.EqualTo(3)
                 .And.Contains("trait 1")
-                .And.Contains("trait 2"));
+                .And.Contains("trait 2")
+                .And.Contains(TraitConstants.Masterwork));
         }
 
         [Test]

@@ -151,6 +151,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
+            template.Traits.Clear();
+
             var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
 
             var abilities = new[]
@@ -164,7 +166,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
-            mockMundaneWeaponGenerator.Setup(g => g.Generate(WeaponConstants.Dagger)).Returns(mundaneWeapon);
+            mundaneWeapon.Traits.Clear();
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.Dagger))
+                .Returns(mundaneWeapon);
 
             var staff = staffGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(staff, template);
@@ -183,7 +189,54 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork).And.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GenerateCustomStaffThatIsAlsoAWeapon_WithTraits()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
+            var baseNames = new[] { "base name", "other base name", WeaponConstants.Dagger };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
+            mundaneWeapon.Traits.Clear();
+
+            mockMundaneWeaponGenerator
+                .Setup(g => g.Generate(WeaponConstants.Dagger, template.Traits.First(), template.Traits.Last()))
+                .Returns(mundaneWeapon);
+
+            var staff = staffGenerator.Generate(template);
+            itemVerifier.AssertMagicalItemFromTemplate(staff, template);
+            Assert.That(staff.ItemType, Is.EqualTo(ItemTypeConstants.Staff));
+            Assert.That(staff.Attributes, Is.EquivalentTo(mundaneWeapon.Attributes.Union(new[] { AttributeConstants.Charged })));
+            Assert.That(staff.Attributes, Is.All.Not.EqualTo(AttributeConstants.OneTimeUse));
+            Assert.That(staff.Quantity, Is.EqualTo(1));
+            Assert.That(staff.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(staff.BaseNames, Is.EqualTo(baseNames));
+            Assert.That(staff, Is.InstanceOf<Weapon>());
+
+            var weapon = staff as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(mundaneWeapon.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
+            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
+                .And.Count.EqualTo(3)
+                .And.Count.EqualTo(template.Traits.Count + 1)
+                .And.SupersetOf(template.Traits));
         }
 
         [Test]
@@ -354,6 +407,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "staff")).Returns(baseNames);
 
             var quarterstaff = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Quarterstaff);
+            quarterstaff.Traits.Clear();
+
             mockMundaneWeaponGenerator.Setup(g => g.Generate(WeaponConstants.Quarterstaff, "trait 1", "trait 2")).Returns(quarterstaff);
 
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Staff, "wrong staff")).Returns(666);
