@@ -13,25 +13,25 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.innerGenerator = innerGenerator;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            return innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            return innerGenerator.Generate(template, allowRandomDecoration);
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
 
-            return innerGenerator.GenerateFrom(power);
+            return innerGenerator.GenerateRandom(power);
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (power == PowerConstants.Mundane)
                 throw new ArgumentException();
 
-            return innerGenerator.GenerateFrom(power, itemName);
+            return innerGenerator.Generate(power, itemName, traits);
         }
 
         public bool IsItemOfPower(string itemName, string power)

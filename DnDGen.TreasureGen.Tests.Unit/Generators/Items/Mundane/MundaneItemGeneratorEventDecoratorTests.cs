@@ -30,9 +30,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             innerItem.Name = Guid.NewGuid().ToString();
             innerItem.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.Generate()).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateRandom()).Returns(innerItem);
 
-            var item = decorator.Generate();
+            var item = decorator.GenerateRandom();
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", "Beginning mundane item generation"), Times.Once);
@@ -50,9 +50,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             template.Name = Guid.NewGuid().ToString();
             template.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(template);
+            var item = decorator.Generate(template);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning mundane item generation from template: {template.ItemType} {template.Name}"), Times.Once);
@@ -70,9 +70,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             template.Name = Guid.NewGuid().ToString();
             template.ItemType = Guid.NewGuid().ToString();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(innerItem);
 
-            var item = decorator.GenerateFrom(template, true);
+            var item = decorator.Generate(template, true);
             Assert.That(item, Is.EqualTo(innerItem));
             mockEventQueue.Verify(q => q.Enqueue(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             mockEventQueue.Verify(q => q.Enqueue("TreasureGen", $"Beginning mundane item generation from template: {template.ItemType} {template.Name}"), Times.Once);

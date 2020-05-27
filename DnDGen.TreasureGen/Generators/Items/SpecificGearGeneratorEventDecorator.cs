@@ -35,9 +35,9 @@ namespace DnDGen.TreasureGen.Generators.Items
             return innerGenerator.GenerateNameFrom(power, specificGearType, baseType);
         }
 
-        public Item GeneratePrototypeFrom(string power, string specificGearType, string name)
+        public Item GeneratePrototypeFrom(string power, string specificGearType, string name, params string[] traits)
         {
-            return innerGenerator.GeneratePrototypeFrom(power, specificGearType, name);
+            return innerGenerator.GeneratePrototypeFrom(power, specificGearType, name, traits);
         }
 
         public string GenerateRandomNameFrom(string power, string specificGearType)

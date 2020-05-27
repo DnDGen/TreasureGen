@@ -14,9 +14,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.intelligenceGenerator = intelligenceGenerator;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
             var canBeIntelligent = intelligenceGenerator.CanBeIntelligent(item.Attributes, item.IsMagical);
             var isIntelligent = intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical);
 
@@ -32,9 +32,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
-            var item = innerGenerator.GenerateFrom(power);
+            var item = innerGenerator.GenerateRandom(power);
 
             if (intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
                 item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item);
@@ -42,9 +42,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(power, itemName);
+            var item = innerGenerator.Generate(power, itemName, traits);
 
             if (intelligenceGenerator.IsIntelligent(item.ItemType, item.Attributes, item.IsMagical))
                 item.Magic.Intelligence = intelligenceGenerator.GenerateFor(item);

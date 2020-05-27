@@ -83,14 +83,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             if (weapon.IsMagical)
                 Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Name);
 
-            Assert.That(weapon.Attributes, Is.Not.Empty, $"{weapon.Name} attributes");
-            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Bludgeoning), weapon.Name);
-            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Piercing), weapon.Name);
-            Assert.That(weapon.Attributes, Is.All.Not.EqualTo(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+            Assert.That(weapon.Attributes, Is.Not.Empty
+                .And.Not.Contains(AttributeConstants.DamageTypes.Bludgeoning)
+                .And.Not.Contains(AttributeConstants.DamageTypes.Piercing)
+                .And.Not.Contains(AttributeConstants.DamageTypes.Slashing), $"{weapon.Name} attributes");
 
             Assert.That(weapon.CombatTypes, Is.Not.Empty, $"{weapon.Name} combat types");
             Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
-            Assert.That(weapon.CombatTypes.Count, Is.InRange(1, 2));
+            Assert.That(weapon.CombatTypes.Count(), Is.InRange(1, 2));
 
             if (weapon.Damage != "0")
             {
@@ -129,9 +129,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.Dragonhide))
             {
-                Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Metal), item.Name);
-                Assert.That(item.Attributes, Is.All.Not.EqualTo(AttributeConstants.Wood), item.Name);
-                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Name);
+                Assert.That(item.Attributes, Does.Not.Contain(AttributeConstants.Metal)
+                    .And.Not.Contains(AttributeConstants.Wood), $"{item.Name} of Dragonhide");
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), $"{item.Name} of Dragonhide");
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.ColdIron))
@@ -158,13 +158,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(intelligence.CharismaStat, Is.AtLeast(10));
             Assert.That(intelligence.WisdomStat, Is.AtLeast(10));
             Assert.That(intelligence.IntelligenceStat, Is.AtLeast(10));
-            Assert.That(intelligence.Communication, Is.Not.Empty);
-            Assert.That(intelligence.Communication, Is.All.Not.Empty);
-            Assert.That(intelligence.Communication, Is.Unique);
+            Assert.That(intelligence.Communication, Is.Not.Empty
+                .And.All.Not.Empty
+                .And.Unique);
             Assert.That(intelligence.Personality, Is.Not.Null);
-            Assert.That(intelligence.Powers, Is.Not.Empty);
-            Assert.That(intelligence.Powers, Is.All.Not.Empty);
-            Assert.That(intelligence.Powers, Is.Unique);
+            Assert.That(intelligence.Powers, Is.Not.Empty
+                .And.All.Not.Empty
+                .And.Unique);
             Assert.That(intelligence.Senses, Is.Not.Empty);
         }
 
@@ -173,8 +173,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var materials = TraitConstants.SpecialMaterials.All();
 
             AssertItem(item);
-            Assert.That(item.Magic.Curse, Is.Not.Empty, item.Name);
-            Assert.That(item.Magic.Curse, Is.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
+            Assert.That(item.Magic.Curse, Is.Not.Empty.And.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
             Assert.That(item.Attributes, Contains.Item(AttributeConstants.Specific), item.Name);
             Assert.That(item.Traits.Intersect(materials), Is.Empty, item.Name);
         }
@@ -261,7 +260,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item, Is.Not.EqualTo(template), item.Name);
             Assert.That(item.IsMagical, Is.True, item.Name);
             Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
-            Assert.That(item.Traits, Is.SupersetOf(template.Traits), item.Name);
+
+            var sizes = TraitConstants.Sizes.All();
+            Assert.That(item.Traits, Is.SupersetOf(template.Traits.Except(sizes)), item.Name);
 
             if (item.Attributes.Contains(AttributeConstants.OneTimeUse) || item.Attributes.Contains(AttributeConstants.Ammunition))
             {

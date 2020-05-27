@@ -5,6 +5,7 @@ using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
 {
@@ -108,6 +109,47 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         {
             var item = WeaponGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
+        }
+
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Tiny)]
+        public void GenerateWeaponOfSize(string itemName, string size)
+        {
+            var item = WeaponGenerator.Generate(itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size));
+            Assert.That(weapon.Traits, Contains.Item("my trait")
+                .And.Not.Contains(size));
+        }
+
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Colossal)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Huge)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Large)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Medium)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Small)]
+        [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Tiny)]
+        public void GenerateWeaponOfSize_FromTemplate(string itemName, string size)
+        {
+            var template = itemVerifier.CreateRandomWeaponTemplate(itemName);
+            template.Traits.Add(size);
+
+            var item = WeaponGenerator.Generate(template);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size), weapon.Name);
+            Assert.That(weapon.Traits, Does.Not.Contain(size)
+                .And.SupersetOf(template.Traits.Take(2)), weapon.Name);
         }
     }
 }

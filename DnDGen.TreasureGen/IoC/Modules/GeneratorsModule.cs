@@ -63,9 +63,9 @@ namespace DnDGen.TreasureGen.IoC.Modules
             {
                 typeof(MagicalItemGeneratorCurseDecorator),
                 typeof(MagicalItemGeneratorIntelligenceDecorator),
-                typeof(MagicalItemGeneratorMundaneProxy),
-                typeof(MagicalItemGeneratorSpecialMaterialDecorator),
                 typeof(MagicalItemGeneratorTraitsDecorator),
+                typeof(MagicalItemGeneratorSpecialMaterialDecorator),
+                typeof(MagicalItemGeneratorMundaneProxy),
                 typeof(MagicalItemGeneratorEventDecorator),
             };
 

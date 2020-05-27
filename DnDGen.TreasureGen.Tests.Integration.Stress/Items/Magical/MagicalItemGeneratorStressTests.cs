@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
         protected override Item GenerateItem()
         {
             var power = GetNewPower(allowMinor);
-            return magicalItemGenerator.GenerateFrom(power);
+            return magicalItemGenerator.GenerateRandom(power);
         }
 
         private Item GetRandomTemplate(string name)
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             var template = GetRandomTemplate(name);
             var allowDecoration = Convert.ToBoolean(Random.Next(2));
 
-            var item = magicalItemGenerator.GenerateFrom(template, allowDecoration);
+            var item = magicalItemGenerator.Generate(template, allowDecoration);
             AssertItem(item);
             Assert.That(item.ItemType, Is.EqualTo(itemType));
 
@@ -89,7 +89,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
                 power = GetNewPower(allowMinor);
             }
 
-            return magicalItemGenerator.GenerateFrom(power, name);
+            return magicalItemGenerator.Generate(power, name);
         }
     }
 }

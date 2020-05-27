@@ -36,7 +36,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = ScrollGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = ScrollGenerator.GenerateFrom(power, itemName);
+            var item = ScrollGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
     }

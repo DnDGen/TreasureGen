@@ -31,7 +31,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.replacementSelector = replacementSelector;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -42,7 +42,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return ring;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             if (!IsItemOfPower(itemName, power))
                 throw new ArgumentException($"{itemName} is not a valid {power} Ring");
@@ -53,7 +53,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             var result = collectionsSelector.SelectRandomFrom(matches);
 
-            var ring = BuildRing(result.Type, power);
+            var ring = BuildRing(result.Type, power, traits);
             ring.Magic.Bonus = result.Amount;
 
             return ring;
@@ -69,13 +69,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 || targetReplacements.Any(t => t == source);
         }
 
-        private Item BuildRing(string name, string power)
+        private Item BuildRing(string name, string power, params string[] traits)
         {
             var ring = new Item();
             ring.Name = name;
             ring.BaseNames = new[] { name };
             ring.IsMagical = true;
             ring.ItemType = ItemTypeConstants.Ring;
+            ring.Traits = new HashSet<string>(traits);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ring.ItemType);
             ring.Attributes = collectionsSelector.SelectFrom(tableName, name);
@@ -132,7 +133,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return spells;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var ring = template.Clone();
             ring.BaseNames = new[] { ring.Name };

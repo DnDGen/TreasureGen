@@ -22,7 +22,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         private void GenerateAndAssertItems()
         {
             var level = GetNewLevel();
-            var items = ItemsGenerator.GenerateAtLevel(level);
+            var items = ItemsGenerator.GenerateRandomAtLevel(level);
 
             Assert.That(items, Is.Not.Null);
 

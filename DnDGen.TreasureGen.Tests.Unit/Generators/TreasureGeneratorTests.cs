@@ -56,7 +56,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators
         public void ItemsAreSetByItemsGenerator()
         {
             var items = new List<Item>();
-            mockItemsGenerator.Setup(f => f.GenerateAtLevel(1)).Returns(items);
+            mockItemsGenerator.Setup(f => f.GenerateRandomAtLevel(1)).Returns(items);
 
             var treasure = generator.GenerateAtLevel(1);
             Assert.That(treasure.Items, Is.EqualTo(items));

@@ -16,7 +16,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             this.percentileSelector = percentileSelector;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Tools);
             return Generate(name);
@@ -33,7 +33,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return tool;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var tool = template.MundaneClone();
             tool.ItemType = ItemTypeConstants.Tool;
