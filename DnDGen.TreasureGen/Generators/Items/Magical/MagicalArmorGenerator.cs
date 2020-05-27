@@ -125,10 +125,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 while (!canBeSpecific && bonus == ItemTypeConstants.Armor);
             }
 
+            prototype.Traits = new HashSet<string>(traits);
+
             if (bonus == ItemTypeConstants.Armor && canBeSpecific)
             {
                 var specificName = specificGearGenerator.GenerateNameFrom(power, armorType, itemName);
-                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, armorType, specificName);
+                var specificItem = specificGearGenerator.GeneratePrototypeFrom(power, armorType, specificName, traits);
                 specificItem.CloneInto(prototype);
 
                 return prototype;
@@ -138,7 +140,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
             prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), abilityCount);
-            prototype.Traits = new HashSet<string>(traits);
 
             return prototype;
         }

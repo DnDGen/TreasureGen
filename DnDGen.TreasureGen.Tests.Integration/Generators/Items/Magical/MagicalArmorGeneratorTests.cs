@@ -164,11 +164,11 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(item, Is.InstanceOf<Armor>());
 
             var armor = item as Armor;
-            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
-            Assert.That(armor.NameMatches(itemName), Is.True, armor.Name);
-            Assert.That(armor.Size, Is.EqualTo(size), armor.Name);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), $"{armor.Name} {armor.Magic.Curse}");
+            Assert.That(armor.NameMatches(itemName), Is.True, $"{armor.Name} {armor.Magic.Curse}");
+            Assert.That(armor.Size, Is.EqualTo(size), $"{armor.Name} {armor.Magic.Curse}");
             Assert.That(armor.Traits, Does.Not.Contain(size)
-                .And.Contains("my trait"), armor.Name);
+                .And.Contains("my trait"), $"{armor.Name} {armor.Magic.Curse}");
         }
 
         [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Minor, TraitConstants.Sizes.Colossal)]
@@ -202,12 +202,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(item, Is.InstanceOf<Armor>());
 
             var armor = item as Armor;
-            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), armor.Name);
-            Assert.That(armor.NameMatches(itemName), Is.True, armor.Name);
-            Assert.That(armor.Size, Is.EqualTo(size), armor.Name);
+            Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), $"{armor.Name} {armor.Magic.Curse}");
+            Assert.That(armor.NameMatches(itemName), Is.True, $"{armor.Name} {armor.Magic.Curse}");
+            Assert.That(armor.Size, Is.EqualTo(size), $"{armor.Name} {armor.Magic.Curse}");
             Assert.That(armor.Traits, Does.Not.Contain(size)
-                .And.Contains("my trait"), armor.Name);
-            Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Shield), armor.Name);
+                .And.Contains("my trait"), $"{armor.Name} {armor.Magic.Curse}");
+            Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Shield), $"{armor.Name} {armor.Magic.Curse}");
         }
     }
 }

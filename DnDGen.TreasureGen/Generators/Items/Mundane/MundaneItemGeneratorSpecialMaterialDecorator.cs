@@ -41,17 +41,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 item.Traits.Add(material);
-
-                if (material == TraitConstants.SpecialMaterials.Dragonhide)
-                {
-                    var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
-                    item.Attributes = item.Attributes.Except(metalAndWood);
-                }
             }
 
             var masterworkMaterials = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork);
             if (item.Traits.Intersect(masterworkMaterials).Any())
                 item.Traits.Add(TraitConstants.Masterwork);
+
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Dragonhide))
+            {
+                var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
+                item.Attributes = item.Attributes.Except(metalAndWood);
+            }
 
             return item;
         }

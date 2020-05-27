@@ -330,6 +330,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Magic.SpecialAbilities, Is.Empty);
         }
 
+        [Test]
+        public void MundaneCloneItemIntoNullItem()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+            template.ItemType = Guid.NewGuid().ToString();
+            template.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = Guid.NewGuid().ToString() },
+                new SpecialAbility { Name = Guid.NewGuid().ToString() }
+            };
+
+            template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+
+            Assert.That(() => template.MundaneCloneInto(null),
+                Throws.ArgumentException.With.Message.EqualTo("Clone target cannot be null"));
+        }
+
         [TestCase(ItemTypeConstants.Armor)]
         [TestCase(ItemTypeConstants.Weapon)]
         public void ItemTypeCanBeUsedAsWeaponOrArmor(string itemType)

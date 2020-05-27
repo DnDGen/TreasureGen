@@ -104,28 +104,27 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         private Armor GetArmor(Item gear)
         {
-            var template = new Armor();
-            template.Name = gear.BaseNames.First();
+            var name = gear.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.Generate(template) as Armor;
+            var armor = mundaneArmorGenerator.Generate(name, gear.Traits.ToArray()) as Armor;
 
             gear.CloneInto(armor);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
-            return armor as Armor;
+            armor.Traits.Remove(armor.Size);
+
+            return armor;
         }
 
         private Weapon GetWeapon(Item gear)
         {
-            var template = new Weapon();
-            template.Name = gear.BaseNames.First();
-            template.Traits = new HashSet<string>(gear.Traits);
+            var name = gear.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.Generate(template) as Weapon;
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(name, gear.Traits.ToArray()) as Weapon;
             var weapon = new Weapon();
 
             gear.CloneInto(weapon);
@@ -144,7 +143,9 @@ namespace DnDGen.TreasureGen.Generators.Items
             if (weapon.Attributes.Contains(AttributeConstants.Ammunition) || weapon.Attributes.Contains(AttributeConstants.OneTimeUse))
                 weapon.Magic.Intelligence = new Intelligence();
 
-            return weapon as Weapon;
+            weapon.Traits.Remove(weapon.Size);
+
+            return weapon;
         }
 
         private string RenameGear(string oldName)

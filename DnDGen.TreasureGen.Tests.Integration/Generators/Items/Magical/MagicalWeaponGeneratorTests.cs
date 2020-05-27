@@ -383,11 +383,11 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(item, Is.InstanceOf<Weapon>());
 
             var weapon = item as Weapon;
-            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon), weapon.Name);
-            Assert.That(weapon.NameMatches(itemName), Is.True, weapon.Name);
-            Assert.That(weapon.Size, Is.EqualTo(size), weapon.Name);
+            Assert.That(weapon.ItemType, Is.EqualTo(ItemTypeConstants.Weapon), $"{weapon.Name} {weapon.Magic.Curse}");
+            Assert.That(weapon.NameMatches(itemName), Is.True, $"{weapon.Name} {weapon.Magic.Curse}");
+            Assert.That(weapon.Size, Is.EqualTo(size), $"{weapon.Name} {weapon.Magic.Curse}");
             Assert.That(weapon.Traits, Does.Not.Contain(size)
-                .And.Contains("my trait"), weapon.Name);
+                .And.Contains("my trait"), $"{weapon.Name} {weapon.Magic.Curse}");
         }
     }
 }

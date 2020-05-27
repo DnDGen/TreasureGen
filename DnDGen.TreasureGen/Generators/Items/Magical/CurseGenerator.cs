@@ -126,11 +126,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private Item GetArmor(Item cursedItem)
         {
-            var template = new Armor();
-            template.Name = cursedItem.BaseNames.First();
+            var name = cursedItem.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.Generate(template);
+            var armor = mundaneArmorGenerator.Generate(name, cursedItem.Traits.ToArray());
 
             cursedItem.CloneInto(armor);
 
@@ -142,11 +141,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private Item GetWeapon(Item cursedItem)
         {
-            var template = new Weapon();
-            template.Name = cursedItem.BaseNames.First();
+            var name = cursedItem.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var weapon = mundaneWeaponGenerator.Generate(template);
+            var weapon = mundaneWeaponGenerator.Generate(name, cursedItem.Traits.ToArray());
 
             cursedItem.Quantity = weapon.Quantity;
             cursedItem.CloneInto(weapon);
