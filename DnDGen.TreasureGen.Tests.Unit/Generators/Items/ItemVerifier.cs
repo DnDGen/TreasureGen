@@ -260,7 +260,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item, Is.Not.EqualTo(template), item.Name);
             Assert.That(item.IsMagical, Is.True, item.Name);
             Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Name);
-            Assert.That(item.Traits, Is.SupersetOf(template.Traits), item.Name);
+
+            var sizes = TraitConstants.Sizes.All();
+            Assert.That(item.Traits, Is.SupersetOf(template.Traits.Except(sizes)), item.Name);
 
             if (item.Attributes.Contains(AttributeConstants.OneTimeUse) || item.Attributes.Contains(AttributeConstants.Ammunition))
             {

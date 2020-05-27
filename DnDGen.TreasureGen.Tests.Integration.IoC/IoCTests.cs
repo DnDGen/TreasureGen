@@ -10,8 +10,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC
         [Inject]
         public Stopwatch Stopwatch { get; set; }
 
-        //INFO We set this to 200 instead of 100 because sometimes Travis is just randomly a slower environment
-        private const int TimeLimitInMilliseconds = 200;
+        //INFO We set this to 250 instead of 100 because sometimes Travis is just randomly a slower environment
+        private const int TimeLimitInMilliseconds = 250;
 
         protected void AssertSingleton<T>()
         {

@@ -129,12 +129,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var name = cursedItem.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.Generate(name, cursedItem.Traits.ToArray());
+            var armor = mundaneArmorGenerator.Generate(name, cursedItem.Traits.ToArray()) as Armor;
 
             cursedItem.CloneInto(armor);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
+
+            armor.Traits.Remove(armor.Size);
 
             return armor;
         }
@@ -144,13 +146,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var name = cursedItem.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var weapon = mundaneWeaponGenerator.Generate(name, cursedItem.Traits.ToArray());
+            var weapon = mundaneWeaponGenerator.Generate(name, cursedItem.Traits.ToArray()) as Weapon;
 
             cursedItem.Quantity = weapon.Quantity;
             cursedItem.CloneInto(weapon);
 
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
+
+            weapon.Traits.Remove(weapon.Size);
 
             return weapon;
         }
