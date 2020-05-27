@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Generators
 
             var coinTask = Task.Run(() => coinFactory.GenerateAtLevel(level));
             var goodsTask = goodsFactory.GenerateAtLevelAsync(level);
-            var itemsTask = itemsFactory.GenerateAtLevelAsync(level);
+            var itemsTask = itemsFactory.GenerateRandomAtLevelAsync(level);
 
             await Task.WhenAll(coinTask, goodsTask, itemsTask);
 

@@ -94,7 +94,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators
                 new Item { Name = "item 1" },
                 new Item { Name = "item 2" },
             };
-            mockItemsGenerator.Setup(f => f.GenerateAtLevel(1)).Returns(items);
+            mockItemsGenerator.Setup(f => f.GenerateRandomAtLevel(1)).Returns(items);
 
             var treasure = generator.GenerateAtLevel(1);
             Assert.That(treasure.Coin, Is.EqualTo(coin));
@@ -144,7 +144,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators
                 new Item { Name = "item 1" },
                 new Item { Name = "item 2" },
             };
-            mockItemsGenerator.Setup(f => f.GenerateAtLevelAsync(1)).ReturnsAsync(items);
+            mockItemsGenerator.Setup(f => f.GenerateRandomAtLevelAsync(1)).ReturnsAsync(items);
 
             var treasure = await generator.GenerateAtLevelAsync(1);
             Assert.That(treasure.Items, Is.EqualTo(items));
@@ -170,7 +170,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators
                 new Item { Name = "item 1" },
                 new Item { Name = "item 2" },
             };
-            mockItemsGenerator.Setup(f => f.GenerateAtLevelAsync(1)).ReturnsAsync(items);
+            mockItemsGenerator.Setup(f => f.GenerateRandomAtLevelAsync(1)).ReturnsAsync(items);
 
             var treasure = await generator.GenerateAtLevelAsync(1);
             Assert.That(treasure.Coin, Is.EqualTo(coin));

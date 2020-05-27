@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             return epicItems;
         }
 
-        public async Task<IEnumerable<Item>> GenerateAtLevelAsync(int level)
+        public async Task<IEnumerable<Item>> GenerateRandomAtLevelAsync(int level)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -70,7 +70,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             while (result.Amount-- > 0)
             {
-                var task = Task.Run(() => GenerateAtPower(result.Type));
+                var task = Task.Run(() => GenerateRandomAtPower(result.Type));
                 tasks.Add(task);
             }
 
@@ -89,7 +89,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             while (majorItemQuantity-- > 0)
             {
-                var task = Task.Run(() => GenerateAtPower(PowerConstants.Major));
+                var task = Task.Run(() => GenerateRandomAtPower(PowerConstants.Major));
                 epicItemTasks.Add(task);
             }
 
@@ -132,7 +132,8 @@ namespace DnDGen.TreasureGen.Generators.Items
             return GenerateMagicalItemAtPower(power, itemType, itemName, traits);
         }
 
-        public async Task<Item> GenerateAtLevelAsync(int level, string itemType, string itemName) => await Task.Run(() => GenerateAtLevel(level, itemType, itemName));
+        public async Task<Item> GenerateAtLevelAsync(int level, string itemType, string itemName, params string[] traits) =>
+            await Task.Run(() => GenerateAtLevel(level, itemType, itemName, traits));
 
         private Item GenerateMundaneItem(string itemType, string itemName = null, params string[] traits)
         {

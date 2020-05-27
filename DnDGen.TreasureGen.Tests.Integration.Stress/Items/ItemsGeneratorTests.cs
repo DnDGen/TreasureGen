@@ -43,7 +43,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         private async Task GenerateAndAssertItemsAsync()
         {
             var level = GetNewLevel();
-            var items = await ItemsGenerator.GenerateAtLevelAsync(level);
+            var items = await ItemsGenerator.GenerateRandomAtLevelAsync(level);
 
             Assert.That(items, Is.Not.Null);
 

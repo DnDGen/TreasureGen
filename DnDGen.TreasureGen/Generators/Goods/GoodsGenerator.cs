@@ -69,9 +69,6 @@ namespace DnDGen.TreasureGen.Generators.Goods
             while (typeAndAmountSelection.Amount-- > 0)
             {
                 var task = Task.Run(() => GenerateGood(typeAndAmountSelection));
-                var clientId = clientIDManager.GetClientID();
-                clientIDManager.SetClientID(clientId, task);
-
                 tasks.Add(task);
             }
 

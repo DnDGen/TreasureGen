@@ -26,10 +26,10 @@ namespace DnDGen.TreasureGen.Generators.Items
             return items;
         }
 
-        public async Task<IEnumerable<Item>> GenerateAtLevelAsync(int level)
+        public async Task<IEnumerable<Item>> GenerateRandomAtLevelAsync(int level)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} items generation");
-            var items = await innerGenerator.GenerateAtLevelAsync(level);
+            var items = await innerGenerator.GenerateRandomAtLevelAsync(level);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {items.Count()} level {level} items");
 
             return items;
@@ -44,10 +44,10 @@ namespace DnDGen.TreasureGen.Generators.Items
             return item;
         }
 
-        public async Task<Item> GenerateAtLevelAsync(int level, string itemType, string itemName)
+        public async Task<Item> GenerateAtLevelAsync(int level, string itemType, string itemName, params string[] traits)
         {
             eventQueue.Enqueue("TreasureGen", $"Beginning level {level} {itemType} generation ({itemName})");
-            var item = await innerGenerator.GenerateAtLevelAsync(level, itemType, itemName);
+            var item = await innerGenerator.GenerateAtLevelAsync(level, itemType, itemName, traits);
             eventQueue.Enqueue("TreasureGen", $"Completed generation of {item.ItemType} {item.Name}");
 
             return item;
