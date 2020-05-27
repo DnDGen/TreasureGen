@@ -55,7 +55,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var item = innerGenerator.GenerateRandom(power);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+            {
+                var specialMaterials = TraitConstants.SpecialMaterials.All();
+                foreach (var specialMaterial in specialMaterials)
+                {
+                    item.Traits.Remove(specialMaterial);
+                }
+
                 return item;
+            }
 
             item = AddSpecialMaterials(item, true);
 
@@ -67,7 +75,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var item = innerGenerator.Generate(power, itemName, traits);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+            {
+                var specialMaterials = TraitConstants.SpecialMaterials.All();
+                foreach (var specialMaterial in specialMaterials)
+                {
+                    item.Traits.Remove(specialMaterial);
+                }
+
                 return item;
+            }
 
             item = AddSpecialMaterials(item, true);
 

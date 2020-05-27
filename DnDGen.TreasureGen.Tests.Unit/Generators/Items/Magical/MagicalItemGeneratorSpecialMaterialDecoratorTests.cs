@@ -54,6 +54,25 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
 
+        [TestCase(TraitConstants.SpecialMaterials.Adamantine)]
+        [TestCase(TraitConstants.SpecialMaterials.AlchemicalSilver)]
+        [TestCase(TraitConstants.SpecialMaterials.ColdIron)]
+        [TestCase(TraitConstants.SpecialMaterials.Darkwood)]
+        [TestCase(TraitConstants.SpecialMaterials.Dragonhide)]
+        [TestCase(TraitConstants.SpecialMaterials.Mithral)]
+        public void SpecificCursedItemsRemovesSpecialMaterialsFromName(string material)
+        {
+            item.Magic.Curse = CurseConstants.SpecificCursedItem;
+            item.Traits.Add(material);
+            item.Traits.Add("other trait");
+
+            mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(true);
+            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
+
+            var decoratedItem = decorator.GenerateRandom("power");
+            Assert.That(decoratedItem.Traits, Has.Count.EqualTo(1).And.Contains("other trait"));
+        }
+
         [Test]
         public void DoNotGetSpecialMaterial()
         {
@@ -203,6 +222,27 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var decoratedItem = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(decoratedItem.Traits, Is.Empty);
+        }
+
+        [TestCase(TraitConstants.SpecialMaterials.Adamantine)]
+        [TestCase(TraitConstants.SpecialMaterials.AlchemicalSilver)]
+        [TestCase(TraitConstants.SpecialMaterials.ColdIron)]
+        [TestCase(TraitConstants.SpecialMaterials.Darkwood)]
+        [TestCase(TraitConstants.SpecialMaterials.Dragonhide)]
+        [TestCase(TraitConstants.SpecialMaterials.Mithral)]
+        public void SpecificCursedItemsRemovesSpecialMaterialsFromRandom(string material)
+        {
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(item);
+
+            item.Magic.Curse = CurseConstants.SpecificCursedItem;
+            item.Traits.Add(material);
+            item.Traits.Add("other trait");
+
+            mockMaterialGenerator.Setup(g => g.CanHaveSpecialMaterial(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns(true);
+            mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
+
+            var decoratedItem = decorator.Generate("power", "item name", "trait 1", "trait 2");
+            Assert.That(decoratedItem.Traits, Has.Count.EqualTo(1).And.Contains("other trait"));
         }
 
         [Test]
