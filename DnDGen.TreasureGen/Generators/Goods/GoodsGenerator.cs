@@ -1,5 +1,4 @@
-﻿using DnDGen.EventGen;
-using DnDGen.Infrastructure.Selectors.Collections;
+﻿using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Selectors.Selections;
@@ -14,7 +13,6 @@ namespace DnDGen.TreasureGen.Generators.Goods
     {
         private readonly ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
         private readonly ICollectionSelector collectionSelector;
-        private readonly ClientIDManager clientIDManager;
 
         public GoodsGenerator(ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector, ICollectionSelector collectionSelector)
         {

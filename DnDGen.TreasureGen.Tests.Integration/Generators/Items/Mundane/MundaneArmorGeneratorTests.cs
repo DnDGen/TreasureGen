@@ -1,10 +1,7 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
-using Ninject;
 using NUnit.Framework;
-using System;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
@@ -12,18 +9,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
     [TestFixture]
     public class MundaneArmorGeneratorTests : IntegrationTests
     {
-        [Inject, Named(ItemTypeConstants.Armor)]
-        public MundaneItemGenerator ArmorGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
-
         private ItemVerifier itemVerifier;
+        private MundaneItemGenerator armorGenerator;
 
         [SetUp]
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
+            armorGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Armor);
         }
 
         [TestCase(ArmorConstants.BandedMail)]
@@ -46,7 +39,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         [TestCase(ArmorConstants.TowerShield)]
         public void GenerateArmor(string itemName)
         {
-            var item = ArmorGenerator.Generate(itemName);
+            var item = armorGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -59,7 +52,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         [TestCase(ArmorConstants.FullPlate, TraitConstants.Sizes.Tiny)]
         public void GenerateArmorOfSize(string itemName, string size)
         {
-            var item = ArmorGenerator.Generate(itemName, "my trait", size);
+            var item = armorGenerator.Generate(itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());
 
@@ -81,7 +74,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             var template = itemVerifier.CreateRandomArmorTemplate(itemName);
             template.Traits.Add(size);
 
-            var item = ArmorGenerator.Generate(template);
+            var item = armorGenerator.Generate(template);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());
 

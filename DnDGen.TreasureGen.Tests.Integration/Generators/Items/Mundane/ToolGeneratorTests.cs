@@ -1,28 +1,21 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
-using Ninject;
 using NUnit.Framework;
-using System;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
 {
     [TestFixture]
     public class ToolGeneratorTests : IntegrationTests
     {
-        [Inject, Named(ItemTypeConstants.Tool)]
-        public MundaneItemGenerator ToolGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
-
         private ItemVerifier itemVerifier;
+        private MundaneItemGenerator toolGenerator;
 
         [SetUp]
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
+            toolGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Tool);
         }
 
         [TestCase(ToolConstants.ArtisansTools_Masterwork)]
@@ -47,7 +40,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         [TestCase(ToolConstants.ThievesTools_Masterwork)]
         public void GenerateTool(string itemName)
         {
-            var item = ToolGenerator.Generate(itemName);
+            var item = toolGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
         }
     }

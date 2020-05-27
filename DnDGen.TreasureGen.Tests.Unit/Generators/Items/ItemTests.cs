@@ -771,6 +771,98 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void BUG_CloneIntoDoesNotOverwriteWeaponProperties()
+        {
+            var weapon = new Weapon();
+            weapon.Ammunition = "my ammo";
+            weapon.CriticalMultiplier = "x9266";
+            weapon.Damage = "90210d42";
+            weapon.DamageType = "emotional";
+            weapon.ThreatRange = "all over da place";
+            weapon.Size = "my size";
+
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var newClone = template.CloneInto(weapon);
+            Assert.That(newClone, Is.EqualTo(weapon));
+            Assert.That(weapon, Is.Not.EqualTo(template));
+            Assert.That(weapon.Name, Is.EqualTo(template.Name));
+
+            Assert.That(weapon.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(weapon.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(weapon.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(weapon.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(weapon.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(weapon.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(weapon.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(weapon.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(weapon.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(weapon.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(weapon.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(weapon.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(weapon.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(weapon.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(weapon.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(weapon.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(weapon.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(weapon.Traits, Is.SupersetOf(template.Traits));
+
+            Assert.That(weapon.Ammunition, Is.EqualTo("my ammo"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x9266"));
+            Assert.That(weapon.Damage, Is.EqualTo("90210d42"));
+            Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo("all over da place"));
+            Assert.That(weapon.Size, Is.EqualTo("my size"));
+        }
+
+        [Test]
+        public void BUG_CloneIntoDoesNotOverwriteArmorProperties()
+        {
+            var armor = new Armor();
+            armor.ArmorBonus = 9266;
+            armor.ArmorCheckPenalty = -90210;
+            armor.MaxDexterityBonus = 42;
+            armor.Size = "my size";
+
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var newClone = template.CloneInto(armor);
+            Assert.That(newClone, Is.EqualTo(armor));
+            Assert.That(armor, Is.Not.EqualTo(template));
+            Assert.That(armor.Name, Is.EqualTo(template.Name));
+
+            Assert.That(armor.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(armor.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(armor.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(armor.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(armor.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(armor.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(armor.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(armor.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(armor.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(armor.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(armor.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(armor.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(armor.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(armor.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(armor.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(armor.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(armor.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(armor.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(armor.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(armor.Traits, Is.SupersetOf(template.Traits));
+
+            Assert.That(armor.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(armor.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(armor.MaxDexterityBonus, Is.EqualTo(42));
+            Assert.That(armor.Size, Is.EqualTo("my size"));
+        }
+
+        [Test]
         public void NameMatchesIfName()
         {
             item.Name = "name";

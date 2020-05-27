@@ -21,27 +21,13 @@ namespace DnDGen.TreasureGen.IoC.Modules
     {
         public override void Load()
         {
-            Bind<ITreasureGenerator>().To<TreasureGenerator>().WhenInjectedInto<TreasureGeneratorEventDecorator>();
-            Bind<ITreasureGenerator>().To<TreasureGeneratorEventDecorator>();
-
-            Bind<ICoinGenerator>().To<CoinGenerator>().WhenInjectedInto<CoinGeneratorEventDecorator>();
-            Bind<ICoinGenerator>().To<CoinGeneratorEventDecorator>();
-
-            Bind<IGoodsGenerator>().To<GoodsGenerator>().WhenInjectedInto<GoodsGeneratorEventDecorator>();
-            Bind<IGoodsGenerator>().To<GoodsGeneratorEventDecorator>();
-
-            Bind<IItemsGenerator>().To<ItemsGenerator>().WhenInjectedInto<ItemsGeneratorEventDecorator>();
-            Bind<IItemsGenerator>().To<ItemsGeneratorEventDecorator>();
-
-            Bind<ICurseGenerator>().To<CurseGenerator>().WhenInjectedInto<CurseGeneratorEventDecorator>();
-            Bind<ICurseGenerator>().To<CurseGeneratorEventDecorator>();
-
-            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>().WhenInjectedInto<SpecificGearGeneratorEventDecorator>();
-            Bind<ISpecificGearGenerator>().To<SpecificGearGeneratorEventDecorator>();
-
-            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>().WhenInjectedInto<SpecialAbilitiesGeneratorEventDecorator>();
-            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGeneratorEventDecorator>();
-
+            Bind<ITreasureGenerator>().To<TreasureGenerator>();
+            Bind<ICoinGenerator>().To<CoinGenerator>();
+            Bind<IGoodsGenerator>().To<GoodsGenerator>();
+            Bind<IItemsGenerator>().To<ItemsGenerator>();
+            Bind<ICurseGenerator>().To<CurseGenerator>();
+            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
+            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
@@ -51,7 +37,6 @@ namespace DnDGen.TreasureGen.IoC.Modules
             var decorators = new[]
             {
                 typeof(MundaneItemGeneratorSpecialMaterialDecorator),
-                typeof(MundaneItemGeneratorEventDecorator),
             };
 
             NameAndDecorate<MundaneItemGenerator, ToolGenerator>(ItemTypeConstants.Tool, decorators);
@@ -66,7 +51,6 @@ namespace DnDGen.TreasureGen.IoC.Modules
                 typeof(MagicalItemGeneratorTraitsDecorator),
                 typeof(MagicalItemGeneratorSpecialMaterialDecorator),
                 typeof(MagicalItemGeneratorMundaneProxy),
-                typeof(MagicalItemGeneratorEventDecorator),
             };
 
             NameAndDecorate<MagicalItemGenerator, MagicalArmorGenerator>(ItemTypeConstants.Armor, decorators);

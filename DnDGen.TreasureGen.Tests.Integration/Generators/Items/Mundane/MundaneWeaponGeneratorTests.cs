@@ -1,10 +1,7 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
-using Ninject;
 using NUnit.Framework;
-using System;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
@@ -12,18 +9,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
     [TestFixture]
     public class MundaneWeaponGeneratorTests : IntegrationTests
     {
-        [Inject, Named(ItemTypeConstants.Weapon)]
-        public MundaneItemGenerator WeaponGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
-
         private ItemVerifier itemVerifier;
+        private MundaneItemGenerator weaponGenerator;
 
         [SetUp]
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
+            weaponGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Weapon);
         }
 
         [TestCase(WeaponConstants.Arrow)]
@@ -107,7 +100,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         [TestCase(WeaponConstants.Whip)]
         public void GenerateWeapon(string itemName)
         {
-            var item = WeaponGenerator.Generate(itemName);
+            var item = weaponGenerator.Generate(itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -120,7 +113,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         [TestCase(WeaponConstants.Longsword, TraitConstants.Sizes.Tiny)]
         public void GenerateWeaponOfSize(string itemName, string size)
         {
-            var item = WeaponGenerator.Generate(itemName, "my trait", size);
+            var item = weaponGenerator.Generate(itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Weapon>());
 
@@ -142,7 +135,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             var template = itemVerifier.CreateRandomWeaponTemplate(itemName);
             template.Traits.Add(size);
 
-            var item = WeaponGenerator.Generate(template);
+            var item = weaponGenerator.Generate(template);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Weapon>());
 

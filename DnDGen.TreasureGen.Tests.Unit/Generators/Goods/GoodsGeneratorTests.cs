@@ -45,7 +45,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
             tableName = string.Format(TableNameConstants.Collections.Formattable.GOODTYPEDescriptions, selection.Type);
 
             var count = 0;
-            mockCollectionsSelector.Setup(p => p.SelectRandomFrom(tableName, It.IsAny<string>())).Returns(() => descriptions[count++ % descriptions.Count]);
+            object testLock = new object();
+            mockCollectionsSelector
+                .Setup(p => p.SelectRandomFrom(tableName, It.IsAny<string>()))
+                .Returns(() =>
+                {
+                    lock (testLock)
+                    {
+                        return descriptions[count++ % descriptions.Count];
+                    }
+                });
         }
 
         [Test]
@@ -153,8 +162,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
             var firstGood = goods.First();
             var secondGood = goods.Last();
 
-            Assert.That(firstGood.ValueInGold, Is.EqualTo(9266));
-            Assert.That(secondGood.ValueInGold, Is.EqualTo(90210));
+            Assert.That(firstGood.ValueInGold, Is.EqualTo(9266).Or.EqualTo(90210));
+            Assert.That(secondGood.ValueInGold, Is.EqualTo(9266).Or.EqualTo(90210));
+            Assert.That(firstGood.ValueInGold, Is.Not.EqualTo(secondGood.ValueInGold));
         }
 
         [Test]
