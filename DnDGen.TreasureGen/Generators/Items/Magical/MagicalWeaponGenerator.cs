@@ -207,15 +207,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             switch (weaponName)
             {
                 case WeaponConstants.CompositeLongbow:
-                case WeaponConstants.CompositePlus0Longbow:
-                case WeaponConstants.CompositePlus1Longbow:
-                case WeaponConstants.CompositePlus2Longbow:
-                case WeaponConstants.CompositePlus3Longbow:
-                case WeaponConstants.CompositePlus4Longbow: return WeaponConstants.CompositeLongbow;
+                case WeaponConstants.CompositeLongbow_StrengthPlus0:
+                case WeaponConstants.CompositeLongbow_StrengthPlus1:
+                case WeaponConstants.CompositeLongbow_StrengthPlus2:
+                case WeaponConstants.CompositeLongbow_StrengthPlus3:
+                case WeaponConstants.CompositeLongbow_StrengthPlus4: return WeaponConstants.CompositeLongbow;
                 case WeaponConstants.CompositeShortbow:
-                case WeaponConstants.CompositePlus0Shortbow:
-                case WeaponConstants.CompositePlus1Shortbow:
-                case WeaponConstants.CompositePlus2Shortbow: return WeaponConstants.CompositeShortbow;
+                case WeaponConstants.CompositeShortbow_StrengthPlus0:
+                case WeaponConstants.CompositeShortbow_StrengthPlus1:
+                case WeaponConstants.CompositeShortbow_StrengthPlus2: return WeaponConstants.CompositeShortbow;
                 default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
             }
         }

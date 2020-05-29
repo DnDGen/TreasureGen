@@ -539,15 +539,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         }
 
         [TestCase(WeaponConstants.CompositeLongbow)]
-        [TestCase(WeaponConstants.CompositePlus0Longbow)]
-        [TestCase(WeaponConstants.CompositePlus1Longbow)]
-        [TestCase(WeaponConstants.CompositePlus2Longbow)]
-        [TestCase(WeaponConstants.CompositePlus3Longbow)]
-        [TestCase(WeaponConstants.CompositePlus4Longbow)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus0)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus1)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus2)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus3)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus4)]
         [TestCase(WeaponConstants.CompositeShortbow)]
-        [TestCase(WeaponConstants.CompositePlus0Shortbow)]
-        [TestCase(WeaponConstants.CompositePlus1Shortbow)]
-        [TestCase(WeaponConstants.CompositePlus2Shortbow)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus0)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus1)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus2)]
         public void BUG_IsItemOfPower_ReturnsTrue_NotSpecific_CompositeBow(string bowName)
         {
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, bowName)).Returns(false);

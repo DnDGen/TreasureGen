@@ -73,17 +73,17 @@ namespace DnDGen.TreasureGen.Items
         public const string Javelin = "Javelin";
         public const string Shortbow = "Shortbow";
         public const string CompositeShortbow = "Composite shortbow";
-        public const string CompositePlus0Shortbow = "Composite (+0) shortbow";
-        public const string CompositePlus1Shortbow = "Composite (+1) shortbow";
-        public const string CompositePlus2Shortbow = "Composite (+2) shortbow";
+        public const string CompositeShortbow_StrengthPlus0 = "Composite (+0) shortbow";
+        public const string CompositeShortbow_StrengthPlus1 = "Composite (+1) shortbow";
+        public const string CompositeShortbow_StrengthPlus2 = "Composite (+2) shortbow";
         public const string Sling = "Sling";
         public const string Longbow = "Longbow";
         public const string CompositeLongbow = "Composite longbow";
-        public const string CompositePlus0Longbow = "Composite (+0) longbow";
-        public const string CompositePlus1Longbow = "Composite (+1) longbow";
-        public const string CompositePlus2Longbow = "Composite (+2) longbow";
-        public const string CompositePlus3Longbow = "Composite (+3) longbow";
-        public const string CompositePlus4Longbow = "Composite (+4) longbow";
+        public const string CompositeLongbow_StrengthPlus0 = "Composite (+0) longbow";
+        public const string CompositeLongbow_StrengthPlus1 = "Composite (+1) longbow";
+        public const string CompositeLongbow_StrengthPlus2 = "Composite (+2) longbow";
+        public const string CompositeLongbow_StrengthPlus3 = "Composite (+3) longbow";
+        public const string CompositeLongbow_StrengthPlus4 = "Composite (+4) longbow";
         public const string SleepArrow = "Sleep arrow";
         public const string ScreamingBolt = "Screaming bolt";
         public const string Dagger_Silver = "Silver dagger";
@@ -200,14 +200,14 @@ namespace DnDGen.TreasureGen.Items
                 {
                     Dagger_Adamantine,
                     Dagger_Silver,
-                    CompositePlus0Longbow,
-                    CompositePlus0Shortbow,
-                    CompositePlus1Longbow,
-                    CompositePlus1Shortbow,
-                    CompositePlus2Longbow,
-                    CompositePlus2Shortbow,
-                    CompositePlus3Longbow,
-                    CompositePlus4Longbow,
+                    CompositeLongbow_StrengthPlus0,
+                    CompositeShortbow_StrengthPlus0,
+                    CompositeLongbow_StrengthPlus1,
+                    CompositeShortbow_StrengthPlus1,
+                    CompositeLongbow_StrengthPlus2,
+                    CompositeShortbow_StrengthPlus2,
+                    CompositeLongbow_StrengthPlus3,
+                    CompositeLongbow_StrengthPlus4,
                 };
 
                 ranged = ranged.Union(templates);
@@ -504,14 +504,14 @@ namespace DnDGen.TreasureGen.Items
                 var templates = new[]
                 {
                     Battleaxe_Adamantine,
-                    CompositePlus0Longbow,
-                    CompositePlus0Shortbow,
-                    CompositePlus1Longbow,
-                    CompositePlus1Shortbow,
-                    CompositePlus2Longbow,
-                    CompositePlus2Shortbow,
-                    CompositePlus3Longbow,
-                    CompositePlus4Longbow,
+                    CompositeLongbow_StrengthPlus0,
+                    CompositeShortbow_StrengthPlus0,
+                    CompositeLongbow_StrengthPlus1,
+                    CompositeShortbow_StrengthPlus1,
+                    CompositeLongbow_StrengthPlus2,
+                    CompositeShortbow_StrengthPlus2,
+                    CompositeLongbow_StrengthPlus3,
+                    CompositeLongbow_StrengthPlus4,
                     LuckBlade0,
                     LuckBlade1,
                     LuckBlade2,
@@ -633,14 +633,14 @@ namespace DnDGen.TreasureGen.Items
             {
                 var templates = new[]
                 {
-                    CompositePlus0Longbow,
-                    CompositePlus0Shortbow,
-                    CompositePlus1Longbow,
-                    CompositePlus1Shortbow,
-                    CompositePlus2Longbow,
-                    CompositePlus2Shortbow,
-                    CompositePlus3Longbow,
-                    CompositePlus4Longbow,
+                    CompositeLongbow_StrengthPlus0,
+                    CompositeShortbow_StrengthPlus0,
+                    CompositeLongbow_StrengthPlus1,
+                    CompositeShortbow_StrengthPlus1,
+                    CompositeLongbow_StrengthPlus2,
+                    CompositeShortbow_StrengthPlus2,
+                    CompositeLongbow_StrengthPlus3,
+                    CompositeLongbow_StrengthPlus4,
                 };
 
                 projectile = projectile.Union(templates);
@@ -833,14 +833,14 @@ namespace DnDGen.TreasureGen.Items
                 {
                     Dagger_Adamantine,
                     Dagger_Silver,
-                    CompositePlus0Longbow,
-                    CompositePlus0Shortbow,
-                    CompositePlus1Longbow,
-                    CompositePlus1Shortbow,
-                    CompositePlus2Longbow,
-                    CompositePlus2Shortbow,
-                    CompositePlus3Longbow,
-                    CompositePlus4Longbow,
+                    CompositeLongbow_StrengthPlus0,
+                    CompositeShortbow_StrengthPlus0,
+                    CompositeLongbow_StrengthPlus1,
+                    CompositeShortbow_StrengthPlus1,
+                    CompositeLongbow_StrengthPlus2,
+                    CompositeShortbow_StrengthPlus2,
+                    CompositeLongbow_StrengthPlus3,
+                    CompositeLongbow_StrengthPlus4,
                     LuckBlade0,
                     LuckBlade1,
                     LuckBlade2,
