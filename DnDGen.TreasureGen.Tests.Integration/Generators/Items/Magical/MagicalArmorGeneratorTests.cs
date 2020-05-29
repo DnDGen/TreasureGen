@@ -204,5 +204,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
                 .And.Contains("my trait"), $"{armor.Name} {armor.Magic.Curse}");
             Assert.That(armor.Attributes, Contains.Item(AttributeConstants.Shield), $"{armor.Name} {armor.Magic.Curse}");
         }
+
+        [TestCase(PowerConstants.Minor)]
+        [TestCase(PowerConstants.Medium)]
+        [TestCase(PowerConstants.Major)]
+        public void BUG_DragonhideCastersShieldRemovesWoodAndMetalAsAttributes(string power)
+        {
+            var shield = ArmorGenerator.Generate(power, ArmorConstants.CastersShield, TraitConstants.SpecialMaterials.Dragonhide);
+            itemVerifier.AssertItem(shield);
+            Assert.That(shield.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
+            Assert.That(shield.Attributes, Does.Not.Contain(AttributeConstants.Wood)
+                .And.Not.Contain(AttributeConstants.Metal));
+        }
     }
 }
