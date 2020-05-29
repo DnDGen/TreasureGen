@@ -20,6 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         {
             var options = new StressorOptions();
             options.RunningAssembly = Assembly.GetExecutingAssembly();
+            options.TimeLimitPercentage = .8;
 
 #if STRESS
             options.IsFullStress = true;
