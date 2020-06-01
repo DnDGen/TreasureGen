@@ -136,7 +136,15 @@ namespace DnDGen.TreasureGen.Items
             target.ItemType = ItemType;
             target.Name = Name;
             target.BaseNames = BaseNames.ToArray();
-            target.Quantity = Quantity;
+
+            if (target is Weapon)
+            {
+                target.Quantity = Quantity != 1 ? Quantity : target.Quantity;
+            }
+            else
+            {
+                target.Quantity = Quantity;
+            }
 
             foreach (var trait in Traits)
             {

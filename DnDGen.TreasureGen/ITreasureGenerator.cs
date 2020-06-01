@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 [assembly: InternalsVisibleTo("DnDGen.TreasureGen.Tests.Unit")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
@@ -10,5 +11,6 @@ namespace DnDGen.TreasureGen.Generators
     public interface ITreasureGenerator
     {
         Treasure GenerateAtLevel(int level);
+        Task<Treasure> GenerateAtLevelAsync(int level);
     }
 }

@@ -74,17 +74,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
         }
 
         [Test]
-        public void RequiredAmmunitionHappens()
-        {
-            var item = stressor.GenerateOrFail(GenerateItem, w => w is Weapon && !string.IsNullOrEmpty((w as Weapon).Ammunition));
-            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Ranged), item.Name);
-
-            var weapon = item as Weapon;
-            Assert.That(weapon.Ammunition, Is.Not.Empty, weapon.Name);
-        }
-
-        [Test]
         public void StressCustomWeapon()
         {
             stressor.Stress(GenerateAndAssertCustomItem);

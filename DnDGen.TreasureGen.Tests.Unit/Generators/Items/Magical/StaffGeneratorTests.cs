@@ -167,6 +167,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
             mundaneWeapon.Traits.Clear();
+            mundaneWeapon.Quantity = 1;
 
             mockMundaneWeaponGenerator
                 .Setup(g => g.Generate(WeaponConstants.Dagger))
@@ -211,6 +212,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var mundaneWeapon = itemVerifier.CreateRandomWeaponTemplate(WeaponConstants.Dagger);
             mundaneWeapon.Traits.Clear();
+            mundaneWeapon.Quantity = 1;
 
             mockMundaneWeaponGenerator
                 .Setup(g => g.Generate(WeaponConstants.Dagger, template.Traits.First(), template.Traits.Last()))

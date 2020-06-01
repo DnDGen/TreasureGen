@@ -1,7 +1,7 @@
 ﻿using DnDGen.TreasureGen.Coins;
-using DnDGen.TreasureGen.Generators;
 using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Items;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Generators
 {
@@ -25,6 +25,23 @@ namespace DnDGen.TreasureGen.Generators
             treasure.Coin = coinFactory.GenerateAtLevel(level);
             treasure.Goods = goodsFactory.GenerateAtLevel(level);
             treasure.Items = itemsFactory.GenerateRandomAtLevel(level);
+
+            return treasure;
+        }
+
+        public async Task<Treasure> GenerateAtLevelAsync(int level)
+        {
+            var treasure = new Treasure();
+
+            var coinTask = Task.Run(() => coinFactory.GenerateAtLevel(level));
+            var goodsTask = goodsFactory.GenerateAtLevelAsync(level);
+            var itemsTask = itemsFactory.GenerateRandomAtLevelAsync(level);
+
+            await Task.WhenAll(coinTask, goodsTask, itemsTask);
+
+            treasure.Coin = coinTask.Result;
+            treasure.Goods = goodsTask.Result;
+            treasure.Items = itemsTask.Result;
 
             return treasure;
         }

@@ -14,12 +14,8 @@ namespace DnDGen.TreasureGen.IoC.Modules
             Bind<IWeaponDataSelector>().To<WeaponDataSelector>();
             Bind<ITreasurePercentileSelector>().To<PercentileSelectorStringReplacementDecorator>();
             Bind<IReplacementSelector>().To<ReplacementSelector>();
-
-            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>().WhenInjectedInto<TypeAndAmountPercentileSelectorEventDecorator>();
-            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelectorEventDecorator>();
-
-            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>().WhenInjectedInto<SpecialAbilityDataSelectorEventDecorator>();
-            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelectorEventDecorator>();
+            Bind<ITypeAndAmountPercentileSelector>().To<TypeAndAmountPercentileSelector>();
+            Bind<ISpecialAbilityDataSelector>().To<SpecialAbilityDataSelector>();
         }
     }
 }

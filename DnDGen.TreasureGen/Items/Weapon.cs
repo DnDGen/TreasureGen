@@ -53,12 +53,14 @@ namespace DnDGen.TreasureGen.Items
 
         private Weapon CloneWeapon(Weapon target)
         {
-            target.Ammunition = Ammunition;
-            target.CriticalMultiplier = CriticalMultiplier;
-            target.Damage = Damage;
-            target.DamageType = DamageType;
-            target.Size = Size;
-            target.ThreatRange = ThreatRange;
+            target.Ammunition = !string.IsNullOrEmpty(Ammunition) ? Ammunition : target.Ammunition;
+            target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
+            target.Damage = !string.IsNullOrEmpty(Damage) ? Damage : target.Damage;
+            target.DamageType = !string.IsNullOrEmpty(DamageType) ? DamageType : target.DamageType;
+            target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
+            target.ThreatRange = !string.IsNullOrEmpty(ThreatRange) ? ThreatRange : target.ThreatRange;
+
+            target.Quantity = Quantity > 1 ? Quantity : target.Quantity;
 
             return target;
         }

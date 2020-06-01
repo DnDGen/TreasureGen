@@ -124,18 +124,9 @@ namespace DnDGen.TreasureGen.Generators.Items
             var name = gear.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.Generate(name, gear.Traits.ToArray()) as Weapon;
-            var weapon = new Weapon();
+            var weapon = mundaneWeaponGenerator.Generate(name, gear.Traits.ToArray()) as Weapon;
 
             gear.CloneInto(weapon);
-
-            weapon.Quantity = mundaneWeapon.Quantity;
-            weapon.Ammunition = mundaneWeapon.Ammunition;
-            weapon.CriticalMultiplier = mundaneWeapon.CriticalMultiplier;
-            weapon.Damage = mundaneWeapon.Damage;
-            weapon.DamageType = mundaneWeapon.DamageType;
-            weapon.Size = mundaneWeapon.Size;
-            weapon.ThreatRange = mundaneWeapon.ThreatRange;
 
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);

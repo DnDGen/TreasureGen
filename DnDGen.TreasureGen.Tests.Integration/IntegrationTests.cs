@@ -1,9 +1,8 @@
 ﻿using DnDGen.Infrastructure.IoC;
-using DnDGen.EventGen.IoC;
-using Ninject;
-using NUnit.Framework;
 using DnDGen.RollGen.IoC;
 using DnDGen.TreasureGen.IoC;
+using Ninject;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration
 {
@@ -21,9 +20,6 @@ namespace DnDGen.TreasureGen.Tests.Integration
 
             var infrastructureModuleLoader = new InfrastructureModuleLoader();
             infrastructureModuleLoader.LoadModules(kernel);
-
-            var eventGenModuleLoader = new EventGenModuleLoader();
-            eventGenModuleLoader.LoadModules(kernel);
 
             var treasureGenModuleLoader = new TreasureGenModuleLoader();
             treasureGenModuleLoader.LoadModules(kernel);

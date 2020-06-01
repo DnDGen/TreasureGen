@@ -1,5 +1,5 @@
-﻿using System;
-using DnDGen.TreasureGen.Items.Magical;
+﻿using DnDGen.TreasureGen.Items.Magical;
+using System;
 
 namespace DnDGen.TreasureGen.Items
 {
@@ -76,10 +76,10 @@ namespace DnDGen.TreasureGen.Items
 
         private Armor CloneArmor(Armor target)
         {
-            target.ArmorBonus = ArmorBonus;
-            target.ArmorCheckPenalty = ArmorCheckPenalty;
-            target.MaxDexterityBonus = MaxDexterityBonus;
-            target.Size = Size;
+            target.ArmorBonus = ArmorBonus > 0 ? ArmorBonus : target.ArmorBonus;
+            target.ArmorCheckPenalty = ArmorCheckPenalty < 0 ? ArmorCheckPenalty : target.ArmorCheckPenalty;
+            target.MaxDexterityBonus = MaxDexterityBonus != 0 ? MaxDexterityBonus : target.MaxDexterityBonus;
+            target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
 
             return target;
         }
@@ -91,6 +91,16 @@ namespace DnDGen.TreasureGen.Items
             CloneArmor(clone);
 
             return clone;
+        }
+
+        public override Item MundaneCloneInto(Item target)
+        {
+            base.MundaneCloneInto(target);
+
+            if (target is Armor)
+                CloneArmor(target as Armor);
+
+            return target;
         }
 
         public override Item SmartClone()

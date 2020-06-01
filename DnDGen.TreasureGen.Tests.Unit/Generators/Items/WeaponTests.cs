@@ -179,5 +179,109 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Ranged));
             Assert.That(weapon.CombatTypes.Count, Is.EqualTo(2));
         }
+
+        [Test]
+        public void CloneIntoCopiesProperties()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomWeaponTemplate(name);
+
+            template.Ammunition = "nerf bullets";
+            template.CriticalMultiplier = "over 9000!!!";
+            template.Damage = "a ton";
+            template.DamageType = "stabbing";
+            template.Size = "massive";
+            template.ThreatRange = "all the threat";
+
+            var clone = new Weapon();
+            var newClone = template.CloneInto(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+
+            Assert.That(clone.Ammunition, Is.EqualTo(template.Ammunition));
+            Assert.That(clone.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
+            Assert.That(clone.Damage, Is.EqualTo(template.Damage));
+            Assert.That(clone.DamageType, Is.EqualTo(template.DamageType));
+            Assert.That(clone.Size, Is.EqualTo(template.Size));
+            Assert.That(clone.ThreatRange, Is.EqualTo(template.ThreatRange));
+        }
+
+        [Test]
+        public void BUG_CloneIntoPrefersNonemptyProperties()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomWeaponTemplate(name);
+
+            template.Ammunition = string.Empty;
+            template.CriticalMultiplier = string.Empty;
+            template.Damage = string.Empty;
+            template.DamageType = string.Empty;
+            template.Size = string.Empty;
+            template.ThreatRange = string.Empty;
+            template.Quantity = 1;
+
+            var clone = new Weapon();
+            clone.Ammunition = "nerf bullets";
+            clone.CriticalMultiplier = "over 9000!!!";
+            clone.Damage = "a ton";
+            clone.DamageType = "stabbing";
+            clone.Size = "massive";
+            clone.ThreatRange = "all the threat";
+            clone.Quantity = 9266;
+
+            var newClone = template.CloneInto(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+
+            Assert.That(clone.Ammunition, Is.EqualTo("nerf bullets"));
+            Assert.That(clone.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
+            Assert.That(clone.Damage, Is.EqualTo("a ton"));
+            Assert.That(clone.DamageType, Is.EqualTo("stabbing"));
+            Assert.That(clone.Size, Is.EqualTo("massive"));
+            Assert.That(clone.ThreatRange, Is.EqualTo("all the threat"));
+            Assert.That(clone.Quantity, Is.EqualTo(9266));
+        }
     }
 }
