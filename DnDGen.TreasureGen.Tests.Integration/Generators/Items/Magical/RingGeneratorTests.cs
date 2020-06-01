@@ -1,10 +1,8 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
-using System;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
 {
@@ -13,8 +11,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Ring)]
         public MagicalItemGenerator RingGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
 
         private ItemVerifier itemVerifier;
 
@@ -22,7 +18,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
         }
 
         [TestCase(RingConstants.AcidResistance_Greater, PowerConstants.Major)]
@@ -115,7 +110,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = RingGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = RingGenerator.GenerateFrom(power, itemName);
+            var item = RingGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 

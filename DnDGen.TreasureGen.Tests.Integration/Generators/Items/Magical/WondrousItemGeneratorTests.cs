@@ -1,10 +1,8 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
-using System;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
 {
@@ -13,8 +11,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.WondrousItem)]
         public MagicalItemGenerator WondrousItemGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
 
         private ItemVerifier itemVerifier;
 
@@ -22,7 +18,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
         }
 
         [TestCase(WondrousItemConstants.AmuletOfHealth, PowerConstants.Minor)]
@@ -363,7 +358,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = WondrousItemGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = WondrousItemGenerator.GenerateFrom(power, itemName);
+            var item = WondrousItemGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 

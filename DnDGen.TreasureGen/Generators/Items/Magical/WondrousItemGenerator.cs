@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
@@ -46,7 +46,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
@@ -58,19 +58,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var result = collectionsSelector.SelectRandomFrom(matches);
-            var item = BuildWondrousItem(itemName);
+            var item = BuildWondrousItem(itemName, traits);
             item.Magic.Bonus = result.Amount;
 
             return item;
         }
 
-        private Item BuildWondrousItem(string name)
+        private Item BuildWondrousItem(string name, params string[] traits)
         {
             var item = new Item();
             item.Name = name;
             item.BaseNames = new[] { name };
             item.IsMagical = true;
             item.ItemType = ItemTypeConstants.WondrousItem;
+            item.Traits = new HashSet<string>(traits);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, item.ItemType);
             item.Attributes = collectionsSelector.SelectFrom(tableName, name);
@@ -78,9 +79,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, name);
 
-            var trait = GetTraitFor(name);
-            if (!string.IsNullOrEmpty(trait))
-                item.Traits.Add(trait);
+            if (!item.Traits.Any())
+            {
+                var trait = GetTraitFor(name);
+                if (!string.IsNullOrEmpty(trait))
+                    item.Traits.Add(trait);
+            }
 
             var contents = GetContentsFor(name);
             item.Contents.AddRange(contents);
@@ -213,7 +217,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return planes;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var item = template.Clone();
             item.IsMagical = true;

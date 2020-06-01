@@ -16,7 +16,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.spellGenerator = spellGenerator;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var scroll = template.Clone();
             scroll.IsMagical = true;
@@ -28,7 +28,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return scroll.SmartClone();
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
             var spellType = spellGenerator.GenerateType();
             var scroll = new Item();
@@ -51,10 +51,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return scroll;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
-            var scroll = GenerateFrom(power);
+            var scroll = GenerateRandom(power);
             scroll.Name = itemName;
+
+            foreach (var trait in traits)
+                scroll.Traits.Add(trait);
 
             return scroll;
         }

@@ -10,6 +10,7 @@ using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 {
@@ -44,11 +45,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(ItemTypeConstants.WondrousItem);
 
             var dummyMagicalMock = new Mock<MagicalItemGenerator>();
-            dummyMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "magical item" });
+            dummyMagicalMock.Setup(m => m.GenerateRandom(It.IsAny<string>())).Returns(() => new Item { Name = "magical item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>(It.IsAny<string>())).Returns(dummyMagicalMock.Object);
 
             var dummyMundaneMock = new Mock<MundaneItemGenerator>();
-            dummyMundaneMock.Setup(m => m.Generate()).Returns(() => new Item { Name = "mundane item" });
+            dummyMundaneMock.Setup(m => m.GenerateRandom()).Returns(() => new Item { Name = "mundane item" });
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(It.IsAny<string>())).Returns(dummyMundaneMock.Object);
 
             var range = new RangeSelection { Maximum = 0, Minimum = 0 };
@@ -56,29 +57,29 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void ItemsAreGenerated()
+        public void GenerateRandomAtLevel_ItemsAreGenerated()
         {
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items, Is.Not.Null);
         }
 
         [Test]
-        public void GetItemTypeFromSelector()
+        public void GenerateRandomAtLevel_GetItemTypeFromSelector()
         {
-            itemsGenerator.GenerateAtLevel(9266);
+            itemsGenerator.GenerateRandomAtLevel(9266);
             var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, 9266);
             mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(expectedTableName), Times.Once);
         }
 
         [Test]
-        public void GetAmountFromRoll()
+        public void GenerateRandomAtLevel_GetAmountFromRoll()
         {
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items.Count(), Is.EqualTo(42));
         }
 
         [Test]
-        public void ReturnItems()
+        public void GenerateRandomAtLevel_ReturnItems()
         {
             selection.Type = PowerConstants.Mundane;
             selection.Amount = 2;
@@ -86,26 +87,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var firstItem = new Item();
             var secondItem = new Item();
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(It.IsAny<string>())).Returns(mockMundaneItemGenerator.Object);
-            mockMundaneItemGenerator.SetupSequence(f => f.Generate()).Returns(firstItem).Returns(secondItem);
+            mockMundaneItemGenerator.SetupSequence(f => f.GenerateRandom()).Returns(firstItem).Returns(secondItem);
 
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items, Contains.Item(firstItem));
             Assert.That(items, Contains.Item(secondItem));
             Assert.That(items.Count(), Is.EqualTo(2));
         }
 
         [Test]
-        public void IfSelectorReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
+        public void GenerateRandomAtLevel_IfSelectorReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
         {
             selection.Type = string.Empty;
             selection.Amount = 0;
 
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items, Is.Empty);
         }
 
         [Test]
-        public void GetMundaneItems()
+        public void GenerateRandomAtLevel_GetMundaneItems()
         {
             selection.Type = PowerConstants.Mundane;
             selection.Amount = 1;
@@ -114,14 +115,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, selection.Type);
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("mundane item type");
             mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>("mundane item type")).Returns(mockMundaneItemGenerator.Object);
-            mockMundaneItemGenerator.Setup(g => g.Generate()).Returns(mundaneItem);
+            mockMundaneItemGenerator.Setup(g => g.GenerateRandom()).Returns(mundaneItem);
 
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items.Single(), Is.EqualTo(mundaneItem));
         }
 
         [Test]
-        public void GetMagicalItems()
+        public void GenerateRandomAtLevel_GetMagicalItems()
         {
             selection.Type = "power";
             selection.Amount = 1;
@@ -130,14 +131,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, selection.Type);
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("magic item type");
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("magic item type")).Returns(mockMagicalItemGenerator.Object);
-            mockMagicalItemGenerator.Setup(g => g.GenerateFrom(selection.Type)).Returns(magicalItem);
+            mockMagicalItemGenerator.Setup(g => g.GenerateRandom(selection.Type)).Returns(magicalItem);
 
-            var items = itemsGenerator.GenerateAtLevel(1);
+            var items = itemsGenerator.GenerateRandomAtLevel(1);
             Assert.That(items.Single(), Is.EqualTo(magicalItem));
         }
 
         [Test]
-        public void GenerateEpicItems()
+        public void GenerateRandomAtLevel_GenerateEpicItems()
         {
             var range = new RangeSelection { Maximum = 600, Minimum = 600 };
             mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.EpicItems, "9266")).Returns(range);
@@ -146,10 +147,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
 
             var epicMagicalMock = new Mock<MagicalItemGenerator>();
-            epicMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            epicMagicalMock.Setup(m => m.GenerateRandom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
 
-            var items = itemsGenerator.GenerateAtLevel(9266);
+            var items = itemsGenerator.GenerateRandomAtLevel(9266);
             Assert.That(items.Count(), Is.EqualTo(642));
             Assert.That(items.Count(i => i.Name == "epic item"), Is.EqualTo(600));
             Assert.That(items.Count(i => i.Name == "magical item"), Is.EqualTo(42));
@@ -157,7 +158,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void GenerateOnlyEpicItems()
+        public void GenerateRandomAtLevel_GenerateOnlyEpicItems()
         {
             selection.Type = string.Empty;
             selection.Amount = 0;
@@ -169,13 +170,295 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
 
             var epicMagicalMock = new Mock<MagicalItemGenerator>();
-            epicMagicalMock.Setup(m => m.GenerateFrom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            epicMagicalMock.Setup(m => m.GenerateRandom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
             mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
 
-            var items = itemsGenerator.GenerateAtLevel(9266);
+            var items = itemsGenerator.GenerateRandomAtLevel(9266);
             Assert.That(items.Count(), Is.EqualTo(600));
             Assert.That(items.Count(i => i.Name == "epic item"), Is.EqualTo(600));
             Assert.That(items, Is.Unique);
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_GetMundaneItem()
+        {
+            selection.Type = PowerConstants.Mundane;
+
+            var firstItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>("item type")).Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator.Setup(f => f.Generate("item name")).Returns(firstItem);
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(firstItem));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_ItemsAreGenerated()
+        {
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items, Is.Not.Null);
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_GetMundaneItem_WithTraits()
+        {
+            selection.Type = PowerConstants.Mundane;
+
+            var firstItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>("item type")).Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator.Setup(f => f.Generate("item name", "trait 1", "trait 2")).Returns(firstItem);
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name", "trait 1", "trait 2");
+            Assert.That(item, Is.EqualTo(firstItem));
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_GetMagicalItem()
+        {
+            selection.Type = "power";
+
+            var magicalItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("item type")).Returns(mockMagicalItemGenerator.Object);
+            mockMagicalItemGenerator.Setup(g => g.Generate("power", "item name")).Returns(magicalItem);
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(magicalItem));
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_GetMagicalItem_WithTraits()
+        {
+            selection.Type = "power";
+
+            var magicalItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("item type")).Returns(mockMagicalItemGenerator.Object);
+            mockMagicalItemGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(magicalItem);
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name", "trait 1", "trait 2");
+            Assert.That(item, Is.EqualTo(magicalItem));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GetItemTypeFromSelector()
+        {
+            await itemsGenerator.GenerateRandomAtLevelAsync(9266);
+            var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, 9266);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(expectedTableName), Times.Once);
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GetAmountFromRoll()
+        {
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items.Count(), Is.EqualTo(42));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_ReturnItems()
+        {
+            selection.Type = PowerConstants.Mundane;
+            selection.Amount = 2;
+
+            var firstItem = new Item();
+            var secondItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>(It.IsAny<string>())).Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator
+                .SetupSequence(f => f.GenerateRandom())
+                .Returns(firstItem)
+                .Returns(secondItem);
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items, Contains.Item(firstItem));
+            Assert.That(items, Contains.Item(secondItem));
+            Assert.That(items.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_IfSelectorReturnsEmptyResult_ItemsGeneratorReturnsEmptyEnumerable()
+        {
+            selection.Type = string.Empty;
+            selection.Amount = 0;
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items, Is.Empty);
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GetMundaneItems()
+        {
+            selection.Type = PowerConstants.Mundane;
+            selection.Amount = 1;
+
+            var mundaneItem = new Item();
+            var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, selection.Type);
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("mundane item type");
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>("mundane item type")).Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator.Setup(g => g.GenerateRandom()).Returns(mundaneItem);
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items.Single(), Is.EqualTo(mundaneItem));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GetMagicalItems()
+        {
+            selection.Type = "power";
+            selection.Amount = 1;
+
+            var magicalItem = new Item();
+            var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, selection.Type);
+            mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("magic item type");
+            mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("magic item type")).Returns(mockMagicalItemGenerator.Object);
+            mockMagicalItemGenerator.Setup(g => g.GenerateRandom(selection.Type)).Returns(magicalItem);
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(1);
+            Assert.That(items.Single(), Is.EqualTo(magicalItem));
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GenerateEpicItems()
+        {
+            var range = new RangeSelection { Maximum = 600, Minimum = 600 };
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.EpicItems, "9266")).Returns(range);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Major);
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
+
+            var epicMagicalMock = new Mock<MagicalItemGenerator>();
+            epicMagicalMock.Setup(m => m.GenerateRandom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(9266);
+            Assert.That(items.Count(), Is.EqualTo(642));
+            Assert.That(items.Count(i => i.Name == "epic item"), Is.EqualTo(600));
+            Assert.That(items.Count(i => i.Name == "magical item"), Is.EqualTo(42));
+            Assert.That(items, Is.Unique);
+        }
+
+        [Test]
+        public async Task GenerateRandomAtLevelAsync_GenerateOnlyEpicItems()
+        {
+            selection.Type = string.Empty;
+            selection.Amount = 0;
+
+            var range = new RangeSelection { Maximum = 600, Minimum = 600 };
+            mockRangeDataSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.EpicItems, "9266")).Returns(range);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Major);
+            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("epic");
+
+            var epicMagicalMock = new Mock<MagicalItemGenerator>();
+            epicMagicalMock.Setup(m => m.GenerateRandom(It.IsAny<string>())).Returns(() => new Item { Name = "epic item" });
+            mockJustInTimeFactory.Setup(f => f.Build<MagicalItemGenerator>("epic")).Returns(epicMagicalMock.Object);
+
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(9266);
+            Assert.That(items.Count(), Is.EqualTo(600));
+            Assert.That(items.Count(i => i.Name == "epic item"), Is.EqualTo(600));
+            Assert.That(items, Is.Unique);
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_GetPowerFromSelector()
+        {
+            itemsGenerator.GenerateAtLevel(9266, "item type", "item name");
+            var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, 9266);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(expectedTableName), Times.Once);
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_ReturnItem()
+        {
+            selection.Type = PowerConstants.Mundane;
+            selection.Amount = 2;
+
+            var generatedItem = new Item();
+            mockJustInTimeFactory
+                .Setup(f => f.Build<MundaneItemGenerator>("item type"))
+                .Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator
+                .Setup(f => f.Generate("item name"))
+                .Returns(generatedItem);
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(generatedItem));
+        }
+
+        [Test]
+        public void GenerateAtLevel_Named_IfSelectorReturnsEmptyResult_ReturnNull()
+        {
+            selection.Type = string.Empty;
+            selection.Amount = 0;
+
+            var item = itemsGenerator.GenerateAtLevel(1, "item type", "item name");
+            Assert.That(item, Is.Null);
+        }
+
+        [Test]
+        public async Task GenerateAtLevelAsync_Named_GetPowerFromSelector()
+        {
+            await itemsGenerator.GenerateAtLevelAsync(9266, "item type", "item name");
+            var expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, 9266);
+            mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(expectedTableName), Times.Once);
+        }
+
+        [Test]
+        public async Task GenerateAtLevelAsync_Named_ReturnItem()
+        {
+            selection.Type = PowerConstants.Mundane;
+            selection.Amount = 2;
+
+            var generatedItem = new Item();
+            mockJustInTimeFactory
+                .Setup(f => f.Build<MundaneItemGenerator>("item type"))
+                .Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator
+                .Setup(f => f.Generate("item name"))
+                .Returns(generatedItem);
+
+            var item = await itemsGenerator.GenerateAtLevelAsync(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(generatedItem));
+        }
+
+        [Test]
+        public async Task GenerateAtLevelAsync_Named_IfSelectorReturnsEmptyResult_ReturnNull()
+        {
+            selection.Type = string.Empty;
+            selection.Amount = 0;
+
+            var item = await itemsGenerator.GenerateAtLevelAsync(1, "item type", "item name");
+            Assert.That(item, Is.Null);
+        }
+
+        [Test]
+        public async Task GenerateAtLevelAsync_Named_GetMundaneItem()
+        {
+            selection.Type = PowerConstants.Mundane;
+            selection.Amount = 1;
+
+            var mundaneItem = new Item();
+            mockJustInTimeFactory.Setup(f => f.Build<MundaneItemGenerator>("item type")).Returns(mockMundaneItemGenerator.Object);
+            mockMundaneItemGenerator.Setup(g => g.Generate("item name")).Returns(mundaneItem);
+
+            var item = await itemsGenerator.GenerateAtLevelAsync(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(mundaneItem));
+        }
+
+        [Test]
+        public async Task GenerateAtLevelAsync_Named_GetMagicalItem()
+        {
+            selection.Type = "power";
+            selection.Amount = 1;
+
+            var magicalItem = new Item();
+            mockJustInTimeFactory
+                .Setup(f => f.Build<MagicalItemGenerator>("item type"))
+                .Returns(mockMagicalItemGenerator.Object);
+            mockMagicalItemGenerator
+                .Setup(g => g.Generate(selection.Type, "item name"))
+                .Returns(magicalItem);
+
+            var item = await itemsGenerator.GenerateAtLevelAsync(1, "item type", "item name");
+            Assert.That(item, Is.EqualTo(magicalItem));
         }
     }
 }

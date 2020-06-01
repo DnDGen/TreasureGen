@@ -1,10 +1,8 @@
-﻿using DnDGen.EventGen;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
-using System;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
 {
@@ -13,8 +11,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
     {
         [Inject, Named(ItemTypeConstants.Rod)]
         public MagicalItemGenerator RodGenerator { get; set; }
-        [Inject]
-        public ClientIDManager ClientIDManager { get; set; }
 
         private ItemVerifier itemVerifier;
 
@@ -22,7 +18,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
-            ClientIDManager.SetClientID(Guid.NewGuid());
         }
 
         [TestCase(RodConstants.Absorption, PowerConstants.Major)]
@@ -78,7 +73,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var isOfPower = RodGenerator.IsItemOfPower(itemName, power);
             Assert.That(isOfPower, Is.True);
 
-            var item = RodGenerator.GenerateFrom(power, itemName);
+            var item = RodGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
 
@@ -95,6 +90,34 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
                 Assert.That(true, Is.EqualTo(isMedium)
                     .Or.EqualTo(isMajor), rod);
             }
+        }
+
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Colossal)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Huge)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Large)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Medium)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Small)]
+        [TestCase(RodConstants.Python, PowerConstants.Medium, TraitConstants.Sizes.Tiny)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Colossal)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Gargantuan)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Huge)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Large)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Medium)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Small)]
+        [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
+        public void GenerateRodOfSize(string itemName, string power, string size)
+        {
+            var isOfPower = RodGenerator.IsItemOfPower(itemName, power);
+            Assert.That(isOfPower, Is.True);
+
+            var item = RodGenerator.Generate(power, itemName, "my trait", size);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Size, Is.EqualTo(size));
+            Assert.That(weapon.Magic.Bonus, Is.Positive);
         }
     }
 }

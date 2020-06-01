@@ -17,7 +17,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             var result = typeAndAmountPercentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.AlchemicalItems);
 
@@ -46,7 +46,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             return item;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var item = template.MundaneClone();
             item.ItemType = ItemTypeConstants.AlchemicalItem;

@@ -2,9 +2,9 @@
 {
     public interface MagicalItemGenerator
     {
-        Item GenerateFrom(string power);
-        Item GenerateFrom(string power, string itemName);
-        Item GenerateFrom(Item template, bool allowRandomDecoration = false);
+        Item GenerateRandom(string power);
+        Item Generate(string power, string itemName, params string[] traits);
+        Item Generate(Item template, bool allowRandomDecoration = false);
         bool IsItemOfPower(string itemName, string power);
     }
 }

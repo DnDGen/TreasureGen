@@ -1,4 +1,5 @@
 ﻿using DnDGen.TreasureGen.Items.Magical;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -127,12 +128,23 @@ namespace DnDGen.TreasureGen.Items
 
         public virtual Item MundaneCloneInto(Item target)
         {
+            if (target == null)
+                throw new ArgumentException("Clone target cannot be null");
+
             target.Attributes = Attributes.ToArray();
             target.Contents.AddRange(Contents);
             target.ItemType = ItemType;
             target.Name = Name;
             target.BaseNames = BaseNames.ToArray();
-            target.Quantity = Quantity;
+
+            if (target is Weapon)
+            {
+                target.Quantity = Quantity != 1 ? Quantity : target.Quantity;
+            }
+            else
+            {
+                target.Quantity = Quantity;
+            }
 
             foreach (var trait in Traits)
             {

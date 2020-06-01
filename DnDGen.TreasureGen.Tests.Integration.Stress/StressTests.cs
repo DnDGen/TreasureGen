@@ -1,11 +1,9 @@
 ﻿using DnDGen.Stress;
-using DnDGen.Stress.Events;
-using DnDGen.EventGen;
+using DnDGen.TreasureGen.Items;
 using Ninject;
 using NUnit.Framework;
 using System;
 using System.Reflection;
-using DnDGen.TreasureGen.Items;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress
 {
@@ -20,8 +18,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         [OneTimeSetUp]
         public void StressSetup()
         {
-            var options = new StressorWithEventsOptions();
+            var options = new StressorOptions();
             options.RunningAssembly = Assembly.GetExecutingAssembly();
+            options.TimeLimitPercentage = .8;
 
 #if STRESS
             options.IsFullStress = true;
@@ -29,11 +28,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
             options.IsFullStress = false;
 #endif
 
-            options.ClientIdManager = GetNewInstanceOf<ClientIDManager>();
-            options.EventQueue = GetNewInstanceOf<GenEventQueue>();
-            options.Source = "TreasureGen";
-
-            stressor = new StressorWithEvents(options);
+            stressor = new Stressor(options);
         }
 
         protected int GetNewLevel()

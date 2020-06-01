@@ -20,9 +20,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             this.collectionsSelector = collectionsSelector;
         }
 
-        public Item GenerateFrom(Item template, bool allowRandomDecoration = false)
+        public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            var item = innerGenerator.GenerateFrom(template, allowRandomDecoration);
+            var item = innerGenerator.Generate(template, allowRandomDecoration);
 
             item = AddSpecialMaterials(item, allowRandomDecoration);
 
@@ -35,39 +35,55 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 var material = specialMaterialGenerator.GenerateFor(item.ItemType, item.Attributes, item.Traits);
                 item.Traits.Add(material);
-
-                if (material == TraitConstants.SpecialMaterials.Dragonhide)
-                {
-                    var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
-                    item.Attributes = item.Attributes.Except(metalAndWood);
-                }
             }
 
             var masterworkMaterials = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork);
             if (item.Traits.Intersect(masterworkMaterials).Any())
                 item.Traits.Add(TraitConstants.Masterwork);
 
+            if (item.Traits.Contains(TraitConstants.SpecialMaterials.Dragonhide))
+            {
+                var metalAndWood = new[] { AttributeConstants.Metal, AttributeConstants.Wood };
+                item.Attributes = item.Attributes.Except(metalAndWood);
+            }
+
             return item;
         }
 
-        public Item GenerateFrom(string power)
+        public Item GenerateRandom(string power)
         {
-            var item = innerGenerator.GenerateFrom(power);
+            var item = innerGenerator.GenerateRandom(power);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+            {
+                var specialMaterials = TraitConstants.SpecialMaterials.All();
+                foreach (var specialMaterial in specialMaterials)
+                {
+                    item.Traits.Remove(specialMaterial);
+                }
+
                 return item;
+            }
 
             item = AddSpecialMaterials(item, true);
 
             return item;
         }
 
-        public Item GenerateFrom(string power, string itemName)
+        public Item Generate(string power, string itemName, params string[] traits)
         {
-            var item = innerGenerator.GenerateFrom(power, itemName);
+            var item = innerGenerator.Generate(power, itemName, traits);
 
             if (item.Magic.Curse == CurseConstants.SpecificCursedItem)
+            {
+                var specialMaterials = TraitConstants.SpecialMaterials.All();
+                foreach (var specialMaterial in specialMaterials)
+                {
+                    item.Traits.Remove(specialMaterial);
+                }
+
                 return item;
+            }
 
             item = AddSpecialMaterials(item, true);
 

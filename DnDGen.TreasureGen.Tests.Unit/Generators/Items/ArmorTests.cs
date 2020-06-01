@@ -241,5 +241,97 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneArmor.MaxDexterityBonus, Is.EqualTo(template.MaxDexterityBonus));
             Assert.That(cloneArmor.Size, Is.EqualTo(template.Size));
         }
+
+        [Test]
+        public void CloneIntoCopiesProperties()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
+
+            template.ArmorBonus = 9266;
+            template.ArmorCheckPenalty = -90210;
+            template.MaxDexterityBonus = 42;
+            template.Size = "massive";
+
+            var clone = new Armor();
+            var newClone = template.CloneInto(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+
+            Assert.That(clone.ArmorBonus, Is.EqualTo(template.ArmorBonus));
+            Assert.That(clone.ArmorCheckPenalty, Is.EqualTo(template.ArmorCheckPenalty));
+            Assert.That(clone.MaxDexterityBonus, Is.EqualTo(template.MaxDexterityBonus));
+            Assert.That(clone.Size, Is.EqualTo(template.Size));
+        }
+
+        [Test]
+        public void BUG_CloneIntoPrefersNonemptyProperties()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomArmorTemplate(name);
+
+            template.ArmorBonus = 0;
+            template.ArmorCheckPenalty = 0;
+            template.MaxDexterityBonus = 0;
+            template.Size = string.Empty;
+
+            var clone = new Armor();
+            clone.ArmorBonus = 9266;
+            clone.ArmorCheckPenalty = -90210;
+            clone.MaxDexterityBonus = 42;
+            clone.Size = "massive";
+
+            var newClone = template.CloneInto(clone);
+            Assert.That(newClone, Is.EqualTo(clone));
+            Assert.That(clone.Name, Is.EqualTo(template.Name));
+
+            Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
+            Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
+            Assert.That(clone.Contents, Is.EquivalentTo(template.Contents));
+            Assert.That(clone.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(clone.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(clone.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(clone.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment));
+            Assert.That(clone.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat));
+            Assert.That(clone.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication));
+            Assert.That(clone.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower));
+            Assert.That(clone.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(clone.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat));
+            Assert.That(clone.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages));
+            Assert.That(clone.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality));
+            Assert.That(clone.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers));
+            Assert.That(clone.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses));
+            Assert.That(clone.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose));
+            Assert.That(clone.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat));
+            Assert.That(clone.Magic.SpecialAbilities, Is.EquivalentTo(template.Magic.SpecialAbilities));
+            Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
+
+            var cloneWeapon = clone;
+            Assert.That(cloneWeapon.ArmorBonus, Is.EqualTo(9266));
+            Assert.That(cloneWeapon.ArmorCheckPenalty, Is.EqualTo(-90210));
+            Assert.That(cloneWeapon.MaxDexterityBonus, Is.EqualTo(42));
+            Assert.That(cloneWeapon.Size, Is.EqualTo("massive"));
+        }
     }
 }

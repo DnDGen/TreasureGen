@@ -54,7 +54,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateRing()
         {
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo("ring of ability"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring of ability"));
             Assert.That(ring.IsMagical, Is.True);
@@ -69,7 +69,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
         }
 
@@ -81,7 +81,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, selection.Type)).Returns(9266);
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Magic.Charges, Is.EqualTo(9266));
         }
 
@@ -93,7 +93,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, selection.Type)).Returns(attributes);
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, selection.Type)).Returns(9266);
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Magic.Charges, Is.EqualTo(0));
         }
 
@@ -105,7 +105,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(2);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 2)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Minor));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 2)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -119,7 +119,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2").Returns("spell 3").Returns("spell 4");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Minor));
             Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
             Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
@@ -137,7 +137,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Minor));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(3));
@@ -152,7 +152,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(3);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 3)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 3)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -167,7 +167,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2")
                 .Returns("spell 3").Returns("spell 4").Returns("spell 5").Returns("spell 6");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring));
             Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
             Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
@@ -187,7 +187,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(5));
@@ -202,7 +202,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(6);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Major));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 6)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -218,7 +218,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns("spell 3").Returns("spell 4").Returns("spell 5").Returns("spell 6").Returns("spell 7").Returns("spell 8")
                 .Returns("spell 9").Returns("spell 10").Returns("spell 11");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Major));
             Assert.That(ring.Contents, Contains.Item("spell 1 (spell type, 1)"));
             Assert.That(ring.Contents, Contains.Item("spell 2 (spell type, 1)"));
@@ -243,7 +243,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 1)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.SpellStoring_Major));
             Assert.That(ring.Contents, Contains.Item("spell (spell type, 1)"));
             Assert.That(ring.Contents.Count, Is.EqualTo(10));
@@ -258,7 +258,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(4);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 4)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.Counterspells));
             Assert.That(ring.Contents, Contains.Item("spell"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -272,7 +272,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(1);
             mockSpellGenerator.SetupSequence(g => g.Generate("spell type", 1)).Returns("spell 1").Returns("spell 2");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.Counterspells));
             Assert.That(ring.Contents, Contains.Item("spell 1"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -288,7 +288,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(6);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 6)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.Counterspells));
             Assert.That(ring.Contents, Contains.Item("spell"));
             Assert.That(ring.Contents.Count, Is.EqualTo(1));
@@ -302,7 +302,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpellGenerator.Setup(g => g.GenerateLevel(power)).Returns(7);
             mockSpellGenerator.Setup(g => g.Generate("spell type", 7)).Returns("spell");
 
-            var ring = ringGenerator.GenerateFrom(power);
+            var ring = ringGenerator.GenerateRandom(power);
             Assert.That(ring.Name, Is.EqualTo(RingConstants.Counterspells));
             Assert.That(ring.Contents, Is.Empty);
         }
@@ -317,7 +317,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
-            var ring = ringGenerator.GenerateFrom(template);
+            var ring = ringGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
             Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
@@ -336,7 +336,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
-            var ring = ringGenerator.GenerateFrom(template, true);
+            var ring = ringGenerator.Generate(template, true);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
             Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
@@ -355,7 +355,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
 
-            var ring = ringGenerator.GenerateFrom(template);
+            var ring = ringGenerator.Generate(template);
             itemVerifier.AssertMagicalItemFromTemplate(ring, template);
             Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.Attributes, Is.EquivalentTo(attributes));
@@ -387,7 +387,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, "ring");
+            var ring = ringGenerator.Generate(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -395,6 +395,42 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(ring.Magic.Charges, Is.EqualTo(0));
             Assert.That(ring.Attributes, Is.EqualTo(attributes));
+        }
+
+        [Test]
+        public void GenerateFromName_WithTraits()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var selections = new[]
+            {
+                new TypeAndAmountSelection { Type = "wrong ring", Amount = 666 },
+                new TypeAndAmountSelection { Type = "ring", Amount = 9266 },
+                new TypeAndAmountSelection { Type = "other ring", Amount = 90210 }
+            };
+
+            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
+
+            mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Ring, It.IsAny<string>())).Returns(666);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
+                .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            var ring = ringGenerator.Generate(power, "ring", "trait 1", "trait 2");
+            Assert.That(ring.Name, Is.EqualTo("ring"));
+            Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
+            Assert.That(ring.IsMagical, Is.True);
+            Assert.That(ring.ItemType, Is.EqualTo(ItemTypeConstants.Ring));
+            Assert.That(ring.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(ring.Magic.Charges, Is.EqualTo(0));
+            Assert.That(ring.Attributes, Is.EqualTo(attributes));
+            Assert.That(ring.Traits, Has.Count.EqualTo(2)
+                .And.Contains("trait 1")
+                .And.Contains("trait 2"));
         }
 
         [Test]
@@ -420,7 +456,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, "ring");
+            var ring = ringGenerator.Generate(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -460,7 +496,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, name);
+            var ring = ringGenerator.Generate(power, name);
             Assert.That(ring.Name, Is.EqualTo(name));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo(name));
             Assert.That(ring.IsMagical, Is.True);
@@ -499,7 +535,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
             mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "ring")).Returns(attributes);
 
-            var ring = ringGenerator.GenerateFrom(power, "needs replacement");
+            var ring = ringGenerator.Generate(power, "needs replacement");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -532,7 +568,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom<TypeAndAmountSelection>(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            var ring = ringGenerator.GenerateFrom(power, "ring");
+            var ring = ringGenerator.Generate(power, "ring");
             Assert.That(ring.Name, Is.EqualTo("ring"));
             Assert.That(ring.BaseNames.Single(), Is.EqualTo("ring"));
             Assert.That(ring.IsMagical, Is.True);
@@ -564,7 +600,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom<string>(It.IsAny<IEnumerable<string>>()))
                 .Returns((IEnumerable<string> c) => c.Last());
 
-            Assert.That(() => ringGenerator.GenerateFrom(power, "ring"),
+            Assert.That(() => ringGenerator.Generate(power, "ring"),
                 Throws.ArgumentException.With.Message.EqualTo("ring is not a valid power Ring"));
         }
 

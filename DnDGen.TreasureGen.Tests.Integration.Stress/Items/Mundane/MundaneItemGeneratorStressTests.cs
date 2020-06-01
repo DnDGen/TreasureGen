@@ -25,7 +25,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
 
         protected override Item GenerateItem()
         {
-            return mundaneItemGenerator.Generate();
+            return mundaneItemGenerator.GenerateRandom();
         }
 
         protected void GenerateAndAssertCustomItem()
@@ -33,7 +33,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Mundane
             var name = GetRandomName();
             var template = ItemVerifier.CreateRandomTemplate(name);
 
-            var item = mundaneItemGenerator.GenerateFrom(template);
+            var item = mundaneItemGenerator.Generate(template);
             AssertItem(item);
             Assert.That(item.Name, Is.EqualTo(name));
             ItemVerifier.AssertMundaneItemFromTemplate(item, template);

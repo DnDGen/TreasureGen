@@ -29,13 +29,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             innerItem.ItemType = "item type";
             innerItem.Name = "item name";
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.GenerateRandom("power")).Returns(innerItem);
         }
 
         [Test]
         public void GetItemFromInnerGenerator()
         {
-            var item = decorator.GenerateFrom("power");
+            var item = decorator.GenerateRandom("power");
             Assert.That(item, Is.EqualTo(innerItem));
         }
 
@@ -45,7 +45,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var item = decorator.GenerateFrom("power");
+            var item = decorator.GenerateRandom("power");
             Assert.That(item.Magic.Curse, Is.Empty);
         }
 
@@ -55,7 +55,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var item = decorator.GenerateFrom("power");
+            var item = decorator.GenerateRandom("power");
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
 
@@ -68,7 +68,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             mockCurseGenerator.Setup(g => g.GenerateSpecificCursedItem(innerItem.ItemType)).Returns(specificCursedItem);
 
-            var item = decorator.GenerateFrom("power");
+            var item = decorator.GenerateRandom("power");
             Assert.That(item, Is.EqualTo(specificCursedItem));
         }
 
@@ -83,7 +83,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
                 .Returns("cursed");
 
-            var item = decorator.GenerateFrom("power");
+            var item = decorator.GenerateRandom("power");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
@@ -93,11 +93,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(innerItem);
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var decoratedItem = decorator.GenerateFrom(template, allowRandomDecoration: true);
+            var decoratedItem = decorator.Generate(template, allowRandomDecoration: true);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(innerItem));
             Assert.That(decoratedItem.Magic.Curse, Is.EqualTo("cursed"));
@@ -108,11 +108,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var template = new Item();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate(template, false)).Returns(innerItem);
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            var decoratedItem = decorator.GenerateFrom(template);
+            var decoratedItem = decorator.Generate(template);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(innerItem));
             Assert.That(decoratedItem.Magic.Curse, Is.Empty);
@@ -124,15 +124,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var template = new Item();
             var specificCursedItem = new Item();
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom(template, true)).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate(template, true)).Returns(innerItem);
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.SetupSequence(g => g.GenerateCurse())
                 .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
                 .Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems)
                 .Returns("cursed");
-            mockCurseGenerator.Setup(g => g.Generate()).Returns(specificCursedItem);
+            mockCurseGenerator.Setup(g => g.GenerateRandom()).Returns(specificCursedItem);
 
-            var decoratedItem = decorator.GenerateFrom(template, allowRandomDecoration: true);
+            var decoratedItem = decorator.Generate(template, allowRandomDecoration: true);
             Assert.That(decoratedItem, Is.Not.EqualTo(template));
             Assert.That(decoratedItem, Is.Not.EqualTo(specificCursedItem));
             Assert.That(decoratedItem, Is.EqualTo(innerItem));
@@ -147,11 +147,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var cursedItem = itemVerifier.CreateRandomTemplate(name);
             mockCurseGenerator.Setup(g => g.IsSpecificCursedItem(template)).Returns(true);
-            mockCurseGenerator.Setup(g => g.GenerateFrom(template, false)).Returns(cursedItem);
+            mockCurseGenerator.Setup(g => g.Generate(template, false)).Returns(cursedItem);
 
-            var decoratedItem = decorator.GenerateFrom(template, allowRandomDecoration: true);
+            var decoratedItem = decorator.Generate(template, allowRandomDecoration: true);
             Assert.That(decoratedItem, Is.EqualTo(cursedItem));
-            mockInnerGenerator.Verify(g => g.GenerateFrom(It.IsAny<Item>(), It.IsAny<bool>()), Times.Never);
+            mockInnerGenerator.Verify(g => g.Generate(It.IsAny<Item>(), It.IsAny<bool>()), Times.Never);
         }
 
         [Test]
@@ -160,9 +160,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(false);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", "item name");
+            var item = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.Empty);
         }
@@ -173,9 +173,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns("cursed");
 
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
-            var item = decorator.GenerateFrom("power", "item name");
+            var item = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
@@ -183,22 +183,22 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateSpecificFromName_CanBeSpecific()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
             var specificCursedItem = new Item();
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
             mockCurseGenerator.Setup(g => g.CanBeSpecificCursedItem("item name")).Returns(true);
             mockCurseGenerator.Setup(g => g.GenerateCurse()).Returns(TableNameConstants.Percentiles.Set.SpecificCursedItems);
-            mockCurseGenerator.Setup(g => g.Generate("item name")).Returns(specificCursedItem);
+            mockCurseGenerator.Setup(g => g.Generate("item name", "trait 1", "trait 2")).Returns(specificCursedItem);
 
-            var item = decorator.GenerateFrom("power", "item name");
+            var item = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(specificCursedItem));
         }
 
         [Test]
         public void DoNotGenerateSpecificFromName_CannotBeSpecific()
         {
-            mockInnerGenerator.Setup(g => g.GenerateFrom("power", "item name")).Returns(innerItem);
+            mockInnerGenerator.Setup(g => g.Generate("power", "item name", "trait 1", "trait 2")).Returns(innerItem);
 
             var specificCursedItem = new Item();
             mockCurseGenerator.Setup(g => g.HasCurse(innerItem)).Returns(true);
@@ -209,7 +209,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns("cursed");
             mockCurseGenerator.Setup(g => g.Generate("item name")).Returns(specificCursedItem);
 
-            var item = decorator.GenerateFrom("power", "item name");
+            var item = decorator.Generate("power", "item name", "trait 1", "trait 2");
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }

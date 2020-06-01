@@ -37,8 +37,11 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             Assert.That(rod.Quantity, Is.EqualTo(1));
             Assert.That(rod.Traits, Is.Not.Null);
 
-            var rodMaterials = rod.Traits.Intersect(materials);
-            Assert.That(rodMaterials, Is.Empty);
+            if (!(rod is Weapon))
+            {
+                var rodMaterials = rod.Traits.Intersect(materials);
+                Assert.That(rodMaterials, Is.Empty);
+            }
         }
 
         protected override IEnumerable<string> GetItemNames()

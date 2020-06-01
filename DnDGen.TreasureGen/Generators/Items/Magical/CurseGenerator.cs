@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return $"Dependent: {situation}";
         }
 
-        public Item Generate()
+        public Item GenerateRandom()
         {
             var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
             return Generate(name);
@@ -126,33 +126,35 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private Item GetArmor(Item cursedItem)
         {
-            var template = new Armor();
-            template.Name = cursedItem.BaseNames.First();
+            var name = cursedItem.BaseNames.First();
 
             var mundaneArmorGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Armor);
-            var armor = mundaneArmorGenerator.GenerateFrom(template);
+            var armor = mundaneArmorGenerator.Generate(name, cursedItem.Traits.ToArray()) as Armor;
 
             cursedItem.CloneInto(armor);
 
             if (armor.IsMagical)
                 armor.Traits.Add(TraitConstants.Masterwork);
 
+            armor.Traits.Remove(armor.Size);
+
             return armor;
         }
 
         private Item GetWeapon(Item cursedItem)
         {
-            var template = new Weapon();
-            template.Name = cursedItem.BaseNames.First();
+            var name = cursedItem.BaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var weapon = mundaneWeaponGenerator.GenerateFrom(template);
+            var weapon = mundaneWeaponGenerator.Generate(name, cursedItem.Traits.ToArray()) as Weapon;
 
             cursedItem.Quantity = weapon.Quantity;
             cursedItem.CloneInto(weapon);
 
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
+
+            weapon.Traits.Remove(weapon.Size);
 
             return weapon;
         }
@@ -190,7 +192,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return itemTypes.Values.SelectMany(v => v).Contains(itemType);
         }
 
-        public Item GenerateFrom(Item template, bool allowDecoration = false)
+        public Item Generate(Item template, bool allowDecoration = false)
         {
             var prototype = template.SmartClone();
             prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);

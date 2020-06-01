@@ -2,6 +2,7 @@
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
 using Ninject;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
 {
@@ -22,7 +23,27 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         private void GenerateAndAssertItems()
         {
             var level = GetNewLevel();
-            var items = ItemsGenerator.GenerateAtLevel(level);
+            var items = ItemsGenerator.GenerateRandomAtLevel(level);
+
+            Assert.That(items, Is.Not.Null);
+
+            if (level > 20)
+                Assert.That(items, Is.Not.Empty, $"Level {level}");
+
+            foreach (var item in items)
+                ItemVerifier.AssertItem(item);
+        }
+
+        [Test]
+        public void StressItemsAsync()
+        {
+            stressor.Stress(async () => await GenerateAndAssertItemsAsync());
+        }
+
+        private async Task GenerateAndAssertItemsAsync()
+        {
+            var level = GetNewLevel();
+            var items = await ItemsGenerator.GenerateRandomAtLevelAsync(level);
 
             Assert.That(items, Is.Not.Null);
 

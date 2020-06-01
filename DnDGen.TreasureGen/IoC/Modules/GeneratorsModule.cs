@@ -6,13 +6,12 @@ using DnDGen.TreasureGen.Generators.Items;
 using DnDGen.TreasureGen.Generators.Items.Magical;
 using DnDGen.TreasureGen.Generators.Items.Mundane;
 using DnDGen.TreasureGen.Goods;
+using DnDGen.TreasureGen.IoC.Extensions;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
-using Ninject.Activation;
 using Ninject.Modules;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.IoC.Modules
@@ -21,27 +20,13 @@ namespace DnDGen.TreasureGen.IoC.Modules
     {
         public override void Load()
         {
-            Bind<ITreasureGenerator>().To<TreasureGenerator>().WhenInjectedInto<TreasureGeneratorEventDecorator>();
-            Bind<ITreasureGenerator>().To<TreasureGeneratorEventDecorator>();
-
-            Bind<ICoinGenerator>().To<CoinGenerator>().WhenInjectedInto<CoinGeneratorEventDecorator>();
-            Bind<ICoinGenerator>().To<CoinGeneratorEventDecorator>();
-
-            Bind<IGoodsGenerator>().To<GoodsGenerator>().WhenInjectedInto<GoodsGeneratorEventDecorator>();
-            Bind<IGoodsGenerator>().To<GoodsGeneratorEventDecorator>();
-
-            Bind<IItemsGenerator>().To<ItemsGenerator>().WhenInjectedInto<ItemsGeneratorEventDecorator>();
-            Bind<IItemsGenerator>().To<ItemsGeneratorEventDecorator>();
-
-            Bind<ICurseGenerator>().To<CurseGenerator>().WhenInjectedInto<CurseGeneratorEventDecorator>();
-            Bind<ICurseGenerator>().To<CurseGeneratorEventDecorator>();
-
-            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>().WhenInjectedInto<SpecificGearGeneratorEventDecorator>();
-            Bind<ISpecificGearGenerator>().To<SpecificGearGeneratorEventDecorator>();
-
-            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>().WhenInjectedInto<SpecialAbilitiesGeneratorEventDecorator>();
-            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGeneratorEventDecorator>();
-
+            Bind<ITreasureGenerator>().To<TreasureGenerator>();
+            Bind<ICoinGenerator>().To<CoinGenerator>();
+            Bind<IGoodsGenerator>().To<GoodsGenerator>();
+            Bind<IItemsGenerator>().To<ItemsGenerator>();
+            Bind<ICurseGenerator>().To<CurseGenerator>();
+            Bind<ISpecificGearGenerator>().To<SpecificGearGenerator>();
+            Bind<ISpecialAbilitiesGenerator>().To<SpecialAbilitiesGenerator>();
             Bind<IChargesGenerator>().To<ChargesGenerator>();
             Bind<IIntelligenceGenerator>().To<IntelligenceGenerator>();
             Bind<IMagicalItemTraitsGenerator>().To<MagicalItemTraitsGenerator>();
@@ -51,7 +36,6 @@ namespace DnDGen.TreasureGen.IoC.Modules
             var decorators = new[]
             {
                 typeof(MundaneItemGeneratorSpecialMaterialDecorator),
-                typeof(MundaneItemGeneratorEventDecorator),
             };
 
             NameAndDecorate<MundaneItemGenerator, ToolGenerator>(ItemTypeConstants.Tool, decorators);
@@ -61,12 +45,11 @@ namespace DnDGen.TreasureGen.IoC.Modules
 
             decorators = new[]
             {
-                typeof(MagicalItemGeneratorCurseDecorator),
-                typeof(MagicalItemGeneratorIntelligenceDecorator),
                 typeof(MagicalItemGeneratorMundaneProxy),
                 typeof(MagicalItemGeneratorSpecialMaterialDecorator),
                 typeof(MagicalItemGeneratorTraitsDecorator),
-                typeof(MagicalItemGeneratorEventDecorator),
+                typeof(MagicalItemGeneratorIntelligenceDecorator),
+                typeof(MagicalItemGeneratorCurseDecorator),
             };
 
             NameAndDecorate<MagicalItemGenerator, MagicalArmorGenerator>(ItemTypeConstants.Armor, decorators);
@@ -80,25 +63,17 @@ namespace DnDGen.TreasureGen.IoC.Modules
             NameAndDecorate<MagicalItemGenerator, WondrousItemGenerator>(ItemTypeConstants.WondrousItem, decorators);
         }
 
-        private void NameAndDecorate<S, T>(string name, params Type[] decorators)
-            where T : S
+        private void NameAndDecorate<I, T>(string name, params Type[] decorators)
+            where T : I
         {
-            var implementations = new[] { typeof(T) }.Union(decorators).Take(decorators.Length);
+            Bind<I>().To(decorators[0]).Named(name);
 
-            foreach (var implementation in implementations)
+            for (var i = 1; i < decorators.Length; i++)
             {
-                Bind<S>().To(implementation).When(r => Need(implementation, r, name, implementations));
+                Bind<I>().To(decorators[i]).WhenInjectedInto(decorators[i - 1], name);
             }
 
-            Bind<S>().To(decorators.Last()).Named(name);
-        }
-
-        private bool Need(Type implementation, IRequest request, string name, IEnumerable<Type> implementations)
-        {
-            var implementationsList = implementations.ToList();
-            var depth = implementationsList.Count - implementationsList.IndexOf(implementation);
-
-            return request.Depth == depth && request.ActiveBindings.Any(b => b.Metadata.Name == name);
+            Bind<I>().To<T>().WhenInjectedInto(decorators.Last(), name);
         }
     }
 }
