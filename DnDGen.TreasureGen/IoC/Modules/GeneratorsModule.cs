@@ -63,17 +63,17 @@ namespace DnDGen.TreasureGen.IoC.Modules
             NameAndDecorate<MagicalItemGenerator, WondrousItemGenerator>(ItemTypeConstants.WondrousItem, decorators);
         }
 
-        private void NameAndDecorate<S, T>(string name, params Type[] decorators)
-            where T : S
+        private void NameAndDecorate<I, T>(string name, params Type[] decorators)
+            where T : I
         {
-            Bind<S>().To(decorators[0]).Named(name);
+            Bind<I>().To(decorators[0]).Named(name);
 
             for (var i = 1; i < decorators.Length; i++)
             {
-                Bind<S>().To(decorators[i]).WhenInjectedInto(decorators[i - 1], name);
+                Bind<I>().To(decorators[i]).WhenInjectedInto(decorators[i - 1], name);
             }
 
-            Bind<S>().To<T>().WhenInjectedInto(decorators.Last(), name);
+            Bind<I>().To<T>().WhenInjectedInto(decorators.Last(), name);
         }
     }
 }
