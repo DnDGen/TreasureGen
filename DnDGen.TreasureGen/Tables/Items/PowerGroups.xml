@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<collections>
+  <collection>
+    <name>Alchemical Item</name>
+    <entry>Mundane</entry>
+  </collection>
+  <collection>
+    <name>Armor</name>
+    <entry>Mundane</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Ring</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Scroll</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Staff</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Tool</name>
+    <entry>Mundane</entry>
+  </collection>
+  <collection>
+    <name>Wand</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Weapon</name>
+    <entry>Mundane</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Wondrous Item</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+</collections>

@@ -20,6 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         [TestCase(TableNameConstants.Collections.Set.IntelligenceData, "IntelligenceData")]
         [TestCase(TableNameConstants.Collections.Set.ItemAlignmentRequirements, "ItemAlignmentRequirements")]
         [TestCase(TableNameConstants.Collections.Set.ItemGroups, "ItemGroups")]
+        [TestCase(TableNameConstants.Collections.Set.PowerGroups, "PowerGroups")]
         [TestCase(TableNameConstants.Collections.Set.ReplacementStrings, "ReplacementStrings")]
         [TestCase(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "SpecialAbilityAttributeRequirements")]
         [TestCase(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "SpecialAbilityAttributes")]

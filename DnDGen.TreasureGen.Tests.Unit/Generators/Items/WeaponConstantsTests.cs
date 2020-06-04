@@ -138,9 +138,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             var ranged = WeaponConstants.GetAllRanged(specific, template);
             var melee = WeaponConstants.GetAllMelee(specific, template);
+
             var simple = WeaponConstants.GetAllSimple(specific, template);
             var martial = WeaponConstants.GetAllMartial(specific, template);
             var exotic = WeaponConstants.GetAllExotic(specific, template);
+
             var piercing = WeaponConstants.GetAllPiercing(specific, template);
             var bludgeoning = WeaponConstants.GetAllBludgeoning(specific, template);
             var slashing = WeaponConstants.GetAllSlashing(specific, template);
@@ -180,7 +182,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     WeaponConstants.ThrowingAxe,
                 }));
 
-            if (specific)
+            if (specific && template)
+            {
+                Assert.That(intersection, Is.SupersetOf(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }));
+            }
+            else if (specific)
+            {
                 Assert.That(intersection, Is.SupersetOf(new[]
                 {
                     WeaponConstants.AssassinsDagger,
@@ -190,12 +206,38 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     WeaponConstants.CursedBackbiterSpear,
                 }));
 
-            if (template)
-                Assert.That(intersection, Is.SupersetOf(new[]
+                Assert.That(intersection.Intersect(new[]
                 {
                     WeaponConstants.Dagger_Adamantine,
                     WeaponConstants.Dagger_Silver,
-                }));
+                }), Is.Empty);
+            }
+            else if (template)
+            {
+                Assert.That(intersection.Intersect(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }), Is.Empty);
+            }
+            else
+            {
+                Assert.That(intersection.Intersect(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }), Is.Empty);
+            }
         }
 
         [TestCase(false, false)]
@@ -235,7 +277,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var total = 26;
 
-            if (specific)
+            if (specific && template)
             {
                 Assert.That(ranged, Contains.Item(WeaponConstants.SleepArrow));
                 Assert.That(ranged, Contains.Item(WeaponConstants.SlayingArrow));
@@ -250,10 +292,60 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(ranged, Contains.Item(WeaponConstants.TridentOfWarning));
                 Assert.That(ranged, Contains.Item(WeaponConstants.CursedBackbiterSpear));
 
+                Assert.That(ranged, Contains.Item(WeaponConstants.Dagger_Adamantine));
+                Assert.That(ranged, Contains.Item(WeaponConstants.Dagger_Silver));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus0));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus0));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus1));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus1));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus2));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus2));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus3));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus4));
+
                 total += 12;
             }
-            else
+            else if (specific)
             {
+                Assert.That(ranged, Contains.Item(WeaponConstants.SleepArrow));
+                Assert.That(ranged, Contains.Item(WeaponConstants.SlayingArrow));
+                Assert.That(ranged, Contains.Item(WeaponConstants.GreaterSlayingArrow));
+                Assert.That(ranged, Contains.Item(WeaponConstants.ScreamingBolt));
+                Assert.That(ranged, Contains.Item(WeaponConstants.JavelinOfLightning));
+                Assert.That(ranged, Contains.Item(WeaponConstants.Oathbow));
+                Assert.That(ranged, Contains.Item(WeaponConstants.NetOfSnaring));
+                Assert.That(ranged, Contains.Item(WeaponConstants.AssassinsDagger));
+                Assert.That(ranged, Contains.Item(WeaponConstants.DaggerOfVenom));
+                Assert.That(ranged, Contains.Item(WeaponConstants.TridentOfFishCommand));
+                Assert.That(ranged, Contains.Item(WeaponConstants.TridentOfWarning));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CursedBackbiterSpear));
+
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.Dagger_Silver));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus0));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeShortbow_StrengthPlus0));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus1));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeShortbow_StrengthPlus1));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus2));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeShortbow_StrengthPlus2));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus3));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus4));
+
+                total += 12;
+            }
+            else if (template)
+            {
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus0));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus0));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus1));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus1));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus2));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus2));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus3));
+                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus4));
+
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.Dagger_Silver));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.SleepArrow));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.SlayingArrow));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.GreaterSlayingArrow));
@@ -266,20 +358,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.TridentOfFishCommand));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.TridentOfWarning));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.CursedBackbiterSpear));
-            }
-
-            if (template)
-            {
-                Assert.That(ranged, Contains.Item(WeaponConstants.Dagger_Adamantine));
-                Assert.That(ranged, Contains.Item(WeaponConstants.Dagger_Silver));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus0));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus0));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus1));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus1));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus2));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeShortbow_StrengthPlus2));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus3));
-                Assert.That(ranged, Contains.Item(WeaponConstants.CompositeLongbow_StrengthPlus4));
 
                 total += 10;
             }
@@ -295,6 +373,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeShortbow_StrengthPlus2));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus3));
                 Assert.That(ranged, Does.Not.Contain(WeaponConstants.CompositeLongbow_StrengthPlus4));
+
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.SleepArrow));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.SlayingArrow));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.GreaterSlayingArrow));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.ScreamingBolt));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.JavelinOfLightning));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.Oathbow));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.NetOfSnaring));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.AssassinsDagger));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.DaggerOfVenom));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.TridentOfFishCommand));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.TridentOfWarning));
+                Assert.That(ranged, Does.Not.Contain(WeaponConstants.CursedBackbiterSpear));
             }
 
             Assert.That(ranged.Count(), Is.EqualTo(total));
@@ -314,7 +405,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     WeaponConstants.ThrowingAxe,
                 }));
 
-            if (specific)
+            if (specific && template)
+            {
+                Assert.That(intersection, Is.SupersetOf(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }));
+            }
+            else if (specific)
+            {
                 Assert.That(intersection, Is.SupersetOf(new[]
                 {
                     WeaponConstants.AssassinsDagger,
@@ -324,12 +429,38 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     WeaponConstants.CursedBackbiterSpear,
                 }));
 
-            if (template)
-                Assert.That(intersection, Is.SupersetOf(new[]
+                Assert.That(intersection.Intersect(new[]
                 {
                     WeaponConstants.Dagger_Adamantine,
                     WeaponConstants.Dagger_Silver,
-                }));
+                }), Is.Empty);
+            }
+            else if (template)
+            {
+                Assert.That(intersection.Intersect(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }), Is.Empty);
+            }
+            else
+            {
+                Assert.That(intersection.Intersect(new[]
+                {
+                    WeaponConstants.AssassinsDagger,
+                    WeaponConstants.DaggerOfVenom,
+                    WeaponConstants.TridentOfFishCommand,
+                    WeaponConstants.TridentOfWarning,
+                    WeaponConstants.CursedBackbiterSpear,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Dagger_Silver,
+                }), Is.Empty);
+            }
         }
 
         [TestCase(false, false)]
@@ -363,7 +494,23 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var total = 20;
 
-            if (specific)
+            if (specific && template)
+            {
+                Assert.That(simple, Contains.Item(WeaponConstants.ScreamingBolt));
+                Assert.That(simple, Contains.Item(WeaponConstants.JavelinOfLightning));
+                Assert.That(simple, Contains.Item(WeaponConstants.AssassinsDagger));
+                Assert.That(simple, Contains.Item(WeaponConstants.MaceOfTerror));
+                Assert.That(simple, Contains.Item(WeaponConstants.MaceOfSmiting));
+                Assert.That(simple, Contains.Item(WeaponConstants.DaggerOfVenom));
+                Assert.That(simple, Contains.Item(WeaponConstants.CursedBackbiterSpear));
+                Assert.That(simple, Contains.Item(WeaponConstants.MaceOfBlood));
+
+                Assert.That(simple, Contains.Item(WeaponConstants.Dagger_Adamantine));
+                Assert.That(simple, Contains.Item(WeaponConstants.Dagger_Silver));
+
+                total += 10;
+            }
+            else if (specific)
             {
                 Assert.That(simple, Contains.Item(WeaponConstants.ScreamingBolt));
                 Assert.That(simple, Contains.Item(WeaponConstants.JavelinOfLightning));
@@ -376,8 +523,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
                 total += 8;
             }
-            else
+            else if (template)
             {
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.Dagger_Silver));
+
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.ScreamingBolt));
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.JavelinOfLightning));
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.AssassinsDagger));
@@ -387,18 +537,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.CursedBackbiterSpear));
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.MaceOfBlood));
             }
-
-            if (template)
-            {
-                Assert.That(simple, Contains.Item(WeaponConstants.Dagger_Adamantine));
-                Assert.That(simple, Contains.Item(WeaponConstants.Dagger_Silver));
-
-                total += 2;
-            }
             else
             {
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
                 Assert.That(simple, Does.Not.Contain(WeaponConstants.Dagger_Silver));
+
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.ScreamingBolt));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.JavelinOfLightning));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.AssassinsDagger));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.MaceOfTerror));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.MaceOfSmiting));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.DaggerOfVenom));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.CursedBackbiterSpear));
+                Assert.That(simple, Does.Not.Contain(WeaponConstants.MaceOfBlood));
             }
 
             Assert.That(simple.Count(), Is.EqualTo(total));
@@ -630,9 +781,23 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(light, Contains.Item(WeaponConstants.Sai));
             Assert.That(light, Contains.Item(WeaponConstants.Siangham));
 
-            var total = 17;
+            var total = 28;
 
-            if (specific)
+            if (specific && template)
+            {
+                Assert.That(light, Contains.Item(WeaponConstants.AssassinsDagger));
+                Assert.That(light, Contains.Item(WeaponConstants.SwordOfSubtlety));
+                Assert.That(light, Contains.Item(WeaponConstants.SunBlade));
+                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade));
+                Assert.That(light, Contains.Item(WeaponConstants.DaggerOfVenom));
+                Assert.That(light, Contains.Item(WeaponConstants.Dagger_Adamantine));
+                Assert.That(light, Contains.Item(WeaponConstants.Dagger_Silver));
+                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade0));
+                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade1));
+                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade2));
+                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade3));
+            }
+            else if (specific)
             {
                 Assert.That(light, Contains.Item(WeaponConstants.AssassinsDagger));
                 Assert.That(light, Contains.Item(WeaponConstants.SwordOfSubtlety));
@@ -640,7 +805,29 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(light, Contains.Item(WeaponConstants.LuckBlade));
                 Assert.That(light, Contains.Item(WeaponConstants.DaggerOfVenom));
 
-                total += 5;
+                Assert.That(light, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.Dagger_Silver));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade0));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade1));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade2));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade3));
+
+                total -= 6;
+            }
+            else if (template)
+            {
+                Assert.That(light, Does.Not.Contain(WeaponConstants.AssassinsDagger));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.SwordOfSubtlety));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.SunBlade));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.DaggerOfVenom));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.Dagger_Silver));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade0));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade1));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade2));
+                Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade3));
+
+                total -= 11;
             }
             else
             {
@@ -649,27 +836,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(light, Does.Not.Contain(WeaponConstants.SunBlade));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.DaggerOfVenom));
-            }
-
-            if (template)
-            {
-                Assert.That(light, Contains.Item(WeaponConstants.Dagger_Adamantine));
-                Assert.That(light, Contains.Item(WeaponConstants.Dagger_Silver));
-                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade0));
-                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade1));
-                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade2));
-                Assert.That(light, Contains.Item(WeaponConstants.LuckBlade3));
-
-                total += 6;
-            }
-            else
-            {
                 Assert.That(light, Does.Not.Contain(WeaponConstants.Dagger_Adamantine));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.Dagger_Silver));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade0));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade1));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade2));
                 Assert.That(light, Does.Not.Contain(WeaponConstants.LuckBlade3));
+
+                total -= 11;
             }
 
             Assert.That(light.Count(), Is.EqualTo(total));
@@ -710,7 +884,30 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var total = 15;
 
-            if (specific)
+            if (specific && template)
+            {
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.TridentOfFishCommand));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.FlameTongue));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.SwordOfThePlanes));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.NineLivesStealer));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.SwordOfLifeStealing));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.MaceOfTerror));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.SylvanScimitar));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.RapierOfPuncturing));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.SunBlade));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.DwarvenThrower));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.MaceOfSmiting));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.HolyAvenger));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.Shatterspike));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.TridentOfWarning));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.CursedBackbiterSpear));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.CursedMinus2Sword));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.MaceOfBlood));
+                Assert.That(oneHanded, Contains.Item(WeaponConstants.Battleaxe_Adamantine));
+
+                total += 18;
+            }
+            else if (specific)
             {
                 Assert.That(oneHanded, Contains.Item(WeaponConstants.TridentOfFishCommand));
                 Assert.That(oneHanded, Contains.Item(WeaponConstants.FlameTongue));
@@ -730,10 +927,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(oneHanded, Contains.Item(WeaponConstants.CursedMinus2Sword));
                 Assert.That(oneHanded, Contains.Item(WeaponConstants.MaceOfBlood));
 
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.Battleaxe_Adamantine));
+
                 total += 17;
             }
-            else
+            else if (template)
             {
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.Battleaxe_Adamantine));
+
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.TridentOfFishCommand));
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.FlameTongue));
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.SwordOfThePlanes));
@@ -752,16 +953,27 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.CursedMinus2Sword));
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.MaceOfBlood));
             }
-
-            if (template)
-            {
-                Assert.That(oneHanded, Contains.Item(WeaponConstants.Battleaxe_Adamantine));
-
-                total += 1;
-            }
             else
             {
                 Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.Battleaxe_Adamantine));
+
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.TridentOfFishCommand));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.FlameTongue));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.SwordOfThePlanes));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.NineLivesStealer));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.SwordOfLifeStealing));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.MaceOfTerror));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.SylvanScimitar));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.RapierOfPuncturing));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.SunBlade));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.DwarvenThrower));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.MaceOfSmiting));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.HolyAvenger));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.Shatterspike));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.TridentOfWarning));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.CursedBackbiterSpear));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.CursedMinus2Sword));
+                Assert.That(oneHanded, Does.Not.Contain(WeaponConstants.MaceOfBlood));
             }
 
             Assert.That(oneHanded.Count(), Is.EqualTo(total));

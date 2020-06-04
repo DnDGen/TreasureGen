@@ -193,31 +193,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
             }
 
-            if (itemName.Contains("Composite"))
-            {
-                itemName = GetCompositeBowName(itemName);
-            }
-
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            return collectionsSelector.IsCollection(tableName, itemName);
-        }
-
-        private string GetCompositeBowName(string weaponName)
-        {
-            switch (weaponName)
-            {
-                case WeaponConstants.CompositeLongbow:
-                case WeaponConstants.CompositeLongbow_StrengthPlus0:
-                case WeaponConstants.CompositeLongbow_StrengthPlus1:
-                case WeaponConstants.CompositeLongbow_StrengthPlus2:
-                case WeaponConstants.CompositeLongbow_StrengthPlus3:
-                case WeaponConstants.CompositeLongbow_StrengthPlus4: return WeaponConstants.CompositeLongbow;
-                case WeaponConstants.CompositeShortbow:
-                case WeaponConstants.CompositeShortbow_StrengthPlus0:
-                case WeaponConstants.CompositeShortbow_StrengthPlus1:
-                case WeaponConstants.CompositeShortbow_StrengthPlus2: return WeaponConstants.CompositeShortbow;
-                default: throw new ArgumentException($"Composite bow {weaponName} does not map to a known bow");
-            }
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            return powers.Contains(power);
         }
     }
 }

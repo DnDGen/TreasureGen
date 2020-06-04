@@ -200,14 +200,12 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public Item GeneratePrototypeFrom(string power, string specificGearType, string name, params string[] traits)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
+            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, name);
+            var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, adjustedPower, specificGearType);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
             selections = selections.Where(s => NameMatches(s.Type, name));
-
-            if (!selections.Any())
-            {
-                throw new ArgumentException($"{name} is not a valid {power} specific {specificGearType}");
-            }
 
             var selection = collectionsSelector.SelectRandomFrom(selections);
 
@@ -275,11 +273,10 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public bool IsSpecific(string power, string specificGearType, string itemName)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
-            var powerSelections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
 
             return IsSpecific(specificGearType, itemName)
-                && powerSelections.Any(s => NameMatches(s.Type, itemName));
+                && powers.Contains(power);
         }
 
         public bool CanBeSpecific(string power, string specificGearType, string itemName)

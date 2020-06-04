@@ -1,4 +1,5 @@
 ﻿using DnDGen.Infrastructure.Generators;
+using DnDGen.Infrastructure.Selectors.Collections;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
@@ -17,17 +18,20 @@ namespace DnDGen.TreasureGen.Generators.Items
         private readonly ITreasurePercentileSelector percentileSelector;
         private readonly JustInTimeFactory justInTimeFactory;
         private readonly IRangeDataSelector rangeDataSelector;
+        private readonly ICollectionSelector collectionSelector;
 
         public ItemsGenerator(
             ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector,
             JustInTimeFactory justInTimeFactory,
             ITreasurePercentileSelector percentileSelector,
-            IRangeDataSelector rangeDataSelector)
+            IRangeDataSelector rangeDataSelector,
+            ICollectionSelector collectionSelector)
         {
             this.typeAndAmountPercentileSelector = typeAndAmountPercentileSelector;
             this.justInTimeFactory = justInTimeFactory;
             this.percentileSelector = percentileSelector;
             this.rangeDataSelector = rangeDataSelector;
+            this.collectionSelector = collectionSelector;
         }
 
         public IEnumerable<Item> GenerateRandomAtLevel(int level)
@@ -125,6 +129,10 @@ namespace DnDGen.TreasureGen.Generators.Items
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var power = result.Type;
+
+            var itemTypePowers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemType);
+            if (!itemTypePowers.Contains(power))
+                power = itemTypePowers.First();
 
             if (power == PowerConstants.Mundane)
                 return GenerateMundaneItem(itemType, itemName, traits);

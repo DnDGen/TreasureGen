@@ -38,10 +38,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateRandom(string power)
         {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor rods");
+            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Rod);
+            var adjustedPower = PowerHelper.AdjustPower(power, rodPowers);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Rod);
             var result = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             return GenerateRod(result.Type, result.Amount);
@@ -81,27 +81,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor rods");
+            var rodName = GetRodName(itemName);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, rodName);
+            var adjustedPower = PowerHelper.AdjustPower(power, powers);
+
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Rod);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = results.Where(r => r.Type == itemName).ToList();
-
-            if (!matches.Any())
-            {
-                foreach (var result in results)
-                {
-                    var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
-                    if (baseNames.Contains(itemName))
-                        matches.Add(result);
-                }
-            }
-
-            if (!matches.Any())
-            {
-                throw new ArgumentException($"{itemName} is not a valid {power} Rod");
-            }
+            var matches = results.Where(r => r.Type == rodName).ToList();
 
             var match = collectionsSelector.SelectRandomFrom(matches);
             return GenerateRod(match.Type, match.Amount, traits);
@@ -168,24 +155,21 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public bool IsItemOfPower(string itemName, string power)
         {
-            if (power == PowerConstants.Minor)
-                return false;
+            var rodName = GetRodName(itemName);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = results.Where(r => r.Type == itemName);
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, rodName);
+            return powers.Contains(power);
+        }
 
-            if (results.Any(r => r.Type == itemName))
-                return true;
+        private string GetRodName(string itemName)
+        {
+            var rods = RodConstants.GetAllRods();
+            if (rods.Contains(itemName))
+                return itemName;
 
-            foreach (var result in results)
-            {
-                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
-                if (baseNames.Contains(itemName))
-                    return true;
-            }
+            var rodFromBaseName = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, itemName, rods.ToArray());
 
-            return false;
+            return rodFromBaseName;
         }
     }
 }
