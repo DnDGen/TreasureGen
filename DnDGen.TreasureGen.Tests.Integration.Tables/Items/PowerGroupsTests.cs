@@ -1,4 +1,5 @@
-﻿using DnDGen.TreasureGen.Items;
+﻿using DnDGen.Infrastructure.Selectors.Percentiles;
+using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Tests.Integration.Generators.Items;
@@ -16,6 +17,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         internal ITypeAndAmountPercentileSelector TypeAndAmountPercentileSelector { get; set; }
         [Inject]
         internal IReplacementSelector ReplacementSelector { get; set; }
+        [Inject]
+        public IPercentileSelector PercentileSelector { get; set; }
 
         protected override string tableName
         {
@@ -86,20 +89,23 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
             var generalArmors = ArmorConstants.GetAllArmorsAndShields(false);
             var shields = ArmorConstants.GetAllShields(true);
-            var cursed = ????
+            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             if (!generalArmors.Contains(itemName))
             {
                 var gearType = shields.Contains(itemName) ? AttributeConstants.Shield : ItemTypeConstants.Armor;
                 possiblePowers.Remove(PowerConstants.Mundane);
 
-                foreach (var power in powers.Except(new[] { PowerConstants.Mundane }))
+                if (!cursed.Contains(itemName))
                 {
-                    var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
-                    var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                    foreach (var power in powers.Except(new[] { PowerConstants.Mundane }))
+                    {
+                        var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+                        var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
-                    if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
-                        possiblePowers.Remove(power);
+                        if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
+                            possiblePowers.Remove(power);
+                    }
                 }
             }
 

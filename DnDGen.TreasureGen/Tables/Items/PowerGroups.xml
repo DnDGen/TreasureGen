@@ -223,57 +223,54 @@
   </collection>
   <collection>
     <name>Armor of arrow attraction</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Armor of rage</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Banded mail of luck</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Breastplate of command</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Celestial armor</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Demon armor</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Dwarven plate</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Elven chain</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
   </collection>
   <collection>
     <name>Full plate of speed</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Plate armor of the deep</name>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Rhino hide</name>
-    <entry>Specific</entry>
+    <entry>Medium</entry>
   </collection>
   <collection>
     <name>Arrow</name>
@@ -1118,26 +1115,367 @@
   </collection>
   <collection>
     <name>Caster's shield</name>
-    <entry>Shield</entry>
-    <entry>Specific</entry>
-    <entry>Wood</entry>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Lion's shield</name>
-    <entry>Shield</entry>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Spined shield</name>
-    <entry>Shield</entry>
-    <entry>Specific</entry>
-    <entry>Metal</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
   </collection>
   <collection>
     <name>Winged shield</name>
-    <entry>Shield</entry>
-    <entry>Specific</entry>
-    <entry>Wood</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of cure light wounds</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of endure elements</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <entry>14</entry>
+    <name>Potion of hide from animals</name>
+    <entry>15</entry>
+  </collection>
+  <collection>
+    <entry>16</entry>
+    <name>Potion of hide from undead</name>
+    <entry>17</entry>
+  </collection>
+  <collection>
+    <entry>18</entry>
+    <name>Potion of jump</name>
+    <entry>19</entry>
+  </collection>
+  <collection>
+    <entry>20</entry>
+    <name>Potion of mage armor</name>
+    <entry>22</entry>
+  </collection>
+  <collection>
+    <entry>23</entry>
+    <name>Potion of magic fang</name>
+    <entry>25</entry>
+  </collection>
+  <collection>
+    <name>Oil of magic stone</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Oil of magic weapon</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <entry>30</entry>
+    <name>Potion of pass without trace</name>
+    <entry>30</entry>
+  </collection>
+  <collection>
+    <entry>31</entry>
+    <name>Potion of protection from PARTIALALIGNMENT</name>
+    <entry>32</entry>
+  </collection>
+  <collection>
+    <entry>33</entry>
+    <name>Potion of remove fear</name>
+    <entry>34</entry>
+  </collection>
+  <collection>
+    <entry>35</entry>
+    <name>Potion of sanctuary</name>
+    <entry>35</entry>
+  </collection>
+  <collection>
+    <entry>36</entry>
+    <name>Potion of shield of faith</name>
+    <entry>38</entry>
+  </collection>
+  <collection>
+    <name>Oil of shillelagh</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Oil of bless weapon</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <entry>42</entry>
+    <name>Potion of enlarge person</name>
+    <entry>44</entry>
+  </collection>
+  <collection>
+    <entry>45</entry>
+    <name>Potion of reduce person</name>
+    <entry>45</entry>
+  </collection>
+  <collection>
+    <name>Potion of aid</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of barkskin</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of bear's endurance</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of blur</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of bull's strength</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of cat's grace</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of cure moderate wounds</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of darkness</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of darkvision</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of delay poison</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of eagle's splendor</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of fox's cunning</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <entry>79</entry>
+    <name>Potion of invisibility</name>
+    <entry>80</entry>
+  </collection>
+  <collection>
+    <name>Oil of invisibility</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <entry>82</entry>
+    <name>Potion of lesser restoration</name>
+    <entry>84</entry>
+  </collection>
+  <collection>
+    <entry>85</entry>
+    <name>Potion of levitate</name>
+    <entry>85</entry>
+  </collection>
+  <collection>
+    <name>Oil of levitate</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <entry>87</entry>
+    <name>Potion of misdirection</name>
+    <entry>87</entry>
+  </collection>
+  <collection>
+    <name>Potion of owl's wisdom</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <entry>90</entry>
+    <name>Potion of protection from arrows 10/magic</name>
+    <entry>91</entry>
+  </collection>
+  <collection>
+    <entry>92</entry>
+    <name>Potion of remove paralysis</name>
+    <entry>93</entry>
+  </collection>
+  <collection>
+    <entry>94</entry>
+    <name>Potion of resist ENERGY 10</name>
+    <entry>96</entry>
+  </collection>
+  <collection>
+    <entry>98</entry>
+    <name>Potion of spider climb</name>
+    <entry>99</entry>
+  </collection>
+  <collection>
+    <entry>100</entry>
+    <name>Potion of undetectable alignment</name>
+    <entry>100</entry>
+  </collection>
+  <collection>
+    <entry>53</entry>
+    <name>Potion of resist ENERGY 20</name>
+    <entry>55</entry>
+  </collection>
+  <collection>
+    <name>Potion of cure serious wounds</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of daylight</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of displacement</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of flame arrow</name>
+    <entry>Major</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <entry>66</entry>
+    <name>Potion of fly</name>
+    <entry>68</entry>
+  </collection>
+  <collection>
+    <entry>69</entry>
+    <name>Potion of gaseous form</name>
+    <entry>69</entry>
+  </collection>
+  <collection>
+    <entry>70</entry>
+    <name>Potion of greater magic fang</name>
+    <entry>71</entry>
+  </collection>
+  <collection>
+    <name>Oil of greater magic weapon</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <entry>74</entry>
+    <name>Potion of haste</name>
+    <entry>75</entry>
+  </collection>
+  <collection>
+    <entry>76</entry>
+    <name>Potion of heroism</name>
+    <entry>78</entry>
+  </collection>
+  <collection>
+    <name>Oil of keen edge</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <entry>81</entry>
+    <name>Potion of magic circle against PARTIALALIGNMENT</name>
+    <entry>81</entry>
+  </collection>
+  <collection>
+    <name>Oil of magic vestment</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <entry>84</entry>
+    <name>Potion of neutralize poison</name>
+    <entry>86</entry>
+  </collection>
+  <collection>
+    <entry>87</entry>
+    <name>Potion of nondetection</name>
+    <entry>88</entry>
+  </collection>
+  <collection>
+    <entry>89</entry>
+    <name>Potion of protection from ENERGY</name>
+    <entry>91</entry>
+  </collection>
+  <collection>
+    <entry>92</entry>
+    <name>Potion of rage</name>
+    <entry>93</entry>
+  </collection>
+  <collection>
+    <entry>94</entry>
+    <name>Potion of remove blindness/deafness</name>
+    <entry>94</entry>
+  </collection>
+  <collection>
+    <entry>95</entry>
+    <name>Potion of remove curse</name>
+    <entry>95</entry>
+  </collection>
+  <collection>
+    <entry>96</entry>
+    <name>Potion of remove disease</name>
+    <entry>96</entry>
+  </collection>
+  <collection>
+    <entry>97</entry>
+    <name>Potion of tongues</name>
+    <entry>97</entry>
+  </collection>
+  <collection>
+    <entry>98</entry>
+    <name>Potion of water breathing</name>
+    <entry>99</entry>
+  </collection>
+  <collection>
+    <entry>100</entry>
+    <name>Potion of water walk</name>
+    <entry>100</entry>
+  </collection>
+  <collection>
+    <entry>65</entry>
+    <name>Potion of good hope</name>
+    <entry>65</entry>
+  </collection>
+  <collection>
+    <entry>66</entry>
+    <name>Potion of resist ENERGY 30</name>
+    <entry>68</entry>
+  </collection>
+  <collection>
+    <entry>82</entry>
+    <name>Potion of protection from arrows 15/magic</name>
+    <entry>82</entry>
   </collection>
 </collections>
