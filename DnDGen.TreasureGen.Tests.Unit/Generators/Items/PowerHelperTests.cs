@@ -1,6 +1,7 @@
 ﻿using DnDGen.TreasureGen.Generators.Items;
 using DnDGen.TreasureGen.Items;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 {
@@ -131,6 +132,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             var power = PowerHelper.AdjustPower(requested, available);
             Assert.That(power, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void AdjustPower_ThrowsExceptionWhenNoAvailablePowers()
+        {
+            Assert.That(() => PowerHelper.AdjustPower("my power", new List<string>()),
+                Throws.ArgumentException.With.Message.EqualTo("No available powers from which to adjust the requested power: my power"));
         }
     }
 }

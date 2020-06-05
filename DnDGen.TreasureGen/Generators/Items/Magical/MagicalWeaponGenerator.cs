@@ -185,16 +185,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return weapon;
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, itemName))
-            {
-                return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
-            }
-
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
-            return powers.Contains(power);
-        }
     }
 }

@@ -35,9 +35,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(StaffConstants.Woodlands, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
         public void GenerateWeaponOfSize(string itemName, string power, string size)
         {
-            var isOfPower = StaffGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = StaffGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Weapon>());

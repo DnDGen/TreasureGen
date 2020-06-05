@@ -50,9 +50,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(ArmorConstants.FullPlate, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
         public void GenerateArmorOfSize(string itemName, string power, string size)
         {
-            var isOfPower = ArmorGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());
@@ -88,9 +85,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(ArmorConstants.HeavySteelShield, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
         public void GenerateShieldOfSize(string itemName, string power, string size)
         {
-            var isOfPower = ArmorGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());

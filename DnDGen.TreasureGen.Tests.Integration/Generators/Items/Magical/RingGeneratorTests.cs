@@ -23,9 +23,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCaseSource(typeof(ItemPowerTestData), "Rings")]
         public void GenerateRing(string itemName, string power)
         {
-            var isOfPower = RingGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = RingGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }

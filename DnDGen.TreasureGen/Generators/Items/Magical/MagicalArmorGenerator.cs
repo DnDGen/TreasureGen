@@ -182,21 +182,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return armor;
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            if (specificGearGenerator.IsSpecific(AttributeConstants.Shield, itemName))
-            {
-                return specificGearGenerator.IsSpecific(power, AttributeConstants.Shield, itemName);
-            }
-
-            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Armor, itemName))
-            {
-                return specificGearGenerator.IsSpecific(power, ItemTypeConstants.Armor, itemName);
-            }
-
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
-            return powers.Contains(power);
-        }
     }
 }

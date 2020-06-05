@@ -535,18 +535,20 @@ namespace DnDGen.TreasureGen.Items
                 LuckBlade3,
             };
 
+            var weapons = martial.Union(specific).Union(templates);
+
             if (!includeSpecific)
             {
-                martial = martial.Except(specific);
+                weapons = weapons.Except(specific);
             }
 
             if (!includeTemplates)
             {
 
-                martial = martial.Except(templates);
+                weapons = weapons.Except(templates);
             }
 
-            return martial;
+            return weapons;
         }
 
         public static IEnumerable<string> GetAllExotic(bool includeSpecific, bool includeTemplates)

@@ -23,9 +23,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCaseSource(typeof(ItemPowerTestData), "Weapons")]
         public void GenerateWeapon(string itemName, string power)
         {
-            var isOfPower = WeaponGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = WeaponGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }
@@ -53,9 +50,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(WeaponConstants.Longsword, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
         public void GenerateWeaponOfSize(string itemName, string power, string size)
         {
-            var isOfPower = WeaponGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = WeaponGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Weapon>());

@@ -425,6 +425,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "wondrous item"))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, "wondrous item");
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
@@ -457,6 +461,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "wondrous item"))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, "wondrous item", "trait 1", "trait 2");
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
@@ -494,6 +502,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "wondrous item"))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, "wondrous item");
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
             Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
@@ -511,6 +523,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var selections = new[]
             {
                 new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
+                new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 },
                 new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 }
             };
 
@@ -526,8 +539,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
-            Assert.That(() => wondrousItemGenerator.Generate(power, "wondrous item"),
-                Throws.ArgumentException.With.Message.EqualTo("wondrous item is not a valid power Wondrous Item"));
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "wondrous item"))
+                .Returns(new[] { power, "wrong power" });
+
+            var item = wondrousItemGenerator.Generate("other power", "wondrous item");
+            Assert.That(item.Name, Is.EqualTo("wondrous item"));
+            Assert.That(item.BaseNames.Single(), Is.EqualTo("wondrous item"));
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.WondrousItem));
+            Assert.That(item.Attributes, Is.EqualTo(attributes));
+            Assert.That(item.IsMagical, Is.True);
+            Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(item.Magic.Charges, Is.Zero);
         }
 
         [Test]
@@ -552,6 +575,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "wondrous item"))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, "wondrous item");
             Assert.That(item.Name, Is.EqualTo("wondrous item"));
@@ -587,6 +614,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.HornOfValhalla))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.HornOfValhalla);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.HornOfValhalla));
@@ -625,6 +656,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.HornOfValhalla))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.HornOfValhalla, "ceramic");
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.HornOfValhalla));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.HornOfValhalla));
@@ -660,6 +695,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.IronFlask))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.IronFlask);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.IronFlask));
@@ -699,6 +738,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.RobeOfUsefulItems))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.RobeOfUsefulItems);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfUsefulItems));
@@ -743,6 +786,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.CubicGate))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.CubicGate);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CubicGate));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CubicGate));
@@ -785,6 +832,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.DeckOfIllusions))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.DeckOfIllusions);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.DeckOfIllusions));
@@ -842,6 +893,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, name))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, name);
             Assert.That(item.Name, Is.EqualTo(name));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(name));
@@ -883,6 +938,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.RobeOfBones))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.RobeOfBones);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfBones));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfBones));
@@ -923,6 +982,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.CandleOfInvocation))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.CandleOfInvocation);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
@@ -960,6 +1023,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.CandleOfInvocation))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.CandleOfInvocation, "goody two-shoes");
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.CandleOfInvocation));
@@ -995,6 +1062,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockCollectionsSelector
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.RobeOfTheArchmagi))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.RobeOfTheArchmagi);
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
@@ -1033,6 +1104,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Setup(s => s.SelectRandomFrom(It.IsAny<IEnumerable<TypeAndAmountSelection>>()))
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WondrousItemConstants.RobeOfTheArchmagi))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var item = wondrousItemGenerator.Generate(power, WondrousItemConstants.RobeOfTheArchmagi, "plaid (superbad)");
             Assert.That(item.Name, Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
             Assert.That(item.BaseNames.Single(), Is.EqualTo(WondrousItemConstants.RobeOfTheArchmagi));
@@ -1042,39 +1117,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
             Assert.That(item.Magic.Charges, Is.EqualTo(0));
             Assert.That(item.Traits, Contains.Item("plaid (superbad)").And.Count.EqualTo(1));
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsFalse()
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            var selections = new[]
-            {
-                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 }
-            };
-
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
-
-            var isOfPower = wondrousItemGenerator.IsItemOfPower("wondrous item", power);
-            Assert.That(isOfPower, Is.False);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue()
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            var selections = new[]
-            {
-                new TypeAndAmountSelection { Type = "wrong wondrous item", Amount = 666 },
-                new TypeAndAmountSelection { Type = "wondrous item", Amount = 9266 },
-                new TypeAndAmountSelection { Type = "other wondrous item", Amount = 90210 }
-            };
-
-            mockTypeAndAmountPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(selections);
-
-            var isOfPower = wondrousItemGenerator.IsItemOfPower("wondrous item", power);
-            Assert.That(isOfPower, Is.True);
         }
     }
 }

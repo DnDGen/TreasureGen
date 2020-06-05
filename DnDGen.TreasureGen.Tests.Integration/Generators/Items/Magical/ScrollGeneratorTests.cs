@@ -28,9 +28,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase("whatever", PowerConstants.Major)]
         public void GenerateScroll(string itemName, string power)
         {
-            var isOfPower = ScrollGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = ScrollGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }

@@ -1,5 +1,4 @@
-﻿using DnDGen.TreasureGen.Generators.Items;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Tests.Integration.Generators.Items;
@@ -17,8 +16,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         internal ITypeAndAmountPercentileSelector TypeAndAmountPercentileSelector { get; set; }
         [Inject]
         internal IReplacementSelector ReplacementSelector { get; set; }
-        [Inject]
-        internal ISpecificGearGenerator SpecificGearGenerator { get; set; }
 
         protected override string tableName
         {
@@ -89,16 +86,19 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
             var generalArmors = ArmorConstants.GetAllArmorsAndShields(false);
             var shields = ArmorConstants.GetAllShields(true);
+            var cursed = ????
 
             if (!generalArmors.Contains(itemName))
             {
-                possiblePowers.Remove(PowerConstants.Mundane);
                 var gearType = shields.Contains(itemName) ? AttributeConstants.Shield : ItemTypeConstants.Armor;
+                possiblePowers.Remove(PowerConstants.Mundane);
 
-                foreach (var power in powers)
+                foreach (var power in powers.Except(new[] { PowerConstants.Mundane }))
                 {
-                    var isSpecific = SpecificGearGenerator.IsSpecific(power, gearType, itemName);
-                    if (!isSpecific)
+                    var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
+                    var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                    if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                         possiblePowers.Remove(power);
                 }
             }
@@ -210,8 +210,10 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
                 foreach (var power in powers)
                 {
-                    var isSpecific = SpecificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
-                    if (!isSpecific)
+                    var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, ItemTypeConstants.Weapon);
+                    var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+
+                    if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                         possiblePowers.Remove(power);
                 }
             }

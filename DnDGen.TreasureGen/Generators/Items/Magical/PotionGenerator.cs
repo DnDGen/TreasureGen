@@ -81,12 +81,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return potion.SmartClone();
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
-
-            return powers.Contains(power);
-        }
     }
 }

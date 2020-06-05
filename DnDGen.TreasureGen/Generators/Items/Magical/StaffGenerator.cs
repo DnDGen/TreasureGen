@@ -34,7 +34,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateRandom(string power)
         {
-            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Rod);
+            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Staff);
             var adjustedPower = PowerHelper.AdjustPower(power, rodPowers);
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
@@ -59,10 +59,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item Generate(string power, string itemName, params string[] traits)
         {
             var staffName = GetStaffName(itemName);
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, staffName);
+            var adjustedPower = PowerHelper.AdjustPower(power, powers);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = selections.Where(s => s.Type == itemName).ToList();
+            var matches = selections.Where(s => s.Type == staffName).ToList();
 
             var selection = collectionsSelector.SelectRandomFrom(matches);
             return GenerateStaff(selection.Type, selection.Amount, traits);
@@ -121,14 +123,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
-        }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var staffName = GetStaffName(itemName);
-
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, staffName);
-            return powers.Contains(power);
         }
     }
 }

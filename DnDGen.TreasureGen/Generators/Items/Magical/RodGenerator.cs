@@ -153,14 +153,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return mediumResults.Union(majorResults);
         }
 
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var rodName = GetRodName(itemName);
-
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, rodName);
-            return powers.Contains(power);
-        }
-
         private string GetRodName(string itemName)
         {
             var rods = RodConstants.GetAllRods();

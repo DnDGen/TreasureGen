@@ -126,6 +126,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     selection
                 });
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "specific gear"))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "specific gear");
             Assert.That(prototype, Is.Not.Null);
             Assert.That(prototype.BaseNames, Is.EqualTo(baseNames));
@@ -150,6 +154,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     selection
                 });
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "item name"))
+                .Returns(new[] { "wrong power", power, "other power" });
+
             var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "item name");
             Assert.That(prototype.ItemType, Is.EqualTo(itemType));
         }
@@ -167,6 +175,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     new TypeAndAmountSelection { Type = "another item name", Amount = 9266 },
                     selection
                 });
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "specific gear"))
+                .Returns(new[] { "wrong power", power, "other power" });
 
             var prototype = specificGearGenerator.GeneratePrototypeFrom(power, gearType, "specific gear");
             Assert.That(prototype, Is.Not.Null);
@@ -1223,6 +1235,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
                 Returns(new[] { "another item name", "item name" });
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "item name"))
+                .Returns(new[] { "wrong power", "power", "other power" });
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
@@ -1301,6 +1317,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     new TypeAndAmountSelection { Type = "wrong item name", Amount = 90210 },
                 });
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "item name"))
+                .Returns(new[] { "wrong power", "other power" });
+
             var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", "item name");
             Assert.That(isSpecific, Is.False);
         }
@@ -1320,19 +1340,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
                 Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
 
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade0, Amount = 0 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade1, Amount = 1 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade2, Amount = 2 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade3, Amount = 3 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
-                });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, oldName))
+                .Returns(new[] { "wrong power", "power", "other power" });
 
             var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
             Assert.That(isSpecific, Is.True);
@@ -1451,6 +1461,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectAllFrom(tableName))
                 .Returns(selections);
 
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WeaponConstants.LuckBlade))
+                .Returns(new[] { "wrong power", "power", "other power" });
+
             var prototype = specificGearGenerator.GeneratePrototypeFrom("power", "gear type", WeaponConstants.LuckBlade);
             Assert.That(prototype, Is.Not.Null);
             Assert.That(prototype.Name, Is.EqualTo(WeaponConstants.LuckBlade0));
@@ -1479,6 +1493,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
                 .Returns(selections);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WeaponConstants.LuckBlade))
+                .Returns(new[] { "wrong power", "power", "other power" });
 
             var prototype = specificGearGenerator.GeneratePrototypeFrom("power", "gear type", WeaponConstants.LuckBlade);
             Assert.That(prototype, Is.Not.Null);

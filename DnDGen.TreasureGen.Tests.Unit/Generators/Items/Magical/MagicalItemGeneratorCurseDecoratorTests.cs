@@ -213,30 +213,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item, Is.EqualTo(innerItem));
             Assert.That(item.Magic.Curse, Is.EqualTo("cursed"));
         }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue_IsSpecific()
-        {
-            mockCurseGenerator
-                .Setup(g => g.IsSpecificCursedItem("item name"))
-                .Returns(true);
-
-            var isOfPower = decorator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.True);
-        }
-
-        [TestCase(true)]
-        [TestCase(false)]
-        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
-        {
-            mockCurseGenerator
-                .Setup(g => g.IsSpecificCursedItem("item name"))
-                .Returns(false);
-
-            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
-
-            var isOfPower = decorator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
-        }
     }
 }

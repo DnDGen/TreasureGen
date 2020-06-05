@@ -43,9 +43,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase(RodConstants.Python, PowerConstants.Major, TraitConstants.Sizes.Tiny)]
         public void GenerateRodOfSize(string itemName, string power, string size)
         {
-            var isOfPower = RodGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = RodGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Weapon>());

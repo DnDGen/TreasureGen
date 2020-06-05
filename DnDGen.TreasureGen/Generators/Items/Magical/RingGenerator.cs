@@ -146,11 +146,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return ring.SmartClone();
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
-            return powers.Contains(power);
-        }
     }
 }

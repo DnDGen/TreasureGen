@@ -153,12 +153,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .And.Contains("trait 1")
                 .And.Contains("trait 2"));
         }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue()
-        {
-            var isItemOfPower = wandGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isItemOfPower, Is.True);
-        }
     }
 }

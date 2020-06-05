@@ -9,6 +9,9 @@ namespace DnDGen.TreasureGen.Generators.Items
     {
         public static string AdjustPower(string requestedPower, IEnumerable<string> availablePowers)
         {
+            if (!availablePowers.Any())
+                throw new ArgumentException($"No available powers from which to adjust the requested power: {requestedPower}");
+
             if (availablePowers.Contains(requestedPower))
                 return requestedPower;
 
