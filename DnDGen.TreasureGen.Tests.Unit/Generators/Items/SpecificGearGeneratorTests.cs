@@ -827,18 +827,36 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.Dagger_Silver)]
-        [TestCase(WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade0)]
-        [TestCase(WeaponConstants.LuckBlade1)]
-        [TestCase(WeaponConstants.LuckBlade2)]
-        [TestCase(WeaponConstants.LuckBlade3)]
-        public void BUG_TemplateIsSpecific_ChangedName(string oldName)
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.LuckBlade, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_TemplateIsSpecific_ChangedName(string oldName, params string[] newNames)
         {
             var template = itemVerifier.CreateRandomTemplate(oldName);
 
-            var specificItems = new[] { "other item", WeaponConstants.Dagger_Silver, WeaponConstants.LuckBlade };
+            var specificItems = new[]
+            {
+                "other item",
+                WeaponConstants.Dagger_Silver,
+                WeaponConstants.LuckBlade,
+                WeaponConstants.Dagger_Adamantine,
+                WeaponConstants.Battleaxe_Adamantine,
+                "wrong item"
+            };
             mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).Returns(specificItems);
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
+                .Returns((string s, bool allow) => new[] { s });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(oldName, true))
+                .Returns(newNames);
 
             var isSpecific = specificGearGenerator.IsSpecific(template);
             Assert.That(isSpecific, Is.True);
@@ -1192,20 +1210,47 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.Dagger_Silver)]
-        [TestCase(WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade0)]
-        [TestCase(WeaponConstants.LuckBlade1)]
-        [TestCase(WeaponConstants.LuckBlade2)]
-        [TestCase(WeaponConstants.LuckBlade3)]
-        public void BUG_NameIsSpecific_ReturnsTrue_Renamed(string oldName)
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.LuckBlade, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_NameIsSpecific_ReturnsTrue_Renamed(string oldName, params string[] newNames)
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
+                Returns(new[]
+                {
+                    "other item name",
+                    "item name",
+                    WeaponConstants.LuckBlade,
+                    WeaponConstants.Dagger_Silver,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Battleaxe_Adamantine,
+                    "wrong item"
+                });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
+                Returns(new[] {
+                    "another item name",
+                    "item name",
+                    WeaponConstants.LuckBlade,
+                    WeaponConstants.Dagger_Silver,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Battleaxe_Adamantine,
+                    "wrong item"
+                });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
+                .Returns((string s, bool allow) => new[] { s });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(oldName, true))
+                .Returns(newNames);
 
             var isSpecific = specificGearGenerator.IsSpecific("gear type", oldName);
             Assert.That(isSpecific, Is.True);
@@ -1325,24 +1370,51 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(isSpecific, Is.False);
         }
 
-        [TestCase(WeaponConstants.Dagger_Silver)]
-        [TestCase(WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade0)]
-        [TestCase(WeaponConstants.LuckBlade1)]
-        [TestCase(WeaponConstants.LuckBlade2)]
-        [TestCase(WeaponConstants.LuckBlade3)]
-        public void BUG_NameIsSpecific_WithPower_ReturnsTrue_Renamed(string oldName)
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.LuckBlade, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        public void BUG_NameIsSpecific_WithPower_ReturnsTrue_Renamed(string oldName, params string[] newNames)
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
+                Returns(new[]
+                {
+                    "other item name",
+                    "item name",
+                    WeaponConstants.LuckBlade,
+                    WeaponConstants.Dagger_Silver,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Battleaxe_Adamantine,
+                    "wrong item"
+                });
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
+                Returns(new[] {
+                    "another item name",
+                    "item name",
+                    WeaponConstants.LuckBlade,
+                    WeaponConstants.Dagger_Silver,
+                    WeaponConstants.Dagger_Adamantine,
+                    WeaponConstants.Battleaxe_Adamantine,
+                    "wrong item"
+                });
 
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, oldName))
                 .Returns(new[] { "wrong power", "power", "other power" });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
+                .Returns((string s, bool allow) => new[] { s });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(oldName, true))
+                .Returns(newNames);
 
             var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
             Assert.That(isSpecific, Is.True);
@@ -1461,6 +1533,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectAllFrom(tableName))
                 .Returns(selections);
 
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
+                .Returns((string s, bool allow) => new[] { s });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(WeaponConstants.LuckBlade0, true))
+                .Returns(new[] { WeaponConstants.LuckBlade });
+
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WeaponConstants.LuckBlade))
                 .Returns(new[] { "wrong power", "power", "other power" });
@@ -1493,6 +1573,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
                 .Returns(selections);
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
+                .Returns((string s, bool allow) => new[] { s });
+
+            mockReplacementSelector
+                .Setup(s => s.SelectAll(WeaponConstants.LuckBlade3, true))
+                .Returns(new[] { WeaponConstants.LuckBlade });
 
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, WeaponConstants.LuckBlade))

@@ -97,7 +97,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
                 case ItemTypeConstants.Armor:
                     itemNames = ArmorConstants.GetAllArmorsAndShields(true); break;
                 case ItemTypeConstants.Potion:
-                    itemNames = PotionConstants.GetAllPotions(); break;
+                    itemNames = PotionConstants.GetAllPotions(true); break;
                 case ItemTypeConstants.Ring:
                     itemNames = RingConstants.GetAllRings(); break;
                 case ItemTypeConstants.Rod:

@@ -222,7 +222,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .Returns((IEnumerable<TypeAndAmountSelection> c) => c.Last());
 
             mockReplacementSelector
-                .Setup(s => s.SelectAll("needs replacement"))
+                .Setup(s => s.SelectAll("needs replacement", false))
                 .Returns(new[]
                 {
                     "other wrong potion",

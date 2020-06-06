@@ -270,7 +270,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             mockWeaponDataSelector.Setup(s => s.Select(compositeBow)).Returns(weaponSelection);
             mockReplacementSelector.Setup(s => s.SelectSingle(compositeBowWithBonus)).Returns(compositeBow);
-            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus)).Returns(new[] { compositeBow });
+            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus, true)).Returns(new[] { compositeBow });
 
             var weapon = mundaneWeaponGenerator.GenerateRandom();
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));
@@ -604,7 +604,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             template.Name = compositeBowWithBonus;
 
             mockReplacementSelector.Setup(s => s.SelectSingle(compositeBowWithBonus)).Returns(compositeBow);
-            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus)).Returns(new[] { compositeBow });
+            mockReplacementSelector.Setup(s => s.SelectAll(compositeBowWithBonus, true)).Returns(new[] { compositeBow });
 
             var weapon = mundaneWeaponGenerator.Generate(template);
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));

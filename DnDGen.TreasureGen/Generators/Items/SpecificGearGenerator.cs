@@ -207,8 +207,8 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         private bool NameMatchesWithReplacements(string source, string target)
         {
-            var sourceReplacements = replacementSelector.SelectAll(source);
-            var targetReplacements = replacementSelector.SelectAll(target);
+            var sourceReplacements = replacementSelector.SelectAll(source, true);
+            var targetReplacements = replacementSelector.SelectAll(target, true);
 
             return source == target
                 || sourceReplacements.Any(s => s == target)

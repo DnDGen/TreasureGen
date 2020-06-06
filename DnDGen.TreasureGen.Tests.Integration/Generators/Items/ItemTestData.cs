@@ -38,7 +38,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items
         {
             get
             {
-                var potions = PotionConstants.GetAllPotions();
+                var potions = PotionConstants.GetAllPotions(true);
 
                 foreach (var potion in potions)
                 {
