@@ -177,14 +177,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(item.Magic.Intelligence, Is.EqualTo(intelligence));
             Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(9266));
         }
-
-        [TestCase(true)]
-        [TestCase(false)]
-        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
-        {
-            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
-            var isOfPower = intelligenceDecorator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
-        }
     }
 }

@@ -380,7 +380,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.Bonus = 42;
             specificArmor.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "specific armor")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "specific armor")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", ItemTypeConstants.Armor, "specific armor")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -429,7 +429,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Traits.Add("trait 2");
             specificArmor.Size = "specific armor size";
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "specific armor")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "specific armor")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", ItemTypeConstants.Armor, "specific armor", "trait 1", "trait 2")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -478,7 +478,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.Bonus = 42;
             specificArmor.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "specific shield")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "specific shield")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", AttributeConstants.Shield, "specific shield")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -527,7 +527,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Traits.Add("trait 2");
             specificArmor.Size = "specific shield size";
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "specific shield")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "specific shield")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", AttributeConstants.Shield, "specific shield", "trait 1", "trait 2")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -578,7 +578,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.SpecialAbilities = abilities;
 
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific("power", ItemTypeConstants.Armor, "base name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "specific armor")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "specific armor")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom("power", ItemTypeConstants.Armor, "base name")).Returns("specific armor");
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", ItemTypeConstants.Armor, "specific armor")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -623,7 +623,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Magic.SpecialAbilities = abilities;
 
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific("power", AttributeConstants.Shield, "base name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "specific shield")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "specific shield")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom("power", AttributeConstants.Shield, "base name")).Returns("specific shield");
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", AttributeConstants.Shield, "specific shield")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -670,7 +670,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Traits.Add("trait 2");
 
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific("power", ItemTypeConstants.Armor, "base name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "specific armor")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "specific armor")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom("power", ItemTypeConstants.Armor, "base name")).Returns("specific armor");
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", ItemTypeConstants.Armor, "specific armor", "trait 1", "trait 2")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -720,7 +720,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Traits.Add("trait 2");
 
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific("power", AttributeConstants.Shield, "base name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "specific shield")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "specific shield")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom("power", AttributeConstants.Shield, "base name")).Returns("specific shield");
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom("power", AttributeConstants.Shield, "specific shield", "trait 1", "trait 2")).Returns(specificArmor);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == specificArmor.Name))).Returns(true);
@@ -734,88 +734,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(armor.Traits, Has.Count.EqualTo(2)
                 .And.Contains("trait 1")
                 .And.Contains("trait 2"));
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue_SpecificArmor()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "item name")).Returns(true);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.True);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsFalse_SpecificArmor()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "item name")).Returns(false);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.False);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue_SpecificShield()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "item name")).Returns(true);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.True);
-        }
-
-        [Test]
-        public void BUG_IsItemOfPower_ReturnsTrue_SpecificShield_AlsoArmor()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", ItemTypeConstants.Armor, "item name")).Returns(false);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "item name")).Returns(true);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.True);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsFalse_SpecificShield()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "item name")).Returns(true);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific("power", AttributeConstants.Shield, "item name")).Returns(false);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.False);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue_NotSpecific()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "item name")).Returns(false);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "item name")).Returns(false);
-
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector
-                .Setup(s => s.IsCollection(tableName, "item name"))
-                .Returns(true);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.True);
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnsFalse_NotSpecific()
-        {
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Armor, "item name")).Returns(false);
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(AttributeConstants.Shield, "item name")).Returns(false);
-
-            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector
-                .Setup(s => s.IsCollection(tableName, "item name"))
-                .Returns(false);
-
-            var isOfPower = magicalArmorGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.False);
         }
     }
 }

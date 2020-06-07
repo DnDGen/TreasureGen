@@ -44,10 +44,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            if (!IsItemOfPower(itemName, power))
-                throw new ArgumentException($"{itemName} is not a valid {power} Ring");
+            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
 
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Ring);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
             var matches = results.Where(r => NameMatches(r.Type, itemName));
 
@@ -145,14 +145,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ring.Attributes = collectionsSelector.SelectFrom(tableName, ring.Name);
 
             return ring.SmartClone();
-        }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-            return results.Any(r => NameMatches(r.Type, itemName));
         }
     }
 }

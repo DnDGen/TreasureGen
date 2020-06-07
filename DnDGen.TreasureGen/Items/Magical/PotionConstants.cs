@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Items.Magical
 {
@@ -103,9 +104,9 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string WaterBreathing = "Potion of water breathing";
         public const string WaterWalk = "Potion of water walk";
 
-        public static IEnumerable<string> GetAllPotions()
+        public static IEnumerable<string> GetAllPotions(bool includeTemplates)
         {
-            return new[]
+            var potions = new[]
             {
                 Aid,
                 Barkskin,
@@ -200,6 +201,21 @@ namespace DnDGen.TreasureGen.Items.Magical
                 WaterBreathing,
                 WaterWalk,
             };
+
+            var templates = new[]
+            {
+                MagicCircleAgainstPARTIALALIGNMENT,
+                ProtectionFromENERGY,
+                ProtectionFromPARTIALALIGNMENT,
+                ResistENERGY_10,
+                ResistENERGY_20,
+                ResistENERGY_30,
+            };
+
+            if (includeTemplates)
+                return potions.Union(templates);
+
+            return potions;
         }
     }
 }

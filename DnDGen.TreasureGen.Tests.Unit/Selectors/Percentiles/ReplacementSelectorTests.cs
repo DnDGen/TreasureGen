@@ -168,6 +168,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
             Assert.That(results.Count(), Is.EqualTo(4));
         }
 
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus0, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus1, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus2, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus3, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositeLongbow_StrengthPlus4, WeaponConstants.CompositeLongbow)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus0, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus1, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.CompositeShortbow_StrengthPlus2, WeaponConstants.CompositeShortbow)]
+        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
+        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
+        [TestCase("whatever", "because I said so")]
+        public void SelectAll_ReplacesWholeString(string value, string replacement)
+        {
+            replacements[value] = new[] { replacement };
+
+            var result = replacementSelector.SelectAll(value, true);
+            Assert.That(result.Count(), Is.EqualTo(1));
+            Assert.That(result.Single(), Is.EqualTo(replacement));
+        }
+
         [Test]
         public void SelectSingle_PerformsReplacement()
         {

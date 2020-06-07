@@ -280,6 +280,7 @@ Bugs:
     <None Remove="Tables\Items\Mundane\Weapons\WeaponAttributes.xml" />
     <None Remove="Tables\Items\Mundane\Weapons\WeaponDamages.xml" />
     <None Remove="Tables\Items\Mundane\Weapons\WeaponData.xml" />
+    <None Remove="Tables\Items\PowerGroups.xml" />
     <None Remove="Tables\ReplacementStrings.xml" />
     <None Include="18531-twenty-sided-dice-vector-thumb.png">
       <Pack>True</Pack>
@@ -355,6 +356,7 @@ Bugs:
     <EmbeddedResource Include="Tables\Goods\Level8Goods.xml" />
     <EmbeddedResource Include="Tables\Goods\Level9Goods.xml" />
     <EmbeddedResource Include="Tables\Items\HasSpecialMaterial.xml" />
+    <EmbeddedResource Include="Tables\Items\PowerGroups.xml" />
     <EmbeddedResource Include="Tables\Items\ItemGroups.xml" />
     <EmbeddedResource Include="Tables\Items\Level10Items.xml" />
     <EmbeddedResource Include="Tables\Items\Level11Items.xml" />

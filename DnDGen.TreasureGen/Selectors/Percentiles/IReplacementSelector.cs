@@ -6,7 +6,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
     {
         string SelectSingle(string source);
         string SelectRandom(string source);
-        IEnumerable<string> SelectAll(string source);
-        IEnumerable<string> SelectAll(IEnumerable<string> sources);
+        IEnumerable<string> SelectAll(string source, bool allowSingle = false);
+        IEnumerable<string> SelectAll(IEnumerable<string> sources, bool allowSingle = false);
     }
 }

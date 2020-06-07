@@ -82,12 +82,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override Item GenerateItemFromName(string name, string power = null)
         {
-            power = power ?? GetNewPower(allowMinor);
-
-            while (!magicalItemGenerator.IsItemOfPower(name, power))
-            {
-                power = GetNewPower(allowMinor);
-            }
+            power ??= GetNewPower(allowMinor);
 
             return magicalItemGenerator.Generate(power, name);
         }
