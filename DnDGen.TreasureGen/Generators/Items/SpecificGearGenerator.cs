@@ -172,8 +172,19 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         private string GetSpecificGearType(string name)
         {
-            var gearType = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, name, AttributeConstants.Shield, ItemTypeConstants.Armor, ItemTypeConstants.Weapon);
-            return gearType;
+            var weapons = GetGear(ItemTypeConstants.Weapon);
+            if (weapons.Contains(name))
+                return ItemTypeConstants.Weapon;
+
+            var armors = GetGear(ItemTypeConstants.Armor);
+            if (armors.Contains(name))
+                return ItemTypeConstants.Armor;
+
+            var shields = GetGear(AttributeConstants.Shield);
+            if (shields.Contains(name))
+                return AttributeConstants.Shield;
+
+            throw new ArgumentException($"{name} is not a valid specific item");
         }
 
         public bool IsSpecific(Item template)
@@ -270,27 +281,9 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             switch (gearType)
             {
-                case ItemTypeConstants.Weapon:
-                    {
-                        var general = WeaponConstants.GetAllWeapons(false, true);
-                        var all = WeaponConstants.GetAllWeapons(true, true);
-
-                        return all.Except(general);
-                    }
-                case ItemTypeConstants.Armor:
-                    {
-                        var general = ArmorConstants.GetAllArmors(false);
-                        var all = ArmorConstants.GetAllArmors(true);
-
-                        return all.Except(general);
-                    }
-                case AttributeConstants.Shield:
-                    {
-                        var general = ArmorConstants.GetAllShields(false);
-                        var all = ArmorConstants.GetAllShields(true);
-
-                        return all.Except(general);
-                    }
+                case ItemTypeConstants.Weapon: return WeaponConstants.GetAllSpecific();
+                case ItemTypeConstants.Armor: return ArmorConstants.GetAllSpecificArmors();
+                case AttributeConstants.Shield: return ArmorConstants.GetAllSpecificShields();
                 default: throw new ArgumentException($"{gearType} is not a valid specific gear type");
             }
         }

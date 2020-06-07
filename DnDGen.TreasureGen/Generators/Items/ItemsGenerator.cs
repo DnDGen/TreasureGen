@@ -128,9 +128,13 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
-            var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
-            var power = PowerHelper.AdjustPower(result.Type, powers);
+            //var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemType);
 
+            if (itemType != ItemTypeConstants.Scroll && itemType != ItemTypeConstants.Wand)
+                powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+
+            var power = PowerHelper.AdjustPower(result.Type, powers);
             if (power == PowerConstants.Mundane)
                 return GenerateMundaneItem(itemType, itemName, traits);
 

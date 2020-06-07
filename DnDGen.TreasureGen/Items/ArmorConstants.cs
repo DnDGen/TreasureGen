@@ -48,22 +48,35 @@ namespace DnDGen.TreasureGen.Items
             return armors.Union(shields);
         }
 
-        public static IEnumerable<string> GetAllShields(bool includeSpecific)
+        public static IEnumerable<string> GetAllSpecificArmorsAndShields()
         {
-            var shields = new[]
+            var armors = GetAllSpecificArmors();
+            var shields = GetAllSpecificShields();
+
+            return armors.Union(shields);
+        }
+
+        public static IEnumerable<string> GetAllSpecificArmors()
+        {
+            return new[]
             {
-                Buckler,
-                LightWoodenShield,
-                LightSteelShield,
-                HeavyWoodenShield,
-                HeavySteelShield,
-                TowerShield,
+                ElvenChain,
+                CelestialArmor,
+                RhinoHide,
+                BreastplateOfCommand,
+                DwarvenPlate,
+                BandedMailOfLuck,
+                PlateArmorOfTheDeep,
+                FullPlateOfSpeed,
+                DemonArmor,
+                ArmorOfArrowAttraction,
+                ArmorOfRage
             };
+        }
 
-            if (!includeSpecific)
-                return shields;
-
-            var specificShields = new[]
+        public static IEnumerable<string> GetAllSpecificShields()
+        {
+            return new[]
             {
                 CastersShield,
                 SpinedShield,
@@ -71,8 +84,32 @@ namespace DnDGen.TreasureGen.Items
                 WingedShield,
                 AbsorbingShield,
             };
+        }
 
-            return shields.Union(specificShields);
+        public static IEnumerable<string> GetAllShields(bool includeSpecific)
+        {
+            IEnumerable<string> shields = new[]
+            {
+                Buckler,
+                LightWoodenShield,
+                LightSteelShield,
+                HeavyWoodenShield,
+                HeavySteelShield,
+                TowerShield,
+                CastersShield,
+                SpinedShield,
+                LionsShield,
+                WingedShield,
+                AbsorbingShield,
+            };
+
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecificShields();
+                shields = shields.Except(specific);
+            }
+
+            return shields;
         }
 
         public static IEnumerable<string> GetAllArmors(bool includeSpecific)
@@ -86,63 +123,54 @@ namespace DnDGen.TreasureGen.Items
 
         public static IEnumerable<string> GetAllLightArmors(bool includeSpecific)
         {
-            var armors = new[]
+            IEnumerable<string> armors = new[]
             {
                 PaddedArmor,
                 LeatherArmor,
                 StuddedLeatherArmor,
                 ChainShirt,
-            };
-
-            if (!includeSpecific)
-                return armors;
-
-            var specificArmors = new[]
-            {
                 ElvenChain,
                 CelestialArmor,
             };
 
-            return armors.Union(specificArmors);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecificArmors();
+                armors = armors.Except(specific);
+            }
+
+            return armors;
         }
 
         public static IEnumerable<string> GetAllMediumArmors(bool includeSpecific)
         {
-            var armors = new[]
+            IEnumerable<string> armors = new[]
             {
                 HideArmor,
                 ScaleMail,
                 Chainmail,
                 Breastplate,
-            };
-
-            if (!includeSpecific)
-                return armors;
-
-            var specificArmors = new[]
-            {
                 RhinoHide,
                 BreastplateOfCommand,
             };
 
-            return armors.Union(specificArmors);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecificArmors();
+                armors = armors.Except(specific);
+            }
+
+            return armors;
         }
 
         public static IEnumerable<string> GetAllHeavyArmors(bool includeSpecific)
         {
-            var armors = new[]
+            IEnumerable<string> armors = new[]
             {
                 SplintMail,
                 BandedMail,
                 HalfPlate,
                 FullPlate,
-            };
-
-            if (!includeSpecific)
-                return armors;
-
-            var specificArmors = new[]
-            {
                 DwarvenPlate,
                 BandedMailOfLuck,
                 PlateArmorOfTheDeep,
@@ -152,7 +180,13 @@ namespace DnDGen.TreasureGen.Items
                 ArmorOfRage
             };
 
-            return armors.Union(specificArmors);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecificArmors();
+                armors = armors.Except(specific);
+            }
+
+            return armors;
         }
     }
 }

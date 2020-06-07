@@ -280,5 +280,60 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(shields, Contains.Item(ArmorConstants.TowerShield));
             Assert.That(shields.Count(), Is.EqualTo(6));
         }
+
+        [Test]
+        public void SpecificArmorsAndShields()
+        {
+            var specific = ArmorConstants.GetAllSpecificArmorsAndShields();
+            Assert.That(specific, Contains.Item(ArmorConstants.ElvenChain));
+            Assert.That(specific, Contains.Item(ArmorConstants.RhinoHide));
+            Assert.That(specific, Contains.Item(ArmorConstants.DwarvenPlate));
+            Assert.That(specific, Contains.Item(ArmorConstants.BandedMailOfLuck));
+            Assert.That(specific, Contains.Item(ArmorConstants.CelestialArmor));
+            Assert.That(specific, Contains.Item(ArmorConstants.PlateArmorOfTheDeep));
+            Assert.That(specific, Contains.Item(ArmorConstants.BreastplateOfCommand));
+            Assert.That(specific, Contains.Item(ArmorConstants.FullPlateOfSpeed));
+            Assert.That(specific, Contains.Item(ArmorConstants.DemonArmor));
+            Assert.That(specific, Contains.Item(ArmorConstants.ArmorOfRage));
+            Assert.That(specific, Contains.Item(ArmorConstants.ArmorOfArrowAttraction));
+            Assert.That(specific, Contains.Item(ArmorConstants.CastersShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.SpinedShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.LionsShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.WingedShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.AbsorbingShield));
+            Assert.That(specific.Count(), Is.EqualTo(16));
+
+        }
+
+        [Test]
+        public void SpecificArmors()
+        {
+            var specific = ArmorConstants.GetAllSpecificArmors();
+            Assert.That(specific, Contains.Item(ArmorConstants.ElvenChain));
+            Assert.That(specific, Contains.Item(ArmorConstants.RhinoHide));
+            Assert.That(specific, Contains.Item(ArmorConstants.DwarvenPlate));
+            Assert.That(specific, Contains.Item(ArmorConstants.BandedMailOfLuck));
+            Assert.That(specific, Contains.Item(ArmorConstants.CelestialArmor));
+            Assert.That(specific, Contains.Item(ArmorConstants.PlateArmorOfTheDeep));
+            Assert.That(specific, Contains.Item(ArmorConstants.BreastplateOfCommand));
+            Assert.That(specific, Contains.Item(ArmorConstants.FullPlateOfSpeed));
+            Assert.That(specific, Contains.Item(ArmorConstants.DemonArmor));
+            Assert.That(specific, Contains.Item(ArmorConstants.ArmorOfRage));
+            Assert.That(specific, Contains.Item(ArmorConstants.ArmorOfArrowAttraction));
+            Assert.That(specific.Count(), Is.EqualTo(11));
+        }
+
+        [Test]
+        public void SpecificShields()
+        {
+
+            var specific = ArmorConstants.GetAllSpecificShields();
+            Assert.That(specific, Contains.Item(ArmorConstants.CastersShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.SpinedShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.LionsShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.WingedShield));
+            Assert.That(specific, Contains.Item(ArmorConstants.AbsorbingShield));
+            Assert.That(specific.Count(), Is.EqualTo(5));
+        }
     }
 }
