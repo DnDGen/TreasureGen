@@ -162,7 +162,6 @@ Bugs:
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItemAttributes.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <None Remove="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
-    <None Remove="Tables\Items\Magical\EpicItems.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
     <None Remove="Tables\Items\Magical\Intelligence\IntelligenceData.xml" />
@@ -426,7 +425,6 @@ Bugs:
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemAttributes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItemItemTypes.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Curses\SpecificCursedItems.xml" />
-    <EmbeddedResource Include="Tables\Items\Magical\EpicItems.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceAlignments.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceCommunication.xml" />
     <EmbeddedResource Include="Tables\Items\Magical\Intelligence\IntelligenceData.xml" />

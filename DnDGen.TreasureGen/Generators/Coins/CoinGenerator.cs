@@ -1,6 +1,7 @@
 ﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
+using System;
 
 namespace DnDGen.TreasureGen.Generators.Coins
 {
@@ -15,6 +16,9 @@ namespace DnDGen.TreasureGen.Generators.Coins
 
         public Coin GenerateAtLevel(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var coin = new Coin();

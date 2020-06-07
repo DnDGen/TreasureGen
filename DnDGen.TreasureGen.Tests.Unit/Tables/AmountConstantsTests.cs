@@ -9,6 +9,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
     {
         [TestCase(AmountConstants.Range1, 1, 1)]
         [TestCase(AmountConstants.Range1d3, 1, 3)]
+        [TestCase(AmountConstants.Range1d3Plus2, 1, 3, 1, 2)]
+        [TestCase(AmountConstants.Range1d3Plus4, 1, 3, 1, 4)]
+        [TestCase(AmountConstants.Range1d3Plus6, 1, 3, 1, 6)]
+        [TestCase(AmountConstants.Range1d3Plus9, 1, 3, 1, 9)]
+        [TestCase(AmountConstants.Range1d3Plus12, 1, 3, 1, 12)]
+        [TestCase(AmountConstants.Range1d3Plus17, 1, 3, 1, 17)]
+        [TestCase(AmountConstants.Range1d3Plus23, 1, 3, 1, 23)]
+        [TestCase(AmountConstants.Range1d3Plus31, 1, 3, 1, 31)]
+        [TestCase(AmountConstants.Range1d3Plus42, 1, 3, 1, 42)]
         [TestCase(AmountConstants.Range1d4, 1, 4)]
         [TestCase(AmountConstants.Range1d4x10, 1, 4, 10)]
         [TestCase(AmountConstants.Range1d4x100, 1, 4, 100)]
@@ -32,6 +41,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         [TestCase(AmountConstants.Range1d12x100, 1, 12, 100)]
         [TestCase(AmountConstants.Range1d12x1000, 1, 12, 1000)]
         [TestCase(AmountConstants.Range1d12x10000, 1, 12, 10000)]
+        [TestCase(AmountConstants.Range2d4, 2, 4)]
         [TestCase(AmountConstants.Range2d4x10, 2, 4, 10)]
         [TestCase(AmountConstants.Range2d4x100, 2, 4, 100)]
         [TestCase(AmountConstants.Range2d4x1000, 2, 4, 1000)]
@@ -78,10 +88,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         [TestCase(AmountConstants.Range6d4x100, 6, 4, 100)]
         [TestCase(AmountConstants.Range6d6, 6, 6)]
         [TestCase(AmountConstants.Range7d6, 7, 6)]
-        public void RangeConstant(string constant, int quantity, int die, int multiplier = 1)
+        public void RangeConstant(string constant, int quantity, int die, int multiplier = 1, int bonus = 0)
         {
-            var lower = quantity * multiplier;
-            var upper = quantity * die * multiplier;
+            var lower = quantity * multiplier + bonus;
+            var upper = quantity * die * multiplier + bonus;
             var roll = RollHelper.GetRollWithFewestDice(lower, upper);
 
             Assert.That(constant, Is.EqualTo(roll));

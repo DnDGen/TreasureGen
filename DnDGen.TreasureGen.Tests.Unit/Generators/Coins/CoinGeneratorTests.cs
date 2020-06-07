@@ -30,10 +30,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Coins
         }
 
         [Test]
-        public void ReturnCoinFromSelector()
+        public void GenerateAtLevel_ThrowsException_LevelTooLow()
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, 1);
-            generator.GenerateAtLevel(1);
+            Assert.That(() => generator.GenerateAtLevel(LevelLimits.Minimum - 1),
+                Throws.ArgumentException.With.Message.EqualTo($"Level 0 is not a valid level for treasure generation"));
+        }
+
+        [Test]
+        public void GenerateAtLevel_ThrowsException_LevelTooHigh()
+        {
+            Assert.That(() => generator.GenerateAtLevel(LevelLimits.Maximum + 1),
+                Throws.ArgumentException.With.Message.EqualTo($"Level 101 is not a valid level for treasure generation"));
+        }
+
+        [TestCase(LevelLimits.Minimum)]
+        [TestCase(LevelLimits.Minimum + 1)]
+        [TestCase(10)]
+        [TestCase(20)]
+        [TestCase(30)]
+        [TestCase(42)]
+        [TestCase(LevelLimits.Maximum - 1)]
+        [TestCase(LevelLimits.Maximum)]
+        public void ReturnCoinFromSelector(int level)
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
+            generator.GenerateAtLevel(level);
             mockTypeAndAmountPercentileSelector.Verify(p => p.SelectFrom(tableName), Times.Once);
         }
 

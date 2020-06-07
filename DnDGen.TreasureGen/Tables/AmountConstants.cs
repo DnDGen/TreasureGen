@@ -4,6 +4,15 @@
     {
         public const string Range1 = "1";
         public const string Range1d3 = "1d3";
+        public const string Range1d3Plus2 = "1d3+2";
+        public const string Range1d3Plus4 = "1d3+4";
+        public const string Range1d3Plus6 = "1d3+6";
+        public const string Range1d3Plus9 = "1d3+9";
+        public const string Range1d3Plus12 = "1d3+12";
+        public const string Range1d3Plus17 = "1d3+17";
+        public const string Range1d3Plus23 = "1d3+23";
+        public const string Range1d3Plus31 = "1d3+31";
+        public const string Range1d3Plus42 = "1d3+42";
         public const string Range1d4 = "1d4";
         public const string Range1d4x10 = "6d6+4";
         public const string Range1d4x100 = "60d6+40";
@@ -27,6 +36,7 @@
         public const string Range1d12x100 = "100d12";
         public const string Range1d12x1000 = "1000d12";
         public const string Range1d12x10000 = "10000d12";
+        public const string Range2d4 = "1d3+1";
         public const string Range2d4x10 = "12d6+8";
         public const string Range2d4x100 = "120d6+80";
         public const string Range2d4x1000 = "1200d6+800";

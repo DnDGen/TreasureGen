@@ -6,6 +6,7 @@ using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,9 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public IEnumerable<Item> GenerateRandomAtLevel(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var items = new List<Item>();
@@ -46,28 +50,14 @@ namespace DnDGen.TreasureGen.Generators.Items
                 items.Add(item);
             }
 
-            var epicItems = GetEpicItems(level);
-            items.AddRange(epicItems);
-
             return items;
-        }
-
-        private IEnumerable<Item> GetEpicItems(int level)
-        {
-            var epicItems = new List<Item>();
-            var majorItemQuantity = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.EpicItems, level.ToString()).Minimum;
-
-            while (majorItemQuantity-- > 0)
-            {
-                var epicItem = GenerateRandomAtPower(PowerConstants.Major);
-                epicItems.Add(epicItem);
-            }
-
-            return epicItems;
         }
 
         public async Task<IEnumerable<Item>> GenerateRandomAtLevelAsync(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
             var tasks = new List<Task<Item>>();
@@ -78,26 +68,9 @@ namespace DnDGen.TreasureGen.Generators.Items
                 tasks.Add(task);
             }
 
-            var epicItemTasks = GetEpicItemTasks(level);
-            tasks.AddRange(epicItemTasks);
-
             await Task.WhenAll(tasks);
 
             return tasks.Select(t => t.Result);
-        }
-
-        private IEnumerable<Task<Item>> GetEpicItemTasks(int level)
-        {
-            var epicItemTasks = new List<Task<Item>>();
-            var majorItemQuantity = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.EpicItems, level.ToString()).Minimum;
-
-            while (majorItemQuantity-- > 0)
-            {
-                var task = Task.Run(() => GenerateRandomAtPower(PowerConstants.Major));
-                epicItemTasks.Add(task);
-            }
-
-            return epicItemTasks;
         }
 
         private Item GenerateRandomAtPower(string power)
@@ -126,9 +99,11 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public Item GenerateAtLevel(int level, string itemType, string itemName, params string[] traits)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
-            //var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
             var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemType);
 
             if (itemType != ItemTypeConstants.Scroll && itemType != ItemTypeConstants.Wand)
