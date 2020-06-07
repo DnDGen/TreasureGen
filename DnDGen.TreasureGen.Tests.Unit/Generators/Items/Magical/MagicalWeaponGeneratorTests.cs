@@ -361,7 +361,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
             specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(specificWeapon);
@@ -380,7 +380,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
             specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator
                 .Setup(g => g.GeneratePrototypeFrom(power, ItemTypeConstants.Weapon, "specific weapon name", "trait 1", "trait 2"))
@@ -401,7 +401,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
             specificWeapon.BaseNames = new[] { "base name", "other specific base name" };
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific(power, ItemTypeConstants.Weapon, "base name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom(power, ItemTypeConstants.Weapon, "base name")).Returns("specific weapon name");
@@ -476,7 +476,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var abilities = new[] { new SpecialAbility(), new SpecialAbility() };
             specificWeapon.Magic.SpecialAbilities = abilities;
 
-            mockSpecificGearGenerator.Setup(g => g.IsSpecific(power, ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(ItemTypeConstants.Weapon, "specific weapon name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "specific weapon name"))).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.CanBeSpecific(power, ItemTypeConstants.Weapon, "base name")).Returns(true);
             mockSpecificGearGenerator.Setup(g => g.GenerateNameFrom(power, ItemTypeConstants.Weapon, "base name")).Returns("specific weapon name");

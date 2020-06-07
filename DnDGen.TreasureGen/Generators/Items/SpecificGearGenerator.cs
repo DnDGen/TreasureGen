@@ -178,9 +178,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public bool IsSpecific(Item template)
         {
-            var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
-
-            return specificItems.Any(i => NameMatchesWithReplacements(i, template.Name));
+            return NameMatchesSpecific(template.Name);
         }
 
         public Item GeneratePrototypeFrom(string power, string specificGearType, string name, params string[] traits)
@@ -190,7 +188,7 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, adjustedPower, specificGearType);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            selections = selections.Where(s => NameMatchesWithReplacements(s.Type, name));
+            selections = selections.Where(s => NameMatchesWithReplacements(name, s.Type));
 
             var selection = collectionsSelector.SelectRandomFrom(selections);
 
@@ -203,6 +201,17 @@ namespace DnDGen.TreasureGen.Generators.Items
             gear.Traits = new HashSet<string>(traits);
 
             return gear;
+        }
+
+        private bool NameMatchesSpecific(string name)
+        {
+            var weapons = GetGear(ItemTypeConstants.Weapon);
+            var armors = GetGear(ItemTypeConstants.Armor);
+            var shields = GetGear(AttributeConstants.Shield);
+
+            var specificGear = weapons.Union(armors).Union(shields);
+
+            return specificGear.Contains(name);
         }
 
         private bool NameMatchesWithReplacements(string source, string target)
@@ -249,24 +258,46 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public bool IsSpecific(string specificGearType, string itemName)
         {
-            var specificCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
-            var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
+            var gearTypeCollection = GetGear(specificGearType);
 
-            return specificCollection.Any(i => NameMatchesWithReplacements(i, itemName))
-                && gearTypeCollection.Any(i => NameMatchesWithReplacements(i, itemName));
+            var isSpecific = NameMatchesSpecific(itemName);
+            isSpecific &= gearTypeCollection.Any(i => NameMatchesWithReplacements(itemName, i));
+
+            return isSpecific;
         }
 
-        public bool IsSpecific(string power, string specificGearType, string itemName)
+        private IEnumerable<string> GetGear(string gearType)
         {
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            switch (gearType)
+            {
+                case ItemTypeConstants.Weapon:
+                    {
+                        var general = WeaponConstants.GetAllWeapons(false, true);
+                        var all = WeaponConstants.GetAllWeapons(true, true);
 
-            return IsSpecific(specificGearType, itemName)
-                && powers.Contains(power);
+                        return all.Except(general);
+                    }
+                case ItemTypeConstants.Armor:
+                    {
+                        var general = ArmorConstants.GetAllArmors(false);
+                        var all = ArmorConstants.GetAllArmors(true);
+
+                        return all.Except(general);
+                    }
+                case AttributeConstants.Shield:
+                    {
+                        var general = ArmorConstants.GetAllShields(false);
+                        var all = ArmorConstants.GetAllShields(true);
+
+                        return all.Except(general);
+                    }
+                default: throw new ArgumentException($"{gearType} is not a valid specific gear type");
+            }
         }
 
         public bool CanBeSpecific(string power, string specificGearType, string itemName)
         {
-            if (IsSpecific(power, specificGearType, itemName))
+            if (IsSpecific(specificGearType, itemName))
                 return true;
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);

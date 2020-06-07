@@ -348,6 +348,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void BUG_GenerateAtLevel_Named_GetSpecificItem_WhenMundaneSpecified()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
         public void BUG_GenerateAtLevel_Named_GetMagicalItem_WhenNoPowerSpecified()
         {
             selection.Type = string.Empty;

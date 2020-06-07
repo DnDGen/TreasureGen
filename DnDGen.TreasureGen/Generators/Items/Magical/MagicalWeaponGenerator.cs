@@ -46,7 +46,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var isSpecific = specificGearGenerator.IsSpecific(power, ItemTypeConstants.Weapon, itemName);
+            var isSpecific = specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, itemName);
             return GenerateWeapon(power, itemName, isSpecific, traits);
         }
 

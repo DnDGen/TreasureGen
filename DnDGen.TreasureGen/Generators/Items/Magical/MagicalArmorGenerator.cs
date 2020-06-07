@@ -43,20 +43,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var armorType = GetArmorType(power, itemName);
-            var isSpecific = specificGearGenerator.IsSpecific(power, armorType, itemName);
+            var armorType = GetArmorType(itemName);
+            var isSpecific = specificGearGenerator.IsSpecific(armorType, itemName);
 
             return GenerateArmor(power, itemName, armorType, isSpecific, traits);
         }
 
-        private string GetArmorType(string power, string itemName)
+        private string GetArmorType(string itemName)
         {
-            if (specificGearGenerator.IsSpecific(power, AttributeConstants.Shield, itemName))
+            if (specificGearGenerator.IsSpecific(AttributeConstants.Shield, itemName))
             {
                 return AttributeConstants.Shield;
             }
 
-            if (specificGearGenerator.IsSpecific(power, ItemTypeConstants.Armor, itemName))
+            if (specificGearGenerator.IsSpecific(ItemTypeConstants.Armor, itemName))
             {
                 return ItemTypeConstants.Armor;
             }

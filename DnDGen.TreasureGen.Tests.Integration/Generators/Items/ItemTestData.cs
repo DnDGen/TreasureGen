@@ -34,6 +34,19 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items
             }
         }
 
+        public static IEnumerable ArmorsNoSpecific
+        {
+            get
+            {
+                var armors = ArmorConstants.GetAllArmorsAndShields(false);
+
+                foreach (var armor in armors)
+                {
+                    yield return new TestCaseData(armor);
+                }
+            }
+        }
+
         public static IEnumerable Potions
         {
             get
@@ -104,6 +117,19 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items
             get
             {
                 var weapons = WeaponConstants.GetAllWeapons(true, true);
+
+                foreach (var weapon in weapons)
+                {
+                    yield return new TestCaseData(weapon);
+                }
+            }
+        }
+
+        public static IEnumerable WeaponsNoSpecific
+        {
+            get
+            {
+                var weapons = WeaponConstants.GetAllWeapons(false, true);
 
                 foreach (var weapon in weapons)
                 {

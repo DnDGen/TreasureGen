@@ -128,11 +128,8 @@ namespace DnDGen.TreasureGen.Generators.Items
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
-            var power = result.Type;
-
-            var itemTypePowers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemType);
-            if (!itemTypePowers.Contains(power))
-                power = itemTypePowers.First();
+            var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var power = PowerHelper.AdjustPower(result.Type, powers);
 
             if (power == PowerConstants.Mundane)
                 return GenerateMundaneItem(itemType, itemName, traits);

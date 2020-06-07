@@ -801,10 +801,63 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(gear.Traits, Contains.Item("Designated Foe: foe"));
         }
 
-        [Test]
-        public void TemplateIsSpecific()
+        [TestCase(ArmorConstants.AbsorbingShield)]
+        [TestCase(ArmorConstants.CastersShield)]
+        [TestCase(ArmorConstants.LionsShield)]
+        [TestCase(ArmorConstants.SpinedShield)]
+        [TestCase(ArmorConstants.WingedShield)]
+        [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
+        [TestCase(ArmorConstants.ArmorOfRage)]
+        [TestCase(ArmorConstants.BandedMailOfLuck)]
+        [TestCase(ArmorConstants.BreastplateOfCommand)]
+        [TestCase(ArmorConstants.CelestialArmor)]
+        [TestCase(ArmorConstants.DemonArmor)]
+        [TestCase(ArmorConstants.DwarvenPlate)]
+        [TestCase(ArmorConstants.ElvenChain)]
+        [TestCase(ArmorConstants.FullPlateOfSpeed)]
+        [TestCase(ArmorConstants.PlateArmorOfTheDeep)]
+        [TestCase(ArmorConstants.RhinoHide)]
+        [TestCase(WeaponConstants.AssassinsDagger)]
+        [TestCase(WeaponConstants.Battleaxe_Adamantine)]
+        [TestCase(WeaponConstants.BerserkingSword)]
+        [TestCase(WeaponConstants.CursedBackbiterSpear)]
+        [TestCase(WeaponConstants.CursedMinus2Sword)]
+        [TestCase(WeaponConstants.DaggerOfVenom)]
+        [TestCase(WeaponConstants.Dagger_Adamantine)]
+        [TestCase(WeaponConstants.Dagger_Silver)]
+        [TestCase(WeaponConstants.DwarvenThrower)]
+        [TestCase(WeaponConstants.FlameTongue)]
+        [TestCase(WeaponConstants.FrostBrand)]
+        [TestCase(WeaponConstants.GreaterSlayingArrow)]
+        [TestCase(WeaponConstants.HolyAvenger)]
+        [TestCase(WeaponConstants.JavelinOfLightning)]
+        [TestCase(WeaponConstants.LifeDrinker)]
+        [TestCase(WeaponConstants.LuckBlade)]
+        [TestCase(WeaponConstants.LuckBlade0)]
+        [TestCase(WeaponConstants.LuckBlade1)]
+        [TestCase(WeaponConstants.LuckBlade2)]
+        [TestCase(WeaponConstants.LuckBlade3)]
+        [TestCase(WeaponConstants.MaceOfBlood)]
+        [TestCase(WeaponConstants.MaceOfSmiting)]
+        [TestCase(WeaponConstants.MaceOfTerror)]
+        [TestCase(WeaponConstants.NetOfSnaring)]
+        [TestCase(WeaponConstants.NineLivesStealer)]
+        [TestCase(WeaponConstants.Oathbow)]
+        [TestCase(WeaponConstants.RapierOfPuncturing)]
+        [TestCase(WeaponConstants.ScreamingBolt)]
+        [TestCase(WeaponConstants.Shatterspike)]
+        [TestCase(WeaponConstants.ShiftersSorrow)]
+        [TestCase(WeaponConstants.SlayingArrow)]
+        [TestCase(WeaponConstants.SleepArrow)]
+        [TestCase(WeaponConstants.SunBlade)]
+        [TestCase(WeaponConstants.SwordOfLifeStealing)]
+        [TestCase(WeaponConstants.SwordOfSubtlety)]
+        [TestCase(WeaponConstants.SwordOfThePlanes)]
+        [TestCase(WeaponConstants.SylvanScimitar)]
+        [TestCase(WeaponConstants.TridentOfFishCommand)]
+        [TestCase(WeaponConstants.TridentOfWarning)]
+        public void TemplateIsSpecific(string name)
         {
-            var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomTemplate(name);
 
             var specificItems = new[] { "other item", name };
@@ -1168,45 +1221,195 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(mundaneWeapon.Quantity, Is.AtLeast(2));
         }
 
-        [Test]
-        public void NameIsSpecific_ReturnsTrue()
+        [TestCase(AttributeConstants.Shield, ArmorConstants.AbsorbingShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.CastersShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.LionsShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.SpinedShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.WingedShield)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.ArmorOfArrowAttraction)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.ArmorOfRage)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.BandedMailOfLuck)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.BreastplateOfCommand)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.CelestialArmor)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.DemonArmor)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.DwarvenPlate)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.ElvenChain)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.FullPlateOfSpeed)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.PlateArmorOfTheDeep)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.RhinoHide)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.AssassinsDagger)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Battleaxe_Adamantine)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.BerserkingSword)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CursedBackbiterSpear)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CursedMinus2Sword)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.DaggerOfVenom)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Dagger_Adamantine)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Dagger_Silver)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.DwarvenThrower)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.FlameTongue)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.FrostBrand)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.GreaterSlayingArrow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HolyAvenger)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.JavelinOfLightning)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LifeDrinker)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade0)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade1)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade2)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LuckBlade3)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.MaceOfBlood)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.MaceOfSmiting)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.MaceOfTerror)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.NetOfSnaring)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.NineLivesStealer)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Oathbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.RapierOfPuncturing)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.ScreamingBolt)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Shatterspike)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.ShiftersSorrow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SlayingArrow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SleepArrow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SunBlade)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SwordOfLifeStealing)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SwordOfSubtlety)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SwordOfThePlanes)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SylvanScimitar)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.TridentOfFishCommand)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.TridentOfWarning)]
+        public void NameIsSpecific_ReturnsTrue(string gearType, string gear)
         {
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, gearType)).
+                Returns(new[] { "another item name", gear });
 
-            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+            var isSpecific = specificGearGenerator.IsSpecific(gearType, gear);
             Assert.That(isSpecific, Is.True);
         }
 
-        [Test]
-        public void NameIsSpecific_ReturnsFalse_NotSpecific()
+        [TestCase(AttributeConstants.Shield, ArmorConstants.Buckler)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.HeavySteelShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.HeavyWoodenShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.LightSteelShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.LightWoodenShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.TowerShield)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.BandedMail)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.Breastplate)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.Chainmail)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.ChainShirt)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.FullPlate)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.HalfPlate)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.HideArmor)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.LeatherArmor)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.PaddedArmor)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.ScaleMail)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.SplintMail)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.StuddedLeatherArmor)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Arrow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Battleaxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Bolas)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Club)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow_StrengthPlus0)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow_StrengthPlus1)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow_StrengthPlus2)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow_StrengthPlus3)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeLongbow_StrengthPlus4)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeShortbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeShortbow_StrengthPlus0)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeShortbow_StrengthPlus1)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CompositeShortbow_StrengthPlus2)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.CrossbowBolt)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Dagger)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Dart)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.DireFlail)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.DwarvenUrgrosh)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.DwarvenWaraxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Falchion)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Flail)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Gauntlet)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Glaive)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.GnomeHookedHammer)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Greataxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Greatclub)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Greatsword)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Guisarme)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Halberd)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Handaxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HandCrossbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HeavyCrossbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HeavyFlail)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HeavyMace)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HeavyPick)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.HeavyRepeatingCrossbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Javelin)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Kama)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Kukri)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Lance)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LightCrossbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LightHammer)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LightMace)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LightPick)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.LightRepeatingCrossbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Longbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Longspear)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Longsword)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Morningstar)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Net)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Nunchaku)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.OrcDoubleAxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.PincerStaff)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.PunchingDagger)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Quarterstaff)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Ranseur)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Rapier)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Sai)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Sap)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Scimitar)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Scythe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Shortbow)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Shortspear)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.ShortSword)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Shuriken)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Siangham)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Sickle)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Sling)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SlingBullet)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Spear)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SpikedChain)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.SpikedGauntlet)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.ThrowingAxe)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Trident)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Warhammer)]
+        [TestCase(ItemTypeConstants.Weapon, WeaponConstants.Whip)]
+        public void NameIsSpecific_ReturnsFalse_NotSpecific(string gearType, string gear)
         {
             mockCollectionsSelector
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
                 Returns(new[] { "other item name", "wrong item name" });
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, gearType)).
+                Returns(new[] { "another item name", gear });
 
-            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+            var isSpecific = specificGearGenerator.IsSpecific(gearType, gear);
             Assert.That(isSpecific, Is.False);
         }
 
         [Test]
-        public void NameIsSpecific_ReturnsFalse_NotOfType()
+        public void NameIsSpecific_ReturnsFalse_NotAValidType()
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "wrong item name" });
+            Assert.That(() => specificGearGenerator.IsSpecific("gear type", "item name"),
+                Throws.ArgumentException.With.Message.EqualTo("gear type is not a valid specific gear type"));
+        }
 
-            var isSpecific = specificGearGenerator.IsSpecific("gear type", "item name");
+        [TestCase(ItemTypeConstants.Weapon, ArmorConstants.AbsorbingShield)]
+        [TestCase(ItemTypeConstants.Weapon, ArmorConstants.ArmorOfRage)]
+        [TestCase(ItemTypeConstants.Armor, WeaponConstants.AssassinsDagger)]
+        [TestCase(ItemTypeConstants.Armor, ArmorConstants.AbsorbingShield)]
+        [TestCase(AttributeConstants.Shield, ArmorConstants.ArmorOfRage)]
+        [TestCase(AttributeConstants.Shield, WeaponConstants.AssassinsDagger)]
+        public void NameIsSpecific_ReturnsFalse_NotOfType(string gearType, string gear)
+        {
+            var isSpecific = specificGearGenerator.IsSpecific(gearType, gear);
             Assert.That(isSpecific, Is.False);
         }
 
@@ -1218,263 +1421,34 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
         [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
-        public void BUG_NameIsSpecific_ReturnsTrue_Renamed(string oldName, params string[] newNames)
+        public void BUG_NameIsSpecific_ReturnsTrue_Renamed(string oldName, string newName)
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[]
-                {
-                    "other item name",
-                    "item name",
-                    WeaponConstants.LuckBlade,
-                    WeaponConstants.Dagger_Silver,
-                    WeaponConstants.Dagger_Adamantine,
-                    WeaponConstants.Battleaxe_Adamantine,
-                    "wrong item"
-                });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] {
-                    "another item name",
-                    "item name",
-                    WeaponConstants.LuckBlade,
-                    WeaponConstants.Dagger_Silver,
-                    WeaponConstants.Dagger_Adamantine,
-                    WeaponConstants.Battleaxe_Adamantine,
-                    "wrong item"
-                });
-
             mockReplacementSelector
                 .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
                 .Returns((string s, bool allow) => new[] { s });
 
             mockReplacementSelector
                 .Setup(s => s.SelectAll(oldName, true))
-                .Returns(newNames);
+                .Returns(new[] { newName });
 
-            var isSpecific = specificGearGenerator.IsSpecific("gear type", oldName);
+            var isSpecific = specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, oldName);
             Assert.That(isSpecific, Is.True);
         }
 
-        [TestCase(WeaponConstants.Dagger)]
-        public void BUG_NameIsSpecific_ReturnsFalse_Renamed(string oldName)
+        [TestCase(WeaponConstants.Battleaxe, WeaponConstants.Battleaxe_Adamantine)]
+        [TestCase(WeaponConstants.Dagger, WeaponConstants.Dagger_Adamantine)]
+        [TestCase(WeaponConstants.Dagger, WeaponConstants.Dagger_Silver)]
+        public void BUG_NameIsSpecific_ReturnsFalse_Renamed(string generalName, string specificName)
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-
-            var isSpecific = specificGearGenerator.IsSpecific("gear type", oldName);
-            Assert.That(isSpecific, Is.False);
-        }
-
-        [Test]
-        public void NameIsSpecific_WithPower_ReturnsTrue()
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
-
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "item name"))
-                .Returns(new[] { "wrong power", "power", "other power" });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                });
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", "item name");
-            Assert.That(isSpecific, Is.True);
-        }
-
-        [Test]
-        public void NameIsSpecific_WithPower_ReturnsFalse_NotSpecific()
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "wrong item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                });
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", "item name");
-            Assert.That(isSpecific, Is.False);
-        }
-
-        [Test]
-        public void NameIsSpecific_WithPower_ReturnsFalse_NotOfType()
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "wrong item name" });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                });
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", "item name");
-            Assert.That(isSpecific, Is.False);
-        }
-
-        [Test]
-        public void NameIsSpecific_WithPower_ReturnsFalse_NotOfPower()
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "wrong item name", Amount = 90210 },
-                });
-
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, "item name"))
-                .Returns(new[] { "wrong power", "other power" });
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", "item name");
-            Assert.That(isSpecific, Is.False);
-        }
-
-        [TestCase(WeaponConstants.Battleaxe_Adamantine, WeaponConstants.Battleaxe)]
-        [TestCase(WeaponConstants.Dagger_Adamantine, WeaponConstants.Dagger)]
-        [TestCase(WeaponConstants.Dagger_Silver, WeaponConstants.Dagger)]
-        [TestCase(WeaponConstants.LuckBlade, WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade0, WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade1, WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade2, WeaponConstants.LuckBlade)]
-        [TestCase(WeaponConstants.LuckBlade3, WeaponConstants.LuckBlade)]
-        public void BUG_NameIsSpecific_WithPower_ReturnsTrue_Renamed(string oldName, params string[] newNames)
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[]
-                {
-                    "other item name",
-                    "item name",
-                    WeaponConstants.LuckBlade,
-                    WeaponConstants.Dagger_Silver,
-                    WeaponConstants.Dagger_Adamantine,
-                    WeaponConstants.Battleaxe_Adamantine,
-                    "wrong item"
-                });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] {
-                    "another item name",
-                    "item name",
-                    WeaponConstants.LuckBlade,
-                    WeaponConstants.Dagger_Silver,
-                    WeaponConstants.Dagger_Adamantine,
-                    WeaponConstants.Battleaxe_Adamantine,
-                    "wrong item"
-                });
-
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, oldName))
-                .Returns(new[] { "wrong power", "power", "other power" });
-
             mockReplacementSelector
                 .Setup(s => s.SelectAll(It.IsAny<string>(), It.IsAny<bool>()))
                 .Returns((string s, bool allow) => new[] { s });
 
             mockReplacementSelector
-                .Setup(s => s.SelectAll(oldName, true))
-                .Returns(newNames);
+                .Setup(s => s.SelectAll(specificName, true))
+                .Returns(new[] { generalName });
 
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
-            Assert.That(isSpecific, Is.True);
-        }
-
-        [TestCase(WeaponConstants.Dagger_Silver)]
-        [TestCase(WeaponConstants.LuckBlade0)]
-        [TestCase(WeaponConstants.LuckBlade1)]
-        [TestCase(WeaponConstants.LuckBlade2)]
-        [TestCase(WeaponConstants.LuckBlade3)]
-        public void BUG_NameIsSpecific_WithPower_ReturnsFalse_Renamed_ButNotOfPower(string oldName)
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            var selections = new[]
-            {
-                new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade0, Amount = 0 },
-                new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade1, Amount = 1 },
-                new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade2, Amount = 2 },
-                new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade3, Amount = 3 },
-                new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
-            }.Where(s => s.Type != oldName);
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(selections);
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
-            Assert.That(isSpecific, Is.False);
-        }
-
-        [TestCase(WeaponConstants.Dagger)]
-        public void BUG_NameIsSpecific_WithPower_ReturnsFalse_Renamed(string oldName)
-        {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name", WeaponConstants.LuckBlade, WeaponConstants.Dagger_Silver });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
-            mockTypeAndAmountPercentileSelector
-                .Setup(s => s.SelectAllFrom(tableName))
-                .Returns(new[]
-                {
-                    new TypeAndAmountSelection { Type = "other item name", Amount = 9266 },
-                    new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.LuckBlade, Amount = 42 },
-                    new TypeAndAmountSelection { Type = WeaponConstants.Dagger_Silver, Amount = 600 },
-                });
-
-            var isSpecific = specificGearGenerator.IsSpecific("power", "gear type", oldName);
+            var isSpecific = specificGearGenerator.IsSpecific(ItemTypeConstants.Weapon, generalName);
             Assert.That(isSpecific, Is.False);
         }
 
@@ -1594,13 +1568,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void CanBeSpecific_ReturnsTrue_IsSpecific()
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "item name" });
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "gear type")).
-                Returns(new[] { "another item name", "item name" });
-
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
@@ -1610,18 +1577,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                     new TypeAndAmountSelection { Type = "item name", Amount = 90210 },
                 });
 
-            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", ItemTypeConstants.Weapon, WeaponConstants.SunBlade);
             Assert.That(canBeSpecific, Is.True);
         }
 
-        [Test]
-        public void CanBeSpecific_ReturnsTrue_BaseNameMatches()
+        [TestCase(ItemTypeConstants.Weapon)]
+        [TestCase(ItemTypeConstants.Armor)]
+        [TestCase(AttributeConstants.Shield)]
+        public void CanBeSpecific_ReturnsTrue_BaseNameMatches(string gearType)
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "wrong item name" });
-
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", gearType);
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
                 .Returns(new[]
@@ -1637,17 +1602,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
                 Returns(new[] { "base name", "item name" });
 
-            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", gearType, "item name");
             Assert.That(canBeSpecific, Is.True);
         }
 
         [Test]
         public void CanBeSpecific_ReturnsFalse()
         {
-            mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific)).
-                Returns(new[] { "other item name", "wrong item name" });
-
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, "power", "gear type");
             mockTypeAndAmountPercentileSelector
                 .Setup(s => s.SelectAllFrom(tableName))
@@ -1664,7 +1625,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "another item name")).
                 Returns(new[] { "base name", "another base name" });
 
-            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", "gear type", "item name");
+            var canBeSpecific = specificGearGenerator.CanBeSpecific("power", ItemTypeConstants.Weapon, "item name");
             Assert.That(canBeSpecific, Is.False);
         }
 
