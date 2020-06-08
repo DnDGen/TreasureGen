@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
-    <Version>10.2.0</Version>
+    <Version>10.2.1</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
     <Product>TreasureGen</Product>
@@ -12,7 +12,8 @@
 * Can generate async (so much faster for bulk!)
 
 Bugs:
-* Fix issue where sometimes certain decorators are missing from the stack.  Better/more reliable Ninject bindings.</PackageReleaseNotes>
+* Handle level generation of items when random power is empty (no items)
+* Handle higher-level treasure generation (up to level 100)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DnDGen/TreasureGen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DnDGen/TreasureGen</RepositoryUrl>
     <PackageTags>item equipment treasure generator dice dungeons dragons d20 dnd 3.5 equip gen</PackageTags>
