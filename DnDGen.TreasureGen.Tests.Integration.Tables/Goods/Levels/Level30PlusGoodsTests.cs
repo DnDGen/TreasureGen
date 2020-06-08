@@ -9,7 +9,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Levels
     {
         protected override string tableName
         {
-            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, 30); }
+            get { return string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, 20); }
         }
 
         [Test]
@@ -95,17 +95,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Levels
 
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 
-            var gemEntry = table[1];
+            var gemEntry = table[10];
             var artEntry = table[100];
 
             for (var i = 1; i <= 38; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo(gemEntry));
+                Assert.That(levelTable[i], Is.EqualTo(gemEntry), $"Table {tableName}, Roll {i}");
             }
 
             for (var i = 39; i <= 100; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo(artEntry));
+                Assert.That(levelTable[i], Is.EqualTo(artEntry), $"Table {tableName}, Roll {i}");
             }
         }
 

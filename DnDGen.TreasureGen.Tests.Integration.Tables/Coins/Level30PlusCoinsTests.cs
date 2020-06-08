@@ -88,14 +88,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Coins
         [TestCase(98)]
         [TestCase(99)]
         [TestCase(100)]
-        public void EpicGoodsPercentile(int level)
+        public void EpicCoinsPercentile(int level)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
             var levelTable = PercentileMapper.Map(tableName);
 
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 
-            var goldEntry = table[1];
+            var goldEntry = table[50];
             var platinumEntry = table[100];
 
             for (var i = 1; i <= 65; i++)

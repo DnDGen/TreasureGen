@@ -18,13 +18,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Levels
             AssertReplacementStringsAreValid();
         }
 
-        [TestCase(EmptyContent, 1, 2)]
-        public override void Percentile(string content, int lower, int upper)
-        {
-            base.Percentile(content, lower, upper);
-        }
-
-        [TestCase(GoodsConstants.Gem, AmountConstants.Range4d10, 3, 38)]
+        [TestCase(GoodsConstants.Gem, AmountConstants.Range4d10, 1, 38)]
         [TestCase(GoodsConstants.Art, AmountConstants.Range7d6, 39, 100)]
         public override void TypeAndAmountPercentile(string type, string amount, int lower, int upper)
         {

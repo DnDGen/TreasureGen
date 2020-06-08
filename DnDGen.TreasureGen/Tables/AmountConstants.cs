@@ -37,6 +37,7 @@
         public const string Range1d12x100 = "100d12";
         public const string Range1d12x1000 = "1000d12";
         public const string Range1d12x10000 = "10000d12";
+        public const string Range1d20 = "1d20";
         public const string Range1d100 = "1d100";
         public const string Range2d3 = "2d3";
         public const string Range2d4 = "2d4";
@@ -54,6 +55,7 @@
         public const string Range2d10 = "2d10";
         public const string Range2d10x100 = "200d10";
         public const string Range2d10x1000 = "2000d10";
+        public const string Range2d12 = "2d12";
         public const string Range2d12x10 = "20d12";
         public const string Range2d100 = "2d100";
         public const string Range3d3 = "2d4+1";
@@ -61,6 +63,7 @@
         public const string Range3d4x10 = "10d10+20";
         public const string Range3d4x100 = "100d10+200";
         public const string Range3d4x1000 = "1000d10+2000";
+        public const string Range3d6 = "3d6";
         public const string Range3d6x10 = "30d6";
         public const string Range3d6x100 = "300d6";
         public const string Range3d6x1000 = "3000d6";
