@@ -1,10 +1,10 @@
 ﻿using DnDGen.Infrastructure.Mappers.Percentiles;
+using DnDGen.TreasureGen.Selectors.Percentiles;
 using Ninject;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using DnDGen.TreasureGen.Selectors.Percentiles;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables
 {
@@ -16,7 +16,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables
 
         protected const string EmptyContent = "";
 
-        private Dictionary<int, string> table;
+        protected Dictionary<int, string> table;
         private Regex allCapsRegex;
         private readonly IEnumerable<string> replacementStrings;
 

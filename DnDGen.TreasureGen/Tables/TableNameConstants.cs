@@ -83,7 +83,6 @@
             {
                 public const string ArmorData = "ArmorData";
                 public const string ChargeLimits = "ChargeLimits";
-                public const string EpicItems = "EpicItems";
                 public const string IntelligenceData = "IntelligenceData";
                 public const string IntelligenceCommunication = "IntelligenceCommunication";
                 public const string ItemAlignmentRequirements = "ItemAlignmentRequirements";

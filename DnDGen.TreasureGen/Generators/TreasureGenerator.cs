@@ -1,6 +1,7 @@
 ﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Items;
+using System;
 using System.Threading.Tasks;
 
 namespace DnDGen.TreasureGen.Generators
@@ -20,6 +21,9 @@ namespace DnDGen.TreasureGen.Generators
 
         public Treasure GenerateAtLevel(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var treasure = new Treasure();
 
             treasure.Coin = coinFactory.GenerateAtLevel(level);
