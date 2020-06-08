@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content></content>
+        <content>Minor,1d6</content>
         <upper>24</upper>
     </percentile>
     <percentile>

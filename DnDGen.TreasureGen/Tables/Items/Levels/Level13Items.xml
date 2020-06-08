@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content></content>
+        <content>Mundane,1d8</content>
         <upper>19</upper>
     </percentile>
     <percentile>

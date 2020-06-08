@@ -3,11 +3,6 @@
 <percentiles>
   <percentile>
     <lower>1</lower>
-    <content></content>
-    <upper>2</upper>
-  </percentile>
-  <percentile>
-    <lower>3</lower>
     <content>Gem,4d10</content>
     <upper>38</upper>
   </percentile>
