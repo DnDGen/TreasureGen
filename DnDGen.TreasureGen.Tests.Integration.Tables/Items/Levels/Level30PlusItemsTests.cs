@@ -1,5 +1,4 @@
-﻿using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -98,21 +97,25 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Levels
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var levelTable = PercentileMapper.Map(tableName);
 
+            var mediumEntry = table[1];
+            var majorEntry = table[50];
+            var epicEntry = table[100];
+
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 
             for (var i = 1; i < majorLower; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{PowerConstants.Medium},{AmountConstants.Range1d4}"));
+                Assert.That(levelTable[i], Is.EqualTo(mediumEntry));
             }
 
             for (var i = majorLower; i < epicLower; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{PowerConstants.Major},{AmountConstants.Range1d3}"));
+                Assert.That(levelTable[i], Is.EqualTo(majorEntry));
             }
 
             for (var i = epicLower; i <= 100; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{PowerConstants.Major},{AmountConstants.Range1d3Plus42}"));
+                Assert.That(levelTable[i], Is.EqualTo(epicEntry));
             }
         }
 

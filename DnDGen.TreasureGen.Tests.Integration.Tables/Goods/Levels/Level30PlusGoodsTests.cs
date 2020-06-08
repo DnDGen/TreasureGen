@@ -1,5 +1,4 @@
-﻿using DnDGen.TreasureGen.Goods;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
 using System.Linq;
 
@@ -96,14 +95,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Levels
 
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 
+            var gemEntry = table[1];
+            var artEntry = table[100];
+
             for (var i = 1; i <= 38; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{GoodsConstants.Gem},{AmountConstants.Range4d10}"));
+                Assert.That(levelTable[i], Is.EqualTo(gemEntry));
             }
 
             for (var i = 39; i <= 100; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{GoodsConstants.Art},{AmountConstants.Range7d6}"));
+                Assert.That(levelTable[i], Is.EqualTo(artEntry));
             }
         }
 

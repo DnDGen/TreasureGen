@@ -1,5 +1,4 @@
-﻿using DnDGen.TreasureGen.Coins;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
 using System.Linq;
 
@@ -96,14 +95,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Coins
 
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 
+            var goldEntry = table[1];
+            var platinumEntry = table[100];
+
             for (var i = 1; i <= 65; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{CoinConstants.Gold},{AmountConstants.Range4d8x1000}"));
+                Assert.That(levelTable[i], Is.EqualTo(goldEntry));
             }
 
             for (var i = 66; i <= 100; i++)
             {
-                Assert.That(levelTable[i], Is.EqualTo($"{CoinConstants.Platinum},{AmountConstants.Range4d10x100}"));
+                Assert.That(levelTable[i], Is.EqualTo(platinumEntry));
             }
         }
 

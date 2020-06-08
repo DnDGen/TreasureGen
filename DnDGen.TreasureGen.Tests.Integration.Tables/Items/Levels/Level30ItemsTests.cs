@@ -18,9 +18,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Levels
             AssertReplacementStringsAreValid();
         }
 
-        [TestCase(PowerConstants.Medium, AmountConstants.Range1d4, 1, 16)]
-        [TestCase(PowerConstants.Major, AmountConstants.Range1d3, 17, 69)]
-        [TestCase(PowerConstants.Major, AmountConstants.Range1d3Plus42, 70, 100)]
+        [TestCase(PowerConstants.Medium, AmountConstants.Range2d100, 1, 16)] //2-200
+        [TestCase(PowerConstants.Major, AmountConstants.Range1d100, 17, 69)] //1-100
+        [TestCase(PowerConstants.Major, AmountConstants.Range1d3Plus42, 70, 100)] //43-45
         public override void TypeAndAmountPercentile(string type, string amount, int lower, int upper)
         {
             base.TypeAndAmountPercentile(type, amount, lower, upper);
