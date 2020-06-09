@@ -442,7 +442,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [Test]
         public void RangedWeaponsMatchConstants()
         {
-            var ranged = WeaponConstants.GetAllRanged(false, false);
+            var ranged = WeaponConstants.GetAllRanged(false, false, true);
             VerifyAttribute(ranged, AttributeConstants.Ranged);
         }
 

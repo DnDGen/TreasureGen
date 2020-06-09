@@ -139,19 +139,6 @@ namespace DnDGen.TreasureGen.Generators.Items
             return weapon;
         }
 
-        private string RenameGear(string oldName)
-        {
-            switch (oldName)
-            {
-                case WeaponConstants.Dagger_Silver: return WeaponConstants.Dagger;
-                case WeaponConstants.LuckBlade0:
-                case WeaponConstants.LuckBlade1:
-                case WeaponConstants.LuckBlade2:
-                case WeaponConstants.LuckBlade3: return WeaponConstants.LuckBlade;
-                default: return oldName;
-            }
-        }
-
         private IEnumerable<SpecialAbility> GetSpecialAbilities(string specificGearType, string name)
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
@@ -185,29 +172,34 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         private string GetSpecificGearType(string name)
         {
-            var gearType = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, name, AttributeConstants.Shield, ItemTypeConstants.Armor, ItemTypeConstants.Weapon);
-            return gearType;
+            var weapons = GetGear(ItemTypeConstants.Weapon);
+            if (weapons.Contains(name))
+                return ItemTypeConstants.Weapon;
+
+            var armors = GetGear(ItemTypeConstants.Armor);
+            if (armors.Contains(name))
+                return ItemTypeConstants.Armor;
+
+            var shields = GetGear(AttributeConstants.Shield);
+            if (shields.Contains(name))
+                return AttributeConstants.Shield;
+
+            throw new ArgumentException($"{name} is not a valid specific item");
         }
 
         public bool IsSpecific(Item template)
         {
-            var specificItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
-            var changedName = RenameGear(template.Name);
-
-            return specificItems.Contains(template.Name)
-                || specificItems.Contains(changedName);
+            return NameMatchesSpecific(template.Name);
         }
 
         public Item GeneratePrototypeFrom(string power, string specificGearType, string name, params string[] traits)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
-            var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-            selections = selections.Where(s => NameMatches(s.Type, name));
+            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, name);
+            var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
 
-            if (!selections.Any())
-            {
-                throw new ArgumentException($"{name} is not a valid {power} specific {specificGearType}");
-            }
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, adjustedPower, specificGearType);
+            var selections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
+            selections = selections.Where(s => NameMatchesWithReplacements(name, s.Type));
 
             var selection = collectionsSelector.SelectRandomFrom(selections);
 
@@ -222,11 +214,25 @@ namespace DnDGen.TreasureGen.Generators.Items
             return gear;
         }
 
-        private bool NameMatches(string source, string target)
+        private bool NameMatchesSpecific(string name)
         {
+            var weapons = GetGear(ItemTypeConstants.Weapon);
+            var armors = GetGear(ItemTypeConstants.Armor);
+            var shields = GetGear(AttributeConstants.Shield);
+
+            var specificGear = weapons.Union(armors).Union(shields);
+
+            return specificGear.Contains(name);
+        }
+
+        private bool NameMatchesWithReplacements(string source, string target)
+        {
+            var sourceReplacements = replacementSelector.SelectAll(source, true);
+            var targetReplacements = replacementSelector.SelectAll(target, true);
+
             return source == target
-                || source == RenameGear(target)
-                || RenameGear(source) == target;
+                || sourceReplacements.Any(s => s == target)
+                || targetReplacements.Any(t => t == source);
         }
 
         public string GenerateRandomNameFrom(string power, string specificGearType)
@@ -263,28 +269,28 @@ namespace DnDGen.TreasureGen.Generators.Items
 
         public bool IsSpecific(string specificGearType, string itemName)
         {
-            var specificCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, AttributeConstants.Specific);
-            var gearTypeCollection = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, specificGearType);
-            var changedName = RenameGear(itemName);
+            var gearTypeCollection = GetGear(specificGearType);
 
-            return (specificCollection.Contains(itemName)
-                    && gearTypeCollection.Contains(itemName))
-                || (specificCollection.Contains(changedName)
-                    && gearTypeCollection.Contains(changedName));
+            var isSpecific = NameMatchesSpecific(itemName);
+            isSpecific &= gearTypeCollection.Any(i => NameMatchesWithReplacements(itemName, i));
+
+            return isSpecific;
         }
 
-        public bool IsSpecific(string power, string specificGearType, string itemName)
+        private IEnumerable<string> GetGear(string gearType)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);
-            var powerSelections = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-            return IsSpecific(specificGearType, itemName)
-                && powerSelections.Any(s => NameMatches(s.Type, itemName));
+            switch (gearType)
+            {
+                case ItemTypeConstants.Weapon: return WeaponConstants.GetAllSpecific();
+                case ItemTypeConstants.Armor: return ArmorConstants.GetAllSpecificArmors();
+                case AttributeConstants.Shield: return ArmorConstants.GetAllSpecificShields();
+                default: throw new ArgumentException($"{gearType} is not a valid specific gear type");
+            }
         }
 
         public bool CanBeSpecific(string power, string specificGearType, string itemName)
         {
-            if (IsSpecific(power, specificGearType, itemName))
+            if (IsSpecific(specificGearType, itemName))
                 return true;
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, specificGearType);

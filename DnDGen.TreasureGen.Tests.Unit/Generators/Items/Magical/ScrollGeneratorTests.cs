@@ -193,12 +193,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .And.Contains("trait 2")
                 .And.Contains("spell type"));
         }
-
-        [Test]
-        public void IsItemOfPower_ReturnsTrue()
-        {
-            var isItemOfPower = scrollGenerator.IsItemOfPower("item name", "power");
-            Assert.That(isItemOfPower, Is.True);
-        }
     }
 }

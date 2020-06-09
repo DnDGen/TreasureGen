@@ -124,10 +124,78 @@ namespace DnDGen.TreasureGen.Items
         public const string MaceOfBlood = "Mace of blood";
         public const string BerserkingSword = "Berserking sword";
 
+        public static IEnumerable<string> GetAllSpecific()
+        {
+            return new[]
+            {
+                AssassinsDagger,
+                Battleaxe_Adamantine,
+                BerserkingSword,
+                CursedBackbiterSpear,
+                CursedMinus2Sword,
+                DaggerOfVenom,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                DwarvenThrower,
+                FlameTongue,
+                FrostBrand,
+                GreaterSlayingArrow,
+                HolyAvenger,
+                JavelinOfLightning,
+                LifeDrinker,
+                LuckBlade,
+                LuckBlade0,
+                LuckBlade1,
+                LuckBlade2,
+                LuckBlade3,
+                MaceOfBlood,
+                MaceOfSmiting,
+                MaceOfTerror,
+                NetOfSnaring,
+                NineLivesStealer,
+                Oathbow,
+                RapierOfPuncturing,
+                ScreamingBolt,
+                Shatterspike,
+                ShiftersSorrow,
+                SlayingArrow,
+                SleepArrow,
+                SunBlade,
+                SwordOfLifeStealing,
+                SwordOfSubtlety,
+                SwordOfThePlanes,
+                SylvanScimitar,
+                TridentOfFishCommand,
+                TridentOfWarning,
+            };
+        }
+
+        public static IEnumerable<string> GetAllTemplates()
+        {
+            return new[]
+            {
+                Battleaxe_Adamantine,
+                CompositeLongbow_StrengthPlus0,
+                CompositeLongbow_StrengthPlus1,
+                CompositeLongbow_StrengthPlus2,
+                CompositeLongbow_StrengthPlus3,
+                CompositeLongbow_StrengthPlus4,
+                CompositeShortbow_StrengthPlus0,
+                CompositeShortbow_StrengthPlus1,
+                CompositeShortbow_StrengthPlus2,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                LuckBlade0,
+                LuckBlade1,
+                LuckBlade2,
+                LuckBlade3,
+            };
+        }
+
         public static IEnumerable<string> GetAllWeapons(bool includeSpecific, bool includeTemplates)
         {
             var melee = GetAllMelee(includeSpecific, includeTemplates);
-            var ranged = GetAllRanged(includeSpecific, includeTemplates);
+            var ranged = GetAllRanged(includeSpecific, includeTemplates, false);
 
             return melee.Union(ranged);
         }
@@ -141,7 +209,7 @@ namespace DnDGen.TreasureGen.Items
             return light.Union(oneHanded).Union(twoHanded);
         }
 
-        public static IEnumerable<string> GetAllRanged(bool includeSpecific, bool includeTemplates)
+        public static IEnumerable<string> GetAllRanged(bool includeSpecific, bool includeTemplates, bool includeMelee)
         {
             IEnumerable<string> ranged = new[]
             {
@@ -171,46 +239,46 @@ namespace DnDGen.TreasureGen.Items
                 LightRepeatingCrossbow,
                 Net,
                 Shuriken,
+                SleepArrow,
+                ScreamingBolt,
+                JavelinOfLightning,
+                SlayingArrow,
+                Oathbow,
+                GreaterSlayingArrow,
+                NetOfSnaring,
+                DaggerOfVenom,
+                AssassinsDagger,
+                TridentOfFishCommand,
+                TridentOfWarning,
+                CursedBackbiterSpear,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                CompositeLongbow_StrengthPlus0,
+                CompositeShortbow_StrengthPlus0,
+                CompositeLongbow_StrengthPlus1,
+                CompositeShortbow_StrengthPlus1,
+                CompositeLongbow_StrengthPlus2,
+                CompositeShortbow_StrengthPlus2,
+                CompositeLongbow_StrengthPlus3,
+                CompositeLongbow_StrengthPlus4,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    SleepArrow,
-                    ScreamingBolt,
-                    JavelinOfLightning,
-                    SlayingArrow,
-                    Oathbow,
-                    GreaterSlayingArrow,
-                    NetOfSnaring,
-                    DaggerOfVenom,
-                    AssassinsDagger,
-                    TridentOfFishCommand,
-                    TridentOfWarning,
-                    CursedBackbiterSpear,
-                };
-
-                ranged = ranged.Union(specific);
+                var specific = GetAllSpecific();
+                ranged = ranged.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                    CompositeLongbow_StrengthPlus0,
-                    CompositeShortbow_StrengthPlus0,
-                    CompositeLongbow_StrengthPlus1,
-                    CompositeShortbow_StrengthPlus1,
-                    CompositeLongbow_StrengthPlus2,
-                    CompositeShortbow_StrengthPlus2,
-                    CompositeLongbow_StrengthPlus3,
-                    CompositeLongbow_StrengthPlus4,
-                };
+                var templates = GetAllTemplates();
+                ranged = ranged.Except(templates);
+            }
 
-                ranged = ranged.Union(templates);
+            if (!includeMelee)
+            {
+                var melee = GetAllMelee(includeSpecific, includeTemplates);
+                ranged = ranged.Except(melee);
             }
 
             return ranged;
@@ -237,35 +305,29 @@ namespace DnDGen.TreasureGen.Items
                 Nunchaku,
                 Sai,
                 Siangham,
+                AssassinsDagger,
+                SwordOfSubtlety,
+                SunBlade,
+                LuckBlade,
+                DaggerOfVenom,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                LuckBlade0,
+                LuckBlade1,
+                LuckBlade2,
+                LuckBlade3,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    AssassinsDagger,
-                    SwordOfSubtlety,
-                    SunBlade,
-                    LuckBlade,
-                    DaggerOfVenom,
-                };
-
-                light = light.Union(specific);
+                var specific = GetAllSpecific();
+                light = light.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                    LuckBlade0,
-                    LuckBlade1,
-                    LuckBlade2,
-                    LuckBlade3,
-                };
-
-                light = light.Union(templates);
+                var templates = GetAllTemplates();
+                light = light.Except(templates);
             }
 
             return light;
@@ -290,42 +352,36 @@ namespace DnDGen.TreasureGen.Items
                 BastardSword,
                 DwarvenWaraxe,
                 Whip,
+                TridentOfFishCommand,
+                FlameTongue,
+                SwordOfThePlanes,
+                NineLivesStealer,
+                SwordOfLifeStealing,
+                MaceOfTerror,
+                SylvanScimitar,
+                RapierOfPuncturing,
+                SunBlade,
+                DwarvenThrower,
+                MaceOfSmiting,
+                HolyAvenger,
+                Shatterspike,
+                TridentOfWarning,
+                CursedBackbiterSpear,
+                CursedMinus2Sword,
+                MaceOfBlood,
+                Battleaxe_Adamantine,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    TridentOfFishCommand,
-                    FlameTongue,
-                    SwordOfThePlanes,
-                    NineLivesStealer,
-                    SwordOfLifeStealing,
-                    MaceOfTerror,
-                    SylvanScimitar,
-                    RapierOfPuncturing,
-                    SunBlade,
-                    DwarvenThrower,
-                    MaceOfSmiting,
-                    HolyAvenger,
-                    Shatterspike,
-                    TridentOfWarning,
-                    CursedBackbiterSpear,
-                    CursedMinus2Sword,
-                    MaceOfBlood,
-                };
-
-                oneHanded = oneHanded.Union(specific);
+                var specific = GetAllSpecific();
+                oneHanded = oneHanded.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Battleaxe_Adamantine,
-                };
-
-                oneHanded = oneHanded.Union(templates);
+                var templates = GetAllTemplates();
+                oneHanded = oneHanded.Except(templates);
             }
 
             return oneHanded;
@@ -333,7 +389,7 @@ namespace DnDGen.TreasureGen.Items
 
         public static IEnumerable<string> GetAllTwoHandedMelee(bool includeSpecific, bool includeTemplates)
         {
-            var twoHanded = new[]
+            IEnumerable<string> twoHanded = new[]
             {
                 Longspear,
                 Quarterstaff,
@@ -357,13 +413,6 @@ namespace DnDGen.TreasureGen.Items
                 TwoBladedSword,
                 DwarvenUrgrosh,
                 PincerStaff,
-            };
-
-            if (!includeSpecific)
-                return twoHanded;
-
-            var specific = new[]
-            {
                 ShiftersSorrow,
                 LifeDrinker,
                 SunBlade,
@@ -371,7 +420,19 @@ namespace DnDGen.TreasureGen.Items
                 BerserkingSword,
             };
 
-            return twoHanded.Union(specific);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                twoHanded = twoHanded.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                twoHanded = twoHanded.Except(templates);
+            }
+
+            return twoHanded;
         }
 
         public static IEnumerable<string> GetAllSimple(bool includeSpecific, bool includeTemplates)
@@ -398,34 +459,28 @@ namespace DnDGen.TreasureGen.Items
                 Javelin,
                 Sling,
                 SlingBullet,
+                ScreamingBolt,
+                JavelinOfLightning,
+                AssassinsDagger,
+                MaceOfTerror,
+                MaceOfSmiting,
+                DaggerOfVenom,
+                CursedBackbiterSpear,
+                MaceOfBlood,
+                Dagger_Adamantine,
+                Dagger_Silver,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    ScreamingBolt,
-                    JavelinOfLightning,
-                    AssassinsDagger,
-                    MaceOfTerror,
-                    MaceOfSmiting,
-                    DaggerOfVenom,
-                    CursedBackbiterSpear,
-                    MaceOfBlood,
-                };
-
-                simple = simple.Union(specific);
+                var specific = GetAllSpecific();
+                simple = simple.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                };
-
-                simple = simple.Union(templates);
+                var templates = GetAllTemplates();
+                simple = simple.Except(templates);
             }
 
             return simple;
@@ -466,59 +521,53 @@ namespace DnDGen.TreasureGen.Items
                 CompositeLongbow,
                 Shortbow,
                 CompositeShortbow,
+                SleepArrow,
+                SlayingArrow,
+                TridentOfFishCommand,
+                FlameTongue,
+                SwordOfSubtlety,
+                SwordOfThePlanes,
+                NineLivesStealer,
+                SwordOfLifeStealing,
+                Oathbow,
+                LifeDrinker,
+                SylvanScimitar,
+                RapierOfPuncturing,
+                SunBlade,
+                FrostBrand,
+                DwarvenThrower,
+                HolyAvenger,
+                LuckBlade,
+                GreaterSlayingArrow,
+                Shatterspike,
+                TridentOfWarning,
+                BerserkingSword,
+                CursedMinus2Sword,
+                LuckBlade0,
+                LuckBlade1,
+                LuckBlade2,
+                LuckBlade3,
+                Battleaxe_Adamantine,
+                CompositeLongbow_StrengthPlus0,
+                CompositeShortbow_StrengthPlus0,
+                CompositeLongbow_StrengthPlus1,
+                CompositeShortbow_StrengthPlus1,
+                CompositeLongbow_StrengthPlus2,
+                CompositeShortbow_StrengthPlus2,
+                CompositeLongbow_StrengthPlus3,
+                CompositeLongbow_StrengthPlus4,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    SleepArrow,
-                    SlayingArrow,
-                    TridentOfFishCommand,
-                    FlameTongue,
-                    SwordOfSubtlety,
-                    SwordOfThePlanes,
-                    NineLivesStealer,
-                    SwordOfLifeStealing,
-                    Oathbow,
-                    LifeDrinker,
-                    SylvanScimitar,
-                    RapierOfPuncturing,
-                    SunBlade,
-                    FrostBrand,
-                    DwarvenThrower,
-                    HolyAvenger,
-                    LuckBlade,
-                    GreaterSlayingArrow,
-                    Shatterspike,
-                    TridentOfWarning,
-                    BerserkingSword,
-                    CursedMinus2Sword,
-                };
-
-                martial = martial.Union(specific);
+                var specific = GetAllSpecific();
+                martial = martial.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Battleaxe_Adamantine,
-                    CompositeLongbow_StrengthPlus0,
-                    CompositeShortbow_StrengthPlus0,
-                    CompositeLongbow_StrengthPlus1,
-                    CompositeShortbow_StrengthPlus1,
-                    CompositeLongbow_StrengthPlus2,
-                    CompositeShortbow_StrengthPlus2,
-                    CompositeLongbow_StrengthPlus3,
-                    CompositeLongbow_StrengthPlus4,
-                    LuckBlade0,
-                    LuckBlade1,
-                    LuckBlade2,
-                    LuckBlade3,
-                };
-
-                martial = martial.Union(templates);
+                var templates = GetAllTemplates();
+                martial = martial.Except(templates);
             }
 
             return martial;
@@ -548,19 +597,24 @@ namespace DnDGen.TreasureGen.Items
                 Net,
                 Shuriken,
                 PincerStaff,
-            };
-
-            if (!includeSpecific)
-                return exotic;
-
-            var specific = new[]
-            {
                 ShiftersSorrow,
                 SunBlade,
                 NetOfSnaring,
             };
 
-            return exotic.Union(specific);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                exotic = exotic.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                exotic = exotic.Except(templates);
+            }
+
+            return exotic;
         }
 
         public static IEnumerable<string> GetAllDouble(bool includeSpecific, bool includeTemplates)
@@ -573,22 +627,27 @@ namespace DnDGen.TreasureGen.Items
                 GnomeHookedHammer,
                 TwoBladedSword,
                 DwarvenUrgrosh,
-            };
-
-            if (!includeSpecific)
-                return doubleWeapons;
-
-            var specific = new[]
-            {
                 ShiftersSorrow,
             };
 
-            return doubleWeapons.Union(specific);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                doubleWeapons = doubleWeapons.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                doubleWeapons = doubleWeapons.Except(templates);
+            }
+
+            return doubleWeapons;
         }
 
         public static IEnumerable<string> GetAllReach(bool includeSpecific, bool includeTemplates)
         {
-            var reach = new[]
+            IEnumerable<string> reach = new[]
             {
                 Longspear,
                 Glaive,
@@ -599,6 +658,18 @@ namespace DnDGen.TreasureGen.Items
                 SpikedChain,
                 PincerStaff,
             };
+
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                reach = reach.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                reach = reach.Except(templates);
+            }
 
             return reach;
         }
@@ -617,33 +688,27 @@ namespace DnDGen.TreasureGen.Items
                 HandCrossbow,
                 HeavyRepeatingCrossbow,
                 LightRepeatingCrossbow,
+                CompositeLongbow_StrengthPlus0,
+                CompositeShortbow_StrengthPlus0,
+                CompositeLongbow_StrengthPlus1,
+                CompositeShortbow_StrengthPlus1,
+                CompositeLongbow_StrengthPlus2,
+                CompositeShortbow_StrengthPlus2,
+                CompositeLongbow_StrengthPlus3,
+                CompositeLongbow_StrengthPlus4,
+                Oathbow,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    Oathbow,
-                };
-
-                projectile = projectile.Union(specific);
+                var specific = GetAllSpecific();
+                projectile = projectile.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    CompositeLongbow_StrengthPlus0,
-                    CompositeShortbow_StrengthPlus0,
-                    CompositeLongbow_StrengthPlus1,
-                    CompositeShortbow_StrengthPlus1,
-                    CompositeLongbow_StrengthPlus2,
-                    CompositeShortbow_StrengthPlus2,
-                    CompositeLongbow_StrengthPlus3,
-                    CompositeLongbow_StrengthPlus4,
-                };
-
-                projectile = projectile.Union(templates);
+                var templates = GetAllTemplates();
+                projectile = projectile.Except(templates);
             }
 
             return projectile;
@@ -657,20 +722,25 @@ namespace DnDGen.TreasureGen.Items
                 SlingBullet,
                 Arrow,
                 Shuriken,
-            };
-
-            if (!includeSpecific)
-                return ammunition;
-
-            var specific = new[]
-            {
                 SleepArrow,
                 ScreamingBolt,
                 SlayingArrow,
                 GreaterSlayingArrow,
             };
 
-            return ammunition.Union(specific);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                ammunition = ammunition.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                ammunition = ammunition.Except(templates);
+            }
+
+            return ammunition;
         }
 
         public static IEnumerable<string> GetAllThrown(bool includeSpecific, bool includeTemplates)
@@ -690,33 +760,27 @@ namespace DnDGen.TreasureGen.Items
                 Bolas,
                 Net,
                 Shuriken,
+                JavelinOfLightning,
+                AssassinsDagger,
+                TridentOfFishCommand,
+                DaggerOfVenom,
+                TridentOfWarning,
+                CursedBackbiterSpear,
+                NetOfSnaring,
+                Dagger_Adamantine,
+                Dagger_Silver,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    JavelinOfLightning,
-                    AssassinsDagger,
-                    TridentOfFishCommand,
-                    DaggerOfVenom,
-                    TridentOfWarning,
-                    CursedBackbiterSpear,
-                    NetOfSnaring,
-                };
-
-                thrown = thrown.Union(specific);
+                var specific = GetAllSpecific();
+                thrown = thrown.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                };
-
-                thrown = thrown.Union(templates);
+                var templates = GetAllTemplates();
+                thrown = thrown.Except(templates);
             }
 
             return thrown;
@@ -747,13 +811,6 @@ namespace DnDGen.TreasureGen.Items
                 Bolas,
                 Net,
                 PincerStaff,
-            };
-
-            if (!includeSpecific)
-                return bludgeoning;
-
-            var specific = new[]
-            {
                 MaceOfTerror,
                 DwarvenThrower,
                 MaceOfSmiting,
@@ -761,7 +818,19 @@ namespace DnDGen.TreasureGen.Items
                 MaceOfBlood,
             };
 
-            return bludgeoning.Union(specific);
+            if (!includeSpecific)
+            {
+                var specific = GetAllSpecific();
+                bludgeoning = bludgeoning.Except(specific);
+            }
+
+            if (!includeTemplates)
+            {
+                var templates = GetAllTemplates();
+                bludgeoning = bludgeoning.Except(templates);
+            }
+
+            return bludgeoning;
         }
 
         public static IEnumerable<string> GetAllPiercing(bool includeSpecific, bool includeTemplates)
@@ -802,52 +871,46 @@ namespace DnDGen.TreasureGen.Items
                 HeavyRepeatingCrossbow,
                 LightRepeatingCrossbow,
                 Shuriken,
+                SleepArrow,
+                ScreamingBolt,
+                JavelinOfLightning,
+                SlayingArrow,
+                AssassinsDagger,
+                TridentOfFishCommand,
+                SwordOfSubtlety,
+                Oathbow,
+                RapierOfPuncturing,
+                LuckBlade,
+                GreaterSlayingArrow,
+                DaggerOfVenom,
+                TridentOfWarning,
+                CursedBackbiterSpear,
+                LuckBlade0,
+                LuckBlade1,
+                LuckBlade2,
+                LuckBlade3,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                CompositeLongbow_StrengthPlus0,
+                CompositeShortbow_StrengthPlus0,
+                CompositeLongbow_StrengthPlus1,
+                CompositeShortbow_StrengthPlus1,
+                CompositeLongbow_StrengthPlus2,
+                CompositeShortbow_StrengthPlus2,
+                CompositeLongbow_StrengthPlus3,
+                CompositeLongbow_StrengthPlus4,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    SleepArrow,
-                    ScreamingBolt,
-                    JavelinOfLightning,
-                    SlayingArrow,
-                    AssassinsDagger,
-                    TridentOfFishCommand,
-                    SwordOfSubtlety,
-                    Oathbow,
-                    RapierOfPuncturing,
-                    LuckBlade,
-                    GreaterSlayingArrow,
-                    DaggerOfVenom,
-                    TridentOfWarning,
-                    CursedBackbiterSpear,
-                };
-
-                piercing = piercing.Union(specific);
+                var specific = GetAllSpecific();
+                piercing = piercing.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                    CompositeLongbow_StrengthPlus0,
-                    CompositeShortbow_StrengthPlus0,
-                    CompositeLongbow_StrengthPlus1,
-                    CompositeShortbow_StrengthPlus1,
-                    CompositeLongbow_StrengthPlus2,
-                    CompositeShortbow_StrengthPlus2,
-                    CompositeLongbow_StrengthPlus3,
-                    CompositeLongbow_StrengthPlus4,
-                    LuckBlade0,
-                    LuckBlade1,
-                    LuckBlade2,
-                    LuckBlade3,
-                };
-
-                piercing = piercing.Union(templates);
+                var templates = GetAllTemplates();
+                piercing = piercing.Except(templates);
             }
 
             return piercing;
@@ -879,43 +942,37 @@ namespace DnDGen.TreasureGen.Items
                 OrcDoubleAxe,
                 TwoBladedSword,
                 DwarvenUrgrosh,
+                AssassinsDagger,
+                ShiftersSorrow,
+                FlameTongue,
+                SwordOfThePlanes,
+                NineLivesStealer,
+                SwordOfLifeStealing,
+                LifeDrinker,
+                SylvanScimitar,
+                SunBlade,
+                FrostBrand,
+                HolyAvenger,
+                LuckBlade,
+                Shatterspike,
+                DaggerOfVenom,
+                BerserkingSword,
+                CursedMinus2Sword,
+                Dagger_Adamantine,
+                Dagger_Silver,
+                Battleaxe_Adamantine,
             };
 
-            if (includeSpecific)
+            if (!includeSpecific)
             {
-                var specific = new[]
-                {
-                    AssassinsDagger,
-                    ShiftersSorrow,
-                    FlameTongue,
-                    SwordOfThePlanes,
-                    NineLivesStealer,
-                    SwordOfLifeStealing,
-                    LifeDrinker,
-                    SylvanScimitar,
-                    SunBlade,
-                    FrostBrand,
-                    HolyAvenger,
-                    LuckBlade,
-                    Shatterspike,
-                    DaggerOfVenom,
-                    BerserkingSword,
-                    CursedMinus2Sword,
-                };
-
-                slashing = slashing.Union(specific);
+                var specific = GetAllSpecific();
+                slashing = slashing.Except(specific);
             }
 
-            if (includeTemplates)
+            if (!includeTemplates)
             {
-                var templates = new[]
-                {
-                    Dagger_Adamantine,
-                    Dagger_Silver,
-                    Battleaxe_Adamantine,
-                };
-
-                slashing = slashing.Union(templates);
+                var templates = GetAllTemplates();
+                slashing = slashing.Except(templates);
             }
 
             return slashing;

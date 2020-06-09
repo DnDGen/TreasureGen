@@ -62,11 +62,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             return scroll;
         }
 
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            return true;
-        }
-
         private int GetQuantity(string power)
         {
             switch (power)

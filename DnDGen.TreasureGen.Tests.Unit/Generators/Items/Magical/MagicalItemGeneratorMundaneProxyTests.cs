@@ -60,22 +60,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             Assert.That(() => mundaneProxy.Generate(PowerConstants.Mundane, "item name", "trait 1", "trait 2"), Throws.ArgumentException);
         }
-
-        [TestCase(true)]
-        [TestCase(false)]
-        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
-        {
-            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
-            var isOfPower = mundaneProxy.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
-        }
-
-        [Test]
-        public void IsItemOfPower_ReturnFalse_IfPowerIsMundane()
-        {
-            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", PowerConstants.Mundane)).Returns(true);
-            var isOfPower = mundaneProxy.IsItemOfPower("item name", PowerConstants.Mundane);
-            Assert.That(isOfPower, Is.False);
-        }
     }
 }

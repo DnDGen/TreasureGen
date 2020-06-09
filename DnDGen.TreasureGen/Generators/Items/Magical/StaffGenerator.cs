@@ -34,10 +34,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateRandom(string power)
         {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor staves");
+            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Staff);
+            var adjustedPower = PowerHelper.AdjustPower(power, rodPowers);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
             var selection = typeAndAmountPercentileSelector.SelectFrom(tablename);
 
             return GenerateStaff(selection.Type, selection.Amount);
@@ -58,30 +58,27 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            if (power == PowerConstants.Minor)
-                throw new ArgumentException("Cannot generate minor staves");
+            var staffName = GetStaffName(itemName);
+            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, staffName);
+            var adjustedPower = PowerHelper.AdjustPower(power, powers);
 
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
+            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
             var selections = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = selections.Where(s => s.Type == itemName).ToList();
-
-            if (!matches.Any())
-            {
-                foreach (var result in selections)
-                {
-                    var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
-                    if (baseNames.Contains(itemName))
-                        matches.Add(result);
-                }
-            }
-
-            if (!matches.Any())
-            {
-                throw new ArgumentException($"{itemName} is not a valid {power} Staff");
-            }
+            var matches = selections.Where(s => s.Type == staffName).ToList();
 
             var selection = collectionsSelector.SelectRandomFrom(matches);
             return GenerateStaff(selection.Type, selection.Amount, traits);
+        }
+
+        private string GetStaffName(string itemName)
+        {
+            var staffs = StaffConstants.GetAllStaffs();
+            if (staffs.Contains(itemName))
+                return itemName;
+
+            var staffFromBaseName = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, itemName, staffs.ToArray());
+
+            return staffFromBaseName;
         }
 
         private Item BuildStaff(Item staff)
@@ -126,28 +123,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
 
             return staff.SmartClone();
-        }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            if (power == PowerConstants.Minor)
-                return false;
-
-            var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tablename);
-            var matches = results.Where(r => r.Type == itemName);
-
-            if (results.Any(r => r.Type == itemName))
-                return true;
-
-            foreach (var result in results)
-            {
-                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, result.Type);
-                if (baseNames.Contains(itemName))
-                    return true;
-            }
-
-            return false;
         }
     }
 }

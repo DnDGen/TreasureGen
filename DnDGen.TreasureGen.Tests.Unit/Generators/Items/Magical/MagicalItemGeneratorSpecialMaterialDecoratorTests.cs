@@ -396,14 +396,5 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(decoratedItem.Traits, Contains.Item("special material"));
             Assert.That(decoratedItem.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
         }
-
-        [TestCase(true)]
-        [TestCase(false)]
-        public void IsItemOfPower_PassesThrough(bool innerIsOfPower)
-        {
-            mockInnerGenerator.Setup(g => g.IsItemOfPower("item name", "power")).Returns(innerIsOfPower);
-            var isOfPower = decorator.IsItemOfPower("item name", "power");
-            Assert.That(isOfPower, Is.EqualTo(innerIsOfPower));
-        }
     }
 }

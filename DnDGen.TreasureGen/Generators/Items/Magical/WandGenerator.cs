@@ -56,10 +56,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return wand.SmartClone();
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            return true;
-        }
     }
 }

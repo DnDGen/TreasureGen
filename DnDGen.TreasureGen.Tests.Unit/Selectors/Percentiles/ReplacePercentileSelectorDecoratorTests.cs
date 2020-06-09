@@ -37,7 +37,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
             var percentiles = new[] { "first", "second" };
             var replacements = new[] { "third", "fourth" };
             mockInnerSelector.Setup(s => s.SelectAllFrom("table")).Returns(percentiles);
-            mockReplacementSelector.Setup(s => s.SelectAll(percentiles)).Returns(replacements);
+            mockReplacementSelector.Setup(s => s.SelectAll(percentiles, false)).Returns(replacements);
 
             var results = decorator.SelectAllFrom("table");
             Assert.That(results, Is.EquivalentTo(replacements));

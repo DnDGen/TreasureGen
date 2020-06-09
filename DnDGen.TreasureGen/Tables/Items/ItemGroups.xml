@@ -10,33 +10,6 @@
     <entry>Amulet of inescapable location</entry>
   </collection>
   <collection>
-    <name>Shield</name>
-    <entry>Absorbing shield</entry>
-    <entry>Caster's shield</entry>
-    <entry>Lion's shield</entry>
-    <entry>Spined shield</entry>
-    <entry>Winged shield</entry>
-  </collection>
-  <collection>
-    <name>Armor</name>
-    <entry>Armor of arrow attraction</entry>
-    <entry>Armor of rage</entry>
-    <entry>Banded mail of luck</entry>
-    <entry>Breastplate of command</entry>
-    <entry>Celestial armor</entry>
-    <entry>Demon armor</entry>
-    <entry>Dwarven plate</entry>
-    <entry>Elven chain</entry>
-    <entry>Full plate of speed</entry>
-    <entry>Plate armor of the deep</entry>
-    <entry>Absorbing shield</entry>
-    <entry>Caster's shield</entry>
-    <entry>Lion's shield</entry>
-    <entry>Spined shield</entry>
-    <entry>Winged shield</entry>
-    <entry>Rhino hide</entry>
-  </collection>
-  <collection>
     <name>Armor of arrow attraction</name>
     <entry>Full plate</entry>
   </collection>
@@ -808,86 +781,6 @@
     <entry>Sling bullet</entry>
   </collection>
   <collection>
-    <name>Specific</name>
-    <entry>Absorbing shield</entry>
-    <entry>Amulet of inescapable location</entry>
-    <entry>Armor of arrow attraction</entry>
-    <entry>Armor of rage</entry>
-    <entry>Assassin's dagger</entry>
-    <entry>Bag of devouring</entry>
-    <entry>Banded mail of luck</entry>
-    <entry>Berserking sword</entry>
-    <entry>Boots of dancing</entry>
-    <entry>Bracers of defenselessness</entry>
-    <entry>Breastplate of command</entry>
-    <entry>Broom of animated attack</entry>
-    <entry>Caster's shield</entry>
-    <entry>Celestial armor</entry>
-    <entry>Cloak of poisonousness</entry>
-    <entry>Crystal hypnosis ball</entry>
-    <entry>Cursed backbiter spear</entry>
-    <entry>Cursed -2 sword</entry>
-    <entry>Dagger of venom</entry>
-    <entry>Demon armor</entry>
-    <entry>Dust of sneezing and choking</entry>
-    <entry>Dwarven plate</entry>
-    <entry>Dwarven thrower</entry>
-    <entry>Elven chain</entry>
-    <entry>Flame tongue</entry>
-    <entry>Flask of curses</entry>
-    <entry>Frost brand</entry>
-    <entry>Full plate of speed</entry>
-    <entry>Gauntlets of fumbling</entry>
-    <entry>Greater slaying arrow</entry>
-    <entry>Helm of opposite alignment</entry>
-    <entry>Holy avenger</entry>
-    <entry>Incense of obsession</entry>
-    <entry>Javelin of lightning</entry>
-    <entry>Life-drinker</entry>
-    <entry>Lion's shield</entry>
-    <entry>Luck blade</entry>
-    <entry>Luck blade (0 wishes)</entry>
-    <entry>Luck blade (1 wish)</entry>
-    <entry>Luck blade (2 wishes)</entry>
-    <entry>Luck blade (3 wishes)</entry>
-    <entry>Mace of blood</entry>
-    <entry>Mace of smiting</entry>
-    <entry>Mace of terror</entry>
-    <entry>Medallion of thought projection</entry>
-    <entry>Necklace of strangulation</entry>
-    <entry>Net of snaring</entry>
-    <entry>Nine lives stealer</entry>
-    <entry>Oathbow</entry>
-    <entry>Periapt of foul rotting</entry>
-    <entry>Plate armor of the deep</entry>
-    <entry>Rapier of puncturing</entry>
-    <entry>Rhino hide</entry>
-    <entry>Ring of Clumsiness</entry>
-    <entry>Robe of powerlessness</entry>
-    <entry>Robe of vermin</entry>
-    <entry>Scarab of death</entry>
-    <entry>Screaming bolt</entry>
-    <entry>Shatterspike</entry>
-    <entry>Shifter's sorrow</entry>
-    <entry>Silver dagger</entry>
-    <entry>Adamantine dagger</entry>
-    <entry>Adamantine battleaxe</entry>
-    <entry>Slaying arrow</entry>
-    <entry>Sleep arrow</entry>
-    <entry>Spined shield</entry>
-    <entry>Stone of weight (loadstone)</entry>
-    <entry>Sun blade</entry>
-    <entry>Sword of life stealing</entry>
-    <entry>Sword of subtlety</entry>
-    <entry>Sword of the planes</entry>
-    <entry>Sylvan scimitar</entry>
-    <entry>Trident of fish command</entry>
-    <entry>Trident of warning</entry>
-    <entry>Vacuous grimoire</entry>
-    <entry>Winged shield</entry>
-    <entry>Potion of poison</entry>
-  </collection>
-  <collection>
     <name>Spiked chain</name>
     <entry>Spiked chain</entry>
   </collection>
@@ -1081,48 +974,6 @@
   <collection>
     <name>Warhammer</name>
     <entry>Warhammer</entry>
-  </collection>
-  <collection>
-    <name>Weapon</name>
-    <entry>Assassin's dagger</entry>
-    <entry>Berserking sword</entry>
-    <entry>Cursed backbiter spear</entry>
-    <entry>Cursed -2 sword</entry>
-    <entry>Dagger of venom</entry>
-    <entry>Dwarven thrower</entry>
-    <entry>Flame tongue</entry>
-    <entry>Frost brand</entry>
-    <entry>Greater slaying arrow</entry>
-    <entry>Holy avenger</entry>
-    <entry>Javelin of lightning</entry>
-    <entry>Life-drinker</entry>
-    <entry>Luck blade</entry>
-    <entry>Luck blade (0 wishes)</entry>
-    <entry>Luck blade (1 wish)</entry>
-    <entry>Luck blade (2 wishes)</entry>
-    <entry>Luck blade (3 wishes)</entry>
-    <entry>Mace of blood</entry>
-    <entry>Mace of smiting</entry>
-    <entry>Mace of terror</entry>
-    <entry>Net of snaring</entry>
-    <entry>Nine lives stealer</entry>
-    <entry>Rapier of puncturing</entry>
-    <entry>Screaming bolt</entry>
-    <entry>Shatterspike</entry>
-    <entry>Shifter's sorrow</entry>
-    <entry>Silver dagger</entry>
-    <entry>Adamantine dagger</entry>
-    <entry>Adamantine battleaxe</entry>
-    <entry>Slaying arrow</entry>
-    <entry>Sleep arrow</entry>
-    <entry>Sun blade</entry>
-    <entry>Sword of life stealing</entry>
-    <entry>Sword of subtlety</entry>
-    <entry>Sword of the planes</entry>
-    <entry>Sylvan scimitar</entry>
-    <entry>Trident of fish command</entry>
-    <entry>Trident of warning</entry>
-    <entry>Oathbow</entry>
   </collection>
   <collection>
     <name>Whip</name>

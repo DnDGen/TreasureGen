@@ -48,14 +48,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
+            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.WondrousItem);
             var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
             var matches = results.Where(r => r.Type == itemName);
-
-            if (!matches.Any())
-            {
-                throw new ArgumentException($"{itemName} is not a valid {power} Wondrous Item");
-            }
 
             var result = collectionsSelector.SelectRandomFrom(matches);
             var item = BuildWondrousItem(itemName, traits);
@@ -228,14 +226,6 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             item.ItemType = ItemTypeConstants.WondrousItem;
 
             return item.SmartClone();
-        }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-            var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
-
-            return results.Any(r => r.Type == itemName);
         }
     }
 }

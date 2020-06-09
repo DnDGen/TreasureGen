@@ -25,9 +25,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         [TestCase("whatever", PowerConstants.Major)]
         public void GenerateWand(string itemName, string power)
         {
-            var isOfPower = WandGenerator.IsItemOfPower(itemName, power);
-            Assert.That(isOfPower, Is.True);
-
             var item = WandGenerator.Generate(power, itemName);
             itemVerifier.AssertItem(item);
         }

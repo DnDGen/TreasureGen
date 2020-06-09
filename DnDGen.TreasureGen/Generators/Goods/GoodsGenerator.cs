@@ -3,6 +3,7 @@ using DnDGen.TreasureGen.Goods;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +23,9 @@ namespace DnDGen.TreasureGen.Generators.Goods
 
         public IEnumerable<Good> GenerateAtLevel(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
             var typeAndAmountSelection = typeAndAmountPercentileSelector.SelectFrom(tableName);
 
@@ -56,6 +60,9 @@ namespace DnDGen.TreasureGen.Generators.Goods
 
         public async Task<IEnumerable<Good>> GenerateAtLevelAsync(int level)
         {
+            if (level < LevelLimits.Minimum || level > LevelLimits.Maximum)
+                throw new ArgumentException($"Level {level} is not a valid level for treasure generation");
+
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
             var typeAndAmountSelection = typeAndAmountPercentileSelector.SelectFrom(tableName);
 

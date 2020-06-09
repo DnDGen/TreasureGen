@@ -19,24 +19,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             armorGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Armor);
         }
 
-        [TestCase(ArmorConstants.BandedMail)]
-        [TestCase(ArmorConstants.Breastplate)]
-        [TestCase(ArmorConstants.Buckler)]
-        [TestCase(ArmorConstants.Chainmail)]
-        [TestCase(ArmorConstants.ChainShirt)]
-        [TestCase(ArmorConstants.FullPlate)]
-        [TestCase(ArmorConstants.HalfPlate)]
-        [TestCase(ArmorConstants.HeavySteelShield)]
-        [TestCase(ArmorConstants.HeavyWoodenShield)]
-        [TestCase(ArmorConstants.HideArmor)]
-        [TestCase(ArmorConstants.LeatherArmor)]
-        [TestCase(ArmorConstants.LightSteelShield)]
-        [TestCase(ArmorConstants.LightWoodenShield)]
-        [TestCase(ArmorConstants.PaddedArmor)]
-        [TestCase(ArmorConstants.ScaleMail)]
-        [TestCase(ArmorConstants.SplintMail)]
-        [TestCase(ArmorConstants.StuddedLeatherArmor)]
-        [TestCase(ArmorConstants.TowerShield)]
+        [TestCaseSource(typeof(ItemTestData), "ArmorsNoSpecific")]
         public void GenerateArmor(string itemName)
         {
             var item = armorGenerator.Generate(itemName);

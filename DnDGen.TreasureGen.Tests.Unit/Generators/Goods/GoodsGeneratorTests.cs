@@ -58,9 +58,30 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
         }
 
         [Test]
-        public void GenerateAtLevel_GoodsAreGenerated()
+        public void GenerateAtLevel_ThrowsException_LevelTooLow()
         {
-            var goods = generator.GenerateAtLevel(1);
+            Assert.That(() => generator.GenerateAtLevel(LevelLimits.Minimum - 1),
+                Throws.ArgumentException.With.Message.EqualTo($"Level 0 is not a valid level for treasure generation"));
+        }
+
+        [Test]
+        public void GenerateAtLevel_ThrowsException_LevelTooHigh()
+        {
+            Assert.That(() => generator.GenerateAtLevel(LevelLimits.Maximum + 1),
+                Throws.ArgumentException.With.Message.EqualTo($"Level 101 is not a valid level for treasure generation"));
+        }
+
+        [TestCase(LevelLimits.Minimum)]
+        [TestCase(LevelLimits.Minimum + 1)]
+        [TestCase(10)]
+        [TestCase(20)]
+        [TestCase(30)]
+        [TestCase(42)]
+        [TestCase(LevelLimits.Maximum - 1)]
+        [TestCase(LevelLimits.Maximum)]
+        public void GenerateAtLevel_GoodsAreGenerated(int level)
+        {
+            var goods = generator.GenerateAtLevel(level);
             Assert.That(goods, Is.Not.Null);
         }
 

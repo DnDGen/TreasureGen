@@ -41,11 +41,10 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
 
         private bool ShouldPerformReplace(string source, bool allowSingle) => GetReplacementTargetsAndTables(source, allowSingle).Any();
 
-        public IEnumerable<string> SelectAll(string source) => SelectAll(new[] { source }, false);
-        public IEnumerable<string> SelectAll(IEnumerable<string> sources) => SelectAll(sources, false);
+        public IEnumerable<string> SelectAll(string source, bool allowSingle = false) => SelectAll(new[] { source }, allowSingle);
         public string SelectSingle(string source) => SelectAll(new[] { source }, true).Single();
 
-        private IEnumerable<string> SelectAll(IEnumerable<string> sources, bool allowSingle)
+        public IEnumerable<string> SelectAll(IEnumerable<string> sources, bool allowSingle = false)
         {
             var allResults = new List<string>();
             allResults.AddRange(sources);

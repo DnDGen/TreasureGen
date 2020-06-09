@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
 
         protected override IEnumerable<string> GetItemNames()
         {
-            return PotionConstants.GetAllPotions();
+            return PotionConstants.GetAllPotions(true);
         }
 
         [Test]

@@ -33,13 +33,5 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             return innerGenerator.Generate(power, itemName, traits);
         }
-
-        public bool IsItemOfPower(string itemName, string power)
-        {
-            if (power == PowerConstants.Mundane)
-                return false;
-
-            return innerGenerator.IsItemOfPower(itemName, power);
-        }
     }
 }
