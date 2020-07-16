@@ -24,7 +24,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         [Test]
         public void StressRandomItems()
         {
-            stressor.Stress(() => GenerateAndAssertRandomItems());
+            stressor.Stress(GenerateAndAssertRandomItems);
         }
 
         private void GenerateAndAssertRandomItems()
@@ -42,9 +42,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         }
 
         [Test]
-        public void StressRandomItemsAsync()
+        public async Task StressRandomItemsAsync()
         {
-            stressor.Stress(async () => await GenerateAndAssertRandomItemsAsync());
+            await stressor.StressAsync(GenerateAndAssertRandomItemsAsync);
         }
 
         private async Task GenerateAndAssertRandomItemsAsync()
@@ -131,9 +131,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         [TestCase(ItemTypeConstants.Wand)]
         [TestCase(ItemTypeConstants.Weapon)]
         [TestCase(ItemTypeConstants.WondrousItem)]
-        public void StressNamedItemAtLevelAsync(string itemType)
+        public async Task StressNamedItemAtLevelAsync(string itemType)
         {
-            stressor.Stress(async () => await GenerateAndAssertNamedItemAtLevelAsync(itemType));
+            await stressor.StressAsync(async () => await GenerateAndAssertNamedItemAtLevelAsync(itemType));
         }
 
         private async Task GenerateAndAssertNamedItemAtLevelAsync(string itemType)

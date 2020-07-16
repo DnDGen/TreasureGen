@@ -32,9 +32,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
         }
 
         [Test]
-        public void StressGoodsAsync()
+        public async Task StressGoodsAsync()
         {
-            stressor.Stress(async () => await GenerateAndAssertGoodsAsync());
+            await stressor.StressAsync(GenerateAndAssertGoodsAsync);
         }
 
         private async Task GenerateAndAssertGoodsAsync()

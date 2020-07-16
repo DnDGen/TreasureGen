@@ -64,9 +64,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         }
 
         [Test]
-        public void StressTreasureAsync()
+        public async Task StressTreasureAsync()
         {
-            stressor.Stress(async () => await GenerateAndAssertTreasureAsync());
+            await stressor.StressAsync(GenerateAndAssertTreasureAsync);
         }
 
         private async Task GenerateAndAssertTreasureAsync()
