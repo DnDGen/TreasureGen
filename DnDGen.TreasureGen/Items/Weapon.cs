@@ -6,38 +6,75 @@ namespace DnDGen.TreasureGen.Items
     public class Weapon : Item
     {
         public string Ammunition { get; set; }
-        public string CriticalMultiplier { get; set; }
-        public string Damage { get; set; }
-        public string DamageType { get; set; }
+        public List<Damage> Damages { get; set; }
+        public string DamageRoll => GetRoll(Damages);
+        public string DamageDescription => GetDescription(Damages);
+        public List<Damage> CriticalDamages { get; set; }
+        public string CriticalDamageRoll => GetRoll(CriticalDamages);
+        public string CriticalDamageDescription => GetDescription(CriticalDamages);
         public string Size { get; set; }
         public string ThreatRange { get; set; }
 
-        public override bool CanBeUsedAsWeaponOrArmor
+        private string GetRoll(List<Damage> damages)
         {
-            get
+            var roll = string.Empty;
+            if (!damages.Any())
             {
-                return true;
+                if (Magic.Bonus > 0)
+                    return Magic.Bonus.ToString();
+
+                return roll;
             }
+
+            roll = damages[0].Roll;
+            if (Magic.Bonus > 0)
+                roll += $"+{Magic.Bonus}";
+
+            foreach (var damage in damages.Skip(1))
+            {
+                roll += $"+{damage.Roll}";
+            }
+
+            return roll;
         }
 
-        public IEnumerable<string> CombatTypes
+        private string GetDescription(List<Damage> damages)
         {
-            get
+            var description = string.Empty;
+            if (!damages.Any())
             {
-                return Attributes.Intersect(combatTypes);
+                if (Magic.Bonus > 0)
+                    return Magic.Bonus.ToString();
+
+                return description;
             }
+
+            description = damages[0].ToString();
+            if (Magic.Bonus > 0)
+            {
+                description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{Magic.Bonus}");
+            }
+
+            foreach (var damage in damages.Skip(1))
+            {
+                description += $" + {damage}";
+            }
+
+            return description;
         }
+
+        public override bool CanBeUsedAsWeaponOrArmor => true;
+        public IEnumerable<string> CombatTypes => Attributes.Intersect(combatTypes);
 
         private readonly IEnumerable<string> combatTypes;
 
         public Weapon()
         {
             Ammunition = string.Empty;
-            CriticalMultiplier = string.Empty;
-            Damage = string.Empty;
-            DamageType = string.Empty;
             Size = string.Empty;
             ThreatRange = string.Empty;
+            Damages = new List<Damage>();
+            CriticalDamages = new List<Damage>();
 
             combatTypes = new[] { AttributeConstants.Ranged, AttributeConstants.Melee };
         }
@@ -54,9 +91,8 @@ namespace DnDGen.TreasureGen.Items
         private Weapon CloneWeapon(Weapon target)
         {
             target.Ammunition = !string.IsNullOrEmpty(Ammunition) ? Ammunition : target.Ammunition;
-            target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
-            target.Damage = !string.IsNullOrEmpty(Damage) ? Damage : target.Damage;
-            target.DamageType = !string.IsNullOrEmpty(DamageType) ? DamageType : target.DamageType;
+            target.CriticalDamages = CriticalDamages.Select(d => d.Clone()).ToList();
+            target.Damages = Damages.Select(d => d.Clone()).ToList();
             target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
             target.ThreatRange = !string.IsNullOrEmpty(ThreatRange) ? ThreatRange : target.ThreatRange;
 

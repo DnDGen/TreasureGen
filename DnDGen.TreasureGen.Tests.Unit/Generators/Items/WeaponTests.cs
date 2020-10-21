@@ -23,11 +23,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         public void WeaponInitialized()
         {
             Assert.That(weapon.Ammunition, Is.Empty);
-            Assert.That(weapon.Damage, Is.Empty);
-            Assert.That(weapon.DamageType, Is.Empty);
+            Assert.That(weapon.Damages, Is.Empty);
+            Assert.That(weapon.DamageRoll, Is.Empty);
+            Assert.That(weapon.DamageDescription, Is.Empty);
             Assert.That(weapon.Size, Is.Empty);
             Assert.That(weapon.ThreatRange, Is.Empty);
-            Assert.That(weapon.CriticalMultiplier, Is.Empty);
+            Assert.That(weapon.CriticalDamages, Is.Empty);
+            Assert.That(weapon.CriticalDamageRoll, Is.Empty);
+            Assert.That(weapon.CriticalDamageDescription, Is.Empty);
             Assert.That(weapon.ItemType, Is.Empty); //INFO: Weapon could be a rod or staff
             Assert.That(weapon.CombatTypes, Is.Empty);
         }
@@ -45,15 +48,220 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void DamageRoll_NoDamages()
+        {
+            weapon.Damages.Clear();
+            Assert.That(weapon.DamageRoll, Is.Empty);
+        }
+
+        [Test]
+        public void DamageRoll_NoDamages_WithMagicBonus()
+        {
+            weapon.Damages.Clear();
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageRoll, Is.EqualTo("1337"));
+        }
+
+        [Test]
+        public void DamageRoll_WithDamage()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            Assert.That(weapon.DamageRoll, Is.EqualTo("9266d90210"));
+        }
+
+        [Test]
+        public void DamageRoll_WithDamage_WithMagicBonus()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageRoll, Is.EqualTo("9266d90210+1337"));
+        }
+
+        [Test]
+        public void DamageRoll_WithDamages()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Damages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+
+            Assert.That(weapon.DamageRoll, Is.EqualTo("9266d90210+42d600"));
+        }
+
+        [Test]
+        public void DamageRoll_WithDamages_WithMagicBonus()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Damages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageRoll, Is.EqualTo("9266d90210+1337+42d600"));
+        }
+
+        [Test]
+        public void DamageDescription_NoDamages()
+        {
+            weapon.Damages.Clear();
+            Assert.That(weapon.DamageDescription, Is.Empty);
+        }
+
+        [Test]
+        public void DamageDescription_NoDamages_WithMagicBonus()
+        {
+            weapon.Damages.Clear();
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageDescription, Is.EqualTo("1337"));
+        }
+
+        [Test]
+        public void DamageDescription_WithDamage()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            Assert.That(weapon.DamageDescription, Is.EqualTo("9266d90210 emotional"));
+        }
+
+        [Test]
+        public void DamageDescription_WithDamage_WithMagicBonus()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageDescription, Is.EqualTo("9266d90210+1337 emotional"));
+        }
+
+        [Test]
+        public void DamageDescription_WithDamages()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Damages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+
+            Assert.That(weapon.DamageDescription, Is.EqualTo("9266d90210 emotional + 42d600 spiritual"));
+        }
+
+        [Test]
+        public void DamageDescription_WithDamages_WithMagicBonus()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Damages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.DamageDescription, Is.EqualTo("9266d90210+1337 emotional + 42d600 spiritual"));
+        }
+
+        [Test]
+        public void CriticalDamageRoll_NoDamages()
+        {
+            weapon.CriticalDamages.Clear();
+            Assert.That(weapon.CriticalDamageRoll, Is.Empty);
+        }
+
+        [Test]
+        public void CriticalDamageRoll_NoDamages_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Clear();
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageRoll, Is.EqualTo("1337"));
+        }
+
+        [Test]
+        public void CriticalDamageRoll_WithDamage()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            Assert.That(weapon.CriticalDamageRoll, Is.EqualTo("9266d90210"));
+        }
+
+        [Test]
+        public void CriticalDamageRoll_WithDamage_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageRoll, Is.EqualTo("9266d90210+1337"));
+        }
+
+        [Test]
+        public void CriticalDamageRoll_WithDamages()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.CriticalDamages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+
+            Assert.That(weapon.CriticalDamageRoll, Is.EqualTo("9266d90210+42d600"));
+        }
+
+        [Test]
+        public void CriticalDamageRoll_WithDamages_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.CriticalDamages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageRoll, Is.EqualTo("9266d90210+1337+42d600"));
+        }
+
+        [Test]
+        public void CriticalDamageDescription_NoDamages()
+        {
+            weapon.CriticalDamages.Clear();
+            Assert.That(weapon.CriticalDamageDescription, Is.Empty);
+        }
+
+        [Test]
+        public void CriticalDamageDescription_NoDamages_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Clear();
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageDescription, Is.EqualTo("1337"));
+        }
+
+        [Test]
+        public void CriticalDamageDescription_WithDamage()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            Assert.That(weapon.CriticalDamageDescription, Is.EqualTo("9266d90210 emotional"));
+        }
+
+        [Test]
+        public void CriticalDamageDescription_WithDamage_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageDescription, Is.EqualTo("9266d90210+1337 emotional"));
+        }
+
+        [Test]
+        public void CriticalDamageDescription_WithDamages()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.CriticalDamages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+
+            Assert.That(weapon.CriticalDamageDescription, Is.EqualTo("9266d90210 emotional + 42d600 spiritual"));
+        }
+
+        [Test]
+        public void CriticalDamageDescription_WithDamages_WithMagicBonus()
+        {
+            weapon.CriticalDamages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.CriticalDamages.Add(new Damage { Roll = "42d600", Type = "spiritual" });
+            weapon.Magic.Bonus = 1337;
+
+            Assert.That(weapon.CriticalDamageDescription, Is.EqualTo("9266d90210+1337 emotional + 42d600 spiritual"));
+        }
+
+        [Test]
         public void CloneIsSuccessful()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomWeaponTemplate(name);
 
             template.Ammunition = "nerf bullets";
-            template.CriticalMultiplier = "over 9000!!!";
-            template.Damage = "a ton";
-            template.DamageType = "stabbing";
+            template.Damages.Add(new Damage { Roll = "a ton", Type = "stabbing" });
+            template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
+            template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
+            template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.Size = "massive";
             template.ThreatRange = "all the threat";
 
@@ -84,9 +292,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var cloneWeapon = clone as Weapon;
             Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
-            Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
-            Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
+            Assert.That(cloneWeapon.DamageRoll, Is.EqualTo(template.DamageRoll));
+            Assert.That(cloneWeapon.DamageDescription, Is.EqualTo(template.DamageDescription));
+            Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
+            Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
@@ -104,10 +313,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             };
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            template.Damage = "a ton";
-            template.DamageType = "stabbing";
+            template.Damages.Add(new Damage { Roll = "a ton", Type = "stabbing" });
+            template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
+            template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
+            template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.ThreatRange = "all the threat";
-            template.CriticalMultiplier = "over 9000!!!";
             template.Size = "massive";
             template.Ammunition = "nerf bullets";
 
@@ -119,9 +329,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var cloneWeapon = clone as Weapon;
             Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
-            Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
-            Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
+            Assert.That(cloneWeapon.DamageRoll, Is.EqualTo(template.DamageRoll));
+            Assert.That(cloneWeapon.DamageDescription, Is.EqualTo(template.DamageDescription));
+            Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
+            Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
@@ -134,10 +345,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.ItemType = Guid.NewGuid().ToString();
 
             template.Attributes = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            template.Damage = "a ton";
-            template.DamageType = "stabbing";
+            template.Damages.Add(new Damage { Roll = "a ton", Type = "stabbing" });
+            template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
+            template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
+            template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.ThreatRange = "all the threat";
-            template.CriticalMultiplier = "over 9000!!!";
             template.Ammunition = "nerf bullets";
             template.Size = "massive";
 
@@ -148,9 +360,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var cloneWeapon = clone as Weapon;
             Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
-            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
-            Assert.That(cloneWeapon.Damage, Is.EqualTo(template.Damage));
-            Assert.That(cloneWeapon.DamageType, Is.EqualTo(template.DamageType));
+            Assert.That(cloneWeapon.DamageRoll, Is.EqualTo(template.DamageRoll));
+            Assert.That(cloneWeapon.DamageDescription, Is.EqualTo(template.DamageDescription));
+            Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
+            Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
@@ -187,9 +400,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var template = itemVerifier.CreateRandomWeaponTemplate(name);
 
             template.Ammunition = "nerf bullets";
-            template.CriticalMultiplier = "over 9000!!!";
-            template.Damage = "a ton";
-            template.DamageType = "stabbing";
+            template.Damages.Add(new Damage { Roll = "a ton", Type = "stabbing" });
+            template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
+            template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
+            template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.Size = "massive";
             template.ThreatRange = "all the threat";
 
@@ -220,9 +434,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
 
             Assert.That(clone.Ammunition, Is.EqualTo(template.Ammunition));
-            Assert.That(clone.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
-            Assert.That(clone.Damage, Is.EqualTo(template.Damage));
-            Assert.That(clone.DamageType, Is.EqualTo(template.DamageType));
+            Assert.That(clone.DamageRoll, Is.EqualTo(template.DamageRoll));
+            Assert.That(clone.DamageDescription, Is.EqualTo(template.DamageDescription));
+            Assert.That(clone.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
+            Assert.That(clone.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(clone.Size, Is.EqualTo(template.Size));
             Assert.That(clone.ThreatRange, Is.EqualTo(template.ThreatRange));
         }
@@ -234,18 +449,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var template = itemVerifier.CreateRandomWeaponTemplate(name);
 
             template.Ammunition = string.Empty;
-            template.CriticalMultiplier = string.Empty;
-            template.Damage = string.Empty;
-            template.DamageType = string.Empty;
+            template.Damages.Clear();
+            template.CriticalDamages.Clear();
             template.Size = string.Empty;
             template.ThreatRange = string.Empty;
             template.Quantity = 1;
 
             var clone = new Weapon();
             clone.Ammunition = "nerf bullets";
-            clone.CriticalMultiplier = "over 9000!!!";
-            clone.Damage = "a ton";
-            clone.DamageType = "stabbing";
+            clone.Damages.Add(new Damage { Roll = "a ton", Type = "stabbing" });
+            clone.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
+            clone.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
+            clone.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             clone.Size = "massive";
             clone.ThreatRange = "all the threat";
             clone.Quantity = 9266;
@@ -276,9 +491,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
 
             Assert.That(clone.Ammunition, Is.EqualTo("nerf bullets"));
-            Assert.That(clone.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
-            Assert.That(clone.Damage, Is.EqualTo("a ton"));
-            Assert.That(clone.DamageType, Is.EqualTo("stabbing"));
+            Assert.That(clone.DamageRoll, Is.EqualTo("a ton+a bit"));
+            Assert.That(clone.DamageDescription, Is.EqualTo("a ton stabbing + a bit emotional"));
+            Assert.That(clone.CriticalDamageRoll, Is.EqualTo("a ton more+a bit more"));
+            Assert.That(clone.CriticalDamageDescription, Is.EqualTo("a ton more stabbing + a bit more spiritual"));
             Assert.That(clone.Size, Is.EqualTo("massive"));
             Assert.That(clone.ThreatRange, Is.EqualTo("all the threat"));
             Assert.That(clone.Quantity, Is.EqualTo(9266));

@@ -107,9 +107,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
-            weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
-            weapon.Damage = weaponSelection.DamageBySize[weapon.Size];
-            weapon.DamageType = weaponSelection.DamageType;
+            weapon.Damages.AddRange(weaponSelection.DamagesBySize[weapon.Size]);
+            weapon.CriticalDamages.AddRange(weaponSelection.CriticalDamagesBySize[weapon.Size]);
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
 

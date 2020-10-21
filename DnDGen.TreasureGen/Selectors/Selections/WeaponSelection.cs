@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using DnDGen.TreasureGen.Items;
+using System.Collections.Generic;
 
 namespace DnDGen.TreasureGen.Selectors.Selections
 {
     internal class WeaponSelection
     {
-        public string DamageType { get; set; }
+        public const char DamageDivider = '#';
+        public const char DamageSplitDivider = ',';
+
         public string ThreatRange { get; set; }
-        public string CriticalMultiplier { get; set; }
-        public Dictionary<string, string> DamageBySize { get; set; }
+        public Dictionary<string, List<Damage>> DamagesBySize { get; set; }
+        public Dictionary<string, List<Damage>> CriticalDamagesBySize { get; set; }
         public string Ammunition { get; set; }
 
         public WeaponSelection()
         {
-            DamageBySize = new Dictionary<string, string>();
+            DamagesBySize = new Dictionary<string, List<Damage>>();
+            CriticalDamagesBySize = new Dictionary<string, List<Damage>>();
         }
     }
 }

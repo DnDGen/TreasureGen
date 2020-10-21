@@ -10,12 +10,16 @@ namespace DnDGen.TreasureGen.Items.Magical
         public int Power { get; set; }
         public IEnumerable<string> AttributeRequirements { get; set; }
         public int BonusEquivalent { get; set; }
+        public List<Damage> Damages { get; set; }
+        public List<Damage> CriticalDamages { get; set; }
 
         public SpecialAbility()
         {
             AttributeRequirements = Enumerable.Empty<string>();
             Name = string.Empty;
             BaseName = string.Empty;
+            Damages = new List<Damage>();
+            CriticalDamages = new List<Damage>();
         }
 
         public bool RequirementsMet(Item targetItem)
