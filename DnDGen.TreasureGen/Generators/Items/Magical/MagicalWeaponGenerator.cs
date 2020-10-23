@@ -165,6 +165,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 }
             }
 
+            //TODO: Modify the weapon by abilities
+            //Add ability damages
+            //Keen adjusts the threat range
+            //Crit damages might depend on the multiplier, so need to figure out how to handle that
+
             return weapon;
         }
 

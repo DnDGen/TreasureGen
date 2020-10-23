@@ -1,11 +1,11 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using DnDGen.TreasureGen.Items;
+using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Items.Magical;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -139,6 +139,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ability.AttributeRequirements = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
             ability.BonusEquivalent = abilitySelection.BonusEquivalent;
             ability.Power = abilitySelection.Power;
+
+            //TODO: Set damages, if applicable
 
             return ability;
         }

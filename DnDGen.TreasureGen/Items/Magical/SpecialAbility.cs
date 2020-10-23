@@ -56,14 +56,15 @@ namespace DnDGen.TreasureGen.Items.Magical
             else if (targetItem is Weapon)
             {
                 var weapon = targetItem as Weapon;
-                attributes = attributes.Union(new[]
-                {
-                    weapon.CriticalMultiplier,
-                    weapon.Damage,
-                    weapon.DamageType,
-                    weapon.Size,
-                    weapon.ThreatRange,
-                });
+                var damageTypes = weapon.Damages.Select(d => d.Type);
+
+                attributes = attributes
+                    .Union(damageTypes)
+                    .Union(new[]
+                    {
+                        weapon.Size,
+                        weapon.ThreatRange,
+                    });
             }
 
             return attributes;
