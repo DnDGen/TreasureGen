@@ -60,10 +60,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mundaneWeapon.Quantity = 600;
             mundaneWeapon.Ammunition = "ammo";
             mundaneWeapon.CriticalMultiplier = "crit";
-            mundaneWeapon.Damage = "hurty mchurtface";
-            mundaneWeapon.DamageType = "spiritual";
+            mundaneWeapon.Damages.Add(new Damage { Roll = "hurty mchurtface", Type = "spiritual" });
+            mundaneWeapon.CriticalDamages.Add(new Damage { Roll = "hurty mcSUPERhurtface", Type = "spiritual" });
             mundaneWeapon.Size = "enormous";
-            mundaneWeapon.ThreatRange = "err'where";
+            mundaneWeapon.ThreatRange = 96;
             mockMundaneWeaponGenerator.Setup(g => g.Generate(It.IsAny<Item>(), It.IsAny<bool>())).Returns(new Weapon());
             mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.NameMatches("weapon name")), true)).Returns(mundaneWeapon);
 
@@ -84,10 +84,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = item as Weapon;
             Assert.That(weapon.Ammunition, Is.EqualTo("ammo"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("crit"));
-            Assert.That(weapon.Damage, Is.EqualTo("hurty mchurtface"));
-            Assert.That(weapon.DamageType, Is.EqualTo("spiritual"));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("hurty mchurtface"));
+            Assert.That(weapon.Damages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("hurty mcSUPERhurtface"));
+            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
             Assert.That(weapon.Size, Is.EqualTo("enormous"));
-            Assert.That(weapon.ThreatRange, Is.EqualTo("err'where"));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("err'where"));
         }
 
         [Test]
@@ -120,6 +124,91 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var weapon = magicalWeaponGenerator.GenerateRandom(power);
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_Damages()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_CriticalDamages()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_DamagesAndCriticalDamages()
+        {
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+        }
+
+        [TestCase(1, "19-20")]
+        [TestCase(2, "17-20")]
+        [TestCase(3, "15-20")]
+        public void GetSpecialAbilitiesFromGenerator_Keen(int originalThreatRange, string keenDescription)
+        {
+            mundaneWeapon.ThreatRange = originalThreatRange;
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var keen = new SpecialAbility { Name = SpecialAbilityConstants.Keen };
+            var abilities = new[] { new SpecialAbility(), keen };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(originalThreatRange * 2));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(keenDescription));
         }
 
         [Test]
@@ -288,12 +377,6 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName()
         {
-            //mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
-            //    .Returns("weapon type");
-
-            //var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            //mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
-
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector
                 .SetupSequence(p => p.SelectFrom(tableName))

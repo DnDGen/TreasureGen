@@ -15,7 +15,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables
         protected Dictionary<string, IEnumerable<string>> table;
 
         [SetUp]
-        public void Setup()
+        public void CollectionsSetup()
         {
             table = CollectionMapper.Map(tableName);
         }

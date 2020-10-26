@@ -8,10 +8,11 @@ namespace DnDGen.TreasureGen.Selectors.Selections
         public const char DamageDivider = '#';
         public const char DamageSplitDivider = ',';
 
-        public string ThreatRange { get; set; }
+        public int ThreatRange { get; set; }
         public Dictionary<string, List<Damage>> DamagesBySize { get; set; }
         public Dictionary<string, List<Damage>> CriticalDamagesBySize { get; set; }
         public string Ammunition { get; set; }
+        public string CriticalMultiplier { get; set; }
 
         public WeaponSelection()
         {

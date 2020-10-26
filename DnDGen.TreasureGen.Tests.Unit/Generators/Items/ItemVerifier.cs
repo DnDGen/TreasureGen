@@ -77,7 +77,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Name} size");
             Assert.That(weapon.Damage, Is.Not.Empty, $"{weapon.Name} damage");
             Assert.That(weapon.DamageType, Is.Not.Empty, $"{weapon.Name} damage type");
-            Assert.That(weapon.ThreatRange, Is.Not.Empty, $"{weapon.Name} threat range");
+            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, $"{weapon.Name} threat range");
             Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Name);
 
             if (weapon.IsMagical)
@@ -102,14 +102,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 Assert.That(weapon.CriticalMultiplier, Contains.Substring("/"), weapon.Name);
                 Assert.That(weapon.Damage, Contains.Substring("/"), weapon.Name);
                 Assert.That(weapon.DamageType, Contains.Substring("/"), weapon.Name);
-                Assert.That(weapon.ThreatRange, Contains.Substring("/"), weapon.Name);
+                Assert.That(weapon.ThreatRangeDescription, Contains.Substring("/"), weapon.Name);
             }
             else
             {
                 Assert.That(weapon.CriticalMultiplier, Is.All.Not.EqualTo("/"), weapon.Name);
                 Assert.That(weapon.Damage, Is.All.Not.EqualTo("/"), weapon.Name);
                 Assert.That(weapon.DamageType, Is.All.Not.EqualTo("/"), weapon.Name);
-                Assert.That(weapon.ThreatRange, Is.All.Not.EqualTo("/"), weapon.Name);
+                Assert.That(weapon.ThreatRangeDescription, Is.All.Not.EqualTo("/"), weapon.Name);
             }
         }
 

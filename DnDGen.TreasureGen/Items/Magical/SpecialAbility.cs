@@ -11,7 +11,7 @@ namespace DnDGen.TreasureGen.Items.Magical
         public IEnumerable<string> AttributeRequirements { get; set; }
         public int BonusEquivalent { get; set; }
         public List<Damage> Damages { get; set; }
-        public List<Damage> CriticalDamages { get; set; }
+        public Dictionary<string, List<Damage>> CriticalDamages { get; set; }
 
         public SpecialAbility()
         {
@@ -19,7 +19,7 @@ namespace DnDGen.TreasureGen.Items.Magical
             Name = string.Empty;
             BaseName = string.Empty;
             Damages = new List<Damage>();
-            CriticalDamages = new List<Damage>();
+            CriticalDamages = new Dictionary<string, List<Damage>>();
         }
 
         public bool RequirementsMet(Item targetItem)
@@ -63,7 +63,7 @@ namespace DnDGen.TreasureGen.Items.Magical
                     .Union(new[]
                     {
                         weapon.Size,
-                        weapon.ThreatRange,
+                        weapon.ThreatRangeDescription,
                     });
             }
 

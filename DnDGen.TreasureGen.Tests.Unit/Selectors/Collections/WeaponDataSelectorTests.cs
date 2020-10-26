@@ -26,8 +26,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void GetWeaponData()
         {
-            var data = new string[2];
-            data[DataIndexConstants.Weapon.ThreatRange] = "here to there";
+            var data = new string[3];
+            data[DataIndexConstants.Weapon.ThreatRange] = 9266.ToString();
+            data[DataIndexConstants.Weapon.CriticalMultiplier] = "sevenfold";
             data[DataIndexConstants.Weapon.Ammunition] = "dirty laundry";
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
@@ -51,8 +52,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "weapon")).Returns(damages);
 
             var selection = weaponDataSelector.Select("weapon");
-            Assert.That(selection.ThreatRange, Is.EqualTo("here to there"));
+            Assert.That(selection.ThreatRange, Is.EqualTo(9266));
             Assert.That(selection.Ammunition, Is.EqualTo("dirty laundry"));
+            Assert.That(selection.CriticalMultiplier, Is.EqualTo("sevenfold"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal], Has.Count.EqualTo(1));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][0].ToString(), Is.EqualTo("DAYUM emotional"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Gargantuan], Has.Count.EqualTo(1));
@@ -88,8 +90,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void GetWeaponData_MultipleDamages()
         {
-            var data = new string[2];
-            data[DataIndexConstants.Weapon.ThreatRange] = "here to there";
+            var data = new string[3];
+            data[DataIndexConstants.Weapon.ThreatRange] = 9266.ToString();
+            data[DataIndexConstants.Weapon.CriticalMultiplier] = "sevenfold";
             data[DataIndexConstants.Weapon.Ammunition] = "dirty laundry";
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
@@ -113,8 +116,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "weapon")).Returns(damages);
 
             var selection = weaponDataSelector.Select("weapon");
-            Assert.That(selection.ThreatRange, Is.EqualTo("here to there"));
+            Assert.That(selection.ThreatRange, Is.EqualTo(9266));
             Assert.That(selection.Ammunition, Is.EqualTo("dirty laundry"));
+            Assert.That(selection.CriticalMultiplier, Is.EqualTo("sevenfold"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal], Has.Count.EqualTo(2));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][0].ToString(), Is.EqualTo("DAYUM emotional"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][1].ToString(), Is.EqualTo("OHLAWDITCOMIN' spiritual"));

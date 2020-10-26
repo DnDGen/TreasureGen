@@ -111,6 +111,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.CriticalDamages.AddRange(weaponSelection.CriticalDamagesBySize[weapon.Size]);
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
+            weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
 
             return weapon;
         }

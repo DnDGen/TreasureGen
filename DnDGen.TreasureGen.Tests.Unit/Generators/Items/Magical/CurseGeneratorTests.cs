@@ -243,7 +243,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -503,7 +503,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -548,7 +548,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -604,7 +604,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1036,7 +1036,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -1074,7 +1074,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1116,7 +1116,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1158,7 +1158,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -1198,7 +1198,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1242,7 +1242,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1472,7 +1472,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));

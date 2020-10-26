@@ -165,10 +165,23 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 }
             }
 
-            //TODO: Modify the weapon by abilities
-            //Add ability damages
-            //Keen adjusts the threat range
-            //Crit damages might depend on the multiplier, so need to figure out how to handle that
+            foreach (var specialAbility in weapon.Magic.SpecialAbilities)
+            {
+                if (specialAbility.Damages.Any())
+                {
+                    weapon.Damages.AddRange(specialAbility.Damages);
+                }
+
+                if (specialAbility.CriticalDamages.Any())
+                {
+                    weapon.Damages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
+                }
+
+                if (specialAbility.Name == SpecialAbilityConstants.Keen)
+                {
+                    weapon.ThreatRange *= 2;
+                }
+            }
 
             return weapon;
         }

@@ -226,7 +226,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
@@ -365,7 +365,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork).And.Count.EqualTo(1));
         }
 
@@ -423,7 +423,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
                 .And.SupersetOf(template.Traits)
                 .And.Count.EqualTo(3)
@@ -716,7 +716,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
         }
 
@@ -774,7 +774,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
             Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
         }
 
         [Test]

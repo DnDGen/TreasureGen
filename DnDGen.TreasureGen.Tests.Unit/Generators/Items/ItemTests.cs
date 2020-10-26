@@ -814,7 +814,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x9266"));
             Assert.That(weapon.Damage, Is.EqualTo("90210d42"));
             Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
-            Assert.That(weapon.ThreatRange, Is.EqualTo("all over da place"));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("all over da place"));
             Assert.That(weapon.Size, Is.EqualTo("my size"));
         }
 

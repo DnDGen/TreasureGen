@@ -3,6 +3,7 @@ using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Helpers;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,19 +11,19 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 {
     internal class WeaponDataSelector : IWeaponDataSelector
     {
-        private readonly ICollectionSelector innerSelector;
+        private readonly ICollectionSelector collectionSelector;
         private readonly DamageHelper damageHelper;
 
-        public WeaponDataSelector(ICollectionSelector innerSelector)
+        public WeaponDataSelector(ICollectionSelector collectionSelector)
         {
-            this.innerSelector = innerSelector;
+            this.collectionSelector = collectionSelector;
             damageHelper = new DamageHelper();
         }
 
         public WeaponSelection Select(string name)
         {
-            var data = innerSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponData, name).ToArray();
-            var damagesData = innerSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, name).ToArray();
+            var data = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponData, name).ToArray();
+            var damagesData = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, name).ToArray();
 
             var damages = new List<List<Damage>>();
             foreach (var damageData in damagesData)
@@ -43,7 +44,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
             }
 
             var selection = new WeaponSelection();
-            selection.ThreatRange = data[DataIndexConstants.Weapon.ThreatRange];
+            selection.ThreatRange = Convert.ToInt32(data[DataIndexConstants.Weapon.ThreatRange]);
             selection.Ammunition = data[DataIndexConstants.Weapon.Ammunition];
 
             var sizes = TraitConstants.Sizes.All().ToArray();

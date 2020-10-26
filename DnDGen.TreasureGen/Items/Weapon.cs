@@ -12,8 +12,10 @@ namespace DnDGen.TreasureGen.Items
         public List<Damage> CriticalDamages { get; set; }
         public string CriticalDamageRoll => GetRoll(CriticalDamages);
         public string CriticalDamageDescription => GetDescription(CriticalDamages);
+        public string CriticalMultiplier { get; set; }
         public string Size { get; set; }
-        public string ThreatRange { get; set; }
+        public string ThreatRangeDescription => ThreatRange <= 1 ? 20.ToString() : $"{20 - ThreatRange + 1}-20";
+        public int ThreatRange { get; set; }
 
         private string GetRoll(List<Damage> damages)
         {
@@ -72,7 +74,6 @@ namespace DnDGen.TreasureGen.Items
         {
             Ammunition = string.Empty;
             Size = string.Empty;
-            ThreatRange = string.Empty;
             Damages = new List<Damage>();
             CriticalDamages = new List<Damage>();
 
@@ -94,7 +95,7 @@ namespace DnDGen.TreasureGen.Items
             target.CriticalDamages = CriticalDamages.Select(d => d.Clone()).ToList();
             target.Damages = Damages.Select(d => d.Clone()).ToList();
             target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
-            target.ThreatRange = !string.IsNullOrEmpty(ThreatRange) ? ThreatRange : target.ThreatRange;
+            target.ThreatRange = ThreatRange > 0 ? ThreatRange : target.ThreatRange;
 
             target.Quantity = Quantity > 1 ? Quantity : target.Quantity;
 

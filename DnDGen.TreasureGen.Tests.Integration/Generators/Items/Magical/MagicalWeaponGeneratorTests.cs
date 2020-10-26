@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Weapons")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Weapons))]
         public void GenerateWeapon(string itemName, string power)
         {
             var item = WeaponGenerator.Generate(power, itemName);

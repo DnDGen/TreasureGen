@@ -27,7 +27,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.DamageRoll, Is.Empty);
             Assert.That(weapon.DamageDescription, Is.Empty);
             Assert.That(weapon.Size, Is.Empty);
-            Assert.That(weapon.ThreatRange, Is.Empty);
+            Assert.That(weapon.ThreatRangeDescription, Is.Empty);
+            Assert.That(weapon.ThreatRange, Is.Zero);
             Assert.That(weapon.CriticalDamages, Is.Empty);
             Assert.That(weapon.CriticalDamageRoll, Is.Empty);
             Assert.That(weapon.CriticalDamageDescription, Is.Empty);
@@ -263,7 +264,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
             template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.Size = "massive";
-            template.ThreatRange = "all the threat";
+            template.ThreatRange = 9266;
 
             var clone = template.Clone();
             Assert.That(clone, Is.Not.EqualTo(template));
@@ -297,7 +298,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
             Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
         }
 
         [Test]
@@ -317,7 +318,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
             template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
             template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
-            template.ThreatRange = "all the threat";
+            template.ThreatRange = 9266;
             template.Size = "massive";
             template.Ammunition = "nerf bullets";
 
@@ -334,7 +335,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
             Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
         }
 
         [Test]
@@ -349,7 +350,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Damages.Add(new Damage { Roll = "a bit", Type = "emotional" });
             template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
             template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
-            template.ThreatRange = "all the threat";
+            template.ThreatRange = 9266;
             template.Ammunition = "nerf bullets";
             template.Size = "massive";
 
@@ -365,7 +366,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
             Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
-            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
         }
 
         [Test]
@@ -405,7 +406,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
             template.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             template.Size = "massive";
-            template.ThreatRange = "all the threat";
+            template.ThreatRange = 9266;
 
             var clone = new Weapon();
             var newClone = template.CloneInto(clone);
@@ -439,7 +440,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
             Assert.That(clone.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(clone.Size, Is.EqualTo(template.Size));
-            Assert.That(clone.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(clone.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
         }
 
         [Test]
@@ -452,7 +453,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Damages.Clear();
             template.CriticalDamages.Clear();
             template.Size = string.Empty;
-            template.ThreatRange = string.Empty;
+            template.ThreatRange = 0;
             template.Quantity = 1;
 
             var clone = new Weapon();
@@ -462,7 +463,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             clone.CriticalDamages.Add(new Damage { Roll = "a ton more", Type = "stabbing" });
             clone.CriticalDamages.Add(new Damage { Roll = "a bit more", Type = "spiritual" });
             clone.Size = "massive";
-            clone.ThreatRange = "all the threat";
+            clone.ThreatRange = 90210;
             clone.Quantity = 9266;
 
             var newClone = template.CloneInto(clone);
@@ -496,8 +497,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.CriticalDamageRoll, Is.EqualTo("a ton more+a bit more"));
             Assert.That(clone.CriticalDamageDescription, Is.EqualTo("a ton more stabbing + a bit more spiritual"));
             Assert.That(clone.Size, Is.EqualTo("massive"));
-            Assert.That(clone.ThreatRange, Is.EqualTo("all the threat"));
+            Assert.That(clone.ThreatRange, Is.EqualTo(90210));
             Assert.That(clone.Quantity, Is.EqualTo(9266));
+        }
+
+        [TestCase(1, "20")]
+        [TestCase(2, "19-20")]
+        [TestCase(3, "18-20")]
+        [TestCase(4, "17-20")]
+        [TestCase(5, "16-20")]
+        [TestCase(6, "15-20")]
+        public void ThreatRangeDescription(int threatRange, string description)
+        {
+            weapon.ThreatRange = threatRange;
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(description));
         }
     }
 }

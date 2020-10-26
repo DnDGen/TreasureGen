@@ -16,6 +16,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
 
         [TestCase(DataIndexConstants.Weapon.ThreatRange, 0)]
         [TestCase(DataIndexConstants.Weapon.Ammunition, 1)]
+        [TestCase(DataIndexConstants.Weapon.CriticalMultiplier, 2)]
         public void WeaponDataIndex(int constant, int value)
         {
             Assert.That(constant, Is.EqualTo(value));

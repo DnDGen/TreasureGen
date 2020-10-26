@@ -91,9 +91,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.PincerStaff, AttributeConstants.DamageTypes.Bludgeoning, "20", "x2", "")]
         public void WeaponData(string weapon, string damageType, string threatRange, string criticalMultiplier, string ammunition)
         {
-            var collection = new string[4];
+            var collection = new string[3];
             collection[DataIndexConstants.Weapon.CriticalMultiplier] = criticalMultiplier;
-            collection[DataIndexConstants.Weapon.DamageType] = damageType;
             collection[DataIndexConstants.Weapon.ThreatRange] = threatRange;
             collection[DataIndexConstants.Weapon.Ammunition] = ammunition;
 
