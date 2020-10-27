@@ -192,7 +192,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                     var level = spellGenerator.GenerateLevel(PowerConstants.Minor);
                     var spell = spellGenerator.Generate(spellType, level);
 
-                    item = string.Format("{0} scroll of {1} ({2})", spellType, spell, level);
+                    item = $"{spellType} scroll of {spell} ({level})";
                 }
 
                 extraItems.Add(item);

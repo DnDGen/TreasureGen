@@ -1,4 +1,5 @@
-﻿using DnDGen.TreasureGen.Items;
+﻿using DnDGen.RollGen;
+using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using NUnit.Framework;
 using System;
@@ -75,9 +76,28 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Name);
             Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, $"{weapon.Name} critical multiplier");
             Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Name} size");
-            Assert.That(weapon.Damage, Is.Not.Empty, $"{weapon.Name} damage");
-            Assert.That(weapon.DamageType, Is.Not.Empty, $"{weapon.Name} damage type");
-            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, $"{weapon.Name} threat range");
+            Assert.That(weapon.Damages, Is.Not.Empty, $"{weapon.Name} damages");
+            Assert.That(weapon.CriticalDamages, Is.Not.Empty, $"{weapon.Name} critical damages");
+
+            foreach (var damage in weapon.Damages)
+            {
+                Assert.That(damage.Roll, Is.Not.Empty);
+            }
+
+            foreach (var damage in weapon.CriticalDamages)
+            {
+                Assert.That(damage.Roll, Is.Not.Empty);
+            }
+
+            Assert.That(weapon.Damages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+            Assert.That(weapon.CriticalDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+
+            Assert.That(weapon.ThreatRange, Is.Positive.And.InRange(1, 6), $"{weapon.Name} threat range");
+            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, $"{weapon.Name} threat range description");
             Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Name);
 
             if (weapon.IsMagical)
@@ -92,24 +112,23 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged));
             Assert.That(weapon.CombatTypes.Count(), Is.InRange(1, 2));
 
-            if (weapon.Damage != "0")
-            {
-                Assert.That(weapon.DamageType, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning).Or.Contains(AttributeConstants.DamageTypes.Piercing).Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
-            }
-
             if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon))
             {
+                Assert.That(weapon.Damages, Has.Count.AtLeast(2));
+                Assert.That(weapon.CriticalDamages, Has.Count.AtLeast(2));
+
+                Assert.That(weapon.Damages[1].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                    .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+                Assert.That(weapon.CriticalDamages[1].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                    .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
+
                 Assert.That(weapon.CriticalMultiplier, Contains.Substring("/"), weapon.Name);
-                Assert.That(weapon.Damage, Contains.Substring("/"), weapon.Name);
-                Assert.That(weapon.DamageType, Contains.Substring("/"), weapon.Name);
-                Assert.That(weapon.ThreatRangeDescription, Contains.Substring("/"), weapon.Name);
             }
             else
             {
                 Assert.That(weapon.CriticalMultiplier, Is.All.Not.EqualTo("/"), weapon.Name);
-                Assert.That(weapon.Damage, Is.All.Not.EqualTo("/"), weapon.Name);
-                Assert.That(weapon.DamageType, Is.All.Not.EqualTo("/"), weapon.Name);
-                Assert.That(weapon.ThreatRangeDescription, Is.All.Not.EqualTo("/"), weapon.Name);
             }
         }
 
@@ -199,10 +218,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Name = name;
             template = PopulateItem(template) as Weapon;
 
-            template.CriticalMultiplier = Guid.NewGuid().ToString();
-            template.Damage = Guid.NewGuid().ToString();
-            template.DamageType = Guid.NewGuid().ToString();
-            template.ThreatRange = Guid.NewGuid().ToString();
+            var damageTypes = new[] { AttributeConstants.DamageTypes.Bludgeoning, AttributeConstants.DamageTypes.Piercing, AttributeConstants.DamageTypes.Slashing };
+            template.CriticalMultiplier = $"x{random.Next(3) + 2}";
+            template.Damages.Add(new Damage
+            {
+                Roll = $"{random.Next(Limits.Quantity) + 1}d{random.Next(Limits.Die) + 1}",
+                Type = $"{damageTypes[random.Next(3)]} {Guid.NewGuid()}"
+            });
+            template.CriticalDamages.Add(new Damage
+            {
+                Roll = $"{random.Next(Limits.Quantity) + 1}d{random.Next(Limits.Die) + 1}",
+                Type = $"{damageTypes[random.Next(3)]} {Guid.NewGuid()}"
+            });
+            template.ThreatRange = random.Next(3) + 1;
 
             return template;
         }

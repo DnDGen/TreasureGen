@@ -3,498 +3,427 @@
 <collections>
   <collection>
     <name>Arrow</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Bastard sword</name>
-    <entry>Slashing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Battleaxe</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Bolas</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Club</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Composite longbow</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry>Arrow</entry>
   </collection>
   <collection>
     <name>Composite shortbow</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry>Arrow</entry>
   </collection>
   <collection>
     <name>Crossbow bolt</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Dagger</name>
-    <entry>Piercing or Slashing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Dart</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Dire flail</name>
-    <entry>Bludgeoning/Bludgeoning</entry>
-    <entry>20/20</entry>
+    <entry>1</entry>
     <entry>x2/x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Dwarven urgrosh</name>
-    <entry>Piercing or Slashing/Piercing or Slashing</entry>
-    <entry>20/20</entry>
+    <entry>1</entry>
     <entry>x3/x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Dwarven waraxe</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Falchion</name>
-    <entry>Slashing</entry>
-    <entry>18-20</entry>
+    <entry>3</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Flail</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Gauntlet</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Glaive</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Gnome hooked hammer</name>
-    <entry>Bludgeoning/Piercing</entry>
-    <entry>20/20</entry>
+    <entry>1</entry>
     <entry>x3/x4</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Greataxe</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Greatclub</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Greatsword</name>
-    <entry>Slashing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Guisarme</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Halberd</name>
-    <entry>Piercing or Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Handaxe</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Hand crossbow</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
     <name>Heavy crossbow</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
     <name>Heavy flail</name>
-    <entry>Bludgeoning</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Heavy mace</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Heavy pick</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x4</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Heavy repeating crossbow</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
     <name>Javelin</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Kama</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Kukri</name>
-    <entry>Slashing</entry>
-    <entry>18-20</entry>
+    <entry>3</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Lance</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Light crossbow</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
     <name>Light hammer</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Light mace</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Light pick</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x4</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Light repeating crossbow</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
     <name>Longbow</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry>Arrow</entry>
   </collection>
   <collection>
     <name>Longspear</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Longsword</name>
-    <entry>Slashing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Morningstar</name>
-    <entry>Bludgeoning and Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Net</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Nunchaku</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Orc double axe</name>
-    <entry>Slashing/Slashing</entry>
-    <entry>20/20</entry>
+    <entry>1</entry>
     <entry>x3/x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Pincer staff</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Punching dagger</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Quarterstaff</name>
-    <entry>Bludgeoning/Bludgeoning</entry>
-    <entry>20/20</entry>
+    <entry>1</entry>
     <entry>x2/x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Ranseur</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Rapier</name>
-    <entry>Piercing</entry>
-    <entry>18-20</entry>
+    <entry>3</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Sai</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Sap</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Scimitar</name>
-    <entry>Slashing</entry>
-    <entry>18-20</entry>
+    <entry>3</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Scythe</name>
-    <entry>Piercing or Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x4</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Short sword</name>
-    <entry>Piercing</entry>
-    <entry>19-20</entry>
+    <entry>2</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Shortbow</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry>Arrow</entry>
   </collection>
   <collection>
     <name>Shortspear</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Shuriken</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Siangham</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Sickle</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Sling</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry>Sling bullet</entry>
   </collection>
   <collection>
     <name>Sling bullet</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Spear</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Spiked chain</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Spiked gauntlet</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Throwing axe</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Trident</name>
-    <entry>Piercing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Two-bladed sword</name>
-    <entry>Slashing/Slashing</entry>
-    <entry>19-20/19-20</entry>
+    <entry>2</entry>
     <entry>x2/x2</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Warhammer</name>
-    <entry>Bludgeoning</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x3</entry>
     <entry></entry>
   </collection>
   <collection>
     <name>Whip</name>
-    <entry>Slashing</entry>
-    <entry>20</entry>
+    <entry>1</entry>
     <entry>x2</entry>
     <entry></entry>
   </collection>

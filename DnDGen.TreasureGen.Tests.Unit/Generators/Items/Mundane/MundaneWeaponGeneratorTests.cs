@@ -11,6 +11,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 {
@@ -123,12 +124,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Damages[0].Roll, Is.EqualTo("normal amount"));
             Assert.That(weapon.Damages[0].Type, Is.EqualTo("emotional"));
             Assert.That(weapon.Damages[1].Roll, Is.EqualTo("standard amount"));
-            Assert.That(weapon.Damages[1].Type, Is.EqualTo("emotional"));
+            Assert.That(weapon.Damages[1].Type, Is.EqualTo("spiritual"));
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(2));
             Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("normal amount+"));
             Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("emotional"));
             Assert.That(weapon.CriticalDamages[1].Roll, Is.EqualTo("standard amount+"));
-            Assert.That(weapon.CriticalDamages[1].Type, Is.EqualTo("emotional"));
+            Assert.That(weapon.CriticalDamages[1].Type, Is.EqualTo("spiritual"));
         }
 
         [Test]
@@ -319,7 +320,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             var weapon = mundaneWeaponGenerator.GenerateRandom();
             Assert.That(weapon.Name, Is.EqualTo(compositeBow));
             Assert.That(weapon.Attributes, Is.EqualTo(attributes));
-            Assert.That(weapon.Traits, Contains.Item($"+{bonus} Strength bonus"));
+            Assert.That(weapon.Traits, Contains.Item($"Allows up to +{bonus} Strength bonus on damage"));
         }
 
         [Test]
@@ -392,12 +393,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Traits, Is.All.Not.EqualTo("size"));
             Assert.That(weapon.Size, Is.EqualTo("size"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
-            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
-            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("normal amount"));
-            Assert.That(weapon.Damages[0].Type, Is.EqualTo("emotional"));
-            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
-            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("normal amount+"));
-            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("emotional"));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(template.CriticalDamages.Select(d => d.Description)));
             Assert.That(weapon.ThreatRange, Is.EqualTo(42));
             Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }
@@ -607,7 +604,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Size, Is.EqualTo("custom size"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
             Assert.That(weapon.Damages, Has.Count.EqualTo(1));
-            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("custom mount"));
+            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("custom amount"));
             Assert.That(weapon.Damages[0].Type, Is.EqualTo("individuality"));
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
             Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("custom amount+"));
@@ -656,12 +653,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             Assert.That(weapon.Traits, Is.All.Not.EqualTo("other size"));
             Assert.That(weapon.Size, Is.EqualTo("custom size"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
-            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
-            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("custom mount"));
-            Assert.That(weapon.Damages[0].Type, Is.EqualTo("individuality"));
-            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
-            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("custom amount+"));
-            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("individuality"));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(template.CriticalDamages.Select(d => d.Description)));
             Assert.That(weapon.ThreatRange, Is.EqualTo(42));
             Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
         }

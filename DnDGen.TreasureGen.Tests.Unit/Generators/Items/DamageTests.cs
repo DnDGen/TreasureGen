@@ -19,25 +19,25 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             Assert.That(damage.Roll, Is.Empty);
             Assert.That(damage.Type, Is.Empty);
-            Assert.That(damage.ToString(), Is.Empty);
+            Assert.That(damage.Description, Is.Empty);
         }
 
         [Test]
-        public void ToString_WithoutType()
+        public void Description_WithoutType()
         {
             damage.Roll = "9266d90210";
             damage.Type = string.Empty;
 
-            Assert.That(damage.ToString(), Is.EqualTo("9266d90210"));
+            Assert.That(damage.Description, Is.EqualTo("9266d90210"));
         }
 
         [Test]
-        public void ToString_WithType()
+        public void Description_WithType()
         {
             damage.Roll = "9266d90210";
             damage.Type = "emotional";
 
-            Assert.That(damage.ToString(), Is.EqualTo("9266d90210 emotional"));
+            Assert.That(damage.Description, Is.EqualTo("9266d90210 emotional"));
         }
 
         [Test]

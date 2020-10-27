@@ -51,7 +51,7 @@ namespace DnDGen.TreasureGen.Items
                 return description;
             }
 
-            description = damages[0].ToString();
+            description = damages[0].Description;
             if (Magic.Bonus > 0)
             {
                 description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{Magic.Bonus}");
@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Items
 
             foreach (var damage in damages.Skip(1))
             {
-                description += $" + {damage}";
+                description += $" + {damage.Description}";
             }
 
             return description;
@@ -92,11 +92,16 @@ namespace DnDGen.TreasureGen.Items
         private Weapon CloneWeapon(Weapon target)
         {
             target.Ammunition = !string.IsNullOrEmpty(Ammunition) ? Ammunition : target.Ammunition;
-            target.CriticalDamages = CriticalDamages.Select(d => d.Clone()).ToList();
-            target.Damages = Damages.Select(d => d.Clone()).ToList();
+
+            if (CriticalDamages.Any())
+                target.CriticalDamages = CriticalDamages.Select(d => d.Clone()).ToList();
+
+            if (Damages.Any())
+                target.Damages = Damages.Select(d => d.Clone()).ToList();
+
             target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
             target.ThreatRange = ThreatRange > 0 ? ThreatRange : target.ThreatRange;
-
+            target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
             target.Quantity = Quantity > 1 ? Quantity : target.Quantity;
 
             return target;

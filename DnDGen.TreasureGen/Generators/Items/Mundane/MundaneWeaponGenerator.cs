@@ -107,8 +107,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
-            weapon.Damages.AddRange(weaponSelection.DamagesBySize[weapon.Size]);
-            weapon.CriticalDamages.AddRange(weaponSelection.CriticalDamagesBySize[weapon.Size]);
+            if (!weapon.Damages.Any())
+                weapon.Damages.AddRange(weaponSelection.DamagesBySize[weapon.Size]);
+
+            if (!weapon.CriticalDamages.Any())
+                weapon.CriticalDamages.AddRange(weaponSelection.CriticalDamagesBySize[weapon.Size]);
+
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
             weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
@@ -150,7 +154,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
                 return string.Empty;
 
             var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
-            return $"{compositeBonus} Strength bonus";
+            return $"Allows up to {compositeBonus} Strength bonus on damage";
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)

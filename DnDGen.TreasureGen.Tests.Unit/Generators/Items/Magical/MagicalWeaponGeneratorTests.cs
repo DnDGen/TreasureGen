@@ -10,6 +10,7 @@ using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
@@ -91,7 +92,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("hurty mcSUPERhurtface"));
             Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
             Assert.That(weapon.Size, Is.EqualTo("enormous"));
-            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("err'where"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(96));
         }
 
         [Test]
@@ -143,6 +144,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
             Assert.That(weapon.Damages, Has.Count.EqualTo(3)
                 .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
         }
 
         [Test]
@@ -152,6 +154,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
             ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
             ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
             ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
@@ -162,8 +167,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
             Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
-            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
-                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
         }
 
         [Test]
@@ -175,6 +181,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
             ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
             ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
             ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
             ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });

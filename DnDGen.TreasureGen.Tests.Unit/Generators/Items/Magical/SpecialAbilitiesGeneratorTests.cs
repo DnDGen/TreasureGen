@@ -814,9 +814,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilityArray[1].BaseName, Is.EqualTo("custom base 2"));
             Assert.That(abilityArray[1].Power, Is.EqualTo(8765));
             Assert.That(abilityArray[1].BonusEquivalent, Is.EqualTo(3456));
-            Assert.That(abilityArray[1].Damages, Has.Count.EqualTo(1));
-            Assert.That(abilityArray[1].Damages[0].Roll, Is.EqualTo("my roll"));
-            Assert.That(abilityArray[1].Damages[0].Type, Is.EqualTo("my damage type"));
+            Assert.That(abilityArray[1].Damages, Is.Empty);
             Assert.That(abilityArray[1].CriticalDamages, Is.Empty);
             Assert.That(abilityArray[2].AttributeRequirements, Is.Empty);
             Assert.That(abilityArray[2].Name, Is.EqualTo("ability 3"));
@@ -824,19 +822,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilityArray[2].Power, Is.EqualTo(7654));
             Assert.That(abilityArray[2].BonusEquivalent, Is.EqualTo(4567));
             Assert.That(abilityArray[2].Damages, Is.Empty);
-            Assert.That(abilityArray[2].CriticalDamages, Has.Count.EqualTo(3)
-                .And.ContainKey("x2")
-                .And.ContainKey("x3")
-                .And.ContainKey("x4"));
-            Assert.That(abilityArray[2].CriticalDamages["x2"], Has.Count.EqualTo(1));
-            Assert.That(abilityArray[2].CriticalDamages["x2"][0].Roll, Is.EqualTo("my roll"));
-            Assert.That(abilityArray[2].CriticalDamages["x2"][0].Type, Is.EqualTo("my damage type"));
-            Assert.That(abilityArray[2].CriticalDamages["x3"], Has.Count.EqualTo(1));
-            Assert.That(abilityArray[2].CriticalDamages["x3"][0].Roll, Is.EqualTo("my other roll"));
-            Assert.That(abilityArray[2].CriticalDamages["x3"][0].Type, Is.EqualTo("my other damage type"));
-            Assert.That(abilityArray[2].CriticalDamages["x4"], Has.Count.EqualTo(1));
-            Assert.That(abilityArray[2].CriticalDamages["x4"][0].Roll, Is.EqualTo("my third roll"));
-            Assert.That(abilityArray[2].CriticalDamages["x4"][0].Type, Is.EqualTo("my third damage type"));
+            Assert.That(abilityArray[2].CriticalDamages, Is.Empty);
             Assert.That(abilityArray.Length, Is.EqualTo(3));
         }
 
@@ -895,9 +881,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilityArray[1].AttributeRequirements, Is.Empty);
             Assert.That(abilityArray[1].Power, Is.EqualTo(8765));
             Assert.That(abilityArray[1].BonusEquivalent, Is.EqualTo(3456));
-            Assert.That(abilityArray[1].Damages, Has.Count.EqualTo(1));
-            Assert.That(abilityArray[1].Damages[0].Roll, Is.EqualTo("my roll"));
-            Assert.That(abilityArray[1].Damages[0].Type, Is.EqualTo("my damage type"));
+            Assert.That(abilityArray[1].Damages, Is.Empty);
             Assert.That(abilityArray[1].CriticalDamages, Is.Empty);
             Assert.That(abilityArray[2].Name, Is.EqualTo("ability 3"));
             Assert.That(abilityArray[2].BaseName, Is.EqualTo("base 3"));

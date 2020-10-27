@@ -18,7 +18,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             toolGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Tool);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Tools")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Tools))]
         public void GenerateTool(string itemName)
         {
             var item = toolGenerator.Generate(itemName);

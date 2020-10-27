@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "WondrousItems")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.WondrousItems))]
         public void GenerateWondrousItem(string itemName, string power)
         {
             var item = WondrousItemGenerator.Generate(power, itemName);

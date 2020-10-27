@@ -4,11 +4,7 @@
     {
         public string Roll { get; set; }
         public string Type { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Roll} {Type}".Trim();
-        }
+        public string Description => $"{Roll} {Type}".Trim();
 
         public Damage()
         {

@@ -123,7 +123,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 var type = spellGenerator.GenerateType();
                 var spell = spellGenerator.Generate(type, level);
-                var formattedSpell = string.Format("{0} ({1}, {2})", spell, type, level);
+                var formattedSpell = $"{spell} ({type}, {level})";
                 spells.Add(formattedSpell);
 
                 level = spellGenerator.GenerateLevel(power);

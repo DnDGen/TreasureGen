@@ -174,7 +174,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
                 if (specialAbility.CriticalDamages.Any())
                 {
-                    weapon.Damages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
+                    weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
                 }
 
                 if (specialAbility.Name == SpecialAbilityConstants.Keen)

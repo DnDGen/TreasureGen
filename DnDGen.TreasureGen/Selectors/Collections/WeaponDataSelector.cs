@@ -46,19 +46,14 @@ namespace DnDGen.TreasureGen.Selectors.Collections
             var selection = new WeaponSelection();
             selection.ThreatRange = Convert.ToInt32(data[DataIndexConstants.Weapon.ThreatRange]);
             selection.Ammunition = data[DataIndexConstants.Weapon.Ammunition];
+            selection.CriticalMultiplier = data[DataIndexConstants.Weapon.CriticalMultiplier];
 
             var sizes = TraitConstants.Sizes.All().ToArray();
 
             for (var i = 0; i < sizes.Length; i++)
             {
-                selection.DamagesBySize[sizes[i]] = damages[i];
-                selection.CriticalDamagesBySize[sizes[i]] = damages[i];
-            }
-
-            for (var i = 0; i < sizes.Length; i++)
-            {
                 var critIndex = i + sizes.Length;
-                selection.DamagesBySize[sizes[i]] = damages[critIndex];
+                selection.DamagesBySize[sizes[i]] = damages[i];
                 selection.CriticalDamagesBySize[sizes[i]] = damages[critIndex];
             }
 

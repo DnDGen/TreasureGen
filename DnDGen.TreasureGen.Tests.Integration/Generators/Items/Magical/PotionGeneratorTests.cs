@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Potions")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Potions))]
         public void GeneratePotion(string itemName, string power)
         {
             var item = PotionGenerator.Generate(power, itemName);

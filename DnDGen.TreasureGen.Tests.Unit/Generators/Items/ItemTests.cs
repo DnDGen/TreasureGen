@@ -776,9 +776,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var weapon = new Weapon();
             weapon.Ammunition = "my ammo";
             weapon.CriticalMultiplier = "x9266";
-            weapon.Damage = "90210d42";
-            weapon.DamageType = "emotional";
-            weapon.ThreatRange = "all over da place";
+            weapon.Damages.Add(new Damage { Roll = "90210d42", Type = "emotional" });
+            weapon.CriticalDamages.Add(new Damage { Roll = "600d1337", Type = "spiritual" });
+            weapon.ThreatRange = 1336;
             weapon.Size = "my size";
 
             var name = Guid.NewGuid().ToString();
@@ -812,9 +812,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             Assert.That(weapon.Ammunition, Is.EqualTo("my ammo"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x9266"));
-            Assert.That(weapon.Damage, Is.EqualTo("90210d42"));
-            Assert.That(weapon.DamageType, Is.EqualTo("emotional"));
-            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("all over da place"));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("90210d42"));
+            Assert.That(weapon.Damages[0].Type, Is.EqualTo("emotional"));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("600d1337"));
+            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(1336));
             Assert.That(weapon.Size, Is.EqualTo("my size"));
         }
 

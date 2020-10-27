@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Generators.Items
                     var spellType = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CastersShieldSpellTypes);
                     var spellLevel = spellGenerator.GenerateLevel(PowerConstants.Medium);
                     var spell = spellGenerator.Generate(spellType, spellLevel);
-                    var formattedSpell = string.Format("{0} ({1}, {2})", spell, spellType, spellLevel);
+                    var formattedSpell = $"{spell} ({spellType}, {spellLevel})";
                     gear.Contents.Add(formattedSpell);
                 }
             }
@@ -83,7 +83,7 @@ namespace DnDGen.TreasureGen.Generators.Items
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
                 var designatedFoe = collectionsSelector.SelectRandomFrom(TableNameConstants.Collections.Set.ReplacementStrings, ReplacementStringConstants.DesignatedFoe);
-                var trait = string.Format("Designated Foe: {0}", designatedFoe);
+                var trait = $"Designated Foe: {designatedFoe}";
                 gear.Traits.Add(trait);
             }
 

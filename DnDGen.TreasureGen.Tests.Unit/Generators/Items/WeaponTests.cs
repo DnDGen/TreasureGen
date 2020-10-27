@@ -27,7 +27,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.DamageRoll, Is.Empty);
             Assert.That(weapon.DamageDescription, Is.Empty);
             Assert.That(weapon.Size, Is.Empty);
-            Assert.That(weapon.ThreatRangeDescription, Is.Empty);
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("20"));
             Assert.That(weapon.ThreatRange, Is.Zero);
             Assert.That(weapon.CriticalDamages, Is.Empty);
             Assert.That(weapon.CriticalDamageRoll, Is.Empty);
@@ -299,6 +299,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
         }
 
         [Test]
@@ -330,12 +332,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var cloneWeapon = clone as Weapon;
             Assert.That(cloneWeapon.Ammunition, Is.EqualTo(template.Ammunition));
-            Assert.That(cloneWeapon.DamageRoll, Is.EqualTo(template.DamageRoll));
-            Assert.That(cloneWeapon.DamageDescription, Is.EqualTo(template.DamageDescription));
-            Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(template.CriticalDamageRoll));
-            Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
+            Assert.That(cloneWeapon.DamageRoll, Is.EqualTo(string.Join("+", template.Damages.Select(d => d.Roll))));
+            Assert.That(cloneWeapon.DamageDescription, Is.EqualTo(string.Join(" + ", template.Damages.Select(d => d.Description))));
+            Assert.That(cloneWeapon.CriticalDamageRoll, Is.EqualTo(string.Join("+", template.CriticalDamages.Select(d => d.Roll))));
+            Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(string.Join(" + ", template.CriticalDamages.Select(d => d.Description))));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
         }
 
         [Test]
@@ -367,6 +371,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(cloneWeapon.Size, Is.EqualTo(template.Size));
             Assert.That(cloneWeapon.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
+            Assert.That(cloneWeapon.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(cloneWeapon.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
         }
 
         [Test]
@@ -441,6 +447,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.CriticalDamageDescription, Is.EqualTo(template.CriticalDamageDescription));
             Assert.That(clone.Size, Is.EqualTo(template.Size));
             Assert.That(clone.ThreatRangeDescription, Is.EqualTo(template.ThreatRangeDescription));
+            Assert.That(clone.ThreatRange, Is.EqualTo(template.ThreatRange));
+            Assert.That(clone.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
         }
 
         [Test]
@@ -492,13 +500,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.Traits, Is.SupersetOf(template.Traits));
 
             Assert.That(clone.Ammunition, Is.EqualTo("nerf bullets"));
-            Assert.That(clone.DamageRoll, Is.EqualTo("a ton+a bit"));
-            Assert.That(clone.DamageDescription, Is.EqualTo("a ton stabbing + a bit emotional"));
-            Assert.That(clone.CriticalDamageRoll, Is.EqualTo("a ton more+a bit more"));
-            Assert.That(clone.CriticalDamageDescription, Is.EqualTo("a ton more stabbing + a bit more spiritual"));
+            Assert.That(clone.DamageRoll, Is.EqualTo($"a ton+{template.Magic.Bonus}+a bit"));
+            Assert.That(clone.DamageDescription, Is.EqualTo($"a ton+{template.Magic.Bonus} stabbing + a bit emotional"));
+            Assert.That(clone.CriticalDamageRoll, Is.EqualTo($"a ton more+{template.Magic.Bonus}+a bit more"));
+            Assert.That(clone.CriticalDamageDescription, Is.EqualTo($"a ton more+{template.Magic.Bonus} stabbing + a bit more spiritual"));
             Assert.That(clone.Size, Is.EqualTo("massive"));
             Assert.That(clone.ThreatRange, Is.EqualTo(90210));
             Assert.That(clone.Quantity, Is.EqualTo(9266));
+            Assert.That(clone.CriticalMultiplier, Is.EqualTo(template.CriticalMultiplier));
         }
 
         [TestCase(1, "20")]

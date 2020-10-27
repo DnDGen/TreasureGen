@@ -34,6 +34,20 @@ namespace DnDGen.TreasureGen.Selectors.Helpers
             return data.Length == init.Length;
         }
 
+        public bool ValidateEntries(string entries)
+        {
+            var datas = ParseEntries(entries);
+            var init = DataIndexConstants.Weapon.DamageData.InitializeData();
+            var valid = true;
+
+            foreach (var data in datas)
+            {
+                valid &= data.Length == 0 || data.Length == init.Length;
+            }
+
+            return valid;
+        }
+
         public string BuildEntries(params string[] data)
         {
             var entries = new List<string>();
@@ -44,11 +58,14 @@ namespace DnDGen.TreasureGen.Selectors.Helpers
                 entries.Add(entry);
             }
 
-            return string.Join(WeaponSelection.DamageSplitDivider, entries);
+            return string.Join(WeaponSelection.DamageSplitDivider.ToString(), entries);
         }
 
         public string[][] ParseEntries(string entry)
         {
+            if (string.IsNullOrEmpty(entry))
+                return new string[0][];
+
             var entries = entry.Split(WeaponSelection.DamageSplitDivider);
             var data = new string[entries.Length][];
 
