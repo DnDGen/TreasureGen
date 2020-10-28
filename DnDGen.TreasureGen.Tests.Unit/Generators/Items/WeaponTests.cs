@@ -26,14 +26,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(weapon.Damages, Is.Empty);
             Assert.That(weapon.DamageRoll, Is.Empty);
             Assert.That(weapon.DamageDescription, Is.Empty);
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryDamageRoll, Is.Empty);
+            Assert.That(weapon.SecondaryDamageDescription, Is.Empty);
             Assert.That(weapon.Size, Is.Empty);
             Assert.That(weapon.ThreatRangeDescription, Is.EqualTo("20"));
             Assert.That(weapon.ThreatRange, Is.Zero);
             Assert.That(weapon.CriticalDamages, Is.Empty);
             Assert.That(weapon.CriticalDamageRoll, Is.Empty);
             Assert.That(weapon.CriticalDamageDescription, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamageRoll, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamageDescription, Is.Empty);
             Assert.That(weapon.ItemType, Is.Empty); //INFO: Weapon could be a rod or staff
             Assert.That(weapon.CombatTypes, Is.Empty);
+            Assert.That(weapon.IsDoubleWeapon, Is.False);
+            Assert.That(weapon.CriticalMultiplier, Is.Empty);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
         }
 
         [Test]
@@ -520,6 +530,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             weapon.ThreatRange = threatRange;
             Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(description));
+        }
+
+        [Test]
+        public void IsDoubleWeapon_IsNot()
+        {
+            weapon.Attributes = new[] { "my attribute", "my other attribute" };
+            Assert.That(weapon.IsDoubleWeapon, Is.False);
+        }
+
+        [Test]
+        public void IsDoubleWeapon_Is()
+        {
+            weapon.Attributes = new[] { "my attribute", AttributeConstants.DoubleWeapon, "my other attribute" };
+            Assert.That(weapon.IsDoubleWeapon, Is.True);
         }
     }
 }

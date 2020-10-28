@@ -125,5 +125,21 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var weapon = item as Weapon;
             Assert.That(weapon.Ammunition, Is.EqualTo(ammunition), item.Name);
         }
+
+        [TestCase(WeaponConstants.Quarterstaff)]
+        [TestCase(WeaponConstants.TwoBladedSword)]
+        [TestCase(WeaponConstants.OrcDoubleAxe)]
+        [TestCase(WeaponConstants.GnomeHookedHammer)]
+        [TestCase(WeaponConstants.DwarvenUrgrosh)]
+        [TestCase(WeaponConstants.DireFlail)]
+        public void GenerateMagicalDoubleWeapon(string weaponName)
+        {
+            var item = WeaponGenerator.Generate(PowerConstants.Major, weaponName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.DoubleWeapon));
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
+
+            Assert.Fail("need to asset double weapon damagews, bonuses, etc.");
+        }
     }
 }

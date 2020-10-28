@@ -7,29 +7,46 @@ namespace DnDGen.TreasureGen.Items
     {
         public string Ammunition { get; set; }
         public List<Damage> Damages { get; set; }
-        public string DamageRoll => GetRoll(Damages);
-        public string DamageDescription => GetDescription(Damages);
+        public string DamageRoll => GetRoll(Damages, false);
+        public string DamageDescription => GetDescription(Damages, false);
+        public List<Damage> SecondaryDamages { get; set; }
+        public string SecondaryDamageRoll => GetRoll(SecondaryDamages, true);
+        public string SecondaryDamageDescription => GetDescription(SecondaryDamages, true);
         public List<Damage> CriticalDamages { get; set; }
-        public string CriticalDamageRoll => GetRoll(CriticalDamages);
-        public string CriticalDamageDescription => GetDescription(CriticalDamages);
+        public string CriticalDamageRoll => GetRoll(CriticalDamages, false);
+        public string CriticalDamageDescription => GetDescription(CriticalDamages, false);
         public string CriticalMultiplier { get; set; }
+        public List<Damage> SecondaryCriticalDamages { get; set; }
+        public string SecondaryCriticalDamageRoll => GetRoll(SecondaryCriticalDamages, true);
+        public string SecondaryCriticalDamageDescription => GetDescription(SecondaryCriticalDamages, true);
+        public string SecondaryCriticalMultiplier { get; set; }
         public string Size { get; set; }
         public string ThreatRangeDescription => ThreatRange <= 1 ? 20.ToString() : $"{20 - ThreatRange + 1}-20";
         public int ThreatRange { get; set; }
+        public bool IsDoubleWeapon => Attributes.Contains(AttributeConstants.DoubleWeapon);
+        public int SecondaryMagicBonus { get; set; }
+        public bool SecondaryHasAbilities { get; set; }
 
-        private string GetRoll(List<Damage> damages)
+        private string GetRoll(List<Damage> damages, bool secondary)
         {
             var roll = string.Empty;
             if (!damages.Any())
             {
-                if (Magic.Bonus > 0)
+                if (Magic.Bonus > 0 && !secondary)
                     return Magic.Bonus.ToString();
+
+                if (SecondaryMagicBonus > 0 && secondary)
+                    return SecondaryMagicBonus.ToString();
 
                 return roll;
             }
 
             roll = damages[0].Roll;
-            if (Magic.Bonus > 0)
+
+            if (Magic.Bonus > 0 && !secondary)
+                roll += $"+{Magic.Bonus}";
+
+            if (SecondaryMagicBonus > 0 && secondary)
                 roll += $"+{Magic.Bonus}";
 
             foreach (var damage in damages.Skip(1))
@@ -40,21 +57,30 @@ namespace DnDGen.TreasureGen.Items
             return roll;
         }
 
-        private string GetDescription(List<Damage> damages)
+        private string GetDescription(List<Damage> damages, bool secondary)
         {
             var description = string.Empty;
             if (!damages.Any())
             {
-                if (Magic.Bonus > 0)
+                if (Magic.Bonus > 0 && !secondary)
                     return Magic.Bonus.ToString();
+
+                if (SecondaryMagicBonus > 0 && secondary)
+                    return SecondaryMagicBonus.ToString();
 
                 return description;
             }
 
             description = damages[0].Description;
-            if (Magic.Bonus > 0)
+
+            if (Magic.Bonus > 0 && !secondary)
             {
                 description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{Magic.Bonus}");
+            }
+
+            if (SecondaryMagicBonus > 0 && secondary)
+            {
+                description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{SecondaryMagicBonus}");
             }
 
             foreach (var damage in damages.Skip(1))
