@@ -145,11 +145,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
             var magicWeapon = weapon as Weapon;
+            if (!magicWeapon.IsDoubleWeapon)
+                return magicWeapon;
 
-            if (magicWeapon.IsDoubleWeapon)
+            var sameEnhancement = percentileSelector.SelectFrom(.5);
+            if (!sameEnhancement)
             {
-                throw new NotImplementedException("Haven't done this bit yet");
+                magicWeapon.SecondaryMagicBonus = weapon.Magic.Bonus - 1;
+                magicWeapon.SecondaryHasAbilities = false;
+
+                return magicWeapon;
             }
+
+            magicWeapon.SecondaryMagicBonus = weapon.Magic.Bonus;
+            magicWeapon.SecondaryHasAbilities = true;
 
             return magicWeapon;
         }
@@ -177,11 +186,21 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 if (specialAbility.Damages.Any())
                 {
                     weapon.Damages.AddRange(specialAbility.Damages);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        weapon.SecondaryDamages.AddRange(specialAbility.Damages);
+                    }
                 }
 
                 if (specialAbility.CriticalDamages.Any())
                 {
                     weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        weapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier]);
+                    }
                 }
 
                 if (specialAbility.Name == SpecialAbilityConstants.Keen)

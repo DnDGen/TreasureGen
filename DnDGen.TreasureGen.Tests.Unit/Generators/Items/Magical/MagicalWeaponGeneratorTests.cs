@@ -91,6 +91,87 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
             Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("hurty mcSUPERhurtface"));
             Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.Empty);
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
+            Assert.That(weapon.Size, Is.EqualTo("enormous"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(96));
+        }
+
+        [Test]
+        public void GenerateWeapon_DoubleWeapon_OtherHeadHasSameEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
+
+            var item = magicalWeaponGenerator.GenerateRandom(power);
+            Assert.That(item, Is.EqualTo(mundaneWeapon));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(item.Quantity, Is.EqualTo(600));
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Ammunition, Is.EqualTo("ammo"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("crit"));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("hurty mchurtface"));
+            Assert.That(weapon.Damages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("hurty mcSUPERhurtface"));
+            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("other crit"));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryDamages[0].Roll, Is.EqualTo("jab"));
+            Assert.That(weapon.SecondaryDamages[0].Type, Is.EqualTo("punch"));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages[0].Roll, Is.EqualTo("cross"));
+            Assert.That(weapon.SecondaryCriticalDamages[0].Type, Is.EqualTo("punch"));
+            Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(9266));
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+            Assert.That(weapon.Size, Is.EqualTo("enormous"));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(96));
+        }
+
+        [Test]
+        public void GenerateWeapon_DoubleWeapon_OtherHeadHasLesserEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
+
+            var item = magicalWeaponGenerator.GenerateRandom(power);
+            Assert.That(item, Is.EqualTo(mundaneWeapon));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(9266));
+            Assert.That(item.Quantity, Is.EqualTo(600));
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Ammunition, Is.EqualTo("ammo"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("crit"));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.Damages[0].Roll, Is.EqualTo("hurty mchurtface"));
+            Assert.That(weapon.Damages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages[0].Roll, Is.EqualTo("hurty mcSUPERhurtface"));
+            Assert.That(weapon.CriticalDamages[0].Type, Is.EqualTo("spiritual"));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("other crit"));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryDamages[0].Roll, Is.EqualTo("jab"));
+            Assert.That(weapon.SecondaryDamages[0].Type, Is.EqualTo("punch"));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages[0].Roll, Is.EqualTo("cross"));
+            Assert.That(weapon.SecondaryCriticalDamages[0].Type, Is.EqualTo("punch"));
+            Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(9265));
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
             Assert.That(weapon.Size, Is.EqualTo("enormous"));
             Assert.That(weapon.ThreatRange, Is.EqualTo(96));
         }
@@ -145,6 +226,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damages, Has.Count.EqualTo(3)
                 .And.SupersetOf(ability.Damages));
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
         }
 
         [Test]
@@ -170,6 +253,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.Damages, Has.Count.EqualTo(1));
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
                 .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
         }
 
         [Test]
@@ -199,6 +284,214 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .And.SupersetOf(ability.Damages));
             Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
                 .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_Damages_DoubleWeapon_SameEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_CriticalDamages_DoubleWeapon_SameEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_DamagesAndCriticalDamages_DoubleWeapon_SameEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_Damages_DoubleWeapon_LesserEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_CriticalDamages_DoubleWeapon_LesserEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(1));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GetSpecialAbilitiesFromGenerator_DamagesAndCriticalDamages_DoubleWeapon_LesserEnhancement()
+        {
+            mundaneWeapon.Attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            mundaneWeapon.SecondaryCriticalMultiplier = "other crit";
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "jab", Type = "punch" });
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "cross", Type = "punch" });
+
+            mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
+
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+
+            var ability = new SpecialAbility();
+            ability.Damages.Add(new Damage { Roll = "some", Type = "plasma" });
+            ability.Damages.Add(new Damage { Roll = "a bit", Type = "ether" });
+
+            ability.CriticalDamages["crit"] = new List<Damage>();
+            ability.CriticalDamages["other crit"] = new List<Damage>();
+
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "more", Type = "plasma" });
+            ability.CriticalDamages["crit"].Add(new Damage { Roll = "a lot", Type = "ether" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "wrong", Type = "plasma" });
+            ability.CriticalDamages["other crit"].Add(new Damage { Roll = "nope", Type = "ether" });
+
+            var abilities = new[] { new SpecialAbility(), ability };
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
+
+            var weapon = magicalWeaponGenerator.GenerateRandom(power) as Weapon;
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EqualTo(abilities));
+            Assert.That(weapon.Damages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.Damages));
+            Assert.That(weapon.CriticalDamages, Has.Count.EqualTo(3)
+                .And.SupersetOf(ability.CriticalDamages["crit"]));
+            Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
+            Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(1));
         }
 
         [TestCase(1, "19-20")]
