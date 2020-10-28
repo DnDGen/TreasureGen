@@ -108,14 +108,21 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
             if (!weapon.Damages.Any())
-                weapon.Damages.AddRange(weaponSelection.DamagesBySize[weapon.Size]);
+                weapon.Damages.Add(weaponSelection.DamagesBySize[weapon.Size][0]);
 
             if (!weapon.CriticalDamages.Any())
-                weapon.CriticalDamages.AddRange(weaponSelection.CriticalDamagesBySize[weapon.Size]);
+                weapon.CriticalDamages.Add(weaponSelection.CriticalDamagesBySize[weapon.Size][0]);
+
+            if (weapon.IsDoubleWeapon && !weapon.SecondaryDamages.Any())
+                weapon.SecondaryDamages.Add(weaponSelection.DamagesBySize[weapon.Size][1]);
+
+            if (weapon.IsDoubleWeapon && !weapon.SecondaryCriticalDamages.Any())
+                weapon.SecondaryCriticalDamages.Add(weaponSelection.CriticalDamagesBySize[weapon.Size][1]);
 
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
             weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
+            weapon.SecondaryCriticalMultiplier = weaponSelection.SecondaryCriticalMultiplier;
 
             return weapon;
         }

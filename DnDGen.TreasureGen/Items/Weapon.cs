@@ -102,6 +102,8 @@ namespace DnDGen.TreasureGen.Items
             Size = string.Empty;
             Damages = new List<Damage>();
             CriticalDamages = new List<Damage>();
+            SecondaryDamages = new List<Damage>();
+            SecondaryCriticalDamages = new List<Damage>();
 
             combatTypes = new[] { AttributeConstants.Ranged, AttributeConstants.Melee };
         }

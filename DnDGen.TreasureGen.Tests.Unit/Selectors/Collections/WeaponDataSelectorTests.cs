@@ -26,9 +26,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void GetWeaponData()
         {
-            var data = new string[3];
+            var data = new string[4];
             data[DataIndexConstants.Weapon.ThreatRange] = 9266.ToString();
             data[DataIndexConstants.Weapon.CriticalMultiplier] = "sevenfold";
+            data[DataIndexConstants.Weapon.SecondaryCriticalMultiplier] = string.Empty;
             data[DataIndexConstants.Weapon.Ammunition] = "dirty laundry";
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
@@ -55,6 +56,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             Assert.That(selection.ThreatRange, Is.EqualTo(9266));
             Assert.That(selection.Ammunition, Is.EqualTo("dirty laundry"));
             Assert.That(selection.CriticalMultiplier, Is.EqualTo("sevenfold"));
+            Assert.That(selection.SecondaryCriticalMultiplier, Is.Empty);
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal], Has.Count.EqualTo(1));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][0].Description, Is.EqualTo("DAYUM emotional"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Gargantuan], Has.Count.EqualTo(1));
@@ -88,11 +90,12 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         }
 
         [Test]
-        public void GetWeaponData_MultipleDamages()
+        public void GetWeaponData_DoubleWeapon()
         {
-            var data = new string[3];
+            var data = new string[4];
             data[DataIndexConstants.Weapon.ThreatRange] = 9266.ToString();
             data[DataIndexConstants.Weapon.CriticalMultiplier] = "sevenfold";
+            data[DataIndexConstants.Weapon.SecondaryCriticalMultiplier] = "threefold";
             data[DataIndexConstants.Weapon.Ammunition] = "dirty laundry";
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
@@ -119,6 +122,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             Assert.That(selection.ThreatRange, Is.EqualTo(9266));
             Assert.That(selection.Ammunition, Is.EqualTo("dirty laundry"));
             Assert.That(selection.CriticalMultiplier, Is.EqualTo("sevenfold"));
+            Assert.That(selection.SecondaryCriticalMultiplier, Is.EqualTo("threefold"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal], Has.Count.EqualTo(2));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][0].Description, Is.EqualTo("DAYUM emotional"));
             Assert.That(selection.DamagesBySize[TraitConstants.Sizes.Colossal][1].Description, Is.EqualTo("OHLAWDITCOMIN' spiritual"));

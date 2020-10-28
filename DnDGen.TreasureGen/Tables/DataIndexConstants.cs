@@ -24,6 +24,7 @@
         {
             public const int ThreatRange = 0;
             public const int CriticalMultiplier = 1;
+            public const int SecondaryCriticalMultiplier = 3;
             public const int Ammunition = 2;
 
             internal static class DamageData

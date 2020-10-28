@@ -47,6 +47,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
             selection.ThreatRange = Convert.ToInt32(data[DataIndexConstants.Weapon.ThreatRange]);
             selection.Ammunition = data[DataIndexConstants.Weapon.Ammunition];
             selection.CriticalMultiplier = data[DataIndexConstants.Weapon.CriticalMultiplier];
+            selection.SecondaryCriticalMultiplier = data[DataIndexConstants.Weapon.SecondaryCriticalMultiplier];
 
             var sizes = TraitConstants.Sizes.All().ToArray();
 

@@ -144,7 +144,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
-            return weapon as Weapon;
+            var magicWeapon = weapon as Weapon;
+
+            if (magicWeapon.IsDoubleWeapon)
+            {
+                throw new NotImplementedException("Haven't done this bit yet");
+            }
+
+            return magicWeapon;
         }
 
         private Weapon GenerateRandomSpecialAbilities(Weapon weapon, string power)

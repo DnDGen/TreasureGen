@@ -4,6 +4,7 @@ using DnDGen.TreasureGen.Selectors.Helpers;
 using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
@@ -508,7 +509,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                 var data = table[weapon];
 
                 var isBludgeoning = bludgeoning.Contains(weapon);
-                var hasBludgeoning = data.Any(d => d.Contains(AttributeConstants.DamageTypes.Bludgeoning));
+                var hasBludgeoning = data.All(d => d.Contains(AttributeConstants.DamageTypes.Bludgeoning));
 
                 Assert.That(hasBludgeoning, Is.EqualTo(isBludgeoning), weapon);
             }
@@ -525,7 +526,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                 var data = table[weapon];
 
                 var isPiercing = piercing.Contains(weapon);
-                var hasPiercing = data.Any(d => d.Contains(AttributeConstants.DamageTypes.Piercing));
+                var hasPiercing = data.All(d => d.Contains(AttributeConstants.DamageTypes.Piercing));
 
                 Assert.That(hasPiercing, Is.EqualTo(isPiercing), weapon);
             }
@@ -542,9 +543,33 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                 var data = table[weapon];
 
                 var isSlashing = slashing.Contains(weapon);
-                var hasSlashing = data.Any(d => d.Contains(AttributeConstants.DamageTypes.Slashing));
+                var hasSlashing = data.All(d => d.Contains(AttributeConstants.DamageTypes.Slashing));
 
                 Assert.That(hasSlashing, Is.EqualTo(isSlashing), weapon);
+            }
+        }
+
+        [Test]
+        public void DoubleWeaponsHaveMultipleDamages()
+        {
+            var weapons = WeaponConstants.GetAllWeapons(false, false);
+            var doubleWeapons = WeaponConstants.GetAllDouble(false, false);
+
+            foreach (var weapon in weapons)
+            {
+                var data = table[weapon];
+
+                var isDouble = doubleWeapons.Contains(weapon);
+                var damageData = data.Select(d => damageHelper.ParseEntries(d));
+
+                if (isDouble)
+                {
+                    Assert.That(damageData, Is.All.Length.EqualTo(2), weapon);
+                }
+                else
+                {
+                    Assert.That(damageData, Is.All.Length.EqualTo(1), weapon);
+                }
             }
         }
     }

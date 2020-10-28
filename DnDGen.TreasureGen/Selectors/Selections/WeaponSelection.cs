@@ -13,6 +13,7 @@ namespace DnDGen.TreasureGen.Selectors.Selections
         public Dictionary<string, List<Damage>> CriticalDamagesBySize { get; set; }
         public string Ammunition { get; set; }
         public string CriticalMultiplier { get; set; }
+        public string SecondaryCriticalMultiplier { get; set; }
 
         public WeaponSelection()
         {
