@@ -3,7 +3,6 @@ using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Tests.Integration.Generators.Items;
-using Ninject;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +12,18 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
     [TestFixture]
     public class PowerGroupsTests : CollectionsTests
     {
-        [Inject]
-        internal ITypeAndAmountPercentileSelector TypeAndAmountPercentileSelector { get; set; }
-        [Inject]
-        internal IReplacementSelector ReplacementSelector { get; set; }
-        [Inject]
-        public IPercentileSelector PercentileSelector { get; set; }
+        private ITypeAndAmountPercentileSelector typeAndAmountPercentileSelector;
+        private IReplacementSelector replacementSelector;
+        private IPercentileSelector percentileSelector;
 
-        protected override string tableName
+        protected override string tableName => TableNameConstants.Collections.Set.PowerGroups;
+
+        [SetUp]
+        public void Setup()
         {
-            get
-            {
-                return TableNameConstants.Collections.Set.PowerGroups;
-            }
+            typeAndAmountPercentileSelector = GetNewInstanceOf<ITypeAndAmountPercentileSelector>();
+            replacementSelector = GetNewInstanceOf<IReplacementSelector>();
+            percentileSelector = GetNewInstanceOf<IPercentileSelector>();
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem,
@@ -73,14 +71,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(name, powers);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "AlchemicalItems")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.AlchemicalItems))]
         public void AlchemicalItemPowerGroupsMatch(string itemName)
         {
             var powers = table[ItemTypeConstants.AlchemicalItem];
             base.Collections(itemName, powers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Armors")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Armors))]
         public void ArmorPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
@@ -89,7 +87,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
             var generalArmors = ArmorConstants.GetAllArmorsAndShields(false);
             var shields = ArmorConstants.GetAllShields(true);
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             if (!generalArmors.Contains(itemName))
             {
@@ -101,7 +99,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                     foreach (var power in powers.Except(new[] { PowerConstants.Mundane }))
                     {
                         var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, gearType);
-                        var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                        var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                         if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                             possiblePowers.Remove(power);
@@ -112,17 +110,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(itemName, possiblePowers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Potions")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Potions))]
         public void PotionPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Potion];
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Potion);
-                var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                 if (results.Any(r => NameMatchesWithReplacements(r.Type, itemName))
                     || cursed.Contains(itemName))
@@ -136,25 +134,25 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
         private bool NameMatchesWithReplacements(string source, string target)
         {
-            var sourceReplacements = ReplacementSelector.SelectAll(source, true);
-            var targetReplacements = ReplacementSelector.SelectAll(target, true);
+            var sourceReplacements = replacementSelector.SelectAll(source, true);
+            var targetReplacements = replacementSelector.SelectAll(target, true);
 
             return source == target
                 || sourceReplacements.Any(s => s == target)
                 || targetReplacements.Any(t => t == source);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Rings")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Rings))]
         public void RingPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Ring];
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Ring);
-                var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                 if (results.Any(r => NameMatchesWithReplacements(r.Type, itemName))
                     || cursed.Contains(itemName))
@@ -164,17 +162,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(itemName, possiblePowers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Rods")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Rods))]
         public void RodPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Rod];
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Rod);
-                var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                 if (results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                     possiblePowers.Add(power);
@@ -183,17 +181,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(itemName, possiblePowers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Staffs")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Staffs))]
         public void StaffPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Staff];
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Staff);
-                var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                 if (results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                     possiblePowers.Add(power);
@@ -202,14 +200,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(itemName, possiblePowers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Tools")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Tools))]
         public void ToolPowerGroupsMatch(string itemName)
         {
             var powers = table[ItemTypeConstants.Tool];
             base.Collections(itemName, powers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "Weapons")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.Weapons))]
         public void WeaponPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
@@ -217,7 +215,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             possiblePowers.AddRange(powers);
 
             var generalWeapons = WeaponConstants.GetAllWeapons(false, true);
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             if (!generalWeapons.Contains(itemName))
             {
@@ -228,7 +226,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
                     foreach (var power in powers.Except(new[] { PowerConstants.Mundane }))
                     {
                         var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERSpecificITEMTYPEs, power, ItemTypeConstants.Weapon);
-                        var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                        var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                         if (!results.Any(r => NameMatchesWithReplacements(r.Type, itemName)))
                             possiblePowers.Remove(power);
@@ -239,17 +237,17 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             base.Collections(itemName, possiblePowers.ToArray());
         }
 
-        [TestCaseSource(typeof(ItemTestData), "WondrousItems")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.WondrousItems))]
         public void WondrousItemPowerGroupsMatch(string itemName)
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.WondrousItem];
-            var cursed = PercentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
                 var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.WondrousItem);
-                var results = TypeAndAmountPercentileSelector.SelectAllFrom(tableName);
+                var results = typeAndAmountPercentileSelector.SelectAllFrom(tableName);
 
                 if (results.Any(r => NameMatchesWithReplacements(r.Type, itemName))
                     || cursed.Contains(itemName))

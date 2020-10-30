@@ -603,8 +603,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(cloneWeapon.ThreatRange, Is.Not.Zero.And.EqualTo(template.ThreatRange));
             Assert.That(cloneWeapon.CriticalMultiplier, Is.Not.Empty.And.EqualTo(template.CriticalMultiplier));
             Assert.That(cloneWeapon.SecondaryCriticalMultiplier, Is.Not.Empty.And.EqualTo(template.SecondaryCriticalMultiplier));
-            Assert.That(cloneWeapon.SecondaryMagicBonus, Is.Not.Zero.And.EqualTo(template.SecondaryMagicBonus));
-            Assert.That(cloneWeapon.SecondaryHasAbilities, Is.True.And.EqualTo(template.SecondaryHasAbilities));
+            Assert.That(cloneWeapon.SecondaryMagicBonus, Is.Zero);
+            Assert.That(cloneWeapon.SecondaryHasAbilities, Is.False);
         }
 
         [Test]
@@ -771,7 +771,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             clone.Size = "massive";
             clone.Quantity = 9266;
             clone.ThreatRange = 42;
-            clone.CriticalMultiplier = "seveonfold";
+            clone.CriticalMultiplier = "sevenfold";
             clone.SecondaryMagicBonus = 90210;
             clone.SecondaryHasAbilities = true;
             clone.SecondaryCriticalMultiplier = "threefold";
@@ -806,10 +806,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(clone.DamageDescription, Is.EqualTo($"a ton+{template.Magic.Bonus} stabbing + a bit emotional"));
             Assert.That(clone.CriticalDamageRoll, Is.EqualTo($"a ton more+{template.Magic.Bonus}+a bit more"));
             Assert.That(clone.CriticalDamageDescription, Is.EqualTo($"a ton more+{template.Magic.Bonus} stabbing + a bit more spiritual"));
-            Assert.That(clone.SecondaryDamageRoll, Is.EqualTo($"some+{template.Magic.Bonus}+partial"));
-            Assert.That(clone.SecondaryDamageDescription, Is.EqualTo($"some+{template.Magic.Bonus} whacking + partial mental"));
-            Assert.That(clone.SecondaryCriticalDamageRoll, Is.EqualTo($"some more+{template.Magic.Bonus}+partial more"));
-            Assert.That(clone.SecondaryCriticalDamageDescription, Is.EqualTo($"some more+{template.Magic.Bonus} whacking + partialt more psychic"));
+            Assert.That(clone.SecondaryDamageRoll, Is.EqualTo($"some+90210+partial"));
+            Assert.That(clone.SecondaryDamageDescription, Is.EqualTo($"some+90210 whacking + partial mental"));
+            Assert.That(clone.SecondaryCriticalDamageRoll, Is.EqualTo($"some more+90210+partial more"));
+            Assert.That(clone.SecondaryCriticalDamageDescription, Is.EqualTo($"some more+90210 whacking + partial more psychic"));
             Assert.That(clone.Size, Is.EqualTo("massive"));
             Assert.That(clone.ThreatRange, Is.Not.Zero.And.EqualTo(42));
             Assert.That(clone.Quantity, Is.Not.Zero.And.EqualTo(9266));

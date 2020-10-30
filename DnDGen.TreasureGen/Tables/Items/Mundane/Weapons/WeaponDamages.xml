@@ -1211,9 +1211,9 @@
   <collection>
     <name>Aberrationbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Acid resistance</name>
@@ -1221,23 +1221,23 @@
   <collection>
     <name>Air-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Anarchic</name>
     <entry>2d6#Chaos</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#Chaos</entry>
+    <entry>2d6#Chaos</entry>
+    <entry>2d6#Chaos</entry>
   </collection>
   <collection>
     <name>Animalbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Animated</name>
@@ -1245,9 +1245,9 @@
   <collection>
     <name>Aquatic-humanoidbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Arrow catching</name>
@@ -1258,16 +1258,16 @@
   <collection>
     <name>Axiomatic</name>
     <entry>2d6#Law</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#Law</entry>
+    <entry>2d6#Law</entry>
+    <entry>2d6#Law</entry>
   </collection>
   <collection>
     <name>Bane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Bashing</name>
@@ -1281,9 +1281,9 @@
   <collection>
     <name>Chaotic-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Cold resistance</name>
@@ -1291,16 +1291,16 @@
   <collection>
     <name>Constructbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>DESIGNATEDFOEbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Dancing</name>
@@ -1317,23 +1317,23 @@
   <collection>
     <name>Dragonbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Dwarfbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Earth-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Electricity resistance</name>
@@ -1341,16 +1341,16 @@
   <collection>
     <name>Elementalbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Elfbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Etherealness</name>
@@ -1358,16 +1358,16 @@
   <collection>
     <name>Evil-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Feybane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Fire resistance</name>
@@ -1375,23 +1375,23 @@
   <collection>
     <name>Fire-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Flaming burst</name>
     <entry>1d6#Fire</entry>
-    <entry>1d10#Fire</entry>
-    <entry>2d10#Fire</entry>
-    <entry>3d10#Fire</entry>
+    <entry>1d6#Fire,1d10#Fire</entry>
+    <entry>1d6#Fire,2d10#Fire</entry>
+    <entry>1d6#Fire,3d10#Fire</entry>
   </collection>
   <collection>
     <name>Flaming</name>
     <entry>1d6#Fire</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>1d6#Fire</entry>
+    <entry>1d6#Fire</entry>
+    <entry>1d6#Fire</entry>
   </collection>
   <collection>
     <name>Fortification</name>
@@ -1399,9 +1399,9 @@
   <collection>
     <name>Frost</name>
     <entry>1d6#Cold</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>1d6#Cold</entry>
+    <entry>1d6#Cold</entry>
+    <entry>1d6#Cold</entry>
   </collection>
   <collection>
     <name>Ghost touch (armor)</name>
@@ -1415,9 +1415,9 @@
   <collection>
     <name>Giantbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Glamered</name>
@@ -1425,30 +1425,30 @@
   <collection>
     <name>Gnollbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Gnomebane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Goblinoidbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Good-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Greater acid resistance</name>
@@ -1477,9 +1477,9 @@
   <collection>
     <name>Halflingbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Heavy fortification</name>
@@ -1487,23 +1487,23 @@
   <collection>
     <name>Holy</name>
     <entry>2d6#Good</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#Good</entry>
+    <entry>2d6#Good</entry>
+    <entry>2d6#Good</entry>
   </collection>
   <collection>
     <name>Humanbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Icy burst</name>
     <entry>1d6#Cold</entry>
-    <entry>1d10#Cold</entry>
-    <entry>2d10#Cold</entry>
-    <entry>3d10#Cold</entry>
+    <entry>1d6#Cold,1d10#Cold</entry>
+    <entry>1d6#Cold,2d10#Cold</entry>
+    <entry>1d6#Cold,3d10#Cold</entry>
   </collection>
   <collection>
     <name>Improved acid resistance</name>
@@ -1541,9 +1541,9 @@
   <collection>
     <name>Lawful-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Light fortification</name>
@@ -1551,16 +1551,16 @@
   <collection>
     <name>Magical-beastbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Merciful</name>
     <entry>1d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>1d6#</entry>
+    <entry>1d6#</entry>
+    <entry>1d6#</entry>
   </collection>
   <collection>
     <name>Mighty cleaving</name>
@@ -1571,30 +1571,30 @@
   <collection>
     <name>Monstrous-humanoidbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Oozebane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Orcbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Plantbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Reflecting</name>
@@ -1602,9 +1602,9 @@
   <collection>
     <name>Reptilian-humanoidbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Returning</name>
@@ -1618,16 +1618,16 @@
   <collection>
     <name>Shock</name>
     <entry>1d6#Electricity</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>1d6#Electricity</entry>
+    <entry>1d6#Electricity</entry>
+    <entry>1d6#Electricity</entry>
   </collection>
   <collection>
     <name>Shocking burst</name>
     <entry>1d6#Electricity</entry>
-    <entry>1d10#Electricity</entry>
-    <entry>2d10#Electricity</entry>
-    <entry>3d10#Electricity</entry>
+    <entry>1d6#Electricity,1d10#Electricity</entry>
+    <entry>1d6#Electricity,2d10#Electricity</entry>
+    <entry>1d6#Electricity,3d10#Electricity</entry>
   </collection>
   <collection>
     <name>Silent moves</name>
@@ -1675,30 +1675,30 @@
   <collection>
     <name>Undeadbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Unholy</name>
     <entry>2d6#Evil</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#Evil</entry>
+    <entry>2d6#Evil</entry>
+    <entry>2d6#Evil</entry>
   </collection>
   <collection>
     <name>Verminbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Vicious</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Vorpal</name>
@@ -1706,9 +1706,9 @@
   <collection>
     <name>Water-outsiderbane</name>
     <entry>2d6#</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
   </collection>
   <collection>
     <name>Wild</name>
@@ -1716,8 +1716,8 @@
   <collection>
     <name>Wounding</name>
     <entry>1#Constitution</entry>
-    <entry></entry>
-    <entry></entry>
-    <entry></entry>
+    <entry>1#Constitution</entry>
+    <entry>1#Constitution</entry>
+    <entry>1#Constitution</entry>
   </collection>
 </collections>

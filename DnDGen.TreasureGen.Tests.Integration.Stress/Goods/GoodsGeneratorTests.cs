@@ -8,8 +8,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
     [TestFixture]
     public class GoodsGeneratorTests : StressTests
     {
-        [Inject]
-        public IGoodsGenerator GoodsGenerator { get; set; }
+        private IGoodsGenerator goodsGenerator;
+
+        [SetUp]
+        public void Setup()
+        {
+            goodsGenerator = GetNewInstanceOf<IGoodsGenerator>();
+        }
 
         [Test]
         public void StressGoods()
@@ -20,7 +25,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
         private void GenerateAndAssertGoods()
         {
             var level = GetNewLevel();
-            var goods = GoodsGenerator.GenerateAtLevel(level);
+            var goods = goodsGenerator.GenerateAtLevel(level);
 
             Assert.That(goods, Is.Not.Null);
 
@@ -40,7 +45,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
         private async Task GenerateAndAssertGoodsAsync()
         {
             var level = GetNewLevel();
-            var goods = await GoodsGenerator.GenerateAtLevelAsync(level);
+            var goods = await goodsGenerator.GenerateAtLevelAsync(level);
 
             Assert.That(goods, Is.Not.Null);
 

@@ -74,7 +74,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var weapon = item as Weapon;
             Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Name);
-            Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, $"{weapon.Name} critical multiplier");
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Name} critical multiplier");
             Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Name} size");
             Assert.That(weapon.Damages, Is.Not.Empty, $"{weapon.Name} damages");
             Assert.That(weapon.CriticalDamages, Is.Not.Empty, $"{weapon.Name} critical damages");
@@ -114,21 +114,47 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon))
             {
-                Assert.That(weapon.Damages, Has.Count.AtLeast(2));
-                Assert.That(weapon.CriticalDamages, Has.Count.AtLeast(2));
+                Assert.That(weapon.SecondaryDamages, Is.Not.Empty, $"{weapon.Name} secondary damages");
+                Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty, $"{weapon.Name} secondary critical damages");
 
-                Assert.That(weapon.Damages[1].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                foreach (var damage in weapon.SecondaryDamages)
+                {
+                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Name);
+                }
+
+                foreach (var damage in weapon.SecondaryCriticalDamages)
+                {
+                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Name);
+                }
+
+                Assert.That(weapon.SecondaryDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                     .Or.Contains(AttributeConstants.DamageTypes.Piercing)
                     .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
-                Assert.That(weapon.CriticalDamages[1].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                Assert.That(weapon.SecondaryCriticalDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                     .Or.Contains(AttributeConstants.DamageTypes.Piercing)
                     .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Name);
 
-                Assert.That(weapon.CriticalMultiplier, Contains.Substring("/"), weapon.Name);
+                Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Name} secondary critical multiplier");
+
+                if (weapon.SecondaryHasAbilities)
+                {
+                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus), weapon.Name);
+                }
+                else if (weapon.Magic.Bonus > 0)
+                {
+                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus - 1), weapon.Name);
+                }
+                else
+                {
+                    Assert.That(weapon.SecondaryMagicBonus, Is.Zero, weapon.Name);
+                }
             }
             else
             {
-                Assert.That(weapon.CriticalMultiplier, Is.All.Not.EqualTo("/"), weapon.Name);
+                Assert.That(weapon.SecondaryDamages, Is.Empty, weapon.Name);
+                Assert.That(weapon.SecondaryCriticalDamages, Is.Empty, weapon.Name);
+                Assert.That(weapon.SecondaryCriticalMultiplier, Is.Empty, weapon.Name);
+                Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
             }
         }
 

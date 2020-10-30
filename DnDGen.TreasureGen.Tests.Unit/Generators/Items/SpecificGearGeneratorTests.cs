@@ -538,6 +538,24 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(mundaneWeapon.Quantity, Is.AtLeast(2));
         }
 
+        [Test]
+        public void GetSpecificWeapon_DoubleWeapon()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void GetSpecificWeapon_WithAbilities()
+        {
+            Assert.Fail("not yet written");
+        }
+
+        [Test]
+        public void GetSpecificWeapon_DoubleWeapon_WithAbilities()
+        {
+            Assert.Fail("not yet written");
+        }
+
         [TestCase(TraitConstants.Sizes.Colossal)]
         [TestCase(TraitConstants.Sizes.Gargantuan)]
         [TestCase(TraitConstants.Sizes.Huge)]

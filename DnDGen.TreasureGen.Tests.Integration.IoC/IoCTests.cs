@@ -1,5 +1,4 @@
-﻿using Ninject;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Diagnostics;
 
 namespace DnDGen.TreasureGen.Tests.Integration.IoC
@@ -7,8 +6,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC
     [TestFixture]
     public abstract class IoCTests : IntegrationTests
     {
-        [Inject]
         public Stopwatch Stopwatch { get; set; }
+
+        [SetUp]
+        public void IoCSetup()
+        {
+            Stopwatch = new Stopwatch();
+        }
 
         //INFO We set this to 250 instead of 100 because sometimes Travis is just randomly a slower environment
         private const int TimeLimitInMilliseconds = 250;

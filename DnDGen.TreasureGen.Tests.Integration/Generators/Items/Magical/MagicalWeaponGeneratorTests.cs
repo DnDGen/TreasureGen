@@ -179,12 +179,11 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
         {
             var item = WeaponGenerator.Generate(PowerConstants.Major, weaponName);
             itemVerifier.AssertItem(item);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.DoubleWeapon));
             Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
 
             var weapon = item as Weapon;
-            Assert.That(weapon.Damages, Has.Count.GreaterThan(1));
-            Assert.That(weapon.CriticalDamages, Has.Count.GreaterThan(1));
+            Assert.That(weapon.Damages, Has.Count.GreaterThan(1), weapon.DamageDescription);
+            Assert.That(weapon.CriticalDamages, Has.Count.GreaterThan(1), weapon.CriticalDamageDescription);
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using DnDGen.TreasureGen.Items;
-using DnDGen.TreasureGen.Selectors.Collections;
 using DnDGen.TreasureGen.Tables;
-using Ninject;
 using NUnit.Framework;
 using System.Linq;
 
@@ -10,13 +8,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
     [TestFixture]
     public class WeaponDataTests : CollectionsTests
     {
-        [Inject]
-        internal IWeaponDataSelector WeaponDataSelector { get; set; }
-
-        protected override string tableName
-        {
-            get { return TableNameConstants.Collections.Set.WeaponData; }
-        }
+        protected override string tableName => TableNameConstants.Collections.Set.WeaponData;
 
         [TestCase(WeaponConstants.Gauntlet, 1, "x2", "", "")]
         [TestCase(WeaponConstants.Dagger, 2, "x2", "", "")]
@@ -29,7 +21,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.Morningstar, 1, "x2", "", "")]
         [TestCase(WeaponConstants.Shortspear, 1, "x2", "", "")]
         [TestCase(WeaponConstants.Longspear, 1, "x3", "", "")]
-        [TestCase(WeaponConstants.Quarterstaff, 1, "x2/x2", "", "")]
+        [TestCase(WeaponConstants.Quarterstaff, 1, "x2", "", "x2")]
         [TestCase(WeaponConstants.Spear, 1, "x3", "", "")]
         [TestCase(WeaponConstants.HeavyCrossbow, 2, "x2", WeaponConstants.CrossbowBolt, "")]
         [TestCase(WeaponConstants.LightCrossbow, 2, "x2", WeaponConstants.CrossbowBolt, "")]

@@ -47,7 +47,7 @@ namespace DnDGen.TreasureGen.Items
                 roll += $"+{Magic.Bonus}";
 
             if (SecondaryMagicBonus > 0 && secondary)
-                roll += $"+{Magic.Bonus}";
+                roll += $"+{SecondaryMagicBonus}";
 
             foreach (var damage in damages.Skip(1))
             {
@@ -104,6 +104,8 @@ namespace DnDGen.TreasureGen.Items
             CriticalDamages = new List<Damage>();
             SecondaryDamages = new List<Damage>();
             SecondaryCriticalDamages = new List<Damage>();
+            CriticalMultiplier = string.Empty;
+            SecondaryCriticalMultiplier = string.Empty;
 
             combatTypes = new[] { AttributeConstants.Ranged, AttributeConstants.Melee };
         }
@@ -117,7 +119,7 @@ namespace DnDGen.TreasureGen.Items
             return clone;
         }
 
-        private Weapon CloneWeapon(Weapon target)
+        private Weapon CloneWeapon(Weapon target, bool mundane = false)
         {
             target.Ammunition = !string.IsNullOrEmpty(Ammunition) ? Ammunition : target.Ammunition;
 
@@ -127,10 +129,23 @@ namespace DnDGen.TreasureGen.Items
             if (Damages.Any())
                 target.Damages = Damages.Select(d => d.Clone()).ToList();
 
+            if (SecondaryCriticalDamages.Any())
+                target.SecondaryCriticalDamages = SecondaryCriticalDamages.Select(d => d.Clone()).ToList();
+
+            if (SecondaryDamages.Any())
+                target.SecondaryDamages = SecondaryDamages.Select(d => d.Clone()).ToList();
+
             target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
             target.ThreatRange = ThreatRange > 0 ? ThreatRange : target.ThreatRange;
             target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
             target.Quantity = Quantity > 1 ? Quantity : target.Quantity;
+            target.SecondaryCriticalMultiplier = !string.IsNullOrEmpty(SecondaryCriticalMultiplier) ? SecondaryCriticalMultiplier : target.SecondaryCriticalMultiplier;
+
+            if (!mundane)
+            {
+                target.SecondaryHasAbilities = SecondaryHasAbilities ? SecondaryHasAbilities : target.SecondaryHasAbilities;
+                target.SecondaryMagicBonus = SecondaryMagicBonus > 0 ? SecondaryMagicBonus : target.SecondaryMagicBonus;
+            }
 
             return target;
         }
@@ -139,7 +154,7 @@ namespace DnDGen.TreasureGen.Items
         {
             var clone = new Weapon();
             MundaneCloneInto(clone);
-            CloneWeapon(clone);
+            CloneWeapon(clone, true);
 
             return clone;
         }
@@ -149,9 +164,23 @@ namespace DnDGen.TreasureGen.Items
             base.MundaneCloneInto(target);
 
             if (target is Weapon)
-                CloneWeapon(target as Weapon);
+            {
+                var weapon = target as Weapon;
+                CloneWeapon(weapon, true);
+            }
 
             return target;
+        }
+
+        public override Item CloneInto(Item target)
+        {
+            var clone = base.CloneInto(target);
+
+            var weapon = clone as Weapon;
+            weapon.SecondaryHasAbilities = SecondaryHasAbilities ? SecondaryHasAbilities : weapon.SecondaryHasAbilities;
+            weapon.SecondaryMagicBonus = SecondaryMagicBonus > 0 ? SecondaryMagicBonus : weapon.SecondaryMagicBonus;
+
+            return weapon;
         }
 
         public override Item SmartClone()

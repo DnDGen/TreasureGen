@@ -8,10 +8,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
     [TestFixture]
     public class SpecificCursedItemAttributesTests : CollectionsTests
     {
-        protected override string tableName
-        {
-            get { return TableNameConstants.Collections.Set.SpecificCursedItemAttributes; }
-        }
+        protected override string tableName => TableNameConstants.Collections.Set.SpecificCursedItemAttributes;
 
         [TestCase(ArmorConstants.ArmorOfArrowAttraction,
             AttributeConstants.Specific,

@@ -122,7 +122,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
             weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
-            weapon.SecondaryCriticalMultiplier = weaponSelection.SecondaryCriticalMultiplier;
+
+            if (weapon.IsDoubleWeapon && string.IsNullOrEmpty(weapon.SecondaryCriticalMultiplier))
+                weapon.SecondaryCriticalMultiplier = weaponSelection.SecondaryCriticalMultiplier;
 
             return weapon;
         }

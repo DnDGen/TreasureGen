@@ -1,7 +1,6 @@
 ﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Generators;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
-using Ninject;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -10,15 +9,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
     [TestFixture]
     public class TreasureGeneratorTests : StressTests
     {
-        [Inject]
-        public ITreasureGenerator TreasureGenerator { get; set; }
-
+        private ITreasureGenerator treasureGenerator;
         private ItemVerifier itemVerifier;
 
         [SetUp]
         public void Setup()
         {
             itemVerifier = new ItemVerifier();
+            treasureGenerator = GetNewInstanceOf<ITreasureGenerator>();
         }
 
         [Test]
@@ -30,7 +28,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         private void GenerateAndAssertTreasure()
         {
             var level = GetNewLevel();
-            var treasure = TreasureGenerator.GenerateAtLevel(level);
+            var treasure = treasureGenerator.GenerateAtLevel(level);
 
             if (string.IsNullOrEmpty(treasure.Coin.Currency))
             {
@@ -72,7 +70,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         private async Task GenerateAndAssertTreasureAsync()
         {
             var level = GetNewLevel();
-            var treasure = await TreasureGenerator.GenerateAtLevelAsync(level);
+            var treasure = await treasureGenerator.GenerateAtLevelAsync(level);
 
             if (string.IsNullOrEmpty(treasure.Coin.Currency))
             {

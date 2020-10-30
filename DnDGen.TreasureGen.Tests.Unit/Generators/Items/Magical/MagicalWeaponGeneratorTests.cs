@@ -350,7 +350,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
                 .And.SupersetOf(ability.CriticalDamages["crit"]));
             Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(1));
             Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(3)
-                .And.SupersetOf(ability.CriticalDamages["crit"]));
+                .And.SupersetOf(ability.CriticalDamages["other crit"]));
         }
 
         [Test]
@@ -390,7 +390,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.SecondaryDamages, Has.Count.EqualTo(3)
                 .And.SupersetOf(ability.Damages));
             Assert.That(weapon.SecondaryCriticalDamages, Has.Count.EqualTo(3)
-                .And.SupersetOf(ability.CriticalDamages["crit"]));
+                .And.SupersetOf(ability.CriticalDamages["other crit"]));
         }
 
         [Test]
