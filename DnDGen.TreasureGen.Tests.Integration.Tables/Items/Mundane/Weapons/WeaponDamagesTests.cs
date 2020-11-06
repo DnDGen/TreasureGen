@@ -3,7 +3,6 @@ using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Selectors.Helpers;
 using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -335,6 +334,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(SpecialAbilityConstants.Returning)]
         [TestCase(SpecialAbilityConstants.Seeking)]
         [TestCase(SpecialAbilityConstants.Shadow)]
+        [TestCase(SpecialAbilityConstants.Shapeshifterbane, "2d6#", "2d6#", "2d6#", "2d6#")]
         [TestCase(SpecialAbilityConstants.Shock, "1d6#Electricity", "1d6#Electricity", "1d6#Electricity", "1d6#Electricity")]
         [TestCase(SpecialAbilityConstants.ShockingBurst, "1d6#Electricity", "1d6#Electricity,1d10#Electricity", "1d6#Electricity,2d10#Electricity", "1d6#Electricity,3d10#Electricity")]
         [TestCase(SpecialAbilityConstants.SilentMoves)]
@@ -375,127 +375,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         public void AllKeysArePresent()
         {
             var weapons = WeaponConstants.GetAllWeapons(false, false);
-            var specialAbilities = GetSpecialAbilities();
+            var specialAbilities = SpecialAbilityConstants.GetAllAbilities(true);
 
             var expectedKeys = weapons.Union(specialAbilities);
             var actualKeys = GetKeys();
 
             AssertCollection(actualKeys, expectedKeys);
-        }
-
-        private IEnumerable<string> GetSpecialAbilities()
-        {
-            return new[]
-            {
-                SpecialAbilityConstants.Aberrationbane,
-                SpecialAbilityConstants.AcidResistance,
-                SpecialAbilityConstants.AirOutsiderbane,
-                SpecialAbilityConstants.Anarchic,
-                SpecialAbilityConstants.Animalbane,
-                SpecialAbilityConstants.Animated,
-                SpecialAbilityConstants.AquaticHumanoidbane,
-                SpecialAbilityConstants.ArrowCatching,
-                SpecialAbilityConstants.ArrowDeflection,
-                SpecialAbilityConstants.Axiomatic,
-                SpecialAbilityConstants.Bane,
-                SpecialAbilityConstants.Bashing,
-                SpecialAbilityConstants.Blinding,
-                SpecialAbilityConstants.BrilliantEnergy,
-                SpecialAbilityConstants.ChaoticOutsiderbane,
-                SpecialAbilityConstants.ColdResistance,
-                SpecialAbilityConstants.Constructbane,
-                SpecialAbilityConstants.Dancing,
-                SpecialAbilityConstants.Defending,
-                SpecialAbilityConstants.DESIGNATEDFOEbane,
-                SpecialAbilityConstants.Disruption,
-                SpecialAbilityConstants.Distance,
-                SpecialAbilityConstants.Dragonbane,
-                SpecialAbilityConstants.Dwarfbane,
-                SpecialAbilityConstants.EarthOutsiderbane,
-                SpecialAbilityConstants.ElectricityResistance,
-                SpecialAbilityConstants.Elementalbane,
-                SpecialAbilityConstants.Elfbane,
-                SpecialAbilityConstants.Etherealness,
-                SpecialAbilityConstants.EvilOutsiderbane,
-                SpecialAbilityConstants.Feybane,
-                SpecialAbilityConstants.FireOutsiderbane,
-                SpecialAbilityConstants.FireResistance,
-                SpecialAbilityConstants.Flaming,
-                SpecialAbilityConstants.FlamingBurst,
-                SpecialAbilityConstants.Fortification,
-                SpecialAbilityConstants.Frost,
-                SpecialAbilityConstants.GhostTouch,
-                SpecialAbilityConstants.GhostTouchArmor,
-                SpecialAbilityConstants.GhostTouchWeapon,
-                SpecialAbilityConstants.Giantbane,
-                SpecialAbilityConstants.Glamered,
-                SpecialAbilityConstants.Gnollbane,
-                SpecialAbilityConstants.Gnomebane,
-                SpecialAbilityConstants.Goblinoidbane,
-                SpecialAbilityConstants.GoodOutsiderbane,
-                SpecialAbilityConstants.GreaterAcidResistance,
-                SpecialAbilityConstants.GreaterColdResistance,
-                SpecialAbilityConstants.GreaterElectricityResistance,
-                SpecialAbilityConstants.GreaterFireResistance,
-                SpecialAbilityConstants.GreaterShadow,
-                SpecialAbilityConstants.GreaterSilentMoves,
-                SpecialAbilityConstants.GreaterSlick,
-                SpecialAbilityConstants.GreaterSonicResistance,
-                SpecialAbilityConstants.Halflingbane,
-                SpecialAbilityConstants.HeavyFortification,
-                SpecialAbilityConstants.Holy,
-                SpecialAbilityConstants.Humanbane,
-                SpecialAbilityConstants.IcyBurst,
-                SpecialAbilityConstants.ImprovedAcidResistance,
-                SpecialAbilityConstants.ImprovedColdResistance,
-                SpecialAbilityConstants.ImprovedElectricityResistance,
-                SpecialAbilityConstants.ImprovedFireResistance,
-                SpecialAbilityConstants.ImprovedShadow,
-                SpecialAbilityConstants.ImprovedSilentMoves,
-                SpecialAbilityConstants.ImprovedSlick,
-                SpecialAbilityConstants.ImprovedSonicResistance,
-                SpecialAbilityConstants.Invulnerability,
-                SpecialAbilityConstants.Keen,
-                SpecialAbilityConstants.KiFocus,
-                SpecialAbilityConstants.LawfulOutsiderbane,
-                SpecialAbilityConstants.LightFortification,
-                SpecialAbilityConstants.MagicalBeastbane,
-                SpecialAbilityConstants.Merciful,
-                SpecialAbilityConstants.MightyCleaving,
-                SpecialAbilityConstants.ModerateFortification,
-                SpecialAbilityConstants.MonstrousHumanoidbane,
-                SpecialAbilityConstants.Oozebane,
-                SpecialAbilityConstants.Orcbane,
-                SpecialAbilityConstants.Plantbane,
-                SpecialAbilityConstants.Reflecting,
-                SpecialAbilityConstants.ReptilianHumanoidbane,
-                SpecialAbilityConstants.Returning,
-                SpecialAbilityConstants.Seeking,
-                SpecialAbilityConstants.Shadow,
-                SpecialAbilityConstants.Shock,
-                SpecialAbilityConstants.ShockingBurst,
-                SpecialAbilityConstants.SilentMoves,
-                SpecialAbilityConstants.Slick,
-                SpecialAbilityConstants.SonicResistance,
-                SpecialAbilityConstants.Speed,
-                SpecialAbilityConstants.SpellResistance,
-                SpecialAbilityConstants.SpellResistance13,
-                SpecialAbilityConstants.SpellResistance15,
-                SpecialAbilityConstants.SpellResistance17,
-                SpecialAbilityConstants.SpellResistance19,
-                SpecialAbilityConstants.SpellStoring,
-                SpecialAbilityConstants.Throwing,
-                SpecialAbilityConstants.Thundering,
-                SpecialAbilityConstants.Undeadbane,
-                SpecialAbilityConstants.UndeadControlling,
-                SpecialAbilityConstants.Unholy,
-                SpecialAbilityConstants.Verminbane,
-                SpecialAbilityConstants.Vicious,
-                SpecialAbilityConstants.Vorpal,
-                SpecialAbilityConstants.WaterOutsiderbane,
-                SpecialAbilityConstants.Wild,
-                SpecialAbilityConstants.Wounding,
-            };
         }
 
         [Test]

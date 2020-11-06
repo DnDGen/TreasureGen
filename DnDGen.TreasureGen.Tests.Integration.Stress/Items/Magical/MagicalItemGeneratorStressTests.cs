@@ -23,7 +23,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             magicalItemGenerator = GetNewInstanceOf<MagicalItemGenerator>(itemType);
 
             materials = TraitConstants.SpecialMaterials.All();
-            specialAbilities = SpecialAbilityConstants.GetAllAbilities();
+            specialAbilities = SpecialAbilityConstants.GetAllAbilities(false);
         }
 
         protected void GenerateAndAssertItem()

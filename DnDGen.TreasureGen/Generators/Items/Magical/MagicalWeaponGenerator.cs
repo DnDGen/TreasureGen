@@ -185,6 +185,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 if (specialAbility.Damages.Any())
                 {
+                    //TODO: If damage has no type, set to weapon's damage type
+                    throw new NotImplementedException("Set empty damage type to weapon");
+
                     weapon.Damages.AddRange(specialAbility.Damages);
 
                     if (weapon.SecondaryHasAbilities)
@@ -195,6 +198,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
                 if (specialAbility.CriticalDamages.Any())
                 {
+                    //TODO: If damage has no type, set to weapon's damage type
+                    throw new NotImplementedException("Set empty damage type to weapon");
+
                     weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
 
                     if (weapon.SecondaryHasAbilities)

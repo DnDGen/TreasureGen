@@ -136,6 +136,46 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             weapon.Traits.Remove(weapon.Size);
 
+            if (weapon.IsDoubleWeapon)
+            {
+                weapon.SecondaryHasAbilities = true;
+                weapon.SecondaryMagicBonus = weapon.Magic.Bonus;
+            }
+
+            foreach (var specialAbility in weapon.Magic.SpecialAbilities)
+            {
+                if (specialAbility.Damages.Any())
+                {
+                    //TODO: If damage has no type, set to weapon's damage type
+                    throw new NotImplementedException("Set empty damage type to weapon");
+
+                    weapon.Damages.AddRange(specialAbility.Damages);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        weapon.SecondaryDamages.AddRange(specialAbility.Damages);
+                    }
+                }
+
+                if (specialAbility.CriticalDamages.Any())
+                {
+                    //TODO: If damage has no type, set to weapon's damage type
+                    throw new NotImplementedException("Set empty damage type to weapon");
+
+                    weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        weapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier]);
+                    }
+                }
+
+                if (specialAbility.Name == SpecialAbilityConstants.Keen)
+                {
+                    weapon.ThreatRange *= 2;
+                }
+            }
+
             return weapon;
         }
 

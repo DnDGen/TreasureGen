@@ -541,19 +541,210 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [Test]
         public void GetSpecificWeapon_DoubleWeapon()
         {
-            Assert.Fail("not yet written");
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "my secondary crit roll", Type = "my secondary crit damage type" });
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "my secondary roll", Type = "my secondary damage type" });
+            mundaneWeapon.SecondaryCriticalMultiplier = "secondary crit";
+
+            template.Name = WeaponConstants.ShiftersSorrow;
+
+            var attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility(),
+                new SpecialAbility()
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(
+                It.Is<IEnumerable<SpecialAbility>>(aa =>
+                    aa.First().Name == "ability 1"
+                    && aa.Last().Name == "ability 2")
+                )
+            ).Returns(specialAbilities);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name))
+                .Returns(baseNames);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            Assert.That(gear, Is.Not.EqualTo(template));
+            Assert.That(gear.Name, Is.EqualTo(template.Name));
+            Assert.That(gear.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.SupersetOf(traits));
+            Assert.That(gear.Magic.Bonus, Is.EqualTo(selection.Amount));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+            Assert.That(gear, Is.InstanceOf<Weapon>());
+
+            var weapon = gear as Weapon;
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
+            Assert.That(weapon.Quantity, Is.EqualTo(mundaneWeapon.Quantity));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo(mundaneWeapon.SecondaryCriticalMultiplier));
+            Assert.That(weapon.SecondaryDamages, Is.EqualTo(mundaneWeapon.SecondaryDamages));
+            Assert.That(weapon.SecondaryCriticalDamages, Is.EqualTo(mundaneWeapon.SecondaryCriticalDamages));
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+            Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(selection.Amount));
         }
 
         [Test]
-        public void GetSpecificWeapon_WithAbilities()
+        public void GetSpecificWeapon_WithAbilitiesWithDamage()
         {
-            Assert.Fail("not yet written");
+            template.Name = WeaponConstants.HolyAvenger;
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility(),
+                new SpecialAbility(),
+            };
+
+            specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier] = new List<Damage>();
+            specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier].Add(new Damage { Roll = "my ability crit roll", Type = "my ability crit damage type" });
+            specialAbilities[1].Damages.Add(new Damage { Roll = "my ability roll", Type = "my ability damage type" });
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(
+                It.Is<IEnumerable<SpecialAbility>>(aa =>
+                    aa.First().Name == "ability 1"
+                    && aa.Last().Name == "ability 2")
+                )
+            ).Returns(specialAbilities);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name))
+                .Returns(baseNames);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            Assert.That(gear, Is.Not.EqualTo(template));
+            Assert.That(gear.Name, Is.EqualTo(template.Name));
+            Assert.That(gear.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.SupersetOf(traits));
+            Assert.That(gear.Magic.Bonus, Is.EqualTo(selection.Amount));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+            Assert.That(gear, Is.InstanceOf<Weapon>());
+
+            var weapon = gear as Weapon;
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damages, Is.SupersetOf(mundaneWeapon.Damages)
+                .And.SupersetOf(specialAbilities[1].Damages)
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages)
+                .And.SupersetOf(specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier])
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
+            Assert.That(weapon.Quantity, Is.EqualTo(mundaneWeapon.Quantity));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.Empty);
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
         }
 
         [Test]
-        public void GetSpecificWeapon_DoubleWeapon_WithAbilities()
+        public void GetSpecificWeapon_DoubleWeapon_WithAbilitiesWithDamage()
         {
-            Assert.Fail("not yet written");
+            mundaneWeapon.SecondaryCriticalDamages.Add(new Damage { Roll = "my secondary crit roll", Type = "my secondary crit damage type" });
+            mundaneWeapon.SecondaryDamages.Add(new Damage { Roll = "my secondary roll", Type = "my secondary damage type" });
+            mundaneWeapon.SecondaryCriticalMultiplier = "secondary crit";
+
+            template.Name = WeaponConstants.ShiftersSorrow;
+
+            var attributes = new[] { "attribute 1", AttributeConstants.DoubleWeapon, "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(attributes);
+
+            var traits = new[] { "trait 1", "trait 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPETraits, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(traits);
+
+            var specialAbilityNames = new[] { "ability 1", "ability 2" };
+            tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(tableName, template.Name)).Returns(specialAbilityNames);
+
+            var specialAbilities = new[]
+            {
+                new SpecialAbility(),
+                new SpecialAbility()
+            };
+
+            specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier] = new List<Damage>();
+            specialAbilities[1].CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier] = new List<Damage>();
+            specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier].Add(new Damage { Roll = "my ability crit roll", Type = "my ability crit damage type" });
+            specialAbilities[1].CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier].Add(new Damage { Roll = "my 2nd ability crit roll", Type = "my 2nd ability crit damage type" });
+            specialAbilities[1].Damages.Add(new Damage { Roll = "my ability roll", Type = "my ability damage type" });
+
+            mockSpecialAbilitiesGenerator.Setup(s => s.GenerateFor(
+                It.Is<IEnumerable<SpecialAbility>>(aa =>
+                    aa.First().Name == "ability 1"
+                    && aa.Last().Name == "ability 2")
+                )
+            ).Returns(specialAbilities);
+
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name))
+                .Returns(baseNames);
+
+            var gear = specificGearGenerator.GenerateFrom(template);
+            Assert.That(gear, Is.Not.EqualTo(template));
+            Assert.That(gear.Name, Is.EqualTo(template.Name));
+            Assert.That(gear.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(gear.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(gear.Attributes, Is.EqualTo(attributes));
+            Assert.That(gear.Traits, Is.SupersetOf(traits));
+            Assert.That(gear.Magic.Bonus, Is.EqualTo(selection.Amount));
+            Assert.That(gear.Magic.SpecialAbilities, Is.EqualTo(specialAbilities));
+            Assert.That(gear, Is.InstanceOf<Weapon>());
+
+            var weapon = gear as Weapon;
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
+            Assert.That(weapon.Damages, Is.SupersetOf(mundaneWeapon.Damages)
+                .And.SupersetOf(specialAbilities[1].Damages)
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages)
+                .And.SupersetOf(specialAbilities[1].CriticalDamages[mundaneWeapon.CriticalMultiplier])
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
+            Assert.That(weapon.Quantity, Is.EqualTo(mundaneWeapon.Quantity));
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo(mundaneWeapon.SecondaryCriticalMultiplier));
+            Assert.That(weapon.SecondaryDamages, Is.EqualTo(mundaneWeapon.SecondaryDamages));
+            Assert.That(weapon.SecondaryCriticalDamages, Is.EqualTo(mundaneWeapon.SecondaryCriticalDamages));
+            Assert.That(weapon.SecondaryDamages, Is.SupersetOf(mundaneWeapon.SecondaryDamages)
+                .And.SupersetOf(specialAbilities[1].Damages)
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.SecondaryCriticalDamages, Is.EqualTo(mundaneWeapon.SecondaryCriticalDamages)
+                .And.SupersetOf(specialAbilities[1].CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier])
+                .And.Count.EqualTo(2));
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+            Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(selection.Amount));
         }
 
         [TestCase(TraitConstants.Sizes.Colossal)]

@@ -1,17 +1,14 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical
 {
     [TestFixture]
     public class SpecialAbilityAttributeRequirementsTests : CollectionsTests
     {
-        protected override string tableName
-        {
-            get { return TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements; }
-        }
+        protected override string tableName => TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements;
 
         [TestCase(SpecialAbilityConstants.Glamered)]
         [TestCase(SpecialAbilityConstants.Fortification)]
@@ -43,18 +40,22 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.Reflecting,
             AttributeConstants.Shield)]
         [TestCase(SpecialAbilityConstants.Bane)]
+        [TestCase(SpecialAbilityConstants.Shapeshifterbane)]
         [TestCase(SpecialAbilityConstants.Distance,
             AttributeConstants.Ranged)]
         [TestCase(SpecialAbilityConstants.Disruption,
             AttributeConstants.Melee,
             AttributeConstants.DamageTypes.Bludgeoning)]
         [TestCase(SpecialAbilityConstants.Flaming)]
+        [TestCase(SpecialAbilityConstants.FlamingBurst)]
         [TestCase(SpecialAbilityConstants.Frost)]
+        [TestCase(SpecialAbilityConstants.IcyBurst)]
         [TestCase(SpecialAbilityConstants.Merciful)]
         [TestCase(SpecialAbilityConstants.Returning,
             AttributeConstants.Ranged,
             AttributeConstants.Thrown)]
         [TestCase(SpecialAbilityConstants.Shock)]
+        [TestCase(SpecialAbilityConstants.ShockingBurst)]
         [TestCase(SpecialAbilityConstants.Seeking,
             AttributeConstants.Ranged)]
         [TestCase(SpecialAbilityConstants.Thundering)]
@@ -86,9 +87,73 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical
         [TestCase(SpecialAbilityConstants.Vorpal,
             AttributeConstants.Melee,
             AttributeConstants.DamageTypes.Slashing)]
+        [TestCase(SpecialAbilityConstants.HeavyFortification)]
+        [TestCase(SpecialAbilityConstants.LightFortification)]
+        [TestCase(SpecialAbilityConstants.ModerateFortification)]
+        [TestCase(SpecialAbilityConstants.ImprovedSlick)]
+        [TestCase(SpecialAbilityConstants.ImprovedShadow)]
+        [TestCase(SpecialAbilityConstants.ImprovedSilentMoves)]
+        [TestCase(SpecialAbilityConstants.GreaterSlick)]
+        [TestCase(SpecialAbilityConstants.GreaterShadow)]
+        [TestCase(SpecialAbilityConstants.GreaterSilentMoves)]
+        [TestCase(SpecialAbilityConstants.SpellResistance13)]
+        [TestCase(SpecialAbilityConstants.SpellResistance15)]
+        [TestCase(SpecialAbilityConstants.SpellResistance17)]
+        [TestCase(SpecialAbilityConstants.SpellResistance19)]
+        [TestCase(SpecialAbilityConstants.ImprovedAcidResistance)]
+        [TestCase(SpecialAbilityConstants.ImprovedColdResistance)]
+        [TestCase(SpecialAbilityConstants.ImprovedElectricityResistance)]
+        [TestCase(SpecialAbilityConstants.ImprovedFireResistance)]
+        [TestCase(SpecialAbilityConstants.ImprovedSonicResistance)]
+        [TestCase(SpecialAbilityConstants.GreaterAcidResistance)]
+        [TestCase(SpecialAbilityConstants.GreaterColdResistance)]
+        [TestCase(SpecialAbilityConstants.GreaterElectricityResistance)]
+        [TestCase(SpecialAbilityConstants.GreaterFireResistance)]
+        [TestCase(SpecialAbilityConstants.GreaterSonicResistance)]
+        [TestCase(SpecialAbilityConstants.GhostTouchArmor)]
+        [TestCase(SpecialAbilityConstants.GhostTouchWeapon)]
+        [TestCase(SpecialAbilityConstants.Aberrationbane)]
+        [TestCase(SpecialAbilityConstants.Animalbane)]
+        [TestCase(SpecialAbilityConstants.Constructbane)]
+        [TestCase(SpecialAbilityConstants.Dragonbane)]
+        [TestCase(SpecialAbilityConstants.Elementalbane)]
+        [TestCase(SpecialAbilityConstants.Feybane)]
+        [TestCase(SpecialAbilityConstants.Giantbane)]
+        [TestCase(SpecialAbilityConstants.AquaticHumanoidbane)]
+        [TestCase(SpecialAbilityConstants.Elfbane)]
+        [TestCase(SpecialAbilityConstants.Humanbane)]
+        [TestCase(SpecialAbilityConstants.Dwarfbane)]
+        [TestCase(SpecialAbilityConstants.Gnomebane)]
+        [TestCase(SpecialAbilityConstants.Gnollbane)]
+        [TestCase(SpecialAbilityConstants.Halflingbane)]
+        [TestCase(SpecialAbilityConstants.AirOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.ChaoticOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.EarthOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.EvilOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.FireOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.GoodOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.LawfulOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.WaterOutsiderbane)]
+        [TestCase(SpecialAbilityConstants.MonstrousHumanoidbane)]
+        [TestCase(SpecialAbilityConstants.ReptilianHumanoidbane)]
+        [TestCase(SpecialAbilityConstants.MagicalBeastbane)]
+        [TestCase(SpecialAbilityConstants.Oozebane)]
+        [TestCase(SpecialAbilityConstants.Undeadbane)]
+        [TestCase(SpecialAbilityConstants.Verminbane)]
+        [TestCase(SpecialAbilityConstants.Goblinoidbane)]
+        [TestCase(SpecialAbilityConstants.Orcbane)]
+        [TestCase(SpecialAbilityConstants.Plantbane)]
+        [TestCase(SpecialAbilityConstants.DESIGNATEDFOEbane)]
         public void SpecialAbilityRequirements(string name, params string[] attributes)
         {
             base.Collections(name, attributes);
+        }
+
+        [Test]
+        public void AllAbilitiesPresentInTable()
+        {
+            var abilities = SpecialAbilityConstants.GetAllAbilities(true);
+            AssertCollection(table.Keys, abilities);
         }
     }
 }

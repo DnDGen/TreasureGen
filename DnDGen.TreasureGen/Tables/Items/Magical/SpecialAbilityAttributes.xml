@@ -43,6 +43,12 @@
         <entry>Bane</entry>
         <entry>0</entry>
     </collection>
+  <collection>
+    <name>Shapeshifterbane</name>
+    <entry>1</entry>
+    <entry>Bane</entry>
+    <entry>0</entry>
+  </collection>
     <collection>
         <name>Animalbane</name>
         <entry>1</entry>

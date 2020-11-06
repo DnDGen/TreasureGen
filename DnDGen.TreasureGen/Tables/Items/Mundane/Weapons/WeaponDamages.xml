@@ -1499,6 +1499,13 @@
     <entry>2d6#</entry>
   </collection>
   <collection>
+    <name>Shapeshifterbane</name>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+    <entry>2d6#</entry>
+  </collection>
+  <collection>
     <name>Icy burst</name>
     <entry>1d6#Cold</entry>
     <entry>1d6#Cold,1d10#Cold</entry>
