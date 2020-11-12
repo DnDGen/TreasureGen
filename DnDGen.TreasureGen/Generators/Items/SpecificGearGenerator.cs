@@ -146,26 +146,62 @@ namespace DnDGen.TreasureGen.Generators.Items
             {
                 if (specialAbility.Damages.Any())
                 {
-                    //TODO: If damage has no type, set to weapon's damage type
-                    throw new NotImplementedException("Set empty damage type to weapon");
+                    var damages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                    var damageType = weapon.Damages[0].Type;
 
-                    weapon.Damages.AddRange(specialAbility.Damages);
+                    foreach (var damage in damages)
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    weapon.Damages.AddRange(damages);
 
                     if (weapon.SecondaryHasAbilities)
                     {
-                        weapon.SecondaryDamages.AddRange(specialAbility.Damages);
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                        var secondaryDamageType = weapon.SecondaryDamages[0].Type;
+
+                        foreach (var damage in secondaryDamages)
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = secondaryDamageType;
+                            }
+                        }
+
+                        weapon.SecondaryDamages.AddRange(secondaryDamages);
                     }
                 }
 
                 if (specialAbility.CriticalDamages.Any())
                 {
-                    //TODO: If damage has no type, set to weapon's damage type
-                    throw new NotImplementedException("Set empty damage type to weapon");
+                    var damageType = weapon.CriticalDamages[0].Type;
+                    foreach (var damage in specialAbility.CriticalDamages[weapon.CriticalMultiplier])
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
 
                     weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
 
                     if (weapon.SecondaryHasAbilities)
                     {
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                        var secondaryDamageType = weapon.SecondaryCriticalDamages[0].Type;
+
+                        foreach (var damage in specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier])
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = secondaryDamageType;
+                            }
+                        }
+
                         weapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier]);
                     }
                 }

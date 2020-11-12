@@ -37,6 +37,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
                     {
                         Roll = sizeDamageData[DataIndexConstants.Weapon.DamageData.RollIndex],
                         Type = sizeDamageData[DataIndexConstants.Weapon.DamageData.TypeIndex],
+                        Condition = sizeDamageData[DataIndexConstants.Weapon.DamageData.ConditionIndex],
                     });
                 }
 

@@ -1,6 +1,7 @@
 ﻿using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Selectors.Helpers
 {
@@ -10,12 +11,13 @@ namespace DnDGen.TreasureGen.Selectors.Helpers
             : base(WeaponSelection.DamageDivider)
         { }
 
-        public string[] BuildData(string roll, string type)
+        public string[] BuildData(string roll, string type, string condition)
         {
             var data = DataIndexConstants.Weapon.DamageData.InitializeData();
 
             data[DataIndexConstants.Weapon.DamageData.RollIndex] = roll;
             data[DataIndexConstants.Weapon.DamageData.TypeIndex] = type;
+            data[DataIndexConstants.Weapon.DamageData.ConditionIndex] = condition;
 
             return data;
         }
@@ -51,10 +53,12 @@ namespace DnDGen.TreasureGen.Selectors.Helpers
         public string BuildEntries(params string[] data)
         {
             var entries = new List<string>();
+            var init = DataIndexConstants.Weapon.DamageData.InitializeData();
 
-            for (var i = 0; i < data.Length; i += 2)
+            for (var i = 0; i < data.Length; i += init.Length)
             {
-                var entry = BuildEntry(data[i], data[i + 1]);
+                var subdata = data.Skip(i).Take(init.Length).ToArray();
+                var entry = BuildEntry(subdata);
                 entries.Add(entry);
             }
 

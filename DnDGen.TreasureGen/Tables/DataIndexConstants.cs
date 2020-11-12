@@ -31,10 +31,11 @@
             {
                 public const int RollIndex = 0;
                 public const int TypeIndex = 1;
+                public const int ConditionIndex = 2;
 
                 public static string[] InitializeData()
                 {
-                    return DataIndexConstants.InitializeData(TypeIndex);
+                    return DataIndexConstants.InitializeData(ConditionIndex);
                 }
             }
         }

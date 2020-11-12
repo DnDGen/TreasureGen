@@ -234,8 +234,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(WeaponConstants.PincerStaff,
             "1d6#Bludgeoning", "1d8#Bludgeoning", "1d10#Bludgeoning", "2d8#Bludgeoning", "3d8#Bludgeoning", "4d8#Bludgeoning", "6d8#Bludgeoning",
             "2d6#Bludgeoning", "2d8#Bludgeoning", "2d10#Bludgeoning", "4d8#Bludgeoning", "6d8#Bludgeoning", "8d8#Bludgeoning", "12d8#Bludgeoning")]
-        public void WeaponDamages(string weapon, params string[] damages)
+        public void WeaponDamages(string weapon, params string[] damagesData)
         {
+            var entries = damageHelper.BuildEntries(damagesData);
+            var datas = damageHelper.ParseEntries(entries);
+            var damages = datas.Select(damageHelper.BuildEntry).ToArray();
+
             var sizes = TraitConstants.Sizes.All();
             Assert.That(damages, Has.Length.EqualTo(sizes.Count() * 2)
                 .And.All.Not.Empty);
@@ -358,8 +362,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(SpecialAbilityConstants.WaterOutsiderbane, "2d6#", "2d6#", "2d6#", "2d6#")]
         [TestCase(SpecialAbilityConstants.Wild)]
         [TestCase(SpecialAbilityConstants.Wounding, "1#Constitution", "1#Constitution", "1#Constitution", "1#Constitution")]
-        public void SpecialAbilityDamages(string specialAbility, params string[] damages)
+        public void SpecialAbilityDamages(string specialAbility, params string[] damagesData)
         {
+            var entries = damageHelper.BuildEntries(damagesData);
+            var datas = damageHelper.ParseEntries(entries);
+            var damages = datas.Select(damageHelper.BuildEntry).ToArray();
+
             Assert.That(damages, Has.Length.EqualTo(4).Or.Empty);
 
             foreach (var damage in damages)
@@ -456,6 +464,12 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
                     Assert.That(damageData, Is.All.Length.EqualTo(1), weapon);
                 }
             }
+        }
+
+        [Test]
+        public void CriticalDamagesHaveCorrectMultiplier()
+        {
+            Assert.Fail("not yet written");
         }
     }
 }

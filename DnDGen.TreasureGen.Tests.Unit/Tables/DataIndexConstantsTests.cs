@@ -25,6 +25,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
 
         [TestCase(DataIndexConstants.Weapon.DamageData.RollIndex, 0)]
         [TestCase(DataIndexConstants.Weapon.DamageData.TypeIndex, 1)]
+        [TestCase(DataIndexConstants.Weapon.DamageData.ConditionIndex, 2)]
         public void DamageDataIndex(int constant, int value)
         {
             Assert.That(constant, Is.EqualTo(value));
@@ -34,7 +35,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         public void InitializeDamageDataArray()
         {
             var data = DataIndexConstants.Weapon.DamageData.InitializeData();
-            Assert.That(data, Has.Length.EqualTo(2).And.All.Empty);
+            Assert.That(data, Has.Length.EqualTo(3).And.All.Empty);
         }
 
         [TestCase(DataIndexConstants.Intelligence.GreaterPowersCount, 2)]

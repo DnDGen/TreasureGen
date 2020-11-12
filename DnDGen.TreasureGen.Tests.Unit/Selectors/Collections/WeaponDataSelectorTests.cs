@@ -35,20 +35,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
 
             var damages = new string[14];
-            damages[0] = damageHelper.BuildEntry("almost nothing", "emotional");
-            damages[1] = damageHelper.BuildEntry("a little", "emotional");
-            damages[2] = damageHelper.BuildEntry("a normal amount", "emotional");
-            damages[3] = damageHelper.BuildEntry("quite a bit", "emotional");
-            damages[4] = damageHelper.BuildEntry("a ton", "emotional");
-            damages[5] = damageHelper.BuildEntry("way too much", "emotional");
-            damages[6] = damageHelper.BuildEntry("DAYUM", "emotional");
-            damages[7] = damageHelper.BuildEntry("almost nothing but more", "emotional");
-            damages[8] = damageHelper.BuildEntry("a little but more", "emotional");
-            damages[9] = damageHelper.BuildEntry("a normal amount but more", "emotional");
-            damages[10] = damageHelper.BuildEntry("quite a bit but more", "emotional");
-            damages[11] = damageHelper.BuildEntry("a ton but more", "emotional");
-            damages[12] = damageHelper.BuildEntry("way too much but more", "emotional");
-            damages[13] = damageHelper.BuildEntry("DAYUM but more", "emotional");
+            damages[0] = damageHelper.BuildEntry("almost nothing", "emotional", string.Empty);
+            damages[1] = damageHelper.BuildEntry("a little", "emotional", string.Empty);
+            damages[2] = damageHelper.BuildEntry("a normal amount", "emotional", string.Empty);
+            damages[3] = damageHelper.BuildEntry("quite a bit", "emotional", string.Empty);
+            damages[4] = damageHelper.BuildEntry("a ton", "emotional", string.Empty);
+            damages[5] = damageHelper.BuildEntry("way too much", "emotional", string.Empty);
+            damages[6] = damageHelper.BuildEntry("DAYUM", "emotional", string.Empty);
+            damages[7] = damageHelper.BuildEntry("almost nothing but more", "emotional", string.Empty);
+            damages[8] = damageHelper.BuildEntry("a little but more", "emotional", string.Empty);
+            damages[9] = damageHelper.BuildEntry("a normal amount but more", "emotional", string.Empty);
+            damages[10] = damageHelper.BuildEntry("quite a bit but more", "emotional", string.Empty);
+            damages[11] = damageHelper.BuildEntry("a ton but more", "emotional", string.Empty);
+            damages[12] = damageHelper.BuildEntry("way too much but more", "emotional", string.Empty);
+            damages[13] = damageHelper.BuildEntry("DAYUM but more", "emotional", string.Empty);
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "weapon")).Returns(damages);
 
@@ -101,20 +101,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponData, "weapon")).Returns(data);
 
             var damages = new string[14];
-            damages[0] = damageHelper.BuildEntries("almost nothing", "emotional", "sort of nothing", "spiritual");
-            damages[1] = damageHelper.BuildEntries("a little", "emotional", "a bit", "spiritual");
-            damages[2] = damageHelper.BuildEntries("a normal amount", "emotional", "a standard amount", "spiritual");
-            damages[3] = damageHelper.BuildEntries("quite a bit", "emotional", "quite a lot", "spiritual");
-            damages[4] = damageHelper.BuildEntries("a ton", "emotional", "a truckload", "spiritual");
-            damages[5] = damageHelper.BuildEntries("way too much", "emotional", "far too much", "spiritual");
-            damages[6] = damageHelper.BuildEntries("DAYUM", "emotional", "OHLAWDITCOMIN'", "spiritual");
-            damages[7] = damageHelper.BuildEntries("almost nothing but more", "emotional", "sort of nothing but more", "spiritual");
-            damages[8] = damageHelper.BuildEntries("a little but more", "emotional", "a bit but more", "spiritual");
-            damages[9] = damageHelper.BuildEntries("a normal amount but more", "emotional", "a standard amount but more", "spiritual");
-            damages[10] = damageHelper.BuildEntries("quite a bit but more", "emotional", "quite a lot but more", "spiritual");
-            damages[11] = damageHelper.BuildEntries("a ton but more", "emotional", "a truckload but more", "spiritual");
-            damages[12] = damageHelper.BuildEntries("way too much but more", "emotional", "far too much but more", "spiritual");
-            damages[13] = damageHelper.BuildEntries("DAYUM but more", "emotional", "OHLAWDITCOMIN' but more", "spiritual");
+            damages[0] = damageHelper.BuildEntries("almost nothing", "emotional", string.Empty, "sort of nothing", "spiritual", string.Empty);
+            damages[1] = damageHelper.BuildEntries("a little", "emotional", string.Empty, "a bit", "spiritual", string.Empty);
+            damages[2] = damageHelper.BuildEntries("a normal amount", "emotional", string.Empty, "a standard amount", "spiritual", string.Empty);
+            damages[3] = damageHelper.BuildEntries("quite a bit", "emotional", string.Empty, "quite a lot", "spiritual", string.Empty);
+            damages[4] = damageHelper.BuildEntries("a ton", "emotional", string.Empty, "a truckload", "spiritual", string.Empty);
+            damages[5] = damageHelper.BuildEntries("way too much", "emotional", string.Empty, "far too much", "spiritual", string.Empty);
+            damages[6] = damageHelper.BuildEntries("DAYUM", "emotional", string.Empty, "OHLAWDITCOMIN'", "spiritual", string.Empty);
+            damages[7] = damageHelper.BuildEntries("almost nothing but more", "emotional", string.Empty, "sort of nothing but more", "spiritual", string.Empty);
+            damages[8] = damageHelper.BuildEntries("a little but more", "emotional", string.Empty, "a bit but more", "spiritual", string.Empty);
+            damages[9] = damageHelper.BuildEntries("a normal amount but more", "emotional", string.Empty, "a standard amount but more", "spiritual", string.Empty);
+            damages[10] = damageHelper.BuildEntries("quite a bit but more", "emotional", string.Empty, "quite a lot but more", "spiritual", string.Empty);
+            damages[11] = damageHelper.BuildEntries("a ton but more", "emotional", string.Empty, "a truckload but more", "spiritual", string.Empty);
+            damages[12] = damageHelper.BuildEntries("way too much but more", "emotional", string.Empty, "far too much but more", "spiritual", string.Empty);
+            damages[13] = damageHelper.BuildEntries("DAYUM but more", "emotional", string.Empty, "OHLAWDITCOMIN' but more", "spiritual", string.Empty);
 
             mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "weapon")).Returns(damages);
 

@@ -18,17 +18,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Helpers
         [Test]
         public void BuildDataIntoArray()
         {
-            var data = helper.BuildData("my roll", "my damage type");
+            var data = helper.BuildData("my roll", "my damage type", "my condition");
             Assert.That(data[DataIndexConstants.Weapon.DamageData.RollIndex], Is.EqualTo("my roll"));
             Assert.That(data[DataIndexConstants.Weapon.DamageData.TypeIndex], Is.EqualTo("my damage type"));
+            Assert.That(data[DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.EqualTo("my condition"));
+            Assert.That(data, Has.Length.EqualTo(3));
         }
 
         [Test]
-        public void BuildDataIntoArray_NoDamageType()
+        public void BuildDataIntoArray_NoOptionalValues()
         {
-            var data = helper.BuildData("my roll", string.Empty);
+            var data = helper.BuildData("my roll", string.Empty, string.Empty);
             Assert.That(data[DataIndexConstants.Weapon.DamageData.RollIndex], Is.EqualTo("my roll"));
             Assert.That(data[DataIndexConstants.Weapon.DamageData.TypeIndex], Is.Empty);
+            Assert.That(data[DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty);
+            Assert.That(data, Has.Length.EqualTo(3));
         }
 
         [Test]
@@ -42,8 +46,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Helpers
         [Test]
         public void BuildDataIntoString_MultipleDamages()
         {
-            var dataString = helper.BuildEntries("1d3", "slashing", "1d4", "acid");
-            Assert.That(dataString, Is.EqualTo("1d3#slashing,1d4#acid"));
+            var dataString = helper.BuildEntries("1d3", "slashing", "my condition", "1d4", "acid", "my other condition");
+            Assert.That(dataString, Is.EqualTo("1d3#slashing#my condition,1d4#acid#my other condition"));
         }
 
         [Test]
@@ -81,17 +85,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Helpers
             }));
         }
 
+        [TestCase("0", "")]
         [TestCase("0", "holy")]
+        [TestCase("1", "psychological")]
         [TestCase("1d4", "")]
         [TestCase("1d6", "emotional")]
         public void BuildKey_FromData(string roll, string type)
         {
-            var data = helper.ParseEntry($"{roll}#{type}");
+            var data = helper.ParseEntry($"{roll}#{type}#my condition");
             var key = helper.BuildKey("creature", data);
             Assert.That(key, Is.EqualTo($"creature{roll}{type}"));
         }
 
+        [TestCase("0", "")]
         [TestCase("0", "holy")]
+        [TestCase("1", "psychological")]
         [TestCase("1d4", "")]
         [TestCase("1d6", "emotional")]
         public void BuildKeyFromSections(string roll, string type)
@@ -102,8 +110,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Helpers
 
         [TestCase(0, false)]
         [TestCase(1, false)]
-        [TestCase(2, true)]
-        [TestCase(3, false)]
+        [TestCase(2, false)]
+        [TestCase(3, true)]
         [TestCase(4, false)]
         [TestCase(5, false)]
         [TestCase(6, false)]

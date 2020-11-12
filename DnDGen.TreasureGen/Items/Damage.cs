@@ -4,17 +4,39 @@
     {
         public string Roll { get; set; }
         public string Type { get; set; }
-        public string Description => $"{Roll} {Type}".Trim();
+        public string Description
+        {
+            get
+            {
+                var description = $"{Roll} {Type}".Trim();
+
+                if (IsConditional)
+                {
+                    description += $" ({Condition})";
+                }
+
+                return description;
+            }
+
+        }
+        public string Condition { get; set; }
+        public bool IsConditional => !string.IsNullOrEmpty(Condition);
 
         public Damage()
         {
             Roll = string.Empty;
             Type = string.Empty;
+            Condition = string.Empty;
         }
 
         public Damage Clone()
         {
-            return new Damage { Roll = this.Roll, Type = this.Type };
+            return new Damage
+            {
+                Roll = Roll,
+                Type = Type,
+                Condition = Condition
+            };
         }
     }
 }
