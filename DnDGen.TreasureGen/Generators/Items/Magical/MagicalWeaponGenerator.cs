@@ -185,7 +185,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 if (specialAbility.Damages.Any())
                 {
-                    var damages = specialAbility.Damages.Select(d => d.Clone());
+                    var damages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
                     var damageType = weapon.Damages[0].Type;
 
                     foreach (var damage in damages)
@@ -200,7 +200,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
                     if (weapon.SecondaryHasAbilities)
                     {
-                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone());
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
                         var secondaryDamageType = weapon.SecondaryDamages[0].Type;
 
                         foreach (var damage in secondaryDamages)
