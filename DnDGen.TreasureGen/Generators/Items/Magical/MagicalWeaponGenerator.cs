@@ -166,7 +166,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private Weapon GenerateRandomSpecialAbilities(Weapon weapon, string power)
         {
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon, power, weapon.Magic.SpecialAbilities.Count());
+            weapon = ApplySpecialAbilities(weapon);
 
+            return weapon;
+        }
+
+        private Weapon ApplySpecialAbilities(Weapon weapon)
+        {
             if (weapon.Magic.SpecialAbilities.Any(a => a.Name == SpecialAbilityConstants.SpellStoring))
             {
                 var shouldStoreSpell = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
@@ -264,7 +270,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             weapon = GenerateFromPrototype(weapon, allowRandomDecoration);
 
+            if (weapon.IsDoubleWeapon && weapon.IsMagical)
+            {
+                weapon.SecondaryMagicBonus = weapon.Magic.Bonus;
+                weapon.SecondaryHasAbilities = true;
+            }
+
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
+            weapon = ApplySpecialAbilities(weapon);
 
             return weapon;
         }

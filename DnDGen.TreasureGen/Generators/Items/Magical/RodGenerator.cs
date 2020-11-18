@@ -104,13 +104,86 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var weaponName = weaponBaseNames.First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, rod.Traits.ToArray());
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, rod.Traits.ToArray()) as Weapon;
 
             rod.Attributes = rod.Attributes.Union(mundaneWeapon.Attributes);
             rod.CloneInto(mundaneWeapon);
 
             if (mundaneWeapon.IsMagical)
                 mundaneWeapon.Traits.Add(TraitConstants.Masterwork);
+
+            if (mundaneWeapon.IsDoubleWeapon)
+            {
+                mundaneWeapon.SecondaryHasAbilities = true;
+                mundaneWeapon.SecondaryMagicBonus = rod.Magic.Bonus;
+            }
+
+            foreach (var specialAbility in mundaneWeapon.Magic.SpecialAbilities)
+            {
+                if (specialAbility.Damages.Any())
+                {
+                    var damages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                    var damageType = mundaneWeapon.Damages[0].Type;
+
+                    foreach (var damage in damages)
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    mundaneWeapon.Damages.AddRange(damages);
+
+                    if (mundaneWeapon.SecondaryHasAbilities)
+                    {
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                        var secondaryDamageType = mundaneWeapon.SecondaryDamages[0].Type;
+
+                        foreach (var damage in secondaryDamages)
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = secondaryDamageType;
+                            }
+                        }
+
+                        mundaneWeapon.SecondaryDamages.AddRange(secondaryDamages);
+                    }
+                }
+
+                if (specialAbility.CriticalDamages.Any())
+                {
+                    var damageType = mundaneWeapon.CriticalDamages[0].Type;
+                    foreach (var damage in specialAbility.CriticalDamages[mundaneWeapon.CriticalMultiplier])
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    mundaneWeapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[mundaneWeapon.CriticalMultiplier]);
+
+                    if (mundaneWeapon.SecondaryHasAbilities)
+                    {
+                        foreach (var damage in specialAbility.CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier])
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = damageType;
+                            }
+                        }
+
+                        mundaneWeapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier]);
+                    }
+                }
+
+                if (specialAbility.Name == SpecialAbilityConstants.Keen)
+                {
+                    mundaneWeapon.ThreatRange *= 2;
+                }
+            }
 
             return mundaneWeapon;
         }

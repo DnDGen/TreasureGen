@@ -5,6 +5,7 @@ using DnDGen.TreasureGen.Selectors.Helpers;
 using DnDGen.TreasureGen.Tables;
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Data;
 using System.Linq;
 
@@ -96,7 +97,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             "2d4#Piercing#", "2d6#Piercing#", "2d8#Piercing#", "4d6#Piercing#", "6d6#Piercing#", "8d6#Piercing#", "12d6#Piercing#")]
         [TestCase(WeaponConstants.PunchingDagger,
             "1d2#Piercing#", "1d3#Piercing#", "1d4#Piercing#", "1d6#Piercing#", "1d8#Piercing#", "2d6#Piercing#", "3d6#Piercing#",
-            "2d2#Piercing#", "2d3#Piercing#", "2d4#Piercing#", "2d6#Piercing#", "2d8#Piercing#", "4d6#Piercing#", "6d6#Piercing#")]
+            "3d2#Piercing#", "3d3#Piercing#", "3d4#Piercing#", "3d6#Piercing#", "3d8#Piercing#", "6d6#Piercing#", "9d6#Piercing#")]
         [TestCase(WeaponConstants.Falchion,
             "1d4#Slashing#", "1d6#Slashing#", "2d4#Slashing#", "2d6#Slashing#", "3d6#Slashing#", "4d6#Slashing#", "6d6#Slashing#",
             "2d4#Slashing#", "2d6#Slashing#", "4d4#Slashing#", "4d6#Slashing#", "6d6#Slashing#", "8d6#Slashing#", "12d6#Slashing#")]
@@ -242,26 +243,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         {
             foreach (var data in damagesData)
             {
-                var isValid = damageHelper.ValidateEntry(data);
+                var isValid = damageHelper.ValidateEntries(data);
                 Assert.That(isValid, Is.True, data);
             }
 
-            var parsed = damagesData.SelectMany(damageHelper.ParseEntry).ToArray();
-            var entries = damageHelper.BuildEntries(parsed);
-            var datas = damageHelper.ParseEntries(entries);
-            var damages = datas.Select(damageHelper.BuildEntry).ToArray();
-
             var sizes = TraitConstants.Sizes.All();
-            Assert.That(damages, Has.Length.EqualTo(sizes.Count() * 2)
+            Assert.That(damagesData, Has.Length.EqualTo(sizes.Count() * 2)
                 .And.All.Not.Empty);
 
-            foreach (var damage in damages)
-            {
-                var isValid = damageHelper.ValidateEntries(damage);
-                Assert.That(isValid, Is.True);
-            }
-
-            base.OrderedCollections(weapon, damages);
+            base.OrderedCollections(weapon, damagesData);
         }
 
         [TestCase(SpecialAbilityConstants.Aberrationbane,
@@ -287,10 +277,10 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             "2d6##Against Animals")]
         [TestCase(SpecialAbilityConstants.Animated)]
         [TestCase(SpecialAbilityConstants.AquaticHumanoidbane,
-            "2d6##Against Aquatic humanoids",
-            "2d6##Against Aquatic humanoids",
-            "2d6##Against Aquatic humanoids",
-            "2d6##Against Aquatic humanoids")]
+            "2d6##Against Aquatic Humanoids",
+            "2d6##Against Aquatic Humanoids",
+            "2d6##Against Aquatic Humanoids",
+            "2d6##Against Aquatic Humanoids")]
         [TestCase(SpecialAbilityConstants.ArrowCatching)]
         [TestCase(SpecialAbilityConstants.ArrowDeflection)]
         [TestCase(SpecialAbilityConstants.Axiomatic,
@@ -456,7 +446,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         [TestCase(SpecialAbilityConstants.UndeadControlling)]
         [TestCase(SpecialAbilityConstants.Unholy, "2d6##Against Good alignment", "2d6##Against Good alignment", "2d6##Against Good alignment", "2d6##Against Good alignment")]
         [TestCase(SpecialAbilityConstants.Verminbane, "2d6##Against Vermin", "2d6##Against Vermin", "2d6##Against Vermin", "2d6##Against Vermin")]
-        [TestCase(SpecialAbilityConstants.Vicious, "2d6##,1d6##To the Wielder", "2d6##,1d6##To the Wielder", "2d6##,1d6##To the Wielder", "2d6##,1d6##To the Wielder")]
+        [TestCase(SpecialAbilityConstants.Vicious, "2d6##,1d6##To the wielder", "2d6##,1d6##To the wielder", "2d6##,1d6##To the wielder", "2d6##,1d6##To the wielder")]
         [TestCase(SpecialAbilityConstants.Vorpal)]
         [TestCase(SpecialAbilityConstants.WaterOutsiderbane, "2d6##Against Water Outsiders", "2d6##Against Water Outsiders", "2d6##Against Water Outsiders", "2d6##Against Water Outsiders")]
         [TestCase(SpecialAbilityConstants.Wild)]
@@ -465,24 +455,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
         {
             foreach (var data in damagesData)
             {
-                var isValid = damageHelper.ValidateEntry(data);
+                var isValid = damageHelper.ValidateEntries(data);
                 Assert.That(isValid, Is.True, data);
             }
 
-            var parsed = damagesData.SelectMany(damageHelper.ParseEntry).ToArray();
-            var entries = damageHelper.BuildEntries(parsed);
-            var datas = damageHelper.ParseEntries(entries);
-            var damages = datas.Select(damageHelper.BuildEntry).ToArray();
+            Assert.That(damagesData, Has.Length.EqualTo(4).Or.Empty);
 
-            Assert.That(damages, Has.Length.EqualTo(4).Or.Empty);
-
-            foreach (var damage in damages)
-            {
-                var isValid = damageHelper.ValidateEntries(damage);
-                Assert.That(isValid, Is.True);
-            }
-
-            base.OrderedCollections(specialAbility, damages);
+            base.OrderedCollections(specialAbility, damagesData);
         }
 
         [Test]
@@ -497,113 +476,132 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane.Weapons
             AssertCollection(actualKeys, expectedKeys);
         }
 
-        [Test]
-        public void BludgeoningWeaponsMatchConstants()
+        public static IEnumerable Weapons => WeaponConstants.GetAllWeapons(false, false).Select(w => new TestCaseData(w));
+
+        [TestCaseSource(nameof(Weapons))]
+        public void BludgeoningWeaponsMatchConstants(string weapon)
         {
-            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var bludgeoning = WeaponConstants.GetAllBludgeoning(false, false);
+            var isBludgeoning = bludgeoning.Contains(weapon);
+            var hasBludgeoning = table[weapon].All(d => d.Contains(AttributeConstants.DamageTypes.Bludgeoning));
 
-            foreach (var weapon in weapons)
-            {
-                var data = table[weapon];
-
-                var isBludgeoning = bludgeoning.Contains(weapon);
-                var hasBludgeoning = data.All(d => d.Contains(AttributeConstants.DamageTypes.Bludgeoning));
-
-                Assert.That(hasBludgeoning, Is.EqualTo(isBludgeoning), weapon);
-            }
+            Assert.That(hasBludgeoning, Is.EqualTo(isBludgeoning), weapon);
         }
 
-        [Test]
-        public void PiercingWeaponsMatchConstants()
+        [TestCaseSource(nameof(Weapons))]
+        public void PiercingWeaponsMatchConstants(string weapon)
         {
-            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var piercing = WeaponConstants.GetAllPiercing(false, false);
+            var isPiercing = piercing.Contains(weapon);
+            var hasPiercing = table[weapon].All(d => d.Contains(AttributeConstants.DamageTypes.Piercing));
 
-            foreach (var weapon in weapons)
-            {
-                var data = table[weapon];
-
-                var isPiercing = piercing.Contains(weapon);
-                var hasPiercing = data.All(d => d.Contains(AttributeConstants.DamageTypes.Piercing));
-
-                Assert.That(hasPiercing, Is.EqualTo(isPiercing), weapon);
-            }
+            Assert.That(hasPiercing, Is.EqualTo(isPiercing), weapon);
         }
 
-        [Test]
-        public void SlashingWeaponsMatchConstants()
+        [TestCaseSource(nameof(Weapons))]
+        public void SlashingWeaponsMatchConstants(string weapon)
         {
-            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var slashing = WeaponConstants.GetAllSlashing(false, false);
+            var isSlashing = slashing.Contains(weapon);
+            var hasSlashing = table[weapon].All(d => d.Contains(AttributeConstants.DamageTypes.Slashing));
 
-            foreach (var weapon in weapons)
-            {
-                var data = table[weapon];
-
-                var isSlashing = slashing.Contains(weapon);
-                var hasSlashing = data.All(d => d.Contains(AttributeConstants.DamageTypes.Slashing));
-
-                Assert.That(hasSlashing, Is.EqualTo(isSlashing), weapon);
-            }
+            Assert.That(hasSlashing, Is.EqualTo(isSlashing), weapon);
         }
 
-        [Test]
-        public void DoubleWeaponsHaveMultipleDamages()
+        [TestCaseSource(nameof(Weapons))]
+        public void DoubleWeaponsHaveMultipleDamages(string weapon)
         {
-            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var doubleWeapons = WeaponConstants.GetAllDouble(false, false);
+            var isDouble = doubleWeapons.Contains(weapon);
+            var damageData = table[weapon].Select(d => damageHelper.ParseEntries(d));
 
-            foreach (var weapon in weapons)
+            if (isDouble)
             {
-                var isDouble = doubleWeapons.Contains(weapon);
-                var damageData = table[weapon].Select(d => damageHelper.ParseEntries(d));
-
-                if (isDouble)
-                {
-                    Assert.That(damageData, Is.All.Length.EqualTo(2), weapon);
-                }
-                else
-                {
-                    Assert.That(damageData, Is.All.Length.EqualTo(1), weapon);
-                }
+                Assert.That(damageData, Is.All.Length.EqualTo(2), weapon);
+            }
+            else
+            {
+                Assert.That(damageData, Is.All.Length.EqualTo(1), weapon);
             }
         }
 
-        [Test]
-        public void WeaponCriticalDamagesHaveCorrectMultiplier()
+        [TestCaseSource(nameof(Weapons))]
+        public void WeaponCriticalDamagesHaveCorrectMultiplier(string weapon)
         {
-            var weapons = WeaponConstants.GetAllWeapons(false, false);
             var sizes = TraitConstants.Sizes.All().ToArray();
-
-            foreach (var weapon in weapons)
+            var noDamage = new[]
             {
-                var weaponData = weaponDataSelector.Select(weapon);
-                var damageDatas = table[weapon].Select(d => damageHelper.ParseEntries(d));
+                WeaponConstants.CrossbowBolt,
+                WeaponConstants.Arrow,
+                WeaponConstants.SlingBullet,
+                WeaponConstants.Net,
+            };
 
-                foreach (var damageData in damageDatas)
+            var weaponData = weaponDataSelector.Select(weapon);
+            var damageDatas = table[weapon].Select(d => damageHelper.ParseEntries(d)).ToArray();
+
+            for (var i = 0; i < sizes.Length; i++)
+            {
+                var normal = damageDatas[i];
+                var critical = damageDatas[i + sizes.Length];
+
+                Assert.That(normal, Has.Length.EqualTo(critical.Length), weapon);
+                Assert.That(normal, Has.Length.EqualTo(1).Or.Length.EqualTo(2));
+                Assert.That(critical, Has.Length.EqualTo(1).Or.Length.EqualTo(2));
+
+                Assert.That(critical[0][DataIndexConstants.Weapon.DamageData.TypeIndex], Is.EqualTo(normal[0][DataIndexConstants.Weapon.DamageData.TypeIndex]), weapon);
+                Assert.That(normal[0][DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
+                Assert.That(critical[0][DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
+
+                var normalSections = normal[0][DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
+                var normalQuantity = Convert.ToInt32(normalSections[0]);
+                var normalDie = 1;
+                if (normalSections.Length > 1)
+                    normalDie = Convert.ToInt32(normalSections[1]);
+
+                var criticalSections = critical[0][DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
+                var criticalQuantity = Convert.ToInt32(criticalSections[0]);
+                var criticalDie = 1;
+                if (criticalSections.Length > 1)
+                    criticalDie = Convert.ToInt32(criticalSections[1]);
+
+                if (noDamage.Contains(weapon))
                 {
-                    for (var i = 0; i < sizes.Length; i++)
-                    {
-                        var normal = damageData[i];
-                        var critical = damageData[i + sizes.Length];
-
-                        Assert.That(critical[DataIndexConstants.Weapon.DamageData.TypeIndex], Is.EqualTo(normal[DataIndexConstants.Weapon.DamageData.TypeIndex]), weapon);
-                        Assert.That(normal[DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
-                        Assert.That(critical[DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
-
-                        var normalSections = normal[DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
-                        var normalQuantity = Convert.ToInt32(normalSections[0]);
-                        var normalDie = Convert.ToInt32(normalSections[1]);
-
-                        var criticalSections = critical[DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
-                        var criticalQuantity = Convert.ToInt32(criticalSections[0]);
-                        var criticalDie = Convert.ToInt32(criticalSections[1]);
-
-                        Assert.That(criticalDie, Is.EqualTo(normalDie), weapon);
-                        Assert.That(criticalQuantity, Is.EqualTo(normalQuantity * 2), weapon);
-                    }
+                    Assert.That(criticalDie, Is.EqualTo(normalDie).And.EqualTo(1), weapon);
+                    Assert.That(criticalQuantity, Is.EqualTo(normalQuantity).And.Zero, $"{weapon}: {weaponData.CriticalMultiplier}");
+                    continue;
                 }
+
+                var multiplier = Convert.ToInt32(weaponData.CriticalMultiplier.Substring(1, 1));
+
+                Assert.That(multiplier, Is.EqualTo(2).Or.EqualTo(3).Or.EqualTo(4));
+                Assert.That(criticalDie, Is.EqualTo(normalDie), weapon);
+                Assert.That(criticalQuantity, Is.EqualTo(Math.Max(normalQuantity * multiplier, 1)), $"{weapon}: {weaponData.CriticalMultiplier}");
+
+                if (normal.Length == 1)
+                    continue;
+
+                Assert.That(critical[1][DataIndexConstants.Weapon.DamageData.TypeIndex], Is.EqualTo(normal[1][DataIndexConstants.Weapon.DamageData.TypeIndex]), weapon);
+                Assert.That(normal[1][DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
+                Assert.That(critical[1][DataIndexConstants.Weapon.DamageData.ConditionIndex], Is.Empty, weapon);
+
+                var normalSecondarySections = normal[1][DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
+                var normalSecondaryQuantity = Convert.ToInt32(normalSecondarySections[0]);
+                var normalSecondaryDie = 1;
+                if (normalSecondarySections.Length > 1)
+                    normalSecondaryDie = Convert.ToInt32(normalSecondarySections[1]);
+
+                var criticalSecondarySections = critical[1][DataIndexConstants.Weapon.DamageData.RollIndex].Split('d');
+                var criticalSecondaryQuantity = Convert.ToInt32(criticalSecondarySections[0]);
+                var criticalSecondaryDie = 1;
+                if (criticalSecondarySections.Length > 1)
+                    criticalSecondaryDie = Convert.ToInt32(criticalSecondarySections[1]);
+
+                var secondaryMultiplier = Convert.ToInt32(weaponData.SecondaryCriticalMultiplier.Substring(1, 1));
+
+                Assert.That(secondaryMultiplier, Is.EqualTo(2).Or.EqualTo(3).Or.EqualTo(4));
+                Assert.That(criticalSecondaryDie, Is.EqualTo(normalSecondaryDie), weapon);
+                Assert.That(criticalSecondaryQuantity, Is.EqualTo(Math.Max(normalSecondaryQuantity * secondaryMultiplier, 1)), $"{weapon}: {weaponData.SecondaryCriticalMultiplier}");
             }
         }
     }

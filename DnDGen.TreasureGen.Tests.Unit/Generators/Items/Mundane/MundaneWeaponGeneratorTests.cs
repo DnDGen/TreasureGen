@@ -49,6 +49,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
             mockPercentileSelector.Setup(p => p.SelectFrom(expectedTableName)).Returns("weapon name");
             mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns(new[] { "size", "other size", "wrong size" });
 
             weaponSelection.CriticalMultiplier = "over 9000!!!";
             weaponSelection.SecondaryCriticalMultiplier = string.Empty;
@@ -378,10 +379,121 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         }
 
         [Test]
-        public void GenerateCustomMundaneWeaponFromWeaponTemplate()
+        public void GenerateCustomMundaneWeaponFromWeaponTemplate_WithWeaponSize()
         {
             var name = Guid.NewGuid().ToString();
             var template = itemVerifier.CreateRandomWeaponTemplate(name);
+            template.Size = "size";
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+            mockWeaponDataSelector.Setup(s => s.Select(name)).Returns(weaponSelection);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            var item = mundaneWeaponGenerator.Generate(template);
+            itemVerifier.AssertMundaneItemFromTemplate(item, template);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(item.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(item.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(item.Quantity, Is.EqualTo(template.Quantity));
+            Assert.That(item.IsMagical, Is.False);
+            Assert.That(item.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(weapon.Size, Is.EqualTo(template.Size).And.EqualTo("size"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(template.CriticalDamages.Select(d => d.Description)));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(42));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
+        }
+
+        [Test]
+        public void GenerateCustomMundaneWeaponFromWeaponTemplate_WithTraitSize()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomWeaponTemplate(name);
+            template.Traits.Add("size");
+            template.Size = string.Empty;
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+            mockWeaponDataSelector.Setup(s => s.Select(name)).Returns(weaponSelection);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            var item = mundaneWeaponGenerator.Generate(template);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(item.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(item.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(item.Quantity, Is.EqualTo(template.Quantity));
+            Assert.That(item.IsMagical, Is.False);
+            Assert.That(item.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(weapon.Size, Is.EqualTo("size"));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(template.CriticalDamages.Select(d => d.Description)));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(42));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
+        }
+
+        [Test]
+        public void GenerateCustomMundaneWeaponFromWeaponTemplate_WithSize()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomWeaponTemplate(name);
+
+            var attributes = new[] { "attribute 1", "attribute 2" };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Returns(attributes);
+
+            mockPercentileSelector.Setup(p => p.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork)).Returns(true);
+            mockWeaponDataSelector.Setup(s => s.Select(name)).Returns(weaponSelection);
+
+            var baseNames = new[] { "base name", "other base name" };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name)).Returns(baseNames);
+
+            var item = mundaneWeaponGenerator.Generate(template);
+            itemVerifier.AssertMundaneItemFromTemplate(item, template);
+            Assert.That(item.ItemType, Is.EqualTo(ItemTypeConstants.Weapon));
+            Assert.That(item.Attributes, Is.EquivalentTo(attributes));
+            Assert.That(item.Traits, Is.All.Not.EqualTo(TraitConstants.Masterwork));
+            Assert.That(item.Quantity, Is.EqualTo(template.Quantity));
+            Assert.That(item.IsMagical, Is.False);
+            Assert.That(item.BaseNames, Is.EquivalentTo(baseNames));
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Traits, Is.All.Not.EqualTo("size"));
+            Assert.That(weapon.Size, Is.EqualTo(template.Size));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(template.CriticalDamages.Select(d => d.Description)));
+            Assert.That(weapon.ThreatRange, Is.EqualTo(42));
+            Assert.That(weapon.Ammunition, Is.EqualTo("QA tears"));
+        }
+
+        [Test]
+        public void GenerateCustomMundaneWeaponFromWeaponTemplate_WithoutSize()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomWeaponTemplate(name);
+            template.Size = string.Empty;
 
             var attributes = new[] { "attribute 1", "attribute 2" };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
@@ -444,7 +556,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var weapon = item as Weapon;
             Assert.That(weapon.Traits, Is.All.Not.EqualTo("size"));
-            Assert.That(weapon.Size, Is.EqualTo("size"));
+            Assert.That(weapon.Size, Is.EqualTo(template.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo("over 9000!!!"));
             Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("sevenfold"));
             Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(template.Damages.Select(d => d.Description)));

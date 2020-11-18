@@ -56,6 +56,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         {
             var template = itemVerifier.CreateRandomWeaponTemplate(itemName);
             template.Traits.Add(size);
+            template.Size = string.Empty;
 
             var item = weaponGenerator.Generate(template);
             itemVerifier.AssertItem(item);

@@ -839,24 +839,229 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
 
-            var templateMundaneWeapon = new Weapon();
-            templateMundaneWeapon.Name = name;
-            templateMundaneWeapon.Quantity = 1337;
-            templateMundaneWeapon.Attributes = new[] { "type 1", "type 2" };
+            var random = itemVerifier.CreateRandomWeaponTemplate(name);
+            random.Quantity = 1337;
+            random.Attributes = new[] { "type 1", "type 2" };
+
+            var templateMundaneWeapon = random.MundaneClone();
             mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(templateMundaneWeapon);
 
-            var weapon = magicalWeaponGenerator.Generate(template);
-            Assert.That(weapon, Is.EqualTo(templateMundaneWeapon));
-            Assert.That(weapon.Quantity, Is.EqualTo(1337));
-            Assert.That(weapon.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
-            Assert.That(weapon.Magic.Charges, Is.EqualTo(template.Magic.Charges));
-            Assert.That(weapon.Magic.Curse, Is.EqualTo(template.Magic.Curse));
-            Assert.That(weapon.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
-            Assert.That(weapon.Magic.Intelligence.Ego, Is.Positive);
-            Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            var item = magicalWeaponGenerator.Generate(template);
+            Assert.That(item, Is.EqualTo(templateMundaneWeapon));
+            Assert.That(item.Quantity, Is.EqualTo(1337));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            Assert.That(item.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
 
             //INFO: Custom magic weapons should be masterwork
-            Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(random.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(random.CriticalMultiplier));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(
+                random.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(
+                random.CriticalDamages.Select(d => d.Description)));
+            Assert.That(weapon.Size, Is.EqualTo(random.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(random.ThreatRangeDescription));
+            Assert.That(weapon.IsDoubleWeapon, Is.False);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateCustomWeapon_WithAbilityDamages()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var random = itemVerifier.CreateRandomWeaponTemplate(name);
+            random.Quantity = 1337;
+            random.Attributes = new[] { "type 1", "type 2" };
+
+            var templateMundaneWeapon = random.MundaneClone();
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(templateMundaneWeapon);
+
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility
+                {
+                    Name = specialAbilityNames.Last(),
+                    Damages = new List<Damage> { new Damage { Roll = "some more", Type = "physical" } },
+                    CriticalDamages = new Dictionary<string, List<Damage>>
+                    {
+                        { "wrong", new List<Damage>() },
+                        { random.CriticalMultiplier, new List<Damage> { new Damage { Roll = "even more", Type = "chemical" } } },
+                    }
+                }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
+
+            var item = magicalWeaponGenerator.Generate(template);
+            Assert.That(item, Is.EqualTo(templateMundaneWeapon));
+            Assert.That(item.Quantity, Is.EqualTo(1337));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            Assert.That(item.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+            Assert.That(item, Is.InstanceOf<Weapon>());
+
+            //INFO: Custom magic weapons should be masterwork
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(random.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(random.CriticalMultiplier));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(
+                random.Damages.Select(d => d.Description)
+                .Union(abilities.SelectMany(a => a.Damages).Select(d => d.Description))));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(
+                random.CriticalDamages.Select(d => d.Description)
+                .Union(abilities.Where(a => a.CriticalDamages.Any()).SelectMany(a => a.CriticalDamages[random.CriticalMultiplier]).Select(d => d.Description))));
+            Assert.That(weapon.Size, Is.EqualTo(random.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(random.ThreatRangeDescription));
+            Assert.That(weapon.IsDoubleWeapon, Is.False);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Zero);
+            Assert.That(weapon.SecondaryHasAbilities, Is.False);
+            Assert.That(weapon.SecondaryDamages, Is.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Empty);
+        }
+
+        [Test]
+        public void GenerateCustomWeapon_DoubleWeapon()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility { Name = specialAbilityNames.Last() }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
+
+            var random = itemVerifier.CreateRandomWeaponTemplate(name);
+            random.Quantity = 1337;
+            random.Attributes = new[] { "type 1", AttributeConstants.DoubleWeapon, "type 2" };
+            random.SecondaryDamages.Add(new Damage { Roll = "a touch", Type = "secondary" });
+            random.SecondaryCriticalDamages.Add(new Damage { Roll = "a lot", Type = "secondary" });
+            random.SecondaryCriticalMultiplier = "sevenfold";
+
+            var templateMundaneWeapon = random.MundaneClone();
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(templateMundaneWeapon);
+
+            var item = magicalWeaponGenerator.Generate(template);
+            Assert.That(item, Is.EqualTo(templateMundaneWeapon));
+            Assert.That(item.Quantity, Is.EqualTo(1337));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            Assert.That(item.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+
+            //INFO: Custom magic weapons should be masterwork
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(random.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(random.CriticalMultiplier));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(
+                random.Damages.Select(d => d.Description)));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(
+                random.CriticalDamages.Select(d => d.Description)));
+            Assert.That(weapon.Size, Is.EqualTo(random.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(random.ThreatRangeDescription));
+            Assert.That(weapon.IsDoubleWeapon, Is.True);
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Positive.And.EqualTo(template.Magic.Bonus));
+            Assert.That(weapon.SecondaryDamages.Select(d => d.Description), Is.Not.Empty.And.EqualTo(
+                random.SecondaryDamages.Select(d => d.Description)));
+            Assert.That(weapon.SecondaryCriticalDamages.Select(d => d.Description), Is.Not.Empty.And.EqualTo(
+                random.SecondaryCriticalDamages.Select(d => d.Description)));
+        }
+
+        [Test]
+        public void GenerateCustomWeapon_DoubleWeapon_WithAbilityDamages()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var random = itemVerifier.CreateRandomWeaponTemplate(name);
+            random.Quantity = 1337;
+            random.Attributes = new[] { "type 1", AttributeConstants.DoubleWeapon, "type 2" };
+            random.SecondaryDamages.Add(new Damage { Roll = "a touch", Type = "secondary" });
+            random.SecondaryCriticalDamages.Add(new Damage { Roll = "a lot", Type = "secondary" });
+            random.SecondaryCriticalMultiplier = "sevenfold";
+
+            var templateMundaneWeapon = random.MundaneClone();
+            mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.Name == name), false)).Returns(templateMundaneWeapon);
+
+            var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
+            var abilities = new[]
+            {
+                new SpecialAbility { Name = specialAbilityNames.First() },
+                new SpecialAbility
+                {
+                    Name = specialAbilityNames.Last(),
+                    Damages = new List<Damage> { new Damage { Roll = "some more", Type = "physical" } },
+                    CriticalDamages = new Dictionary<string, List<Damage>>
+                    {
+                        { "wrong", new List<Damage>() },
+                        { random.CriticalMultiplier, new List<Damage> { new Damage { Roll = "even more", Type = "chemical" } } },
+                        { random.SecondaryCriticalMultiplier, new List<Damage> { new Damage { Roll = "a lot more", Type = "chemical" } } },
+                    }
+                }
+            };
+
+            mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(template.Magic.SpecialAbilities)).Returns(abilities);
+
+            var item = magicalWeaponGenerator.Generate(template);
+            Assert.That(item, Is.EqualTo(templateMundaneWeapon));
+            Assert.That(item.Quantity, Is.EqualTo(1337));
+            Assert.That(item.Magic.Bonus, Is.EqualTo(template.Magic.Bonus));
+            Assert.That(item.Magic.Charges, Is.EqualTo(template.Magic.Charges));
+            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse));
+            Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego));
+            Assert.That(item.Magic.Intelligence.Ego, Is.Positive);
+            Assert.That(item.Magic.SpecialAbilities, Is.EquivalentTo(abilities));
+
+            //INFO: Custom magic weapons should be masterwork
+            Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork));
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Attributes, Is.SupersetOf(random.Attributes));
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo(random.CriticalMultiplier));
+            Assert.That(weapon.Damages.Select(d => d.Description), Is.EqualTo(
+                random.Damages.Select(d => d.Description)
+                .Union(abilities.SelectMany(a => a.Damages).Select(d => d.Description))));
+            Assert.That(weapon.CriticalDamages.Select(d => d.Description), Is.EqualTo(
+                random.CriticalDamages.Select(d => d.Description)
+                .Union(abilities.Where(a => a.CriticalDamages.Any()).SelectMany(a => a.CriticalDamages[random.CriticalMultiplier]).Select(d => d.Description))));
+            Assert.That(weapon.Size, Is.EqualTo(random.Size));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(random.ThreatRangeDescription));
+            Assert.That(weapon.IsDoubleWeapon, Is.True);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Positive.And.EqualTo(template.Magic.Bonus));
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+            Assert.That(weapon.SecondaryDamages.Select(d => d.Description), Is.Not.Empty.And.EqualTo(
+                random.SecondaryDamages.Select(d => d.Description)
+                .Union(abilities.SelectMany(a => a.Damages).Select(d => d.Description))));
+            Assert.That(weapon.SecondaryCriticalDamages.Select(d => d.Description), Is.Not.Empty.And.EqualTo(
+                random.SecondaryCriticalDamages.Select(d => d.Description)
+                .Union(abilities.Where(a => a.CriticalDamages.Any()).SelectMany(a => a.CriticalDamages[random.SecondaryCriticalMultiplier]).Select(d => d.Description))));
         }
 
         [Test]
