@@ -160,6 +160,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                     {
                         Roll = damageEntry[DataIndexConstants.Weapon.DamageData.RollIndex],
                         Type = damageEntry[DataIndexConstants.Weapon.DamageData.TypeIndex],
+                        Condition = damageEntry[DataIndexConstants.Weapon.DamageData.ConditionIndex],
                     });
                 }
             }
@@ -184,6 +185,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                     {
                         Roll = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.RollIndex],
                         Type = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.TypeIndex],
+                        Condition = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.ConditionIndex],
                     };
 
                     ability.CriticalDamages[multiplier].Add(damage);
@@ -204,6 +206,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             foreach (var ability in availableAbilities)
             {
+                //INFO: This means it is a custom special ability
+                if (!specialAbilityDataSelector.IsSpecialAbility(ability.Name))
+                {
+                    strongestAbilities.Add(ability);
+                    continue;
+                }
+
+                var alreadyAdded = strongestAbilities.Any(a => a.BaseName == ability.BaseName && a.Power == ability.Power && a.Name == ability.Name);
+                if (alreadyAdded)
+                    continue;
+
                 var max = availableAbilities.Where(a => a.BaseName == ability.BaseName).Max(a => a.Power);
 
                 if (ability.Power == max)
@@ -247,7 +260,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 }
             }
 
-            return abilities;
+            var strongestAbilities = GetStrongestAvailableAbilities(abilities);
+            return strongestAbilities;
         }
     }
 }

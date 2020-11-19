@@ -1143,7 +1143,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specificWeapon = itemVerifier.CreateRandomWeaponTemplate(name);
             specificWeapon.ItemType = ItemTypeConstants.Weapon;
             specificWeapon.Magic.SpecialAbilities = new[] { new SpecialAbility(), new SpecialAbility() };
-            specificWeapon.Attributes = new[] { "type 1", "type 2" };
+            specificWeapon.Attributes = new[] { "type 1", AttributeConstants.Specific, "type 2" };
 
             mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name))).Returns(specificWeapon);
             mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == name))).Returns(true);
@@ -1153,6 +1153,59 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(weapon.BaseNames, Is.EquivalentTo(specificWeapon.BaseNames));
             Assert.That(weapon.Quantity, Is.EqualTo(specificWeapon.Quantity));
             Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(specificWeapon.Magic.SpecialAbilities));
+            Assert.That(weapon.Attributes, Is.EquivalentTo(specificWeapon.Attributes));
+        }
+
+        [Test]
+        public void GenerateSpecificCustomWeapon_WithSetAbilities()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var specificWeapon = itemVerifier.CreateRandomWeaponTemplate(name);
+            specificWeapon.ItemType = ItemTypeConstants.Weapon;
+            specificWeapon.Attributes = new[] { "type 1", AttributeConstants.Specific, "type 2" };
+            var specificAbilities = specificWeapon.Magic.SpecialAbilities.ToArray();
+
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name))).Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == name))).Returns(true);
+
+            var wrongAbilities = template.Magic.SpecialAbilities.Union(specificWeapon.Magic.SpecialAbilities).ToArray();
+            mockSpecialAbilitiesGenerator.Setup(g => g.GenerateFor(template.Magic.SpecialAbilities)).Returns(wrongAbilities);
+
+            var weapon = magicalWeaponGenerator.Generate(template, true);
+            Assert.That(weapon.Name, Is.EqualTo(specificWeapon.Name));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(specificWeapon.BaseNames));
+            Assert.That(weapon.Quantity, Is.EqualTo(specificWeapon.Quantity));
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(specificAbilities)
+                .And.Not.EquivalentTo(wrongAbilities));
+            Assert.That(weapon.Attributes, Is.EquivalentTo(specificWeapon.Attributes));
+        }
+
+        [Test]
+        public void GenerateSpecificCustomWeapon_WithSetAbilities_WhenGeneratedNameIsNotSpecific()
+        {
+            var name = Guid.NewGuid().ToString();
+            var template = itemVerifier.CreateRandomTemplate(name);
+
+            var specificWeapon = itemVerifier.CreateRandomWeaponTemplate("mundane name");
+            specificWeapon.ItemType = ItemTypeConstants.Weapon;
+            specificWeapon.Attributes = new[] { "type 1", AttributeConstants.Specific, "type 2" };
+            var specificAbilities = specificWeapon.Magic.SpecialAbilities.ToArray();
+
+            mockSpecificGearGenerator.Setup(g => g.GenerateFrom(It.Is<Item>(i => i.Name == name))).Returns(specificWeapon);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == name))).Returns(true);
+            mockSpecificGearGenerator.Setup(g => g.IsSpecific(It.Is<Item>(i => i.Name == "mundane name"))).Returns(false);
+
+            var wrongAbilities = template.Magic.SpecialAbilities.Union(specificWeapon.Magic.SpecialAbilities).ToArray();
+            mockSpecialAbilitiesGenerator.Setup(g => g.GenerateFor(template.Magic.SpecialAbilities)).Returns(wrongAbilities);
+
+            var weapon = magicalWeaponGenerator.Generate(template, true);
+            Assert.That(weapon.Name, Is.EqualTo(specificWeapon.Name));
+            Assert.That(weapon.BaseNames, Is.EquivalentTo(specificWeapon.BaseNames));
+            Assert.That(weapon.Quantity, Is.EqualTo(specificWeapon.Quantity));
+            Assert.That(weapon.Magic.SpecialAbilities, Is.EquivalentTo(specificAbilities)
+                .And.Not.EquivalentTo(wrongAbilities));
             Assert.That(weapon.Attributes, Is.EquivalentTo(specificWeapon.Attributes));
         }
 

@@ -168,6 +168,17 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
+        public void DamageDescription_WithDamages_WithMagicBonus_Conditional()
+        {
+            weapon.Damages.Add(new Damage { Roll = "9266d90210", Type = "emotional" });
+            weapon.Damages.Add(new Damage { Roll = "42d600", Type = "spiritual", Condition = "only sometimes" });
+            weapon.Magic.Bonus = 1337;
+            weapon.SecondaryMagicBonus = 666;
+
+            Assert.That(weapon.DamageDescription, Is.EqualTo("9266d90210+1337 emotional + 42d600 spiritual (only sometimes)"));
+        }
+
+        [Test]
         public void CriticalDamageRoll_NoDamages()
         {
             weapon.CriticalDamages.Clear();

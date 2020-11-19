@@ -270,6 +270,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             weapon = GenerateFromPrototype(weapon, allowRandomDecoration);
 
+            if (weapon.Attributes.Contains(AttributeConstants.Specific))
+            {
+                //Double rule and special abilities were already applied within the specific gear generator
+                return weapon;
+            }
+
             if (weapon.IsDoubleWeapon && weapon.IsMagical)
             {
                 weapon.SecondaryMagicBonus = weapon.Magic.Bonus;

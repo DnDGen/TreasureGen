@@ -66,7 +66,8 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             var templateName = gear.Name;
             gear.Name = replacementSelector.SelectSingle(templateName);
-            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, templateName);
+
+            gear.Magic.SpecialAbilities = GetSpecialAbilities(specificGearType, templateName, prototype.Magic.SpecialAbilities);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, specificGearType);
             gear.Attributes = collectionsSelector.SelectFrom(tableName, templateName);
@@ -215,11 +216,11 @@ namespace DnDGen.TreasureGen.Generators.Items
             return weapon;
         }
 
-        private IEnumerable<SpecialAbility> GetSpecialAbilities(string specificGearType, string name)
+        private IEnumerable<SpecialAbility> GetSpecialAbilities(string specificGearType, string name, IEnumerable<SpecialAbility> templateSpecialAbilities)
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPESpecialAbilities, specificGearType);
             var abilityNames = collectionsSelector.SelectFrom(tableName, name);
-            var abilityPrototypes = abilityNames.Select(n => new SpecialAbility { Name = n });
+            var abilityPrototypes = abilityNames.Select(n => new SpecialAbility { Name = n }).Union(templateSpecialAbilities);
             var abilities = specialAbilitiesGenerator.GenerateFor(abilityPrototypes);
 
             return abilities;

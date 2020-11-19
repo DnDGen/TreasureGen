@@ -2,6 +2,7 @@
 using DnDGen.TreasureGen.Items.Magical;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 {
@@ -908,6 +909,145 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.IsMagical = true;
             var clone = item.SmartClone();
             Assert.That(clone.IsMagical, Is.True);
+        }
+
+        [Test]
+        public void Description_MundaneItem()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 0;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+
+            Assert.That(item.Description, Is.EqualTo("my name"));
+        }
+
+        [Test]
+        public void Description_SpecificItem_Mundane()
+        {
+            item.Name = "my specific name";
+            item.Magic.Bonus = 0;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+            item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
+
+            Assert.That(item.Description, Is.EqualTo("Dragonhide my specific name"));
+        }
+
+        [Test]
+        public void Description_SpecificItem_Magical()
+        {
+            item.Name = "my specific name";
+            item.Magic.Bonus = 666;
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+                new SpecialAbility { Name = "ability 2" },
+            };
+            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+            item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
+
+            Assert.That(item.Description, Is.EqualTo("my specific name"));
+        }
+
+        [Test]
+        public void Description_MundaneItem_SpecialMaterial()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 0;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Traits.Add(TraitConstants.Markings);
+            item.Traits.Add(TraitConstants.SpecialMaterials.Adamantine);
+
+            Assert.That(item.Description, Is.EqualTo($"{TraitConstants.SpecialMaterials.Adamantine} my name"));
+        }
+
+        [Test]
+        public void Description_MundaneItem_SpecialMaterials()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 0;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Traits.Add(TraitConstants.Markings);
+            item.Traits.Add(TraitConstants.SpecialMaterials.Adamantine);
+            item.Traits.Add(TraitConstants.SpecialMaterials.ColdIron);
+
+            Assert.That(item.Description, Is.EqualTo($"{TraitConstants.SpecialMaterials.Adamantine}, {TraitConstants.SpecialMaterials.ColdIron} my name"));
+        }
+
+        [Test]
+        public void Description_MagicalItem()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+
+            Assert.That(item.Description, Is.EqualTo("+9266 my name"));
+        }
+
+        [Test]
+        public void Description_MagicalItem_SpecialMaterial()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+
+            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide my name"));
+        }
+
+        [Test]
+        public void Description_MagicalItem_SpecialMaterials()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+            item.Traits.Add(TraitConstants.SpecialMaterials.AlchemicalSilver);
+
+            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name"));
+        }
+
+        [Test]
+        public void Description_MagicItem_WithAbility()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+            };
+
+            Assert.That(item.Description, Is.EqualTo("+9266 my name of ability 1"));
+        }
+
+        [Test]
+        public void Description_MagicItem_WithAbilities()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+                new SpecialAbility { Name = "ability 2" },
+            };
+
+            Assert.That(item.Description, Is.EqualTo("+9266 my name of ability 1, ability 2"));
+        }
+
+        [Test]
+        public void Description_MagicItem_WithSpecialMaterials_AndAbilities()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+                new SpecialAbility { Name = "ability 2" },
+            };
+            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+            item.Traits.Add(TraitConstants.SpecialMaterials.AlchemicalSilver);
+
+            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name of ability 1, ability 2"));
         }
     }
 }
