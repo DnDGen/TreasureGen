@@ -22,7 +22,10 @@ namespace DnDGen.TreasureGen.Items
             {
                 var description = Name;
 
-                if (Attributes.Contains(AttributeConstants.Specific) && IsMagical)
+                var specificNames = WeaponConstants.GetAllSpecific()
+                    .Union(ArmorConstants.GetAllSpecificArmorsAndShields());
+
+                if (specificNames.Contains(Name))
                     return description;
 
                 var specialMaterials = TraitConstants.SpecialMaterials.All();
@@ -32,7 +35,7 @@ namespace DnDGen.TreasureGen.Items
                     description = $"{string.Join(", ", materialTraits)} {description}";
                 }
 
-                if (IsMagical)
+                if (Magic.Bonus > 0)
                 {
                     description = $"+{Magic.Bonus} {description}";
                 }

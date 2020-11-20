@@ -1,7 +1,9 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Items.Mundane;
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Linq;
 
 namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
@@ -921,22 +923,50 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             Assert.That(item.Description, Is.EqualTo("my name"));
         }
 
-        [Test]
-        public void Description_SpecificItem_Mundane()
+        public static IEnumerable Weapons => WeaponConstants.GetAllWeapons(false, false).Select(w => new TestCaseData(w));
+        public static IEnumerable Armors => ArmorConstants.GetAllArmorsAndShields(false).Select(a => new TestCaseData(a));
+        public static IEnumerable AlchemicalItems => AlchemicalItemConstants.GetAllAlchemicalItems().Select(i => new TestCaseData(i));
+        public static IEnumerable Potions => PotionConstants.GetAllPotions(true).Select(i => new TestCaseData(i));
+        public static IEnumerable Rings => RingConstants.GetAllRings().Select(i => new TestCaseData(i));
+        public static IEnumerable Rods => RodConstants.GetAllRods().Select(i => new TestCaseData(i));
+        public static IEnumerable Staffs => StaffConstants.GetAllStaffs().Select(i => new TestCaseData(i));
+        public static IEnumerable Tools => ToolConstants.GetAllTools().Select(i => new TestCaseData(i));
+        public static IEnumerable WondrousItems => WondrousItemConstants.GetAllWondrousItems().Select(i => new TestCaseData(i));
+
+        [TestCaseSource(nameof(Weapons))]
+        [TestCaseSource(nameof(Armors))]
+        [TestCaseSource(nameof(AlchemicalItems))]
+        [TestCaseSource(nameof(Potions))]
+        [TestCaseSource(nameof(Rings))]
+        [TestCaseSource(nameof(Rods))]
+        [TestCaseSource(nameof(Staffs))]
+        [TestCaseSource(nameof(Tools))]
+        [TestCaseSource(nameof(WondrousItems))]
+        [TestCase(ItemTypeConstants.Scroll)]
+        [TestCase("my name")]
+        public void Description_NonSpecificItem_Custom(string name)
         {
-            item.Name = "my specific name";
-            item.Magic.Bonus = 0;
-            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.Name = name;
+            item.Magic.Bonus = 9266;
+            item.Magic.SpecialAbilities = new[]
+            {
+                new SpecialAbility { Name = "ability 1" },
+                new SpecialAbility { Name = "ability 2" },
+            };
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
             item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
 
-            Assert.That(item.Description, Is.EqualTo("Dragonhide my specific name"));
+            Assert.That(item.Description, Is.EqualTo($"+9266 Dragonhide {name} of ability 1, ability 2"));
         }
 
-        [Test]
-        public void Description_SpecificItem_Magical()
+        public static IEnumerable SpecificWeapons => WeaponConstants.GetAllSpecific().Select(w => new TestCaseData(w));
+        public static IEnumerable SpecificArmors => ArmorConstants.GetAllSpecificArmorsAndShields().Select(a => new TestCaseData(a));
+
+        [TestCaseSource(nameof(SpecificWeapons))]
+        [TestCaseSource(nameof(SpecificArmors))]
+        public void Description_SpecificItem_Custom(string name)
         {
-            item.Name = "my specific name";
+            item.Name = name;
             item.Magic.Bonus = 666;
             item.Magic.SpecialAbilities = new[]
             {
@@ -946,19 +976,21 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
             item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
 
-            Assert.That(item.Description, Is.EqualTo("my specific name"));
+            Assert.That(item.Description, Is.EqualTo(name));
         }
 
-        [Test]
-        public void Description_MundaneItem_SpecialMaterial()
+        public static IEnumerable Materials => TraitConstants.SpecialMaterials.All().Select(a => new TestCaseData(a));
+
+        [TestCaseSource(nameof(Materials))]
+        public void Description_MundaneItem_SpecialMaterial(string material)
         {
             item.Name = "my name";
             item.Magic.Bonus = 0;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
             item.Traits.Add(TraitConstants.Markings);
-            item.Traits.Add(TraitConstants.SpecialMaterials.Adamantine);
+            item.Traits.Add(material);
 
-            Assert.That(item.Description, Is.EqualTo($"{TraitConstants.SpecialMaterials.Adamantine} my name"));
+            Assert.That(item.Description, Is.EqualTo($"{material} my name"));
         }
 
         [Test]
@@ -985,14 +1017,25 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void Description_MagicalItem_SpecialMaterial()
+        public void Description_MagicalItem_NoBonus()
+        {
+            item.Name = "my name";
+            item.Magic.Bonus = 0;
+            item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
+            item.IsMagical = true;
+
+            Assert.That(item.Description, Is.EqualTo("my name"));
+        }
+
+        [TestCaseSource(nameof(Materials))]
+        public void Description_MagicalItem_SpecialMaterial(string material)
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
-            item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
+            item.Traits.Add(material);
 
-            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide my name"));
+            Assert.That(item.Description, Is.EqualTo($"+9266 {material} my name"));
         }
 
         [Test]
