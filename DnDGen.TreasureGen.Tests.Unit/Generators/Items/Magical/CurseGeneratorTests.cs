@@ -241,9 +241,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -501,9 +501,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -546,9 +546,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -602,9 +602,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size).And.EqualTo(size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1034,9 +1034,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -1072,9 +1072,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1114,9 +1114,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size).And.EqualTo("my size"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1156,9 +1156,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));
@@ -1196,9 +1196,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1240,9 +1240,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size).And.EqualTo("my size"));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork)
@@ -1470,9 +1470,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var weapon = cursedItem as Weapon;
             Assert.That(weapon.Size, Is.EqualTo(mundaneWeapon.Size));
             Assert.That(weapon.CriticalMultiplier, Is.EqualTo(mundaneWeapon.CriticalMultiplier));
-            Assert.That(weapon.Damage, Is.EqualTo(mundaneWeapon.Damage));
-            Assert.That(weapon.DamageType, Is.EqualTo(mundaneWeapon.DamageType));
-            Assert.That(weapon.ThreatRange, Is.EqualTo(mundaneWeapon.ThreatRange));
+            Assert.That(weapon.Damages, Is.EqualTo(mundaneWeapon.Damages));
+            Assert.That(weapon.CriticalDamages, Is.EqualTo(mundaneWeapon.CriticalDamages));
+            Assert.That(weapon.ThreatRangeDescription, Is.EqualTo(mundaneWeapon.ThreatRangeDescription));
 
             //INFO: Because all specific cursed items are magical, they are also all masterwork
             Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork));

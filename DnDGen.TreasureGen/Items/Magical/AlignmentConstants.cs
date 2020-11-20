@@ -10,50 +10,15 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string Good = "Good";
         public const string Neutral = "Neutral";
 
-        public static string LawfulGood
-        {
-            get { return string.Format("{0} {1}", Lawful, Good); }
-        }
-
-        public static string NeutralGood
-        {
-            get { return string.Format("{0} {1}", Neutral, Good); }
-        }
-
-        public static string ChaoticGood
-        {
-            get { return string.Format("{0} {1}", Chaotic, Good); }
-        }
-
-        public static string LawfulNeutral
-        {
-            get { return string.Format("{0} {1}", Lawful, Neutral); }
-        }
-
-        public static string TrueNeutral
-        {
-            get { return string.Format("True {1}", Lawful, Neutral); }
-        }
-
-        public static string ChaoticNeutral
-        {
-            get { return string.Format("{0} {1}", Chaotic, Neutral); }
-        }
-
-        public static string LawfulEvil
-        {
-            get { return string.Format("{0} {1}", Lawful, Evil); }
-        }
-
-        public static string NeutralEvil
-        {
-            get { return string.Format("{0} {1}", Neutral, Evil); }
-        }
-
-        public static string ChaoticEvil
-        {
-            get { return string.Format("{0} {1}", Chaotic, Evil); }
-        }
+        public static string LawfulGood => $"{Lawful} {Good}";
+        public static string NeutralGood => $"{Neutral} {Good}";
+        public static string ChaoticGood => $"{Chaotic} {Good}";
+        public static string LawfulNeutral => $"{Lawful} {Neutral}";
+        public static string TrueNeutral => $"True {Neutral}";
+        public static string ChaoticNeutral => $"{Chaotic} {Neutral}";
+        public static string LawfulEvil => $"{Lawful} {Evil}";
+        public static string NeutralEvil => $"{Neutral} {Evil}";
+        public static string ChaoticEvil => $"{Chaotic} {Evil}";
 
         public static IEnumerable<string> GetAllAlignments()
         {

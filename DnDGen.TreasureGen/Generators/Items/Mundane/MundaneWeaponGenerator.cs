@@ -107,11 +107,24 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
-            weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
-            weapon.Damage = weaponSelection.DamageBySize[weapon.Size];
-            weapon.DamageType = weaponSelection.DamageType;
+            if (!weapon.Damages.Any())
+                weapon.Damages.Add(weaponSelection.DamagesBySize[weapon.Size][0]);
+
+            if (!weapon.CriticalDamages.Any())
+                weapon.CriticalDamages.Add(weaponSelection.CriticalDamagesBySize[weapon.Size][0]);
+
+            if (weapon.IsDoubleWeapon && !weapon.SecondaryDamages.Any())
+                weapon.SecondaryDamages.Add(weaponSelection.DamagesBySize[weapon.Size][1]);
+
+            if (weapon.IsDoubleWeapon && !weapon.SecondaryCriticalDamages.Any())
+                weapon.SecondaryCriticalDamages.Add(weaponSelection.CriticalDamagesBySize[weapon.Size][1]);
+
             weapon.ThreatRange = weaponSelection.ThreatRange;
             weapon.Ammunition = weaponSelection.Ammunition;
+            weapon.CriticalMultiplier = weaponSelection.CriticalMultiplier;
+
+            if (weapon.IsDoubleWeapon && string.IsNullOrEmpty(weapon.SecondaryCriticalMultiplier))
+                weapon.SecondaryCriticalMultiplier = weaponSelection.SecondaryCriticalMultiplier;
 
             return weapon;
         }
@@ -150,7 +163,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
                 return string.Empty;
 
             var compositeBonus = weaponName.Substring(compositeBonusStartIndex, 2);
-            return $"{compositeBonus} Strength bonus";
+            return $"Allows up to {compositeBonus} Strength bonus on damage";
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)

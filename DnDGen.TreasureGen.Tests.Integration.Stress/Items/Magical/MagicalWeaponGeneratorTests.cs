@@ -45,13 +45,31 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items.Magical
             var weapon = item as Weapon;
             Assert.That(weapon.BaseNames, Is.Not.Empty, item.Name);
             Assert.That(weapon.CriticalMultiplier, Is.Not.Empty, item.Name);
-            Assert.That(weapon.Damage, Is.Not.Empty, item.Name);
-            Assert.That(weapon.DamageType, Is.Not.Empty, item.Name);
-            Assert.That(weapon.DamageType, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+            Assert.That(weapon.Damages, Is.Not.Empty, item.Name);
+            Assert.That(weapon.CriticalDamages, Is.Not.Empty, item.Name);
+
+            foreach (var damage in weapon.Damages)
+            {
+                Assert.That(damage.Roll, Is.Not.Empty, item.Name);
+                Assert.That(damage.Type, Is.Not.Empty, item.Name);
+            }
+
+            Assert.That(weapon.Damages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                 .Or.Contains(AttributeConstants.DamageTypes.Piercing)
                 .Or.Contains(AttributeConstants.DamageTypes.Slashing), item.Name);
+
+            foreach (var damage in weapon.CriticalDamages)
+            {
+                Assert.That(damage.Roll, Is.Not.Empty, item.Name);
+                Assert.That(damage.Type, Is.Not.Empty, item.Name);
+            }
+
+            Assert.That(weapon.CriticalDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
+                .Or.Contains(AttributeConstants.DamageTypes.Piercing)
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), item.Name);
+
             Assert.That(weapon.Size, Is.Not.Empty, item.Name);
-            Assert.That(weapon.ThreatRange, Is.Not.Empty, item.Name);
+            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, item.Name);
         }
 
         protected override IEnumerable<string> GetItemNames()

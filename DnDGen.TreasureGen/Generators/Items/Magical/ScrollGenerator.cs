@@ -44,7 +44,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 var level = spellGenerator.GenerateLevel(power);
                 var spell = spellGenerator.Generate(spellType, level);
-                var spellWithLevel = string.Format("{0} ({1})", spell, level);
+                var spellWithLevel = $"{spell} ({level})";
                 scroll.Contents.Add(spellWithLevel);
             }
 

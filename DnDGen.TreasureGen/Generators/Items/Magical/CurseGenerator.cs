@@ -37,7 +37,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var curse = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Curses);
 
             if (curse == CurseConstants.Intermittent)
-                return string.Format("{0} ({1})", curse, GetIntermittentFunctioning());
+            {
+                var intermittent = GetIntermittentFunctioning();
+                return $"{curse} ({intermittent})";
+            }
 
             if (curse == CurseConstants.Drawback)
                 return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);

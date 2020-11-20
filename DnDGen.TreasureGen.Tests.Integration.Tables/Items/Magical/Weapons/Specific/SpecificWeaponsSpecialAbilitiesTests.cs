@@ -26,7 +26,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
         [TestCase(WeaponConstants.DaggerOfVenom)]
         [TestCase(WeaponConstants.TridentOfWarning)]
         [TestCase(WeaponConstants.AssassinsDagger)]
-        [TestCase(WeaponConstants.ShiftersSorrow)]
+        [TestCase(WeaponConstants.ShiftersSorrow, SpecialAbilityConstants.Shapeshifterbane)]
         [TestCase(WeaponConstants.TridentOfFishCommand)]
         [TestCase(WeaponConstants.FlameTongue, SpecialAbilityConstants.FlamingBurst)]
         [TestCase(WeaponConstants.LuckBlade0)]

@@ -3,712 +3,1728 @@
 <collections>
   <collection>
     <name>Arrow</name>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
   </collection>
   <collection>
     <name>Bastard sword</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>1d10#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>4d8#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>2d10#Slashing#</entry>
+    <entry>4d8#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>8d8#Slashing#</entry>
+    <entry>12d8#Slashing#</entry>
   </collection>
   <collection>
     <name>Battleaxe</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>3d4#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>9d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
+    <entry>18d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Bolas</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Bludgeoning#</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>2d2#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Club</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Composite longbow</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Composite shortbow</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>3d3#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Crossbow bolt</name>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
+    <entry>0#Piercing#</entry>
   </collection>
   <collection>
     <name>Dagger</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing or Slashing#</entry>
+    <entry>1d3#Piercing or Slashing#</entry>
+    <entry>1d4#Piercing or Slashing#</entry>
+    <entry>1d6#Piercing or Slashing#</entry>
+    <entry>1d8#Piercing or Slashing#</entry>
+    <entry>2d6#Piercing or Slashing#</entry>
+    <entry>3d6#Piercing or Slashing#</entry>
+    <entry>2d2#Piercing or Slashing#</entry>
+    <entry>2d3#Piercing or Slashing#</entry>
+    <entry>2d4#Piercing or Slashing#</entry>
+    <entry>2d6#Piercing or Slashing#</entry>
+    <entry>2d8#Piercing or Slashing#</entry>
+    <entry>4d6#Piercing or Slashing#</entry>
+    <entry>6d6#Piercing or Slashing#</entry>
   </collection>
   <collection>
     <name>Dart</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>2d2#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Dire flail</name>
-    <entry>1d4/1d4</entry>
-    <entry>1d6/1d6</entry>
-    <entry>1d8/1d8</entry>
-    <entry>2d6/2d6</entry>
-    <entry>3d6/3d6</entry>
-    <entry>4d6/4d6</entry>
-    <entry>6d6/6d6</entry>
+    <entry>1d4#Bludgeoning#,1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#,1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#,1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#,2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#,3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#,4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#,6d6#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#,2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#,2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#,2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#,4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#,6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#,8d6#Bludgeoning#</entry>
+    <entry>12d6#Bludgeoning#,12d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Dwarven urgrosh</name>
-    <entry>1d4/1d3</entry>
-    <entry>1d6/1d4</entry>
-    <entry>1d8/1d6</entry>
-    <entry>2d6/1d8</entry>
-    <entry>3d6/2d6</entry>
-    <entry>4d6/3d6</entry>
-    <entry>6d6/4d6</entry>
+    <entry>1d4#Slashing#,1d3#Piercing#</entry>
+    <entry>1d6#Slashing#,1d4#Piercing#</entry>
+    <entry>1d8#Slashing#,1d6#Piercing#</entry>
+    <entry>2d6#Slashing#,1d8#Piercing#</entry>
+    <entry>3d6#Slashing#,2d6#Piercing#</entry>
+    <entry>4d6#Slashing#,3d6#Piercing#</entry>
+    <entry>6d6#Slashing#,4d6#Piercing#</entry>
+    <entry>3d4#Slashing#,3d3#Piercing#</entry>
+    <entry>3d6#Slashing#,3d4#Piercing#</entry>
+    <entry>3d8#Slashing#,3d6#Piercing#</entry>
+    <entry>6d6#Slashing#,3d8#Piercing#</entry>
+    <entry>9d6#Slashing#,6d6#Piercing#</entry>
+    <entry>12d6#Slashing#,9d6#Piercing#</entry>
+    <entry>18d6#Slashing#,12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Dwarven waraxe</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>1d10#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>4d8#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>3d10#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>9d8#Slashing#</entry>
+    <entry>12d8#Slashing#</entry>
+    <entry>18d8#Slashing#</entry>
   </collection>
   <collection>
     <name>Falchion</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>2d4</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>4d4#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Flail</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
+    <entry>12d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Gauntlet</name>
-    <entry>1</entry>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
+    <entry>1#Bludgeoning#</entry>
+    <entry>1d2#Bludgeoning#</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2#Bludgeoning#</entry>
+    <entry>2d2#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Glaive</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>1d10#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>4d8#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>3d10#Slashing#</entry>
+    <entry>6d8#Slashing#</entry>
+    <entry>9d8#Slashing#</entry>
+    <entry>12d8#Slashing#</entry>
+    <entry>18d8#Slashing#</entry>
   </collection>
   <collection>
     <name>Gnome hooked hammer</name>
-    <entry>1d4/1d3</entry>
-    <entry>1d6/1d4</entry>
-    <entry>1d8/1d6</entry>
-    <entry>2d6/1d8</entry>
-    <entry>3d6/2d6</entry>
-    <entry>4d6/3d6</entry>
-    <entry>6d6/4d6</entry>
+    <entry>1d4#Bludgeoning#,1d3#Piercing#</entry>
+    <entry>1d6#Bludgeoning#,1d4#Piercing#</entry>
+    <entry>1d8#Bludgeoning#,1d6#Piercing#</entry>
+    <entry>2d6#Bludgeoning#,1d8#Piercing#</entry>
+    <entry>3d6#Bludgeoning#,2d6#Piercing#</entry>
+    <entry>4d6#Bludgeoning#,3d6#Piercing#</entry>
+    <entry>6d6#Bludgeoning#,4d6#Piercing#</entry>
+    <entry>3d4#Bludgeoning#,4d3#Piercing#</entry>
+    <entry>3d6#Bludgeoning#,4d4#Piercing#</entry>
+    <entry>3d8#Bludgeoning#,4d6#Piercing#</entry>
+    <entry>6d6#Bludgeoning#,4d8#Piercing#</entry>
+    <entry>9d6#Bludgeoning#,8d6#Piercing#</entry>
+    <entry>12d6#Bludgeoning#,12d6#Piercing#</entry>
+    <entry>18d6#Bludgeoning#,16d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Greataxe</name>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>1d12</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
-    <entry>8d6</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>1d10#Slashing#</entry>
+    <entry>1d12#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>3d10#Slashing#</entry>
+    <entry>3d12#Slashing#</entry>
+    <entry>9d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
+    <entry>18d6#Slashing#</entry>
+    <entry>24d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Greatclub</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>1d10#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>3d8#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>2d10#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>8d8#Bludgeoning#</entry>
+    <entry>12d8#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Greatsword</name>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
-    <entry>8d6</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>1d10#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>2d10#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
+    <entry>16d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Guisarme</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>2d4</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>3d4#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>6d4#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>9d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
+    <entry>18d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Halberd</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Piercing or Slashing#</entry>
+    <entry>1d8#Piercing or Slashing#</entry>
+    <entry>1d10#Piercing or Slashing#</entry>
+    <entry>2d8#Piercing or Slashing#</entry>
+    <entry>3d8#Piercing or Slashing#</entry>
+    <entry>4d8#Piercing or Slashing#</entry>
+    <entry>6d8#Piercing or Slashing#</entry>
+    <entry>3d6#Piercing or Slashing#</entry>
+    <entry>3d8#Piercing or Slashing#</entry>
+    <entry>3d10#Piercing or Slashing#</entry>
+    <entry>6d8#Piercing or Slashing#</entry>
+    <entry>9d8#Piercing or Slashing#</entry>
+    <entry>12d8#Piercing or Slashing#</entry>
+    <entry>18d8#Piercing or Slashing#</entry>
   </collection>
   <collection>
     <name>Hand crossbow</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>2d2#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Handaxe</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>3d3#Slashing#</entry>
+    <entry>3d4#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>3d8#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>9d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Heavy crossbow</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>1d10#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>6d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>2d10#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>6d8#Piercing#</entry>
+    <entry>8d8#Piercing#</entry>
+    <entry>12d8#Piercing#</entry>
   </collection>
   <collection>
     <name>Heavy flail</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>1d10#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>3d8#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>2d10#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>8d8#Bludgeoning#</entry>
+    <entry>12d8#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Heavy mace</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
+    <entry>12d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Heavy pick</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>4d3#Piercing#</entry>
+    <entry>4d4#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>16d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Heavy repeating crossbow</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>1d10#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>6d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>2d10#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>6d8#Piercing#</entry>
+    <entry>8d8#Piercing#</entry>
+    <entry>12d8#Piercing#</entry>
   </collection>
   <collection>
     <name>Javelin</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Kama</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Kukri</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Slashing#</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>2d2#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Lance</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Light crossbow</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Light hammer</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Bludgeoning#</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>2d2#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Light mace</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Light pick</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d2#Piercing#</entry>
+    <entry>4d3#Piercing#</entry>
+    <entry>4d4#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>4d8#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Light repeating crossbow</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Longbow</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Longspear</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Longsword</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
+    <entry>12d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Morningstar</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Bludgeoning and Piercing#</entry>
+    <entry>1d6#Bludgeoning and Piercing#</entry>
+    <entry>1d8#Bludgeoning and Piercing#</entry>
+    <entry>2d6#Bludgeoning and Piercing#</entry>
+    <entry>3d6#Bludgeoning and Piercing#</entry>
+    <entry>4d6#Bludgeoning and Piercing#</entry>
+    <entry>6d6#Bludgeoning and Piercing#</entry>
+    <entry>2d4#Bludgeoning and Piercing#</entry>
+    <entry>2d6#Bludgeoning and Piercing#</entry>
+    <entry>2d8#Bludgeoning and Piercing#</entry>
+    <entry>4d6#Bludgeoning and Piercing#</entry>
+    <entry>6d6#Bludgeoning and Piercing#</entry>
+    <entry>8d6#Bludgeoning and Piercing#</entry>
+    <entry>12d6#Bludgeoning and Piercing#</entry>
   </collection>
   <collection>
     <name>Net</name>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Nunchaku</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Orc double axe</name>
-    <entry>1d4/1d4</entry>
-    <entry>1d6/1d6</entry>
-    <entry>1d8/1d8</entry>
-    <entry>2d6/2d6</entry>
-    <entry>3d6/3d6</entry>
-    <entry>4d6/4d6</entry>
-    <entry>6d6/6d6</entry>
+    <entry>1d4#Slashing#,1d4#Slashing#</entry>
+    <entry>1d6#Slashing#,1d6#Slashing#</entry>
+    <entry>1d8#Slashing#,1d8#Slashing#</entry>
+    <entry>2d6#Slashing#,2d6#Slashing#</entry>
+    <entry>3d6#Slashing#,3d6#Slashing#</entry>
+    <entry>4d6#Slashing#,4d6#Slashing#</entry>
+    <entry>6d6#Slashing#,6d6#Slashing#</entry>
+    <entry>3d4#Slashing#,3d4#Slashing#</entry>
+    <entry>3d6#Slashing#,3d6#Slashing#</entry>
+    <entry>3d8#Slashing#,3d8#Slashing#</entry>
+    <entry>6d6#Slashing#,6d6#Slashing#</entry>
+    <entry>9d6#Slashing#,9d6#Slashing#</entry>
+    <entry>12d6#Slashing#,12d6#Slashing#</entry>
+    <entry>18d6#Slashing#,18d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Pincer staff</name>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>1d10</entry>
-    <entry>2d8</entry>
-    <entry>3d8</entry>
-    <entry>4d8</entry>
-    <entry>6d8</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>1d10#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>3d8#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>2d10#Bludgeoning#</entry>
+    <entry>4d8#Bludgeoning#</entry>
+    <entry>6d8#Bludgeoning#</entry>
+    <entry>8d8#Bludgeoning#</entry>
+    <entry>12d8#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Punching dagger</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d2#Piercing#</entry>
+    <entry>3d3#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Quarterstaff</name>
-    <entry>1d3/1d3</entry>
-    <entry>1d4/1d4</entry>
-    <entry>1d6/1d6</entry>
-    <entry>1d8/1d8</entry>
-    <entry>2d6/2d6</entry>
-    <entry>3d6/3d6</entry>
-    <entry>4d6/4d6</entry>
+    <entry>1d3#Bludgeoning#,1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#,1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#,1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#,1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#,2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#,3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#,4d6#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#,2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#,2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#,2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#,2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#,4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#,6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#,8d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Ranseur</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>2d4</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>6d4#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Rapier</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Sai</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Bludgeoning#</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>2d2#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Sap</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>8d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Scimitar</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Scythe</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>2d4</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing or Slashing#</entry>
+    <entry>1d6#Piercing or Slashing#</entry>
+    <entry>2d4#Piercing or Slashing#</entry>
+    <entry>2d6#Piercing or Slashing#</entry>
+    <entry>3d6#Piercing or Slashing#</entry>
+    <entry>4d6#Piercing or Slashing#</entry>
+    <entry>6d6#Piercing or Slashing#</entry>
+    <entry>4d4#Piercing or Slashing#</entry>
+    <entry>4d6#Piercing or Slashing#</entry>
+    <entry>8d4#Piercing or Slashing#</entry>
+    <entry>8d6#Piercing or Slashing#</entry>
+    <entry>12d6#Piercing or Slashing#</entry>
+    <entry>16d6#Piercing or Slashing#</entry>
+    <entry>24d6#Piercing or Slashing#</entry>
   </collection>
   <collection>
     <name>Short sword</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Shortbow</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>3d3#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Shortspear</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Shuriken</name>
-    <entry>0</entry>
-    <entry>1</entry>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
+    <entry>0#Piercing#</entry>
+    <entry>1#Piercing#</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>1#Piercing#</entry>
+    <entry>2#Piercing#</entry>
+    <entry>2d2#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
   </collection>
   <collection>
     <name>Siangham</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Sickle</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Sling</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Bludgeoning#</entry>
+    <entry>1d3#Bludgeoning#</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>2d2#Bludgeoning#</entry>
+    <entry>2d3#Bludgeoning#</entry>
+    <entry>2d4#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>2d8#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Sling bullet</name>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
-    <entry>0</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
+    <entry>0#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Spear</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>3d4#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>3d8#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>9d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
+    <entry>18d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Spiked chain</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>2d4</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>4d4#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Spiked gauntlet</name>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
+    <entry>1d2#Piercing#</entry>
+    <entry>1d3#Piercing#</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>2d2#Piercing#</entry>
+    <entry>2d3#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Throwing axe</name>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>3d6#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+    <entry>6d6#Slashing#</entry>
+    <entry>8d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Trident</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Piercing#</entry>
+    <entry>1d6#Piercing#</entry>
+    <entry>1d8#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>3d6#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>2d4#Piercing#</entry>
+    <entry>2d6#Piercing#</entry>
+    <entry>2d8#Piercing#</entry>
+    <entry>4d6#Piercing#</entry>
+    <entry>6d6#Piercing#</entry>
+    <entry>8d6#Piercing#</entry>
+    <entry>12d6#Piercing#</entry>
   </collection>
   <collection>
     <name>Two-bladed sword</name>
-    <entry>1d4/1d4</entry>
-    <entry>1d6/1d6</entry>
-    <entry>1d8/1d8</entry>
-    <entry>2d6/2d6</entry>
-    <entry>3d6/3d6</entry>
-    <entry>4d6/4d6</entry>
-    <entry>6d6/6d6</entry>
+    <entry>1d4#Slashing#,1d4#Slashing#</entry>
+    <entry>1d6#Slashing#,1d6#Slashing#</entry>
+    <entry>1d8#Slashing#,1d8#Slashing#</entry>
+    <entry>2d6#Slashing#,2d6#Slashing#</entry>
+    <entry>3d6#Slashing#,3d6#Slashing#</entry>
+    <entry>4d6#Slashing#,4d6#Slashing#</entry>
+    <entry>6d6#Slashing#,6d6#Slashing#</entry>
+    <entry>2d4#Slashing#,2d4#Slashing#</entry>
+    <entry>2d6#Slashing#,2d6#Slashing#</entry>
+    <entry>2d8#Slashing#,2d8#Slashing#</entry>
+    <entry>4d6#Slashing#,4d6#Slashing#</entry>
+    <entry>6d6#Slashing#,6d6#Slashing#</entry>
+    <entry>8d6#Slashing#,8d6#Slashing#</entry>
+    <entry>12d6#Slashing#,12d6#Slashing#</entry>
   </collection>
   <collection>
     <name>Warhammer</name>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
-    <entry>3d6</entry>
-    <entry>4d6</entry>
-    <entry>6d6</entry>
+    <entry>1d4#Bludgeoning#</entry>
+    <entry>1d6#Bludgeoning#</entry>
+    <entry>1d8#Bludgeoning#</entry>
+    <entry>2d6#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>4d6#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>3d4#Bludgeoning#</entry>
+    <entry>3d6#Bludgeoning#</entry>
+    <entry>3d8#Bludgeoning#</entry>
+    <entry>6d6#Bludgeoning#</entry>
+    <entry>9d6#Bludgeoning#</entry>
+    <entry>12d6#Bludgeoning#</entry>
+    <entry>18d6#Bludgeoning#</entry>
   </collection>
   <collection>
     <name>Whip</name>
-    <entry>1</entry>
-    <entry>1d2</entry>
-    <entry>1d3</entry>
-    <entry>1d4</entry>
-    <entry>1d6</entry>
-    <entry>1d8</entry>
-    <entry>2d6</entry>
+    <entry>1#Slashing#</entry>
+    <entry>1d2#Slashing#</entry>
+    <entry>1d3#Slashing#</entry>
+    <entry>1d4#Slashing#</entry>
+    <entry>1d6#Slashing#</entry>
+    <entry>1d8#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2#Slashing#</entry>
+    <entry>2d2#Slashing#</entry>
+    <entry>2d3#Slashing#</entry>
+    <entry>2d4#Slashing#</entry>
+    <entry>2d6#Slashing#</entry>
+    <entry>2d8#Slashing#</entry>
+    <entry>4d6#Slashing#</entry>
+  </collection>
+  <collection>
+    <name>Aberrationbane</name>
+    <entry>2d6##Against Aberrations</entry>
+    <entry>2d6##Against Aberrations</entry>
+    <entry>2d6##Against Aberrations</entry>
+    <entry>2d6##Against Aberrations</entry>
+  </collection>
+  <collection>
+    <name>Acid resistance</name>
+  </collection>
+  <collection>
+    <name>Air-outsiderbane</name>
+    <entry>2d6##Against Air Outsiders</entry>
+    <entry>2d6##Against Air Outsiders</entry>
+    <entry>2d6##Against Air Outsiders</entry>
+    <entry>2d6##Against Air Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Anarchic</name>
+    <entry>2d6##Against Lawful alignment</entry>
+    <entry>2d6##Against Lawful alignment</entry>
+    <entry>2d6##Against Lawful alignment</entry>
+    <entry>2d6##Against Lawful alignment</entry>
+  </collection>
+  <collection>
+    <name>Animalbane</name>
+    <entry>2d6##Against Animals</entry>
+    <entry>2d6##Against Animals</entry>
+    <entry>2d6##Against Animals</entry>
+    <entry>2d6##Against Animals</entry>
+  </collection>
+  <collection>
+    <name>Animated</name>
+  </collection>
+  <collection>
+    <name>Aquatic-humanoidbane</name>
+    <entry>2d6##Against Aquatic Humanoids</entry>
+    <entry>2d6##Against Aquatic Humanoids</entry>
+    <entry>2d6##Against Aquatic Humanoids</entry>
+    <entry>2d6##Against Aquatic Humanoids</entry>
+  </collection>
+  <collection>
+    <name>Arrow catching</name>
+  </collection>
+  <collection>
+    <name>Arrow deflection</name>
+  </collection>
+  <collection>
+    <name>Axiomatic</name>
+    <entry>2d6##Against Chaotic alignment</entry>
+    <entry>2d6##Against Chaotic alignment</entry>
+    <entry>2d6##Against Chaotic alignment</entry>
+    <entry>2d6##Against Chaotic alignment</entry>
+  </collection>
+  <collection>
+    <name>Bane</name>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+  </collection>
+  <collection>
+    <name>Bashing</name>
+  </collection>
+  <collection>
+    <name>Blinding</name>
+  </collection>
+  <collection>
+    <name>Brilliant energy</name>
+  </collection>
+  <collection>
+    <name>Chaotic-outsiderbane</name>
+    <entry>2d6##Against Chaotic Outsiders</entry>
+    <entry>2d6##Against Chaotic Outsiders</entry>
+    <entry>2d6##Against Chaotic Outsiders</entry>
+    <entry>2d6##Against Chaotic Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Cold resistance</name>
+  </collection>
+  <collection>
+    <name>Constructbane</name>
+    <entry>2d6##Against Constructs</entry>
+    <entry>2d6##Against Constructs</entry>
+    <entry>2d6##Against Constructs</entry>
+    <entry>2d6##Against Constructs</entry>
+  </collection>
+  <collection>
+    <name>DESIGNATEDFOEbane</name>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+    <entry>2d6##Against DESIGNATEDFOE</entry>
+  </collection>
+  <collection>
+    <name>Dancing</name>
+  </collection>
+  <collection>
+    <name>Defending</name>
+  </collection>
+  <collection>
+    <name>Disruption</name>
+  </collection>
+  <collection>
+    <name>Distance</name>
+  </collection>
+  <collection>
+    <name>Dragonbane</name>
+    <entry>2d6##Against Dragons</entry>
+    <entry>2d6##Against Dragons</entry>
+    <entry>2d6##Against Dragons</entry>
+    <entry>2d6##Against Dragons</entry>
+  </collection>
+  <collection>
+    <name>Dwarfbane</name>
+    <entry>2d6##Against Dwarfs</entry>
+    <entry>2d6##Against Dwarfs</entry>
+    <entry>2d6##Against Dwarfs</entry>
+    <entry>2d6##Against Dwarfs</entry>
+  </collection>
+  <collection>
+    <name>Earth-outsiderbane</name>
+    <entry>2d6##Against Earth Outsiders</entry>
+    <entry>2d6##Against Earth Outsiders</entry>
+    <entry>2d6##Against Earth Outsiders</entry>
+    <entry>2d6##Against Earth Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Elementalbane</name>
+    <entry>2d6##Against Elementals</entry>
+    <entry>2d6##Against Elementals</entry>
+    <entry>2d6##Against Elementals</entry>
+    <entry>2d6##Against Elementals</entry>
+  </collection>
+  <collection>
+    <name>Elfbane</name>
+    <entry>2d6##Against Elfs</entry>
+    <entry>2d6##Against Elfs</entry>
+    <entry>2d6##Against Elfs</entry>
+    <entry>2d6##Against Elfs</entry>
+  </collection>
+  <collection>
+    <name>Etherealness</name>
+  </collection>
+  <collection>
+    <name>Evil-outsiderbane</name>
+    <entry>2d6##Against Evil Outsiders</entry>
+    <entry>2d6##Against Evil Outsiders</entry>
+    <entry>2d6##Against Evil Outsiders</entry>
+    <entry>2d6##Against Evil Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Feybane</name>
+    <entry>2d6##Against Feys</entry>
+    <entry>2d6##Against Feys</entry>
+    <entry>2d6##Against Feys</entry>
+    <entry>2d6##Against Feys</entry>
+  </collection>
+  <collection>
+    <name>Fire resistance</name>
+  </collection>
+  <collection>
+    <name>Fire-outsiderbane</name>
+    <entry>2d6##Against Fire Outsiders</entry>
+    <entry>2d6##Against Fire Outsiders</entry>
+    <entry>2d6##Against Fire Outsiders</entry>
+    <entry>2d6##Against Fire Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Flaming burst</name>
+    <entry>1d6#Fire#</entry>
+    <entry>1d6#Fire#,1d10#Fire#</entry>
+    <entry>1d6#Fire#,2d10#Fire#</entry>
+    <entry>1d6#Fire#,3d10#Fire#</entry>
+  </collection>
+  <collection>
+    <name>Flaming</name>
+    <entry>1d6#Fire#</entry>
+    <entry>1d6#Fire#</entry>
+    <entry>1d6#Fire#</entry>
+    <entry>1d6#Fire#</entry>
+  </collection>
+  <collection>
+    <name>Fortification</name>
+  </collection>
+  <collection>
+    <name>Frost</name>
+    <entry>1d6#Cold#</entry>
+    <entry>1d6#Cold#</entry>
+    <entry>1d6#Cold#</entry>
+    <entry>1d6#Cold#</entry>
+  </collection>
+  <collection>
+    <name>Ghost touch (armor)</name>
+  </collection>
+  <collection>
+    <name>Ghost touch (weapon)</name>
+  </collection>
+  <collection>
+    <name>Ghost touch</name>
+  </collection>
+  <collection>
+    <name>Giantbane</name>
+    <entry>2d6##Against Giants</entry>
+    <entry>2d6##Against Giants</entry>
+    <entry>2d6##Against Giants</entry>
+    <entry>2d6##Against Giants</entry>
+  </collection>
+  <collection>
+    <name>Glamered</name>
+  </collection>
+  <collection>
+    <name>Gnollbane</name>
+    <entry>2d6##Against Gnolls</entry>
+    <entry>2d6##Against Gnolls</entry>
+    <entry>2d6##Against Gnolls</entry>
+    <entry>2d6##Against Gnolls</entry>
+  </collection>
+  <collection>
+    <name>Gnomebane</name>
+    <entry>2d6##Against Gnomes</entry>
+    <entry>2d6##Against Gnomes</entry>
+    <entry>2d6##Against Gnomes</entry>
+    <entry>2d6##Against Gnomes</entry>
+  </collection>
+  <collection>
+    <name>Goblinoidbane</name>
+    <entry>2d6##Against Goblinoids</entry>
+    <entry>2d6##Against Goblinoids</entry>
+    <entry>2d6##Against Goblinoids</entry>
+    <entry>2d6##Against Goblinoids</entry>
+  </collection>
+  <collection>
+    <name>Good-outsiderbane</name>
+    <entry>2d6##Against Good Outsiders</entry>
+    <entry>2d6##Against Good Outsiders</entry>
+    <entry>2d6##Against Good Outsiders</entry>
+    <entry>2d6##Against Good Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Greater acid resistance</name>
+  </collection>
+  <collection>
+    <name>Greater cold resistance</name>
+  </collection>
+  <collection>
+    <name>Greater electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Greater fire resistance</name>
+  </collection>
+  <collection>
+    <name>Greater shadow</name>
+  </collection>
+  <collection>
+    <name>Greater silent moves</name>
+  </collection>
+  <collection>
+    <name>Greater slick</name>
+  </collection>
+  <collection>
+    <name>Greater sonic resistance</name>
+  </collection>
+  <collection>
+    <name>Halflingbane</name>
+    <entry>2d6##Against Halflings</entry>
+    <entry>2d6##Against Halflings</entry>
+    <entry>2d6##Against Halflings</entry>
+    <entry>2d6##Against Halflings</entry>
+  </collection>
+  <collection>
+    <name>Heavy fortification</name>
+  </collection>
+  <collection>
+    <name>Holy</name>
+    <entry>2d6##Against Evil alignment</entry>
+    <entry>2d6##Against Evil alignment</entry>
+    <entry>2d6##Against Evil alignment</entry>
+    <entry>2d6##Against Evil alignment</entry>
+  </collection>
+  <collection>
+    <name>Humanbane</name>
+    <entry>2d6##Against Humans</entry>
+    <entry>2d6##Against Humans</entry>
+    <entry>2d6##Against Humans</entry>
+    <entry>2d6##Against Humans</entry>
+  </collection>
+  <collection>
+    <name>Shapeshifterbane</name>
+    <entry>2d6##Against Shapeshifters</entry>
+    <entry>2d6##Against Shapeshifters</entry>
+    <entry>2d6##Against Shapeshifters</entry>
+    <entry>2d6##Against Shapeshifters</entry>
+  </collection>
+  <collection>
+    <name>Icy burst</name>
+    <entry>1d6#Cold#</entry>
+    <entry>1d6#Cold#,1d10#Cold#</entry>
+    <entry>1d6#Cold#,2d10#Cold#</entry>
+    <entry>1d6#Cold#,3d10#Cold#</entry>
+  </collection>
+  <collection>
+    <name>Improved acid resistance</name>
+  </collection>
+  <collection>
+    <name>Improved cold resistance</name>
+  </collection>
+  <collection>
+    <name>Improved electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Improved fire resistance</name>
+  </collection>
+  <collection>
+    <name>Improved shadow</name>
+  </collection>
+  <collection>
+    <name>Improved silent moves</name>
+  </collection>
+  <collection>
+    <name>Improved slick</name>
+  </collection>
+  <collection>
+    <name>Improved sonic resistance</name>
+  </collection>
+  <collection>
+    <name>Invulnerability</name>
+  </collection>
+  <collection>
+    <name>Keen</name>
+  </collection>
+  <collection>
+    <name>Ki focus</name>
+  </collection>
+  <collection>
+    <name>Lawful-outsiderbane</name>
+    <entry>2d6##Against Lawful Outsiders</entry>
+    <entry>2d6##Against Lawful Outsiders</entry>
+    <entry>2d6##Against Lawful Outsiders</entry>
+    <entry>2d6##Against Lawful Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Light fortification</name>
+  </collection>
+  <collection>
+    <name>Magical-beastbane</name>
+    <entry>2d6##Against Magical Beasts</entry>
+    <entry>2d6##Against Magical Beasts</entry>
+    <entry>2d6##Against Magical Beasts</entry>
+    <entry>2d6##Against Magical Beasts</entry>
+  </collection>
+  <collection>
+    <name>Merciful</name>
+    <entry>1d6##</entry>
+    <entry>1d6##</entry>
+    <entry>1d6##</entry>
+    <entry>1d6##</entry>
+  </collection>
+  <collection>
+    <name>Mighty cleaving</name>
+  </collection>
+  <collection>
+    <name>Moderate fortification</name>
+  </collection>
+  <collection>
+    <name>Monstrous-humanoidbane</name>
+    <entry>2d6##Against Monstrous Humanoids</entry>
+    <entry>2d6##Against Monstrous Humanoids</entry>
+    <entry>2d6##Against Monstrous Humanoids</entry>
+    <entry>2d6##Against Monstrous Humanoids</entry>
+  </collection>
+  <collection>
+    <name>Oozebane</name>
+    <entry>2d6##Against Oozes</entry>
+    <entry>2d6##Against Oozes</entry>
+    <entry>2d6##Against Oozes</entry>
+    <entry>2d6##Against Oozes</entry>
+  </collection>
+  <collection>
+    <name>Orcbane</name>
+    <entry>2d6##Against Orcs</entry>
+    <entry>2d6##Against Orcs</entry>
+    <entry>2d6##Against Orcs</entry>
+    <entry>2d6##Against Orcs</entry>
+  </collection>
+  <collection>
+    <name>Plantbane</name>
+    <entry>2d6##Against Plants</entry>
+    <entry>2d6##Against Plants</entry>
+    <entry>2d6##Against Plants</entry>
+    <entry>2d6##Against Plants</entry>
+  </collection>
+  <collection>
+    <name>Reflecting</name>
+  </collection>
+  <collection>
+    <name>Reptilian-humanoidbane</name>
+    <entry>2d6##Against Reptilian Humanoids</entry>
+    <entry>2d6##Against Reptilian Humanoids</entry>
+    <entry>2d6##Against Reptilian Humanoids</entry>
+    <entry>2d6##Against Reptilian Humanoids</entry>
+  </collection>
+  <collection>
+    <name>Returning</name>
+  </collection>
+  <collection>
+    <name>Seeking</name>
+  </collection>
+  <collection>
+    <name>Shadow</name>
+  </collection>
+  <collection>
+    <name>Shock</name>
+    <entry>1d6#Electricity#</entry>
+    <entry>1d6#Electricity#</entry>
+    <entry>1d6#Electricity#</entry>
+    <entry>1d6#Electricity#</entry>
+  </collection>
+  <collection>
+    <name>Shocking burst</name>
+    <entry>1d6#Electricity#</entry>
+    <entry>1d6#Electricity#,1d10#Electricity#</entry>
+    <entry>1d6#Electricity#,2d10#Electricity#</entry>
+    <entry>1d6#Electricity#,3d10#Electricity#</entry>
+  </collection>
+  <collection>
+    <name>Silent moves</name>
+  </collection>
+  <collection>
+    <name>Slick</name>
+  </collection>
+  <collection>
+    <name>Sonic resistance</name>
+  </collection>
+  <collection>
+    <name>Speed</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (13)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (15)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (17)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (19)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance</name>
+  </collection>
+  <collection>
+    <name>Spell storing</name>
+  </collection>
+  <collection>
+    <name>Throwing</name>
+  </collection>
+  <collection>
+    <name>Thundering</name>
+    <entry></entry>
+    <entry>1d8#Sonic#</entry>
+    <entry>2d8#Sonic#</entry>
+    <entry>3d8#Sonic#</entry>
+  </collection>
+  <collection>
+    <name>Undead controlling</name>
+  </collection>
+  <collection>
+    <name>Undeadbane</name>
+    <entry>2d6##Against Undead</entry>
+    <entry>2d6##Against Undead</entry>
+    <entry>2d6##Against Undead</entry>
+    <entry>2d6##Against Undead</entry>
+  </collection>
+  <collection>
+    <name>Unholy</name>
+    <entry>2d6##Against Good alignment</entry>
+    <entry>2d6##Against Good alignment</entry>
+    <entry>2d6##Against Good alignment</entry>
+    <entry>2d6##Against Good alignment</entry>
+  </collection>
+  <collection>
+    <name>Verminbane</name>
+    <entry>2d6##Against Vermin</entry>
+    <entry>2d6##Against Vermin</entry>
+    <entry>2d6##Against Vermin</entry>
+    <entry>2d6##Against Vermin</entry>
+  </collection>
+  <collection>
+    <name>Vicious</name>
+    <entry>2d6##,1d6##To the wielder</entry>
+    <entry>2d6##,1d6##To the wielder</entry>
+    <entry>2d6##,1d6##To the wielder</entry>
+    <entry>2d6##,1d6##To the wielder</entry>
+  </collection>
+  <collection>
+    <name>Vorpal</name>
+  </collection>
+  <collection>
+    <name>Water-outsiderbane</name>
+    <entry>2d6##Against Water Outsiders</entry>
+    <entry>2d6##Against Water Outsiders</entry>
+    <entry>2d6##Against Water Outsiders</entry>
+    <entry>2d6##Against Water Outsiders</entry>
+  </collection>
+  <collection>
+    <name>Wild</name>
+  </collection>
+  <collection>
+    <name>Wounding</name>
+    <entry>1#Constitution#</entry>
+    <entry>1#Constitution#</entry>
+    <entry>1#Constitution#</entry>
+    <entry>1#Constitution#</entry>
   </collection>
 </collections>

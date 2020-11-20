@@ -16,6 +16,40 @@ namespace DnDGen.TreasureGen.Items
         public int Quantity { get; set; }
         public List<string> Contents { get; set; }
 
+        public string Description
+        {
+            get
+            {
+                var description = Name;
+
+                var specificNames = WeaponConstants.GetAllSpecific()
+                    .Union(ArmorConstants.GetAllSpecificArmorsAndShields());
+
+                if (specificNames.Contains(Name))
+                    return description;
+
+                var specialMaterials = TraitConstants.SpecialMaterials.All();
+                var materialTraits = Traits.Intersect(specialMaterials);
+                if (materialTraits.Any())
+                {
+                    description = $"{string.Join(", ", materialTraits)} {description}";
+                }
+
+                if (Magic.Bonus > 0)
+                {
+                    description = $"+{Magic.Bonus} {description}";
+                }
+
+                if (Magic.SpecialAbilities.Any())
+                {
+                    var abilities = string.Join(", ", Magic.SpecialAbilities.Select(a => a.Name));
+                    description = $"{description} of {abilities}";
+                }
+
+                return description;
+            }
+        }
+
         public bool IsMagical
         {
             get

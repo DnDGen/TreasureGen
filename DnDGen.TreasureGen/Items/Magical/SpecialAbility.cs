@@ -10,12 +10,16 @@ namespace DnDGen.TreasureGen.Items.Magical
         public int Power { get; set; }
         public IEnumerable<string> AttributeRequirements { get; set; }
         public int BonusEquivalent { get; set; }
+        public List<Damage> Damages { get; set; }
+        public Dictionary<string, List<Damage>> CriticalDamages { get; set; }
 
         public SpecialAbility()
         {
             AttributeRequirements = Enumerable.Empty<string>();
             Name = string.Empty;
             BaseName = string.Empty;
+            Damages = new List<Damage>();
+            CriticalDamages = new Dictionary<string, List<Damage>>();
         }
 
         public bool RequirementsMet(Item targetItem)
@@ -52,14 +56,15 @@ namespace DnDGen.TreasureGen.Items.Magical
             else if (targetItem is Weapon)
             {
                 var weapon = targetItem as Weapon;
-                attributes = attributes.Union(new[]
-                {
-                    weapon.CriticalMultiplier,
-                    weapon.Damage,
-                    weapon.DamageType,
-                    weapon.Size,
-                    weapon.ThreatRange,
-                });
+                var damageTypes = weapon.Damages.Select(d => d.Type);
+
+                attributes = attributes
+                    .Union(damageTypes)
+                    .Union(new[]
+                    {
+                        weapon.Size,
+                        weapon.ThreatRangeDescription,
+                    });
             }
 
             return attributes;

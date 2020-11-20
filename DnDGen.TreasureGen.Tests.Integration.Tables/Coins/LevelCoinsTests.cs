@@ -1,6 +1,5 @@
 ﻿using DnDGen.Infrastructure.Mappers.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using Ninject;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -10,8 +9,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Coins
     [TestFixture]
     public class LevelCoinsTests : TableTests
     {
-        [Inject]
-        public PercentileMapper PercentileMapper { get; set; }
+        private PercentileMapper percentileMapper;
+
+        [SetUp]
+        public void Setup()
+        {
+            percentileMapper = GetNewInstanceOf<PercentileMapper>();
+        }
 
         protected override string tableName => throw new NotImplementedException();
 
@@ -21,7 +25,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Coins
             for (var level = LevelLimits.Minimum; level <= LevelLimits.Maximum; level++)
             {
                 var levelTableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXCoins, level);
-                var table = PercentileMapper.Map(levelTableName);
+                var table = percentileMapper.Map(levelTableName);
                 Assert.That(table, Is.Not.Null);
                 Assert.That(table.Keys, Is.EqualTo(Enumerable.Range(1, 100)));
             }

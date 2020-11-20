@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Rods")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Rods))]
         public void GenerateRod(string itemName, string power)
         {
             var item = RodGenerator.Generate(power, itemName);

@@ -1,11 +1,12 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DnDGen.TreasureGen.Selectors.Collections;
-using DnDGen.TreasureGen.Selectors.Percentiles;
-using DnDGen.TreasureGen.Tables;
 using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Selectors.Collections;
+using DnDGen.TreasureGen.Selectors.Helpers;
+using DnDGen.TreasureGen.Selectors.Percentiles;
+using DnDGen.TreasureGen.Tables;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -16,12 +17,15 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private readonly ICollectionSelector collectionsSelector;
         private readonly ISpecialAbilityDataSelector specialAbilityDataSelector;
         private readonly ITreasurePercentileSelector percentileSelector;
+        private readonly DamageHelper damageHelper;
 
         public SpecialAbilitiesGenerator(ICollectionSelector collectionsSelector, ITreasurePercentileSelector percentileSelector, ISpecialAbilityDataSelector specialAbilityDataSelector)
         {
             this.collectionsSelector = collectionsSelector;
             this.percentileSelector = percentileSelector;
             this.specialAbilityDataSelector = specialAbilityDataSelector;
+
+            damageHelper = new DamageHelper();
         }
 
         public IEnumerable<SpecialAbility> GenerateFor(Item targetItem, string power, int quantity)
@@ -140,6 +144,54 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ability.BonusEquivalent = abilitySelection.BonusEquivalent;
             ability.Power = abilitySelection.Power;
 
+            var damagesData = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, abilityName).ToArray();
+            if (!damagesData.Any())
+            {
+                return ability;
+            }
+
+            if (!string.IsNullOrEmpty(damagesData[0]))
+            {
+                var damageEntries = damageHelper.ParseEntries(damagesData[0]);
+
+                foreach (var damageEntry in damageEntries)
+                {
+                    ability.Damages.Add(new Damage
+                    {
+                        Roll = damageEntry[DataIndexConstants.Weapon.DamageData.RollIndex],
+                        Type = damageEntry[DataIndexConstants.Weapon.DamageData.TypeIndex],
+                        Condition = damageEntry[DataIndexConstants.Weapon.DamageData.ConditionIndex],
+                    });
+                }
+            }
+
+            if (string.IsNullOrEmpty(damagesData[1]))
+            {
+                return ability;
+            }
+
+            var multipliers = new[] { "x2", "x3", "x4" };
+
+            for (var i = 1; i < damagesData.Length; i++)
+            {
+                var multiplier = multipliers[i - 1];
+                ability.CriticalDamages[multiplier] = new List<Damage>();
+
+                var criticalDamageEntries = damageHelper.ParseEntries(damagesData[i]);
+
+                foreach (var criticalDamageEntry in criticalDamageEntries)
+                {
+                    var damage = new Damage
+                    {
+                        Roll = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.RollIndex],
+                        Type = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.TypeIndex],
+                        Condition = criticalDamageEntry[DataIndexConstants.Weapon.DamageData.ConditionIndex],
+                    };
+
+                    ability.CriticalDamages[multiplier].Add(damage);
+                }
+            }
+
             return ability;
         }
 
@@ -154,6 +206,17 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             foreach (var ability in availableAbilities)
             {
+                //INFO: This means it is a custom special ability
+                if (!specialAbilityDataSelector.IsSpecialAbility(ability.Name))
+                {
+                    strongestAbilities.Add(ability);
+                    continue;
+                }
+
+                var alreadyAdded = strongestAbilities.Any(a => a.BaseName == ability.BaseName && a.Power == ability.Power && a.Name == ability.Name);
+                if (alreadyAdded)
+                    continue;
+
                 var max = availableAbilities.Where(a => a.BaseName == ability.BaseName).Max(a => a.Power);
 
                 if (ability.Power == max)
@@ -197,7 +260,8 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                 }
             }
 
-            return abilities;
+            var strongestAbilities = GetStrongestAvailableAbilities(abilities);
+            return strongestAbilities;
         }
     }
 }

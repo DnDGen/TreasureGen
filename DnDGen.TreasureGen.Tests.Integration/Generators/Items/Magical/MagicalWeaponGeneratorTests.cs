@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Weapons")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Weapons))]
         public void GenerateWeapon(string itemName, string power)
         {
             var item = WeaponGenerator.Generate(power, itemName);
@@ -124,6 +124,66 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
 
             var weapon = item as Weapon;
             Assert.That(weapon.Ammunition, Is.EqualTo(ammunition), item.Name);
+        }
+
+        [TestCase(WeaponConstants.Quarterstaff)]
+        [TestCase(WeaponConstants.TwoBladedSword)]
+        [TestCase(WeaponConstants.OrcDoubleAxe)]
+        [TestCase(WeaponConstants.GnomeHookedHammer)]
+        [TestCase(WeaponConstants.DwarvenUrgrosh)]
+        [TestCase(WeaponConstants.DireFlail)]
+        [TestCase(WeaponConstants.ShiftersSorrow)]
+        public void GenerateMagicalDoubleWeapon(string weaponName)
+        {
+            var item = WeaponGenerator.Generate(PowerConstants.Major, weaponName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.DoubleWeapon));
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.IsDoubleWeapon, Is.True);
+            Assert.That(weapon.SecondaryCriticalDamageDescription, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalDamageRoll, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamageDescription, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamageRoll, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamages, Is.Not.Empty);
+            Assert.That(weapon.SecondaryMagicBonus, Is.Positive);
+        }
+
+        [TestCase(WeaponConstants.ShiftersSorrow)]
+        public void GenerateSpecificMagicalDoubleWeapon(string weaponName)
+        {
+            var item = WeaponGenerator.Generate(PowerConstants.Major, weaponName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.DoubleWeapon));
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.IsDoubleWeapon, Is.True);
+            Assert.That(weapon.SecondaryCriticalDamageDescription, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalDamageRoll, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty);
+            Assert.That(weapon.SecondaryCriticalMultiplier, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamageDescription, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamageRoll, Is.Not.Empty);
+            Assert.That(weapon.SecondaryDamages, Is.Not.Empty);
+            Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(1).And.EqualTo(weapon.Magic.Bonus));
+            Assert.That(weapon.SecondaryHasAbilities, Is.True);
+        }
+
+        [TestCase(WeaponConstants.FlameTongue)]
+        [TestCase(WeaponConstants.FrostBrand)]
+        public void GenerateSpecificMagicalWeaponWithExtraDamage(string weaponName)
+        {
+            var item = WeaponGenerator.Generate(PowerConstants.Major, weaponName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
+
+            var weapon = item as Weapon;
+            Assert.That(weapon.Damages, Has.Count.GreaterThan(1), weapon.DamageDescription);
+            Assert.That(weapon.CriticalDamages, Has.Count.GreaterThan(1), weapon.CriticalDamageDescription);
         }
     }
 }

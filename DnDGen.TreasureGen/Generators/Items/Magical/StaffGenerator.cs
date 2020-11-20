@@ -103,7 +103,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var weaponName = weapons.Intersect(staff.BaseNames).First();
 
             var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
-            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, staff.Traits.ToArray());
+            var mundaneWeapon = mundaneWeaponGenerator.Generate(weaponName, staff.Traits.ToArray()) as Weapon;
 
             staff.Attributes = staff.Attributes.Union(mundaneWeapon.Attributes).Except(new[] { AttributeConstants.OneTimeUse });
             staff.CloneInto(mundaneWeapon);
@@ -111,16 +111,90 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (mundaneWeapon.IsMagical)
                 mundaneWeapon.Traits.Add(TraitConstants.Masterwork);
 
+            if (mundaneWeapon.IsDoubleWeapon)
+            {
+                mundaneWeapon.SecondaryHasAbilities = true;
+                mundaneWeapon.SecondaryMagicBonus = staff.Magic.Bonus;
+            }
+
+            foreach (var specialAbility in mundaneWeapon.Magic.SpecialAbilities)
+            {
+                if (specialAbility.Damages.Any())
+                {
+                    var damages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                    var damageType = mundaneWeapon.Damages[0].Type;
+
+                    foreach (var damage in damages)
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    mundaneWeapon.Damages.AddRange(damages);
+
+                    if (mundaneWeapon.SecondaryHasAbilities)
+                    {
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                        var secondaryDamageType = mundaneWeapon.SecondaryDamages[0].Type;
+
+                        foreach (var damage in secondaryDamages)
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = secondaryDamageType;
+                            }
+                        }
+
+                        mundaneWeapon.SecondaryDamages.AddRange(secondaryDamages);
+                    }
+                }
+
+                if (specialAbility.CriticalDamages.Any())
+                {
+                    var damageType = mundaneWeapon.CriticalDamages[0].Type;
+                    foreach (var damage in specialAbility.CriticalDamages[mundaneWeapon.CriticalMultiplier])
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    mundaneWeapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[mundaneWeapon.CriticalMultiplier]);
+
+                    if (mundaneWeapon.SecondaryHasAbilities)
+                    {
+                        foreach (var damage in specialAbility.CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier])
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = damageType;
+                            }
+                        }
+
+                        mundaneWeapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[mundaneWeapon.SecondaryCriticalMultiplier]);
+                    }
+                }
+
+                if (specialAbility.Name == SpecialAbilityConstants.Keen)
+                {
+                    mundaneWeapon.ThreatRange *= 2;
+                }
+            }
+
             return mundaneWeapon;
         }
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var staff = template.Clone();
-            staff = BuildStaff(staff);
 
             staff.Magic.Intelligence = template.Magic.Intelligence.Clone();
             staff.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
+
+            staff = BuildStaff(staff);
 
             return staff.SmartClone();
         }

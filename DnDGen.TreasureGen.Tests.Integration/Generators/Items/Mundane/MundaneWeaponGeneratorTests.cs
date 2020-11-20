@@ -19,7 +19,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             weaponGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Weapon);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "WeaponsNoSpecific")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.WeaponsNoSpecific))]
         public void GenerateWeapon(string itemName)
         {
             var item = weaponGenerator.Generate(itemName);
@@ -56,6 +56,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
         {
             var template = itemVerifier.CreateRandomWeaponTemplate(itemName);
             template.Traits.Add(size);
+            template.Size = string.Empty;
 
             var item = weaponGenerator.Generate(template);
             itemVerifier.AssertItem(item);

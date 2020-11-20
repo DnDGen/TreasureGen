@@ -20,9 +20,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             Assert.That(specialAbility.Name, Is.Empty);
             Assert.That(specialAbility.AttributeRequirements, Is.Empty);
-            Assert.That(specialAbility.BonusEquivalent, Is.EqualTo(0));
+            Assert.That(specialAbility.BonusEquivalent, Is.Zero);
             Assert.That(specialAbility.BaseName, Is.Empty);
-            Assert.That(specialAbility.Power, Is.EqualTo(0));
+            Assert.That(specialAbility.Power, Is.Zero);
+            Assert.That(specialAbility.Damages, Is.Empty);
+            Assert.That(specialAbility.CriticalDamages, Is.Empty);
         }
 
         [TestCase(1)]
@@ -89,7 +91,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute", "other attribute" };
-            weapon.DamageType = "correct attribute";
+            weapon.Size = "correct attribute";
             specialAbility.AttributeRequirements = new[] { "correct attribute", "other attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);
@@ -101,7 +103,32 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute", "other attribute" };
-            weapon.DamageType = "this contains the correct attribute the ability needs";
+            weapon.Size = "this contains the correct attribute the ability needs";
+            specialAbility.AttributeRequirements = new[] { "correct attribute", "other attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.True);
+        }
+
+        [Test]
+        public void RequirementsMetIfWeaponPropertyContainsAttribute_DamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my correct attribute" });
+            specialAbility.AttributeRequirements = new[] { "correct attribute", "other attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.True);
+        }
+
+        [Test]
+        public void RequirementsMetIfWeaponPropertyContainsAttribute_AnyDamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my wrong attribute" });
+            weapon.Damages.Add(new Damage { Roll = "my other roll", Type = "my correct attribute" });
             specialAbility.AttributeRequirements = new[] { "correct attribute", "other attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);
@@ -159,7 +186,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute" };
-            weapon.DamageType = "correct attribute";
+            weapon.Size = "correct attribute";
             specialAbility.AttributeRequirements = new[] { "correct attribute/other attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);
@@ -171,7 +198,32 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute" };
-            weapon.DamageType = "this contains the correct attribute the ability needs";
+            weapon.Size = "this contains the correct attribute the ability needs";
+            specialAbility.AttributeRequirements = new[] { "correct attribute/other attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.True);
+        }
+
+        [Test]
+        public void OrWithWeaponPropertyContainsAttribute_DamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my correct attribute" });
+            specialAbility.AttributeRequirements = new[] { "correct attribute/other attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.True);
+        }
+
+        [Test]
+        public void OrWithWeaponPropertyContainsAttribute_AnyDamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my wrong attribute" });
+            weapon.Damages.Add(new Damage { Roll = "my other roll", Type = "my correct attribute" });
             specialAbility.AttributeRequirements = new[] { "correct attribute/other attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);
@@ -229,7 +281,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute" };
-            weapon.DamageType = "correct attribute";
+            weapon.Size = "correct attribute";
             specialAbility.AttributeRequirements = new[] { "!correct attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);
@@ -241,7 +293,32 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var weapon = new Weapon();
             weapon.Attributes = new[] { "wrong attribute" };
-            weapon.DamageType = "this contains the correct attribute the ability needs";
+            weapon.Size = "this contains the correct attribute the ability needs";
+            specialAbility.AttributeRequirements = new[] { "!correct attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.False);
+        }
+
+        [Test]
+        public void NotWithWeaponPropertyContainsAttribute_DamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my correct attribute" });
+            specialAbility.AttributeRequirements = new[] { "!correct attribute" };
+
+            var met = specialAbility.RequirementsMet(weapon);
+            Assert.That(met, Is.False);
+        }
+
+        [Test]
+        public void NotWithWeaponPropertyContainsAttribute_AnyDamageType()
+        {
+            var weapon = new Weapon();
+            weapon.Attributes = new[] { "wrong attribute", "other attribute" };
+            weapon.Damages.Add(new Damage { Roll = "my roll", Type = "my wrong attribute" });
+            weapon.Damages.Add(new Damage { Roll = "my other roll", Type = "my correct attribute" });
             specialAbility.AttributeRequirements = new[] { "!correct attribute" };
 
             var met = specialAbility.RequirementsMet(weapon);

@@ -3,7 +3,6 @@ using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tests.Unit.Generators.Items;
-using Ninject;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -14,23 +13,28 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
     [TestFixture]
     public class ItemsGeneratorTests : StressTests
     {
-        [Inject]
-        public IItemsGenerator ItemsGenerator { get; set; }
-        [Inject]
-        public ItemVerifier ItemVerifier { get; set; }
-        [Inject]
-        public ICollectionSelector CollectionSelector { get; set; }
+        private IItemsGenerator itemsGenerator;
+        private ItemVerifier itemVerifier;
+        private ICollectionSelector collectionSelector;
+
+        [SetUp]
+        public void Setup()
+        {
+            itemsGenerator = GetNewInstanceOf<IItemsGenerator>();
+            itemVerifier = new ItemVerifier();
+            collectionSelector = GetNewInstanceOf<ICollectionSelector>();
+        }
 
         [Test]
         public void StressRandomItems()
         {
-            stressor.Stress(() => GenerateAndAssertRandomItems());
+            stressor.Stress(GenerateAndAssertRandomItems);
         }
 
         private void GenerateAndAssertRandomItems()
         {
             var level = GetNewLevel();
-            var items = ItemsGenerator.GenerateRandomAtLevel(level);
+            var items = itemsGenerator.GenerateRandomAtLevel(level);
 
             Assert.That(items, Is.Not.Null);
 
@@ -38,19 +42,19 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
                 Assert.That(items, Is.Not.Empty, $"Level {level}");
 
             foreach (var item in items)
-                ItemVerifier.AssertItem(item);
+                itemVerifier.AssertItem(item);
         }
 
         [Test]
-        public void StressRandomItemsAsync()
+        public async Task StressRandomItemsAsync()
         {
-            stressor.Stress(async () => await GenerateAndAssertRandomItemsAsync());
+            await stressor.StressAsync(GenerateAndAssertRandomItemsAsync);
         }
 
         private async Task GenerateAndAssertRandomItemsAsync()
         {
             var level = GetNewLevel();
-            var items = await ItemsGenerator.GenerateRandomAtLevelAsync(level);
+            var items = await itemsGenerator.GenerateRandomAtLevelAsync(level);
 
             Assert.That(items, Is.Not.Null);
 
@@ -58,7 +62,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
                 Assert.That(items, Is.Not.Empty, $"Level {level}");
 
             foreach (var item in items)
-                ItemVerifier.AssertItem(item);
+                itemVerifier.AssertItem(item);
         }
 
         [TestCase(ItemTypeConstants.AlchemicalItem)]
@@ -82,8 +86,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
             var level = GetNewLevel();
             var itemName = GetRandomItemName(itemType);
 
-            var item = ItemsGenerator.GenerateAtLevel(level, itemType, itemName);
-            ItemVerifier.AssertItem(item);
+            var item = itemsGenerator.GenerateAtLevel(level, itemType, itemName);
+            itemVerifier.AssertItem(item);
         }
 
         private string GetRandomItemName(string itemType)
@@ -116,7 +120,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
                     itemNames = WondrousItemConstants.GetAllWondrousItems(); break;
             }
 
-            var itemName = CollectionSelector.SelectRandomFrom(itemNames);
+            var itemName = collectionSelector.SelectRandomFrom(itemNames);
             return itemName;
         }
 
@@ -131,9 +135,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
         [TestCase(ItemTypeConstants.Wand)]
         [TestCase(ItemTypeConstants.Weapon)]
         [TestCase(ItemTypeConstants.WondrousItem)]
-        public void StressNamedItemAtLevelAsync(string itemType)
+        public async Task StressNamedItemAtLevelAsync(string itemType)
         {
-            stressor.Stress(async () => await GenerateAndAssertNamedItemAtLevelAsync(itemType));
+            await stressor.StressAsync(async () => await GenerateAndAssertNamedItemAtLevelAsync(itemType));
         }
 
         private async Task GenerateAndAssertNamedItemAtLevelAsync(string itemType)
@@ -141,8 +145,8 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Items
             var level = GetNewLevel();
             var itemName = GetRandomItemName(itemType);
 
-            var item = await ItemsGenerator.GenerateAtLevelAsync(level, itemType, itemName);
-            ItemVerifier.AssertItem(item);
+            var item = await itemsGenerator.GenerateAtLevelAsync(level, itemType, itemName);
+            itemVerifier.AssertItem(item);
         }
     }
 }

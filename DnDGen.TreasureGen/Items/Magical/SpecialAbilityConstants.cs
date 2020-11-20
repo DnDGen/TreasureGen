@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Items.Magical
 {
@@ -112,10 +113,11 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string SpellStoring = "Spell storing";
         public const string Vicious = "Vicious";
         public const string Throwing = "Throwing";
+        public const string Shapeshifterbane = "Shapeshifterbane";
 
-        public static IEnumerable<string> GetAllAbilities()
+        public static IEnumerable<string> GetAllAbilities(bool withAlternateNames)
         {
-            return new[]
+            var abilities = new[]
             {
                 Glamered,
                 LightFortification,
@@ -219,8 +221,23 @@ namespace DnDGen.TreasureGen.Items.Magical
                 MightyCleaving,
                 SpellStoring,
                 Vicious,
-                Throwing
+                Throwing,
+                Shapeshifterbane,
             };
+
+            if (!withAlternateNames)
+                return abilities;
+
+            var alternates = new[]
+            {
+                SpellResistance,
+                GhostTouch,
+                Bane,
+                DESIGNATEDFOEbane,
+                Fortification,
+            };
+
+            return abilities.Union(alternates);
         }
     }
 }
