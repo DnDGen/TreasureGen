@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Rings")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Rings))]
         public void GenerateRing(string itemName, string power)
         {
             var item = RingGenerator.Generate(power, itemName);

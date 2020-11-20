@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Staffs")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Staffs))]
         public void GenerateStaff(string itemName, string power)
         {
             var item = StaffGenerator.Generate(power, itemName);

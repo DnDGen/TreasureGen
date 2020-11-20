@@ -18,7 +18,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             alchemicalItemGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.AlchemicalItem);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "AlchemicalItems")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.AlchemicalItems))]
         public void GenerateAlchemicalItem(string itemName)
         {
             var item = alchemicalItemGenerator.Generate(itemName);

@@ -14,13 +14,28 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
             Assert.That(constant, Is.EqualTo(value));
         }
 
-        [TestCase(DataIndexConstants.Weapon.CriticalMultiplier, 2)]
-        [TestCase(DataIndexConstants.Weapon.DamageType, 0)]
-        [TestCase(DataIndexConstants.Weapon.ThreatRange, 1)]
-        [TestCase(DataIndexConstants.Weapon.Ammunition, 3)]
+        [TestCase(DataIndexConstants.Weapon.ThreatRange, 0)]
+        [TestCase(DataIndexConstants.Weapon.Ammunition, 2)]
+        [TestCase(DataIndexConstants.Weapon.CriticalMultiplier, 1)]
+        [TestCase(DataIndexConstants.Weapon.SecondaryCriticalMultiplier, 3)]
         public void WeaponDataIndex(int constant, int value)
         {
             Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [TestCase(DataIndexConstants.Weapon.DamageData.RollIndex, 0)]
+        [TestCase(DataIndexConstants.Weapon.DamageData.TypeIndex, 1)]
+        [TestCase(DataIndexConstants.Weapon.DamageData.ConditionIndex, 2)]
+        public void DamageDataIndex(int constant, int value)
+        {
+            Assert.That(constant, Is.EqualTo(value));
+        }
+
+        [Test]
+        public void InitializeDamageDataArray()
+        {
+            var data = DataIndexConstants.Weapon.DamageData.InitializeData();
+            Assert.That(data, Has.Length.EqualTo(3).And.All.Empty);
         }
 
         [TestCase(DataIndexConstants.Intelligence.GreaterPowersCount, 2)]

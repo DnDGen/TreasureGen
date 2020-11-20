@@ -144,13 +144,35 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (weapon.IsMagical)
                 weapon.Traits.Add(TraitConstants.Masterwork);
 
-            return weapon as Weapon;
+            var magicWeapon = weapon as Weapon;
+            if (!magicWeapon.IsDoubleWeapon)
+                return magicWeapon;
+
+            var sameEnhancement = percentileSelector.SelectFrom(.5);
+            if (!sameEnhancement)
+            {
+                magicWeapon.SecondaryMagicBonus = weapon.Magic.Bonus - 1;
+                magicWeapon.SecondaryHasAbilities = false;
+
+                return magicWeapon;
+            }
+
+            magicWeapon.SecondaryMagicBonus = weapon.Magic.Bonus;
+            magicWeapon.SecondaryHasAbilities = true;
+
+            return magicWeapon;
         }
 
         private Weapon GenerateRandomSpecialAbilities(Weapon weapon, string power)
         {
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(weapon, power, weapon.Magic.SpecialAbilities.Count());
+            weapon = ApplySpecialAbilities(weapon);
 
+            return weapon;
+        }
+
+        private Weapon ApplySpecialAbilities(Weapon weapon)
+        {
             if (weapon.Magic.SpecialAbilities.Any(a => a.Name == SpecialAbilityConstants.SpellStoring))
             {
                 var shouldStoreSpell = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
@@ -162,6 +184,73 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
                     var spell = spellGenerator.Generate(spellType, level);
 
                     weapon.Contents.Add(spell);
+                }
+            }
+
+            foreach (var specialAbility in weapon.Magic.SpecialAbilities)
+            {
+                if (specialAbility.Damages.Any())
+                {
+                    var damages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                    var damageType = weapon.Damages[0].Type;
+
+                    foreach (var damage in damages)
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    weapon.Damages.AddRange(damages);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        var secondaryDamages = specialAbility.Damages.Select(d => d.Clone()).ToArray();
+                        var secondaryDamageType = weapon.SecondaryDamages[0].Type;
+
+                        foreach (var damage in secondaryDamages)
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = secondaryDamageType;
+                            }
+                        }
+
+                        weapon.SecondaryDamages.AddRange(secondaryDamages);
+                    }
+                }
+
+                if (specialAbility.CriticalDamages.Any())
+                {
+                    var damageType = weapon.CriticalDamages[0].Type;
+                    foreach (var damage in specialAbility.CriticalDamages[weapon.CriticalMultiplier])
+                    {
+                        if (string.IsNullOrEmpty(damage.Type))
+                        {
+                            damage.Type = damageType;
+                        }
+                    }
+
+                    weapon.CriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.CriticalMultiplier]);
+
+                    if (weapon.SecondaryHasAbilities)
+                    {
+                        foreach (var damage in specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier])
+                        {
+                            if (string.IsNullOrEmpty(damage.Type))
+                            {
+                                damage.Type = damageType;
+                            }
+                        }
+
+                        weapon.SecondaryCriticalDamages.AddRange(specialAbility.CriticalDamages[weapon.SecondaryCriticalMultiplier]);
+                    }
+                }
+
+                if (specialAbility.Name == SpecialAbilityConstants.Keen)
+                {
+                    weapon.ThreatRange *= 2;
                 }
             }
 
@@ -181,7 +270,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             weapon = GenerateFromPrototype(weapon, allowRandomDecoration);
 
+            if (weapon.Attributes.Contains(AttributeConstants.Specific))
+            {
+                //Double rule and special abilities were already applied within the specific gear generator
+                return weapon;
+            }
+
+            if (weapon.IsDoubleWeapon && weapon.IsMagical)
+            {
+                weapon.SecondaryMagicBonus = weapon.Magic.Bonus;
+                weapon.SecondaryHasAbilities = true;
+            }
+
             weapon.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(template.Magic.SpecialAbilities);
+            weapon = ApplySpecialAbilities(weapon);
 
             return weapon;
         }

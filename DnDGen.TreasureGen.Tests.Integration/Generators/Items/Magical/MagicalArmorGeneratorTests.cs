@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
         }
 
-        [TestCaseSource(typeof(ItemPowerTestData), "Armors")]
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.Armors))]
         public void GenerateArmor(string itemName, string power)
         {
             var item = ArmorGenerator.Generate(power, itemName);

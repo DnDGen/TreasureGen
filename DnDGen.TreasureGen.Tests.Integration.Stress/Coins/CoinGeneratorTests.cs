@@ -1,5 +1,4 @@
 ﻿using DnDGen.TreasureGen.Coins;
-using Ninject;
 using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
@@ -7,8 +6,13 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
     [TestFixture]
     public class CoinGeneratorTests : StressTests
     {
-        [Inject]
-        public ICoinGenerator CoinGenerator { get; set; }
+        private ICoinGenerator coinGenerator;
+
+        [SetUp]
+        public void Setup()
+        {
+            coinGenerator = GetNewInstanceOf<ICoinGenerator>();
+        }
 
         [Test]
         public void StressCoins()
@@ -19,7 +23,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress.Coins
         private void GenerateAndAssertCoins()
         {
             var level = GetNewLevel();
-            var coin = CoinGenerator.GenerateAtLevel(level);
+            var coin = coinGenerator.GenerateAtLevel(level);
 
             if (string.IsNullOrEmpty(coin.Currency))
             {

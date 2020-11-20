@@ -982,4 +982,8 @@ Bugs:
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Selectors\Helpers\" />
+  </ItemGroup>
+
 </Project>

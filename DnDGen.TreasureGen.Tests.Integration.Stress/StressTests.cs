@@ -1,6 +1,5 @@
 ﻿using DnDGen.Stress;
 using DnDGen.TreasureGen.Items;
-using Ninject;
 using NUnit.Framework;
 using System;
 using System.Reflection;
@@ -10,13 +9,18 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
     [TestFixture]
     public abstract class StressTests : IntegrationTests
     {
-        [Inject]
         public Random Random { get; set; }
+
+        [SetUp]
+        public void StressSetup()
+        {
+            Random = GetNewInstanceOf<Random>();
+        }
 
         protected Stressor stressor;
 
         [OneTimeSetUp]
-        public void StressSetup()
+        public void StressOneTimeSetup()
         {
             var options = new StressorOptions();
             options.RunningAssembly = Assembly.GetExecutingAssembly();

@@ -1,173 +1,356 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <collections>
-    <collection>
-        <name>Animated</name>
-        <entry>Shield</entry>
-    </collection>
-    <collection>
-        <name>Arrow catching</name>
-        <entry>Shield</entry>
-    </collection>
-    <collection>
-        <name>Arrow deflection</name>
-        <entry>Shield</entry>
-    </collection>
-    <collection>
-        <name>Bashing</name>
-        <entry>Shield</entry>
-        <entry>!Tower shield</entry>
-    </collection>
-    <collection>
-        <name>Blinding</name>
-        <entry>Shield</entry>
-    </collection>
-    <collection>
-        <name>Dancing</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Defending</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Disruption</name>
-        <entry>Melee</entry>
-        <entry>Bludgeoning</entry>
-    </collection>
-    <collection>
-        <name>Distance</name>
-        <entry>Ranged</entry>
-    </collection>
-    <collection>
-        <name>Keen</name>
-        <entry>Melee</entry>
-        <entry>Piercing/Slashing</entry>
-    </collection>
-    <collection>
-        <name>Ki focus</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Mighty cleaving</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Reflecting</name>
-        <entry>Shield</entry>
-    </collection>
-    <collection>
-        <name>Returning</name>
-        <entry>Ranged</entry>
-        <entry>Thrown</entry>
-    </collection>
-    <collection>
-        <name>Seeking</name>
-        <entry>Ranged</entry>
-    </collection>
-    <collection>
-        <name>Spell storing</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Wounding</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Vicious</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Throwing</name>
-        <entry>Melee</entry>
-    </collection>
-    <collection>
-        <name>Vorpal</name>
-        <entry>Melee</entry>
-        <entry>Slashing</entry>
-    </collection>
-    <collection>
-        <name>Acid resistance</name>
-    </collection>
-    <collection>
-        <name>Anarchic</name>
-    </collection>
-    <collection>
-        <name>Axiomatic</name>
-    </collection>
-    <collection>
-        <name>Bane</name>
-    </collection>
-    <collection>
-        <name>Brilliant energy</name>
-    </collection>
-    <collection>
-        <name>Cold resistance</name>
-    </collection>
-    <collection>
-        <name>Electricity resistance</name>
-    </collection>
-    <collection>
-        <name>Etherealness</name>
-    </collection>
-    <collection>
-        <name>Fire resistance</name>
-    </collection>
-    <collection>
-        <name>Flaming</name>
-    </collection>
-    <collection>
-        <name>Frost</name>
-    </collection>
-    <collection>
-        <name>Ghost touch</name>
-    </collection>
-    <collection>
-        <name>Glamered</name>
-    </collection>
-    <collection>
-        <name>Holy</name>
-    </collection>
-    <collection>
-        <name>Invulnerability</name>
-    </collection>
-    <collection>
-        <name>Merciful</name>
-    </collection>
-    <collection>
-        <name>Shadow</name>
-    </collection>
-    <collection>
-        <name>Shock</name>
-    </collection>
-    <collection>
-        <name>Silent moves</name>
-    </collection>
-    <collection>
-        <name>Slick</name>
-    </collection>
-    <collection>
-        <name>Sonic resistance</name>
-    </collection>
-    <collection>
-        <name>Speed</name>
-    </collection>
-    <collection>
-        <name>Spell resistance</name>
-    </collection>
-    <collection>
-        <name>Thundering</name>
-    </collection>
-    <collection>
-        <name>Undead controlling</name>
-    </collection>
-    <collection>
-        <name>Unholy</name>
-    </collection>
-    <collection>
-        <name>Wild</name>
-    </collection>
-    <collection>
-        <name>Fortification</name>
-    </collection>
+  <collection>
+    <name>Animated</name>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
+    <name>Arrow catching</name>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
+    <name>Arrow deflection</name>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
+    <name>Bashing</name>
+    <entry>Shield</entry>
+    <entry>!Tower shield</entry>
+  </collection>
+  <collection>
+    <name>Blinding</name>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
+    <name>Dancing</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Defending</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Disruption</name>
+    <entry>Melee</entry>
+    <entry>Bludgeoning</entry>
+  </collection>
+  <collection>
+    <name>Distance</name>
+    <entry>Ranged</entry>
+  </collection>
+  <collection>
+    <name>Keen</name>
+    <entry>Melee</entry>
+    <entry>Piercing/Slashing</entry>
+  </collection>
+  <collection>
+    <name>Ki focus</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Mighty cleaving</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Reflecting</name>
+    <entry>Shield</entry>
+  </collection>
+  <collection>
+    <name>Returning</name>
+    <entry>Ranged</entry>
+    <entry>Thrown</entry>
+  </collection>
+  <collection>
+    <name>Seeking</name>
+    <entry>Ranged</entry>
+  </collection>
+  <collection>
+    <name>Spell storing</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Wounding</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Vicious</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Throwing</name>
+    <entry>Melee</entry>
+  </collection>
+  <collection>
+    <name>Vorpal</name>
+    <entry>Melee</entry>
+    <entry>Slashing</entry>
+  </collection>
+  <collection>
+    <name>Acid resistance</name>
+  </collection>
+  <collection>
+    <name>Anarchic</name>
+  </collection>
+  <collection>
+    <name>Axiomatic</name>
+  </collection>
+  <collection>
+    <name>Bane</name>
+  </collection>
+  <collection>
+    <name>Shapeshifterbane</name>
+  </collection>
+  <collection>
+    <name>Aberrationbane</name>
+  </collection>
+  <collection>
+    <name>Animalbane</name>
+  </collection>
+  <collection>
+    <name>Constructbane</name>
+  </collection>
+  <collection>
+    <name>Dragonbane</name>
+  </collection>
+  <collection>
+    <name>Elementalbane</name>
+  </collection>
+  <collection>
+    <name>Feybane</name>
+  </collection>
+  <collection>
+    <name>Giantbane</name>
+  </collection>
+  <collection>
+    <name>Aquatic-humanoidbane</name>
+  </collection>
+  <collection>
+    <name>Monstrous-humanoidbane</name>
+  </collection>
+  <collection>
+    <name>Reptilian-humanoidbane</name>
+  </collection>
+  <collection>
+    <name>Elfbane</name>
+  </collection>
+  <collection>
+    <name>Humanbane</name>
+  </collection>
+  <collection>
+    <name>Dwarfbane</name>
+  </collection>
+  <collection>
+    <name>Gnomebane</name>
+  </collection>
+  <collection>
+    <name>Gnollbane</name>
+  </collection>
+  <collection>
+    <name>Halflingbane</name>
+  </collection>
+  <collection>
+    <name>Oozebane</name>
+  </collection>
+  <collection>
+    <name>Undeadbane</name>
+  </collection>
+  <collection>
+    <name>Verminbane</name>
+  </collection>
+  <collection>
+    <name>Magical-beastbane</name>
+  </collection>
+  <collection>
+    <name>Brilliant energy</name>
+  </collection>
+  <collection>
+    <name>Air-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Earth-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Water-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Fire-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Good-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Evil-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Lawful-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>Chaotic-outsiderbane</name>
+  </collection>
+  <collection>
+    <name>DESIGNATEDFOEbane</name>
+  </collection>
+  <collection>
+    <name>Goblinoidbane</name>
+  </collection>
+  <collection>
+    <name>Orcbane</name>
+  </collection>
+  <collection>
+    <name>Plantbane</name>
+  </collection>
+  <collection>
+    <name>Shocking burst</name>
+  </collection>
+  <collection>
+    <name>Flaming burst</name>
+  </collection>
+  <collection>
+    <name>Icy burst</name>
+  </collection>
+  <collection>
+    <name>Cold resistance</name>
+  </collection>
+  <collection>
+    <name>Electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Etherealness</name>
+  </collection>
+  <collection>
+    <name>Fire resistance</name>
+  </collection>
+  <collection>
+    <name>Flaming</name>
+  </collection>
+  <collection>
+    <name>Frost</name>
+  </collection>
+  <collection>
+    <name>Ghost touch</name>
+  </collection>
+  <collection>
+    <name>Ghost touch (weapon)</name>
+  </collection>
+  <collection>
+    <name>Ghost touch (armor)</name>
+  </collection>
+  <collection>
+    <name>Glamered</name>
+  </collection>
+  <collection>
+    <name>Holy</name>
+  </collection>
+  <collection>
+    <name>Invulnerability</name>
+  </collection>
+  <collection>
+    <name>Merciful</name>
+  </collection>
+  <collection>
+    <name>Shadow</name>
+  </collection>
+  <collection>
+    <name>Shock</name>
+  </collection>
+  <collection>
+    <name>Silent moves</name>
+  </collection>
+  <collection>
+    <name>Slick</name>
+  </collection>
+  <collection>
+    <name>Sonic resistance</name>
+  </collection>
+  <collection>
+    <name>Speed</name>
+  </collection>
+  <collection>
+    <name>Spell resistance</name>
+  </collection>
+  <collection>
+    <name>Thundering</name>
+  </collection>
+  <collection>
+    <name>Undead controlling</name>
+  </collection>
+  <collection>
+    <name>Unholy</name>
+  </collection>
+  <collection>
+    <name>Wild</name>
+  </collection>
+  <collection>
+    <name>Fortification</name>
+  </collection>
+  <collection>
+    <name>Light fortification</name>
+  </collection>
+  <collection>
+    <name>Moderate fortification</name>
+  </collection>
+  <collection>
+    <name>Heavy fortification</name>
+  </collection>
+  <collection>
+    <name>Improved slick</name>
+  </collection>
+  <collection>
+    <name>Improved shadow</name>
+  </collection>
+  <collection>
+    <name>Improved silent moves</name>
+  </collection>
+  <collection>
+    <name>Greater slick</name>
+  </collection>
+  <collection>
+    <name>Greater shadow</name>
+  </collection>
+  <collection>
+    <name>Greater silent moves</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (13)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (15)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (17)</name>
+  </collection>
+  <collection>
+    <name>Spell resistance (19)</name>
+  </collection>
+  <collection>
+    <name>Improved acid resistance</name>
+  </collection>
+  <collection>
+    <name>Improved cold resistance</name>
+  </collection>
+  <collection>
+    <name>Improved fire resistance</name>
+  </collection>
+  <collection>
+    <name>Improved electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Improved sonic resistance</name>
+  </collection>
+  <collection>
+    <name>Greater acid resistance</name>
+  </collection>
+  <collection>
+    <name>Greater cold resistance</name>
+  </collection>
+  <collection>
+    <name>Greater fire resistance</name>
+  </collection>
+  <collection>
+    <name>Greater electricity resistance</name>
+  </collection>
+  <collection>
+    <name>Greater sonic resistance</name>
+  </collection>
 </collections>

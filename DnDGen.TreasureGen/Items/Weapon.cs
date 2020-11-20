@@ -6,38 +6,106 @@ namespace DnDGen.TreasureGen.Items
     public class Weapon : Item
     {
         public string Ammunition { get; set; }
+        public List<Damage> Damages { get; set; }
+        public string DamageRoll => GetRoll(Damages, false);
+        public string DamageDescription => GetDescription(Damages, false);
+        public List<Damage> SecondaryDamages { get; set; }
+        public string SecondaryDamageRoll => GetRoll(SecondaryDamages, true);
+        public string SecondaryDamageDescription => GetDescription(SecondaryDamages, true);
+        public List<Damage> CriticalDamages { get; set; }
+        public string CriticalDamageRoll => GetRoll(CriticalDamages, false);
+        public string CriticalDamageDescription => GetDescription(CriticalDamages, false);
         public string CriticalMultiplier { get; set; }
-        public string Damage { get; set; }
-        public string DamageType { get; set; }
+        public List<Damage> SecondaryCriticalDamages { get; set; }
+        public string SecondaryCriticalDamageRoll => GetRoll(SecondaryCriticalDamages, true);
+        public string SecondaryCriticalDamageDescription => GetDescription(SecondaryCriticalDamages, true);
+        public string SecondaryCriticalMultiplier { get; set; }
         public string Size { get; set; }
-        public string ThreatRange { get; set; }
+        public string ThreatRangeDescription => ThreatRange <= 1 ? 20.ToString() : $"{20 - ThreatRange + 1}-20";
+        public int ThreatRange { get; set; }
+        public bool IsDoubleWeapon => Attributes.Contains(AttributeConstants.DoubleWeapon);
+        public int SecondaryMagicBonus { get; set; }
+        public bool SecondaryHasAbilities { get; set; }
 
-        public override bool CanBeUsedAsWeaponOrArmor
+        private string GetRoll(List<Damage> damages, bool secondary)
         {
-            get
+            var roll = string.Empty;
+            if (!damages.Any())
             {
-                return true;
+                if (Magic.Bonus > 0 && !secondary)
+                    return Magic.Bonus.ToString();
+
+                if (SecondaryMagicBonus > 0 && secondary)
+                    return SecondaryMagicBonus.ToString();
+
+                return roll;
             }
+
+            roll = damages[0].Roll;
+
+            if (Magic.Bonus > 0 && !secondary)
+                roll += $"+{Magic.Bonus}";
+
+            if (SecondaryMagicBonus > 0 && secondary)
+                roll += $"+{SecondaryMagicBonus}";
+
+            foreach (var damage in damages.Skip(1))
+            {
+                roll += $"+{damage.Roll}";
+            }
+
+            return roll;
         }
 
-        public IEnumerable<string> CombatTypes
+        private string GetDescription(List<Damage> damages, bool secondary)
         {
-            get
+            var description = string.Empty;
+            if (!damages.Any())
             {
-                return Attributes.Intersect(combatTypes);
+                if (Magic.Bonus > 0 && !secondary)
+                    return Magic.Bonus.ToString();
+
+                if (SecondaryMagicBonus > 0 && secondary)
+                    return SecondaryMagicBonus.ToString();
+
+                return description;
             }
+
+            description = damages[0].Description;
+
+            if (Magic.Bonus > 0 && !secondary)
+            {
+                description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{Magic.Bonus}");
+            }
+
+            if (SecondaryMagicBonus > 0 && secondary)
+            {
+                description = description.Replace(damages[0].Roll, $"{damages[0].Roll}+{SecondaryMagicBonus}");
+            }
+
+            foreach (var damage in damages.Skip(1))
+            {
+                description += $" + {damage.Description}";
+            }
+
+            return description;
         }
+
+        public override bool CanBeUsedAsWeaponOrArmor => true;
+        public IEnumerable<string> CombatTypes => Attributes.Intersect(combatTypes);
 
         private readonly IEnumerable<string> combatTypes;
 
         public Weapon()
         {
             Ammunition = string.Empty;
-            CriticalMultiplier = string.Empty;
-            Damage = string.Empty;
-            DamageType = string.Empty;
             Size = string.Empty;
-            ThreatRange = string.Empty;
+            Damages = new List<Damage>();
+            CriticalDamages = new List<Damage>();
+            SecondaryDamages = new List<Damage>();
+            SecondaryCriticalDamages = new List<Damage>();
+            CriticalMultiplier = string.Empty;
+            SecondaryCriticalMultiplier = string.Empty;
 
             combatTypes = new[] { AttributeConstants.Ranged, AttributeConstants.Melee };
         }
@@ -51,16 +119,33 @@ namespace DnDGen.TreasureGen.Items
             return clone;
         }
 
-        private Weapon CloneWeapon(Weapon target)
+        private Weapon CloneWeapon(Weapon target, bool mundane = false)
         {
             target.Ammunition = !string.IsNullOrEmpty(Ammunition) ? Ammunition : target.Ammunition;
-            target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
-            target.Damage = !string.IsNullOrEmpty(Damage) ? Damage : target.Damage;
-            target.DamageType = !string.IsNullOrEmpty(DamageType) ? DamageType : target.DamageType;
-            target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
-            target.ThreatRange = !string.IsNullOrEmpty(ThreatRange) ? ThreatRange : target.ThreatRange;
 
+            if (CriticalDamages.Any())
+                target.CriticalDamages = CriticalDamages.Select(d => d.Clone()).ToList();
+
+            if (Damages.Any())
+                target.Damages = Damages.Select(d => d.Clone()).ToList();
+
+            if (SecondaryCriticalDamages.Any())
+                target.SecondaryCriticalDamages = SecondaryCriticalDamages.Select(d => d.Clone()).ToList();
+
+            if (SecondaryDamages.Any())
+                target.SecondaryDamages = SecondaryDamages.Select(d => d.Clone()).ToList();
+
+            target.Size = !string.IsNullOrEmpty(Size) ? Size : target.Size;
+            target.ThreatRange = ThreatRange > 0 ? ThreatRange : target.ThreatRange;
+            target.CriticalMultiplier = !string.IsNullOrEmpty(CriticalMultiplier) ? CriticalMultiplier : target.CriticalMultiplier;
             target.Quantity = Quantity > 1 ? Quantity : target.Quantity;
+            target.SecondaryCriticalMultiplier = !string.IsNullOrEmpty(SecondaryCriticalMultiplier) ? SecondaryCriticalMultiplier : target.SecondaryCriticalMultiplier;
+
+            if (!mundane)
+            {
+                target.SecondaryHasAbilities = SecondaryHasAbilities ? SecondaryHasAbilities : target.SecondaryHasAbilities;
+                target.SecondaryMagicBonus = SecondaryMagicBonus > 0 ? SecondaryMagicBonus : target.SecondaryMagicBonus;
+            }
 
             return target;
         }
@@ -69,7 +154,7 @@ namespace DnDGen.TreasureGen.Items
         {
             var clone = new Weapon();
             MundaneCloneInto(clone);
-            CloneWeapon(clone);
+            CloneWeapon(clone, true);
 
             return clone;
         }
@@ -79,9 +164,23 @@ namespace DnDGen.TreasureGen.Items
             base.MundaneCloneInto(target);
 
             if (target is Weapon)
-                CloneWeapon(target as Weapon);
+            {
+                var weapon = target as Weapon;
+                CloneWeapon(weapon, true);
+            }
 
             return target;
+        }
+
+        public override Item CloneInto(Item target)
+        {
+            var clone = base.CloneInto(target);
+
+            var weapon = clone as Weapon;
+            weapon.SecondaryHasAbilities = SecondaryHasAbilities ? SecondaryHasAbilities : weapon.SecondaryHasAbilities;
+            weapon.SecondaryMagicBonus = SecondaryMagicBonus > 0 ? SecondaryMagicBonus : weapon.SecondaryMagicBonus;
+
+            return weapon;
         }
 
         public override Item SmartClone()

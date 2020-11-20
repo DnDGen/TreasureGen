@@ -19,7 +19,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             armorGenerator = GetNewInstanceOf<MundaneItemGenerator>(ItemTypeConstants.Armor);
         }
 
-        [TestCaseSource(typeof(ItemTestData), "ArmorsNoSpecific")]
+        [TestCaseSource(typeof(ItemTestData), nameof(ItemTestData.ArmorsNoSpecific))]
         public void GenerateArmor(string itemName)
         {
             var item = armorGenerator.Generate(itemName);
