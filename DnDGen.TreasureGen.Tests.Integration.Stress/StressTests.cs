@@ -24,7 +24,9 @@ namespace DnDGen.TreasureGen.Tests.Integration.Stress
         {
             var options = new StressorOptions();
             options.RunningAssembly = Assembly.GetExecutingAssembly();
-            options.TimeLimitPercentage = .8;
+
+            //INFO: Non-stress operations take about 5 minutes, or 9% of the total runtime
+            options.TimeLimitPercentage = .91;
 
 #if STRESS
             options.IsFullStress = true;

@@ -2,7 +2,7 @@
 
 Generate random Dungeons & Dragons treasure, equipment, and items
 
-[![Build Status](https://travis-ci.org/DnDGen/TreasureGen.svg?branch=master)](https://travis-ci.org/DnDGen/TreasureGen)
+[![Build Status](https://dev.azure.com/dndgen/DnDGen/_apis/build/status/DnDGen.TreasureGen?branchName=master)](https://dev.azure.com/dndgen/DnDGen/_build/latest?definitionId=4&branchName=master)
 
 ### Use
 
