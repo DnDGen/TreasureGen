@@ -1,0 +1,74 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'DnDGen.TreasureGen.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- checkout: self
+  displayName: 'Checkout Code'
+  persistCredentials: true
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: './DnDGen.TreasureGen/DnDGen.TreasureGen.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: Unit Tests
+  inputs:
+    command: test
+    projects: './DnDGen.TreasureGen.Tests.Unit/DnDGen.TreasureGen.Tests.Unit.csproj'
+    arguments: '-v normal'
+- task: DotNetCoreCLI@2
+  displayName: IoC Tests
+  inputs:
+    command: test
+    projects: './DnDGen.TreasureGen.Tests.Integration.IoC/DnDGen.TreasureGen.Tests.Integration.IoC.csproj'
+    arguments: '-v normal'
+- task: DotNetCoreCLI@2
+  displayName: Table Tests
+  inputs:
+    command: test
+    projects: './DnDGen.TreasureGen.Tests.Integration.Tables/DnDGen.TreasureGen.Tests.Integration.Tables.csproj'
+    arguments: '-v normal'
+- task: DotNetCoreCLI@2
+  displayName: Integration Tests
+  inputs:
+    command: test
+    projects: './DnDGen.TreasureGen.Tests.Integration/DnDGen.TreasureGen.Tests.Integration.csproj'
+    arguments: '-v normal'
+- task: DotNetCoreCLI@2
+  displayName: Stress Tests
+  inputs:
+    command: test
+    projects: './DnDGen.TreasureGen.Tests.Integration.Stress/DnDGen.TreasureGen.Tests.Integration.Stress.csproj'
+    arguments: '-v normal --configuration Stress'
+
+- task: tmarkovski.projectversionasvariable.versionintovariable.projectversionasvariable@1
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Get Project Version'
+  inputs:
+    path: ./DnDGen.TreasureGen/DnDGen.TreasureGen.csproj
+    
+- script: |
+     echo "Tagging with version $(Version.MajorMinorBuild)"
+     git tag $(Version.MajorMinorBuild)
+     git push origin $(Version.MajorMinorBuild)
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Tag Version'
+  workingDirectory: $(Build.SourcesDirectory)
+
+- task: PublishBuildArtifacts@1
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: Publish Artifacts
+  inputs:
+    pathtoPublish: './DnDGen.TreasureGen' 
+    artifactName: 'dndgen-treasuregen'
