@@ -21,9 +21,11 @@ You can obtain generators from the bootstrapper project.  Because the generators
 ```C#
 var kernel = new StandardKernel();
 var rollGenModuleLoader = new RollGenModuleLoader();
+var infrastructureModuleLoader = new InfrastructureModuleLoader();
 var treasureGenModuleLoader = new TreasureGenModuleLoader();
 
 rollGenModuleLoader.LoadModules(kernel);
+infrastructureModuleLoader.LoadModules(kernel);
 treasureGenModuleLoader.LoadModules(kernel);
 ```
 
@@ -34,7 +36,3 @@ Your particular syntax for how the Ninject injection should work will depend on 
 The project is on [Nuget](https://www.nuget.org/packages/DnDGen.TreasureGen). Install via the NuGet Package Manager.
 
     PM > Install-Package DnDGen.TreasureGen
-
-#### There's TreasureGen and TreasureGen.Domain - which do I install?
-
-That depends on your project.  If you are making a library that will only **reference** TreasureGen, but does not expressly implement it (such as the CharacterGen project), then you only need the TreasureGen package.  If you actually want to run and implement the dice (such as on the DnDGenSite or in the tests for CharacterGen), then you need TreasureGen.Domain, which will install TreasureGen as a dependency.
