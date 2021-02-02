@@ -1,5 +1,4 @@
-﻿using DnDGen.RollGen;
-using DnDGen.TreasureGen.Coins;
+﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Generators;
 using DnDGen.TreasureGen.Generators.Items;
 using DnDGen.TreasureGen.Generators.Items.Magical;
@@ -133,12 +132,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
         public void MagicalItemGeneratorIsNotConstructedAsSingleton(string itemType)
         {
             AssertNotSingleton<MagicalItemGenerator>(itemType);
-        }
-
-        [Test]
-        public void EXTERNAL_DiceInjected()
-        {
-            AssertNotSingleton<Dice>();
         }
     }
 }
