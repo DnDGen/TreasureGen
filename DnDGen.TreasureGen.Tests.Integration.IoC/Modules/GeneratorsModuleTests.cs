@@ -1,5 +1,4 @@
-﻿using DnDGen.RollGen;
-using DnDGen.TreasureGen.Coins;
+﻿using DnDGen.TreasureGen.Coins;
 using DnDGen.TreasureGen.Generators;
 using DnDGen.TreasureGen.Generators.Items;
 using DnDGen.TreasureGen.Generators.Items.Magical;
@@ -45,7 +44,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
         [TestCase(ItemTypeConstants.Weapon)]
         public void MundaneItemGeneratorIsDecorated(string itemType)
         {
-            var generator = InjectAndAssertDuration<MundaneItemGenerator>(itemType);
+            var generator = GetNewInstanceOf<MundaneItemGenerator>(itemType);
             Assert.That(generator, Is.InstanceOf<MundaneItemGeneratorSpecialMaterialDecorator>());
         }
 
@@ -117,7 +116,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
         [TestCase(ItemTypeConstants.WondrousItem)]
         public void MagicalItemGeneratorIsDecorated(string itemType)
         {
-            var generator = InjectAndAssertDuration<MagicalItemGenerator>(itemType);
+            var generator = GetNewInstanceOf<MagicalItemGenerator>(itemType);
             Assert.That(generator, Is.InstanceOf<MagicalItemGeneratorMundaneProxy>());
         }
 
@@ -133,12 +132,6 @@ namespace DnDGen.TreasureGen.Tests.Integration.IoC.Modules
         public void MagicalItemGeneratorIsNotConstructedAsSingleton(string itemType)
         {
             AssertNotSingleton<MagicalItemGenerator>(itemType);
-        }
-
-        [Test]
-        public void EXTERNAL_DiceInjected()
-        {
-            AssertNotSingleton<Dice>();
         }
     }
 }

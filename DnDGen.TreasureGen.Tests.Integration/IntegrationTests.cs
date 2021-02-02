@@ -1,6 +1,4 @@
-﻿using DnDGen.Infrastructure.IoC;
-using DnDGen.RollGen.IoC;
-using DnDGen.TreasureGen.IoC;
+﻿using DnDGen.TreasureGen.IoC;
 using Ninject;
 using NUnit.Framework;
 
@@ -14,12 +12,6 @@ namespace DnDGen.TreasureGen.Tests.Integration
         public IntegrationTests()
         {
             kernel = new StandardKernel(new NinjectSettings() { InjectNonPublic = true });
-
-            var rollGenModuleLoader = new RollGenModuleLoader();
-            rollGenModuleLoader.LoadModules(kernel);
-
-            var infrastructureModuleLoader = new InfrastructureModuleLoader();
-            infrastructureModuleLoader.LoadModules(kernel);
 
             var treasureGenModuleLoader = new TreasureGenModuleLoader();
             treasureGenModuleLoader.LoadModules(kernel);
