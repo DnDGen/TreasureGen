@@ -19,7 +19,7 @@
 
   <!--Needed for Framework compatibility when building in Travis-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -971,7 +971,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="4.2.2" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="4.2.3" />
     <PackageReference Include="DnDGen.RollGen" Version="15.2.2" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
