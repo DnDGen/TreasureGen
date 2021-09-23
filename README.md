@@ -16,16 +16,12 @@ var magicalWeapon = magicalWeaponGenerator.GenerateAtPower(PowerConstants.Major)
 
 ### Getting the Generators
 
-You can obtain generators from the bootstrapper project.  Because the generators are very complex and are decorated in various ways, there is not a (recommended) way to build these generator manually.  Please use the Bootstrapper package.  **Note:** if using the TreasureGen bootstrapper, be sure to also load modules for RollGen, as it is dependent on those modules
+You can obtain generators from the bootstrapper project.  Because the generators are very complex and are decorated in various ways, there is not a (recommended) way to build these generator manually.  Please use the Module Loader in the IoC domain.  **Note:** This will also load the dependencies for TreasureGen, including RollGen and Infrastructure
 
 ```C#
 var kernel = new StandardKernel();
-var rollGenModuleLoader = new RollGenModuleLoader();
-var infrastructureModuleLoader = new InfrastructureModuleLoader();
 var treasureGenModuleLoader = new TreasureGenModuleLoader();
 
-rollGenModuleLoader.LoadModules(kernel);
-infrastructureModuleLoader.LoadModules(kernel);
 treasureGenModuleLoader.LoadModules(kernel);
 ```
 
