@@ -35,7 +35,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var result = rangeDataSelector.SelectFrom(TableNameConstants.Collections.Set.ChargeLimits, name);
-            var roll = RollHelper.GetRollWithMostEvenDistribution(result.Minimum, result.Maximum);
+            var roll = RollHelper.GetRollWithMostEvenDistribution(result.Minimum, result.Maximum, true);
 
             return dice.Roll(roll).AsSum();
         }

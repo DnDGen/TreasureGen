@@ -58,8 +58,8 @@
         public const string Range2d12 = "2d12";
         public const string Range2d12x10 = "20d12";
         public const string Range2d100 = "2d100";
-        public const string Range3d3 = "2d4+1";
-        public const string Range3d4 = "1d10+2";
+        public const string Range3d3 = "3d3";
+        public const string Range3d4 = "3d4";
         public const string Range3d4x10 = "10d10+20";
         public const string Range3d4x100 = "100d10+200";
         public const string Range3d4x1000 = "1000d10+2000";
@@ -94,6 +94,6 @@
         public const string Range5d6x100 = "500d6";
         public const string Range6d4x100 = "200d10+400";
         public const string Range6d6 = "6d6";
-        public const string Range7d6 = "5d8+2";
+        public const string Range7d6 = "7d6";
     }
 }
