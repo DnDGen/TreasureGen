@@ -102,9 +102,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Tables
         [TestCase(AmountConstants.Range7d6, 7, 6)]
         public void RangeConstant(string constant, int quantity, int die, int multiplier = 1, int bonus = 0)
         {
-            var lower = quantity * multiplier + bonus;
-            var upper = quantity * die * multiplier + bonus;
-            var roll = RollHelper.GetRollWithFewestDice(lower, upper);
+            var roll = $"{quantity}d{die}";
+
+            if (bonus > 0)
+                roll += $"+{bonus}";
+
+            if (die == 1)
+                roll = quantity.ToString();
+
+            if (multiplier > 1)
+            {
+                var lower = quantity * multiplier + bonus;
+                var upper = quantity * die * multiplier + bonus;
+                roll = RollHelper.GetRollWithFewestDice(lower, upper);
+            }
 
             Assert.That(constant, Is.EqualTo(roll));
         }
