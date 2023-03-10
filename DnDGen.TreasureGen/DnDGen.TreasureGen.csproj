@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>10.4.0</Version>
+    <Version>10.5.0</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
     <Product>TreasureGen</Product>
@@ -966,8 +966,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="4.3.0" />
-    <PackageReference Include="DnDGen.RollGen" Version="15.4.2" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="4.3.1" />
+    <PackageReference Include="DnDGen.RollGen" Version="15.5.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
