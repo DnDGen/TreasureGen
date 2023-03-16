@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
@@ -23,57 +23,57 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
             AssertTableIsComplete();
         }
 
-        [TestCase("Animal growth", 1, 2)]
-        [TestCase("Baleful polymorph", 3, 5)]
-        [TestCase("Bigby's interposing hand", 6, 7)]
+        [TestCase("Animal Growth", 1, 2)]
+        [TestCase("Baleful Polymorph", 3, 5)]
+        [TestCase("Bigby's Interposing Hand", 6, 7)]
         [TestCase("Blight", 8, 9)]
-        [TestCase("Break enchantment", 10, 12)]
+        [TestCase("Break Enchantment", 10, 12)]
         [TestCase("Cloudkill", 13, 14)]
-        [TestCase("Cone of cold", 15, 17)]
-        [TestCase("Contact other plane", 18, 19)]
+        [TestCase("Cone of Cold", 15, 17)]
+        [TestCase("Contact Other Plane", 18, 19)]
         [TestCase("Dismissal", 21, 23)]
-        [TestCase("Greater dispel magic", 24, 26)]
-        [TestCase("Dominate person", 27, 28)]
+        [TestCase("Greater Dispel Magic", 24, 26)]
+        [TestCase("Dominate Person", 27, 28)]
         [TestCase("Fabricate", 30, 31)]
-        [TestCase("False vision", 32, 33)]
+        [TestCase("False Vision", 32, 33)]
         [TestCase("Feeblemind", 34, 35)]
-        [TestCase("Hold monster", 36, 39)]
-        [TestCase("Major creation", 42, 43)]
-        [TestCase("Mind fog", 44, 45)]
-        [TestCase("Mirage arcana", 46, 47)]
-        [TestCase("Mordenkainen's faithful hound", 48, 49)]
-        [TestCase("Mordenkainen's private sanctum", 50, 51)]
+        [TestCase("Hold Monster", 36, 39)]
+        [TestCase("Major Creation", 42, 43)]
+        [TestCase("Mind Fog", 44, 45)]
+        [TestCase("Mirage Arcana", 46, 47)]
+        [TestCase("Mordenkainen's Faithful Hound", 48, 49)]
+        [TestCase("Mordenkainen's Private Sanctum", 50, 51)]
         [TestCase("Nightmare", 52, 53)]
-        [TestCase("Overland flight", 54, 57)]
+        [TestCase("Overland Flight", 54, 57)]
         [TestCase("Passwall", 58, 60)]
-        [TestCase("Persistent image", 62, 63)]
-        [TestCase("Lesser planar binding", 64, 65)]
-        [TestCase("Prying eyes", 66, 67)]
-        [TestCase("Rary's telepathic bond", 68, 69)]
+        [TestCase("Persistent Image", 62, 63)]
+        [TestCase("Lesser Planar Binding", 64, 65)]
+        [TestCase("Prying Eyes", 66, 67)]
+        [TestCase("Rary's Telepathic Bond", 68, 69)]
         [TestCase("Seeming", 70, 71)]
         [TestCase("Sending", 72, 74)]
-        [TestCase("Shadow evocation", 75, 76)]
-        [TestCase("Summon monster V", 78, 79)]
+        [TestCase("Shadow Evocation", 75, 76)]
+        [TestCase("Summon Monster V", 78, 79)]
         [TestCase("Telekinesis", 82, 83)]
         [TestCase("Teleport", 84, 88)]
-        [TestCase("Transmute mud to rock", 89, 90)]
-        [TestCase("Transmute rock to mud", 91, 92)]
-        [TestCase("Wall of force", 93, 95)]
-        [TestCase("Wall of stone", 96, 98)]
-        [TestCase("Waves of fatigue", 99, 100)]
+        [TestCase("Transmute Mud to Rock", 89, 90)]
+        [TestCase("Transmute Rock to Mud", 91, 92)]
+        [TestCase("Wall of Force", 93, 95)]
+        [TestCase("Wall of Stone", 96, 98)]
+        [TestCase("Waves of Fatigue", 99, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase("Mass cure light wounds", 20)]
+        [TestCase("Mass Cure Light Wounds", 20)]
         [TestCase("Dream", 29)]
-        [TestCase("Leomund's secret chest", 40)]
+        [TestCase("Leomund's Secret Chest", 40)]
         [TestCase("Magic jar", 41)]
         [TestCase("Permanency", 61)]
-        [TestCase("Song of discord", 77)]
-        [TestCase("Symbol of pain", 80)]
-        [TestCase("Symbol of sleep", 81)]
+        [TestCase("Song of Discord", 77)]
+        [TestCase("Symbol of Pain", 80)]
+        [TestCase("Symbol of Sleep", 81)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

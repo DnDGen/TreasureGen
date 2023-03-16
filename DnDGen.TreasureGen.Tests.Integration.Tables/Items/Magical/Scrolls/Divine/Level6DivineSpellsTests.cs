@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
@@ -23,47 +23,47 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
             AssertTableIsComplete();
         }
 
-        [TestCase("Animate objects", 1, 3)]
-        [TestCase("Antilife shell", 4, 6)]
+        [TestCase("Animate Objects", 1, 3)]
+        [TestCase("Antilife Shell", 4, 6)]
         [TestCase("Banishment", 7, 9)]
-        [TestCase("Mass bear's endurance", 10, 13)]
-        [TestCase("Blade barrier", 14, 16)]
-        [TestCase("Mass bull's strength", 17, 20)]
-        [TestCase("Mass cat's grace", 21, 24)]
-        [TestCase("Mass cure moderate wounds", 26, 29)]
-        [TestCase("Greater dispel magic", 30, 33)]
-        [TestCase("Mass eagle's splendor", 34, 37)]
-        [TestCase("Find the path", 38, 40)]
-        [TestCase("Fire seeds", 41, 43)]
+        [TestCase("Mass Bear's Endurance", 10, 13)]
+        [TestCase("Blade Barrier", 14, 16)]
+        [TestCase("Mass Bull's Strength", 17, 20)]
+        [TestCase("Mass Cat's Grace", 21, 24)]
+        [TestCase("Mass Cure Moderate Wounds", 26, 29)]
+        [TestCase("Greater Dispel Magic", 30, 33)]
+        [TestCase("Mass Eagle's Splendor", 34, 37)]
+        [TestCase("Find the Path", 38, 40)]
+        [TestCase("Fire Seeds", 41, 43)]
         [TestCase("Harm", 47, 49)]
         [TestCase("Heal", 50, 52)]
-        [TestCase("Heroes' feast", 53, 55)]
-        [TestCase("Mass inflict moderate wounds", 56, 58)]
+        [TestCase("Heroes' Feast", 53, 55)]
+        [TestCase("Mass Inflict Moderate Wounds", 56, 58)]
         [TestCase("Ironwood", 59, 61)]
-        [TestCase("Move earth", 63, 65)]
-        [TestCase("Mass owl's wisdom", 66, 69)]
-        [TestCase("Planar ally", 70, 71)]
-        [TestCase("Repel wood", 72, 74)]
+        [TestCase("Move Earth", 63, 65)]
+        [TestCase("Mass Owl's Wisdom", 66, 69)]
+        [TestCase("Planar Ally", 70, 71)]
+        [TestCase("Repel Wood", 72, 74)]
         [TestCase("Spellstaff", 75, 77)]
-        [TestCase("Stone tell", 78, 80)]
-        [TestCase("Summon monster VI", 81, 83)]
-        [TestCase("Summon nature's ally VI", 84, 86)]
-        [TestCase("Transport via plants", 89, 91)]
-        [TestCase("Undeath to death", 92, 94)]
+        [TestCase("Stone Tell", 78, 80)]
+        [TestCase("Summon Monster VI", 81, 83)]
+        [TestCase("Summon Nature's Ally VI", 84, 86)]
+        [TestCase("Transport via Plants", 89, 91)]
+        [TestCase("Undeath to Death", 92, 94)]
         [TestCase("Windwalk", 95, 97)]
-        [TestCase("Word of recall", 98, 100)]
+        [TestCase("Word of Recall", 98, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase("Create undead", 25)]
+        [TestCase("Create Undead", 25)]
         [TestCase("Forbiddance", 44)]
-        [TestCase("Geas/quest", 45)]
-        [TestCase("Greater glyph of warding", 46)]
+        [TestCase("Geas/Quest", 45)]
+        [TestCase("Greater Glyph of Warding", 46)]
         [TestCase("Liveoak", 62)]
-        [TestCase("Symbol of fear", 87)]
-        [TestCase("Symbol of persuasion", 88)]
+        [TestCase("Symbol of Fear", 87)]
+        [TestCase("Symbol of Persuasion", 88)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

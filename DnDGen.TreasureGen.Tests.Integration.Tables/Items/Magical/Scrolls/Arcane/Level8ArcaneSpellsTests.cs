@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
@@ -24,45 +24,45 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
         }
 
         [TestCase("Antipathy", 1, 2)]
-        [TestCase("Bigby's clenched fist", 3, 5)]
+        [TestCase("Bigby's Clenched Fist", 3, 5)]
         [TestCase("Binding", 6, 8)]
-        [TestCase("Mass charm monster", 9, 12)]
-        [TestCase("Create greater undead", 14, 16)]
+        [TestCase("Mass Charm Monster", 9, 12)]
+        [TestCase("Create Greater Undead", 14, 16)]
         [TestCase("Demand", 17, 19)]
-        [TestCase("Dimensional lock", 20, 22)]
-        [TestCase("Discern location", 23, 26)]
-        [TestCase("Horrid wilting", 27, 29)]
-        [TestCase("Incendiary cloud", 30, 32)]
-        [TestCase("Iron body", 33, 35)]
+        [TestCase("Dimensional Lock", 20, 22)]
+        [TestCase("Discern Location", 23, 26)]
+        [TestCase("Horrid Wilting", 27, 29)]
+        [TestCase("Incendiary Cloud", 30, 32)]
+        [TestCase("Iron Body", 33, 35)]
         [TestCase("Maze", 36, 38)]
-        [TestCase("Mind blank", 39, 41)]
-        [TestCase("Moment of prescience", 42, 44)]
-        [TestCase("Otiluke's telekinetic sphere", 45, 48)]
-        [TestCase("Otto's irresistible dance", 49, 51)]
-        [TestCase("Greater planar binding", 52, 54)]
-        [TestCase("Polar ray", 55, 57)]
-        [TestCase("Polymorph any object", 58, 60)]
-        [TestCase("Power word stun", 61, 63)]
-        [TestCase("Prismatic wall", 64, 66)]
-        [TestCase("Protection from spells", 67, 70)]
-        [TestCase("Greater prying eyes", 71, 73)]
-        [TestCase("Scintillating pattern", 74, 76)]
+        [TestCase("Mind Blank", 39, 41)]
+        [TestCase("Moment of Prescience", 42, 44)]
+        [TestCase("Otiluke's Telekinetic Sphere", 45, 48)]
+        [TestCase("Otto's Irresistible Dance", 49, 51)]
+        [TestCase("Greater Planar Binding", 52, 54)]
+        [TestCase("Polar Ray", 55, 57)]
+        [TestCase("Polymorph Any Object", 58, 60)]
+        [TestCase("Power Word Stun", 61, 63)]
+        [TestCase("Prismatic Wall", 64, 66)]
+        [TestCase("Protection from Spells", 67, 70)]
+        [TestCase("Greater Prying Eyes", 71, 73)]
+        [TestCase("Scintillating Pattern", 74, 76)]
         [TestCase("Screen", 77, 78)]
-        [TestCase("Greater shadow evocation", 79, 81)]
-        [TestCase("Greater shout", 82, 84)]
-        [TestCase("Summon monster VIII", 85, 87)]
+        [TestCase("Greater Shadow Evocation", 79, 81)]
+        [TestCase("Greater Shout", 82, 84)]
+        [TestCase("Summon Monster VIII", 85, 87)]
         [TestCase("Sunburst", 88, 90)]
         [TestCase("Sympathy", 93, 94)]
-        [TestCase("Temporal stasis", 95, 98)]
-        [TestCase("Trap the soul", 99, 100)]
+        [TestCase("Temporal Stasis", 95, 98)]
+        [TestCase("Trap the Soul", 99, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
         [TestCase("Clone", 13)]
-        [TestCase("Symbol of death", 91)]
-        [TestCase("Symbol of insanity", 92)]
+        [TestCase("Symbol of Death", 91)]
+        [TestCase("Symbol of Insanity", 92)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

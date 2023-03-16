@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
@@ -24,53 +24,53 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
         }
 
         [TestCase("Alarm", 1, 3)]
-        [TestCase("Animate rope", 4, 5)]
-        [TestCase("Burning hands", 6, 7)]
-        [TestCase("Cause fear", 8, 9)]
-        [TestCase("Charm person", 10, 12)]
-        [TestCase("Chill touch", 13, 14)]
-        [TestCase("Color spray", 15, 16)]
-        [TestCase("Comprehend languages", 17, 19)]
-        [TestCase("Detect secret doors", 22, 24)]
-        [TestCase("Detect undead", 25, 26)]
-        [TestCase("Disguise self", 27, 29)]
-        [TestCase("Endure elements", 30, 32)]
-        [TestCase("Enlarge person", 33, 35)]
+        [TestCase("Animate Rope", 4, 5)]
+        [TestCase("Burning Hands", 6, 7)]
+        [TestCase("Cause Fear", 8, 9)]
+        [TestCase("Charm Person", 10, 12)]
+        [TestCase("Chill Touch", 13, 14)]
+        [TestCase("Color Spray", 15, 16)]
+        [TestCase("Comprehend Languages", 17, 19)]
+        [TestCase("Detect Secret Doors", 22, 24)]
+        [TestCase("Detect Undead", 25, 26)]
+        [TestCase("Disguise Self", 27, 29)]
+        [TestCase("Endure Elements", 30, 32)]
+        [TestCase("Enlarge Person", 33, 35)]
         [TestCase("Erase", 36, 37)]
-        [TestCase("Expeditious retreat", 38, 40)]
+        [TestCase("Expeditious Retreat", 38, 40)]
         [TestCase("Grease", 42, 43)]
-        [TestCase("Hold portal", 44, 45)]
+        [TestCase("Hold Portal", 44, 45)]
         [TestCase("Hypnotism", 46, 47)]
         [TestCase("Identify", 48, 49)]
         [TestCase("Jump", 50, 51)]
-        [TestCase("Mage armor", 52, 54)]
-        [TestCase("Magic missile", 55, 56)]
-        [TestCase("Magic weapon", 57, 59)]
+        [TestCase("Mage Armor", 52, 54)]
+        [TestCase("Magic Missile", 55, 56)]
+        [TestCase("Magic Weapon", 57, 59)]
         [TestCase("Mount", 60, 62)]
-        [TestCase("Nystul's magic aura", 63, 64)]
-        [TestCase("Obscuring mist", 65, 66)]
-        [TestCase("Protection from chaos/evil/good/law", 67, 74)]
-        [TestCase("Ray of enfeeblement", 75, 76)]
-        [TestCase("Reduce person", 77, 78)]
-        [TestCase("Remove fear", 79, 80)]
+        [TestCase("Nystul's Magic Aura", 63, 64)]
+        [TestCase("Obscuring Mist", 65, 66)]
+        [TestCase("Protection from Chaos/Evil/Good/Law", 67, 74)]
+        [TestCase("Ray of Enfeeblement", 75, 76)]
+        [TestCase("Reduce Person", 77, 78)]
+        [TestCase("Remove Fear", 79, 80)]
         [TestCase("Shield", 81, 82)]
-        [TestCase("Shocking grasp", 83, 84)]
-        [TestCase("Silent image", 85, 86)]
+        [TestCase("Shocking Grasp", 83, 84)]
+        [TestCase("Silent Image", 85, 86)]
         [TestCase("Sleep", 87, 88)]
-        [TestCase("Summon monster I", 89, 90)]
-        [TestCase("Tenser's floating disc", 91, 93)]
-        [TestCase("True strike", 94, 95)]
-        [TestCase("Unseen servant", 97, 98)]
+        [TestCase("Summon Monster I", 89, 90)]
+        [TestCase("Tenser's Floating Disc", 91, 93)]
+        [TestCase("True Strike", 94, 95)]
+        [TestCase("Unseen Servant", 97, 98)]
         [TestCase("Ventriloquism", 99, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase("Lesser confusion", 20)]
-        [TestCase("Cure light wounds", 21)]
-        [TestCase("Feather fall", 41)]
-        [TestCase("Undetectable alignment", 96)]
+        [TestCase("Lesser Confusion", 20)]
+        [TestCase("Cure Light Wounds", 21)]
+        [TestCase("Feather Fall", 41)]
+        [TestCase("Undetectable Alignment", 96)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

@@ -4,10 +4,10 @@ namespace DnDGen.TreasureGen.Items.Magical
 {
     public static class WondrousItemConstants
     {
-        public const string AmuletOfHealth = "Amulet of health";
-        public const string AmuletOfInescapableLocation = "Amulet of inescapable location";
-        public const string AmuletOfMightyFists = "Amulet of mighty fists";
-        public const string AmuletOfNaturalArmor = "Amulet of natural armor";
+        public const string AmuletOfHealth = "Amulet of Health";
+        public const string AmuletOfInescapableLocation = "Amulet of Inescapable Location";
+        public const string AmuletOfMightyFists = "Amulet of Mighty Fists";
+        public const string AmuletOfNaturalArmor = "Amulet of Natural Armor";
         public const string AmuletOfProofAgainstDetectionAndLocation = "Amulet of proof against detection and location";
         public const string AmuletOfThePlanes = "Amulet of the planes";
         public const string ApparatusOfKwalish = "Apparatus of Kwalish";
