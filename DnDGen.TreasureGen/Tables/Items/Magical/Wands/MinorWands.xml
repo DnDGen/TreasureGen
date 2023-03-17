@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Detect magic</content>
+        <content>Detect Magic</content>
         <upper>2</upper>
     </percentile>
     <percentile>
@@ -13,82 +13,82 @@
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Burning hands</content>
+        <content>Burning Hands</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Charm animal</content>
+        <content>Charm Animal</content>
         <upper>10</upper>
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Charm person</content>
+        <content>Charm Person</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Color spray</content>
+        <content>Color Spray</content>
         <upper>16</upper>
     </percentile>
     <percentile>
         <lower>17</lower>
-        <content>Cure light wounds</content>
+        <content>Cure Light Wounds</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Detect secret doors</content>
+        <content>Detect Secret Doors</content>
         <upper>22</upper>
     </percentile>
     <percentile>
         <lower>23</lower>
-        <content>Enlarge person</content>
+        <content>Enlarge Person</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Magic missile (1st)</content>
+        <content>Magic Missile (1st)</content>
         <upper>28</upper>
     </percentile>
     <percentile>
         <lower>29</lower>
-        <content>Shocking grasp</content>
+        <content>Shocking Grasp</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Summon monster I</content>
+        <content>Summon Monster I</content>
         <upper>34</upper>
     </percentile>
     <percentile>
         <lower>35</lower>
-        <content>Magic missile (3rd)</content>
+        <content>Magic Missile (3rd)</content>
         <upper>36</upper>
     </percentile>
     <percentile>
         <lower>37</lower>
-        <content>Magic missile (5th)</content>
+        <content>Magic Missile (5th)</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Bear's endurance</content>
+        <content>Bear's Endurance</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Bull's strength</content>
+        <content>Bull's Strength</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Cat's grace</content>
+        <content>Cat's Grace</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Cure moderate wounds</content>
+        <content>Cure Moderate Wounds</content>
         <upper>49</upper>
     </percentile>
     <percentile>
@@ -98,37 +98,37 @@
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Daze monster</content>
+        <content>Daze Monster</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Delay poison</content>
+        <content>Delay Poison</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Eagle's splendor</content>
+        <content>Eagle's Splendor</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>False life</content>
+        <content>False Life</content>
         <upper>63</upper>
     </percentile>
     <percentile>
         <lower>64</lower>
-        <content>Fox's cunning</content>
+        <content>Fox's Cunning</content>
         <upper>66</upper>
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Ghoul touch</content>
+        <content>Ghoul Touch</content>
         <upper>68</upper>
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Hold person</content>
+        <content>Hold Person</content>
         <upper>71</upper>
     </percentile>
     <percentile>
@@ -148,17 +148,17 @@
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Acid arrow</content>
+        <content>Melf's Acid Arrow</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Mirror image</content>
+        <content>Mirror Image</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Owl's wisdom</content>
+        <content>Owl's Wisdom</content>
         <upper>89</upper>
     </percentile>
     <percentile>
@@ -173,7 +173,7 @@
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Summon monster II</content>
+        <content>Summon Monster II</content>
         <upper>97</upper>
     </percentile>
     <percentile>

@@ -8,37 +8,37 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Dwarven plate,0</content>
+        <content>Dwarven Plate,0</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Banded mail of luck,3</content>
+        <content>Banded Mail of Luck,3</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Celestial armor,3</content>
+        <content>Celestial Armor,3</content>
         <upper>50</upper>
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Plate armor of the deep,1</content>
+        <content>Plate Armor of the Deep,1</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Breastplate of command,2</content>
+        <content>Breastplate of Command,2</content>
         <upper>75</upper>
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Full plate of speed,1</content>
+        <content>Full Plate of Speed,1</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Demon armor,4</content>
+        <content>Demon Armor,4</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

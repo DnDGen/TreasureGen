@@ -3,52 +3,52 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Acid fog</content>
+        <content>Acid Fog</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Analyze dweomer</content>
+        <content>Analyze Dweomer</content>
         <upper>5</upper>
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Animate objects</content>
+        <content>Animate Objects</content>
         <upper>6</upper>
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Antimagic field</content>
+        <content>Antimagic Field</content>
         <upper>9</upper>
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Mass bear's endurance</content>
+        <content>Mass Bear's Endurance</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Bigby's forceful hand</content>
+        <content>Bigby's Forceful Hand</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Mass bull's strength</content>
+        <content>Mass Bull's Strength</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Mass cat's grace</content>
+        <content>Mass Cat's Grace</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Chain lightning</content>
+        <content>Chain Lightning</content>
         <upper>23</upper>
     </percentile>
     <percentile>
         <lower>24</lower>
-        <content>Circle of death</content>
+        <content>Circle of Death</content>
         <upper>25</upper>
     </percentile>
     <percentile>
@@ -58,17 +58,17 @@
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Control water</content>
+        <content>Control Water</content>
         <upper>28</upper>
     </percentile>
     <percentile>
         <lower>29</lower>
-        <content>Create undead</content>
+        <content>Create Undead</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Mass cure moderate wounds</content>
+        <content>Mass Cure Moderate Wounds</content>
         <upper>30</upper>
     </percentile>
     <percentile>
@@ -78,12 +78,12 @@
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Greater dispel magic</content>
+        <content>Greater Dispel Magic</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Mass eagle's splendor</content>
+        <content>Mass Eagle's Splendor</content>
         <upper>40</upper>
     </percentile>
     <percentile>
@@ -93,47 +93,47 @@
     </percentile>
     <percentile>
         <lower>43</lower>
-        <content>Find the path</content>
+        <content>Find the Path</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Flesh to stone</content>
+        <content>Flesh to Stone</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Mass fox's cunning</content>
+        <content>Mass Fox's Cunning</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Geas/quest</content>
+        <content>Geas/Quest</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Globe of invulnerability</content>
+        <content>Globe of Invulnerability</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Guards and wards</content>
+        <content>Guards and Wards</content>
         <upper>53</upper>
     </percentile>
     <percentile>
         <lower>54</lower>
-        <content>Heroes' feast</content>
+        <content>Heroes' Feast</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Greater heroism</content>
+        <content>Greater Heroism</content>
         <upper>56</upper>
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Legend lore</content>
+        <content>Legend Lore</content>
         <upper>57</upper>
     </percentile>
     <percentile>
@@ -143,37 +143,37 @@
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Mordenkainen's lubrication</content>
+        <content>Mordenkainen's Lucubration</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Move earth</content>
+        <content>Move Earth</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Otiluke's freezing sphere</content>
+        <content>Otiluke's Freezing Sphere</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Mass owl's wisdom</content>
+        <content>Mass Owl's Wisdom</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Permanent image</content>
+        <content>Permanent Image</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Planar binding</content>
+        <content>Planar Binding</content>
         <upper>71</upper>
     </percentile>
     <percentile>
         <lower>72</lower>
-        <content>Programmed image</content>
+        <content>Programmed Image</content>
         <upper>73</upper>
     </percentile>
     <percentile>
@@ -183,52 +183,52 @@
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Shadow walk</content>
+        <content>Shadow Walk</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Stone to flesh</content>
+        <content>Stone to Flesh</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Mass suggestion</content>
+        <content>Mass Suggestion</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Summon monster VI</content>
+        <content>Summon Monster VI</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Symbol of fear</content>
+        <content>Symbol of Fear</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Symbol of persuasion</content>
+        <content>Symbol of Persuasion</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Sympathetic vibration</content>
+        <content>Sympathetic Vibration</content>
         <upper>88</upper>
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Tenser's transformation</content>
+        <content>Tenser's Transformation</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>True seeing</content>
+        <content>True Seeing</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Undeath to death</content>
+        <content>Undeath to Death</content>
         <upper>95</upper>
     </percentile>
     <percentile>
@@ -238,7 +238,7 @@
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Wall of iron</content>
+        <content>Wall of Iron</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

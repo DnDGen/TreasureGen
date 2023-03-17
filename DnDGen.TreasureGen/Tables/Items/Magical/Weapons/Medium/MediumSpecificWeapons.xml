@@ -3,27 +3,27 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Javelin of lightning,0</content>
+        <content>Javelin of Lightning,0</content>
         <upper>9</upper>
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Slaying arrow,1</content>
+        <content>Slaying Arrow,1</content>
         <upper>15</upper>
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Adamantine dagger,0</content>
+        <content>Adamantine Dagger,0</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Adamantine battleaxe,0</content>
+        <content>Adamantine Battleaxe,0</content>
         <upper>33</upper>
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Greater slaying arrow,1</content>
+        <content>Greater Slaying Arrow,1</content>
         <upper>37</upper>
     </percentile>
     <percentile>
@@ -33,57 +33,57 @@
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Dagger of venom,1</content>
+        <content>Dagger of Venom,1</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Trident of warning,2</content>
+        <content>Trident of Warning,2</content>
         <upper>51</upper>
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Assassin's dagger,2</content>
+        <content>Assassin's Dagger,2</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Shifter's sorrow,1</content>
+        <content>Shifter's Sorrow,1</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Trident of fish command,1</content>
+        <content>Trident of Fish Command,1</content>
         <upper>66</upper>
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Flame tongue,1</content>
+        <content>Flame Tongue,1</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Luck blade (0 wishes),2</content>
+        <content>Luck Blade (0 wishes),2</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Sword of subtlety,1</content>
+        <content>Sword of Subtlety,1</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Sword of the planes,1</content>
+        <content>Sword of the Planes,1</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Nine lives stealer,2</content>
+        <content>Nine Lives Stealer,2</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Sword of life stealing,2</content>
+        <content>Sword of Life Stealing,2</content>
         <upper>98</upper>
     </percentile>
     <percentile>

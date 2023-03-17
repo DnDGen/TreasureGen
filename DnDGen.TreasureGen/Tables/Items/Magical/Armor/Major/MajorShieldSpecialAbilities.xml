@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Arrow catching</content>
+        <content>Arrow Catching</content>
         <upper>5</upper>
     </percentile>
     <percentile>
@@ -18,12 +18,12 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Light fortification</content>
+        <content>Light Fortification</content>
         <upper>15</upper>
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Arrow deflection</content>
+        <content>Arrow Deflection</content>
         <upper>20</upper>
     </percentile>
     <percentile>
@@ -33,42 +33,42 @@
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Acid resistance</content>
+        <content>Acid Resistance</content>
         <upper>28</upper>
     </percentile>
     <percentile>
         <lower>29</lower>
-        <content>Cold resistance</content>
+        <content>Cold Resistance</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Electricity resistance</content>
+        <content>Electricity Resistance</content>
         <upper>34</upper>
     </percentile>
     <percentile>
         <lower>35</lower>
-        <content>Fire resistance</content>
+        <content>Fire Resistance</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Sonic resistance</content>
+        <content>Sonic Resistance</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Ghost touch (armor)</content>
+        <content>Ghost Touch (armor)</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Moderate fortification</content>
+        <content>Moderate Fortification</content>
         <upper>56</upper>
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Spell resistance (15)</content>
+        <content>Spell Resistance (15)</content>
         <upper>58</upper>
     </percentile>
     <percentile>
@@ -78,42 +78,42 @@
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Improved acid resistance</content>
+        <content>Improved Acid Resistance</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Improved cold resistance</content>
+        <content>Improved Cold Resistance</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Improved electricity resistance</content>
+        <content>Improved Electricity Resistance</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Improved fire resistance</content>
+        <content>Improved Fire Resistance</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Improved sonic resistance</content>
+        <content>Improved Sonic Resistance</content>
         <upper>84</upper>
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Spell resistance (17)</content>
+        <content>Spell Resistance (17)</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Undead controlling</content>
+        <content>Undead Controlling</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Heavy fortification</content>
+        <content>Heavy Fortification</content>
         <upper>91</upper>
     </percentile>
     <percentile>
@@ -123,32 +123,32 @@
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Spell resistance (19)</content>
+        <content>Spell Resistance (19)</content>
         <upper>94</upper>
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Greater acid resistance</content>
+        <content>Greater Acid Resistance</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Greater cold resistance</content>
+        <content>Greater Cold Resistance</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Greater electricity resistance</content>
+        <content>Greater Electricity Resistance</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Greater fire resistance</content>
+        <content>Greater Fire Resistance</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Greater sonic resistance</content>
+        <content>Greater Sonic Resistance</content>
         <upper>99</upper>
     </percentile>
     <percentile>

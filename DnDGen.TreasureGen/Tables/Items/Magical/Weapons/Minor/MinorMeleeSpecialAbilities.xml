@@ -28,7 +28,7 @@
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Ghost touch (weapon)</content>
+        <content>Ghost Touch (weapon)</content>
         <upper>56</upper>
     </percentile>
     <percentile>
@@ -38,7 +38,7 @@
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Ki focus</content>
+        <content>Ki Focus</content>
         <upper>71</upper>
     </percentile>
     <percentile>
@@ -48,12 +48,12 @@
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Mighty cleaving</content>
+        <content>Mighty Cleaving</content>
         <upper>82</upper>
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>Spell storing</content>
+        <content>Spell Storing</content>
         <upper>87</upper>
     </percentile>
     <percentile>

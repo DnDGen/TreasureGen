@@ -3,22 +3,22 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animate dead</content>
+        <content>Animate Dead</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Bestow curse</content>
+        <content>Bestow Curse</content>
         <upper>4</upper>
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Blindness/deafness</content>
+        <content>Blindness/Deafness</content>
         <upper>6</upper>
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Call lightning</content>
+        <content>Call Lightning</content>
         <upper>8</upper>
     </percentile>
     <percentile>
@@ -28,17 +28,17 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Continual flame</content>
+        <content>Continual Flame</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Create food and water</content>
+        <content>Create Food and Water</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Cure serious wounds</content>
+        <content>Cure Serious Wounds</content>
         <upper>18</upper>
     </percentile>
     <percentile>
@@ -53,87 +53,87 @@
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Deeper darkness</content>
+        <content>Deeper Darkness</content>
         <upper>23</upper>
     </percentile>
     <percentile>
         <lower>24</lower>
-        <content>Diminish plants</content>
+        <content>Diminish Plants</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Dispel magic</content>
+        <content>Dispel Magic</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Dominate animal</content>
+        <content>Dominate Animal</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Glyph of warding</content>
+        <content>Glyph of Warding</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Heal mount</content>
+        <content>Heal Mount</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Helping hand</content>
+        <content>Helping Hand</content>
         <upper>34</upper>
     </percentile>
     <percentile>
         <lower>35</lower>
-        <content>Inflict serious wounds</content>
+        <content>Inflict Serious Wounds</content>
         <upper>36</upper>
     </percentile>
     <percentile>
         <lower>37</lower>
-        <content>Invisibility purge</content>
+        <content>Invisibility Purge</content>
         <upper>38</upper>
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Locate object</content>
+        <content>Locate Object</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Magic circle against chaos/evil/good/law</content>
+        <content>Magic Circle Against Chaos/Evil/Good/Law</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Greater magic fang</content>
+        <content>Greater Magic Fang</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Magic vestment</content>
+        <content>Magic Vestment</content>
         <upper>50</upper>
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Meld into stone</content>
+        <content>Meld into Stone</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Neutralize poison</content>
+        <content>Neutralize Poison</content>
         <upper>55</upper>
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Obscure object</content>
+        <content>Obscure Object</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Plant growth</content>
+        <content>Plant Growth</content>
         <upper>59</upper>
     </percentile>
     <percentile>
@@ -143,7 +143,7 @@
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Protection from energy</content>
+        <content>Protection from Energy</content>
         <upper>64</upper>
     </percentile>
     <percentile>
@@ -153,27 +153,27 @@
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Remove blindness/deafness</content>
+        <content>Remove Blindness/Deafness</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Remove curse</content>
+        <content>Remove Curse</content>
         <upper>71</upper>
     </percentile>
     <percentile>
         <lower>72</lower>
-        <content>Remove disease</content>
+        <content>Remove Disease</content>
         <upper>73</upper>
     </percentile>
     <percentile>
         <lower>74</lower>
-        <content>Searing light</content>
+        <content>Searing Light</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Sleet storm</content>
+        <content>Sleet Storm</content>
         <upper>78</upper>
     </percentile>
     <percentile>
@@ -183,47 +183,47 @@
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Speak with dead</content>
+        <content>Speak with Dead</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Speak with plants</content>
+        <content>Speak with Plants</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Spike growth</content>
+        <content>Spike Growth</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Stone shape</content>
+        <content>Stone Shape</content>
         <upper>89</upper>
     </percentile>
     <percentile>
         <lower>90</lower>
-        <content>Summon monster III</content>
+        <content>Summon Monster III</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Summon nature's ally III</content>
+        <content>Summon Nature's Ally III</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Water breathing</content>
+        <content>Water Breathing</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Water walk</content>
+        <content>Water Walk</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Wind wall</content>
+        <content>Wind Wall</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

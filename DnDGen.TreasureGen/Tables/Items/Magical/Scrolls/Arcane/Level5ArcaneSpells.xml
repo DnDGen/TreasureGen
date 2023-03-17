@@ -3,17 +3,17 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animal growth</content>
+        <content>Animal Growth</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Baleful polymorph</content>
+        <content>Baleful Polymorph</content>
         <upper>5</upper>
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Bigby's interposing hand</content>
+        <content>Bigby's Interposing Hand</content>
         <upper>7</upper>
     </percentile>
     <percentile>
@@ -23,7 +23,7 @@
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Break enchantment</content>
+        <content>Break Enchantment</content>
         <upper>12</upper>
     </percentile>
     <percentile>
@@ -33,17 +33,17 @@
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Cone of cold</content>
+        <content>Cone of Cold</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Contact other plane</content>
+        <content>Contact Other Plane</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Mass cure light wounds</content>
+        <content>Mass Cure Light Wounds</content>
         <upper>20</upper>
     </percentile>
     <percentile>
@@ -53,12 +53,12 @@
     </percentile>
     <percentile>
         <lower>24</lower>
-        <content>Greater dispel magic</content>
+        <content>Greater Dispel Magic</content>
         <upper>26</upper>
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Dominate person</content>
+        <content>Dominate Person</content>
         <upper>28</upper>
     </percentile>
     <percentile>
@@ -73,7 +73,7 @@
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>False vision</content>
+        <content>False Vision</content>
         <upper>33</upper>
     </percentile>
     <percentile>
@@ -83,42 +83,42 @@
     </percentile>
     <percentile>
         <lower>36</lower>
-        <content>Hold monster</content>
+        <content>Hold Monster</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Leomund's secret chest</content>
+        <content>Leomund's Secret Chest</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Magic jar</content>
+        <content>Magic Jar</content>
         <upper>41</upper>
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Major creation</content>
+        <content>Major Creation</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Mind fog</content>
+        <content>Mind Fog</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Mirage arcana</content>
+        <content>Mirage Arcana</content>
         <upper>47</upper>
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Mordenkainen's faithful hound</content>
+        <content>Mordenkainen's Faithful Hound</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Mordenkainen's private sanctum</content>
+        <content>Mordenkainen's Private Sanctum</content>
         <upper>51</upper>
     </percentile>
     <percentile>
@@ -128,7 +128,7 @@
     </percentile>
     <percentile>
         <lower>54</lower>
-        <content>Overland flight</content>
+        <content>Overland Flight</content>
         <upper>57</upper>
     </percentile>
     <percentile>
@@ -143,22 +143,22 @@
     </percentile>
     <percentile>
         <lower>62</lower>
-        <content>Persistent image</content>
+        <content>Persistent Image</content>
         <upper>63</upper>
     </percentile>
     <percentile>
         <lower>64</lower>
-        <content>Lesser planar binding</content>
+        <content>Lesser Planar Binding</content>
         <upper>65</upper>
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Prying eyes</content>
+        <content>Prying Eyes</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Rary's telepathic bond</content>
+        <content>Rary's Telepathic Bond</content>
         <upper>69</upper>
     </percentile>
     <percentile>
@@ -173,27 +173,27 @@
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Shadow evocation</content>
+        <content>Shadow Evocation</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Song of discord</content>
+        <content>Song of Discord</content>
         <upper>77</upper>
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Summon monster V</content>
+        <content>Summon Monster V</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Symbol of pain</content>
+        <content>Symbol of Pain</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Symbol of sleep</content>
+        <content>Symbol of Sleep</content>
         <upper>81</upper>
     </percentile>
     <percentile>
@@ -208,27 +208,27 @@
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Transmute mud to rock</content>
+        <content>Transmute Mud to Rock</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Transmute rock to mud</content>
+        <content>Transmute Rock to Mud</content>
         <upper>92</upper>
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Wall of force</content>
+        <content>Wall of Force</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Wall of stone</content>
+        <content>Wall of Stone</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Waves of fatigue</content>
+        <content>Waves of Fatigue</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

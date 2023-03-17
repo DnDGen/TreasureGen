@@ -13,7 +13,7 @@
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Staff of Swarming insects,0</content>
+        <content>Staff of Swarming Insects,0</content>
         <upper>11</upper>
     </percentile>
     <percentile>
@@ -23,7 +23,7 @@
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Staff of Size alteration,0</content>
+        <content>Staff of Size Alteration,0</content>
         <upper>19</upper>
     </percentile>
     <percentile>
@@ -83,7 +83,7 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Staff of Earth and stone,0</content>
+        <content>Staff of Earth and Stone,0</content>
         <upper>82</upper>
     </percentile>
     <percentile>

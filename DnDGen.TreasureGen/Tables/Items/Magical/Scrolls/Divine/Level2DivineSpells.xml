@@ -3,12 +3,12 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animal messenger</content>
+        <content>Animal Messenger</content>
         <upper>1</upper>
     </percentile>
     <percentile>
         <lower>2</lower>
-        <content>Animal trance</content>
+        <content>Animal Trance</content>
         <upper>2</upper>
     </percentile>
     <percentile>
@@ -23,27 +23,27 @@
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Bear's endurance</content>
+        <content>Bear's Endurance</content>
         <upper>9</upper>
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Bull's strength</content>
+        <content>Bull's Strength</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Calm emotions</content>
+        <content>Calm Emotions</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Cat's grace</content>
+        <content>Cat's Grace</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Chill metal</content>
+        <content>Chill Metal</content>
         <upper>18</upper>
     </percentile>
     <percentile>
@@ -53,7 +53,7 @@
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Cure moderate wounds</content>
+        <content>Cure Moderate Wounds</content>
         <upper>24</upper>
     </percentile>
     <percentile>
@@ -63,12 +63,12 @@
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Death knell</content>
+        <content>Death Knell</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Delay poison</content>
+        <content>Delay Poison</content>
         <upper>30</upper>
     </percentile>
     <percentile>
@@ -78,7 +78,7 @@
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Eagle's splendor</content>
+        <content>Eagle's Splendor</content>
         <upper>35</upper>
     </percentile>
     <percentile>
@@ -88,87 +88,87 @@
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Find traps</content>
+        <content>Find Traps</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Fire trap</content>
+        <content>Fire Trap</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Flame blade</content>
+        <content>Flame Blade</content>
         <upper>42</upper>
     </percentile>
     <percentile>
         <lower>43</lower>
-        <content>Flaming sphere</content>
+        <content>Flaming Sphere</content>
         <upper>44</upper>
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Fog cloud</content>
+        <content>Fog Cloud</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Gentle repose</content>
+        <content>Gentle Repose</content>
         <upper>47</upper>
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Gust of wind</content>
+        <content>Gust of Wind</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Heat metal</content>
+        <content>Heat Metal</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Hold animal</content>
+        <content>Hold Animal</content>
         <upper>51</upper>
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Hold person</content>
+        <content>Hold Person</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Inflict moderate wounds</content>
+        <content>Inflict Moderate Wounds</content>
         <upper>56</upper>
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Make whole</content>
+        <content>Make Whole</content>
         <upper>58</upper>
     </percentile>
     <percentile>
         <lower>59</lower>
-        <content>Owl's wisdom</content>
+        <content>Owl's Wisdom</content>
         <upper>61</upper>
     </percentile>
     <percentile>
         <lower>62</lower>
-        <content>Reduce animal</content>
+        <content>Reduce Animal</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Remove paralysis</content>
+        <content>Remove Paralysis</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Resist energy</content>
+        <content>Resist Energy</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Lesser restoration</content>
+        <content>Lesser Restoration</content>
         <upper>70</upper>
     </percentile>
     <percentile>
@@ -178,7 +178,7 @@
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Shield other</content>
+        <content>Shield Other</content>
         <upper>74</upper>
     </percentile>
     <percentile>
@@ -193,27 +193,27 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Soften earth and stone</content>
+        <content>Soften Earth and Stone</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Sound burst</content>
+        <content>Sound Burst</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Speak with plants</content>
+        <content>Speak with Plants</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Spider climb</content>
+        <content>Spider Climb</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Spiritual weapon</content>
+        <content>Spiritual Weapon</content>
         <upper>85</upper>
     </percentile>
     <percentile>
@@ -223,42 +223,42 @@
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Summon monster II</content>
+        <content>Summon Monster II</content>
         <upper>88</upper>
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Summon nature's ally II</content>
+        <content>Summon Nature's Ally II</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Summon swarm</content>
+        <content>Summon Swarm</content>
         <upper>92</upper>
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Tree shape</content>
+        <content>Tree Shape</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Undetectable alignment</content>
+        <content>Undetectable Alignment</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Warp wood</content>
+        <content>Warp Wood</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Wood shape</content>
+        <content>Wood Shape</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Zone of truth</content>
+        <content>Zone of Truth</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

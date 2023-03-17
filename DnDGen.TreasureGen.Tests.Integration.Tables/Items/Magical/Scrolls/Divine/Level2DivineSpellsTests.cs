@@ -76,7 +76,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
         [TestCase("Spiritual Weapon", 84, 85)]
         [TestCase("Summon Monster II", 87, 88)]
         [TestCase("Summon Nature's Ally II", 89, 90)]
-        [TestCase("Summon Awarm", 91, 92)]
+        [TestCase("Summon Swarm", 91, 92)]
         [TestCase("Undetectable Alignment", 94, 95)]
         [TestCase("Warp Wood", 96, 97)]
         [TestCase("Zone of Truth", 99, 100)]

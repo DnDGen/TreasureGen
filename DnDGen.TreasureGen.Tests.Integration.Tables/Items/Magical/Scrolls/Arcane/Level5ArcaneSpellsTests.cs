@@ -69,7 +69,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
         [TestCase("Mass Cure Light Wounds", 20)]
         [TestCase("Dream", 29)]
         [TestCase("Leomund's Secret Chest", 40)]
-        [TestCase("Magic jar", 41)]
+        [TestCase("Magic Jar", 41)]
         [TestCase("Permanency", 61)]
         [TestCase("Song of Discord", 77)]
         [TestCase("Symbol of Pain", 80)]

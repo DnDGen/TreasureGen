@@ -8,7 +8,7 @@
     </percentile>
     <percentile>
         <lower>19</lower>
-        <content>Ring of Feather falling,0</content>
+        <content>Ring of Feather Falling,0</content>
         <upper>28</upper>
     </percentile>
     <percentile>
@@ -38,7 +38,7 @@
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Ring of Mind shielding,0</content>
+        <content>Ring of Mind Shielding,0</content>
         <upper>75</upper>
     </percentile>
     <percentile>
@@ -48,7 +48,7 @@
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Ring of Force shield,0</content>
+        <content>Ring of Force Shield,0</content>
         <upper>85</upper>
     </percentile>
     <percentile>
@@ -58,22 +58,22 @@
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Ring of Animal friendship,0</content>
+        <content>Ring of Animal Friendship,0</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Ring of Minor ENERGY resistance,0</content>
+        <content>Ring of Minor ENERGY Resistance,0</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Ring of Chameleon power,0</content>
+        <content>Ring of Chameleon Power,0</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Ring of Water walking,0</content>
+        <content>Ring of Water Walking,0</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

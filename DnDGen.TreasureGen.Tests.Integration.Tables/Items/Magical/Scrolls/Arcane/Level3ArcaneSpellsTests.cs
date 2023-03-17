@@ -43,7 +43,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
         [TestCase("Keen Edge", 45, 47)]
         [TestCase("Leomund's Tiny Hut", 48, 49)]
         [TestCase("Lightning Bolt", 50, 51)]
-        [TestCase("Magic Circle against Chaos/Evil/Good/Law", 52, 59)]
+        [TestCase("Magic Circle Against Chaos/Evil/Good/Law", 52, 59)]
         [TestCase("Greater Magic Weapon", 60, 62)]
         [TestCase("Major Image", 63, 64)]
         [TestCase("Nondetection", 65, 66)]

@@ -227,7 +227,7 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string QuaalsFeatherToken_Anchor = "Quaal's Anchor Feather Token";
         public const string QuaalsFeatherToken_Bird = "Quaal's Bird Feather Token";
         public const string QuaalsFeatherToken_Fan = "Quaal's Fan Feather Token";
-        public const string QuaalsFeatherToken_SwanBoat = "Quaal's Swan boat Feather Token";
+        public const string QuaalsFeatherToken_SwanBoat = "Quaal's Swan Boat Feather Token";
         public const string QuaalsFeatherToken_Tree = "Quaal's Tree Feather Token";
         public const string QuaalsFeatherToken_Whip = "Quaal's Whip Feather Token";
         public const string QuiverOfEhlonna = "Quiver of Ehlonna";

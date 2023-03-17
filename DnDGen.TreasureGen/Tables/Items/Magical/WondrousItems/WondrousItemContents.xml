@@ -2,7 +2,7 @@
 
 <collections>
     <collection>
-        <name>Robe of useful items</name>
+        <name>Robe of Useful Items</name>
         <entry>Dagger</entry>
         <entry>Dagger</entry>
         <entry>Bullseye lantern (filled and lit)</entry>
@@ -17,28 +17,28 @@
         <entry>Sack</entry>
     </collection>
     <collection>
-        <name>Robe of bones</name>
-        <entry>Small goblin skeleton</entry>
-        <entry>Small goblin skeleton</entry>
-        <entry>Medium human commoner skeleton</entry>
-        <entry>Medium human commoner skeleton</entry>
-        <entry>Medium wolf skeleton</entry>
-        <entry>Medium wolf skeleton</entry>
-        <entry>Small goblin zombie</entry>
-        <entry>Small goblin zombie</entry>
-        <entry>Medium human commoner zombie</entry>
-        <entry>Medium human commoner zombie</entry>
-        <entry>Medium wolf zombie</entry>
-        <entry>Medium wolf zombie</entry>
+        <name>Robe of Bones</name>
+        <entry>Small Goblin Skeleton</entry>
+        <entry>Small Goblin Skeleton</entry>
+        <entry>Medium Human Commoner Skeleton</entry>
+        <entry>Medium Human Commoner Skeleton</entry>
+        <entry>Medium Wolf Skeleton</entry>
+        <entry>Medium Wolf Skeleton</entry>
+        <entry>Small Goblin Zombie</entry>
+        <entry>Small Goblin Zombie</entry>
+        <entry>Medium Human Commoner Zombie</entry>
+        <entry>Medium Human Commoner Zombie</entry>
+        <entry>Medium Wolf Zombie</entry>
+        <entry>Medium Wolf Zombie</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type I</name>
+        <name>Necklace of Fireballs Type I</name>
         <entry>3d6</entry>
         <entry>3d6</entry>
         <entry>5d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type II</name>
+        <name>Necklace of Fireballs Type II</name>
         <entry>2d6</entry>
         <entry>2d6</entry>
         <entry>4d6</entry>
@@ -46,7 +46,7 @@
         <entry>6d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type III</name>
+        <name>Necklace of Fireballs Type III</name>
         <entry>3d6</entry>
         <entry>3d6</entry>
         <entry>3d6</entry>
@@ -56,7 +56,7 @@
         <entry>7d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type IV</name>
+        <name>Necklace of Fireballs Type IV</name>
         <entry>2d6</entry>
         <entry>2d6</entry>
         <entry>2d6</entry>
@@ -68,7 +68,7 @@
         <entry>8d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type V</name>
+        <name>Necklace of Fireballs Type V</name>
         <entry>3d6</entry>
         <entry>3d6</entry>
         <entry>5d6</entry>
@@ -78,7 +78,7 @@
         <entry>9d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VI</name>
+        <name>Necklace of Fireballs Type VI</name>
         <entry>4d6</entry>
         <entry>4d6</entry>
         <entry>4d6</entry>
@@ -90,7 +90,7 @@
         <entry>10d6</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VII</name>
+        <name>Necklace of Fireballs Type VII</name>
         <entry>3d6</entry>
         <entry>3d6</entry>
         <entry>5d6</entry>
@@ -102,7 +102,7 @@
         <entry>10d6</entry>
     </collection>
     <collection>
-        <name>Deck of illusions</name>
+        <name>Deck of Illusions</name>
         <entry>Ace of hearts</entry>
         <entry>King of hearts</entry>
         <entry>Queen of hearts</entry>

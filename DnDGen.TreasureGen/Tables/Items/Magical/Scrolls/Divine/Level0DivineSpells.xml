@@ -3,22 +3,22 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Create water</content>
+        <content>Create Water</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Cure minor wounds</content>
+        <content>Cure Minor Wounds</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Detect magic</content>
+        <content>Detect Magic</content>
         <upper>22</upper>
     </percentile>
     <percentile>
         <lower>23</lower>
-        <content>Detect poison</content>
+        <content>Detect Poison</content>
         <upper>29</upper>
     </percentile>
     <percentile>
@@ -33,12 +33,12 @@
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Inflict minor wounds</content>
+        <content>Inflict Minor Wounds</content>
         <upper>50</upper>
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Know direction</content>
+        <content>Know Direction</content>
         <upper>57</upper>
     </percentile>
     <percentile>
@@ -53,12 +53,12 @@
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Purify food and drink</content>
+        <content>Purify Food and Drink</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Read magic</content>
+        <content>Read Magic</content>
         <upper>86</upper>
     </percentile>
     <percentile>

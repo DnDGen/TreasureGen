@@ -3,17 +3,17 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Acid splash</content>
+        <content>Acid Splash</content>
         <upper>4</upper>
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Arcane mark</content>
+        <content>Arcane Mark</content>
         <upper>8</upper>
     </percentile>
     <percentile>
         <lower>9</lower>
-        <content>Dancing lights</content>
+        <content>Dancing Lights</content>
         <upper>13</upper>
     </percentile>
     <percentile>
@@ -23,17 +23,17 @@
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Detect magic</content>
+        <content>Detect Magic</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Detect poison</content>
+        <content>Detect Poison</content>
         <upper>28</upper>
     </percentile>
     <percentile>
         <lower>29</lower>
-        <content>Disrupt undead</content>
+        <content>Disrupt Undead</content>
         <upper>32</upper>
     </percentile>
     <percentile>
@@ -43,12 +43,12 @@
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Ghost sound</content>
+        <content>Ghost Sound</content>
         <upper>42</upper>
     </percentile>
     <percentile>
         <lower>43</lower>
-        <content>Know direction</content>
+        <content>Know Direction</content>
         <upper>44</upper>
     </percentile>
     <percentile>
@@ -63,7 +63,7 @@
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Mage hand</content>
+        <content>Mage Hand</content>
         <upper>57</upper>
     </percentile>
     <percentile>
@@ -78,7 +78,7 @@
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Open/close</content>
+        <content>Open/Close</content>
         <upper>72</upper>
     </percentile>
     <percentile>
@@ -88,12 +88,12 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Ray of frost</content>
+        <content>Ray of Frost</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Read magic</content>
+        <content>Read Magic</content>
         <upper>87</upper>
     </percentile>
     <percentile>
@@ -103,12 +103,12 @@
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Summon instrument</content>
+        <content>Summon Instrument</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Touch of fatigue</content>
+        <content>Touch of Fatigue</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

@@ -18,27 +18,27 @@
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Bless water</content>
+        <content>Bless Water</content>
         <upper>9</upper>
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Bless weapon</content>
+        <content>Bless Weapon</content>
         <upper>10</upper>
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Calm animals</content>
+        <content>Calm Animals</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Cause fear</content>
+        <content>Cause Fear</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Charm animal</content>
+        <content>Charm Animal</content>
         <upper>16</upper>
     </percentile>
     <percentile>
@@ -48,17 +48,17 @@
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Comprehend languages</content>
+        <content>Comprehend Languages</content>
         <upper>21</upper>
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Cure light wounds</content>
+        <content>Cure Light Wounds</content>
         <upper>26</upper>
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Curse water</content>
+        <content>Curse Water</content>
         <upper>28</upper>
     </percentile>
     <percentile>
@@ -68,27 +68,27 @@
     </percentile>
     <percentile>
         <lower>31</lower>
-        <content>Detect animals or plants</content>
+        <content>Detect Animals or Plants</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Detect chaos/evil/good/law</content>
+        <content>Detect Chaos/Evil/Good/Law</content>
         <upper>35</upper>
     </percentile>
     <percentile>
         <lower>36</lower>
-        <content>Detect snares and pits</content>
+        <content>Detect Snares and Pits</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Detect undead</content>
+        <content>Detect Undead</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Divine favor</content>
+        <content>Divine Favor</content>
         <upper>41</upper>
     </percentile>
     <percentile>
@@ -98,7 +98,7 @@
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Endure elements</content>
+        <content>Endure Elements</content>
         <upper>48</upper>
     </percentile>
     <percentile>
@@ -108,12 +108,12 @@
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Entropic shield</content>
+        <content>Entropic Shield</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Faerie fire</content>
+        <content>Faerie Fire</content>
         <upper>54</upper>
     </percentile>
     <percentile>
@@ -123,17 +123,17 @@
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Hide from animals</content>
+        <content>Hide from Animals</content>
         <upper>58</upper>
     </percentile>
     <percentile>
         <lower>59</lower>
-        <content>Hide from undead</content>
+        <content>Hide from Undead</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Inflict light wounds</content>
+        <content>Inflict Light Wounds</content>
         <upper>62</upper>
     </percentile>
     <percentile>
@@ -148,42 +148,42 @@
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Magic fang</content>
+        <content>Magic Fang</content>
         <upper>68</upper>
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Magic stone</content>
+        <content>Magic Stone</content>
         <upper>72</upper>
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Magic weapon</content>
+        <content>Magic Weapon</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Obscuring mist</content>
+        <content>Obscuring Mist</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Pass without trace</content>
+        <content>Pass Without Trace</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Produce flame</content>
+        <content>Produce Flame</content>
         <upper>82</upper>
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>Protection from chaos/evil/good/law</content>
+        <content>Protection from Chaos/Evil/Good/Law</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Remove fear</content>
+        <content>Remove Fear</content>
         <upper>88</upper>
     </percentile>
     <percentile>
@@ -193,7 +193,7 @@
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Shield of faith</content>
+        <content>Shield of Faith</content>
         <upper>92</upper>
     </percentile>
     <percentile>
@@ -203,17 +203,17 @@
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Speak with animals</content>
+        <content>Speak with Animals</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Summon monster I</content>
+        <content>Summon Monster I</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Summon nature's ally I</content>
+        <content>Summon Nature's Ally I</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

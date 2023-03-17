@@ -215,7 +215,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [TestCase(WondrousItemConstants.QuaalsFeatherToken_Anchor, "Quaal's Anchor Feather Token")]
         [TestCase(WondrousItemConstants.QuaalsFeatherToken_Bird, "Quaal's Bird Feather Token")]
         [TestCase(WondrousItemConstants.QuaalsFeatherToken_Fan, "Quaal's Fan Feather Token")]
-        [TestCase(WondrousItemConstants.QuaalsFeatherToken_SwanBoat, "Quaal's Swan boat Feather Token")]
+        [TestCase(WondrousItemConstants.QuaalsFeatherToken_SwanBoat, "Quaal's Swan Boat Feather Token")]
         [TestCase(WondrousItemConstants.QuaalsFeatherToken_Tree, "Quaal's Tree Feather Token")]
         [TestCase(WondrousItemConstants.QuaalsFeatherToken_Whip, "Quaal's Whip Feather Token")]
         [TestCase(WondrousItemConstants.QuiverOfEhlonna, "Quiver of Ehlonna")]

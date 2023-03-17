@@ -3,7 +3,7 @@
 <percentiles>
   <percentile>
     <lower>1</lower>
-    <content>Incense of obsession</content>
+    <content>Incense of Obsession</content>
     <upper>5</upper>
   </percentile>
     <percentile>
@@ -13,137 +13,137 @@
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Amulet of inescapable location</content>
+        <content>Amulet of Inescapable Location</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Stone of weight (loadstone)</content>
+        <content>Stone of Weight (Loadstone)</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Bracers of defenselessness</content>
+        <content>Bracers of Defenselessness</content>
         <upper>30</upper>
     </percentile>
     <percentile>
         <lower>31</lower>
-        <content>Gauntlets of fumbling</content>
+        <content>Gauntlets of Fumbling</content>
         <upper>35</upper>
     </percentile>
     <percentile>
         <lower>36</lower>
-        <content>Cursed -2 sword</content>
+        <content>Cursed -2 Sword</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Armor of rage</content>
+        <content>Armor of Rage</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Medallion of thought projection</content>
+        <content>Medallion of Thought Projection</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Flask of curses</content>
+        <content>Flask of Curses</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Dust of sneezing and choking</content>
+        <content>Dust of Sneezing and Choking</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Helm of opposite alignment</content>
+        <content>Helm of Opposite Alignment</content>
         <upper>55</upper>
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Potion of poison</content>
+        <content>Potion of Poison</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Broom of animated attack</content>
+        <content>Broom of Animated Attack</content>
         <upper>61</upper>
     </percentile>
     <percentile>
         <lower>62</lower>
-        <content>Robe of powerlessness</content>
+        <content>Robe of Powerlessness</content>
         <upper>63</upper>
     </percentile>
     <percentile>
         <lower>64</lower>
-        <content>Vacuous grimoire</content>
+        <content>Vacuous Grimoire</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Cursed backbiter spear</content>
+        <content>Cursed Backbiter Spear</content>
         <upper>68</upper>
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Armor of arrow attraction</content>
+        <content>Armor of Arrow Attraction</content>
         <upper>70</upper>
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Net of snaring</content>
+        <content>Net of Snaring</content>
         <upper>72</upper>
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Bag of devouring</content>
+        <content>Bag of Devouring</content>
         <upper>75</upper>
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Mace of blood</content>
+        <content>Mace of Blood</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Robe of vermin</content>
+        <content>Robe of Vermin</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Periapt of foul rotting</content>
+        <content>Periapt of Foul Rotting</content>
         <upper>88</upper>
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Berserking sword</content>
+        <content>Berserking Sword</content>
         <upper>92</upper>
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Boots of dancing</content>
+        <content>Boots of Dancing</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Crystal hypnosis ball</content>
+        <content>Crystal Hypnosis Ball</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Necklace of strangulation</content>
+        <content>Necklace of Strangulation</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Cloak of poisonousness</content>
+        <content>Cloak of Poisonousness</content>
         <upper>99</upper>
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>Scarab of death</content>
+        <content>Scarab of Death</content>
         <upper>100</upper>
     </percentile>
 </percentiles>
