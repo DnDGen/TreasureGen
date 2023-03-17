@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
@@ -24,7 +24,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
         }
 
         [TestCase("Alarm", 1)]
-        [TestCase("Bless weapon", 10)]
+        [TestCase("Bless Weapon", 10)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
@@ -32,45 +32,45 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
 
         [TestCase("Bane", 2, 3)]
         [TestCase("Bless", 4, 6)]
-        [TestCase("Bless water", 7, 9)]
-        [TestCase("Calm animals", 11, 12)]
-        [TestCase("Cause fear", 13, 14)]
-        [TestCase("Charm animal", 15, 16)]
+        [TestCase("Bless Water", 7, 9)]
+        [TestCase("Calm Animals", 11, 12)]
+        [TestCase("Cause Fear", 13, 14)]
+        [TestCase("Charm Animal", 15, 16)]
         [TestCase("Command", 17, 19)]
-        [TestCase("Comprehend languages", 20, 21)]
-        [TestCase("Cure light wounds", 22, 26)]
-        [TestCase("Curse water", 27, 28)]
+        [TestCase("Comprehend Languages", 20, 21)]
+        [TestCase("Cure Light Wounds", 22, 26)]
+        [TestCase("Curse Water", 27, 28)]
         [TestCase("Deathwatch", 29, 30)]
-        [TestCase("Detect animals or plants", 31, 32)]
-        [TestCase("Detect chaos/evil/good/law", 33, 35)]
-        [TestCase("Detect snares and pits", 36, 37)]
-        [TestCase("Detect undead", 38, 39)]
-        [TestCase("Divine favor", 40, 41)]
+        [TestCase("Detect Animals or Plants", 31, 32)]
+        [TestCase("Detect Chaos/Evil/Good/Law", 33, 35)]
+        [TestCase("Detect Snares and Pits", 36, 37)]
+        [TestCase("Detect Undead", 38, 39)]
+        [TestCase("Divine Favor", 40, 41)]
         [TestCase("Doom", 42, 43)]
-        [TestCase("Endure elements", 44, 48)]
+        [TestCase("Endure Elements", 44, 48)]
         [TestCase("Entangle", 49, 50)]
-        [TestCase("Entropic shield", 51, 52)]
-        [TestCase("Faerie fire", 53, 54)]
+        [TestCase("Entropic Shield", 51, 52)]
+        [TestCase("Faerie Fire", 53, 54)]
         [TestCase("Goodberry", 55, 56)]
-        [TestCase("Hide from animals", 57, 58)]
-        [TestCase("Hide from undead", 59, 60)]
-        [TestCase("Inflict light wounds", 61, 62)]
+        [TestCase("Hide from Animals", 57, 58)]
+        [TestCase("Hide from Undead", 59, 60)]
+        [TestCase("Inflict Light Wounds", 61, 62)]
         [TestCase("Jump", 63, 64)]
         [TestCase("Longstrider", 65, 66)]
-        [TestCase("Magic fang", 67, 68)]
-        [TestCase("Magic stone", 69, 72)]
-        [TestCase("Magic weapon", 73, 74)]
-        [TestCase("Obscuring mist", 75, 78)]
-        [TestCase("Pass without trace", 79, 80)]
-        [TestCase("Produce flame", 81, 82)]
-        [TestCase("Protection from chaos/evil/good/law", 83, 86)]
-        [TestCase("Remove fear", 87, 88)]
+        [TestCase("Magic Fang", 67, 68)]
+        [TestCase("Magic Stone", 69, 72)]
+        [TestCase("Magic Weapon", 73, 74)]
+        [TestCase("Obscuring Mist", 75, 78)]
+        [TestCase("Pass Without Trace", 79, 80)]
+        [TestCase("Produce Flame", 81, 82)]
+        [TestCase("Protection from Chaos/Evil/Good/Law", 83, 86)]
+        [TestCase("Remove Fear", 87, 88)]
         [TestCase("Sanctuary", 89, 90)]
-        [TestCase("Shield of faith", 91, 92)]
+        [TestCase("Shield of Faith", 91, 92)]
         [TestCase("Shillelagh", 93, 94)]
-        [TestCase("Speak with animals", 95, 96)]
-        [TestCase("Summon monster I", 97, 98)]
-        [TestCase("Summon nature's ally I", 99, 100)]
+        [TestCase("Speak with Animals", 95, 96)]
+        [TestCase("Summon Monster I", 97, 98)]
+        [TestCase("Summon Nature's Ally I", 99, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);

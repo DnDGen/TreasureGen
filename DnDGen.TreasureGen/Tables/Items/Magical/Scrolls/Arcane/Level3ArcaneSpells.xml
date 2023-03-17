@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Arcane sight</content>
+        <content>Arcane Sight</content>
         <upper>2</upper>
     </percentile>
     <percentile>
@@ -13,12 +13,12 @@
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Clairaudience/clairvoyance</content>
+        <content>Clairaudience/Clairvoyance</content>
         <upper>6</upper>
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Cure serious wounds</content>
+        <content>Cure Serious Wounds</content>
         <upper>7</upper>
     </percentile>
     <percentile>
@@ -28,12 +28,12 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Deep slumber</content>
+        <content>Deep Slumber</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Dispel magic</content>
+        <content>Dispel Magic</content>
         <upper>15</upper>
     </percentile>
     <percentile>
@@ -43,7 +43,7 @@
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Explosive runes</content>
+        <content>Explosive Runes</content>
         <upper>18</upper>
     </percentile>
     <percentile>
@@ -53,7 +53,7 @@
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Flame arrow</content>
+        <content>Flame Arrow</content>
         <upper>22</upper>
     </percentile>
     <percentile>
@@ -63,12 +63,12 @@
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Gaseous form</content>
+        <content>Gaseous Form</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Gentle repose</content>
+        <content>Gentle Repose</content>
         <upper>29</upper>
     </percentile>
     <percentile>
@@ -78,12 +78,12 @@
     </percentile>
     <percentile>
         <lower>31</lower>
-        <content>Good hope</content>
+        <content>Good Hope</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Halt undead</content>
+        <content>Halt Undead</content>
         <upper>33</upper>
     </percentile>
     <percentile>
@@ -98,47 +98,47 @@
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Hold person</content>
+        <content>Hold Person</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Illusory script</content>
+        <content>Illusory Script</content>
         <upper>41</upper>
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Invisibility sphere</content>
+        <content>Invisibility Sphere</content>
         <upper>44</upper>
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Keen edge</content>
+        <content>Keen Edge</content>
         <upper>47</upper>
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Leomund's tiny hut</content>
+        <content>Leomund's Tiny Hut</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Lightning bolt</content>
+        <content>Lightning Bolt</content>
         <upper>51</upper>
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Magic circle against chaos/evil/good/law</content>
+        <content>Magic Circle Against Chaos/Evil/Good/Law</content>
         <upper>59</upper>
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Greater magic weapon</content>
+        <content>Greater Magic Weapon</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Major image</content>
+        <content>Major Image</content>
         <upper>64</upper>
     </percentile>
     <percentile>
@@ -148,12 +148,12 @@
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Phantom steed</content>
+        <content>Phantom Steed</content>
         <upper>68</upper>
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Protection from energy</content>
+        <content>Protection from Energy</content>
         <upper>71</upper>
     </percentile>
     <percentile>
@@ -163,32 +163,32 @@
     </percentile>
     <percentile>
         <lower>74</lower>
-        <content>Ray of exhaustion</content>
+        <content>Ray of Exhaustion</content>
         <upper>75</upper>
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Sculpt sound</content>
+        <content>Sculpt Sound</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Secret page</content>
+        <content>Secret Page</content>
         <upper>77</upper>
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Sepia snake sigil</content>
+        <content>Sepia Snake Sigil</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Shrink item</content>
+        <content>Shrink Item</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Sleet storm</content>
+        <content>Sleet Storm</content>
         <upper>81</upper>
     </percentile>
     <percentile>
@@ -198,12 +198,12 @@
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Speak with animals</content>
+        <content>Speak with Animals</content>
         <upper>84</upper>
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Stinking cloud</content>
+        <content>Stinking Cloud</content>
         <upper>86</upper>
     </percentile>
     <percentile>
@@ -213,7 +213,7 @@
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Summon monster III</content>
+        <content>Summon Monster III</content>
         <upper>90</upper>
     </percentile>
     <percentile>
@@ -223,17 +223,17 @@
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Vampiric touch</content>
+        <content>Vampiric Touch</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Water breathing</content>
+        <content>Water Breathing</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Wind wall</content>
+        <content>Wind Wall</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

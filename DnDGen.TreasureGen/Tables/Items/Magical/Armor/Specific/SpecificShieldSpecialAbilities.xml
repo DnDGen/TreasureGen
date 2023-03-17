@@ -2,13 +2,13 @@
 
 <collections>
     <collection>
-        <name>Absorbing shield</name>
+        <name>Absorbing Shield</name>
     </collection>
     <collection>
         <name>Buckler</name>
     </collection>
     <collection>
-        <name>Caster's shield</name>
+        <name>Caster's Shield</name>
     </collection>
     <collection>
         <name>Heavy steel shield</name>
@@ -17,12 +17,12 @@
         <name>Heavy wooden shield</name>
     </collection>
     <collection>
-        <name>Lion's shield</name>
+        <name>Lion's Shield</name>
     </collection>
     <collection>
-        <name>Spined shield</name>
+        <name>Spined Shield</name>
     </collection>
     <collection>
-        <name>Winged shield</name>
+        <name>Winged Shield</name>
     </collection>
 </collections>

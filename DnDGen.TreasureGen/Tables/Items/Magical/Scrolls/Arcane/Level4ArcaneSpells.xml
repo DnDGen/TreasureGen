@@ -3,22 +3,22 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animate dead</content>
+        <content>Animate Dead</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Arcane eye</content>
+        <content>Arcane Eye</content>
         <upper>5</upper>
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Bestow curse</content>
+        <content>Bestow Curse</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Charm monster</content>
+        <content>Charm Monster</content>
         <upper>10</upper>
     </percentile>
     <percentile>
@@ -33,27 +33,27 @@
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Crushing despair</content>
+        <content>Crushing Despair</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Cure critical wounds</content>
+        <content>Cure Critical Wounds</content>
         <upper>18</upper>
     </percentile>
     <percentile>
         <lower>19</lower>
-        <content>Detect scrying</content>
+        <content>Detect Scrying</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Dimension door</content>
+        <content>Dimension Door</content>
         <upper>23</upper>
     </percentile>
     <percentile>
         <lower>24</lower>
-        <content>Dimensional anchor</content>
+        <content>Dimensional Anchor</content>
         <upper>26</upper>
     </percentile>
     <percentile>
@@ -63,12 +63,12 @@
     </percentile>
     <percentile>
         <lower>29</lower>
-        <content>Mass enlarge person</content>
+        <content>Mass Enlarge Person</content>
         <upper>30</upper>
     </percentile>
     <percentile>
         <lower>31</lower>
-        <content>Evard's black tentacles</content>
+        <content>Evard's Black Tentacles</content>
         <upper>32</upper>
     </percentile>
     <percentile>
@@ -78,82 +78,82 @@
     </percentile>
     <percentile>
         <lower>35</lower>
-        <content>Fire shield</content>
+        <content>Fire Shield</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Fire trap</content>
+        <content>Fire Trap</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Freedom of movement</content>
+        <content>Freedom of Movement</content>
         <upper>42</upper>
     </percentile>
     <percentile>
         <lower>43</lower>
-        <content>Lesser geas</content>
+        <content>Lesser Geas</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Lesser globe of invulnerability</content>
+        <content>Lesser Globe of Invulnerability</content>
         <upper>46</upper>
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Hallucinatory terrain</content>
+        <content>Hallucinatory Terrain</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Ice storm</content>
+        <content>Ice Storm</content>
         <upper>50</upper>
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Illusory wall</content>
+        <content>Illusory Wall</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Greater invisibility</content>
+        <content>Greater Invisibility</content>
         <upper>55</upper>
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Leomund's secure shelter</content>
+        <content>Leomund's Secure Shelter</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Locate creature</content>
+        <content>Locate Creature</content>
         <upper>58</upper>
     </percentile>
     <percentile>
         <lower>59</lower>
-        <content>Minor creation</content>
+        <content>Minor Creation</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Modify memory</content>
+        <content>Modify Memory</content>
         <upper>61</upper>
     </percentile>
     <percentile>
         <lower>62</lower>
-        <content>Neutralize poison</content>
+        <content>Neutralize Poison</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Otiluke's resilient sphere</content>
+        <content>Otiluke's Resilient Sphere</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Phantasmal killer</content>
+        <content>Phantasmal Killer</content>
         <upper>66</upper>
     </percentile>
     <percentile>
@@ -163,27 +163,27 @@
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Rainbow pattern</content>
+        <content>Rainbow Pattern</content>
         <upper>70</upper>
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Rary's mnemonic enhancer</content>
+        <content>Rary's Mnemonic Enhancer</content>
         <upper>71</upper>
     </percentile>
     <percentile>
         <lower>72</lower>
-        <content>Mass reduce person</content>
+        <content>Mass Reduce Person</content>
         <upper>73</upper>
     </percentile>
     <percentile>
         <lower>74</lower>
-        <content>Remove curse</content>
+        <content>Remove Curse</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Repel vermin</content>
+        <content>Repel Vermin</content>
         <upper>77</upper>
     </percentile>
     <percentile>
@@ -193,7 +193,7 @@
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Shadow conjuration</content>
+        <content>Shadow Conjuration</content>
         <upper>81</upper>
     </percentile>
     <percentile>
@@ -203,17 +203,17 @@
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Solid fog</content>
+        <content>Solid Fog</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Speak with plants</content>
+        <content>Speak with Plants</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Stone shape</content>
+        <content>Stone Shape</content>
         <upper>88</upper>
     </percentile>
     <percentile>
@@ -223,22 +223,22 @@
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Summon monster IV</content>
+        <content>Summon Monster IV</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Wall of fire</content>
+        <content>Wall of Fire</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Wall of ice</content>
+        <content>Wall of Ice</content>
         <upper>99</upper>
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>Zone of silence</content>
+        <content>Zone of Silence</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
@@ -23,30 +23,30 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
             AssertTableIsComplete();
         }
 
-        [TestCase("Animal shapes", 1, 4)]
-        [TestCase("Antimagic field", 5, 10)]
-        [TestCase("Cloak of chaos", 11, 13)]
-        [TestCase("Control plants", 14, 17)]
-        [TestCase("Create greater undead", 18, 20)]
-        [TestCase("Mass cure critical wounds", 21, 27)]
-        [TestCase("Dimensional lock", 28, 32)]
-        [TestCase("Discern location", 33, 36)]
+        [TestCase("Animal Shapes", 1, 4)]
+        [TestCase("Antimagic Field", 5, 10)]
+        [TestCase("Cloak of Chaos", 11, 13)]
+        [TestCase("Control Plants", 14, 17)]
+        [TestCase("Create Greater Undead", 18, 20)]
+        [TestCase("Mass Cure Critical Wounds", 21, 27)]
+        [TestCase("Dimensional Lock", 28, 32)]
+        [TestCase("Discern Location", 33, 36)]
         [TestCase("Earthquake", 37, 41)]
-        [TestCase("Finger of death", 42, 45)]
+        [TestCase("Finger of Death", 42, 45)]
         [TestCase("Firestorm", 46, 49)]
-        [TestCase("Holy aura", 50, 52)]
-        [TestCase("Mass inflict critical wounds", 53, 56)]
-        [TestCase("Greater planar ally", 57, 60)]
-        [TestCase("Repel metal or stone", 61, 65)]
-        [TestCase("Reverse gravity", 66, 69)]
-        [TestCase("Shield of law", 70, 72)]
-        [TestCase("Greater spell immunity", 73, 76)]
-        [TestCase("Summon monster VIII", 77, 80)]
-        [TestCase("Summon nature's ally VIII", 81, 84)]
+        [TestCase("Holy Aura", 50, 52)]
+        [TestCase("Mass Inflict Critical Wounds", 53, 56)]
+        [TestCase("Greater Planar Ally", 57, 60)]
+        [TestCase("Repel Metal or Stone", 61, 65)]
+        [TestCase("Reverse Gravity", 66, 69)]
+        [TestCase("Shield of Law", 70, 72)]
+        [TestCase("Greater Spell Immunity", 73, 76)]
+        [TestCase("Summon Monster VIII", 77, 80)]
+        [TestCase("Summon Nature's Ally VIII", 81, 84)]
         [TestCase("Sunburst", 85, 89)]
-        [TestCase("Symbol of death", 90, 91)]
-        [TestCase("Symbol of insanity", 92, 93)]
-        [TestCase("Unholy aura", 94, 96)]
+        [TestCase("Symbol of Death", 90, 91)]
+        [TestCase("Symbol of Insanity", 92, 93)]
+        [TestCase("Unholy Aura", 94, 96)]
         [TestCase("Whirlwind", 97, 100)]
         public override void Percentile(string content, int lower, int upper)
         {

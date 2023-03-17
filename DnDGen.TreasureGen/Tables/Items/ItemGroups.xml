@@ -2,19 +2,19 @@
 
 <collections>
   <collection>
-    <name>Absorbing shield</name>
+    <name>Absorbing Shield</name>
     <entry>Heavy steel shield</entry>
   </collection>
   <collection>
-    <name>Amulet of inescapable location</name>
-    <entry>Amulet of inescapable location</entry>
+    <name>Amulet of Inescapable Location</name>
+    <entry>Amulet of Inescapable Location</entry>
   </collection>
   <collection>
-    <name>Armor of arrow attraction</name>
+    <name>Armor of Arrow Attraction</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
-    <name>Armor of rage</name>
+    <name>Armor of Rage</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
@@ -22,19 +22,19 @@
     <entry>Arrow</entry>
   </collection>
   <collection>
-    <name>Assassin's dagger</name>
+    <name>Assassin's Dagger</name>
     <entry>Dagger</entry>
   </collection>
   <collection>
-    <name>Bag of devouring</name>
-    <entry>Bag of devouring</entry>
+    <name>Bag of Devouring</name>
+    <entry>Bag of Devouring</entry>
   </collection>
   <collection>
     <name>Banded mail</name>
     <entry>Banded mail</entry>
   </collection>
   <collection>
-    <name>Banded mail of luck</name>
+    <name>Banded Mail of Luck</name>
     <entry>Banded mail</entry>
   </collection>
   <collection>
@@ -46,7 +46,7 @@
     <entry>Battleaxe</entry>
   </collection>
   <collection>
-    <name>Berserking sword</name>
+    <name>Berserking Sword</name>
     <entry>Greatsword</entry>
   </collection>
   <collection>
@@ -54,35 +54,35 @@
     <entry>Bolas</entry>
   </collection>
   <collection>
-    <name>Boots of dancing</name>
-    <entry>Boots of dancing</entry>
+    <name>Boots of Dancing</name>
+    <entry>Boots of Dancing</entry>
   </collection>
   <collection>
-    <name>Bracers of defenselessness</name>
-    <entry>Bracers of defenselessness</entry>
+    <name>Bracers of Defenselessness</name>
+    <entry>Bracers of Defenselessness</entry>
   </collection>
   <collection>
     <name>Breastplate</name>
     <entry>Breastplate</entry>
   </collection>
   <collection>
-    <name>Breastplate of command</name>
+    <name>Breastplate of Command</name>
     <entry>Breastplate</entry>
   </collection>
   <collection>
-    <name>Broom of animated attack</name>
-    <entry>Broom of animated attack</entry>
+    <name>Broom of Animated Attack</name>
+    <entry>Broom of Animated Attack</entry>
   </collection>
   <collection>
     <name>Buckler</name>
     <entry>Buckler</entry>
   </collection>
   <collection>
-    <name>Caster's shield</name>
+    <name>Caster's Shield</name>
     <entry>Light wooden shield</entry>
   </collection>
   <collection>
-    <name>Celestial armor</name>
+    <name>Celestial Armor</name>
     <entry>Chainmail</entry>
   </collection>
   <collection>
@@ -94,8 +94,8 @@
     <entry>Chainmail</entry>
   </collection>
   <collection>
-    <name>Cloak of poisonousness</name>
-    <entry>Cloak of poisonousness</entry>
+    <name>Cloak of Poisonousness</name>
+    <entry>Cloak of Poisonousness</entry>
   </collection>
   <collection>
     <name>Club</name>
@@ -146,15 +146,15 @@
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
-    <name>Crystal hypnosis ball</name>
-    <entry>Crystal hypnosis ball</entry>
+    <name>Crystal Hypnosis Ball</name>
+    <entry>Crystal Hypnosis Ball</entry>
   </collection>
   <collection>
-    <name>Cursed -2 sword</name>
+    <name>Cursed -2 Sword</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Cursed backbiter spear</name>
+    <name>Cursed Backbiter Spear</name>
     <entry>Shortspear</entry>
   </collection>
   <collection>
@@ -162,7 +162,7 @@
     <entry>Dagger</entry>
   </collection>
   <collection>
-    <name>Dagger of venom</name>
+    <name>Dagger of Venom</name>
     <entry>Dagger</entry>
   </collection>
   <collection>
@@ -170,7 +170,7 @@
     <entry>Dart</entry>
   </collection>
   <collection>
-    <name>Demon armor</name>
+    <name>Demon Armor</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
@@ -178,15 +178,15 @@
     <entry>Dire flail</entry>
   </collection>
   <collection>
-    <name>Dust of sneezing and choking</name>
-    <entry>Dust of sneezing and choking</entry>
+    <name>Dust of Sneezing and Choking</name>
+    <entry>Dust of Sneezing and Choking</entry>
   </collection>
   <collection>
-    <name>Dwarven plate</name>
+    <name>Dwarven Plate</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
-    <name>Dwarven thrower</name>
+    <name>Dwarven Thrower</name>
     <entry>Warhammer</entry>
   </collection>
   <collection>
@@ -198,7 +198,7 @@
     <entry>Dwarven waraxe</entry>
   </collection>
   <collection>
-    <name>Elven chain</name>
+    <name>Elven Chain</name>
     <entry>Chainmail</entry>
   </collection>
   <collection>
@@ -206,15 +206,15 @@
     <entry>Falchion</entry>
   </collection>
   <collection>
-    <name>Flame tongue</name>
+    <name>Flame Tongue</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Flask of curses</name>
-    <entry>Flask of curses</entry>
+    <name>Flask of Curses</name>
+    <entry>Flask of Curses</entry>
   </collection>
   <collection>
-    <name>Frost brand</name>
+    <name>Frost Brand</name>
     <entry>Greatsword</entry>
   </collection>
   <collection>
@@ -222,7 +222,7 @@
     <entry>Full plate</entry>
   </collection>
   <collection>
-    <name>Full plate of speed</name>
+    <name>Full Plate of Speed</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
@@ -230,8 +230,8 @@
     <entry>Gauntlet</entry>
   </collection>
   <collection>
-    <name>Gauntlets of fumbling</name>
-    <entry>Gauntlets of fumbling</entry>
+    <name>Gauntlets of Fumbling</name>
+    <entry>Gauntlets of Fumbling</entry>
   </collection>
   <collection>
     <name>Glaive</name>
@@ -250,7 +250,7 @@
     <entry>Greatclub</entry>
   </collection>
   <collection>
-    <name>Greater slaying arrow</name>
+    <name>Greater Slaying Arrow</name>
     <entry>Arrow</entry>
   </collection>
   <collection>
@@ -310,31 +310,31 @@
     <entry>Heavy wooden shield</entry>
   </collection>
   <collection>
-    <name>Helm of opposite alignment</name>
-    <entry>Helm of opposite alignment</entry>
+    <name>Helm of Opposite Alignment</name>
+    <entry>Helm of Opposite Alignment</entry>
   </collection>
   <collection>
     <name>Hide armor</name>
     <entry>Hide armor</entry>
   </collection>
   <collection>
-    <name>Holy avenger</name>
+    <name>Holy Avenger</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Immovable rod</name>
-    <entry>Immovable rod</entry>
+    <name>Immovable Rod</name>
+    <entry>Immovable Rod</entry>
   </collection>
   <collection>
-    <name>Incense of obsession</name>
-    <entry>Incense of obsession</entry>
+    <name>Incense of Obsession</name>
+    <entry>Incense of Obsession</entry>
   </collection>
   <collection>
     <name>Javelin</name>
     <entry>Javelin</entry>
   </collection>
   <collection>
-    <name>Javelin of lightning</name>
+    <name>Javelin of Lightning</name>
     <entry>Javelin</entry>
   </collection>
   <collection>
@@ -354,7 +354,7 @@
     <entry>Leather armor</entry>
   </collection>
   <collection>
-    <name>Life-drinker</name>
+    <name>Life-Drinker</name>
     <entry>Greataxe</entry>
   </collection>
   <collection>
@@ -390,7 +390,7 @@
     <entry>Light wooden shield</entry>
   </collection>
   <collection>
-    <name>Lion's shield</name>
+    <name>Lion's Shield</name>
     <entry>Heavy steel shield</entry>
   </collection>
   <collection>
@@ -406,59 +406,59 @@
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Luck blade (0 wishes)</name>
+    <name>Luck Blade (0 wishes)</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Luck blade (1 wish)</name>
+    <name>Luck Blade (1 wish)</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Luck blade (2 wishes)</name>
+    <name>Luck Blade (2 wishes)</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Luck blade (3 wishes)</name>
+    <name>Luck Blade (3 wishes)</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Luck blade</name>
+    <name>Luck Blade</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Mace of blood</name>
+    <name>Mace of Blood</name>
     <entry>Heavy mace</entry>
   </collection>
   <collection>
-    <name>Mace of smiting</name>
+    <name>Mace of Smiting</name>
     <entry>Heavy mace</entry>
   </collection>
   <collection>
-    <name>Mace of terror</name>
+    <name>Mace of Terror</name>
     <entry>Heavy mace</entry>
   </collection>
   <collection>
-    <name>Medallion of thought projection</name>
-    <entry>Medallion of thought projection</entry>
+    <name>Medallion of Thought Projection</name>
+    <entry>Medallion of Thought Projection</entry>
   </collection>
   <collection>
     <name>Morningstar</name>
     <entry>Morningstar</entry>
   </collection>
   <collection>
-    <name>Necklace of strangulation</name>
-    <entry>Necklace of strangulation</entry>
+    <name>Necklace of Strangulation</name>
+    <entry>Necklace of Strangulation</entry>
   </collection>
   <collection>
     <name>Net</name>
     <entry>Net</entry>
   </collection>
   <collection>
-    <name>Net of snaring</name>
+    <name>Net of Snaring</name>
     <entry>Net</entry>
   </collection>
   <collection>
-    <name>Nine lives stealer</name>
+    <name>Nine Lives Stealer</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
@@ -478,20 +478,20 @@
     <entry>Padded armor</entry>
   </collection>
   <collection>
-    <name>Periapt of foul rotting</name>
-    <entry>Periapt of foul rotting</entry>
+    <name>Periapt of Foul Rotting</name>
+    <entry>Periapt of Foul Rotting</entry>
   </collection>
   <collection>
     <name>Pincer staff</name>
     <entry>Pincer staff</entry>
   </collection>
   <collection>
-    <name>Plate armor of the deep</name>
+    <name>Plate Armor of the Deep</name>
     <entry>Full plate</entry>
   </collection>
   <collection>
-    <name>Potion of poison</name>
-    <entry>Potion of poison</entry>
+    <name>Potion of Poison</name>
+    <entry>Potion of Poison</entry>
   </collection>
   <collection>
     <name>Punching dagger</name>
@@ -510,11 +510,11 @@
     <entry>Rapier</entry>
   </collection>
   <collection>
-    <name>Rapier of puncturing</name>
+    <name>Rapier of Puncturing</name>
     <entry>Rapier</entry>
   </collection>
   <collection>
-    <name>Rhino hide</name>
+    <name>Rhino Hide</name>
     <entry>Hide armor</entry>
   </collection>
   <collection>
@@ -522,175 +522,175 @@
     <entry>Ring of Clumsiness</entry>
   </collection>
   <collection>
-    <name>Robe of powerlessness</name>
-    <entry>Robe of powerlessness</entry>
+    <name>Robe of Powerlessness</name>
+    <entry>Robe of Powerlessness</entry>
   </collection>
   <collection>
-    <name>Robe of vermin</name>
-    <entry>Robe of vermin</entry>
+    <name>Robe of Vermin</name>
+    <entry>Robe of Vermin</entry>
   </collection>
   <collection>
-    <name>Rod of absorption (max)</name>
-    <entry>Rod of absorption</entry>
+    <name>Rod of Absorption (max)</name>
+    <entry>Rod of Absorption</entry>
   </collection>
   <collection>
-    <name>Rod of absorption</name>
-    <entry>Rod of absorption</entry>
+    <name>Rod of Absorption</name>
+    <entry>Rod of Absorption</entry>
   </collection>
   <collection>
-    <name>Rod of alertness</name>
-    <entry>Rod of alertness</entry>
+    <name>Rod of Alertness</name>
+    <entry>Rod of Alertness</entry>
     <entry>Light mace</entry>
   </collection>
   <collection>
-    <name>Rod of cancellation</name>
-    <entry>Rod of cancellation</entry>
+    <name>Rod of Cancellation</name>
+    <entry>Rod of Cancellation</entry>
   </collection>
   <collection>
-    <name>Rod of enemy detection</name>
-    <entry>Rod of enemy detection</entry>
+    <name>Rod of Enemy Detection</name>
+    <entry>Rod of Enemy Detection</entry>
   </collection>
   <collection>
-    <name>Rod of flailing</name>
-    <entry>Rod of flailing</entry>
+    <name>Rod of Flailing</name>
+    <entry>Rod of Flailing</entry>
     <entry>Dire flail</entry>
   </collection>
   <collection>
-    <name>Rod of flame extinguishing</name>
-    <entry>Rod of flame extinguishing</entry>
+    <name>Rod of Flame Extinguishing</name>
+    <entry>Rod of Flame Extinguishing</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Empower</name>
-    <entry>Rod of metamagic: Empower</entry>
-    <entry>Rod of greater metamagic: Empower</entry>
+    <name>Rod of Greater Metamagic: Empower</name>
+    <entry>Rod of Metamagic: Empower</entry>
+    <entry>Rod of Greater Metamagic: Empower</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Enlarge</name>
-    <entry>Rod of metamagic: Enlarge</entry>
-    <entry>Rod of greater metamagic: Enlarge</entry>
+    <name>Rod of Greater Metamagic: Enlarge</name>
+    <entry>Rod of Metamagic: Enlarge</entry>
+    <entry>Rod of Greater Metamagic: Enlarge</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Extend</name>
-    <entry>Rod of metamagic: Extend</entry>
-    <entry>Rod of greater metamagic: Extend</entry>
+    <name>Rod of Greater Metamagic: Extend</name>
+    <entry>Rod of Metamagic: Extend</entry>
+    <entry>Rod of Greater Metamagic: Extend</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Maximize</name>
-    <entry>Rod of metamagic: Maximize</entry>
-    <entry>Rod of greater metamagic: Maximize</entry>
+    <name>Rod of Greater Metamagic: Maximize</name>
+    <entry>Rod of Metamagic: Maximize</entry>
+    <entry>Rod of Greater Metamagic: Maximize</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Quicken</name>
-    <entry>Rod of metamagic: Quicken</entry>
-    <entry>Rod of greater metamagic: Quicken</entry>
+    <name>Rod of Greater Metamagic: Quicken</name>
+    <entry>Rod of Metamagic: Quicken</entry>
+    <entry>Rod of Greater Metamagic: Quicken</entry>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Silent</name>
-    <entry>Rod of metamagic: Silent</entry>
-    <entry>Rod of greater metamagic: Silent</entry>
+    <name>Rod of Greater Metamagic: Silent</name>
+    <entry>Rod of Metamagic: Silent</entry>
+    <entry>Rod of Greater Metamagic: Silent</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Empower</name>
-    <entry>Rod of metamagic: Empower</entry>
-    <entry>Rod of lesser metamagic: Empower</entry>
+    <name>Rod of Lesser Metamagic: Empower</name>
+    <entry>Rod of Metamagic: Empower</entry>
+    <entry>Rod of Lesser Metamagic: Empower</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Enlarge</name>
-    <entry>Rod of metamagic: Enlarge</entry>
-    <entry>Rod of lesser metamagic: Enlarge</entry>
+    <name>Rod of Lesser Metamagic: Enlarge</name>
+    <entry>Rod of Metamagic: Enlarge</entry>
+    <entry>Rod of Lesser Metamagic: Enlarge</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Extend</name>
-    <entry>Rod of metamagic: Extend</entry>
-    <entry>Rod of lesser metamagic: Extend</entry>
+    <name>Rod of Lesser Metamagic: Extend</name>
+    <entry>Rod of Metamagic: Extend</entry>
+    <entry>Rod of Lesser Metamagic: Extend</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Maximize</name>
-    <entry>Rod of metamagic: Maximize</entry>
-    <entry>Rod of lesser metamagic: Maximize</entry>
+    <name>Rod of Lesser Metamagic: Maximize</name>
+    <entry>Rod of Metamagic: Maximize</entry>
+    <entry>Rod of Lesser Metamagic: Maximize</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Quicken</name>
-    <entry>Rod of metamagic: Quicken</entry>
-    <entry>Rod of lesser metamagic: Quicken</entry>
+    <name>Rod of Lesser Metamagic: Quicken</name>
+    <entry>Rod of Metamagic: Quicken</entry>
+    <entry>Rod of Lesser Metamagic: Quicken</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Silent</name>
-    <entry>Rod of metamagic: Silent</entry>
-    <entry>Rod of lesser metamagic: Silent</entry>
+    <name>Rod of Lesser Metamagic: Silent</name>
+    <entry>Rod of Metamagic: Silent</entry>
+    <entry>Rod of Lesser Metamagic: Silent</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Empower</name>
-    <entry>Rod of metamagic: Empower</entry>
+    <name>Rod of Metamagic: Empower</name>
+    <entry>Rod of Metamagic: Empower</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Enlarge</name>
-    <entry>Rod of metamagic: Enlarge</entry>
+    <name>Rod of Metamagic: Enlarge</name>
+    <entry>Rod of Metamagic: Enlarge</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Extend</name>
-    <entry>Rod of metamagic: Extend</entry>
+    <name>Rod of Metamagic: Extend</name>
+    <entry>Rod of Metamagic: Extend</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Maximize</name>
-    <entry>Rod of metamagic: Maximize</entry>
+    <name>Rod of Metamagic: Maximize</name>
+    <entry>Rod of Metamagic: Maximize</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Quicken</name>
-    <entry>Rod of metamagic: Quicken</entry>
+    <name>Rod of Metamagic: Quicken</name>
+    <entry>Rod of Metamagic: Quicken</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Silent</name>
-    <entry>Rod of metamagic: Silent</entry>
+    <name>Rod of Metamagic: Silent</name>
+    <entry>Rod of Metamagic: Silent</entry>
   </collection>
   <collection>
-    <name>Rod of lordly might</name>
-    <entry>Rod of lordly might</entry>
+    <name>Rod of Lordly Might</name>
+    <entry>Rod of Lordly Might</entry>
     <entry>Light mace</entry>
   </collection>
   <collection>
-    <name>Rod of metal and mineral detection</name>
-    <entry>Rod of metal and mineral detection</entry>
+    <name>Rod of Metal and Mineral Detection</name>
+    <entry>Rod of Metal and Mineral Detection</entry>
   </collection>
   <collection>
-    <name>Rod of negation</name>
-    <entry>Rod of negation</entry>
+    <name>Rod of Negation</name>
+    <entry>Rod of Negation</entry>
   </collection>
   <collection>
-    <name>Rod of rulership</name>
-    <entry>Rod of rulership</entry>
+    <name>Rod of Rulership</name>
+    <entry>Rod of Rulership</entry>
   </collection>
   <collection>
-    <name>Rod of security</name>
-    <entry>Rod of security</entry>
+    <name>Rod of Security</name>
+    <entry>Rod of Security</entry>
   </collection>
   <collection>
-    <name>Rod of splendor</name>
-    <entry>Rod of splendor</entry>
+    <name>Rod of Splendor</name>
+    <entry>Rod of Splendor</entry>
   </collection>
   <collection>
-    <name>Rod of the python</name>
-    <entry>Rod of the python</entry>
+    <name>Rod of the Python</name>
+    <entry>Rod of the Python</entry>
     <entry>Quarterstaff</entry>
   </collection>
   <collection>
-    <name>Rod of the viper</name>
-    <entry>Rod of the viper</entry>
+    <name>Rod of the Viper</name>
+    <entry>Rod of the Viper</entry>
     <entry>Heavy mace</entry>
   </collection>
   <collection>
-    <name>Rod of thunder and lightning</name>
-    <entry>Rod of thunder and lightning</entry>
+    <name>Rod of Thunder and Lightning</name>
+    <entry>Rod of Thunder and Lightning</entry>
     <entry>Light mace</entry>
   </collection>
   <collection>
-    <name>Rod of withering</name>
-    <entry>Rod of withering</entry>
+    <name>Rod of Withering</name>
+    <entry>Rod of Withering</entry>
     <entry>Light mace</entry>
   </collection>
   <collection>
-    <name>Rod of wonder</name>
-    <entry>Rod of wonder</entry>
+    <name>Rod of Wonder</name>
+    <entry>Rod of Wonder</entry>
   </collection>
   <collection>
     <name>Sai</name>
@@ -705,15 +705,15 @@
     <entry>Scale mail</entry>
   </collection>
   <collection>
-    <name>Scarab of death</name>
-    <entry>Scarab of death</entry>
+    <name>Scarab of Death</name>
+    <entry>Scarab of Death</entry>
   </collection>
   <collection>
     <name>Scimitar</name>
     <entry>Scimitar</entry>
   </collection>
   <collection>
-    <name>Screaming bolt</name>
+    <name>Screaming Bolt</name>
     <entry>Crossbow bolt</entry>
   </collection>
   <collection>
@@ -725,7 +725,7 @@
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Shifter's sorrow</name>
+    <name>Shifter's Sorrow</name>
     <entry>Two-bladed sword</entry>
   </collection>
   <collection>
@@ -753,23 +753,23 @@
     <entry>Sickle</entry>
   </collection>
   <collection>
-    <name>Silver dagger</name>
+    <name>Silver Dagger</name>
     <entry>Dagger</entry>
   </collection>
   <collection>
-    <name>Adamantine dagger</name>
+    <name>Adamantine Dagger</name>
     <entry>Dagger</entry>
   </collection>
   <collection>
-    <name>Adamantine battleaxe</name>
+    <name>Adamantine Battleaxe</name>
     <entry>Battleaxe</entry>
   </collection>
   <collection>
-    <name>Slaying arrow</name>
+    <name>Slaying Arrow</name>
     <entry>Arrow</entry>
   </collection>
   <collection>
-    <name>Sleep arrow</name>
+    <name>Sleep Arrow</name>
     <entry>Arrow</entry>
   </collection>
   <collection>
@@ -789,7 +789,7 @@
     <entry>Spiked gauntlet</entry>
   </collection>
   <collection>
-    <name>Spined shield</name>
+    <name>Spined Shield</name>
     <entry>Heavy steel shield</entry>
   </collection>
   <collection>
@@ -817,8 +817,8 @@
     <entry>Staff of Divination</entry>
   </collection>
   <collection>
-    <name>Staff of Earth and stone</name>
-    <entry>Staff of Earth and stone</entry>
+    <name>Staff of Earth and Stone</name>
+    <entry>Staff of Earth and Stone</entry>
   </collection>
   <collection>
     <name>Staff of Enchantment</name>
@@ -866,12 +866,12 @@
     <entry>Quarterstaff</entry>
   </collection>
   <collection>
-    <name>Staff of Size alteration</name>
-    <entry>Staff of Size alteration</entry>
+    <name>Staff of Size Alteration</name>
+    <entry>Staff of Size Alteration</entry>
   </collection>
   <collection>
-    <name>Staff of Swarming insects</name>
-    <entry>Staff of Swarming insects</entry>
+    <name>Staff of Swarming Insects</name>
+    <entry>Staff of Swarming Insects</entry>
   </collection>
   <collection>
     <name>Staff of Transmutation</name>
@@ -883,65 +883,65 @@
     <entry>Quarterstaff</entry>
   </collection>
   <collection>
-    <name>Stone of weight (loadstone)</name>
-    <entry>Stone of weight (loadstone)</entry>
+    <name>Stone of Weight (Loadstone)</name>
+    <entry>Stone of Weight (Loadstone)</entry>
   </collection>
   <collection>
     <name>Studded leather armor</name>
     <entry>Studded leather armor</entry>
   </collection>
   <collection>
-    <name>Sun blade</name>
+    <name>Sun Blade</name>
     <entry>Short sword</entry>
     <entry>Bastard sword</entry>
   </collection>
   <collection>
-    <name>Sword of life stealing</name>
+    <name>Sword of Life Stealing</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Sword of subtlety</name>
+    <name>Sword of Subtlety</name>
     <entry>Short sword</entry>
   </collection>
   <collection>
-    <name>Sword of the planes</name>
+    <name>Sword of the Planes</name>
     <entry>Longsword</entry>
   </collection>
   <collection>
-    <name>Sylvan scimitar</name>
+    <name>Sylvan Scimitar</name>
     <entry>Scimitar</entry>
   </collection>
   <collection>
     <name>This is a specific cursed item</name>
-    <entry>Armor of arrow attraction</entry>
-    <entry>Armor of rage</entry>
-    <entry>Berserking sword</entry>
-    <entry>Cursed backbiter spear</entry>
-    <entry>Cursed -2 sword</entry>
-    <entry>Net of snaring</entry>
+    <entry>Armor of Arrow Attraction</entry>
+    <entry>Armor of Rage</entry>
+    <entry>Berserking Sword</entry>
+    <entry>Cursed Backbiter Spear</entry>
+    <entry>Cursed -2 Sword</entry>
+    <entry>Net of Snaring</entry>
     <entry>Ring of Clumsiness</entry>
-    <entry>Amulet of inescapable location</entry>
-    <entry>Bag of devouring</entry>
-    <entry>Bracers of defenselessness</entry>
-    <entry>Broom of animated attack</entry>
-    <entry>Cloak of poisonousness</entry>
-    <entry>Dust of sneezing and choking</entry>
-    <entry>Robe of vermin</entry>
-    <entry>Crystal hypnosis ball</entry>
-    <entry>Scarab of death</entry>
-    <entry>Boots of dancing</entry>
-    <entry>Necklace of strangulation</entry>
-    <entry>Periapt of foul rotting</entry>
-    <entry>Gauntlets of fumbling</entry>
-    <entry>Vacuous grimoire</entry>
-    <entry>Medallion of thought projection</entry>
-    <entry>Stone of weight (loadstone)</entry>
-    <entry>Helm of opposite alignment</entry>
-    <entry>Incense of obsession</entry>
-    <entry>Flask of curses</entry>
-    <entry>Robe of powerlessness</entry>
-    <entry>Mace of blood</entry>
-    <entry>Potion of poison</entry>
+    <entry>Amulet of Inescapable Location</entry>
+    <entry>Bag of Devouring</entry>
+    <entry>Bracers of Defenselessness</entry>
+    <entry>Broom of Animated Attack</entry>
+    <entry>Cloak of Poisonousness</entry>
+    <entry>Dust of Sneezing and Choking</entry>
+    <entry>Robe of Vermin</entry>
+    <entry>Crystal Hypnosis Ball</entry>
+    <entry>Scarab of Death</entry>
+    <entry>Boots of Dancing</entry>
+    <entry>Necklace of Strangulation</entry>
+    <entry>Periapt of Foul Rotting</entry>
+    <entry>Gauntlets of Fumbling</entry>
+    <entry>Vacuous Grimoire</entry>
+    <entry>Medallion of Thought Projection</entry>
+    <entry>Stone of Weight (Loadstone)</entry>
+    <entry>Helm of Opposite Alignment</entry>
+    <entry>Incense of Obsession</entry>
+    <entry>Flask of Curses</entry>
+    <entry>Robe of Powerlessness</entry>
+    <entry>Mace of Blood</entry>
+    <entry>Potion of Poison</entry>
   </collection>
   <collection>
     <name>Throwing axe</name>
@@ -956,11 +956,11 @@
     <entry>Trident</entry>
   </collection>
   <collection>
-    <name>Trident of fish command</name>
+    <name>Trident of Fish Command</name>
     <entry>Trident</entry>
   </collection>
   <collection>
-    <name>Trident of warning</name>
+    <name>Trident of Warning</name>
     <entry>Trident</entry>
   </collection>
   <collection>
@@ -968,8 +968,8 @@
     <entry>Two-bladed sword</entry>
   </collection>
   <collection>
-    <name>Vacuous grimoire</name>
-    <entry>Vacuous grimoire</entry>
+    <name>Vacuous Grimoire</name>
+    <entry>Vacuous Grimoire</entry>
   </collection>
   <collection>
     <name>Warhammer</name>
@@ -980,7 +980,7 @@
     <entry>Whip</entry>
   </collection>
   <collection>
-    <name>Winged shield</name>
+    <name>Winged Shield</name>
     <entry>Heavy wooden shield</entry>
   </collection>
 </collections>

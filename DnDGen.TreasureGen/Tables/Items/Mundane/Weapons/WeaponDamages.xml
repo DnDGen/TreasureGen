@@ -1216,7 +1216,7 @@
     <entry>2d6##Against Aberrations</entry>
   </collection>
   <collection>
-    <name>Acid resistance</name>
+    <name>Acid Resistance</name>
   </collection>
   <collection>
     <name>Air-outsiderbane</name>
@@ -1250,10 +1250,10 @@
     <entry>2d6##Against Aquatic Humanoids</entry>
   </collection>
   <collection>
-    <name>Arrow catching</name>
+    <name>Arrow Catching</name>
   </collection>
   <collection>
-    <name>Arrow deflection</name>
+    <name>Arrow Deflection</name>
   </collection>
   <collection>
     <name>Axiomatic</name>
@@ -1276,7 +1276,7 @@
     <name>Blinding</name>
   </collection>
   <collection>
-    <name>Brilliant energy</name>
+    <name>Brilliant Energy</name>
   </collection>
   <collection>
     <name>Chaotic-outsiderbane</name>
@@ -1286,7 +1286,7 @@
     <entry>2d6##Against Chaotic Outsiders</entry>
   </collection>
   <collection>
-    <name>Cold resistance</name>
+    <name>Cold Resistance</name>
   </collection>
   <collection>
     <name>Constructbane</name>
@@ -1336,7 +1336,7 @@
     <entry>2d6##Against Earth Outsiders</entry>
   </collection>
   <collection>
-    <name>Electricity resistance</name>
+    <name>Electricity Resistance</name>
   </collection>
   <collection>
     <name>Elementalbane</name>
@@ -1370,7 +1370,7 @@
     <entry>2d6##Against Feys</entry>
   </collection>
   <collection>
-    <name>Fire resistance</name>
+    <name>Fire Resistance</name>
   </collection>
   <collection>
     <name>Fire-outsiderbane</name>
@@ -1380,7 +1380,7 @@
     <entry>2d6##Against Fire Outsiders</entry>
   </collection>
   <collection>
-    <name>Flaming burst</name>
+    <name>Flaming Burst</name>
     <entry>1d6#Fire#</entry>
     <entry>1d6#Fire#,1d10#Fire#</entry>
     <entry>1d6#Fire#,2d10#Fire#</entry>
@@ -1404,13 +1404,13 @@
     <entry>1d6#Cold#</entry>
   </collection>
   <collection>
-    <name>Ghost touch (armor)</name>
+    <name>Ghost Touch (armor)</name>
   </collection>
   <collection>
-    <name>Ghost touch (weapon)</name>
+    <name>Ghost Touch (weapon)</name>
   </collection>
   <collection>
-    <name>Ghost touch</name>
+    <name>Ghost Touch</name>
   </collection>
   <collection>
     <name>Giantbane</name>
@@ -1451,28 +1451,28 @@
     <entry>2d6##Against Good Outsiders</entry>
   </collection>
   <collection>
-    <name>Greater acid resistance</name>
+    <name>Greater Acid Resistance</name>
   </collection>
   <collection>
-    <name>Greater cold resistance</name>
+    <name>Greater Cold Resistance</name>
   </collection>
   <collection>
-    <name>Greater electricity resistance</name>
+    <name>Greater Electricity Resistance</name>
   </collection>
   <collection>
-    <name>Greater fire resistance</name>
+    <name>Greater Fire Resistance</name>
   </collection>
   <collection>
-    <name>Greater shadow</name>
+    <name>Greater Shadow</name>
   </collection>
   <collection>
-    <name>Greater silent moves</name>
+    <name>Greater Silent Moves</name>
   </collection>
   <collection>
-    <name>Greater slick</name>
+    <name>Greater Slick</name>
   </collection>
   <collection>
-    <name>Greater sonic resistance</name>
+    <name>Greater Sonic Resistance</name>
   </collection>
   <collection>
     <name>Halflingbane</name>
@@ -1482,7 +1482,7 @@
     <entry>2d6##Against Halflings</entry>
   </collection>
   <collection>
-    <name>Heavy fortification</name>
+    <name>Heavy Fortification</name>
   </collection>
   <collection>
     <name>Holy</name>
@@ -1506,35 +1506,35 @@
     <entry>2d6##Against Shapeshifters</entry>
   </collection>
   <collection>
-    <name>Icy burst</name>
+    <name>Icy Burst</name>
     <entry>1d6#Cold#</entry>
     <entry>1d6#Cold#,1d10#Cold#</entry>
     <entry>1d6#Cold#,2d10#Cold#</entry>
     <entry>1d6#Cold#,3d10#Cold#</entry>
   </collection>
   <collection>
-    <name>Improved acid resistance</name>
+    <name>Improved Acid Resistance</name>
   </collection>
   <collection>
-    <name>Improved cold resistance</name>
+    <name>Improved Cold Resistance</name>
   </collection>
   <collection>
-    <name>Improved electricity resistance</name>
+    <name>Improved Electricity Resistance</name>
   </collection>
   <collection>
-    <name>Improved fire resistance</name>
+    <name>Improved Fire Resistance</name>
   </collection>
   <collection>
-    <name>Improved shadow</name>
+    <name>Improved Shadow</name>
   </collection>
   <collection>
-    <name>Improved silent moves</name>
+    <name>Improved Silent Moves</name>
   </collection>
   <collection>
-    <name>Improved slick</name>
+    <name>Improved Slick</name>
   </collection>
   <collection>
-    <name>Improved sonic resistance</name>
+    <name>Improved Sonic Resistance</name>
   </collection>
   <collection>
     <name>Invulnerability</name>
@@ -1543,7 +1543,7 @@
     <name>Keen</name>
   </collection>
   <collection>
-    <name>Ki focus</name>
+    <name>Ki Focus</name>
   </collection>
   <collection>
     <name>Lawful-outsiderbane</name>
@@ -1553,7 +1553,7 @@
     <entry>2d6##Against Lawful Outsiders</entry>
   </collection>
   <collection>
-    <name>Light fortification</name>
+    <name>Light Fortification</name>
   </collection>
   <collection>
     <name>Magical-beastbane</name>
@@ -1570,10 +1570,10 @@
     <entry>1d6##</entry>
   </collection>
   <collection>
-    <name>Mighty cleaving</name>
+    <name>Mighty Cleaving</name>
   </collection>
   <collection>
-    <name>Moderate fortification</name>
+    <name>Moderate Fortification</name>
   </collection>
   <collection>
     <name>Monstrous-humanoidbane</name>
@@ -1630,41 +1630,41 @@
     <entry>1d6#Electricity#</entry>
   </collection>
   <collection>
-    <name>Shocking burst</name>
+    <name>Shocking Burst</name>
     <entry>1d6#Electricity#</entry>
     <entry>1d6#Electricity#,1d10#Electricity#</entry>
     <entry>1d6#Electricity#,2d10#Electricity#</entry>
     <entry>1d6#Electricity#,3d10#Electricity#</entry>
   </collection>
   <collection>
-    <name>Silent moves</name>
+    <name>Silent Moves</name>
   </collection>
   <collection>
     <name>Slick</name>
   </collection>
   <collection>
-    <name>Sonic resistance</name>
+    <name>Sonic Resistance</name>
   </collection>
   <collection>
     <name>Speed</name>
   </collection>
   <collection>
-    <name>Spell resistance (13)</name>
+    <name>Spell Resistance (13)</name>
   </collection>
   <collection>
-    <name>Spell resistance (15)</name>
+    <name>Spell Resistance (15)</name>
   </collection>
   <collection>
-    <name>Spell resistance (17)</name>
+    <name>Spell Resistance (17)</name>
   </collection>
   <collection>
-    <name>Spell resistance (19)</name>
+    <name>Spell Resistance (19)</name>
   </collection>
   <collection>
-    <name>Spell resistance</name>
+    <name>Spell Resistance</name>
   </collection>
   <collection>
-    <name>Spell storing</name>
+    <name>Spell Storing</name>
   </collection>
   <collection>
     <name>Throwing</name>
@@ -1677,7 +1677,7 @@
     <entry>3d8#Sonic#</entry>
   </collection>
   <collection>
-    <name>Undead controlling</name>
+    <name>Undead Controlling</name>
   </collection>
   <collection>
     <name>Undeadbane</name>

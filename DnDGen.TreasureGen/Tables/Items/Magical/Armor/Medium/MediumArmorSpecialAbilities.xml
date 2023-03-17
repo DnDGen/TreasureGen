@@ -8,7 +8,7 @@
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Light fortification</content>
+        <content>Light Fortification</content>
         <upper>8</upper>
     </percentile>
     <percentile>
@@ -23,57 +23,57 @@
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Silent moves</content>
+        <content>Silent Moves</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Spell resistance (13)</content>
+        <content>Spell Resistance (13)</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Improved slick</content>
+        <content>Improved Slick</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Improved shadow</content>
+        <content>Improved Shadow</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Improved silent moves</content>
+        <content>Improved Silent Moves</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Acid resistance</content>
+        <content>Acid Resistance</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Cold resistance</content>
+        <content>Cold Resistance</content>
         <upper>59</upper>
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Electricity resistance</content>
+        <content>Electricity Resistance</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Fire resistance</content>
+        <content>Fire Resistance</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Sonic resistance</content>
+        <content>Sonic Resistance</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Ghost touch (armor)</content>
+        <content>Ghost Touch (armor)</content>
         <upper>79</upper>
     </percentile>
     <percentile>
@@ -83,12 +83,12 @@
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Moderate fortification</content>
+        <content>Moderate Fortification</content>
         <upper>89</upper>
     </percentile>
     <percentile>
         <lower>90</lower>
-        <content>Spell resistance (15)</content>
+        <content>Spell Resistance (15)</content>
         <upper>94</upper>
     </percentile>
     <percentile>

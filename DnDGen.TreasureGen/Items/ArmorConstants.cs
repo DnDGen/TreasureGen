@@ -23,22 +23,22 @@ namespace DnDGen.TreasureGen.Items
         public const string HeavyWoodenShield = "Heavy wooden shield";
         public const string HeavySteelShield = "Heavy steel shield";
         public const string TowerShield = "Tower shield";
-        public const string ElvenChain = "Elven chain";
-        public const string RhinoHide = "Rhino hide";
-        public const string DwarvenPlate = "Dwarven plate";
-        public const string BandedMailOfLuck = "Banded mail of luck";
-        public const string CelestialArmor = "Celestial armor";
-        public const string PlateArmorOfTheDeep = "Plate armor of the deep";
-        public const string BreastplateOfCommand = "Breastplate of command";
-        public const string FullPlateOfSpeed = "Full plate of speed";
-        public const string DemonArmor = "Demon armor";
-        public const string CastersShield = "Caster's shield";
-        public const string SpinedShield = "Spined shield";
-        public const string LionsShield = "Lion's shield";
-        public const string WingedShield = "Winged shield";
-        public const string AbsorbingShield = "Absorbing shield";
-        public const string ArmorOfRage = "Armor of rage";
-        public const string ArmorOfArrowAttraction = "Armor of arrow attraction";
+        public const string ElvenChain = "Elven Chain";
+        public const string RhinoHide = "Rhino Hide";
+        public const string DwarvenPlate = "Dwarven Plate";
+        public const string BandedMailOfLuck = "Banded Mail of Luck";
+        public const string CelestialArmor = "Celestial Armor";
+        public const string PlateArmorOfTheDeep = "Plate Armor of the Deep";
+        public const string BreastplateOfCommand = "Breastplate of Command";
+        public const string FullPlateOfSpeed = "Full Plate of Speed";
+        public const string DemonArmor = "Demon Armor";
+        public const string CastersShield = "Caster's Shield";
+        public const string SpinedShield = "Spined Shield";
+        public const string LionsShield = "Lion's Shield";
+        public const string WingedShield = "Winged Shield";
+        public const string AbsorbingShield = "Absorbing Shield";
+        public const string ArmorOfRage = "Armor of Rage";
+        public const string ArmorOfArrowAttraction = "Armor of Arrow Attraction";
 
         public static IEnumerable<string> GetAllArmorsAndShields(bool includeSpecific)
         {

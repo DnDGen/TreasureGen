@@ -2,73 +2,73 @@
 
 <collections>
   <collection>
-    <name>Rod of lesser metamagic: Enlarge</name>
+    <name>Rod of Lesser Metamagic: Enlarge</name>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Extend</name>
+    <name>Rod of Lesser Metamagic: Extend</name>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Silent</name>
+    <name>Rod of Lesser Metamagic: Silent</name>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Empower</name>
+    <name>Rod of Lesser Metamagic: Empower</name>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Maximize</name>
+    <name>Rod of Lesser Metamagic: Maximize</name>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Quicken</name>
+    <name>Rod of Lesser Metamagic: Quicken</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Enlarge</name>
+    <name>Rod of Metamagic: Enlarge</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Extend</name>
+    <name>Rod of Metamagic: Extend</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Silent</name>
+    <name>Rod of Metamagic: Silent</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Empower</name>
+    <name>Rod of Metamagic: Empower</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Maximize</name>
+    <name>Rod of Metamagic: Maximize</name>
   </collection>
   <collection>
-    <name>Rod of metamagic: Quicken</name>
+    <name>Rod of Metamagic: Quicken</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Enlarge</name>
+    <name>Rod of Greater Metamagic: Enlarge</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Extend</name>
+    <name>Rod of Greater Metamagic: Extend</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Silent</name>
+    <name>Rod of Greater Metamagic: Silent</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Empower</name>
+    <name>Rod of Greater Metamagic: Empower</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Maximize</name>
+    <name>Rod of Greater Metamagic: Maximize</name>
   </collection>
   <collection>
-    <name>Rod of greater metamagic: Quicken</name>
+    <name>Rod of Greater Metamagic: Quicken</name>
   </collection>
   <collection>
-    <name>Immovable rod</name>
+    <name>Immovable Rod</name>
   </collection>
   <collection>
-    <name>Rod of metal and mineral detection</name>
+    <name>Rod of Metal and Mineral Detection</name>
   </collection>
   <collection>
-    <name>Rod of cancellation</name>
+    <name>Rod of Cancellation</name>
   </collection>
   <collection>
-    <name>Rod of wonder</name>
+    <name>Rod of Wonder</name>
   </collection>
   <collection>
-    <name>Rod of the python</name>
+    <name>Rod of the Python</name>
     <entry>Double weapon</entry>
     <entry>Simple</entry>
     <entry>Melee</entry>
@@ -77,7 +77,7 @@
     <entry>Two-Handed</entry>
   </collection>
   <collection>
-    <name>Rod of the viper</name>
+    <name>Rod of the Viper</name>
     <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>
@@ -85,16 +85,16 @@
     <entry>One-Handed</entry>
   </collection>
   <collection>
-    <name>Rod of flame extinguishing</name>
+    <name>Rod of Flame Extinguishing</name>
   </collection>
   <collection>
-    <name>Rod of enemy detection</name>
+    <name>Rod of Enemy Detection</name>
   </collection>
   <collection>
-    <name>Rod of splendor</name>
+    <name>Rod of Splendor</name>
   </collection>
   <collection>
-    <name>Rod of withering</name>
+    <name>Rod of Withering</name>
     <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>
@@ -102,7 +102,7 @@
     <entry>Light</entry>
   </collection>
   <collection>
-    <name>Rod of thunder and lightning</name>
+    <name>Rod of Thunder and Lightning</name>
     <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>
@@ -110,10 +110,10 @@
     <entry>Light</entry>
   </collection>
   <collection>
-    <name>Rod of negation</name>
+    <name>Rod of Negation</name>
   </collection>
   <collection>
-    <name>Rod of flailing</name>
+    <name>Rod of Flailing</name>
     <entry>Double weapon</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>
@@ -122,20 +122,20 @@
     <entry>Two-Handed</entry>
   </collection>
   <collection>
-    <name>Rod of absorption</name>
+    <name>Rod of Absorption</name>
     <entry>Charged</entry>
     <entry>One-time use</entry>
   </collection>
   <collection>
-    <name>Rod of rulership</name>
+    <name>Rod of Rulership</name>
     <entry>Charged</entry>
     <entry>One-time use</entry>
   </collection>
   <collection>
-    <name>Rod of security</name>
+    <name>Rod of Security</name>
   </collection>
   <collection>
-    <name>Rod of lordly might</name>
+    <name>Rod of Lordly Might</name>
     <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>
@@ -143,7 +143,7 @@
     <entry>Light</entry>
   </collection>
   <collection>
-    <name>Rod of alertness</name>
+    <name>Rod of Alertness</name>
     <entry>Simple</entry>
     <entry>Melee</entry>
     <entry>Metal</entry>

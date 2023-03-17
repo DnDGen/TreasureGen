@@ -8,17 +8,17 @@
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Astral projection</content>
+        <content>Astral Projection</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Elemental swarm</content>
+        <content>Elemental Swarm</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Energy drain</content>
+        <content>Energy Drain</content>
         <upper>19</upper>
     </percentile>
     <percentile>
@@ -38,7 +38,7 @@
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Mass heal</content>
+        <content>Mass Heal</content>
         <upper>46</upper>
     </percentile>
     <percentile>
@@ -68,22 +68,22 @@
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Soul bind</content>
+        <content>Soul Bind</content>
         <upper>77</upper>
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Storm of vengeance</content>
+        <content>Storm of Vengeance</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Summon monster IX</content>
+        <content>Summon Monster IX</content>
         <upper>89</upper>
     </percentile>
     <percentile>
         <lower>90</lower>
-        <content>Summon nature's ally IX</content>
+        <content>Summon Nature's Ally IX</content>
         <upper>95</upper>
     </percentile>
     <percentile>
@@ -93,7 +93,7 @@
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>True resurrection</content>
+        <content>True Resurrection</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

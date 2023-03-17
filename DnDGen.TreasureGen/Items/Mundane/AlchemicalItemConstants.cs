@@ -4,13 +4,13 @@ namespace DnDGen.TreasureGen.Items.Mundane
 {
     public static class AlchemicalItemConstants
     {
-        public const string AlchemistsFire = "Alchemist's fire";
+        public const string AlchemistsFire = "Alchemist's Fire";
         public const string Acid = "Acid";
         public const string Smokestick = "Smokestick";
-        public const string HolyWater = "Holy water";
+        public const string HolyWater = "Holy Water";
         public const string Antitoxin = "Antitoxin";
-        public const string EverburningTorch = "Everburning torch";
-        public const string TanglefootBag = "Tanglefoot bag";
+        public const string EverburningTorch = "Everburning Torch";
+        public const string TanglefootBag = "Tanglefoot Bag";
         public const string Thunderstone = "Thunderstone";
 
         public static IEnumerable<string> GetAllAlchemicalItems()

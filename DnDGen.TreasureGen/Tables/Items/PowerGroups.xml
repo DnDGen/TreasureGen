@@ -68,7 +68,7 @@
     <entry>Mundane</entry>
   </collection>
   <collection>
-    <name>Alchemist's fire</name>
+    <name>Alchemist's Fire</name>
     <entry>Mundane</entry>
   </collection>
   <collection>
@@ -76,11 +76,11 @@
     <entry>Mundane</entry>
   </collection>
   <collection>
-    <name>Everburning torch</name>
+    <name>Everburning Torch</name>
     <entry>Mundane</entry>
   </collection>
   <collection>
-    <name>Holy water</name>
+    <name>Holy Water</name>
     <entry>Mundane</entry>
   </collection>
   <collection>
@@ -88,7 +88,7 @@
     <entry>Mundane</entry>
   </collection>
   <collection>
-    <name>Tanglefoot bag</name>
+    <name>Tanglefoot Bag</name>
     <entry>Mundane</entry>
   </collection>
   <collection>
@@ -222,54 +222,54 @@
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Armor of arrow attraction</name>
+    <name>Armor of Arrow Attraction</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Armor of rage</name>
+    <name>Armor of Rage</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Banded mail of luck</name>
+    <name>Banded Mail of Luck</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Breastplate of command</name>
+    <name>Breastplate of Command</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Celestial armor</name>
+    <name>Celestial Armor</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Demon armor</name>
+    <name>Demon Armor</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Dwarven plate</name>
+    <name>Dwarven Plate</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Elven chain</name>
+    <name>Elven Chain</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Full plate of speed</name>
+    <name>Full Plate of Speed</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Plate armor of the deep</name>
+    <name>Plate Armor of the Deep</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rhino hide</name>
+    <name>Rhino Hide</name>
     <entry>Medium</entry>
   </collection>
   <collection>
@@ -826,31 +826,31 @@
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Berserking sword</name>
+    <name>Berserking Sword</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Cursed -2 sword</name>
+    <name>Cursed -2 Sword</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Cursed backbiter spear</name>
+    <name>Cursed Backbiter Spear</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Mace of blood</name>
+    <name>Mace of Blood</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Net of snaring</name>
+    <name>Net of Snaring</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
@@ -860,99 +860,99 @@
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Assassin's dagger</name>
+    <name>Assassin's Dagger</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Adamantine battleaxe</name>
+    <name>Adamantine Battleaxe</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Adamantine dagger</name>
+    <name>Adamantine Dagger</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Dagger of venom</name>
+    <name>Dagger of Venom</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Silver dagger</name>
+    <name>Silver Dagger</name>
     <entry>Minor</entry>
   </collection>
   <collection>
-    <name>Dwarven thrower</name>
+    <name>Dwarven Thrower</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Flame tongue</name>
+    <name>Flame Tongue</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rapier of puncturing</name>
+    <name>Rapier of Puncturing</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Frost brand</name>
+    <name>Frost Brand</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Greater slaying arrow</name>
+    <name>Greater Slaying Arrow</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Holy avenger</name>
+    <name>Holy Avenger</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Javelin of lightning</name>
+    <name>Javelin of Lightning</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Life-drinker</name>
+    <name>Life-Drinker</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Luck blade (0 wishes)</name>
+    <name>Luck Blade (0 wishes)</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Luck blade (1 wish)</name>
+    <name>Luck Blade (1 wish)</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Luck blade (2 wishes)</name>
+    <name>Luck Blade (2 wishes)</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Luck blade</name>
+    <name>Luck Blade</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Luck blade (3 wishes)</name>
+    <name>Luck Blade (3 wishes)</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Mace of smiting</name>
+    <name>Mace of Smiting</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Mace of terror</name>
+    <name>Mace of Terror</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Nine lives stealer</name>
+    <name>Nine Lives Stealer</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Screaming bolt</name>
+    <name>Screaming Bolt</name>
     <entry>Minor</entry>
   </collection>
   <collection>
@@ -961,548 +961,548 @@
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Shifter's sorrow</name>
+    <name>Shifter's Sorrow</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Slaying arrow</name>
+    <name>Slaying Arrow</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Sleep arrow</name>
+    <name>Sleep Arrow</name>
     <entry>Minor</entry>
   </collection>
   <collection>
-    <name>Sun blade</name>
+    <name>Sun Blade</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Sword of life stealing</name>
+    <name>Sword of Life Stealing</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Sword of the planes</name>
+    <name>Sword of the Planes</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Sword of subtlety</name>
+    <name>Sword of Subtlety</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Sylvan scimitar</name>
+    <name>Sylvan Scimitar</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Trident of warning</name>
+    <name>Trident of Warning</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Trident of fish command</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Absorbing shield</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Caster's shield</name>
-    <entry>Minor</entry>
+    <name>Trident of Fish Command</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Lion's shield</name>
-    <entry>Medium</entry>
+    <name>Absorbing Shield</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Spined shield</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Winged shield</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of cure light wounds</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of endure elements</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of hide from animals</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of hide from undead</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of jump</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of mage armor</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic fang</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Oil of magic stone</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Oil of magic weapon</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of pass without trace</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from PARTIALALIGNMENT</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Chaos</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Evil</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Good</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Law</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of remove fear</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of sanctuary</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of shield of faith</name>
+    <name>Caster's Shield</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Oil of shillelagh</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Oil of bless weapon</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of enlarge person</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of reduce person</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of aid</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of barkskin</name>
-    <entry>Minor</entry>
+    <name>Lion's Shield</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of bear's endurance</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of blur</name>
-    <entry>Minor</entry>
+    <name>Spined Shield</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of bull's strength</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of cat's grace</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of cure moderate wounds</name>
-    <entry>Minor</entry>
+    <name>Winged Shield</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Oil of darkness</name>
+    <name>Potion of Cure Light Wounds</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of darkvision</name>
+    <name>Potion of Endure Elements</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
-    <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of delay poison</name>
+    <name>Potion of Hide from Animals</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of eagle's splendor</name>
+    <name>Potion of Hide from Undead</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of fox's cunning</name>
+    <name>Potion of Jump</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of invisibility</name>
+    <name>Potion of Mage Armor</name>
     <entry>Minor</entry>
-    <entry>Medium</entry>
-    <entry>Major</entry>
   </collection>
   <collection>
-    <name>Oil of invisibility</name>
+    <name>Potion of Magic Fang</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Oil of Magic Stone</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Oil of Magic Weapon</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Pass Without Trace</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from PARTIALALIGNMENT</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Chaos</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Evil</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Good</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Law</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Remove Fear</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Sanctuary</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Shield of Faith</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of lesser restoration</name>
+    <name>Oil of Shillelagh</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Oil of Bless Weapon</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Enlarge Person</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Reduce Person</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Aid</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Barkskin</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of levitate</name>
+    <name>Potion of Bear's Endurance</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Oil of levitate</name>
-    <entry>Minor</entry>
-  </collection>
-  <collection>
-    <name>Potion of misdirection</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of owl's wisdom</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from arrows 10/magic</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of remove paralysis</name>
+    <name>Potion of Blur</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist ENERGY 10</name>
+    <name>Potion of Bull's Strength</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of resist Acid 10</name>
+    <name>Potion of Cat's Grace</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of resist Cold 10</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Electricity 10</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Fire 10</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Sonic 10</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of spider climb</name>
-    <entry>Minor</entry>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Potion of undetectable alignment</name>
+    <name>Potion of Cure Moderate Wounds</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist ENERGY 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Acid 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Cold 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Electricity 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Fire 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of resist Sonic 20</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of cure serious wounds</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Oil of daylight</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of displacement</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Oil of flame arrow</name>
-    <entry>Major</entry>
+    <name>Oil of Darkness</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Potion of fly</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of gaseous form</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of greater magic fang</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Oil of greater magic weapon</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of haste</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of heroism</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Oil of keen edge</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic circle against PARTIALALIGNMENT</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic circle against Chaos</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic circle against Good</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic circle against Evil</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of magic circle against Law</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Oil of magic vestment</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of neutralize poison</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of nondetection</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from ENERGY</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Acid</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Cold</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Electricity</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Fire</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of protection from Sonic</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Potion of poison</name>
+    <name>Potion of Darkvision</name>
     <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of rage</name>
+    <name>Potion of Delay Poison</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Eagle's Splendor</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Fox's Cunning</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Invisibility</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of remove blindness/deafness</name>
+    <name>Oil of Invisibility</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of remove curse</name>
+    <name>Potion of Lesser Restoration</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of remove disease</name>
+    <name>Potion of Levitate</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Oil of Levitate</name>
+    <entry>Minor</entry>
+  </collection>
+  <collection>
+    <name>Potion of Misdirection</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Owl's Wisdom</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Arrows 10/magic</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Remove Paralysis</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of tongues</name>
+    <name>Potion of Resist ENERGY 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Acid 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Cold 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Electricity 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Fire 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Sonic 10</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Spider Climb</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Undetectable Alignment</name>
+    <entry>Minor</entry>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of water breathing</name>
+    <name>Potion of Resist ENERGY 20</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of water walk</name>
+    <name>Potion of Resist Acid 20</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of good hope</name>
+    <name>Potion of Resist Cold 20</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist ENERGY 30</name>
+    <name>Potion of Resist Electricity 20</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist Acid 30</name>
+    <name>Potion of Resist Fire 20</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist Cold 30</name>
+    <name>Potion of Resist Sonic 20</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist Electricity 30</name>
+    <name>Potion of Cure Serious Wounds</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist Fire 30</name>
+    <name>Oil of Daylight</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of resist Sonic 30</name>
+    <name>Potion of Displacement</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Potion of protection from arrows 15/magic</name>
+    <name>Oil of Flame Arrow</name>
+    <entry>Major</entry>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Potion of Fly</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Gaseous Form</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Greater Magic Fang</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of Greater Magic Weapon</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Haste</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Heroism</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of Keen Edge</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Magic Circle Against PARTIALALIGNMENT</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Magic Circle Against Chaos</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Magic Circle Against Good</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Magic Circle Against Evil</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Magic Circle Against Law</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Oil of Magic Vestment</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Neutralize Poison</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Nondetection</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from ENERGY</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Acid</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Cold</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Electricity</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Fire</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Sonic</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Poison</name>
+    <entry>Minor</entry>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Rage</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Remove Blindness/Deafness</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Remove Curse</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Remove Disease</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Tongues</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Water Breathing</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Water Walk</name>
+    <entry>Medium</entry>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Good Hope</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist ENERGY 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Acid 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Cold 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Electricity 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Fire 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Resist Sonic 30</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Potion of Protection from Arrows 15/magic</name>
     <entry>Major</entry>
   </collection>
     <collection>
@@ -1511,11 +1511,11 @@
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Three wishes</name>
+        <name>Ring of Three Wishes</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Feather falling</name>
+        <name>Ring of Feather Falling</name>
       <entry>Minor</entry>
     </collection>
     <collection>
@@ -1540,74 +1540,74 @@
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Mind shielding</name>
+        <name>Ring of Mind Shielding</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Force shield</name>
+        <name>Ring of Force Shield</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Improved climbing</name>
+        <name>Ring of Improved Climbing</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Improved jumping</name>
+        <name>Ring of Improved Jumping</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Improved swimming</name>
+        <name>Ring of Improved Swimming</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Animal friendship</name>
+        <name>Ring of Animal Friendship</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Chameleon power</name>
+        <name>Ring of Chameleon Power</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Water walking</name>
+        <name>Ring of Water Walking</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ring of Minor Acid resistance</name>
-      <entry>Minor</entry>
-      <entry>Medium</entry>
-      <entry>Major</entry>
-    </collection>
-    <collection>
-        <name>Ring of Minor Cold resistance</name>
+        <name>Ring of Minor Acid Resistance</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Minor Electricity resistance</name>
+        <name>Ring of Minor Cold Resistance</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Minor Fire resistance</name>
+        <name>Ring of Minor Electricity Resistance</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Minor Sonic resistance</name>
+        <name>Ring of Minor Fire Resistance</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Minor spell storing</name>
+        <name>Ring of Minor Sonic Resistance</name>
+      <entry>Minor</entry>
+      <entry>Medium</entry>
+      <entry>Major</entry>
+    </collection>
+    <collection>
+        <name>Ring of Minor Spell Storing</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
@@ -1627,7 +1627,7 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of X-ray vision</name>
+        <name>Ring of X-ray Vision</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
@@ -1637,27 +1637,27 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major Acid resistance</name>
+        <name>Ring of Major Acid Resistance</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major Cold resistance</name>
+        <name>Ring of Major Cold Resistance</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major Electricity resistance</name>
+        <name>Ring of Major Electricity Resistance</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major Fire resistance</name>
+        <name>Ring of Major Fire Resistance</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major Sonic resistance</name>
+        <name>Ring of Major Sonic Resistance</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
@@ -1666,31 +1666,31 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Freedom of movement</name>
+        <name>Ring of Freedom of Movement</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Greater Acid resistance</name>
+        <name>Ring of Greater Acid Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Greater Cold resistance</name>
+        <name>Ring of Greater Cold Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Greater Electricity resistance</name>
+        <name>Ring of Greater Electricity Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Greater Fire resistance</name>
+        <name>Ring of Greater Fire Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Greater Sonic resistance</name>
+        <name>Ring of Greater Sonic Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Friend shield (pair)</name>
+        <name>Ring of Friend Shield (pair)</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -1700,11 +1700,11 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Shooting stars</name>
+        <name>Ring of Shooting Stars</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Spell storing</name>
+        <name>Ring of Spell Storing</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -1720,7 +1720,7 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Spell turning</name>
+        <name>Ring of Spell Turning</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -1728,27 +1728,27 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Djinni calling</name>
+        <name>Ring of Djinni Calling</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Elemental command (air)</name>
+        <name>Ring of Elemental Command (Air)</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Elemental command (earth)</name>
+        <name>Ring of Elemental Command (Earth)</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Elemental command (fire)</name>
+        <name>Ring of Elemental Command (Fire)</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Elemental command (water)</name>
+        <name>Ring of Elemental Command (Water)</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring of Major spell storing</name>
+        <name>Ring of Major Spell Storing</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -1758,157 +1758,157 @@
       <entry>Major</entry>
     </collection>
   <collection>
-    <name>Rod of lesser metamagic: Enlarge</name>
+    <name>Rod of Lesser Metamagic: Enlarge</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Extend</name>
+    <name>Rod of Lesser Metamagic: Extend</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Silent</name>
+    <name>Rod of Lesser Metamagic: Silent</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Empower</name>
+    <name>Rod of Lesser Metamagic: Empower</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Maximize</name>
+    <name>Rod of Lesser Metamagic: Maximize</name>
     <entry>Medium</entry>
   </collection>
   <collection>
-    <name>Rod of lesser metamagic: Quicken</name>
-    <entry>Medium</entry>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of metamagic: Enlarge</name>
+    <name>Rod of Lesser Metamagic: Quicken</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Extend</name>
+    <name>Rod of Metamagic: Enlarge</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Silent</name>
+    <name>Rod of Metamagic: Extend</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Empower</name>
+    <name>Rod of Metamagic: Silent</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of metamagic: Maximize</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of metamagic: Quicken</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Enlarge</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Extend</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Silent</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Empower</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Maximize</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Rod of greater metamagic: Quicken</name>
-    <entry>Major</entry>
-  </collection>
-  <collection>
-    <name>Immovable rod</name>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Rod of metal and mineral detection</name>
-    <entry>Medium</entry>
-  </collection>
-  <collection>
-    <name>Rod of cancellation</name>
+    <name>Rod of Metamagic: Empower</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of wonder</name>
+    <name>Rod of Metamagic: Maximize</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Metamagic: Quicken</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Enlarge</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Extend</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Silent</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Empower</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Maximize</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Greater Metamagic: Quicken</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Immovable Rod</name>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Rod of Metal and Mineral Detection</name>
+    <entry>Medium</entry>
+  </collection>
+  <collection>
+    <name>Rod of Cancellation</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of the python</name>
+    <name>Rod of Wonder</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of the viper</name>
+    <name>Rod of the Python</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of flame extinguishing</name>
+    <name>Rod of the Viper</name>
     <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of enemy detection</name>
+    <name>Rod of Flame Extinguishing</name>
+    <entry>Medium</entry>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of splendor</name>
+    <name>Rod of Enemy Detection</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of withering</name>
+    <name>Rod of Splendor</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of thunder and lightning</name>
+    <name>Rod of Withering</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of negation</name>
+    <name>Rod of Thunder and Lightning</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of flailing</name>
+    <name>Rod of Negation</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of absorption</name>
+    <name>Rod of Flailing</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of rulership</name>
+    <name>Rod of Absorption</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of security</name>
+    <name>Rod of Rulership</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of lordly might</name>
+    <name>Rod of Security</name>
     <entry>Major</entry>
   </collection>
   <collection>
-    <name>Rod of alertness</name>
+    <name>Rod of Lordly Might</name>
+    <entry>Major</entry>
+  </collection>
+  <collection>
+    <name>Rod of Alertness</name>
     <entry>Major</entry>
   </collection>
     <collection>
@@ -1922,7 +1922,7 @@
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Staff of Swarming insects</name>
+        <name>Staff of Swarming Insects</name>
         <entry>Medium</entry>
         <entry>Major</entry>
     </collection>
@@ -1932,7 +1932,7 @@
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Staff of Size alteration</name>
+        <name>Staff of Size Alteration</name>
         <entry>Medium</entry>
         <entry>Major</entry>
     </collection>
@@ -1984,7 +1984,7 @@
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Staff of Earth and stone</name>
+        <name>Staff of Earth and Stone</name>
         <entry>Major</entry>
     </collection>
     <collection>
@@ -2004,185 +2004,185 @@
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Bead of force</name>
+        <name>Bead of Force</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Bracelet of friends</name>
+        <name>Bracelet of Friends</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Brooch of shielding</name>
+        <name>Brooch of Shielding</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Candle of invocation</name>
+        <name>Candle of Invocation</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Candle of truth</name>
+        <name>Candle of Truth</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Chime of opening</name>
+        <name>Chime of Opening</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Clay golem manual</name>
+        <name>Clay Golem Manual</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Deck of illusions</name>
+        <name>Deck of Illusions</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Dust of tracelessness</name>
+        <name>Dust of Tracelessness</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Dust of appearance</name>
+        <name>Dust of Appearance</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Dust of disappearance</name>
+        <name>Dust of Disappearance</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Dust of dryness</name>
+        <name>Dust of Dryness</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Dust of illusion</name>
+        <name>Dust of Illusion</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elemental gem</name>
+        <name>Elemental Gem</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of fire breath</name>
+        <name>Elixer of Fire Breath</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of hiding</name>
+        <name>Elixer of Hiding</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of love</name>
+        <name>Elixer of Love</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of sneaking</name>
+        <name>Elixer of Sneaking</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of swimming</name>
+        <name>Elixer of Swimming</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of truth</name>
+        <name>Elixer of Truth</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Elixer of vision</name>
+        <name>Elixer of Vision</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Flesh golem manual</name>
+        <name>Flesh Golem Manual</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Gem of brightness</name>
+        <name>Gem of Brightness</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Greater stone golem manual</name>
+        <name>Greater Stone Golem Manual</name>
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Incense of meditation</name>
+        <name>Incense of Meditation</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Iron golem manual</name>
+        <name>Iron Golem Manual</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Keoghtom's ointment</name>
+        <name>Keoghtom's Ointment</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Manual of bodily health</name>
+        <name>Manual of Bodily Health</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Manual of gainful exercise</name>
+        <name>Manual of Gainful Exercise</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Manual of quickness in action</name>
+        <name>Manual of Quickness in Action</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Tome of understanding</name>
+        <name>Tome of Understanding</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Tome of leadership and influence</name>
+        <name>Tome of Leadership and Influence</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Tome of clear thought</name>
+        <name>Tome of Clear Thought</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Quaal's whip feather token</name>
+        <name>Quaal's Whip Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Quaal's fan feather token</name>
+        <name>Quaal's Fan Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Quaal's swan boat feather token</name>
+        <name>Quaal's Swan Boat Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Quaal's anchor feather token</name>
+        <name>Quaal's Anchor Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Quaal's bird feather token</name>
+        <name>Quaal's Bird Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Quaal's tree feather token</name>
+        <name>Quaal's Tree Feather Token</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Robe of bones</name>
+        <name>Robe of Bones</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Robe of useful items</name>
+        <name>Robe of Useful Items</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Salve of slipperiness</name>
+        <name>Salve of Slipperiness</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Scarab of protection</name>
+        <name>Scarab of Protection</name>
         <entry>Major</entry>
     </collection>
     <collection>
-        <name>Shrouds of disintegration</name>
+        <name>Shrouds of Disintegration</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
@@ -2190,167 +2190,167 @@
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Sovereign glue</name>
+        <name>Sovereign Glue</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Stone golem manual</name>
+        <name>Stone Golem Manual</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Stone salve</name>
+        <name>Stone Salve</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Unguent of timelessness</name>
+        <name>Unguent of Timelessness</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Nolzur's marvelous pigments</name>
+        <name>Nolzur's Marvelous Pigments</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Universal solvent</name>
+        <name>Universal Solvent</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type I</name>
+        <name>Necklace of Fireballs Type I</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type II</name>
+        <name>Necklace of Fireballs Type II</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type III</name>
+        <name>Necklace of Fireballs Type III</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type IV</name>
+        <name>Necklace of Fireballs Type IV</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type V</name>
+        <name>Necklace of Fireballs Type V</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VI</name>
+        <name>Necklace of Fireballs Type VI</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VII</name>
+        <name>Necklace of Fireballs Type VII</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Dimensional shackles</name>
+        <name>Dimensional Shackles</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Obsidian steed figurine of wondrous power</name>
+        <name>Obsidian Steed Figurine of Wondrous Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Drums of panic</name>
+        <name>Drums of Panic</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Orange prism ioun stone</name>
+        <name>Orange Prism Ioun Stone</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Pale green prism ioun stone</name>
+        <name>Pale Green Prism Ioun Stone</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Lantern of revealing</name>
+        <name>Lantern of Revealing</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Robe of blending</name>
+        <name>Robe of Blending</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Amulet of natural armor</name>
+        <name>Amulet of Natural Armor</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Amulet of proof against detection and location</name>
+        <name>Amulet of Proof Against Detection and Location</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>5 ft. by 10 ft. carpet of flying</name>
+        <name>5 ft. by 10 ft. Carpet of Flying</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Bracers of armor</name>
+        <name>Bracers of Armor</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Cloak of charisma</name>
+        <name>Cloak of Charisma</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Gloves of dexterity</name>
+        <name>Gloves of Dexterity</name>
         <entry>Minor</entry>
         <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Headband of intellect</name>
+        <name>Headband of Intellect</name>
         <entry>Minor</entry>
         <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Vibrant purple prism ioun stone</name>
+        <name>Vibrant Purple Prism Ioun Stone</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>6th-level spell pearl of power</name>
+        <name>6th-level Spell Pearl of Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Periapt of wisdom</name>
+        <name>Periapt of Wisdom</name>
         <entry>Minor</entry>
         <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Lavender and green ellipsoid ioun stone</name>
+        <name>Lavender and Green Ellipsoid Ioun Stone</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Ring gates</name>
+        <name>Ring Gates</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Crystal ball</name>
+        <name>Crystal Ball</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Orb of storms</name>
+        <name>Orb of Storms</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Boots of teleportation</name>
+        <name>Boots of Teleportation</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>7th-level spell pearl of power</name>
+        <name>7th-level Spell Pearl of Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Major cloak of displacement</name>
+        <name>Major Cloak of Displacement</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Crystal ball with see invisibility</name>
+        <name>Crystal Ball with See Invisibility</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -2358,41 +2358,41 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Crystal ball with detect thoughts</name>
+        <name>Crystal Ball with Detect Thoughts</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>6 ft. by 9 ft. carpet of flying</name>
+        <name>6 ft. by 9 ft. Carpet of Flying</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Amulet of mighty fists</name>
+        <name>Amulet of Mighty Fists</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Wings of flying</name>
+        <name>Wings of Flying</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Cloak of etherealness</name>
+        <name>Cloak of Etherealness</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Daern's instant fortress</name>
+        <name>Daern's Instant Fortress</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Eyes of charming</name>
+        <name>Eyes of Charming</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Robe of stars</name>
+        <name>Robe of Stars</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>10 ft. by 10 ft. carpet of flying</name>
+        <name>10 ft. by 10 ft. Carpet of Flying</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -2400,51 +2400,51 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Cube of force</name>
+        <name>Cube of Force</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>8th-level spell pearl of power</name>
+        <name>8th-level Spell Pearl of Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Crystal ball with telepathy</name>
+        <name>Crystal Ball with Telepathy</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Greater horn of blasting</name>
+        <name>Greater Horn of Blasting</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Two spells pearl of power</name>
+        <name>Two Spells Pearl of Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Helm of teleportation</name>
+        <name>Helm of Teleportation</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Gem of seeing</name>
+        <name>Gem of Seeing</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Robe of the archmagi</name>
+        <name>Robe of the Archmagi</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Mantle of faith</name>
+        <name>Mantle of Faith</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Crystal ball with true seeing</name>
+        <name>Crystal Ball with True Seeing</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>9th-level spell pearl of power</name>
+        <name>9th-level Spell Pearl of Power</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Well of many worlds</name>
+        <name>Well of Many Worlds</name>
       <entry>Major</entry>
     </collection>
     <collection>
@@ -2452,399 +2452,399 @@
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Mantle of spell resistance</name>
+        <name>Mantle of Spell Resistance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Mirror of opposition</name>
+        <name>Mirror of Opposition</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Greater strand of prayer beads</name>
+        <name>Greater Strand of Prayer Beads</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Eyes of petrification</name>
+        <name>Eyes of Petrification</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Bowl of commanding water elementals</name>
+        <name>Bowl of Commanding Water Elementals</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Brazier of commanding fire elementals</name>
+        <name>Brazier of Commanding Fire Elementals</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Censer of controlling air elementals</name>
+        <name>Censer of Controlling Air Elementals</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Stone of controlling earth elementals</name>
+        <name>Stone of Controlling Earth Elementals</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Amulet of the planes</name>
+        <name>Amulet of the Planes</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Robe of eyes</name>
+        <name>Robe of Eyes</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Helm of brilliance</name>
+        <name>Helm of Brilliance</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Efreeti bottle</name>
+        <name>Efreeti Bottle</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Chaos diamond</name>
+        <name>Chaos Diamond</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Cubic gate</name>
+        <name>Cubic Gate</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Iron flask</name>
+        <name>Iron Flask</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Mirror of mental prowess</name>
+        <name>Mirror of Mental Prowess</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Mirror of life trapping</name>
+        <name>Mirror of Life Trapping</name>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Boots of levitation</name>
+        <name>Boots of Levitation</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Harp of charming</name>
+        <name>Harp of Charming</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Hand of glory</name>
+        <name>Hand of Glory</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Deep red sphere ioun stone</name>
+        <name>Deep Red Sphere Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Incandescent blue sphere ioun stone</name>
+        <name>Incandescent Blue Sphere Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pale blue rhomboid ioun stone</name>
+        <name>Pale Blue Rhomboid Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pink and green sphere ioun stone</name>
+        <name>Pink and Green Sphere Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pink rhomboid ioun stone</name>
+        <name>Pink Rhomboid Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Scarlet and blue sphere ioun stone</name>
+        <name>Scarlet and Blue Sphere Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Cloak of resistance</name>
+        <name>Cloak of Resistance</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Decanter of endless water</name>
+        <name>Decanter of Endless Water</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Necklace of adaptation</name>
+        <name>Necklace of Adaptation</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>3rd-level spell pearl of power</name>
+        <name>3rd-level Spell Pearl of Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Talisman of the sphere</name>
+        <name>Talisman of the Sphere</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Serpentine owl figurine of wondrous power</name>
+        <name>Serpentine Owl Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Lesser strand of prayer beads</name>
+        <name>Lesser Strand of Prayer Beads</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Bag of holding type IV</name>
+        <name>Bag of Holding Type IV</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Bronze griffon figurine of wondrous power</name>
+        <name>Bronze Griffon Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ebony fly figurine of wondrous power</name>
+        <name>Ebony Fly Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Glove of storing</name>
+        <name>Glove of Storing</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Dark blue rhomboid ioun stone</name>
+        <name>Dark Blue Rhomboid Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Courser stone horse</name>
+        <name>Courser Stone Horse</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Cape of the mountebank</name>
+        <name>Cape of the Mountebank</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Phylactery of undead turning</name>
+        <name>Phylactery of Undead Turning</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Gauntlet of rust</name>
+        <name>Gauntlet of Rust</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Boots of speed</name>
+        <name>Boots of Speed</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Goggles of night</name>
+        <name>Goggles of Night</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Medallion of thoughts</name>
+        <name>Medallion of Thoughts</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pipes of pain</name>
+        <name>Pipes of Pain</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Boccob's blessed book</name>
+        <name>Boccob's Blessed Book</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Monk's belt</name>
+        <name>Monk's Belt</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Lyre of building</name>
+        <name>Lyre of Building</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Cloak of arachnida</name>
+        <name>Cloak of Arachnida</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Destrier stone horse</name>
+        <name>Destrier Stone Horse</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Belt of dwarvenkind</name>
+        <name>Belt of Dwarvenkind</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Periapt of wound-closure</name>
+        <name>Periapt of Wound-Closure</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Horn of the tritons</name>
+        <name>Horn of the Tritons</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pearl of the sirines</name>
+        <name>Pearl of the Sirines</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Onyx dog figurine of wondrous power</name>
+        <name>Onyx Dog Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Amulet of health</name>
+        <name>Amulet of Health</name>
       <entry>Minor</entry>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Belt of giant strength</name>
+        <name>Belt of Giant Strength</name>
       <entry>Medium</entry>
       <entry>Major</entry>
     </collection>
     <collection>
-        <name>Winged boots</name>
+        <name>Winged Boots</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>4th-level spell pearl of power</name>
+        <name>4th-level Spell Pearl of Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Scabbard of keen edges</name>
+        <name>Scabbard of Keen Edges</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Golden lions figurine of wondrous power</name>
+        <name>Golden Lions Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Chime of interruption</name>
+        <name>Chime of Interruption</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Broom of flying</name>
+        <name>Broom of Flying</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Marble elephant figurine of wondrous power</name>
+        <name>Marble Elephant Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Iridescent spindle ioun stone</name>
+        <name>Iridescent Spindle Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>5 ft. by 5 ft. carpet of flying</name>
+        <name>5 ft. by 5 ft. Carpet of Flying</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Horn of blasting</name>
+        <name>Horn of Blasting</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pale lavender ellipsoid ioun stone</name>
+        <name>Pale Lavender Ellipsoid Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Pearly white spindle ioun stone</name>
+        <name>Pearly White Spindle Ioun Stone</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Portable hole</name>
+        <name>Portable Hole</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Stone of good luck (luckstone)</name>
+        <name>Stone of Good Luck (Luckstone)</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Ivory goats figurine of wondrous power</name>
+        <name>Ivory Goats Figurine of Wondrous Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Rope of entanglement</name>
+        <name>Rope of Entanglement</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Mask of the skull</name>
+        <name>Mask of the Skull</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Mattock of the titans</name>
+        <name>Mattock of the Titans</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Major circlet of blasting</name>
+        <name>Major Circlet of Blasting</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Minor cloak of displacement</name>
+        <name>Minor Cloak of Displacement</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Helm of underwater action</name>
+        <name>Helm of Underwater Action</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Greater bracers of archery</name>
+        <name>Greater Bracers of Archery</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Eyes of doom</name>
+        <name>Eyes of Doom</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>5th-level spell pearl of power</name>
+        <name>5th-level Spell Pearl of Power</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Maul of the titans</name>
+        <name>Maul of the Titans</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Strand of prayer beads</name>
+        <name>Strand of Prayer Beads</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Cloak of the bat</name>
+        <name>Cloak of the Bat</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Iron bands of Bilarro</name>
+        <name>Iron Bands of Bilarro</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Cube of frost resistance</name>
+        <name>Cube of Frost Resistance</name>
       <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Helm of telepathy</name>
+        <name>Helm of Telepathy</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Periapt of proof against poison</name>
+        <name>Periapt of Proof Against Poison</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Robe of scintillating colors</name>
+        <name>Robe of Scintillating Colors</name>
         <entry>Medium</entry>
     </collection>
     <collection>
-        <name>Gray bag of tricks</name>
+        <name>Gray Bag of Tricks</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Hand of the mage</name>
+        <name>Hand of the Mage</name>
         <entry>Minor</entry>
     </collection>
     <collection>
-        <name>1st-level spell pearl of power</name>
+        <name>1st-level Spell Pearl of Power</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Phylactery of faithfulness</name>
+        <name>Phylactery of Faithfulness</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Pipes of the sewers</name>
+        <name>Pipes of the Sewers</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Goggles of minute seeing</name>
+        <name>Goggles of Minute Seeing</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Hat of disguise</name>
+        <name>Hat of Disguise</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Pipes of sounding</name>
+        <name>Pipes of Sounding</name>
       <entry>Minor</entry>
     </collection>
     <collection>
@@ -2852,167 +2852,167 @@
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Heward's handy haversack</name>
+        <name>Heward's Handy Haversack</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Horn of fog</name>
+        <name>Horn of Fog</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Bag of holding type I</name>
+        <name>Bag of Holding Type I</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Boots of elvenkind</name>
+        <name>Boots of Elvenkind</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Boots of the winterlands</name>
+        <name>Boots of the Winterlands</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Cloak of elvenkind</name>
+        <name>Cloak of Elvenkind</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Eyes of the eagle</name>
+        <name>Eyes of the Eagle</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Golembane scarab</name>
+        <name>Golembane Scarab</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Stone of alarm</name>
+        <name>Stone of Alarm</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Rust bag of tricks</name>
+        <name>Rust Bag of Tricks</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Horseshoes of speed</name>
+        <name>Horseshoes of Speed</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Rope of climbing</name>
+        <name>Rope of Climbing</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Lens of detection</name>
+        <name>Lens of Detection</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Druid's vestments</name>
+        <name>Druid's Vestments</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Silver raven figurine of wondrous power</name>
+        <name>Silver Raven Figurine of Wondrous Power</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Gauntlets of ogre power</name>
+        <name>Gauntlets of Ogre Power</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Gloves of arrow snaring</name>
+        <name>Gloves of Arrow Snaring</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Clear spindle ioun stone</name>
+        <name>Clear Spindle Ioun Stone</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>2nd-level spell pearl of power</name>
+        <name>2nd-level Spell Pearl of Power</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Circlet of persuasion</name>
+        <name>Circlet of Persuasion</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Slippers of spider climbing</name>
+        <name>Slippers of Spider Climbing</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Bag of holding type II</name>
+        <name>Bag of Holding Type II</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Lesser bracers of archery</name>
+        <name>Lesser Bracers of Archery</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Dusty rose prism ioun stone</name>
+        <name>Dusty Rose Prism Ioun Stone</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Helm of comprehend languages and read magic</name>
+        <name>Helm of Comprehend Languages and Read Magic</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Vest of escape</name>
+        <name>Vest of Escape</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Eversmoking bottle</name>
+        <name>Eversmoking Bottle</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Murlynd's spoon</name>
+        <name>Murlynd's Spoon</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Boots of striding and springing</name>
+        <name>Boots of Striding and Springing</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Wind fan</name>
+        <name>Wind Fan</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Horseshoes of a zephyr</name>
+        <name>Horseshoes of a Zephyr</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Pipes of haunting</name>
+        <name>Pipes of Haunting</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Gloves of swimming and climbing</name>
+        <name>Gloves of Swimming and Climbing</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Tan bag of tricks</name>
+        <name>Tan Bag of Tricks</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Minor circlet of blasting</name>
+        <name>Minor Circlet of Blasting</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Horn of goodness/evil</name>
+        <name>Horn of Goodness/Evil</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Folding boat</name>
+        <name>Folding Boat</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Cloak of the manta ray</name>
+        <name>Cloak of the Manta Ray</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Bottle of air</name>
+        <name>Bottle of Air</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Bag of holding type III</name>
+        <name>Bag of Holding Type III</name>
       <entry>Minor</entry>
     </collection>
     <collection>
-        <name>Periapt of health</name>
+        <name>Periapt of Health</name>
       <entry>Minor</entry>
     </collection>
   <collection>

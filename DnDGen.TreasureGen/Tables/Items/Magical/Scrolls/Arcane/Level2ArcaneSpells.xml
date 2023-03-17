@@ -3,27 +3,27 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animal messenger</content>
+        <content>Animal Messenger</content>
         <upper>1</upper>
     </percentile>
     <percentile>
         <lower>2</lower>
-        <content>Animal trance</content>
+        <content>Animal Trance</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Arcane lock</content>
+        <content>Arcane Lock</content>
         <upper>3</upper>
     </percentile>
     <percentile>
         <lower>4</lower>
-        <content>Bear's endurance</content>
+        <content>Bear's Endurance</content>
         <upper>6</upper>
     </percentile>
     <percentile>
         <lower>7</lower>
-        <content>Blindness/deafness</content>
+        <content>Blindness/Deafness</content>
         <upper>8</upper>
     </percentile>
     <percentile>
@@ -33,32 +33,32 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Bull's strength</content>
+        <content>Bull's Strength</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Calm emotions</content>
+        <content>Calm Emotions</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Cat's grace</content>
+        <content>Cat's Grace</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Command undead</content>
+        <content>Command Undead</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Continual flame</content>
+        <content>Continual Flame</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Cure moderate wounds</content>
+        <content>Cure Moderate Wounds</content>
         <upper>21</upper>
     </percentile>
     <percentile>
@@ -73,27 +73,27 @@
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Daze monster</content>
+        <content>Daze Monster</content>
         <upper>26</upper>
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Delay poison</content>
+        <content>Delay Poison</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Detect thoughts</content>
+        <content>Detect Thoughts</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Disguise self</content>
+        <content>Disguise Self</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Eagle's splendor</content>
+        <content>Eagle's Splendor</content>
         <upper>34</upper>
     </percentile>
     <percentile>
@@ -103,27 +103,27 @@
     </percentile>
     <percentile>
         <lower>36</lower>
-        <content>False life</content>
+        <content>False Life</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Flaming sphere</content>
+        <content>Flaming Sphere</content>
         <upper>39</upper>
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Fog cloud</content>
+        <content>Fog Cloud</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Fox's cunning</content>
+        <content>Fox's Cunning</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Ghoul touch</content>
+        <content>Ghoul Touch</content>
         <upper>44</upper>
     </percentile>
     <percentile>
@@ -133,12 +133,12 @@
     </percentile>
     <percentile>
         <lower>47</lower>
-        <content>Gust of wind</content>
+        <content>Gust of Wind</content>
         <upper>47</upper>
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Hypnotic pattern</content>
+        <content>Hypnotic Pattern</content>
         <upper>49</upper>
     </percentile>
     <percentile>
@@ -153,7 +153,7 @@
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Leomund's trap</content>
+        <content>Leomund's Trap</content>
         <upper>56</upper>
     </percentile>
     <percentile>
@@ -163,27 +163,27 @@
     </percentile>
     <percentile>
         <lower>59</lower>
-        <content>Locate object</content>
+        <content>Locate Object</content>
         <upper>59</upper>
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Magic mouth</content>
+        <content>Magic Mouth</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Melf's acid arrow</content>
+        <content>Melf's Acid Arrow</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Minor image</content>
+        <content>Minor Image</content>
         <upper>63</upper>
     </percentile>
     <percentile>
         <lower>64</lower>
-        <content>Mirror image</content>
+        <content>Mirror Image</content>
         <upper>65</upper>
     </percentile>
     <percentile>
@@ -193,17 +193,17 @@
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Obscure object</content>
+        <content>Obscure Object</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Owl's wisdom</content>
+        <content>Owl's Wisdom</content>
         <upper>70</upper>
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Protection from arrows</content>
+        <content>Protection from Arrows</content>
         <upper>73</upper>
     </percentile>
     <percentile>
@@ -213,12 +213,12 @@
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Resist energy</content>
+        <content>Resist Energy</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Rope trick</content>
+        <content>Rope Trick</content>
         <upper>79</upper>
     </percentile>
     <percentile>
@@ -228,12 +228,12 @@
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Scorching ray</content>
+        <content>Scorching Ray</content>
         <upper>82</upper>
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>See invisibility</content>
+        <content>See Invisibility</content>
         <upper>85</upper>
     </percentile>
     <percentile>
@@ -248,37 +248,37 @@
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Sound burst</content>
+        <content>Sound Burst</content>
         <upper>88</upper>
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Spectral hand</content>
+        <content>Spectral Hand</content>
         <upper>89</upper>
     </percentile>
     <percentile>
         <lower>90</lower>
-        <content>Spider climb</content>
+        <content>Spider Climb</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Summon monster II</content>
+        <content>Summon Monster II</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Summon swarm</content>
+        <content>Summon Swarm</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Tasha's hideous laughter</content>
+        <content>Tasha's Hideous Laughter</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Touch of idiocy</content>
+        <content>Touch of Idiocy</content>
         <upper>97</upper>
     </percentile>
     <percentile>
@@ -288,7 +288,7 @@
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>Whispering wind</content>
+        <content>Whispering Wind</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

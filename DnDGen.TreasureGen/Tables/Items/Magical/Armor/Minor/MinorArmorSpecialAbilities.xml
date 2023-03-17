@@ -8,7 +8,7 @@
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Light fortification</content>
+        <content>Light Fortification</content>
         <upper>32</upper>
     </percentile>
     <percentile>
@@ -23,27 +23,27 @@
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Silent moves</content>
+        <content>Silent Moves</content>
         <upper>92</upper>
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Spell resistance (13)</content>
+        <content>Spell Resistance (13)</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Improved slick</content>
+        <content>Improved Slick</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Improved shadow</content>
+        <content>Improved Shadow</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Improved silent moves</content>
+        <content>Improved Silent Moves</content>
         <upper>99</upper>
     </percentile>
     <percentile>

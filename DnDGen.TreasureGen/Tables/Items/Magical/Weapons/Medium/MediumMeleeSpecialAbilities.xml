@@ -28,7 +28,7 @@
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Ghost touch (weapon)</content>
+        <content>Ghost Touch (weapon)</content>
         <upper>38</upper>
     </percentile>
     <percentile>
@@ -38,7 +38,7 @@
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Ki focus</content>
+        <content>Ki Focus</content>
         <upper>48</upper>
     </percentile>
     <percentile>
@@ -48,12 +48,12 @@
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Mighty cleaving</content>
+        <content>Mighty Cleaving</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Spell storing</content>
+        <content>Spell Storing</content>
         <upper>59</upper>
     </percentile>
     <percentile>
@@ -88,12 +88,12 @@
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Flaming burst</content>
+        <content>Flaming Burst</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Icy burst</content>
+        <content>Icy Burst</content>
         <upper>84</upper>
     </percentile>
     <percentile>
@@ -103,7 +103,7 @@
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Shocking burst</content>
+        <content>Shocking Burst</content>
         <upper>90</upper>
     </percentile>
     <percentile>

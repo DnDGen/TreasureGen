@@ -53,7 +53,7 @@
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Flaming burst</content>
+        <content>Flaming Burst</content>
         <upper>49</upper>
     </percentile>
     <percentile>
@@ -63,12 +63,12 @@
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Icy burst</content>
+        <content>Icy Burst</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Shocking burst</content>
+        <content>Shocking Burst</content>
         <upper>74</upper>
     </percentile>
     <percentile>
@@ -83,7 +83,7 @@
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Brilliant energy</content>
+        <content>Brilliant Energy</content>
         <upper>90</upper>
     </percentile>
     <percentile>

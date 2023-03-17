@@ -3,42 +3,42 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animal shapes</content>
+        <content>Animal Shapes</content>
         <upper>4</upper>
     </percentile>
     <percentile>
         <lower>5</lower>
-        <content>Antimagic field</content>
+        <content>Antimagic Field</content>
         <upper>10</upper>
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Cloak of chaos</content>
+        <content>Cloak of Chaos</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Control plants</content>
+        <content>Control Plants</content>
         <upper>17</upper>
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Create greater undead</content>
+        <content>Create Greater Undead</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Mass cure critical wounds</content>
+        <content>Mass Cure Critical Wounds</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Dimensional lock</content>
+        <content>Dimensional Lock</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Discern location</content>
+        <content>Discern Location</content>
         <upper>36</upper>
     </percentile>
     <percentile>
@@ -48,7 +48,7 @@
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Finger of death</content>
+        <content>Finger of Death</content>
         <upper>45</upper>
     </percentile>
     <percentile>
@@ -58,47 +58,47 @@
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Holy aura</content>
+        <content>Holy Aura</content>
         <upper>52</upper>
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Mass inflict critical wounds</content>
+        <content>Mass Inflict Critical Wounds</content>
         <upper>56</upper>
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Greater planar ally</content>
+        <content>Greater Planar Ally</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Repel metal or stone</content>
+        <content>Repel Metal or Stone</content>
         <upper>65</upper>
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Reverse gravity</content>
+        <content>Reverse Gravity</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Shield of law</content>
+        <content>Shield of Law</content>
         <upper>72</upper>
     </percentile>
     <percentile>
         <lower>73</lower>
-        <content>Greater spell immunity</content>
+        <content>Greater Spell Immunity</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Summon monster VIII</content>
+        <content>Summon Monster VIII</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Summon nature's ally VIII</content>
+        <content>Summon Nature's Ally VIII</content>
         <upper>84</upper>
     </percentile>
     <percentile>
@@ -108,17 +108,17 @@
     </percentile>
     <percentile>
         <lower>90</lower>
-        <content>Symbol of death</content>
+        <content>Symbol of Death</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Symbol of insanity</content>
+        <content>Symbol of Insanity</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Unholy aura</content>
+        <content>Unholy Aura</content>
         <upper>96</upper>
     </percentile>
     <percentile>

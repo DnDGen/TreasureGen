@@ -3,17 +3,17 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Sleep arrow,1</content>
+        <content>Sleep Arrow,1</content>
         <upper>15</upper>
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Screaming bolt,2</content>
+        <content>Screaming Bolt,2</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Silver dagger,0</content>
+        <content>Silver Dagger,0</content>
         <upper>45</upper>
     </percentile>
     <percentile>
@@ -23,22 +23,22 @@
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Javelin of lightning,0</content>
+        <content>Javelin of Lightning,0</content>
         <upper>75</upper>
     </percentile>
     <percentile>
         <lower>76</lower>
-        <content>Slaying arrow,1</content>
+        <content>Slaying Arrow,1</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Adamantine dagger,0</content>
+        <content>Adamantine Dagger,0</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Adamantine battleaxe,0</content>
+        <content>Adamantine Battleaxe,0</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

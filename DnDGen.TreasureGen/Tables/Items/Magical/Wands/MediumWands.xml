@@ -3,27 +3,27 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Magic missile (5th)</content>
+        <content>Magic Missile (5th)</content>
         <upper>3</upper>
     </percentile>
     <percentile>
         <lower>4</lower>
-        <content>Bear's endurance</content>
+        <content>Bear's Endurance</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Bull's strength</content>
+        <content>Bull's Strength</content>
         <upper>11</upper>
     </percentile>
     <percentile>
         <lower>12</lower>
-        <content>Cat's grace</content>
+        <content>Cat's Grace</content>
         <upper>15</upper>
     </percentile>
     <percentile>
         <lower>16</lower>
-        <content>Cure moderate wounds</content>
+        <content>Cure Moderate Wounds</content>
         <upper>20</upper>
     </percentile>
     <percentile>
@@ -33,37 +33,37 @@
     </percentile>
     <percentile>
         <lower>23</lower>
-        <content>Daze monster</content>
+        <content>Daze Monster</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Delay poison</content>
+        <content>Delay Poison</content>
         <upper>27</upper>
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Eagle's splendor</content>
+        <content>Eagle's Splendor</content>
         <upper>31</upper>
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>False life</content>
+        <content>False Life</content>
         <upper>33</upper>
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Fox's cunning</content>
+        <content>Fox's Cunning</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Ghoul touch</content>
+        <content>Ghoul Touch</content>
         <upper>38</upper>
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Hold person</content>
+        <content>Hold Person</content>
         <upper>39</upper>
     </percentile>
     <percentile>
@@ -83,17 +83,17 @@
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Acid arrow</content>
+        <content>Melf's Acid Arrow</content>
         <upper>47</upper>
     </percentile>
     <percentile>
         <lower>48</lower>
-        <content>Mirror image</content>
+        <content>Mirror Image</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Owl's wisdom</content>
+        <content>Owl's Wisdom</content>
         <upper>53</upper>
     </percentile>
     <percentile>
@@ -108,7 +108,7 @@
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Summon monster II</content>
+        <content>Summon Monster II</content>
         <upper>57</upper>
     </percentile>
     <percentile>
@@ -118,22 +118,22 @@
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Magic missile (7th)</content>
+        <content>Magic Missile (7th)</content>
         <upper>62</upper>
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Magic missile (9th)</content>
+        <content>Magic Missile (9th)</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Call lightning (5th)</content>
+        <content>Call Lightning (5th)</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Heightened charm person (3rd-level spell)</content>
+        <content>Heightened Charm Person (3rd-level spell)</content>
         <upper>68</upper>
     </percentile>
     <percentile>
@@ -143,12 +143,12 @@
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Cure serious wounds</content>
+        <content>Cure Serious Wounds</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Dispel magic</content>
+        <content>Dispel Magic</content>
         <upper>77</upper>
     </percentile>
     <percentile>
@@ -158,17 +158,17 @@
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Keen edge</content>
+        <content>Keen Edge</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Lightning bolt (5th)</content>
+        <content>Lightning Bolt (5th)</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Major image</content>
+        <content>Major Image</content>
         <upper>89</upper>
     </percentile>
     <percentile>
@@ -183,7 +183,7 @@
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Summon monster III</content>
+        <content>Summon Monster III</content>
         <upper>97</upper>
     </percentile>
     <percentile>
@@ -193,12 +193,12 @@
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Lightning bolt (6th)</content>
+        <content>Lightning Bolt (6th)</content>
         <upper>99</upper>
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>Searing light (6th)</content>
+        <content>Searing Light (6th)</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

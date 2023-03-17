@@ -2,7 +2,7 @@
 
 <collections>
   <collection>
-    <name>Incense of obsession</name>
+    <name>Incense of Obsession</name>
     <entry>Specific</entry>
     <entry>One-time use</entry>
   </collection>
@@ -11,23 +11,23 @@
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Amulet of inescapable location</name>
+    <name>Amulet of Inescapable Location</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Stone of weight (loadstone)</name>
+    <name>Stone of Weight (Loadstone)</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Bracers of defenselessness</name>
+    <name>Bracers of Defenselessness</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Gauntlets of fumbling</name>
+    <name>Gauntlets of Fumbling</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Cursed -2 sword</name>
+    <name>Cursed -2 Sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Martial</entry>
@@ -35,47 +35,47 @@
     <entry>Melee</entry>
   </collection>
   <collection>
-    <name>Armor of rage</name>
+    <name>Armor of Rage</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
   </collection>
   <collection>
-    <name>Medallion of thought projection</name>
+    <name>Medallion of Thought Projection</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Flask of curses</name>
-    <entry>Specific</entry>
-    <entry>One-time use</entry>
-  </collection>
-  <collection>
-    <name>Dust of sneezing and choking</name>
+    <name>Flask of Curses</name>
     <entry>Specific</entry>
     <entry>One-time use</entry>
   </collection>
   <collection>
-    <name>Helm of opposite alignment</name>
-    <entry>Specific</entry>
-  </collection>
-  <collection>
-    <name>Potion of poison</name>
+    <name>Dust of Sneezing and Choking</name>
     <entry>Specific</entry>
     <entry>One-time use</entry>
   </collection>
   <collection>
-    <name>Broom of animated attack</name>
+    <name>Helm of Opposite Alignment</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Robe of powerlessness</name>
+    <name>Potion of Poison</name>
+    <entry>Specific</entry>
+    <entry>One-time use</entry>
+  </collection>
+  <collection>
+    <name>Broom of Animated Attack</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Vacuous grimoire</name>
+    <name>Robe of Powerlessness</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Cursed backbiter spear</name>
+    <name>Vacuous Grimoire</name>
+    <entry>Specific</entry>
+  </collection>
+  <collection>
+    <name>Cursed Backbiter Spear</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Wood</entry>
@@ -86,23 +86,23 @@
     <entry>Thrown</entry>
   </collection>
   <collection>
-    <name>Armor of arrow attraction</name>
+    <name>Armor of Arrow Attraction</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
   </collection>
   <collection>
-    <name>Net of snaring</name>
+    <name>Net of Snaring</name>
     <entry>Specific</entry>
     <entry>Ranged</entry>
     <entry>Thrown</entry>
     <entry>Exotic</entry>
   </collection>
   <collection>
-    <name>Bag of devouring</name>
+    <name>Bag of Devouring</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Mace of blood</name>
+    <name>Mace of Blood</name>
     <entry>Specific</entry>
     <entry>Melee</entry>
     <entry>Simple</entry>
@@ -110,15 +110,15 @@
     <entry>One-Handed</entry>
   </collection>
   <collection>
-    <name>Robe of vermin</name>
+    <name>Robe of Vermin</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Periapt of foul rotting</name>
+    <name>Periapt of Foul Rotting</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Berserking sword</name>
+    <name>Berserking Sword</name>
     <entry>Specific</entry>
     <entry>Metal</entry>
     <entry>Martial</entry>
@@ -126,23 +126,23 @@
     <entry>Two-Handed</entry>
   </collection>
   <collection>
-    <name>Boots of dancing</name>
+    <name>Boots of Dancing</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Crystal hypnosis ball</name>
+    <name>Crystal Hypnosis Ball</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Necklace of strangulation</name>
+    <name>Necklace of Strangulation</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Cloak of poisonousness</name>
+    <name>Cloak of Poisonousness</name>
     <entry>Specific</entry>
   </collection>
   <collection>
-    <name>Scarab of death</name>
+    <name>Scarab of Death</name>
     <entry>Specific</entry>
   </collection>
 </collections>

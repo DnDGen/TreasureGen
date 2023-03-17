@@ -8,72 +8,72 @@
     </percentile>
     <percentile>
         <lower>4</lower>
-        <content>Animate rope</content>
+        <content>Animate Rope</content>
         <upper>5</upper>
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Burning hands</content>
+        <content>Burning Hands</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Cause fear</content>
+        <content>Cause Fear</content>
         <upper>9</upper>
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Charm person</content>
+        <content>Charm Person</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Chill touch</content>
+        <content>Chill Touch</content>
         <upper>14</upper>
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Color spray</content>
+        <content>Color Spray</content>
         <upper>16</upper>
     </percentile>
     <percentile>
         <lower>17</lower>
-        <content>Comprehend languages</content>
+        <content>Comprehend Languages</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Lesser confusion</content>
+        <content>Lesser Confusion</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Cure light wounds</content>
+        <content>Cure Light Wounds</content>
         <upper>21</upper>
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Detect secret doors</content>
+        <content>Detect Secret Doors</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Detect undead</content>
+        <content>Detect Undead</content>
         <upper>26</upper>
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Disguise self</content>
+        <content>Disguise Self</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Endure elements</content>
+        <content>Endure Elements</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Enlarge person</content>
+        <content>Enlarge Person</content>
         <upper>35</upper>
     </percentile>
     <percentile>
@@ -83,12 +83,12 @@
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Expeditious retreat</content>
+        <content>Expeditious Retreat</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Feather fall</content>
+        <content>Feather Fall</content>
         <upper>41</upper>
     </percentile>
     <percentile>
@@ -98,7 +98,7 @@
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Hold portal</content>
+        <content>Hold Portal</content>
         <upper>45</upper>
     </percentile>
     <percentile>
@@ -118,17 +118,17 @@
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Mage armor</content>
+        <content>Mage Armor</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Magic missile</content>
+        <content>Magic Missile</content>
         <upper>56</upper>
     </percentile>
     <percentile>
         <lower>57</lower>
-        <content>Magic weapon</content>
+        <content>Magic Weapon</content>
         <upper>59</upper>
     </percentile>
     <percentile>
@@ -138,32 +138,32 @@
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Nystul's magic aura</content>
+        <content>Nystul's Magic Aura</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Obscuring mist</content>
+        <content>Obscuring Mist</content>
         <upper>66</upper>
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Protection from chaos/evil/good/law</content>
+        <content>Protection from Chaos/Evil/Good/Law</content>
         <upper>74</upper>
     </percentile>
     <percentile>
         <lower>75</lower>
-        <content>Ray of enfeeblement</content>
+        <content>Ray of Enfeeblement</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Reduce person</content>
+        <content>Reduce Person</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Remove fear</content>
+        <content>Remove Fear</content>
         <upper>80</upper>
     </percentile>
     <percentile>
@@ -173,12 +173,12 @@
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>Shocking grasp</content>
+        <content>Shocking Grasp</content>
         <upper>84</upper>
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Silent image</content>
+        <content>Silent Image</content>
         <upper>86</upper>
     </percentile>
     <percentile>
@@ -188,27 +188,27 @@
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Summon monster I</content>
+        <content>Summon Monster I</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Tenser's floating disc</content>
+        <content>Tenser's Floating Disc</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>True strike</content>
+        <content>True Strike</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Undetectable alignment</content>
+        <content>Undetectable Alignment</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Unseen servant</content>
+        <content>Unseen Servant</content>
         <upper>98</upper>
     </percentile>
     <percentile>

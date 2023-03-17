@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Greater arcane sight</content>
+        <content>Greater Arcane Sight</content>
         <upper>3</upper>
     </percentile>
     <percentile>
@@ -13,37 +13,37 @@
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Bigby's grasping hand</content>
+        <content>Bigby's Grasping Hand</content>
         <upper>10</upper>
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Control undead</content>
+        <content>Control Undead</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Control weather</content>
+        <content>Control Weather</content>
         <upper>16</upper>
     </percentile>
     <percentile>
         <lower>17</lower>
-        <content>Delayed blast fireball</content>
+        <content>Delayed Blast Fireball</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Drawmij's instant summons</content>
+        <content>Drawmij's Instant Summons</content>
         <upper>21</upper>
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Ethereal jaunt</content>
+        <content>Ethereal Jaunt</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Finger of death</content>
+        <content>Finger of Death</content>
         <upper>28</upper>
     </percentile>
     <percentile>
@@ -53,7 +53,7 @@
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Mass hold person</content>
+        <content>Mass Hold Person</content>
         <upper>35</upper>
     </percentile>
     <percentile>
@@ -63,57 +63,57 @@
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Mass invisibility</content>
+        <content>Mass Invisibility</content>
         <upper>42</upper>
     </percentile>
     <percentile>
         <lower>43</lower>
-        <content>Limited wish</content>
+        <content>Limited Wish</content>
         <upper>43</upper>
     </percentile>
     <percentile>
         <lower>44</lower>
-        <content>Mordenkainen's magnificent mansion</content>
+        <content>Mordenkainen's Magnificent Mansion</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Mordenkainen's sword</content>
+        <content>Mordenkainen's Sword</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Phase door</content>
+        <content>Phase Door</content>
         <upper>51</upper>
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Plane shift</content>
+        <content>Plane Shift</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Power word blind</content>
+        <content>Power Word Blind</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Prismatic spray</content>
+        <content>Prismatic Spray</content>
         <upper>61</upper>
     </percentile>
     <percentile>
         <lower>62</lower>
-        <content>Project image</content>
+        <content>Project Image</content>
         <upper>64</upper>
     </percentile>
     <percentile>
         <lower>65</lower>
-        <content>Reverse gravity</content>
+        <content>Reverse Gravity</content>
         <upper>67</upper>
     </percentile>
     <percentile>
         <lower>68</lower>
-        <content>Greater scrying</content>
+        <content>Greater Scrying</content>
         <upper>70</upper>
     </percentile>
     <percentile>
@@ -123,7 +123,7 @@
     </percentile>
     <percentile>
         <lower>74</lower>
-        <content>Greater shadow conjuration</content>
+        <content>Greater Shadow Conjuration</content>
         <upper>76</upper>
     </percentile>
     <percentile>
@@ -133,7 +133,7 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Spell turning</content>
+        <content>Spell Turning</content>
         <upper>80</upper>
     </percentile>
     <percentile>
@@ -143,27 +143,27 @@
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>Summon monster VII</content>
+        <content>Summon Monster VII</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Symbol of stunning</content>
+        <content>Symbol of Stunning</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Symbol of weakness</content>
+        <content>Symbol of Weakness</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Teleport object</content>
+        <content>Teleport Object</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Greater teleport</content>
+        <content>Greater Teleport</content>
         <upper>95</upper>
     </percentile>
     <percentile>
@@ -173,7 +173,7 @@
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Waves of exhaustion</content>
+        <content>Waves of Exhaustion</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

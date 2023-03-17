@@ -18,22 +18,22 @@
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Caster's shield,1</content>
+        <content>Caster's Shield,1</content>
         <upper>85</upper>
     </percentile>
     <percentile>
         <lower>86</lower>
-        <content>Spined shield,1</content>
+        <content>Spined Shield,1</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Lion's shield,2</content>
+        <content>Lion's Shield,2</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Winged shield,3</content>
+        <content>Winged Shield,3</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

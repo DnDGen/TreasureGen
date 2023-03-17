@@ -3,72 +3,72 @@
 <collections>
     <collection>
         <name>Items</name>
-        <entry>Celestial armor</entry>
-        <entry>Demon armor</entry>
-        <entry>Assassin's dagger</entry>
-        <entry>Holy avenger</entry>
-        <entry>Nine lives stealer</entry>
-        <entry>Sun blade</entry>
-        <entry>Rod of the python</entry>
-        <entry>Rod of the viper</entry>
-        <entry>Chaos diamond</entry>
+        <entry>Celestial Armor</entry>
+        <entry>Demon Armor</entry>
+        <entry>Assassin's Dagger</entry>
+        <entry>Holy Avenger</entry>
+        <entry>Nine Lives Stealer</entry>
+        <entry>Sun Blade</entry>
+        <entry>Rod of the Python</entry>
+        <entry>Rod of the Viper</entry>
+        <entry>Chaos Diamond</entry>
         <entry>Darkskull</entry>
-        <entry>Amulet of inescapable location</entry>
-        <entry>Armor of arrow attraction</entry>
-        <entry>Armor of rage</entry>
-        <entry>Boots of dancing</entry>
-        <entry>Bracers of defenselessness</entry>
-        <entry>Broom of animated attack</entry>
-        <entry>Cloak of poisonousness</entry>
-        <entry>Crystal hypnosis ball</entry>
-        <entry>Gauntlets of fumbling</entry>
-        <entry>Mace of blood</entry>
-        <entry>Medallion of thought projection</entry>
-        <entry>Necklace of strangulation</entry>
-        <entry>Periapt of foul rotting</entry>
-        <entry>Robe of powerlessness</entry>
-        <entry>Robe of vermin</entry>
+        <entry>Amulet of Inescapable Location</entry>
+        <entry>Armor of Arrow Attraction</entry>
+        <entry>Armor of Rage</entry>
+        <entry>Boots of Dancing</entry>
+        <entry>Bracers of Defenselessness</entry>
+        <entry>Broom of Animated Attack</entry>
+        <entry>Cloak of Poisonousness</entry>
+        <entry>Crystal Hypnosis Ball</entry>
+        <entry>Gauntlets of Fumbling</entry>
+        <entry>Mace of Blood</entry>
+        <entry>Medallion of Thought Projection</entry>
+        <entry>Necklace of Strangulation</entry>
+        <entry>Periapt of Foul Rotting</entry>
+        <entry>Robe of Powerlessness</entry>
+        <entry>Robe of Vermin</entry>
         <entry>Ring of Clumsiness</entry>
-        <entry>Scarab of death</entry>
-        <entry>Cursed backbiter spear</entry>
-        <entry>Stone of weight (loadstone)</entry>
-        <entry>Vacuous grimoire</entry>
-        <entry>Cursed -2 sword</entry>
+        <entry>Scarab of Death</entry>
+        <entry>Cursed Backbiter Spear</entry>
+        <entry>Stone of Weight (Loadstone)</entry>
+        <entry>Vacuous Grimoire</entry>
+        <entry>Cursed -2 Sword</entry>
     </collection>
     <collection>
-        <name>Celestial armor</name>
+        <name>Celestial Armor</name>
         <entry>Good</entry>
     </collection>
     <collection>
-        <name>Demon armor</name>
+        <name>Demon Armor</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Assassin's dagger</name>
+        <name>Assassin's Dagger</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Holy avenger</name>
+        <name>Holy Avenger</name>
         <entry>Lawful Good</entry>
     </collection>
     <collection>
-        <name>Nine lives stealer</name>
+        <name>Nine Lives Stealer</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Sun blade</name>
+        <name>Sun Blade</name>
         <entry>Good</entry>
     </collection>
     <collection>
-        <name>Rod of the python</name>
+        <name>Rod of the Python</name>
         <entry>Good</entry>
     </collection>
     <collection>
-        <name>Rod of the viper</name>
+        <name>Rod of the Viper</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Chaos diamond</name>
+        <name>Chaos Diamond</name>
         <entry>Chaotic</entry>
     </collection>
     <collection>
@@ -76,63 +76,63 @@
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Amulet of inescapable location</name>
+        <name>Amulet of Inescapable Location</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Armor of arrow attraction</name>
+        <name>Armor of Arrow Attraction</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Armor of rage</name>
+        <name>Armor of Rage</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Boots of dancing</name>
+        <name>Boots of Dancing</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Bracers of defenselessness</name>
+        <name>Bracers of Defenselessness</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Broom of animated attack</name>
+        <name>Broom of Animated Attack</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Cloak of poisonousness</name>
+        <name>Cloak of Poisonousness</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Crystal hypnosis ball</name>
+        <name>Crystal Hypnosis Ball</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Gauntlets of fumbling</name>
+        <name>Gauntlets of Fumbling</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Mace of blood</name>
+        <name>Mace of Blood</name>
         <entry>Chaotic Evil</entry>
     </collection>
     <collection>
-        <name>Medallion of thought projection</name>
+        <name>Medallion of Thought Projection</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Necklace of strangulation</name>
+        <name>Necklace of Strangulation</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Periapt of foul rotting</name>
+        <name>Periapt of Foul Rotting</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Robe of powerlessness</name>
+        <name>Robe of Powerlessness</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Robe of vermin</name>
+        <name>Robe of Vermin</name>
         <entry>Evil</entry>
     </collection>
     <collection>
@@ -140,23 +140,23 @@
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Scarab of death</name>
+        <name>Scarab of Death</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Cursed backbiter spear</name>
+        <name>Cursed Backbiter Spear</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Cursed -2 sword</name>
+        <name>Cursed -2 Sword</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Stone of weight (loadstone)</name>
+        <name>Stone of Weight (Loadstone)</name>
         <entry>Evil</entry>
     </collection>
     <collection>
-        <name>Vacuous grimoire</name>
+        <name>Vacuous Grimoire</name>
         <entry>Evil</entry>
     </collection>
 </collections>

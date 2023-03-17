@@ -2,7 +2,7 @@
 
 <collections>
     <collection>
-        <name>Absorbing shield</name>
+        <name>Absorbing Shield</name>
         <entry>Shield</entry>
         <entry>Specific</entry>
         <entry>Metal</entry>
@@ -14,7 +14,7 @@
         <entry>Wood</entry>
     </collection>
     <collection>
-        <name>Caster's shield</name>
+        <name>Caster's Shield</name>
         <entry>Shield</entry>
         <entry>Specific</entry>
         <entry>Wood</entry>
@@ -32,19 +32,19 @@
         <entry>Wood</entry>
     </collection>
     <collection>
-        <name>Lion's shield</name>
+        <name>Lion's Shield</name>
         <entry>Shield</entry>
         <entry>Specific</entry>
         <entry>Metal</entry>
     </collection>
     <collection>
-        <name>Spined shield</name>
+        <name>Spined Shield</name>
         <entry>Shield</entry>
         <entry>Specific</entry>
         <entry>Metal</entry>
     </collection>
     <collection>
-        <name>Winged shield</name>
+        <name>Winged Shield</name>
         <entry>Shield</entry>
         <entry>Specific</entry>
         <entry>Wood</entry>

@@ -3,7 +3,7 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animate plants</content>
+        <content>Animate Plants</content>
         <upper>5</upper>
     </percentile>
     <percentile>
@@ -18,17 +18,17 @@
     </percentile>
     <percentile>
         <lower>15</lower>
-        <content>Control weather</content>
+        <content>Control Weather</content>
         <upper>16</upper>
     </percentile>
     <percentile>
         <lower>17</lower>
-        <content>Creeping doom</content>
+        <content>Creeping Doom</content>
         <upper>21</upper>
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Mass cure serious wounds</content>
+        <content>Mass Cure Serious Wounds</content>
         <upper>27</upper>
     </percentile>
     <percentile>
@@ -43,17 +43,17 @@
     </percentile>
     <percentile>
         <lower>37</lower>
-        <content>Ethereal jaunt</content>
+        <content>Ethereal Jaunt</content>
         <upper>41</upper>
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Holy word</content>
+        <content>Holy Word</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Mass inflict serious wounds</content>
+        <content>Mass Inflict Serious Wounds</content>
         <upper>50</upper>
     </percentile>
     <percentile>
@@ -73,7 +73,7 @@
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Greater restoration</content>
+        <content>Greater Restoration</content>
         <upper>69</upper>
     </percentile>
     <percentile>
@@ -83,17 +83,17 @@
     </percentile>
     <percentile>
         <lower>72</lower>
-        <content>Greater scrying</content>
+        <content>Greater Scrying</content>
         <upper>76</upper>
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Summon monster VII</content>
+        <content>Summon Monster VII</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Summon nature's ally VII</content>
+        <content>Summon Nature's Ally VII</content>
         <upper>85</upper>
     </percentile>
     <percentile>
@@ -103,22 +103,22 @@
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Symbol of stunning</content>
+        <content>Symbol of Stunning</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Symbol of weakness</content>
+        <content>Symbol of Weakness</content>
         <upper>92</upper>
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Transmute metal to wood</content>
+        <content>Transmute Metal to Wood</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Word of chaos</content>
+        <content>Word of Chaos</content>
         <upper>100</upper>
     </percentile>
 </percentiles>
