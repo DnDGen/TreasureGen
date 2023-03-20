@@ -7,13 +7,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
     [TestFixture]
     public class AlchemicalItemConstantsTests
     {
-        [TestCase(AlchemicalItemConstants.AlchemistsFire, "Alchemist's fire")]
+        [TestCase(AlchemicalItemConstants.AlchemistsFire, "Alchemist's Fire")]
         [TestCase(AlchemicalItemConstants.Acid, "Acid")]
         [TestCase(AlchemicalItemConstants.Smokestick, "Smokestick")]
-        [TestCase(AlchemicalItemConstants.HolyWater, "Holy water")]
+        [TestCase(AlchemicalItemConstants.HolyWater, "Holy Water")]
         [TestCase(AlchemicalItemConstants.Antitoxin, "Antitoxin")]
-        [TestCase(AlchemicalItemConstants.EverburningTorch, "Everburning torch")]
-        [TestCase(AlchemicalItemConstants.TanglefootBag, "Tanglefoot bag")]
+        [TestCase(AlchemicalItemConstants.EverburningTorch, "Everburning Torch")]
+        [TestCase(AlchemicalItemConstants.TanglefootBag, "Tanglefoot Bag")]
         [TestCase(AlchemicalItemConstants.Thunderstone, "Thunderstone")]
         public void Constant(string constant, string value)
         {

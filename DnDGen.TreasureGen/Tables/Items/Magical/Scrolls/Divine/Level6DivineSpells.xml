@@ -3,12 +3,12 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Animate objects</content>
+        <content>Animate Objects</content>
         <upper>3</upper>
     </percentile>
     <percentile>
         <lower>4</lower>
-        <content>Antilife shell</content>
+        <content>Antilife Shell</content>
         <upper>6</upper>
     </percentile>
     <percentile>
@@ -18,52 +18,52 @@
     </percentile>
     <percentile>
         <lower>10</lower>
-        <content>Mass bear's endurance</content>
+        <content>Mass Bear's Endurance</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Blade barrier</content>
+        <content>Blade Barrier</content>
         <upper>16</upper>
     </percentile>
     <percentile>
         <lower>17</lower>
-        <content>Mass bull's strength</content>
+        <content>Mass Bull's Strength</content>
         <upper>20</upper>
     </percentile>
     <percentile>
         <lower>21</lower>
-        <content>Mass cat's grace</content>
+        <content>Mass Cat's Grace</content>
         <upper>24</upper>
     </percentile>
     <percentile>
         <lower>25</lower>
-        <content>Create undead</content>
+        <content>Create Undead</content>
         <upper>25</upper>
     </percentile>
     <percentile>
         <lower>26</lower>
-        <content>Mass cure moderate wounds</content>
+        <content>Mass Cure Moderate Wounds</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Greater dispel magic</content>
+        <content>Greater Dispel Magic</content>
         <upper>33</upper>
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Mass eagle's splendor</content>
+        <content>Mass Eagle's Splendor</content>
         <upper>37</upper>
     </percentile>
     <percentile>
         <lower>38</lower>
-        <content>Find the path</content>
+        <content>Find the Path</content>
         <upper>40</upper>
     </percentile>
     <percentile>
         <lower>41</lower>
-        <content>Fire seeds</content>
+        <content>Fire Seeds</content>
         <upper>43</upper>
     </percentile>
     <percentile>
@@ -73,12 +73,12 @@
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Geas/quest</content>
+        <content>Geas/Quest</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Greater glyph of warding</content>
+        <content>Greater Glyph of Warding</content>
         <upper>46</upper>
     </percentile>
     <percentile>
@@ -93,12 +93,12 @@
     </percentile>
     <percentile>
         <lower>53</lower>
-        <content>Heroes' feast</content>
+        <content>Heroes' Feast</content>
         <upper>55</upper>
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Mass inflict moderate wounds</content>
+        <content>Mass Inflict Moderate Wounds</content>
         <upper>58</upper>
     </percentile>
     <percentile>
@@ -113,22 +113,22 @@
     </percentile>
     <percentile>
         <lower>63</lower>
-        <content>Move earth</content>
+        <content>Move Earth</content>
         <upper>65</upper>
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Mass owl's wisdom</content>
+        <content>Mass Owl's Wisdom</content>
         <upper>69</upper>
     </percentile>
     <percentile>
         <lower>70</lower>
-        <content>Planar ally</content>
+        <content>Planar Ally</content>
         <upper>71</upper>
     </percentile>
     <percentile>
         <lower>72</lower>
-        <content>Repel wood</content>
+        <content>Repel Wood</content>
         <upper>74</upper>
     </percentile>
     <percentile>
@@ -138,37 +138,37 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Stone tell</content>
+        <content>Stone Tell</content>
         <upper>80</upper>
     </percentile>
     <percentile>
         <lower>81</lower>
-        <content>Summon monster VI</content>
+        <content>Summon Monster VI</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Summon nature's ally VI</content>
+        <content>Summon Nature's Ally VI</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Symbol of fear</content>
+        <content>Symbol of Fear</content>
         <upper>87</upper>
     </percentile>
     <percentile>
         <lower>88</lower>
-        <content>Symbol of persuasion</content>
+        <content>Symbol of Persuasion</content>
         <upper>88</upper>
     </percentile>
     <percentile>
         <lower>89</lower>
-        <content>Transport via plants</content>
+        <content>Transport via Plants</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Undeath to death</content>
+        <content>Undeath to Death</content>
         <upper>94</upper>
     </percentile>
     <percentile>
@@ -178,7 +178,7 @@
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Word of recall</content>
+        <content>Word of Recall</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

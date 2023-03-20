@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItems
 {
@@ -27,18 +27,18 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItem
             "Sack",
             "Sack")]
         [TestCase(WondrousItemConstants.RobeOfBones,
-            "Small goblin skeleton",
-            "Small goblin skeleton",
-            "Medium human commoner skeleton",
-            "Medium human commoner skeleton",
-            "Medium wolf skeleton",
-            "Medium wolf skeleton",
-            "Small goblin zombie",
-            "Small goblin zombie",
-            "Medium human commoner zombie",
-            "Medium human commoner zombie",
-            "Medium wolf zombie",
-            "Medium wolf zombie")]
+            "Small Goblin Skeleton",
+            "Small Goblin Skeleton",
+            "Medium Human Commoner Skeleton",
+            "Medium Human Commoner Skeleton",
+            "Medium Wolf Skeleton",
+            "Medium Wolf Skeleton",
+            "Small Goblin Zombie",
+            "Small Goblin Zombie",
+            "Medium Human Commoner Zombie",
+            "Medium Human Commoner Zombie",
+            "Medium Wolf Zombie",
+            "Medium Wolf Zombie")]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_I, "3d6", "3d6", "5d6")]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_II, "2d6", "2d6", "4d6", "4d6", "6d6")]
         [TestCase(WondrousItemConstants.NecklaceOfFireballs_III, "3d6", "3d6", "3d6", "3d6", "5d6", "5d6", "7d6")]

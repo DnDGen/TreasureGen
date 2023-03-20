@@ -2,185 +2,185 @@
 
 <collections>
     <collection>
-        <name>Bead of force</name>
+        <name>Bead of Force</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Bracelet of friends</name>
-        <entry>One-time use</entry>
-        <entry>Charged</entry>
-    </collection>
-    <collection>
-        <name>Brooch of shielding</name>
+        <name>Bracelet of Friends</name>
         <entry>One-time use</entry>
         <entry>Charged</entry>
     </collection>
     <collection>
-        <name>Candle of invocation</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Candle of truth</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Chime of opening</name>
+        <name>Brooch of Shielding</name>
         <entry>One-time use</entry>
         <entry>Charged</entry>
     </collection>
     <collection>
-        <name>Clay golem manual</name>
+        <name>Candle of Invocation</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Deck of illusions</name>
+        <name>Candle of Truth</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Dust of tracelessness</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Dust of appearance</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Dust of disappearance</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Dust of dryness</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Dust of illusion</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elemental gem</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of fire breath</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of hiding</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of love</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of sneaking</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of swimming</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of truth</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Elixer of vision</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Flesh golem manual</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Gem of brightness</name>
+        <name>Chime of Opening</name>
         <entry>One-time use</entry>
         <entry>Charged</entry>
     </collection>
     <collection>
-        <name>Greater stone golem manual</name>
+        <name>Clay Golem Manual</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Incense of meditation</name>
+        <name>Deck of Illusions</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Iron golem manual</name>
+        <name>Dust of Tracelessness</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Keoghtom's ointment</name>
-        <entry>One-time use</entry>
-        <entry>Charged</entry>
-    </collection>
-    <collection>
-        <name>Manual of bodily health</name>
+        <name>Dust of Appearance</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Manual of gainful exercise</name>
+        <name>Dust of Disappearance</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Manual of quickness in action</name>
+        <name>Dust of Dryness</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Tome of understanding</name>
+        <name>Dust of Illusion</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Tome of leadership and influence</name>
+        <name>Elemental Gem</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Tome of clear thought</name>
+        <name>Elixer of Fire Breath</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's whip feather token</name>
+        <name>Elixer of Hiding</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's fan feather token</name>
+        <name>Elixer of Love</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's swan boat feather token</name>
+        <name>Elixer of Sneaking</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's anchor feather token</name>
+        <name>Elixer of Swimming</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's bird feather token</name>
+        <name>Elixer of Truth</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Quaal's tree feather token</name>
+        <name>Elixer of Vision</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Robe of bones</name>
+        <name>Flesh Golem Manual</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Robe of useful items</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Salve of slipperiness</name>
-        <entry>One-time use</entry>
-    </collection>
-    <collection>
-        <name>Scarab of protection</name>
+        <name>Gem of Brightness</name>
         <entry>One-time use</entry>
         <entry>Charged</entry>
     </collection>
     <collection>
-        <name>Shrouds of disintegration</name>
+        <name>Greater Stone Golem Manual</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Incense of Meditation</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Iron Golem Manual</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Keoghtom's Ointment</name>
+        <entry>One-time use</entry>
+        <entry>Charged</entry>
+    </collection>
+    <collection>
+        <name>Manual of Bodily Health</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Manual of Gainful Exercise</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Manual of Quickness in Action</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Tome of Understanding</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Tome of Leadership and Influence</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Tome of Clear Thought</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Whip Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Fan Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Swan Boat Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Anchor Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Bird Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Quaal's Tree Feather Token</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Robe of Bones</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Robe of Useful Items</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Salve of Slipperiness</name>
+        <entry>One-time use</entry>
+    </collection>
+    <collection>
+        <name>Scarab of Protection</name>
+        <entry>One-time use</entry>
+        <entry>Charged</entry>
+    </collection>
+    <collection>
+        <name>Shrouds of Disintegration</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
@@ -188,622 +188,622 @@
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Sovereign glue</name>
+        <name>Sovereign Glue</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Stone golem manual</name>
+        <name>Stone Golem Manual</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Stone salve</name>
+        <name>Stone Salve</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Unguent of timelessness</name>
+        <name>Unguent of Timelessness</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Nolzur's marvelous pigments</name>
+        <name>Nolzur's Marvelous Pigments</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Universal solvent</name>
+        <name>Universal Solvent</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type I</name>
+        <name>Necklace of Fireballs Type I</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type II</name>
+        <name>Necklace of Fireballs Type II</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type III</name>
+        <name>Necklace of Fireballs Type III</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type IV</name>
+        <name>Necklace of Fireballs Type IV</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type V</name>
+        <name>Necklace of Fireballs Type V</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VI</name>
+        <name>Necklace of Fireballs Type VI</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Necklace of fireballs type VII</name>
+        <name>Necklace of Fireballs Type VII</name>
         <entry>One-time use</entry>
     </collection>
     <collection>
-        <name>Dimensional shackles</name>
+        <name>Dimensional Shackles</name>
     </collection>
     <collection>
-        <name>Obsidian steed figurine of wondrous power</name>
+        <name>Obsidian Steed Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Drums of panic</name>
+        <name>Drums of Panic</name>
     </collection>
     <collection>
-        <name>Orange prism ioun stone</name>
+        <name>Orange Prism Ioun Stone</name>
     </collection>
     <collection>
-        <name>Pale green prism ioun stone</name>
+        <name>Pale Green Prism Ioun Stone</name>
     </collection>
     <collection>
-        <name>Lantern of revealing</name>
+        <name>Lantern of Revealing</name>
     </collection>
     <collection>
-        <name>Robe of blending</name>
+        <name>Robe of Blending</name>
     </collection>
     <collection>
-        <name>Amulet of natural armor</name>
+        <name>Amulet of Natural Armor</name>
     </collection>
     <collection>
-        <name>Amulet of proof against detection and location</name>
+        <name>Amulet of Proof Against Detection and Location</name>
     </collection>
     <collection>
-        <name>5 ft. by 10 ft. carpet of flying</name>
+        <name>5 ft. by 10 ft. Carpet of Flying</name>
     </collection>
     <collection>
-        <name>Bracers of armor</name>
+        <name>Bracers of Armor</name>
     </collection>
     <collection>
-        <name>Cloak of charisma</name>
+        <name>Cloak of Charisma</name>
     </collection>
     <collection>
-        <name>Gloves of dexterity</name>
+        <name>Gloves of Dexterity</name>
     </collection>
     <collection>
-        <name>Headband of intellect</name>
+        <name>Headband of Intellect</name>
     </collection>
     <collection>
-        <name>Vibrant purple prism ioun stone</name>
+        <name>Vibrant Purple Prism Ioun Stone</name>
     </collection>
     <collection>
-        <name>6th-level spell pearl of power</name>
+        <name>6th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Periapt of wisdom</name>
+        <name>Periapt of Wisdom</name>
     </collection>
     <collection>
-        <name>Lavender and green ellipsoid ioun stone</name>
+        <name>Lavender and Green Ellipsoid Ioun Stone</name>
     </collection>
     <collection>
-        <name>Ring gates</name>
+        <name>Ring Gates</name>
     </collection>
     <collection>
-        <name>Crystal ball</name>
+        <name>Crystal Ball</name>
     </collection>
     <collection>
-        <name>Orb of storms</name>
+        <name>Orb of Storms</name>
     </collection>
     <collection>
-        <name>Boots of teleportation</name>
+        <name>Boots of Teleportation</name>
     </collection>
     <collection>
-        <name>7th-level spell pearl of power</name>
+        <name>7th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Major cloak of displacement</name>
+        <name>Major Cloak of Displacement</name>
     </collection>
     <collection>
-        <name>Crystal ball with see invisibility</name>
+        <name>Crystal Ball with See Invisibility</name>
     </collection>
     <collection>
         <name>Horn of Valhalla</name>
     </collection>
     <collection>
-        <name>Crystal ball with detect thoughts</name>
+        <name>Crystal Ball with Detect Thoughts</name>
     </collection>
     <collection>
-        <name>6 ft. by 9 ft. carpet of flying</name>
+        <name>6 ft. by 9 ft. Carpet of Flying</name>
     </collection>
     <collection>
-        <name>Amulet of mighty fists</name>
+        <name>Amulet of Mighty Fists</name>
     </collection>
     <collection>
-        <name>Wings of flying</name>
+        <name>Wings of Flying</name>
     </collection>
     <collection>
-        <name>Cloak of etherealness</name>
+        <name>Cloak of Etherealness</name>
     </collection>
     <collection>
-        <name>Daern's instant fortress</name>
+        <name>Daern's Instant Fortress</name>
     </collection>
     <collection>
-        <name>Eyes of charming</name>
+        <name>Eyes of Charming</name>
     </collection>
     <collection>
-        <name>Robe of stars</name>
+        <name>Robe of Stars</name>
     </collection>
     <collection>
-        <name>10 ft. by 10 ft. carpet of flying</name>
+        <name>10 ft. by 10 ft. Carpet of Flying</name>
     </collection>
     <collection>
         <name>Darkskull</name>
     </collection>
     <collection>
-        <name>Cube of force</name>
+        <name>Cube of Force</name>
     </collection>
     <collection>
-        <name>8th-level spell pearl of power</name>
+        <name>8th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Crystal ball with telepathy</name>
+        <name>Crystal Ball with Telepathy</name>
     </collection>
     <collection>
-        <name>Greater horn of blasting</name>
+        <name>Greater Horn of Blasting</name>
     </collection>
     <collection>
-        <name>Two spells pearl of power</name>
+        <name>Two Spells Pearl of Power</name>
     </collection>
     <collection>
-        <name>Helm of teleportation</name>
+        <name>Helm of Teleportation</name>
     </collection>
     <collection>
-        <name>Gem of seeing</name>
+        <name>Gem of Seeing</name>
     </collection>
     <collection>
-        <name>Robe of the archmagi</name>
+        <name>Robe of the Archmagi</name>
     </collection>
     <collection>
-        <name>Mantle of faith</name>
+        <name>Mantle of Faith</name>
     </collection>
     <collection>
-        <name>Crystal ball with true seeing</name>
+        <name>Crystal Ball with True Seeing</name>
     </collection>
     <collection>
-        <name>9th-level spell pearl of power</name>
+        <name>9th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Well of many worlds</name>
+        <name>Well of Many Worlds</name>
     </collection>
     <collection>
         <name>Apparatus of Kwalish</name>
     </collection>
     <collection>
-        <name>Mantle of spell resistance</name>
+        <name>Mantle of Spell Resistance</name>
     </collection>
     <collection>
-        <name>Mirror of opposition</name>
+        <name>Mirror of Opposition</name>
     </collection>
     <collection>
-        <name>Greater strand of prayer beads</name>
+        <name>Greater Strand of Prayer Beads</name>
     </collection>
     <collection>
-        <name>Eyes of petrification</name>
+        <name>Eyes of Petrification</name>
     </collection>
     <collection>
-        <name>Bowl of commanding water elementals</name>
+        <name>Bowl of Commanding Water Elementals</name>
     </collection>
     <collection>
-        <name>Brazier of commanding fire elementals</name>
+        <name>Brazier of Commanding Fire Elementals</name>
     </collection>
     <collection>
-        <name>Censer of controlling air elementals</name>
+        <name>Censer of Controlling Air Elementals</name>
     </collection>
     <collection>
-        <name>Stone of controlling earth elementals</name>
+        <name>Stone of Controlling Earth Elementals</name>
     </collection>
     <collection>
-        <name>Amulet of the planes</name>
+        <name>Amulet of the Planes</name>
     </collection>
     <collection>
-        <name>Robe of eyes</name>
+        <name>Robe of Eyes</name>
     </collection>
     <collection>
-        <name>Helm of brilliance</name>
+        <name>Helm of Brilliance</name>
     </collection>
     <collection>
-        <name>Efreeti bottle</name>
+        <name>Efreeti Bottle</name>
     </collection>
     <collection>
-        <name>Chaos diamond</name>
+        <name>Chaos Diamond</name>
     </collection>
     <collection>
-        <name>Cubic gate</name>
+        <name>Cubic Gate</name>
     </collection>
     <collection>
-        <name>Iron flask</name>
+        <name>Iron Flask</name>
     </collection>
     <collection>
-        <name>Mirror of mental prowess</name>
+        <name>Mirror of Mental Prowess</name>
     </collection>
     <collection>
-        <name>Mirror of life trapping</name>
+        <name>Mirror of Life Trapping</name>
     </collection>
     <collection>
-        <name>Boots of levitation</name>
+        <name>Boots of Levitation</name>
     </collection>
     <collection>
-        <name>Harp of charming</name>
+        <name>Harp of Charming</name>
     </collection>
     <collection>
-        <name>Hand of glory</name>
+        <name>Hand of Glory</name>
     </collection>
     <collection>
-        <name>Deep red sphere ioun stone</name>
+        <name>Deep Red Sphere Ioun Stone</name>
     </collection>
     <collection>
-        <name>Incandescent blue sphere ioun stone</name>
+        <name>Incandescent Blue Sphere Ioun Stone</name>
     </collection>
     <collection>
-        <name>Pale blue rhomboid ioun stone</name>
+        <name>Pale Blue Rhomboid Ioun Stone</name>
     </collection>
     <collection>
-        <name>Pink and green sphere ioun stone</name>
+        <name>Pink and Green Sphere Ioun Stone</name>
     </collection>
     <collection>
-        <name>Pink rhomboid ioun stone</name>
+        <name>Pink Rhomboid Ioun Stone</name>
     </collection>
     <collection>
-        <name>Scarlet and blue sphere ioun stone</name>
+        <name>Scarlet and Blue Sphere Ioun Stone</name>
     </collection>
     <collection>
-        <name>Cloak of resistance</name>
+        <name>Cloak of Resistance</name>
     </collection>
     <collection>
-        <name>Decanter of endless water</name>
+        <name>Decanter of Endless Water</name>
     </collection>
     <collection>
-        <name>Necklace of adaptation</name>
+        <name>Necklace of Adaptation</name>
     </collection>
     <collection>
-        <name>3rd-level spell pearl of power</name>
+        <name>3rd-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Talisman of the sphere</name>
+        <name>Talisman of the Sphere</name>
     </collection>
     <collection>
-        <name>Serpentine owl figurine of wondrous power</name>
+        <name>Serpentine Owl Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Lesser strand of prayer beads</name>
+        <name>Lesser Strand of Prayer Beads</name>
     </collection>
     <collection>
-        <name>Bag of holding type IV</name>
+        <name>Bag of Holding Type IV</name>
     </collection>
     <collection>
-        <name>Bronze griffon figurine of wondrous power</name>
+        <name>Bronze Griffon Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Ebony fly figurine of wondrous power</name>
+        <name>Ebony Fly Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Glove of storing</name>
+        <name>Glove of Storing</name>
     </collection>
     <collection>
-        <name>Dark blue rhomboid ioun stone</name>
+        <name>Dark Blue Rhomboid Ioun Stone</name>
     </collection>
     <collection>
-        <name>Courser stone horse</name>
+        <name>Courser Stone Horse</name>
     </collection>
     <collection>
-        <name>Cape of the mountebank</name>
+        <name>Cape of the Mountebank</name>
     </collection>
     <collection>
-        <name>Phylactery of undead turning</name>
+        <name>Phylactery of Undead Turning</name>
     </collection>
     <collection>
-        <name>Gauntlet of rust</name>
+        <name>Gauntlet of Rust</name>
     </collection>
     <collection>
-        <name>Boots of speed</name>
+        <name>Boots of Speed</name>
     </collection>
     <collection>
-        <name>Goggles of night</name>
+        <name>Goggles of Night</name>
     </collection>
     <collection>
-        <name>Medallion of thoughts</name>
+        <name>Medallion of Thoughts</name>
     </collection>
     <collection>
-        <name>Pipes of pain</name>
+        <name>Pipes of Pain</name>
     </collection>
     <collection>
-        <name>Boccob's blessed book</name>
+        <name>Boccob's Blessed Book</name>
     </collection>
     <collection>
-        <name>Monk's belt</name>
+        <name>Monk's Belt</name>
     </collection>
     <collection>
-        <name>Lyre of building</name>
+        <name>Lyre of Building</name>
     </collection>
     <collection>
-        <name>Cloak of arachnida</name>
+        <name>Cloak of Arachnida</name>
     </collection>
     <collection>
-        <name>Destrier stone horse</name>
+        <name>Destrier Stone Horse</name>
     </collection>
     <collection>
-        <name>Belt of dwarvenkind</name>
+        <name>Belt of Dwarvenkind</name>
     </collection>
     <collection>
-        <name>Periapt of wound-closure</name>
+        <name>Periapt of Wound-Closure</name>
     </collection>
     <collection>
-        <name>Horn of the tritons</name>
+        <name>Horn of the Tritons</name>
     </collection>
     <collection>
-        <name>Pearl of the sirines</name>
+        <name>Pearl of the Sirines</name>
     </collection>
     <collection>
-        <name>Onyx dog figurine of wondrous power</name>
+        <name>Onyx Dog Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Amulet of health</name>
+        <name>Amulet of Health</name>
     </collection>
     <collection>
-        <name>Belt of giant strength</name>
+        <name>Belt of Giant Strength</name>
     </collection>
     <collection>
-        <name>Winged boots</name>
+        <name>Winged Boots</name>
     </collection>
     <collection>
-        <name>4th-level spell pearl of power</name>
+        <name>4th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Scabbard of keen edges</name>
+        <name>Scabbard of Keen Edges</name>
     </collection>
     <collection>
-        <name>Golden lions figurine of wondrous power</name>
+        <name>Golden Lions Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Chime of interruption</name>
+        <name>Chime of Interruption</name>
     </collection>
     <collection>
-        <name>Broom of flying</name>
+        <name>Broom of Flying</name>
     </collection>
     <collection>
-        <name>Marble elephant figurine of wondrous power</name>
+        <name>Marble Elephant Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Iridescent spindle ioun stone</name>
+        <name>Iridescent Spindle Ioun Stone</name>
     </collection>
     <collection>
-        <name>5 ft. by 5 ft. carpet of flying</name>
+        <name>5 ft. by 5 ft. Carpet of Flying</name>
     </collection>
     <collection>
-        <name>Horn of blasting</name>
+        <name>Horn of Blasting</name>
     </collection>
     <collection>
-        <name>Pale lavender ellipsoid ioun stone</name>
+        <name>Pale Lavender Ellipsoid Ioun Stone</name>
     </collection>
     <collection>
-        <name>Pearly white spindle ioun stone</name>
+        <name>Pearly White Spindle Ioun Stone</name>
     </collection>
     <collection>
-        <name>Portable hole</name>
+        <name>Portable Hole</name>
     </collection>
     <collection>
-        <name>Stone of good luck (luckstone)</name>
+        <name>Stone of Good Luck (Luckstone)</name>
     </collection>
     <collection>
-        <name>Ivory goats figurine of wondrous power</name>
+        <name>Ivory Goats Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Rope of entanglement</name>
+        <name>Rope of Entanglement</name>
     </collection>
     <collection>
-        <name>Mask of the skull</name>
+        <name>Mask of the Skull</name>
     </collection>
     <collection>
-        <name>Mattock of the titans</name>
+        <name>Mattock of the Titans</name>
     </collection>
     <collection>
-        <name>Major circlet of blasting</name>
+        <name>Major Circlet of Blasting</name>
     </collection>
     <collection>
-        <name>Minor cloak of displacement</name>
+        <name>Minor Cloak of Displacement</name>
     </collection>
     <collection>
-        <name>Helm of underwater action</name>
+        <name>Helm of Underwater Action</name>
     </collection>
     <collection>
-        <name>Greater bracers of archery</name>
+        <name>Greater Bracers of Archery</name>
     </collection>
     <collection>
-        <name>Eyes of doom</name>
+        <name>Eyes of Doom</name>
     </collection>
     <collection>
-        <name>5th-level spell pearl of power</name>
+        <name>5th-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Maul of the titans</name>
+        <name>Maul of the Titans</name>
     </collection>
     <collection>
-        <name>Strand of prayer beads</name>
+        <name>Strand of Prayer Beads</name>
     </collection>
     <collection>
-        <name>Cloak of the bat</name>
+        <name>Cloak of the Bat</name>
     </collection>
     <collection>
-        <name>Iron bands of Bilarro</name>
+        <name>Iron Bands of Bilarro</name>
     </collection>
     <collection>
-        <name>Cube of frost resistance</name>
+        <name>Cube of Frost Resistance</name>
     </collection>
     <collection>
-        <name>Helm of telepathy</name>
+        <name>Helm of Telepathy</name>
     </collection>
     <collection>
-        <name>Periapt of proof against poison</name>
+        <name>Periapt of Proof Against Poison</name>
     </collection>
     <collection>
-        <name>Robe of scintillating colors</name>
+        <name>Robe of Scintillating Colors</name>
     </collection>
     <collection>
-        <name>Gray bag of tricks</name>
+        <name>Gray Bag of Tricks</name>
     </collection>
     <collection>
-        <name>Hand of the mage</name>
+        <name>Hand of the Mage</name>
     </collection>
     <collection>
-        <name>1st-level spell pearl of power</name>
+        <name>1st-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Phylactery of faithfulness</name>
+        <name>Phylactery of Faithfulness</name>
     </collection>
     <collection>
-        <name>Pipes of the sewers</name>
+        <name>Pipes of the Sewers</name>
     </collection>
     <collection>
-        <name>Goggles of minute seeing</name>
+        <name>Goggles of Minute Seeing</name>
     </collection>
     <collection>
-        <name>Hat of disguise</name>
+        <name>Hat of Disguise</name>
     </collection>
     <collection>
-        <name>Pipes of sounding</name>
+        <name>Pipes of Sounding</name>
     </collection>
     <collection>
         <name>Quiver of Ehlonna</name>
     </collection>
     <collection>
-        <name>Heward's handy haversack</name>
+        <name>Heward's Handy Haversack</name>
     </collection>
     <collection>
-        <name>Horn of fog</name>
+        <name>Horn of Fog</name>
     </collection>
     <collection>
-        <name>Bag of holding type I</name>
+        <name>Bag of Holding Type I</name>
     </collection>
     <collection>
-        <name>Boots of elvenkind</name>
+        <name>Boots of Elvenkind</name>
     </collection>
     <collection>
-        <name>Boots of the winterlands</name>
+        <name>Boots of the Winterlands</name>
     </collection>
     <collection>
-        <name>Cloak of elvenkind</name>
+        <name>Cloak of Elvenkind</name>
     </collection>
     <collection>
-        <name>Eyes of the eagle</name>
+        <name>Eyes of the Eagle</name>
     </collection>
     <collection>
-        <name>Golembane scarab</name>
+        <name>Golembane Scarab</name>
     </collection>
     <collection>
-        <name>Stone of alarm</name>
+        <name>Stone of Alarm</name>
     </collection>
     <collection>
-        <name>Rust bag of tricks</name>
+        <name>Rust Bag of Tricks</name>
     </collection>
     <collection>
-        <name>Horseshoes of speed</name>
+        <name>Horseshoes of Speed</name>
     </collection>
     <collection>
-        <name>Rope of climbing</name>
+        <name>Rope of Climbing</name>
     </collection>
     <collection>
-        <name>Lens of detection</name>
+        <name>Lens of Detection</name>
     </collection>
     <collection>
-        <name>Druid's vestments</name>
+        <name>Druid's Vestments</name>
     </collection>
     <collection>
-        <name>Silver raven figurine of wondrous power</name>
+        <name>Silver Raven Figurine of Wondrous Power</name>
     </collection>
     <collection>
-        <name>Gauntlets of ogre power</name>
+        <name>Gauntlets of Ogre Power</name>
     </collection>
     <collection>
-        <name>Gloves of arrow snaring</name>
+        <name>Gloves of Arrow Snaring</name>
     </collection>
     <collection>
-        <name>Clear spindle ioun stone</name>
+        <name>Clear Spindle Ioun Stone</name>
     </collection>
     <collection>
-        <name>2nd-level spell pearl of power</name>
+        <name>2nd-level Spell Pearl of Power</name>
     </collection>
     <collection>
-        <name>Circlet of persuasion</name>
+        <name>Circlet of Persuasion</name>
     </collection>
     <collection>
-        <name>Slippers of spider climbing</name>
+        <name>Slippers of Spider Climbing</name>
     </collection>
     <collection>
-        <name>Bag of holding type II</name>
+        <name>Bag of Holding Type II</name>
     </collection>
     <collection>
-        <name>Lesser bracers of archery</name>
+        <name>Lesser Bracers of Archery</name>
     </collection>
     <collection>
-        <name>Dusty rose prism ioun stone</name>
+        <name>Dusty Rose Prism Ioun Stone</name>
     </collection>
     <collection>
-        <name>Helm of comprehend languages and read magic</name>
+        <name>Helm of Comprehend Languages and Read Magic</name>
     </collection>
     <collection>
-        <name>Vest of escape</name>
+        <name>Vest of Escape</name>
     </collection>
     <collection>
-        <name>Eversmoking bottle</name>
+        <name>Eversmoking Bottle</name>
     </collection>
     <collection>
-        <name>Murlynd's spoon</name>
+        <name>Murlynd's Spoon</name>
     </collection>
     <collection>
-        <name>Boots of striding and springing</name>
+        <name>Boots of Striding and Springing</name>
     </collection>
     <collection>
-        <name>Wind fan</name>
+        <name>Wind Fan</name>
     </collection>
     <collection>
-        <name>Horseshoes of a zephyr</name>
+        <name>Horseshoes of a Zephyr</name>
     </collection>
     <collection>
-        <name>Pipes of haunting</name>
+        <name>Pipes of Haunting</name>
     </collection>
     <collection>
-        <name>Gloves of swimming and climbing</name>
+        <name>Gloves of Swimming and Climbing</name>
     </collection>
     <collection>
-        <name>Tan bag of tricks</name>
+        <name>Tan Bag of Tricks</name>
     </collection>
     <collection>
-        <name>Minor circlet of blasting</name>
+        <name>Minor Circlet of Blasting</name>
     </collection>
     <collection>
-        <name>Horn of goodness/evil</name>
+        <name>Horn of Goodness/Evil</name>
     </collection>
     <collection>
-        <name>Folding boat</name>
+        <name>Folding Boat</name>
     </collection>
     <collection>
-        <name>Cloak of the manta ray</name>
+        <name>Cloak of the Manta Ray</name>
     </collection>
     <collection>
-        <name>Bottle of air</name>
+        <name>Bottle of Air</name>
     </collection>
     <collection>
-        <name>Bag of holding type III</name>
+        <name>Bag of Holding Type III</name>
     </collection>
     <collection>
-        <name>Periapt of health</name>
+        <name>Periapt of Health</name>
     </collection>
 </collections>

@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divine
 {
@@ -23,37 +23,37 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
             AssertTableIsComplete();
         }
 
-        [TestCase("Animal growth", 1, 3)]
+        [TestCase("Animal Growth", 1, 3)]
         [TestCase("Atonement", 4, 5)]
-        [TestCase("Baleful polymorph", 7, 9)]
-        [TestCase("Break enchantment", 10, 13)]
-        [TestCase("Call lightning storm", 14, 16)]
-        [TestCase("Greater command", 17, 20)]
-        [TestCase("Control winds", 23, 24)]
-        [TestCase("Mass cure light wounds", 25, 30)]
-        [TestCase("Dispel chaos/evil/good/law", 31, 34)]
-        [TestCase("Disrupting weapon", 35, 38)]
-        [TestCase("Flame strike", 39, 41)]
+        [TestCase("Baleful Polymorph", 7, 9)]
+        [TestCase("Break Enchantment", 10, 13)]
+        [TestCase("Call Lightning Storm", 14, 16)]
+        [TestCase("Greater Command", 17, 20)]
+        [TestCase("Control Winds", 23, 24)]
+        [TestCase("Mass Cure Light Wounds", 25, 30)]
+        [TestCase("Dispel Chaos/Evil/Good/Law", 31, 34)]
+        [TestCase("Disrupting Weapon", 35, 38)]
+        [TestCase("Flame Strike", 39, 41)]
         [TestCase("Hallow", 42, 43)]
-        [TestCase("Ice storm", 44, 46)]
-        [TestCase("Mass inflict light wounds", 47, 49)]
-        [TestCase("Insect plague", 50, 52)]
-        [TestCase("Plane shift", 54, 56)]
-        [TestCase("Raise dead", 57, 58)]
-        [TestCase("Righteous might", 59, 61)]
+        [TestCase("Ice Storm", 44, 46)]
+        [TestCase("Mass Inflict Light Wounds", 47, 49)]
+        [TestCase("Insect Plague", 50, 52)]
+        [TestCase("Plane Shift", 54, 56)]
+        [TestCase("Raise Dead", 57, 58)]
+        [TestCase("Righteous Might", 59, 61)]
         [TestCase("Scrying", 62, 63)]
-        [TestCase("Slay living", 64, 66)]
-        [TestCase("Spell resistance", 67, 69)]
+        [TestCase("Slay Living", 64, 66)]
+        [TestCase("Spell Resistance", 67, 69)]
         [TestCase("Stoneskin", 70, 71)]
-        [TestCase("Summon monster V", 72, 74)]
-        [TestCase("Summon nature's ally V", 75, 77)]
-        [TestCase("Transmute mud to rock", 80, 82)]
-        [TestCase("Transmute rock to mud", 83, 85)]
-        [TestCase("True seeing", 86, 89)]
+        [TestCase("Summon Monster V", 72, 74)]
+        [TestCase("Summon Nature's Ally V", 75, 77)]
+        [TestCase("Transmute Mud to Rock", 80, 82)]
+        [TestCase("Transmute Rock to Mud", 83, 85)]
+        [TestCase("True Seeing", 86, 89)]
         [TestCase("Unhallow", 90, 91)]
-        [TestCase("Wall of fire", 92, 94)]
-        [TestCase("Wall of stone", 95, 97)]
-        [TestCase("Wall of thorns", 98, 100)]
+        [TestCase("Wall of Fire", 92, 94)]
+        [TestCase("Wall of Stone", 95, 97)]
+        [TestCase("Wall of Thorns", 98, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
@@ -61,10 +61,10 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Divi
 
         [TestCase("Awaken", 6)]
         [TestCase("Commune", 21)]
-        [TestCase("Commune with nature", 22)]
-        [TestCase("Mark of justice", 53)]
-        [TestCase("Symbol of pain", 78)]
-        [TestCase("Symbol of sleep", 79)]
+        [TestCase("Commune with Nature", 22)]
+        [TestCase("Mark of Justice", 53)]
+        [TestCase("Symbol of Pain", 78)]
+        [TestCase("Symbol of Sleep", 79)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

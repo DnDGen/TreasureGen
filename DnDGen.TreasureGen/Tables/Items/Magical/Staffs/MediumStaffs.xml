@@ -13,7 +13,7 @@
     </percentile>
     <percentile>
         <lower>31</lower>
-        <content>Staff of Swarming insects,0</content>
+        <content>Staff of Swarming Insects,0</content>
         <upper>40</upper>
     </percentile>
     <percentile>
@@ -23,7 +23,7 @@
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Staff of Size alteration,0</content>
+        <content>Staff of Size Alteration,0</content>
         <upper>75</upper>
     </percentile>
     <percentile>

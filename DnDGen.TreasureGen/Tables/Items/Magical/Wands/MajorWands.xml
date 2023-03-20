@@ -3,22 +3,22 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Magic missile (7th)</content>
+        <content>Magic Missile (7th)</content>
         <upper>2</upper>
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Magic missile (9th)</content>
+        <content>Magic Missile (9th)</content>
         <upper>5</upper>
     </percentile>
     <percentile>
         <lower>6</lower>
-        <content>Call lightning (5th)</content>
+        <content>Call Lightning (5th)</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Heightened charm person (3rd-level spell)</content>
+        <content>Heightened Charm Person (3rd-level spell)</content>
         <upper>8</upper>
     </percentile>
     <percentile>
@@ -28,12 +28,12 @@
     </percentile>
     <percentile>
         <lower>11</lower>
-        <content>Cure serious wounds</content>
+        <content>Cure Serious Wounds</content>
         <upper>13</upper>
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Dispel magic</content>
+        <content>Dispel Magic</content>
         <upper>15</upper>
     </percentile>
     <percentile>
@@ -43,17 +43,17 @@
     </percentile>
     <percentile>
         <lower>18</lower>
-        <content>Keen edge</content>
+        <content>Keen Edge</content>
         <upper>19</upper>
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Lightning bolt (5th)</content>
+        <content>Lightning Bolt (5th)</content>
         <upper>21</upper>
     </percentile>
     <percentile>
         <lower>22</lower>
-        <content>Major image</content>
+        <content>Major Image</content>
         <upper>23</upper>
     </percentile>
     <percentile>
@@ -68,7 +68,7 @@
     </percentile>
     <percentile>
         <lower>28</lower>
-        <content>Summon monster III</content>
+        <content>Summon Monster III</content>
         <upper>29</upper>
     </percentile>
     <percentile>
@@ -78,17 +78,17 @@
     </percentile>
     <percentile>
         <lower>32</lower>
-        <content>Lightning bolt (6th)</content>
+        <content>Lightning Bolt (6th)</content>
         <upper>33</upper>
     </percentile>
     <percentile>
         <lower>34</lower>
-        <content>Searing light (6th)</content>
+        <content>Searing Light (6th)</content>
         <upper>35</upper>
     </percentile>
     <percentile>
         <lower>36</lower>
-        <content>Call lightning (8th)</content>
+        <content>Call Lightning (8th)</content>
         <upper>37</upper>
     </percentile>
     <percentile>
@@ -98,22 +98,22 @@
     </percentile>
     <percentile>
         <lower>40</lower>
-        <content>Lightning bolt (8th)</content>
+        <content>Lightning Bolt (8th)</content>
         <upper>41</upper>
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Charm monster</content>
+        <content>Charm Monster</content>
         <upper>45</upper>
     </percentile>
     <percentile>
         <lower>46</lower>
-        <content>Cure critical wounds</content>
+        <content>Cure Critical Wounds</content>
         <upper>50</upper>
     </percentile>
     <percentile>
         <lower>51</lower>
-        <content>Dimensional anchor</content>
+        <content>Dimensional Anchor</content>
         <upper>52</upper>
     </percentile>
     <percentile>
@@ -123,27 +123,27 @@
     </percentile>
     <percentile>
         <lower>56</lower>
-        <content>Greater invisibility</content>
+        <content>Greater Invisibility</content>
         <upper>59</upper>
     </percentile>
     <percentile>
         <lower>60</lower>
-        <content>Heightened hold person (4th-level spell)</content>
+        <content>Heightened Hold Person (4th-level spell)</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Ice storm</content>
+        <content>Ice Storm</content>
         <upper>65</upper>
     </percentile>
     <percentile>
         <lower>66</lower>
-        <content>Inflict critical wounds</content>
+        <content>Inflict Critical Wounds</content>
         <upper>68</upper>
     </percentile>
     <percentile>
         <lower>69</lower>
-        <content>Neutralize poison</content>
+        <content>Neutralize Poison</content>
         <upper>72</upper>
     </percentile>
     <percentile>
@@ -158,32 +158,32 @@
     </percentile>
     <percentile>
         <lower>78</lower>
-        <content>Heightened ray of enfeeblement (4th-level spell)</content>
+        <content>Heightened Ray of Enfeeblement (4th-level spell)</content>
         <upper>78</upper>
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Heightened suggestion (4th-level spell)</content>
+        <content>Heightened Suggestion (4th-level spell)</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Summon monster IV</content>
+        <content>Summon Monster IV</content>
         <upper>82</upper>
     </percentile>
     <percentile>
         <lower>83</lower>
-        <content>Wall of fire</content>
+        <content>Wall of Fire</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Wall of ice</content>
+        <content>Wall of Ice</content>
         <upper>90</upper>
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Dispel magic (10th)</content>
+        <content>Dispel Magic (10th)</content>
         <upper>91</upper>
     </percentile>
     <percentile>
@@ -193,27 +193,27 @@
     </percentile>
     <percentile>
         <lower>93</lower>
-        <content>Lightning bolt (10th)</content>
+        <content>Lightning Bolt (10th)</content>
         <upper>93</upper>
     </percentile>
     <percentile>
         <lower>94</lower>
-        <content>Chaos hammer (10th)</content>
+        <content>Chaos Hammer (10th)</content>
         <upper>94</upper>
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Holy smite (8th)</content>
+        <content>Holy Smite (8th)</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Order's wrath (8th)</content>
+        <content>Order's Wrath (8th)</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Unholy blight (8th)</content>
+        <content>Unholy Blight (8th)</content>
         <upper>97</upper>
     </percentile>
     <percentile>

@@ -8,7 +8,7 @@
     </percentile>
     <percentile>
         <lower>3</lower>
-        <content>Bigby's clenched fist</content>
+        <content>Bigby's Clenched Fist</content>
         <upper>5</upper>
     </percentile>
     <percentile>
@@ -18,7 +18,7 @@
     </percentile>
     <percentile>
         <lower>9</lower>
-        <content>Mass charm monster</content>
+        <content>Mass Charm Monster</content>
         <upper>12</upper>
     </percentile>
     <percentile>
@@ -28,7 +28,7 @@
     </percentile>
     <percentile>
         <lower>14</lower>
-        <content>Create greater undead</content>
+        <content>Create Greater Undead</content>
         <upper>16</upper>
     </percentile>
     <percentile>
@@ -38,27 +38,27 @@
     </percentile>
     <percentile>
         <lower>20</lower>
-        <content>Dimensional lock</content>
+        <content>Dimensional Lock</content>
         <upper>22</upper>
     </percentile>
     <percentile>
         <lower>23</lower>
-        <content>Discern location</content>
+        <content>Discern Location</content>
         <upper>26</upper>
     </percentile>
     <percentile>
         <lower>27</lower>
-        <content>Horrid wilting</content>
+        <content>Horrid Wilting</content>
         <upper>29</upper>
     </percentile>
     <percentile>
         <lower>30</lower>
-        <content>Incendiary cloud</content>
+        <content>Incendiary Cloud</content>
         <upper>32</upper>
     </percentile>
     <percentile>
         <lower>33</lower>
-        <content>Iron body</content>
+        <content>Iron Body</content>
         <upper>35</upper>
     </percentile>
     <percentile>
@@ -68,62 +68,62 @@
     </percentile>
     <percentile>
         <lower>39</lower>
-        <content>Mind blank</content>
+        <content>Mind Blank</content>
         <upper>41</upper>
     </percentile>
     <percentile>
         <lower>42</lower>
-        <content>Moment of prescience</content>
+        <content>Moment of Prescience</content>
         <upper>44</upper>
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Otiluke's telekinetic sphere</content>
+        <content>Otiluke's Telekinetic Sphere</content>
         <upper>48</upper>
     </percentile>
     <percentile>
         <lower>49</lower>
-        <content>Otto's irresistible dance</content>
+        <content>Otto's Irresistible Dance</content>
         <upper>51</upper>
     </percentile>
     <percentile>
         <lower>52</lower>
-        <content>Greater planar binding</content>
+        <content>Greater Planar Binding</content>
         <upper>54</upper>
     </percentile>
     <percentile>
         <lower>55</lower>
-        <content>Polar ray</content>
+        <content>Polar Ray</content>
         <upper>57</upper>
     </percentile>
     <percentile>
         <lower>58</lower>
-        <content>Polymorph any object</content>
+        <content>Polymorph Any Object</content>
         <upper>60</upper>
     </percentile>
     <percentile>
         <lower>61</lower>
-        <content>Power word stun</content>
+        <content>Power Word Stun</content>
         <upper>63</upper>
     </percentile>
     <percentile>
         <lower>64</lower>
-        <content>Prismatic wall</content>
+        <content>Prismatic Wall</content>
         <upper>66</upper>
     </percentile>
     <percentile>
         <lower>67</lower>
-        <content>Protection from spells</content>
+        <content>Protection from Spells</content>
         <upper>70</upper>
     </percentile>
     <percentile>
         <lower>71</lower>
-        <content>Greater prying eyes</content>
+        <content>Greater Prying Eyes</content>
         <upper>73</upper>
     </percentile>
     <percentile>
         <lower>74</lower>
-        <content>Scintillating pattern</content>
+        <content>Scintillating Pattern</content>
         <upper>76</upper>
     </percentile>
     <percentile>
@@ -133,17 +133,17 @@
     </percentile>
     <percentile>
         <lower>79</lower>
-        <content>Greater shadow evocation</content>
+        <content>Greater Shadow Evocation</content>
         <upper>81</upper>
     </percentile>
     <percentile>
         <lower>82</lower>
-        <content>Greater shout</content>
+        <content>Greater Shout</content>
         <upper>84</upper>
     </percentile>
     <percentile>
         <lower>85</lower>
-        <content>Summon monster VIII</content>
+        <content>Summon Monster VIII</content>
         <upper>87</upper>
     </percentile>
     <percentile>
@@ -153,12 +153,12 @@
     </percentile>
     <percentile>
         <lower>91</lower>
-        <content>Symbol of death</content>
+        <content>Symbol of Death</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Symbol of insanity</content>
+        <content>Symbol of Insanity</content>
         <upper>92</upper>
     </percentile>
     <percentile>
@@ -168,12 +168,12 @@
     </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Temporal stasis</content>
+        <content>Temporal Stasis</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Trap the soul</content>
+        <content>Trap the Soul</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

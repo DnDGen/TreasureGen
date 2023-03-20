@@ -3,7 +3,7 @@
 <percentiles>
   <percentile>
     <lower>1</lower>
-    <content>Ring of Minor ENERGY resistance,0</content>
+    <content>Ring of Minor ENERGY Resistance,0</content>
     <upper>2</upper>
   </percentile>
   <percentile>
@@ -13,7 +13,7 @@
   </percentile>
   <percentile>
     <lower>8</lower>
-    <content>Ring of Minor spell storing,0</content>
+    <content>Ring of Minor Spell Storing,0</content>
     <upper>10</upper>
   </percentile>
   <percentile>
@@ -33,7 +33,7 @@
   </percentile>
   <percentile>
     <lower>26</lower>
-    <content>Ring of X-ray vision,0</content>
+    <content>Ring of X-ray Vision,0</content>
     <upper>28</upper>
   </percentile>
   <percentile>
@@ -43,7 +43,7 @@
   </percentile>
   <percentile>
     <lower>33</lower>
-    <content>Ring of Major ENERGY resistance,0</content>
+    <content>Ring of Major ENERGY Resistance,0</content>
     <upper>39</upper>
   </percentile>
   <percentile>
@@ -58,17 +58,17 @@
   </percentile>
   <percentile>
     <lower>56</lower>
-    <content>Ring of Freedom of movement,0</content>
+    <content>Ring of Freedom of Movement,0</content>
     <upper>60</upper>
   </percentile>
   <percentile>
     <lower>61</lower>
-    <content>Ring of Greater ENERGY resistance,0</content>
+    <content>Ring of Greater ENERGY Resistance,0</content>
     <upper>63</upper>
   </percentile>
   <percentile>
     <lower>64</lower>
-    <content>Ring of Friend shield (pair),0</content>
+    <content>Ring of Friend Shield (pair),0</content>
     <upper>65</upper>
   </percentile>
   <percentile>
@@ -78,12 +78,12 @@
   </percentile>
   <percentile>
     <lower>71</lower>
-    <content>Ring of Shooting stars,0</content>
+    <content>Ring of Shooting Stars,0</content>
     <upper>74</upper>
   </percentile>
   <percentile>
     <lower>75</lower>
-    <content>Ring of Spell storing,0</content>
+    <content>Ring of Spell Storing,0</content>
     <upper>79</upper>
   </percentile>
   <percentile>
@@ -103,12 +103,12 @@
   </percentile>
   <percentile>
     <lower>89</lower>
-    <content>Ring of Three wishes,0</content>
+    <content>Ring of Three Wishes,0</content>
     <upper>89</upper>
   </percentile>
   <percentile>
     <lower>90</lower>
-    <content>Ring of Spell turning,0</content>
+    <content>Ring of Spell Turning,0</content>
     <upper>92</upper>
   </percentile>
   <percentile>
@@ -118,32 +118,32 @@
   </percentile>
     <percentile>
         <lower>95</lower>
-        <content>Ring of Djinni calling,0</content>
+        <content>Ring of Djinni Calling,0</content>
         <upper>95</upper>
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Ring of Elemental command (air),0</content>
+        <content>Ring of Elemental Command (Air),0</content>
         <upper>96</upper>
     </percentile>
     <percentile>
         <lower>97</lower>
-        <content>Ring of Elemental command (earth),0</content>
+        <content>Ring of Elemental Command (Earth),0</content>
         <upper>97</upper>
     </percentile>
     <percentile>
         <lower>98</lower>
-        <content>Ring of Elemental command (fire),0</content>
+        <content>Ring of Elemental Command (Fire),0</content>
         <upper>98</upper>
     </percentile>
     <percentile>
         <lower>99</lower>
-        <content>Ring of Elemental command (water),0</content>
+        <content>Ring of Elemental Command (Water),0</content>
         <upper>99</upper>
     </percentile>
     <percentile>
         <lower>100</lower>
-        <content>Ring of Major spell storing,0</content>
+        <content>Ring of Major Spell Storing,0</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

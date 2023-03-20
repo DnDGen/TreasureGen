@@ -31,7 +31,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.WondrousItem
         [TestCase("Wooden ladder (24 ft. long)", 31, 44)]
         [TestCase("Mule (with saddle bags)", 45, 51)]
         [TestCase("Open pit (10 ft. by 10 ft. by 10 ft.)", 52, 59)]
-        [TestCase("Potion of cure serious wounds", 60, 68)]
+        [TestCase("Potion of Cure Serious Wounds", 60, 68)]
         [TestCase("Rowboat (12 ft. long)", 69, 75)]
         [TestCase(ItemTypeConstants.Scroll, 76, 83)]
         [TestCase("Pair of war dogs (treat as riding dogs)", 84, 90)]

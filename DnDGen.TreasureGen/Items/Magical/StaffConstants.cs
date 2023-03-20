@@ -6,9 +6,9 @@ namespace DnDGen.TreasureGen.Items.Magical
     {
         public const string Charming = "Staff of Charming";
         public const string Fire = "Staff of Fire";
-        public const string SwarmingInsects = "Staff of Swarming insects";
+        public const string SwarmingInsects = "Staff of Swarming Insects";
         public const string Healing = "Staff of Healing";
-        public const string SizeAlteration = "Staff of Size alteration";
+        public const string SizeAlteration = "Staff of Size Alteration";
         public const string Illumination = "Staff of Illumination";
         public const string Frost = "Staff of Frost";
         public const string Defense = "Staff of Defense";
@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Items.Magical
         public const string Necromancy = "Staff of Necromancy";
         public const string Transmutation = "Staff of Transmutation";
         public const string Divination = "Staff of Divination";
-        public const string EarthAndStone = "Staff of Earth and stone";
+        public const string EarthAndStone = "Staff of Earth and Stone";
         public const string Woodlands = "Staff of Woodlands";
         public const string Life = "Staff of Life";
         public const string Passage = "Staff of Passage";

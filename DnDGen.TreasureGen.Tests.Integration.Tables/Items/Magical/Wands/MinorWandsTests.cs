@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Wands
 {
@@ -24,47 +24,47 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Wands
             AssertTableIsComplete();
         }
 
-        [TestCase("Detect magic", 1, 2)]
+        [TestCase("Detect Magic", 1, 2)]
         [TestCase("Light", 3, 4)]
-        [TestCase("Burning hands", 5, 7)]
-        [TestCase("Charm animal", 8, 10)]
-        [TestCase("Charm person", 11, 13)]
-        [TestCase("Color spray", 14, 16)]
-        [TestCase("Cure light wounds", 17, 19)]
-        [TestCase("Detect secret doors", 20, 22)]
-        [TestCase("Enlarge person", 23, 25)]
-        [TestCase("Magic missile (1st)", 26, 28)]
-        [TestCase("Shocking grasp", 29, 31)]
-        [TestCase("Summon monster I", 32, 34)]
-        [TestCase("Magic missile (3rd)", 35, 36)]
-        [TestCase("Bear's endurance", 38, 40)]
-        [TestCase("Bull's strength", 41, 43)]
-        [TestCase("Cat's grace", 44, 46)]
-        [TestCase("Cure moderate wounds", 47, 49)]
+        [TestCase("Burning Hands", 5, 7)]
+        [TestCase("Charm Animal", 8, 10)]
+        [TestCase("Charm Person", 11, 13)]
+        [TestCase("Color Spray", 14, 16)]
+        [TestCase("Cure Light Wounds", 17, 19)]
+        [TestCase("Detect Secret Doors", 20, 22)]
+        [TestCase("Enlarge Person", 23, 25)]
+        [TestCase("Magic Missile (1st)", 26, 28)]
+        [TestCase("Shocking Grasp", 29, 31)]
+        [TestCase("Summon Monster I", 32, 34)]
+        [TestCase("Magic Missile (3rd)", 35, 36)]
+        [TestCase("Bear's Endurance", 38, 40)]
+        [TestCase("Bull's Strength", 41, 43)]
+        [TestCase("Cat's Grace", 44, 46)]
+        [TestCase("Cure Moderate Wounds", 47, 49)]
         [TestCase("Darkness", 50, 51)]
-        [TestCase("Daze monster", 52, 54)]
-        [TestCase("Delay poison", 55, 57)]
-        [TestCase("Eagle's splendor", 58, 60)]
-        [TestCase("False life", 61, 63)]
-        [TestCase("Fox's cunning", 64, 66)]
-        [TestCase("Ghoul touch", 67, 68)]
-        [TestCase("Hold person", 69, 71)]
+        [TestCase("Daze Monster", 52, 54)]
+        [TestCase("Delay Poison", 55, 57)]
+        [TestCase("Eagle's Splendor", 58, 60)]
+        [TestCase("False Life", 61, 63)]
+        [TestCase("Fox's Cunning", 64, 66)]
+        [TestCase("Ghoul Touch", 67, 68)]
+        [TestCase("Hold Person", 69, 71)]
         [TestCase("Invisibility", 72, 74)]
         [TestCase("Knock", 75, 77)]
         [TestCase("Levitate", 78, 80)]
-        [TestCase("Acid arrow", 81, 83)]
-        [TestCase("Mirror image", 84, 86)]
-        [TestCase("Owl's wisdom", 87, 89)]
+        [TestCase("Melf's Acid Arrow", 81, 83)]
+        [TestCase("Mirror Image", 84, 86)]
+        [TestCase("Owl's Wisdom", 87, 89)]
         [TestCase("Shatter", 90, 91)]
         [TestCase("Silence", 92, 94)]
-        [TestCase("Summon monster II", 95, 97)]
+        [TestCase("Summon Monster II", 95, 97)]
         [TestCase("Web", 98, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase("Magic missile (5th)", 37)]
+        [TestCase("Magic Missile (5th)", 37)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);

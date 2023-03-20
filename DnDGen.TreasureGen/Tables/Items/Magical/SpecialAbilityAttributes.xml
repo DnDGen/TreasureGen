@@ -2,9 +2,9 @@
 
 <collections>
     <collection>
-        <name>Acid resistance</name>
+        <name>Acid Resistance</name>
         <entry>0</entry>
-        <entry>Acid resistance</entry>
+        <entry>Acid Resistance</entry>
         <entry>1</entry>
     </collection>
     <collection>
@@ -20,15 +20,15 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Arrow catching</name>
+        <name>Arrow Catching</name>
         <entry>1</entry>
-        <entry>Arrow catching</entry>
+        <entry>Arrow Catching</entry>
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Arrow deflection</name>
+        <name>Arrow Deflection</name>
         <entry>2</entry>
-        <entry>Arrow deflection</entry>
+        <entry>Arrow Deflection</entry>
         <entry>0</entry>
     </collection>
     <collection>
@@ -242,15 +242,15 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Brilliant energy</name>
+        <name>Brilliant Energy</name>
         <entry>4</entry>
-        <entry>Brilliant energy</entry>
+        <entry>Brilliant Energy</entry>
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Cold resistance</name>
+        <name>Cold Resistance</name>
         <entry>0</entry>
-        <entry>Cold resistance</entry>
+        <entry>Cold Resistance</entry>
         <entry>1</entry>
     </collection>
     <collection>
@@ -278,9 +278,9 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Electricity resistance</name>
+        <name>Electricity Resistance</name>
         <entry>0</entry>
-        <entry>Electricity resistance</entry>
+        <entry>Electricity Resistance</entry>
         <entry>1</entry>
     </collection>
     <collection>
@@ -290,13 +290,13 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Fire resistance</name>
+        <name>Fire Resistance</name>
         <entry>0</entry>
-        <entry>Fire resistance</entry>
+        <entry>Fire Resistance</entry>
         <entry>1</entry>
     </collection>
     <collection>
-        <name>Flaming burst</name>
+        <name>Flaming Burst</name>
         <entry>2</entry>
         <entry>Flaming</entry>
         <entry>2</entry>
@@ -314,15 +314,15 @@
         <entry>1</entry>
     </collection>
     <collection>
-        <name>Ghost touch (armor)</name>
+        <name>Ghost Touch (armor)</name>
         <entry>3</entry>
-        <entry>Ghost touch</entry>
+        <entry>Ghost Touch</entry>
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Ghost touch (weapon)</name>
+        <name>Ghost Touch (weapon)</name>
         <entry>1</entry>
-        <entry>Ghost touch</entry>
+        <entry>Ghost Touch</entry>
         <entry>0</entry>
     </collection>
     <collection>
@@ -332,55 +332,55 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Greater acid resistance</name>
+        <name>Greater Acid Resistance</name>
         <entry>0</entry>
-        <entry>Acid resistance</entry>
+        <entry>Acid Resistance</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater cold resistance</name>
+        <name>Greater Cold Resistance</name>
         <entry>0</entry>
-        <entry>Cold resistance</entry>
+        <entry>Cold Resistance</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater electricity resistance</name>
+        <name>Greater Electricity Resistance</name>
         <entry>0</entry>
-        <entry>Electricity resistance</entry>
+        <entry>Electricity Resistance</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater fire resistance</name>
+        <name>Greater Fire Resistance</name>
         <entry>0</entry>
-        <entry>Fire resistance</entry>
+        <entry>Fire Resistance</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater slick</name>
+        <name>Greater Slick</name>
         <entry>0</entry>
         <entry>Slick</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater shadow</name>
+        <name>Greater Shadow</name>
         <entry>0</entry>
         <entry>Shadow</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater silent moves</name>
+        <name>Greater Silent Moves</name>
         <entry>0</entry>
-        <entry>Silent moves</entry>
+        <entry>Silent Moves</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Greater sonic resistance</name>
+        <name>Greater Sonic Resistance</name>
         <entry>0</entry>
-        <entry>Sonic resistance</entry>
+        <entry>Sonic Resistance</entry>
         <entry>3</entry>
     </collection>
     <collection>
-        <name>Heavy fortification</name>
+        <name>Heavy Fortification</name>
         <entry>5</entry>
         <entry>Fortification</entry>
         <entry>3</entry>
@@ -392,57 +392,57 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Icy burst</name>
+        <name>Icy Burst</name>
         <entry>2</entry>
         <entry>Frost</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved acid resistance</name>
+        <name>Improved Acid Resistance</name>
         <entry>0</entry>
-        <entry>Acid resistance</entry>
+        <entry>Acid Resistance</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved cold resistance</name>
+        <name>Improved Cold Resistance</name>
         <entry>0</entry>
-        <entry>Cold resistance</entry>
+        <entry>Cold Resistance</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved electricity resistance</name>
+        <name>Improved Electricity Resistance</name>
         <entry>0</entry>
-        <entry>Electricity resistance</entry>
+        <entry>Electricity Resistance</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved fire resistance</name>
+        <name>Improved Fire Resistance</name>
         <entry>0</entry>
-        <entry>Fire resistance</entry>
+        <entry>Fire Resistance</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved slick</name>
+        <name>Improved Slick</name>
         <entry>0</entry>
         <entry>Slick</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved shadow</name>
+        <name>Improved Shadow</name>
         <entry>0</entry>
         <entry>Shadow</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved silent moves</name>
+        <name>Improved Silent Moves</name>
         <entry>0</entry>
-        <entry>Silent moves</entry>
+        <entry>Silent Moves</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Improved sonic resistance</name>
+        <name>Improved Sonic Resistance</name>
         <entry>0</entry>
-        <entry>Sonic resistance</entry>
+        <entry>Sonic Resistance</entry>
         <entry>2</entry>
     </collection>
     <collection>
@@ -458,13 +458,13 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Ki focus</name>
+        <name>Ki Focus</name>
         <entry>1</entry>
-        <entry>Ki focus</entry>
+        <entry>Ki Focus</entry>
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Light fortification</name>
+        <name>Light Fortification</name>
         <entry>1</entry>
         <entry>Fortification</entry>
         <entry>1</entry>
@@ -476,13 +476,13 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Mighty cleaving</name>
+        <name>Mighty Cleaving</name>
         <entry>1</entry>
-        <entry>Mighty cleaving</entry>
+        <entry>Mighty Cleaving</entry>
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Moderate fortification</name>
+        <name>Moderate Fortification</name>
         <entry>3</entry>
         <entry>Fortification</entry>
         <entry>2</entry>
@@ -518,15 +518,15 @@
         <entry>1</entry>
     </collection>
     <collection>
-        <name>Shocking burst</name>
+        <name>Shocking Burst</name>
         <entry>2</entry>
         <entry>Shock</entry>
         <entry>2</entry>
     </collection>
     <collection>
-        <name>Silent moves</name>
+        <name>Silent Moves</name>
         <entry>0</entry>
-        <entry>Silent moves</entry>
+        <entry>Silent Moves</entry>
         <entry>1</entry>
     </collection>
     <collection>
@@ -536,9 +536,9 @@
         <entry>1</entry>
     </collection>
     <collection>
-        <name>Sonic resistance</name>
+        <name>Sonic Resistance</name>
         <entry>0</entry>
-        <entry>Sonic resistance</entry>
+        <entry>Sonic Resistance</entry>
         <entry>1</entry>
     </collection>
     <collection>
@@ -548,33 +548,33 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Spell resistance (13)</name>
+        <name>Spell Resistance (13)</name>
         <entry>2</entry>
-        <entry>Spell resistance</entry>
+        <entry>Spell Resistance</entry>
         <entry>13</entry>
     </collection>
     <collection>
-        <name>Spell resistance (15)</name>
+        <name>Spell Resistance (15)</name>
         <entry>3</entry>
-        <entry>Spell resistance</entry>
+        <entry>Spell Resistance</entry>
         <entry>15</entry>
     </collection>
     <collection>
-        <name>Spell resistance (17)</name>
+        <name>Spell Resistance (17)</name>
         <entry>4</entry>
-        <entry>Spell resistance</entry>
+        <entry>Spell Resistance</entry>
         <entry>17</entry>
     </collection>
     <collection>
-        <name>Spell resistance (19)</name>
+        <name>Spell Resistance (19)</name>
         <entry>5</entry>
-        <entry>Spell resistance</entry>
+        <entry>Spell Resistance</entry>
         <entry>19</entry>
     </collection>
     <collection>
-        <name>Spell storing</name>
+        <name>Spell Storing</name>
         <entry>1</entry>
-        <entry>Spell storing</entry>
+        <entry>Spell Storing</entry>
         <entry>0</entry>
     </collection>
     <collection>
@@ -590,9 +590,9 @@
         <entry>0</entry>
     </collection>
     <collection>
-        <name>Undead controlling</name>
+        <name>Undead Controlling</name>
         <entry>0</entry>
-        <entry>Undead controlling</entry>
+        <entry>Undead Controlling</entry>
         <entry>0</entry>
     </collection>
     <collection>

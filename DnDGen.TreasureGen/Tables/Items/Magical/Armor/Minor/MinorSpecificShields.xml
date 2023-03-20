@@ -18,7 +18,7 @@
     </percentile>
     <percentile>
         <lower>96</lower>
-        <content>Caster's shield,1</content>
+        <content>Caster's Shield,1</content>
         <upper>100</upper>
     </percentile>
 </percentiles>

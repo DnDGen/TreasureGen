@@ -3,22 +3,22 @@
 <percentiles>
     <percentile>
         <lower>1</lower>
-        <content>Astral projection</content>
+        <content>Astral Projection</content>
         <upper>3</upper>
     </percentile>
     <percentile>
         <lower>4</lower>
-        <content>Bigby's crushing hand</content>
+        <content>Bigby's Crushing Hand</content>
         <upper>7</upper>
     </percentile>
     <percentile>
         <lower>8</lower>
-        <content>Dominate monster</content>
+        <content>Dominate Monster</content>
         <upper>12</upper>
     </percentile>
     <percentile>
         <lower>13</lower>
-        <content>Energy drain</content>
+        <content>Energy Drain</content>
         <upper>16</upper>
     </percentile>
     <percentile>
@@ -43,7 +43,7 @@
     </percentile>
     <percentile>
         <lower>37</lower>
-        <content>Mass hold monster</content>
+        <content>Mass Hold Monster</content>
         <upper>40</upper>
     </percentile>
     <percentile>
@@ -53,22 +53,22 @@
     </percentile>
     <percentile>
         <lower>45</lower>
-        <content>Meteor swarm</content>
+        <content>Meteor Swarm</content>
         <upper>49</upper>
     </percentile>
     <percentile>
         <lower>50</lower>
-        <content>Mordenkainen's disjunction</content>
+        <content>Mordenkainen's Disjunction</content>
         <upper>53</upper>
     </percentile>
     <percentile>
         <lower>54</lower>
-        <content>Power word kill</content>
+        <content>Power Word Kill</content>
         <upper>58</upper>
     </percentile>
     <percentile>
         <lower>59</lower>
-        <content>Prismatic sphere</content>
+        <content>Prismatic Sphere</content>
         <upper>62</upper>
     </percentile>
     <percentile>
@@ -88,27 +88,27 @@
     </percentile>
     <percentile>
         <lower>77</lower>
-        <content>Soul bind</content>
+        <content>Soul Bind</content>
         <upper>79</upper>
     </percentile>
     <percentile>
         <lower>80</lower>
-        <content>Summon monster IX</content>
+        <content>Summon Monster IX</content>
         <upper>83</upper>
     </percentile>
     <percentile>
         <lower>84</lower>
-        <content>Teleportation circle</content>
+        <content>Teleportation Circle</content>
         <upper>86</upper>
     </percentile>
     <percentile>
         <lower>87</lower>
-        <content>Time stop</content>
+        <content>Time Stop</content>
         <upper>91</upper>
     </percentile>
     <percentile>
         <lower>92</lower>
-        <content>Wail of the banshee</content>
+        <content>Wail of the Banshee</content>
         <upper>95</upper>
     </percentile>
     <percentile>

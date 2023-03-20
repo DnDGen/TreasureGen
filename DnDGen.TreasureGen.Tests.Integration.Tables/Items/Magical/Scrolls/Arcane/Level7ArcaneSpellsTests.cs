@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Tables;
+﻿using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arcane
 {
@@ -23,46 +23,46 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Scrolls.Arca
             AssertTableIsComplete();
         }
 
-        [TestCase("Greater arcane sight", 1, 3)]
+        [TestCase("Greater Arcane Sight", 1, 3)]
         [TestCase("Banishment", 4, 7)]
-        [TestCase("Bigby's grasping hand", 8, 10)]
-        [TestCase("Control undead", 11, 13)]
-        [TestCase("Control weather", 14, 16)]
-        [TestCase("Delayed blast fireball", 17, 19)]
-        [TestCase("Drawmij's instant summons", 20, 21)]
-        [TestCase("Ethereal jaunt", 22, 25)]
-        [TestCase("Finger of death", 26, 28)]
+        [TestCase("Bigby's Grasping Hand", 8, 10)]
+        [TestCase("Control Undead", 11, 13)]
+        [TestCase("Control Weather", 14, 16)]
+        [TestCase("Delayed Blast Fireball", 17, 19)]
+        [TestCase("Drawmij's Instant Summons", 20, 21)]
+        [TestCase("Ethereal Jaunt", 22, 25)]
+        [TestCase("Finger of Death", 26, 28)]
         [TestCase("Forcecage", 29, 31)]
-        [TestCase("Mass hold person", 32, 35)]
+        [TestCase("Mass Hold Person", 32, 35)]
         [TestCase("Insanity", 36, 38)]
-        [TestCase("Mass invisibility", 39, 42)]
-        [TestCase("Mordenkainen's magnificent mansion", 44, 45)]
-        [TestCase("Mordenkainen's sword", 46, 48)]
-        [TestCase("Phase door", 49, 51)]
-        [TestCase("Plane shift", 52, 54)]
-        [TestCase("Power word blind", 55, 57)]
-        [TestCase("Prismatic spray", 58, 61)]
-        [TestCase("Project image", 62, 64)]
-        [TestCase("Reverse gravity", 65, 67)]
-        [TestCase("Greater scrying", 68, 70)]
+        [TestCase("Mass Invisibility", 39, 42)]
+        [TestCase("Mordenkainen's Magnificent Mansion", 44, 45)]
+        [TestCase("Mordenkainen's Sword", 46, 48)]
+        [TestCase("Phase Door", 49, 51)]
+        [TestCase("Plane Shift", 52, 54)]
+        [TestCase("Power Word Blind", 55, 57)]
+        [TestCase("Prismatic Spray", 58, 61)]
+        [TestCase("Project Image", 62, 64)]
+        [TestCase("Reverse Gravity", 65, 67)]
+        [TestCase("Greater Scrying", 68, 70)]
         [TestCase("Sequester", 71, 73)]
-        [TestCase("Greater shadow conjuration", 74, 76)]
-        [TestCase("Spell turning", 78, 80)]
+        [TestCase("Greater Shadow Conjuration", 74, 76)]
+        [TestCase("Spell Turning", 78, 80)]
         [TestCase("Statue", 81, 82)]
-        [TestCase("Summon monster VII", 83, 85)]
-        [TestCase("Teleport object", 88, 90)]
-        [TestCase("Greater teleport", 91, 95)]
+        [TestCase("Summon Monster VII", 83, 85)]
+        [TestCase("Teleport Object", 88, 90)]
+        [TestCase("Greater Teleport", 91, 95)]
         [TestCase("Vision", 96, 97)]
-        [TestCase("Waves of exhaustion", 98, 100)]
+        [TestCase("Waves of Exhaustion", 98, 100)]
         public override void Percentile(string content, int lower, int upper)
         {
             base.Percentile(content, lower, upper);
         }
 
-        [TestCase("Limited wish", 43)]
+        [TestCase("Limited Wish", 43)]
         [TestCase("Simulacrum", 77)]
-        [TestCase("Symbol of stunning", 86)]
-        [TestCase("Symbol of weakness", 87)]
+        [TestCase("Symbol of Stunning", 86)]
+        [TestCase("Symbol of Weakness", 87)]
         public override void Percentile(string content, int roll)
         {
             base.Percentile(content, roll);
