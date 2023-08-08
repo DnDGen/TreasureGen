@@ -123,13 +123,21 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private Weapon GenerateFromPrototype(Item prototype, bool allowDecoration)
         {
+            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
+
             if (specificGearGenerator.IsSpecific(prototype))
             {
                 var specificWeapon = specificGearGenerator.GenerateFrom(prototype);
+
+                //INFO: We need to set the quantity on the weapon. However, ammunition or thrown weapons might have quantities greater than 1
+                //The quantity logic is contained within the MundaneWeaponGenerator, to which we do not have direct access
+                //So, we will generate a mundane item from the base names of the specific weapon, and use that quantity
+                var weaponForQuantity = mundaneWeaponGenerator.Generate(specificWeapon.BaseNames.First());
+                specificWeapon.Quantity = weaponForQuantity.Quantity;
+
                 return specificWeapon as Weapon;
             }
 
-            var mundaneWeaponGenerator = justInTimeFactory.Build<MundaneItemGenerator>(ItemTypeConstants.Weapon);
             var weapon = mundaneWeaponGenerator.Generate(prototype, allowDecoration);
 
             weapon.Magic.Bonus = prototype.Magic.Bonus;

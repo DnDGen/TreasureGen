@@ -20,6 +20,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         public void AssertItem(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
+            Assert.That(item.Quantity, Is.Positive, item.Description);
             Assert.That(item.ItemType, Is.Not.Empty, $"{item.Description} item type");
             Assert.That(item.BaseNames, Is.Not.Empty, item.Description);
             Assert.That(item.BaseNames, Is.All.Not.Empty, item.Description);
