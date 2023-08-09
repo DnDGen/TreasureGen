@@ -53,6 +53,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());
+            Assert.That(item.Quantity, Is.EqualTo(1));
 
             var armor = item as Armor;
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), $"{armor.Name} {armor.Magic.Curse}");
@@ -88,6 +89,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             var item = ArmorGenerator.Generate(power, itemName, "my trait", size);
             itemVerifier.AssertItem(item);
             Assert.That(item, Is.InstanceOf<Armor>());
+            Assert.That(item.Quantity, Is.EqualTo(1));
 
             var armor = item as Armor;
             Assert.That(armor.ItemType, Is.EqualTo(ItemTypeConstants.Armor), $"{armor.Name} {armor.Magic.Curse}");
@@ -108,6 +110,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(shield.Traits, Contains.Item(TraitConstants.SpecialMaterials.Dragonhide));
             Assert.That(shield.Attributes, Does.Not.Contain(AttributeConstants.Wood)
                 .And.Not.Contain(AttributeConstants.Metal));
+        }
+
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.SpecificArmors))]
+        public void BUG_GenerateArmor_SpecificArmorHasQuantity(string itemName, string power)
+        {
+            var item = ArmorGenerator.Generate(power, itemName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Armor>(), item.Name);
+            Assert.That(item.Quantity, Is.EqualTo(1), item.Name);
         }
     }
 }

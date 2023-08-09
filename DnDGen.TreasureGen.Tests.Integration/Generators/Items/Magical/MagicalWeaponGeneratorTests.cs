@@ -185,5 +185,14 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Magical
             Assert.That(weapon.Damages, Has.Count.GreaterThan(1), weapon.DamageDescription);
             Assert.That(weapon.CriticalDamages, Has.Count.GreaterThan(1), weapon.CriticalDamageDescription);
         }
+
+        [TestCaseSource(typeof(ItemPowerTestData), nameof(ItemPowerTestData.SpecificWeapons))]
+        public void BUG_GenerateWeapon_SpecificWeaponHasQuantity(string itemName, string power)
+        {
+            var item = WeaponGenerator.Generate(power, itemName);
+            itemVerifier.AssertItem(item);
+            Assert.That(item, Is.InstanceOf<Weapon>(), item.Name);
+            Assert.That(item.Quantity, Is.AtLeast(1), item.Name);
+        }
     }
 }
