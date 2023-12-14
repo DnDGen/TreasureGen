@@ -141,7 +141,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
                 .Returns("special material");
 
             var decoratedItem = decorator.Generate(template);
-            Assert.That(decoratedItem, Is.Not.EqualTo(template));
+            Assert.That(decoratedItem, Is.Not.SameAs(template));
+            Assert.That(decoratedItem, Is.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
         }

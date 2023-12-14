@@ -80,7 +80,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             damage.Condition = "my condition";
 
             var clone = damage.Clone();
-            Assert.That(clone, Is.Not.EqualTo(damage));
+            Assert.That(clone, Is.Not.SameAs(damage));
+            Assert.That(clone, Is.EqualTo(damage));
             Assert.That(clone.Roll, Is.EqualTo("9266d90210"));
             Assert.That(clone.Type, Is.EqualTo("emotional"));
             Assert.That(clone.Condition, Is.EqualTo("my condition"));
