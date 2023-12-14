@@ -155,7 +155,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.Size = "massive";
 
             var clone = template.Clone();
-            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone, Is.Not.SameAs(template));
+            Assert.That(clone, Is.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));

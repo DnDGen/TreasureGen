@@ -446,7 +446,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             template.ItemType = itemType;
 
             var clone = template.SmartClone();
-            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone, Is.Not.SameAs(template));
+            Assert.That(clone, Is.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
             Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -507,7 +508,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 template.BaseNames = new[] { "base name", "other base name" };
 
                 var clone = template.SmartClone();
-                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone, Is.Not.SameAs(template));
+                Assert.That(clone, Is.EqualTo(template));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -543,7 +545,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 template.BaseNames = new[] { "base name", "other base name" };
 
                 var clone = template.SmartClone();
-                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone, Is.Not.SameAs(template));
+                Assert.That(clone, Is.EqualTo(template));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -612,7 +615,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 template.BaseNames = new[] { "base name", weapon, "other base name" };
 
                 var clone = template.SmartClone();
-                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone, Is.Not.SameAs(template));
+                Assert.That(clone, Is.EqualTo(template));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -649,7 +653,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 template.BaseNames = new[] { "base name", armor, "other base name" };
 
                 var clone = template.SmartClone();
-                Assert.That(clone, Is.Not.EqualTo(template));
+                Assert.That(clone, Is.Not.SameAs(template));
+                Assert.That(clone, Is.EqualTo(template));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -714,7 +719,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var template = itemVerifier.CreateRandomTemplate(name);
 
             var clone = template.Clone();
-            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(clone, Is.Not.SameAs(template));
+            Assert.That(clone, Is.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
@@ -747,8 +753,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var template = itemVerifier.CreateRandomTemplate(name);
 
             var newClone = template.CloneInto(clone);
-            Assert.That(newClone, Is.EqualTo(clone));
-            Assert.That(clone, Is.Not.EqualTo(template));
+            Assert.That(newClone, Is.SameAs(clone).And.EqualTo(clone));
+            Assert.That(clone, Is.Not.SameAs(template));
+            Assert.That(clone, Is.EqualTo(template));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));

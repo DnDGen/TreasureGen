@@ -195,7 +195,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMaterialGenerator.Setup(g => g.GenerateFor(It.IsAny<string>(), It.IsAny<IEnumerable<string>>(), It.IsAny<IEnumerable<string>>())).Returns("special material");
 
             var decoratedItem = decorator.Generate(template);
-            Assert.That(decoratedItem, Is.Not.EqualTo(template));
+            Assert.That(decoratedItem, Is.Not.SameAs(template));
+            Assert.That(decoratedItem, Is.EqualTo(template));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
         }

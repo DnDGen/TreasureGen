@@ -94,7 +94,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             intelligence = itemVerifier.CreateRandomTemplate(string.Empty).Magic.Intelligence;
 
             var copy = intelligence.Clone();
-            Assert.That(copy, Is.Not.EqualTo(intelligence));
+            Assert.That(copy, Is.Not.SameAs(intelligence));
+            Assert.That(copy, Is.EqualTo(intelligence));
             Assert.That(copy.Alignment, Is.EqualTo(intelligence.Alignment));
             Assert.That(copy.CharismaStat, Is.EqualTo(intelligence.CharismaStat));
             Assert.That(copy.Communication, Is.EquivalentTo(intelligence.Communication));

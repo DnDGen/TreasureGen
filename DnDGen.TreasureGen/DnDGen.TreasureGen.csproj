@@ -966,8 +966,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="4.3.2" />
-    <PackageReference Include="DnDGen.RollGen" Version="15.5.1" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="4.4.2" />
+    <PackageReference Include="DnDGen.RollGen" Version="15.5.4" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
