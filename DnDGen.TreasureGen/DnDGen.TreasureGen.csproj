@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>10.5.3</Version>
+    <Version>10.5.4</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
     <Product>TreasureGen</Product>
@@ -12,6 +12,7 @@
       10.5.1: Issue #111 - Spell Name casing
       10.5.2: Issue #117 - Missing quantities for specific weapons
       10.5.3: Upgrade RollGen to 15.5.4
+      10.5.4: README updates
     </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DnDGen/TreasureGen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DnDGen/TreasureGen</RepositoryUrl>
