@@ -13,6 +13,7 @@
       10.5.2: Issue #117 - Missing quantities for specific weapons
       10.5.3: Upgrade RollGen to 15.5.4
       10.5.4: README updates
+      10.5.4: Pipeline optimizations
     </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DnDGen/TreasureGen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DnDGen/TreasureGen</RepositoryUrl>
