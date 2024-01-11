@@ -16,7 +16,7 @@ var magicalWeapon = magicalWeaponGenerator.GenerateAtPower(PowerConstants.Major)
 
 ### Getting the Generators
 
-You can obtain generators from the bootstrapper project.  Because the generators are very complex and are decorated in various ways, there is not a (recommended) way to build these generator manually.  Please use the Module Loader in the IoC domain.  **Note:** This will also load the dependencies for TreasureGen, including RollGen and Infrastructure
+You can obtain generators via the Ninject module. Because the generators are very complex and are decorated in various ways, there is not a (recommended) way to build these generator manually. **Note:** This will also load the dependencies for TreasureGen, including RollGen and Infrastructure
 
 ```C#
 var kernel = new StandardKernel();
