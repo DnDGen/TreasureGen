@@ -16,30 +16,30 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
             this.replacementSelector = replacementSelector;
         }
 
-        public string SelectFrom(string tableName)
+        public string SelectFrom(string assemblyName, string tableName)
         {
-            var result = innerSelector.SelectFrom(tableName);
+            var result = innerSelector.SelectFrom(assemblyName, tableName);
             var replaceResult = replacementSelector.SelectRandom(result);
 
             return replaceResult;
         }
 
-        public IEnumerable<string> SelectAllFrom(string tableName)
+        public IEnumerable<string> SelectAllFrom(string assemblyName, string tableName)
         {
-            var results = innerSelector.SelectAllFrom(tableName);
+            var results = innerSelector.SelectAllFrom(assemblyName, tableName);
             var allResults = replacementSelector.SelectAll(results);
 
             return allResults;
         }
 
-        public T SelectFrom<T>(string tableName)
+        public T SelectFrom<T>(string assemblyName, string tableName)
         {
-            return innerSelector.SelectFrom<T>(tableName);
+            return innerSelector.SelectFrom<T>(assemblyName, tableName);
         }
 
-        public IEnumerable<T> SelectAllFrom<T>(string tableName)
+        public IEnumerable<T> SelectAllFrom<T>(string assemblyName, string tableName)
         {
-            return innerSelector.SelectAllFrom<T>(tableName);
+            return innerSelector.SelectAllFrom<T>(assemblyName, tableName);
         }
 
         public bool SelectFrom(double chance)

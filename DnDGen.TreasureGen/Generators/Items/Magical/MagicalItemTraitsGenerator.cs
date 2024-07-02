@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Magical
 {
@@ -18,7 +18,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public IEnumerable<string> GenerateFor(string itemType, IEnumerable<string> attributes)
         {
             var tableName = GetTableName(itemType, attributes);
-            var result = percentileSelector.SelectFrom(tableName);
+            var result = percentileSelector.SelectFrom(Config.Name, tableName);
 
             if (string.IsNullOrEmpty(result))
                 return Enumerable.Empty<string>();

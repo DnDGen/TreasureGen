@@ -1,8 +1,8 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Linq;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Selectors.Collections
 {
@@ -17,7 +17,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 
         public RangeSelection SelectFrom(string tableName, string name)
         {
-            var data = innerSelector.SelectFrom(tableName, name).ToArray();
+            var data = innerSelector.SelectFrom(Config.Name, tableName, name).ToArray();
 
             if (data.Count() != 2)
                 throw new Exception("Data is not in format for range");

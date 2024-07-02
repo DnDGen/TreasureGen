@@ -18,7 +18,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
         public Item GenerateRandom()
         {
-            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Tools);
+            var name = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.Tools);
             return Generate(name);
         }
 

@@ -28,7 +28,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             if (name == WondrousItemConstants.DeckOfIllusions)
             {
-                var isFullyCharged = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
+                var isFullyCharged = percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged);
 
                 if (isFullyCharged)
                     name = WondrousItemConstants.DeckOfIllusions_Full;

@@ -34,7 +34,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateRandom(string power)
         {
-            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Staff);
+            var rodPowers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Staff);
             var adjustedPower = PowerHelper.AdjustPower(power, rodPowers);
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
@@ -59,7 +59,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item Generate(string power, string itemName, params string[] traits)
         {
             var staffName = GetStaffName(itemName);
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, staffName);
+            var powers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, staffName);
             var adjustedPower = PowerHelper.AdjustPower(power, powers);
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Staff);
@@ -76,7 +76,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (staffs.Contains(itemName))
                 return itemName;
 
-            var staffFromBaseName = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, itemName, staffs.ToArray());
+            var staffFromBaseName = collectionsSelector.FindCollectionOf(Config.Name, TableNameConstants.Collections.Set.ItemGroups, itemName, staffs.ToArray());
 
             return staffFromBaseName;
         }
@@ -87,7 +87,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             staff.Attributes = new[] { AttributeConstants.Charged, AttributeConstants.OneTimeUse };
             staff.Quantity = 1;
             staff.IsMagical = true;
-            staff.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, staff.Name);
+            staff.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, staff.Name);
 
             staff = GetWeapon(staff);
 

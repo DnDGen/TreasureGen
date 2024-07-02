@@ -38,7 +38,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item GenerateRandom(string power)
         {
-            var rodPowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Rod);
+            var rodPowers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, ItemTypeConstants.Rod);
             var adjustedPower = PowerHelper.AdjustPower(power, rodPowers);
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Rod);
@@ -52,20 +52,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var rod = new Item();
             rod.ItemType = ItemTypeConstants.Rod;
             rod.Name = name;
-            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            rod.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, name);
             rod.IsMagical = true;
             rod.Magic.Bonus = bonus;
             rod.Traits = new HashSet<string>(traits);
 
             var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            rod.Attributes = collectionsSelector.SelectFrom(tablename, name);
+            rod.Attributes = collectionsSelector.SelectFrom(Config.Name, tablename, name);
 
             if (rod.Attributes.Contains(AttributeConstants.Charged))
                 rod.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, name);
 
             if (name == RodConstants.Absorption)
             {
-                var containsSpellLevels = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
+                var containsSpellLevels = percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.RodOfAbsorptionContainsSpellLevels);
                 if (containsSpellLevels)
                 {
                     var maxCharges = chargesGenerator.GenerateFor(ItemTypeConstants.Rod, RodConstants.Absorption_Full);
@@ -83,7 +83,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             var rodName = GetRodName(itemName);
 
-            var powers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, rodName);
+            var powers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, rodName);
             var adjustedPower = PowerHelper.AdjustPower(power, powers);
 
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Rod);
@@ -191,7 +191,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
             var rod = template.Clone();
-            rod.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, rod.Name);
+            rod.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, rod.Name);
             rod.IsMagical = true;
             rod.Quantity = 1;
             rod.ItemType = ItemTypeConstants.Rod;
@@ -201,7 +201,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             rod.Magic.Bonus = result.Amount;
 
             var tablename = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Rod);
-            rod.Attributes = collectionsSelector.SelectFrom(tablename, rod.Name);
+            rod.Attributes = collectionsSelector.SelectFrom(Config.Name, tablename, rod.Name);
 
             rod.Magic.SpecialAbilities = specialAbilitiesGenerator.GenerateFor(rod.Magic.SpecialAbilities);
 
@@ -232,7 +232,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (rods.Contains(itemName))
                 return itemName;
 
-            var rodFromBaseName = collectionsSelector.FindCollectionOf(TableNameConstants.Collections.Set.ItemGroups, itemName, rods.ToArray());
+            var rodFromBaseName = collectionsSelector.FindCollectionOf(Config.Name, TableNameConstants.Collections.Set.ItemGroups, itemName, rods.ToArray());
 
             return rodFromBaseName;
         }

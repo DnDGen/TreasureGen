@@ -22,8 +22,8 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 
         public WeaponSelection Select(string name)
         {
-            var data = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponData, name).ToArray();
-            var damagesData = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, name).ToArray();
+            var data = collectionSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponData, name).ToArray();
+            var damagesData = collectionSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, name).ToArray();
 
             var damages = new List<List<Damage>>();
             foreach (var damageData in damagesData)
