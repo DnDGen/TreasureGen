@@ -91,7 +91,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Goods.Levels
         public void EpicGoodsPercentile(int level)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXGoods, level);
-            var levelTable = PercentileMapper.Map(tableName);
+            var levelTable = PercentileMapper.Map(Name, tableName);
 
             Assert.That(levelTable.Keys, Is.EquivalentTo(Enumerable.Range(1, 100)));
 

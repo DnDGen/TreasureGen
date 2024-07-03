@@ -4,7 +4,6 @@ using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,7 +37,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetTraitsFromPercentileSelector()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("trait");
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
             Assert.That(traits.Count(), Is.EqualTo(1));
@@ -48,8 +47,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void IMeleefWeapon_GetMeleeTraits()
         {
             attributes.Add(AttributeConstants.Melee);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("trait");
 
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
@@ -60,8 +59,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void IfRangedWeapon_GetRangedTraits()
         {
             attributes.Add(AttributeConstants.Ranged);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Ranged);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Ranged);
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("trait");
 
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
@@ -73,8 +72,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             attributes.Add(AttributeConstants.Melee);
             attributes.Add(AttributeConstants.Ranged);
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, AttributeConstants.Melee);
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("trait");
 
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
@@ -84,8 +83,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SplitsCommaDelimitedTraits()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("trait,other trait");
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("trait,other trait");
 
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Contains.Item("trait"));
@@ -96,8 +95,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void DoNotAddEmptyTrait()
         {
-            var tableName = String.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns(String.Empty);
+            var tableName = string.Format(TableNameConstants.Percentiles.Formattable.ITEMTYPETraits, "item type");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns(string.Empty);
 
             var traits = generator.GenerateFor(itemType, attributes);
             Assert.That(traits, Is.Empty);

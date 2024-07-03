@@ -83,7 +83,10 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             if (gear.Name == WeaponConstants.SlayingArrow || gear.Name == WeaponConstants.GreaterSlayingArrow)
             {
-                var designatedFoe = collectionsSelector.SelectRandomFrom(TableNameConstants.Collections.Set.ReplacementStrings, ReplacementStringConstants.DesignatedFoe);
+                var designatedFoe = collectionsSelector.SelectRandomFrom(
+                    Config.Name,
+                    TableNameConstants.Collections.Set.ReplacementStrings,
+                    ReplacementStringConstants.DesignatedFoe);
                 var trait = $"Designated Foe: {designatedFoe}";
                 gear.Traits.Add(trait);
             }

@@ -292,7 +292,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
         [TestCase(WeaponConstants.CursedMinus2Sword)]
         public void SpecificCursedWeaponMatchesAttributes(string item)
         {
-            var specificCursedAttributes = CollectionMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificCursedAttributes = CollectionMapper.Map(Name, TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
             var specificAttributes = GetCollection(item);
 
             Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));
@@ -344,7 +344,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Weapons.Spec
             var specificWeaponAttributes = table[specificWeapon];
 
             var weaponAttributesTableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            var weaponAttributesTable = CollectionMapper.Map(weaponAttributesTableName);
+            var weaponAttributesTable = CollectionMapper.Map(Name, weaponAttributesTableName);
             var weaponAttributes = weaponAttributesTable[weapon];
 
             Assert.That(specificWeaponAttributes, Is.SupersetOf(weaponAttributes));

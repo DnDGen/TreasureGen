@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
 {
@@ -93,7 +93,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
             var specificWeaponAttributes = table[specificWeapon];
 
             var weaponAttributesTableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            var weaponAttributesTable = CollectionMapper.Map(weaponAttributesTableName);
+            var weaponAttributesTable = CollectionMapper.Map(Name, weaponAttributesTableName);
             var weaponAttributes = weaponAttributesTable[weapon];
 
             Assert.That(specificWeaponAttributes, Is.SupersetOf(weaponAttributes));
@@ -108,7 +108,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Curses
         {
             var specificWeaponAttributesTable = string.Format(TableNameConstants.Collections.Formattable.SpecificITEMTYPEAttributes, ItemTypeConstants.Weapon);
 
-            var specificWeaponAttributes = CollectionMapper.Map(specificWeaponAttributesTable);
+            var specificWeaponAttributes = CollectionMapper.Map(Name, specificWeaponAttributesTable);
             var specificCursedAttributes = GetCollection(item);
 
             Assert.That(specificCursedAttributes, Is.EquivalentTo(specificWeaponAttributes[item]));

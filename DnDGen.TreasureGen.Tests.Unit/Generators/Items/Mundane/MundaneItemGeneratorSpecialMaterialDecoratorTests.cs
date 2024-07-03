@@ -4,6 +4,7 @@ using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Tables;
 using Moq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -31,7 +32,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             masterworkMaterials = new List<string>();
 
             mockInnerGenerator.Setup(g => g.GenerateRandom()).Returns(item);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork)).Returns(masterworkMaterials);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialMaterials, TraitConstants.Masterwork))
+                .Returns(masterworkMaterials);
         }
 
         [Test]
@@ -142,7 +145,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
 
             var decoratedItem = decorator.Generate(template);
             Assert.That(decoratedItem, Is.Not.SameAs(template));
-            Assert.That(decoratedItem, Is.EqualTo(template));
+            Assert.That(JsonConvert.SerializeObject(decoratedItem), Is.EqualTo(JsonConvert.SerializeObject(template)));
             Assert.That(decoratedItem, Is.EqualTo(item));
             Assert.That(decoratedItem.Traits, Is.Empty);
         }
