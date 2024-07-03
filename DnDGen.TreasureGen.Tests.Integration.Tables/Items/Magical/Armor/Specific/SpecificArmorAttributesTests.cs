@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
 {
@@ -61,7 +61,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Armor
         [TestCase(ArmorConstants.ArmorOfArrowAttraction)]
         public void SpecificCursedArmorMatchesAttributes(string item)
         {
-            var specificCursedAttributes = CollectionMapper.Map(TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
+            var specificCursedAttributes = CollectionMapper.Map(Name, TableNameConstants.Collections.Set.SpecificCursedItemAttributes);
             var specificAttributes = GetCollection(item);
 
             Assert.That(specificAttributes, Is.EquivalentTo(specificCursedAttributes[item]));

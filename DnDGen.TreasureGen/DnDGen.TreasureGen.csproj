@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>10.5.5</Version>
+    <Version>10.5.6</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
     <Product>TreasureGen</Product>
@@ -14,6 +14,7 @@
       10.5.3: Upgrade RollGen to 15.5.4
       10.5.4: README updates
       10.5.5: Pipeline optimizations
+      10.5.6: Upgrade Infrastructure to 5.0.0
     </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DnDGen/TreasureGen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DnDGen/TreasureGen</RepositoryUrl>
@@ -973,8 +974,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="4.4.2" />
-    <PackageReference Include="DnDGen.RollGen" Version="15.5.4" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="5.0.0" />
+    <PackageReference Include="DnDGen.RollGen" Version="15.5.7" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 

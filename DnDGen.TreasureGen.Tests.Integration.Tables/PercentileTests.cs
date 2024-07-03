@@ -28,7 +28,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables
         public void PercentileSetup()
         {
             PercentileMapper = GetNewInstanceOf<PercentileMapper>();
-            table = PercentileMapper.Map(tableName);
+            table = PercentileMapper.Map(Name, tableName);
         }
 
         public abstract void TableIsComplete();

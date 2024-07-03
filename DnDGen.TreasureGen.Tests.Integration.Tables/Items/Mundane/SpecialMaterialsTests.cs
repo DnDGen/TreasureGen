@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane
 {
@@ -36,7 +36,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Mundane
         public void TableContainsAllSpecialMaterials()
         {
             var materials = TraitConstants.SpecialMaterials.All();
-            var table = CollectionMapper.Map(tableName);
+            var table = CollectionMapper.Map(Name, tableName);
             Assert.That(table.Keys, Is.SupersetOf(materials));
         }
     }

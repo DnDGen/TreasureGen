@@ -266,7 +266,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(66, 92, 9266);
             SetUpRoll(34, 34, 34);
 
-            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(true);
 
             var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(34));
@@ -288,7 +288,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             SetUpRoll(66, 92, 9266);
             SetUpRoll(34, 34, 34);
 
-            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.IsDeckOfIllusionsFullyCharged)).Returns(false);
 
             var charges = generator.GenerateFor(string.Empty, WondrousItemConstants.DeckOfIllusions);
             Assert.That(charges, Is.EqualTo(9266));

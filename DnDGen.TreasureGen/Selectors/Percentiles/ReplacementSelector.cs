@@ -30,7 +30,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
 
         private Dictionary<string, IEnumerable<string>> GetReplacementTargetsAndTables(string source, bool allowSingle)
         {
-            var replacements = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.ReplacementStrings);
+            var replacements = collectionsSelector.SelectAllFrom(Config.Name, TableNameConstants.Collections.Set.ReplacementStrings);
             var matchingReplacements = replacements
                 .Where(kvp => source.Contains(kvp.Key))
                 .Where(kvp => allowSingle || kvp.Value.Count() > 1)

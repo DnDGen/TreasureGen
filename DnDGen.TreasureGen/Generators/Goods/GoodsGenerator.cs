@@ -52,7 +52,7 @@ namespace DnDGen.TreasureGen.Generators.Goods
             var valueSelection = typeAndAmountPercentileSelector.SelectFrom(valueTableName);
 
             var good = new Good();
-            good.Description = collectionSelector.SelectRandomFrom(descriptionTableName, valueSelection.Type);
+            good.Description = collectionSelector.SelectRandomFrom(Config.Name, descriptionTableName, valueSelection.Type);
             good.ValueInGold = valueSelection.Amount;
 
             return good;

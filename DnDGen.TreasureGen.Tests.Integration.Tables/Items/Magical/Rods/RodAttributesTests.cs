@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using DnDGen.TreasureGen.Items;
+﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Tables;
+using NUnit.Framework;
 
 namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
 {
@@ -107,7 +107,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Magical.Rods
             var rodAttributes = table[rod];
 
             var weaponAttributesTableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            var weaponAttributesTable = CollectionMapper.Map(weaponAttributesTableName);
+            var weaponAttributesTable = CollectionMapper.Map(Name, weaponAttributesTableName);
             var weaponAttributes = weaponAttributesTable[weapon];
 
             Assert.That(rodAttributes, Is.SupersetOf(weaponAttributes));

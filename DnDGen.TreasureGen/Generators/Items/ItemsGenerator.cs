@@ -84,7 +84,7 @@ namespace DnDGen.TreasureGen.Generators.Items
         private Item GenerateRandomMundaneItem()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, PowerConstants.Mundane);
-            var itemType = percentileSelector.SelectFrom(tableName);
+            var itemType = percentileSelector.SelectFrom(Config.Name, tableName);
 
             return GenerateMundaneItem(itemType);
         }
@@ -92,7 +92,7 @@ namespace DnDGen.TreasureGen.Generators.Items
         private Item GenerateRandomMagicalItemAtPower(string power)
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERItems, power);
-            var itemType = percentileSelector.SelectFrom(tableName);
+            var itemType = percentileSelector.SelectFrom(Config.Name, tableName);
 
             return GenerateMagicalItemAtPower(power, itemType);
         }
@@ -104,10 +104,10 @@ namespace DnDGen.TreasureGen.Generators.Items
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
             var result = typeAndAmountPercentileSelector.SelectFrom(tableName);
-            var powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemType);
+            var powers = collectionSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, itemType);
 
             if (itemType != ItemTypeConstants.Scroll && itemType != ItemTypeConstants.Wand)
-                powers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+                powers = collectionSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, itemName);
 
             var power = PowerHelper.AdjustPower(result.Type, powers);
             if (power == PowerConstants.Mundane)

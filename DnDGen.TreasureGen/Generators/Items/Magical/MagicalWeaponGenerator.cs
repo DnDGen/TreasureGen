@@ -65,9 +65,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private string GenerateRandomName()
         {
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
+            var type = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MagicalWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
-            var name = percentileSelector.SelectFrom(tableName);
+            var name = percentileSelector.SelectFrom(Config.Name, tableName);
 
             return name;
         }
@@ -89,14 +89,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var bonus = string.Empty;
             var specialAbilitiesCount = 0;
 
-            do bonus = percentileSelector.SelectFrom(tableName);
+            do bonus = percentileSelector.SelectFrom(Config.Name, tableName);
             while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
 
             while (bonus == SpecialAbility)
             {
                 specialAbilitiesCount++;
 
-                do bonus = percentileSelector.SelectFrom(tableName);
+                do bonus = percentileSelector.SelectFrom(Config.Name, tableName);
                 while (!canBeSpecific && bonus == ItemTypeConstants.Weapon);
             }
 
@@ -112,7 +112,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             prototype.Name = itemName;
-            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
+            prototype.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, itemName);
             prototype.Quantity = 0;
             prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), specialAbilitiesCount);
@@ -183,7 +183,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             if (weapon.Magic.SpecialAbilities.Any(a => a.Name == SpecialAbilityConstants.SpellStoring))
             {
-                var shouldStoreSpell = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
+                var shouldStoreSpell = percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.SpellStoringContainsSpell);
 
                 if (shouldStoreSpell)
                 {
@@ -267,7 +267,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name);
+            template.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, template.Name);
 
             var weapon = new Weapon();
 

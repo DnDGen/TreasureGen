@@ -46,7 +46,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             item.Attributes = itemAttributes;
             item.Magic.Bonus = 1;
 
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(names);
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(Config.Name, It.IsAny<string>())).Returns(names);
 
             var count = 0;
 
@@ -63,8 +63,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(It.IsAny<string>()), Times.Never);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectFrom(Config.Name, It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 0);
             Assert.That(abilities, Is.Empty);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(It.IsAny<string>()), Times.Never);
-            mockPercentileSelector.Verify(s => s.SelectFrom(It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(s => s.SelectFrom(Config.Name, It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilities, Is.Not.Empty);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Shield);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, tableName), Times.Once);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilities, Is.Not.Empty);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, tableName), Times.Once);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilities, Is.Not.Empty);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, tableName), Times.Once);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(abilities, Is.Not.Empty);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, ItemTypeConstants.Armor);
-            mockPercentileSelector.Verify(s => s.SelectAllFrom(tableName), Times.Once);
+            mockPercentileSelector.Verify(s => s.SelectAllFrom(Config.Name, tableName), Times.Once);
         }
 
         [Test]
@@ -143,7 +143,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetAbilityByResult()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Not.Empty);
@@ -165,7 +165,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 1");
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
                 .Returns("ability 1")
                 .Returns("ability 2")
                 .Returns("ability 3");
@@ -184,11 +184,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamage()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -212,11 +212,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamages()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage = damageHelper.BuildEntries("my roll", "my damage type", string.Empty, "my other roll", "my other damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -243,11 +243,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamage_WithCondition()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", "my condition");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -271,11 +271,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamages_WithCondition()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage = damageHelper.BuildEntries("my roll", "my damage type", "my condition", "my other roll", "my other damage type", "my other condition");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -302,13 +302,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetCriticalDamageByMultiplier()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -344,13 +344,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetCriticalDamagesByMultiplier()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntries("my roll", "my damage type", string.Empty, "my roll 2", "my damage type 2", string.Empty);
             var damage2 = damageHelper.BuildEntries("my other roll", "my other damage type", string.Empty, "my other roll 2", "my other damage type 2", string.Empty);
             var damage3 = damageHelper.BuildEntries("my third roll", "my third damage type", string.Empty, "my third roll 2", "my third damage type 2", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -395,13 +395,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetCriticalDamageByMultiplier_WithCondition()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", "my condition");
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", "my other condition");
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", "my third condition");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -437,13 +437,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetCriticalDamagesByMultiplier_WithCondition()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntries("my roll", "my damage type", "my condition", "my roll 2", "my damage type 2", "my condition 2");
             var damage2 = damageHelper.BuildEntries("my other roll", "my other damage type", "my other condition", "my other roll 2", "my other damage type 2", "my other condition 2");
             var damage3 = damageHelper.BuildEntries("my third roll", "my third damage type", "my third condition", "my third roll 2", "my third damage type 2", "my third condition 2");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -488,14 +488,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamageAndCriticalDamageByMultiplier()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             var damage4 = damageHelper.BuildEntry("my last roll", "my last damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage1, damage2, damage3, damage4 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -534,14 +534,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_SetDamagesAndCriticalDamagesByMultiplier_WithConditions()
         {
             CreateSpecialAbility("name", "base name", 9, 266);
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("name");
 
             var damage1 = damageHelper.BuildEntries("my roll", "my damage type", "my condition", "my roll 2", "my damage type 2", "my condition 2");
             var damage2 = damageHelper.BuildEntries("my other roll", "my other damage type", "my other condition", "my other roll 2", "my other damage type 2", "my other condition 2");
             var damage3 = damageHelper.BuildEntries("my third roll", "my third damage type", "my third condition", "my third roll 2", "my third damage type 2", "my third condition 2");
             var damage4 = damageHelper.BuildEntries("my last roll", "my last damage type", "my last condition", "my last roll 2", "my last damage type 2", "my last condition 2");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "name"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "name"))
                 .Returns(new[] { damage1, damage2, damage3, damage4 });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
@@ -596,19 +596,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemAttributes.Add(AttributeConstants.Ranged);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Melee);
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[] { "melee ability" });
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(Config.Name, tableName)).Returns(new[] { "melee ability" });
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERATTRIBUTESpecialAbilities, power, AttributeConstants.Ranged);
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(tableName)).Returns(new[] { "ranged ability" });
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(Config.Name, tableName)).Returns(new[] { "ranged ability" });
 
             var meleeResult = new SpecialAbilitySelection();
             meleeResult.BaseName = "melee ability";
             mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(meleeResult.BaseName)).Returns(meleeResult);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, meleeResult.BaseName)).Returns(itemAttributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, meleeResult.BaseName)).Returns(itemAttributes);
 
             var rangedResult = new SpecialAbilitySelection();
             rangedResult.BaseName = "ranged ability";
             mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(rangedResult.BaseName)).Returns(rangedResult);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, rangedResult.BaseName)).Returns(itemAttributes);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             Assert.That(abilities, Is.Not.Empty);
@@ -628,7 +628,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("big ability", bonus: 2);
             CreateSpecialAbility("small ability", bonus: 1);
 
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
                 .Returns("big ability")
                 .Returns("small ability");
 
@@ -650,7 +650,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 3", bonus: 3);
             CreateSpecialAbility("ability 4", bonus: 0);
 
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
                 .Returns("ability 1")
                 .Returns("ability 2")
                 .Returns("ability 3")
@@ -672,7 +672,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("weak ability", "ability", power: 1);
             CreateSpecialAbility("strong ability", "ability", power: 2);
 
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
                 .Returns("weak ability")
                 .Returns("strong ability");
 
@@ -692,7 +692,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("weak ability", power: 1);
             CreateSpecialAbility("strong ability", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("weak ability").Returns("strong ability");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("weak ability").Returns("strong ability");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
             Assert.That(abilities, Is.Not.Empty);
@@ -709,7 +709,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("strong ability", "ability", power: 2);
             CreateSpecialAbility("weak ability", "ability", power: 1);
             CreateSpecialAbility("other ability");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("strong ability").Returns("weak ability")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("strong ability").Returns("weak ability")
                 .Returns("other ability");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
@@ -727,7 +727,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2", bonus: 2);
             CreateSpecialAbility("ability 3", bonus: 3);
             CreateSpecialAbility("ability 4", bonus: 3);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 4);
@@ -746,7 +746,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 1", bonus: 9);
             CreateSpecialAbility("ability 2", bonus: 0);
             CreateSpecialAbility("ability 3", bonus: 3);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
@@ -764,7 +764,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 1");
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 1")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 1")
                 .Returns("ability 2");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 2);
@@ -781,10 +781,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1")).Returns(new[] { "other type", "type 1" });
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2")).Returns(itemAttributes);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1"))
+                .Returns(new[] { "other type", "type 1" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2"))
+                .Returns(itemAttributes);
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Not.Empty);
@@ -801,10 +805,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
 
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1")).Returns(new[] { "other/order/of/type", "type 1" });
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2")).Returns(new[] { "either/or" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 1"))
+                .Returns(new[] { "other/order/of/type", "type 1" });
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base ability 2"))
+                .Returns(new[] { "either/or" });
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Not.Empty);
@@ -818,7 +826,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_ExtraAttributesDoNotMatter()
         {
             CreateSpecialAbility("ability");
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("ability");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability");
             itemAttributes.Add("type 1");
             item.Attributes = itemAttributes.Union(new[] { "other type" });
 
@@ -835,7 +843,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("ability 1", "base ability 1");
             CreateSpecialAbility("ability 2", "base ability 2");
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>()))
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
                 .Returns("BonusSpecialAbility")
                 .Returns("ability 1")
                 .Returns("ability 2");
@@ -853,7 +861,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFor_StopIfAllPossibleAbilitiesAcquired()
         {
             CreateSpecialAbility("ability");
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("ability");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 5);
             Assert.That(abilities, Is.Not.Empty);
@@ -865,7 +873,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             CreateSpecialAbility("ability 1", "base name", power: 1);
             CreateSpecialAbility("ability 2", "base name", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2");
 
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
@@ -878,7 +886,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFor_ReturnEmptyIfNoCompatibleAbilities()
         {
-            mockPercentileSelector.Setup(p => p.SelectAllFrom(It.IsAny<string>())).Returns(Enumerable.Empty<string>());
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(Config.Name, It.IsAny<string>())).Returns(Enumerable.Empty<string>());
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 1);
             Assert.That(abilities, Is.Empty);
         }
@@ -890,7 +898,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3", "ability", power: 1);
             CreateSpecialAbility("ability 4", "ability", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 1")).Returns(true);
@@ -906,7 +914,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<string>()), Times.Never);
+            mockPercentileSelector.Verify(p => p.SelectFrom(Config.Name, It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -916,7 +924,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2", bonus: 3);
             CreateSpecialAbility("ability 3", bonus: 3);
             CreateSpecialAbility("ability 4", bonus: 3);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 1").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 4");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 5);
@@ -927,7 +935,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 3"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<string>()), Times.Exactly(3));
+            mockPercentileSelector.Verify(p => p.SelectFrom(Config.Name, It.IsAny<string>()), Times.Exactly(3));
         }
 
         [Test]
@@ -937,7 +945,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3", "ability", power: 1);
             CreateSpecialAbility("ability 4", "ability", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 4").Returns("ability 2")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("ability 4").Returns("ability 2")
                 .Returns("ability 3").Returns("ability 1");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
@@ -948,7 +956,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<string>()), Times.Once);
+            mockPercentileSelector.Verify(p => p.SelectFrom(Config.Name, It.IsAny<string>()), Times.Once);
         }
 
         [Test]
@@ -958,7 +966,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             CreateSpecialAbility("ability 2");
             CreateSpecialAbility("ability 3", "ability", power: 1);
             CreateSpecialAbility("ability 4", "ability", power: 2);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(It.IsAny<string>())).Returns("ability 3").Returns("BonusSpecialAbility")
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, It.IsAny<string>()))
+                .Returns("ability 3").Returns("BonusSpecialAbility")
                 .Returns("ability 2").Returns("ability 1").Returns("ability 4");
 
             var abilities = specialAbilitiesGenerator.GenerateFor(item, power, 3);
@@ -969,7 +978,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             Assert.That(names, Contains.Item("ability 2"));
             Assert.That(names, Contains.Item("ability 4"));
             Assert.That(names.Count(), Is.EqualTo(3));
-            mockPercentileSelector.Verify(p => p.SelectFrom(It.IsAny<string>()), Times.Exactly(2));
+            mockPercentileSelector.Verify(p => p.SelectFrom(Config.Name, It.IsAny<string>()), Times.Exactly(2));
         }
 
         private void CreateSpecialAbility(string name, string baseName = "", int bonus = 0, int power = 0)
@@ -986,7 +995,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             names.Add(name);
 
             mockSpecialAbilityDataSelector.Setup(s => s.SelectFrom(name)).Returns(result);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, result.BaseName)).Returns(itemAttributes);
+            mockCollectionsSelector
+                .Setup(p => p.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, result.BaseName))
+                .Returns(itemAttributes);
         }
 
         [Test]
@@ -1005,20 +1016,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]
@@ -1088,25 +1105,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2.1")).Returns(true);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var higherDamage = damageHelper.BuildEntry("my higher roll", "my higher damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2.1"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2.1"))
                 .Returns(new[] { higherDamage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]
@@ -1175,20 +1198,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(true);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]
@@ -1257,20 +1286,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(false);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type");
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type");
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type");
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]
@@ -1324,20 +1359,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]
@@ -1405,27 +1446,33 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3.1")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var damage11 = damageHelper.BuildEntry("my higher roll", "my higher damage type", string.Empty);
             var damage21 = damageHelper.BuildEntry("my other higher roll", "my other higher damage type", string.Empty);
             var damage31 = damageHelper.BuildEntry("my third higher roll", "my third higher damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3.1"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3.1"))
                 .Returns(new[] { string.Empty, damage11, damage21, damage31 });
 
             var abilityPrototypes = new[]
@@ -1492,20 +1539,26 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 2")).Returns(false);
             mockSpecialAbilityDataSelector.Setup(s => s.IsSpecialAbility("ability 3")).Returns(true);
 
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1")).Returns(attributeRequirements[0]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2")).Returns(attributeRequirements[1]);
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3")).Returns(attributeRequirements[2]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 1"))
+                .Returns(attributeRequirements[0]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 2"))
+                .Returns(attributeRequirements[1]);
+            mockCollectionsSelector
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, "base 3"))
+                .Returns(attributeRequirements[2]);
 
             var damage = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 2"))
                 .Returns(new[] { damage, string.Empty, string.Empty, string.Empty });
 
             var damage1 = damageHelper.BuildEntry("my roll", "my damage type", string.Empty);
             var damage2 = damageHelper.BuildEntry("my other roll", "my other damage type", string.Empty);
             var damage3 = damageHelper.BuildEntry("my third roll", "my third damage type", string.Empty);
             mockCollectionsSelector
-                .Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
+                .Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, "ability 3"))
                 .Returns(new[] { string.Empty, damage1, damage2, damage3 });
 
             var abilityPrototypes = new[]

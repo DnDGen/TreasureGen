@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            var attributes = collectionsSelector.SelectFrom(tableName, itemName);
+            var attributes = collectionsSelector.SelectFrom(Config.Name, tableName, itemName);
 
             if (attributes.Contains(AttributeConstants.Shield))
             {
@@ -89,10 +89,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private (string Name, string ArmorType) GenerateRandomName(string power)
         {
             var armorTypeTableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERArmorTypes, power, ItemTypeConstants.Armor);
-            var armorType = percentileSelector.SelectFrom(armorTypeTableName);
+            var armorType = percentileSelector.SelectFrom(Config.Name, armorTypeTableName);
 
             var nameTableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, armorType);
-            var name = percentileSelector.SelectFrom(nameTableName);
+            var name = percentileSelector.SelectFrom(Config.Name, nameTableName);
 
             return (name, armorType);
         }
@@ -114,14 +114,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var bonus = string.Empty;
             var abilityCount = 0;
 
-            do bonus = percentileSelector.SelectFrom(tableName);
+            do bonus = percentileSelector.SelectFrom(Config.Name, tableName);
             while (!canBeSpecific && bonus == ItemTypeConstants.Armor);
 
             while (bonus == SpecialAbility)
             {
                 abilityCount++;
 
-                do bonus = percentileSelector.SelectFrom(tableName);
+                do bonus = percentileSelector.SelectFrom(Config.Name, tableName);
                 while (!canBeSpecific && bonus == ItemTypeConstants.Armor);
             }
 
@@ -137,7 +137,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             prototype.Name = itemName;
-            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, itemName);
+            prototype.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, itemName);
             prototype.Magic.Bonus = Convert.ToInt32(bonus);
             prototype.Magic.SpecialAbilities = Enumerable.Repeat(new SpecialAbility(), abilityCount);
 
@@ -174,7 +174,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             var armorTemplate = new Armor();
             template.CloneInto(armorTemplate);
             armorTemplate.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
-            armorTemplate.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, armorTemplate.Name);
+            armorTemplate.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, armorTemplate.Name);
 
             var armor = GenerateFromPrototype(armorTemplate);
 

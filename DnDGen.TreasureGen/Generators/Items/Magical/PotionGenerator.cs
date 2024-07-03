@@ -49,7 +49,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var possiblePowers = collectionSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var possiblePowers = collectionSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, itemName);
             var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Potion);

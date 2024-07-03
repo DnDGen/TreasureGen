@@ -44,7 +44,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var possiblePowers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, itemName);
             var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.Ring);
@@ -79,7 +79,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ring.Traits = new HashSet<string>(traits);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ring.ItemType);
-            ring.Attributes = collectionsSelector.SelectFrom(tableName, name);
+            ring.Attributes = collectionsSelector.SelectFrom(Config.Name, tableName, name);
 
             if (ring.Attributes.Contains(AttributeConstants.Charged))
                 ring.Magic.Charges = chargesGenerator.GenerateFor(ItemTypeConstants.Ring, name);
@@ -142,7 +142,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             ring.IsMagical = true;
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Ring);
-            ring.Attributes = collectionsSelector.SelectFrom(tableName, ring.Name);
+            ring.Attributes = collectionsSelector.SelectFrom(Config.Name, tableName, ring.Name);
 
             return ring.SmartClone();
         }

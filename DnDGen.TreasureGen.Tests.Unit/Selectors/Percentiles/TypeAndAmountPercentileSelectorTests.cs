@@ -21,7 +21,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
             mockDice = new Mock<Dice>();
             typeAndAmountPercentileSelector = new TypeAndAmountPercentileSelector(mockPercentileSelector.Object, mockDice.Object);
 
-            mockPercentileSelector.Setup(p => p.SelectFrom("table name")).Returns("type,amount");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, "table name")).Returns("type,amount");
             SetUpRoll("amount", 9266);
         }
 
@@ -36,13 +36,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         public void AccessesPercentileSelectorWithTableNameAndRoll()
         {
             typeAndAmountPercentileSelector.SelectFrom("table name");
-            mockPercentileSelector.Verify(p => p.SelectFrom("table name"), Times.Once);
+            mockPercentileSelector.Verify(p => p.SelectFrom(Config.Name, "table name"), Times.Once);
         }
 
         [Test]
         public void ReturnEmptyIfPercentileIsEmpty()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns(string.Empty);
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns(string.Empty);
 
             var result = typeAndAmountPercentileSelector.SelectFrom("table name");
             Assert.That(result.Type, Is.Empty);
@@ -66,14 +66,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         [Test]
         public void ThrowFormatExceptionIfNoComma()
         {
-            mockPercentileSelector.Setup(p => p.SelectFrom(It.IsAny<string>())).Returns("no comma in this result");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, It.IsAny<string>())).Returns("no comma in this result");
             Assert.That(() => typeAndAmountPercentileSelector.SelectFrom("table name"), Throws.InstanceOf<FormatException>().With.Message.EqualTo("no comma in this result is not formatted for type and amount parsing"));
         }
 
         [Test]
         public void SelectAllResults()
         {
-            mockPercentileSelector.Setup(p => p.SelectAllFrom("table name")).Returns(new[] { "type,amount", "other type,other amount" });
+            mockPercentileSelector.Setup(p => p.SelectAllFrom(Config.Name, "table name")).Returns(new[] { "type,amount", "other type,other amount" });
             SetUpRoll("other amount", 90210);
 
             var results = typeAndAmountPercentileSelector.SelectAllFrom("table name");

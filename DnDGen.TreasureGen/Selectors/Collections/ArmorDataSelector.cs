@@ -1,8 +1,8 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Linq;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Selectors.Collections
 {
@@ -17,7 +17,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 
         public ArmorSelection Select(string name)
         {
-            var data = innerSelector.SelectFrom(TableNameConstants.Collections.Set.ArmorData, name).ToArray();
+            var data = innerSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ArmorData, name).ToArray();
 
             var selection = new ArmorSelection();
             selection.ArmorBonus = Convert.ToInt32(data[DataIndexConstants.Armor.ArmorBonus]);

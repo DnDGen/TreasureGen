@@ -29,12 +29,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public bool HasCurse(Item item)
         {
-            return item.IsMagical && percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsItemCursed);
+            return item.IsMagical && percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.IsItemCursed);
         }
 
         public string GenerateCurse()
         {
-            var curse = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Curses);
+            var curse = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.Curses);
 
             if (curse == CurseConstants.Intermittent)
             {
@@ -43,7 +43,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             }
 
             if (curse == CurseConstants.Drawback)
-                return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CurseDrawbacks);
+                return percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.CurseDrawbacks);
 
             return curse;
         }
@@ -58,13 +58,13 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (roll == 3)
                 return "Uncontrolled";
 
-            var situation = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.CursedDependentSituations);
+            var situation = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.CursedDependentSituations);
             return $"Dependent: {situation}";
         }
 
         public Item GenerateRandom()
         {
-            var name = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var name = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
             return Generate(name);
         }
 
@@ -87,12 +87,12 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (IsSpecificCursedItem(itemName))
                 return itemName;
 
-            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            var cursedItems = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
             var cursedNames = new List<string>();
 
             foreach (var cursedName in cursedItems)
             {
-                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, cursedName);
+                var baseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, cursedName);
                 if (baseNames.Contains(itemName))
                     cursedNames.Add(cursedName);
             }
@@ -106,7 +106,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             var specificCursedItem = new Item();
             specificCursedItem.Name = name;
-            specificCursedItem.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            specificCursedItem.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, name);
             specificCursedItem.Magic.Curse = CurseConstants.SpecificCursedItem;
 
             return specificCursedItem;
@@ -115,8 +115,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private Item GenerateFromPrototype(Item prototype)
         {
             var specificCursedItem = prototype.Clone();
-            specificCursedItem.ItemType = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name).Single();
-            specificCursedItem.Attributes = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
+            specificCursedItem.ItemType = collectionsSelector
+                .SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecificCursedItemItemTypes, specificCursedItem.Name)
+                .Single();
+            specificCursedItem.Attributes = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecificCursedItemAttributes, specificCursedItem.Name);
 
             if (specificCursedItem.ItemType == ItemTypeConstants.Armor)
                 return GetArmor(specificCursedItem);
@@ -169,7 +171,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public bool IsSpecificCursedItem(string itemName)
         {
-            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            var cursedItems = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
             return cursedItems.Contains(itemName);
         }
 
@@ -178,10 +180,10 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             if (IsSpecificCursedItem(itemName))
                 return true;
 
-            var cursedItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
+            var cursedItems = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, CurseConstants.SpecificCursedItem);
             foreach (var item in cursedItems)
             {
-                var baseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, item);
+                var baseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, item);
                 if (baseNames.Contains(itemName))
                     return true;
             }
@@ -191,14 +193,14 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public bool ItemTypeCanBeSpecificCursedItem(string itemType)
         {
-            var itemTypes = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
+            var itemTypes = collectionsSelector.SelectAllFrom(Config.Name, TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
             return itemTypes.Values.SelectMany(v => v).Contains(itemType);
         }
 
         public Item Generate(Item template, bool allowDecoration = false)
         {
             var prototype = template.SmartClone();
-            prototype.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, prototype.Name);
+            prototype.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, prototype.Name);
             prototype.Magic.Curse = CurseConstants.SpecificCursedItem;
             prototype.Quantity = 1;
             prototype.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
@@ -222,7 +224,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private string GetCursedNameFromItemType(string itemType)
         {
-            var cursedItems = collectionsSelector.SelectAllFrom(TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
+            var cursedItems = collectionsSelector.SelectAllFrom(Config.Name, TableNameConstants.Collections.Set.SpecificCursedItemItemTypes);
             var cursedNames = cursedItems
                 .Where(kvp => kvp.Value.Contains(itemType))
                 .Select(kvp => kvp.Key);

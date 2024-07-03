@@ -1,8 +1,8 @@
 ﻿using DnDGen.RollGen;
+using DnDGen.TreasureGen.Selectors.Selections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnDGen.TreasureGen.Selectors.Selections;
 
 namespace DnDGen.TreasureGen.Selectors.Percentiles
 {
@@ -19,7 +19,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
 
         public TypeAndAmountSelection SelectFrom(string tableName)
         {
-            var percentileResult = percentileSelector.SelectFrom(tableName);
+            var percentileResult = percentileSelector.SelectFrom(Config.Name, tableName);
             var result = ParseResult(percentileResult);
 
             return result;
@@ -45,7 +45,7 @@ namespace DnDGen.TreasureGen.Selectors.Percentiles
 
         public IEnumerable<TypeAndAmountSelection> SelectAllFrom(string tablename)
         {
-            var percentileResults = percentileSelector.SelectAllFrom(tablename);
+            var percentileResults = percentileSelector.SelectAllFrom(Config.Name, tablename);
             var results = percentileResults.Select(r => ParseResult(r));
 
             return results;

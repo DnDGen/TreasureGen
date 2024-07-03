@@ -23,7 +23,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         public void GetRawAttributesFromAttributesSelector()
         {
             var attributes = new[] { "42", "9266" };
-            mockInnerSelector.Setup(s => s.SelectFrom("table name", "name")).Returns(attributes);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, "table name", "name")).Returns(attributes);
 
             var result = rangeDataSelector.SelectFrom("table name", "name");
             Assert.That(result.Minimum, Is.EqualTo(42));
@@ -34,14 +34,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         public void ThrowErrorIfOnly1Attributes()
         {
             var attributes = new[] { "42" };
-            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
             Assert.That(() => rangeDataSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Data is not in format for range"));
         }
 
         [Test]
         public void ThrowErrorIfNoAttributes()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(Enumerable.Empty<string>());
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, It.IsAny<string>(), It.IsAny<string>())).Returns(Enumerable.Empty<string>());
             Assert.That(() => rangeDataSelector.SelectFrom(string.Empty, string.Empty), Throws.Exception.With.Message.EqualTo("Data is not in format for range"));
         }
     }

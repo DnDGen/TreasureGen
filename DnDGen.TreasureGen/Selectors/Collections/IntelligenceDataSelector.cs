@@ -1,8 +1,8 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Linq;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Selectors.Collections
 {
@@ -17,7 +17,7 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 
         public IntelligenceSelection SelectFrom(string name)
         {
-            var data = innerSelector.SelectFrom(TableNameConstants.Collections.Set.IntelligenceData, name).ToList();
+            var data = innerSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.IntelligenceData, name).ToList();
 
             if (data.Count != 3)
                 throw new Exception("Data is not formatted for intelligence");

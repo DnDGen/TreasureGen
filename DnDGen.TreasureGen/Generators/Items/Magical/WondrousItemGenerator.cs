@@ -48,7 +48,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         public Item Generate(string power, string itemName, params string[] traits)
         {
-            var possiblePowers = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.PowerGroups, itemName);
+            var possiblePowers = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.PowerGroups, itemName);
             var adjustedPower = PowerHelper.AdjustPower(power, possiblePowers);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, adjustedPower, ItemTypeConstants.WondrousItem);
@@ -72,7 +72,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             item.Traits = new HashSet<string>(traits);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, item.ItemType);
-            item.Attributes = collectionsSelector.SelectFrom(tableName, name);
+            item.Attributes = collectionsSelector.SelectFrom(Config.Name, tableName, name);
 
             if (item.Attributes.Contains(AttributeConstants.Charged))
                 item.Magic.Charges = chargesGenerator.GenerateFor(item.ItemType, name);
@@ -94,9 +94,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         {
             switch (name)
             {
-                case WondrousItemConstants.HornOfValhalla: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
-                case WondrousItemConstants.CandleOfInvocation: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IntelligenceAlignments);
-                case WondrousItemConstants.RobeOfTheArchmagi: return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
+                case WondrousItemConstants.HornOfValhalla: return percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.HornOfValhallaTypes);
+                case WondrousItemConstants.CandleOfInvocation: return percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.IntelligenceAlignments);
+                case WondrousItemConstants.RobeOfTheArchmagi: return percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.RobeOfTheArchmagiColors);
                 default: return string.Empty;
             }
         }
@@ -118,20 +118,20 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
         private IEnumerable<string> GetIronFlaskContents()
         {
-            var contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.IronFlaskContents);
+            var contents = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.IronFlaskContents);
 
             if (string.IsNullOrEmpty(contents))
                 return Enumerable.Empty<string>();
 
             if (contents == TableNameConstants.Percentiles.Set.BalorOrPitFiend)
-                contents = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.BalorOrPitFiend);
+                contents = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.BalorOrPitFiend);
 
             return new[] { contents };
         }
 
         private IEnumerable<string> GetRobeOfUsefulItemsItems()
         {
-            var baseItems = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
+            var baseItems = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WondrousItemContents, WondrousItemConstants.RobeOfUsefulItems);
             var extraItems = GenerateExtraItemsInRobeOfUsefulItems();
 
             //INFO: Can't do Union because it will deduplicate the allowed duplicate items
@@ -145,7 +145,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         private IEnumerable<string> GetPartialContents(string name)
         {
             var quantity = chargesGenerator.GenerateFor(ItemTypeConstants.WondrousItem, name);
-            var fullContents = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WondrousItemContents, name).ToList();
+            var fullContents = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WondrousItemContents, name).ToList();
 
             if (quantity >= fullContents.Count)
                 return fullContents;
@@ -184,7 +184,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             while (quantity-- > 0)
             {
-                var item = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems);
+                var item = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.RobeOfUsefulItemsExtraItems);
 
                 if (item == ItemTypeConstants.Scroll)
                 {
@@ -208,7 +208,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             while (planes.Count < 6)
             {
-                var plane = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.Planes);
+                var plane = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.Planes);
                 planes.Add(plane);
             }
 
@@ -222,7 +222,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             item.BaseNames = new[] { item.Name };
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.WondrousItem);
-            item.Attributes = collectionsSelector.SelectFrom(tableName, item.Name);
+            item.Attributes = collectionsSelector.SelectFrom(Config.Name, tableName, item.Name);
             item.ItemType = ItemTypeConstants.WondrousItem;
 
             return item.SmartClone();
