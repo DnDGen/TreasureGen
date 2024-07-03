@@ -20,7 +20,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
         public Item GenerateRandom(string power)
         {
             var tablename = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            var spell = percentileSelector.SelectFrom(tablename);
+            var spell = percentileSelector.SelectFrom(Config.Name, tablename);
             var name = $"Wand of {spell}";
 
             return GenerateWand(name);

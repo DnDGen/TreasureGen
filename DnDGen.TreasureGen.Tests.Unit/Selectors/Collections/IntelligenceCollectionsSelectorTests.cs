@@ -27,7 +27,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
             data[DataIndexConstants.Intelligence.LesserPowersCount] = "42";
             data[DataIndexConstants.Intelligence.Senses] = "senses";
 
-            mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.IntelligenceData, "name")).Returns(data);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.IntelligenceData, "name")).Returns(data);
 
             var selection = selector.SelectFrom("name");
             Assert.That(selection.Senses, Is.EqualTo("senses"));
@@ -39,7 +39,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         public void ThrowErrorIfFewerThan3Attributes()
         {
             var data = new[] { "senses", "42" };
-            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(data);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, It.IsAny<string>(), It.IsAny<string>())).Returns(data);
             Assert.That(() => selector.SelectFrom("name"), Throws.Exception.With.Message.EqualTo("Data is not formatted for intelligence"));
         }
     }

@@ -95,7 +95,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items.Levels
             var majorLower = Math.Max(1, 17 - level + 30);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.LevelXItems, level);
-            var levelTable = PercentileMapper.Map(tableName);
+            var levelTable = PercentileMapper.Map(Name, tableName);
 
             var mediumEntry = table[1];
             var majorEntry = table[50];

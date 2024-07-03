@@ -52,14 +52,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetArmor()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERArmorTypes, "power", ItemTypeConstants.Armor);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor type");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "armor type");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns(9266.ToString());
 
             var mundaneArmor = new Armor();
@@ -77,14 +77,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERArmorTypes, "power", ItemTypeConstants.Armor);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor type");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "armor type");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(p => p.SelectFrom(tableName))
+                .SetupSequence(p => p.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(9266.ToString());
@@ -107,14 +107,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             specificArmor.Name = "specific armor";
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERArmorTypes, "power", ItemTypeConstants.Armor);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor type");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "armor type");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
@@ -203,7 +203,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             var specialAbilityNames = template.Magic.SpecialAbilities.Select(a => a.Name);
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, name)).Throws<ArgumentException>();
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, name)).Throws<ArgumentException>();
 
             var abilities = new[]
             {
@@ -230,11 +230,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName_Armor()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor name")).Returns(new[] { "attribute", "not shield attribute" });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "armor name")).Returns(new[] { "attribute", "not shield attribute" });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(9266.ToString());
@@ -254,11 +254,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName_Armor_WithTraits()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor name")).Returns(new[] { "attribute", "not shield attribute" });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "armor name")).Returns(new[] { "attribute", "not shield attribute" });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(9266.ToString());
@@ -292,11 +292,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName_Shield()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "shield name")).Returns(new[] { "attribute", AttributeConstants.Shield });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "shield name")).Returns(new[] { "attribute", AttributeConstants.Shield });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(9266.ToString());
@@ -316,11 +316,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName_Shield_WithTraits()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "shield name")).Returns(new[] { "attribute", AttributeConstants.Shield });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "shield name")).Returns(new[] { "attribute", AttributeConstants.Shield });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(9266.ToString());
@@ -355,16 +355,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "wrong armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "other armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other armor name");
 
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = new[] { "from mundane" } });
 
@@ -401,16 +401,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "wrong armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "other armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other armor name");
 
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = new[] { "from mundane" } });
 
@@ -453,16 +453,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "wrong armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "other armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other armor name");
 
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = new[] { "from mundane" } });
 
@@ -499,16 +499,16 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "wrong armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong armor name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, "other armor type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other armor name");
 
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = new[] { "from mundane" } });
 
@@ -551,19 +551,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor name")).Returns(new[] { "attribute", "other attribute" });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "armor name")).Returns(new[] { "attribute", "other attribute" });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, ItemTypeConstants.Armor);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             var baseNames = new[] { "from mundane", "base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = baseNames });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -595,20 +595,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificFromBaseName_Shield()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "base name")).Returns(new[] { "attribute", AttributeConstants.Shield });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "base name")).Returns(new[] { "attribute", AttributeConstants.Shield });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, AttributeConstants.Shield);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             var baseNames = new[] { "from mundane", "base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = baseNames });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -641,19 +641,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "armor name")).Returns(new[] { "attribute", "other attribute" });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "armor name")).Returns(new[] { "attribute", "other attribute" });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, ItemTypeConstants.Armor);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             var baseNames = new[] { "from mundane", "base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = baseNames });
 
             var attributes = new[] { "type 1", "type 2" };
@@ -690,20 +690,20 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificFromBaseName_Shield_WithTraits()
         {
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Armor);
-            mockCollectionsSelector.Setup(p => p.SelectFrom(tableName, "base name")).Returns(new[] { "attribute", AttributeConstants.Shield });
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "base name")).Returns(new[] { "attribute", AttributeConstants.Shield });
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, "power", ItemTypeConstants.Armor);
             mockPercentileSelector
-                .SetupSequence(s => s.SelectFrom(tableName))
+                .SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns(ItemTypeConstants.Armor);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.ARMORTYPETypes, AttributeConstants.Shield);
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("armor name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("armor name");
 
             var baseNames = new[] { "from mundane", "base name" };
-            mockCollectionsSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
+            mockCollectionsSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, "armor name")).Returns(baseNames);
             mockMundaneArmorGenerator.Setup(g => g.Generate(It.IsAny<Item>(), false)).Returns((Item template, bool decorate) => new Armor { Name = template.Name, BaseNames = baseNames });
 
             var attributes = new[] { "type 1", "type 2" };

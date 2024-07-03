@@ -48,7 +48,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetWandSpellFromSelector()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wand spell");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("wand spell");
 
             var wand = wandGenerator.GenerateRandom(power);
             Assert.That(wand.Name, Is.EqualTo("Wand of wand spell"));
@@ -58,7 +58,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetChargesFromGenerator()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("wand spell");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("wand spell");
             mockChargesGenerator.Setup(g => g.GenerateFor(ItemTypeConstants.Wand, "Wand of wand spell")).Returns(9266);
 
             var wand = wandGenerator.GenerateRandom(power);
@@ -105,7 +105,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("wrong spell")
                 .Returns("spell")
                 .Returns("other spell");
@@ -130,7 +130,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateFromName_WithTraits()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Wand);
-            mockPercentileSelector.SetupSequence(s => s.SelectFrom(tableName))
+            mockPercentileSelector.SetupSequence(s => s.SelectFrom(Config.Name, tableName))
                 .Returns("wrong spell")
                 .Returns("spell")
                 .Returns("other spell");

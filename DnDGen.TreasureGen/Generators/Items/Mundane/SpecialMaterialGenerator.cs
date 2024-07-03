@@ -1,11 +1,11 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Mundane;
 using DnDGen.TreasureGen.Selectors.Percentiles;
 using DnDGen.TreasureGen.Tables;
-using DnDGen.TreasureGen.Items;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Generators.Items.Mundane
 {
@@ -26,7 +26,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
                 return false;
 
             var attributesWithType = attributes.Union(new[] { itemType });
-            return percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.HasSpecialMaterial)
+            return percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.HasSpecialMaterial)
                    && AttributesAllowForSpecialMaterials(attributesWithType)
                    && TraitsAllowForSpecialMaterials(attributesWithType, traits);
         }
@@ -63,7 +63,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
             foreach (var material in allMaterials)
             {
-                var attributeRequirements = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialMaterials, material);
+                var attributeRequirements = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialMaterials, material);
                 specialMaterialAttributeRequirements.Add(material, attributeRequirements);
             }
 

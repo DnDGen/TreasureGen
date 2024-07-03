@@ -47,7 +47,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Goods
             var count = 0;
             object testLock = new object();
             mockCollectionsSelector
-                .Setup(p => p.SelectRandomFrom(tableName, It.IsAny<string>()))
+                .Setup(p => p.SelectRandomFrom(Config.Name, tableName, It.IsAny<string>()))
                 .Returns(() =>
                 {
                     lock (testLock)

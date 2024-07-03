@@ -52,9 +52,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             itemVerifier = new ItemVerifier();
 
             power = "power";
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("weapon type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("weapon type");
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("weapon name");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("weapon name");
 
             mundaneWeapon = new Weapon();
             mundaneWeapon.Name = "weapon name";
@@ -70,8 +70,8 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockMundaneWeaponGenerator.Setup(g => g.Generate(It.Is<Item>(i => i.NameMatches("weapon name")), true)).Returns(mundaneWeapon);
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns("9266");
-            mockPercentileSelector.Setup(s => s.SelectAllFrom(tableName)).Returns(new[] { "9266", "90210", "42", "SpecialAbility", ItemTypeConstants.Weapon });
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns("9266");
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(Config.Name, tableName)).Returns(new[] { "9266", "90210", "42", "SpecialAbility", ItemTypeConstants.Weapon });
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecificWeaponFromGenerator()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = Guid.NewGuid().ToString();
@@ -203,7 +203,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void BUG_GetSpecificWeaponFromGenerator_HasQuantity()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.Setup(s => s.SelectFrom(tableName)).Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, tableName)).Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = Guid.NewGuid().ToString();
@@ -229,7 +229,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var abilities = new[] { new SpecialAbility() };
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(mundaneWeapon, power, 2)).Returns(abilities);
@@ -242,7 +242,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_Damages()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -271,7 +271,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_Damages_EmptyDamageType()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = string.Empty, Condition = "my condition" });
@@ -300,7 +300,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_CriticalDamages()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.CriticalDamages["crit"] = new List<Damage>();
@@ -327,7 +327,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_CriticalDamages_EmptyDamageType()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.CriticalDamages["crit"] = new List<Damage>();
@@ -356,7 +356,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_DamagesAndCriticalDamages()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -393,7 +393,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_DamagesAndCriticalDamages_EmptyDamageTypes()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = string.Empty, Condition = "my condition" });
@@ -439,7 +439,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -483,7 +483,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = string.Empty, Condition = "my condition" });
@@ -527,7 +527,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.CriticalDamages["crit"] = new List<Damage>();
@@ -562,7 +562,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(true);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -629,7 +629,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -664,7 +664,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.CriticalDamages["crit"] = new List<Damage>();
@@ -698,7 +698,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mockPercentileSelector.Setup(s => s.SelectFrom(.5)).Returns(false);
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability = new SpecialAbility();
             ability.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -735,7 +735,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GetSpecialAbilitiesFromGenerator_Damages_MultipleAbilities()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var ability1 = new SpecialAbility();
             ability1.Damages.Add(new Damage { Roll = "some", Type = "plasma", Condition = "my condition" });
@@ -806,7 +806,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
             mundaneWeapon.ThreatRange = originalThreatRange;
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
             var keen = new SpecialAbility { Name = SpecialAbilityConstants.Keen };
             var abilities = new[] { new SpecialAbility(), keen };
@@ -821,9 +821,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringWeaponHasSpellIfSelectorSaysSo()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(true);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(true);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("9266");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<Item>(), power, 1)).Returns(abilities);
@@ -839,9 +839,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void SpellStoringWeaponDoesNotHaveSpellIfSelectorSaysSo()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(false);
+            mockPercentileSelector.Setup(s => s.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.SpellStoringContainsSpell)).Returns(false);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("9266");
 
             var abilities = new[] { new SpecialAbility { Name = SpecialAbilityConstants.SpellStoring } };
             mockSpecialAbilitiesGenerator.Setup(p => p.GenerateFor(It.IsAny<Item>(), power, 1)).Returns(abilities);
@@ -1282,7 +1282,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector
-                .SetupSequence(p => p.SelectFrom(tableName))
+                .SetupSequence(p => p.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns("9266");
@@ -1301,15 +1301,15 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         [Test]
         public void GenerateFromName_WithTraits()
         {
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MagicalWeaponTypes))
                 .Returns("weapon type");
 
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("weapon name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
             mockPercentileSelector
-                .SetupSequence(p => p.SelectFrom(tableName))
+                .SetupSequence(p => p.SelectFrom(Config.Name, tableName))
                 .Returns("SpecialAbility")
                 .Returns("SpecialAbility")
                 .Returns("9266");
@@ -1342,7 +1342,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1363,7 +1363,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificFromName_WithTraits()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1386,7 +1386,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void BUG_GenerateSpecificFromName_WithQuantity()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1412,7 +1412,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificFromBaseName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1436,18 +1436,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificWithSpecialAbilitiesFromName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns("9266");
 
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("wrong weapon type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("wrong weapon type");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "wrong weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong weapon name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("weapon name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "other weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other weapon name");
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1474,18 +1474,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void GenerateSpecificWithSpecialAbilitiesFromBaseName()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
-            mockPercentileSelector.Setup(s => s.SelectFrom(TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("wrong weapon type");
+            mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MagicalWeaponTypes)).Returns("wrong weapon type");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "wrong weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("wrong weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("wrong weapon name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("weapon name");
 
             tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "other weapon type");
-            mockPercentileSelector.Setup(p => p.SelectFrom(tableName)).Returns("other weapon name");
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, tableName)).Returns("other weapon name");
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";
@@ -1515,7 +1515,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Magical
         public void BUG_GenerateSpecificFromBaseName_WithQuantity()
         {
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.POWERITEMTYPEs, power, ItemTypeConstants.Weapon);
-            mockPercentileSelector.SetupSequence(p => p.SelectFrom(tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
+            mockPercentileSelector.SetupSequence(p => p.SelectFrom(Config.Name, tableName)).Returns("SpecialAbility").Returns("SpecialAbility").Returns(ItemTypeConstants.Weapon);
 
             var specificWeapon = new Weapon();
             specificWeapon.Name = "specific weapon name";

@@ -23,7 +23,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         public void ReturnSpecialAbilityAttributesResult()
         {
             var attributes = new[] { "42", "base name", "9266" };
-            mockInnerSelector.Setup(s => s.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(attributes);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(attributes);
 
             var result = selector.SelectFrom("name");
             Assert.That(result.BaseName, Is.EqualTo("base name"));
@@ -35,14 +35,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         public void ThrowErrorIfFewerThan3Attributes()
         {
             var attributes = new[] { "base name", "42" };
-            mockInnerSelector.Setup(s => s.SelectFrom(It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, It.IsAny<string>(), It.IsAny<string>())).Returns(attributes);
             Assert.That(() => selector.SelectFrom("name"), Throws.Exception.With.Message.EqualTo("Data is not formatted for special abilities"));
         }
 
         [Test]
         public void IsSpecialAbility()
         {
-            mockInnerSelector.Setup(s => s.IsCollection(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(true);
+            mockInnerSelector.Setup(s => s.IsCollection(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(true);
             var isSpecialAbility = selector.IsSpecialAbility("name");
             Assert.That(isSpecialAbility, Is.True);
         }
@@ -50,7 +50,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Collections
         [Test]
         public void IsNotSpecialAbility()
         {
-            mockInnerSelector.Setup(s => s.IsCollection(TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(false);
+            mockInnerSelector.Setup(s => s.IsCollection(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributes, "name")).Returns(false);
             var isSpecialAbility = selector.IsSpecialAbility("name");
             Assert.That(isSpecialAbility, Is.False);
         }

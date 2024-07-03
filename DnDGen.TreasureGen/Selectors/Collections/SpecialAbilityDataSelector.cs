@@ -1,8 +1,8 @@
 ﻿using DnDGen.Infrastructure.Selectors.Collections;
-using System;
-using System.Linq;
 using DnDGen.TreasureGen.Selectors.Selections;
 using DnDGen.TreasureGen.Tables;
+using System;
+using System.Linq;
 
 namespace DnDGen.TreasureGen.Selectors.Collections
 {
@@ -17,12 +17,12 @@ namespace DnDGen.TreasureGen.Selectors.Collections
 
         public bool IsSpecialAbility(string name)
         {
-            return innerSelector.IsCollection(TableNameConstants.Collections.Set.SpecialAbilityAttributes, name);
+            return innerSelector.IsCollection(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributes, name);
         }
 
         public SpecialAbilitySelection SelectFrom(string name)
         {
-            var data = innerSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributes, name).ToArray();
+            var data = innerSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributes, name).ToArray();
 
             if (data.Length != 3)
                 throw new Exception("Data is not formatted for special abilities");

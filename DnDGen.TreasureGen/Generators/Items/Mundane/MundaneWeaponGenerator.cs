@@ -51,9 +51,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
         private string GetRandomName()
         {
-            var type = percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
+            var type = percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneWeaponTypes);
             var tableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, type);
-            var weaponName = percentileSelector.SelectFrom(tableName);
+            var weaponName = percentileSelector.SelectFrom(Config.Name, tableName);
 
             return weaponName;
         }
@@ -62,7 +62,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
         {
             var weapon = new Weapon();
             weapon.Name = name;
-            weapon.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, name);
+            weapon.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, name);
             weapon.Quantity = 0;
 
             return weapon;
@@ -75,7 +75,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
             if (allowDecoration)
             {
-                var isMasterwork = percentileSelector.SelectFrom<bool>(TableNameConstants.Percentiles.Set.IsMasterwork);
+                var isMasterwork = percentileSelector.SelectFrom<bool>(Config.Name, TableNameConstants.Percentiles.Set.IsMasterwork);
                 if (isMasterwork)
                     weapon.Traits.Add(TraitConstants.Masterwork);
             }
@@ -104,7 +104,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             }
 
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
-            weapon.Attributes = collectionsSelector.SelectFrom(tableName, weapon.Name);
+            weapon.Attributes = collectionsSelector.SelectFrom(Config.Name, tableName, weapon.Name);
 
             var weaponSelection = weaponDataSelector.Select(weapon.Name);
             if (!weapon.Damages.Any())
@@ -168,7 +168,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
         public Item Generate(Item template, bool allowRandomDecoration = false)
         {
-            template.BaseNames = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.ItemGroups, template.Name);
+            template.BaseNames = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, template.Name);
 
             var weapon = new Weapon();
 
@@ -190,7 +190,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             if (!template.Traits.Any())
                 return GetRandomSize();
 
-            var allSizes = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            var allSizes = percentileSelector.SelectAllFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneGearSizes);
             var sizeTraits = template.Traits.Intersect(allSizes);
 
             if (sizeTraits.Any())
@@ -201,7 +201,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
 
         private string GetRandomSize()
         {
-            return percentileSelector.SelectFrom(TableNameConstants.Percentiles.Set.MundaneGearSizes);
+            return percentileSelector.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneGearSizes);
         }
     }
 }

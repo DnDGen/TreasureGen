@@ -24,10 +24,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         [Test]
         public void DecoratorSelectsFromInnerSelector()
         {
-            mockInnerSelector.Setup(s => s.SelectFrom("table")).Returns("percentile");
+            mockInnerSelector.Setup(s => s.SelectFrom(Config.Name, "table")).Returns("percentile");
             mockReplacementSelector.Setup(s => s.SelectRandom("percentile")).Returns("replacement");
 
-            var result = decorator.SelectFrom("table");
+            var result = decorator.SelectFrom(Config.Name, "table");
             Assert.That(result, Is.EqualTo("replacement"));
         }
 
@@ -36,10 +36,10 @@ namespace DnDGen.TreasureGen.Tests.Unit.Selectors.Percentiles
         {
             var percentiles = new[] { "first", "second" };
             var replacements = new[] { "third", "fourth" };
-            mockInnerSelector.Setup(s => s.SelectAllFrom("table")).Returns(percentiles);
+            mockInnerSelector.Setup(s => s.SelectAllFrom(Config.Name, "table")).Returns(percentiles);
             mockReplacementSelector.Setup(s => s.SelectAll(percentiles, false)).Returns(replacements);
 
-            var results = decorator.SelectAllFrom("table");
+            var results = decorator.SelectAllFrom(Config.Name, "table");
             Assert.That(results, Is.EquivalentTo(replacements));
         }
     }

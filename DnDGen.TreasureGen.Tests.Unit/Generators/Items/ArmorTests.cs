@@ -1,5 +1,6 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 
@@ -156,7 +157,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var clone = template.Clone();
             Assert.That(clone, Is.Not.SameAs(template));
-            Assert.That(clone, Is.EqualTo(template));
+            Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));

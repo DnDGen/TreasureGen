@@ -1,6 +1,7 @@
 ﻿using DnDGen.TreasureGen.Items;
 using DnDGen.TreasureGen.Items.Magical;
 using DnDGen.TreasureGen.Items.Mundane;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -447,7 +448,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var clone = template.SmartClone();
             Assert.That(clone, Is.Not.SameAs(template));
-            Assert.That(clone, Is.EqualTo(template));
+            Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
             Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -509,7 +510,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
                 var clone = template.SmartClone();
                 Assert.That(clone, Is.Not.SameAs(template));
-                Assert.That(clone, Is.EqualTo(template));
+                Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -546,7 +547,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
                 var clone = template.SmartClone();
                 Assert.That(clone, Is.Not.SameAs(template));
-                Assert.That(clone, Is.EqualTo(template));
+                Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -616,7 +617,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
                 var clone = template.SmartClone();
                 Assert.That(clone, Is.Not.SameAs(template));
-                Assert.That(clone, Is.EqualTo(template));
+                Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -654,7 +655,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
                 var clone = template.SmartClone();
                 Assert.That(clone, Is.Not.SameAs(template));
-                Assert.That(clone, Is.EqualTo(template));
+                Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
                 Assert.That(clone.Name, Is.EqualTo(template.Name));
                 Assert.That(clone.BaseNames, Is.EquivalentTo(template.BaseNames));
 
@@ -720,7 +721,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
             var clone = template.Clone();
             Assert.That(clone, Is.Not.SameAs(template));
-            Assert.That(clone, Is.EqualTo(template));
+            Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));
@@ -755,7 +756,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var newClone = template.CloneInto(clone);
             Assert.That(newClone, Is.SameAs(clone).And.EqualTo(clone));
             Assert.That(clone, Is.Not.SameAs(template));
-            Assert.That(clone, Is.EqualTo(template));
+            Assert.That(JsonConvert.SerializeObject(clone), Is.EqualTo(JsonConvert.SerializeObject(template)));
             Assert.That(clone.Name, Is.EqualTo(template.Name));
 
             Assert.That(clone.Attributes, Is.EquivalentTo(template.Attributes));

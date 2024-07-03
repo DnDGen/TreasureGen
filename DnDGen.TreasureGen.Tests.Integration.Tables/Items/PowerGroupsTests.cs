@@ -87,7 +87,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
 
             var generalArmors = ArmorConstants.GetAllArmorsAndShields(false);
             var shields = ArmorConstants.GetAllShields(true);
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             if (!generalArmors.Contains(itemName))
             {
@@ -115,7 +115,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Potion];
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
@@ -147,7 +147,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Ring];
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
@@ -167,7 +167,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Rod];
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
@@ -186,7 +186,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.Staff];
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {
@@ -215,7 +215,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
             possiblePowers.AddRange(powers);
 
             var generalWeapons = WeaponConstants.GetAllWeapons(false, true);
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             if (!generalWeapons.Contains(itemName))
             {
@@ -242,7 +242,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables.Items
         {
             var possiblePowers = new List<string>();
             var powers = table[ItemTypeConstants.WondrousItem];
-            var cursed = percentileSelector.SelectAllFrom(TableNameConstants.Percentiles.Set.SpecificCursedItems);
+            var cursed = percentileSelector.SelectAllFrom(Name, TableNameConstants.Percentiles.Set.SpecificCursedItems);
 
             foreach (var power in powers)
             {

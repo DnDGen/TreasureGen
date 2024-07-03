@@ -116,7 +116,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             foreach (var tableName in tableNames)
             {
-                var abilityNames = percentileSelector.SelectAllFrom(tableName);
+                var abilityNames = percentileSelector.SelectAllFrom(Config.Name, tableName);
 
                 foreach (var abilityName in abilityNames)
                 {
@@ -140,11 +140,11 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
 
             ability.Name = abilityName;
             ability.BaseName = abilitySelection.BaseName;
-            ability.AttributeRequirements = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
+            ability.AttributeRequirements = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.SpecialAbilityAttributeRequirements, ability.BaseName);
             ability.BonusEquivalent = abilitySelection.BonusEquivalent;
             ability.Power = abilitySelection.Power;
 
-            var damagesData = collectionsSelector.SelectFrom(TableNameConstants.Collections.Set.WeaponDamages, abilityName).ToArray();
+            var damagesData = collectionsSelector.SelectFrom(Config.Name, TableNameConstants.Collections.Set.WeaponDamages, abilityName).ToArray();
             if (!damagesData.Any())
             {
                 return ability;
@@ -234,7 +234,7 @@ namespace DnDGen.TreasureGen.Generators.Items.Magical
             {
                 var tableName = collectionsSelector.SelectRandomFrom(tableNames);
 
-                abilityName = percentileSelector.SelectFrom(tableName);
+                abilityName = percentileSelector.SelectFrom(Config.Name, tableName);
 
                 if (abilityName == "BonusSpecialAbility")
                     return new SpecialAbility { Name = abilityName };

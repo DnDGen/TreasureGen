@@ -15,7 +15,7 @@ namespace DnDGen.TreasureGen.Tests.Integration.Tables
         public void CollectionsSetup()
         {
             CollectionMapper = GetNewInstanceOf<CollectionMapper>();
-            table = CollectionMapper.Map(tableName);
+            table = CollectionMapper.Map(Name, tableName);
         }
 
         protected IEnumerable<string> GetKeys()
