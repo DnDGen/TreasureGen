@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Version>10.5.7</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
@@ -25,7 +24,6 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Tables\Coins\Level100Coins.xml" />
     <None Remove="Tables\Coins\Level10Coins.xml" />
@@ -492,10 +490,10 @@
     <None Remove="Tables\ReplacementStrings.xml" />
     <None Include="18531-twenty-sided-dice-vector-thumb.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>
+      </PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Tables\Coins\Level100Coins.xml" />
     <EmbeddedResource Include="Tables\Coins\Level10Coins.xml" />
@@ -973,15 +971,11 @@
     <EmbeddedResource Include="Tables\Items\Mundane\Weapons\WeaponData.xml" />
     <EmbeddedResource Include="Tables\ReplacementStrings.xml" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="DnDGen.Infrastructure" Version="5.1.0" />
-    <PackageReference Include="DnDGen.RollGen" Version="15.5.7" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="DnDGen.RollGen" Version="16.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Selectors\Helpers\" />
   </ItemGroup>
-
 </Project>
