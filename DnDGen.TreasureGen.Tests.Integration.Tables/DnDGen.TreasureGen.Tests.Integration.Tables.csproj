@@ -1,11 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-	  <TargetFrameworks>net6.0</TargetFrameworks>
-
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="DnDGen.Infrastructure" Version="5.1.0" />
     <PackageReference Include="nunit" Version="4.1.0" />
@@ -15,10 +12,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\DnDGen.TreasureGen.Tests.Integration\DnDGen.TreasureGen.Tests.Integration.csproj" />
     <ProjectReference Include="..\DnDGen.TreasureGen\DnDGen.TreasureGen.csproj" />
   </ItemGroup>
-
 </Project>
