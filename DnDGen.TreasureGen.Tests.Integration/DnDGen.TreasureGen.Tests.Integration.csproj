@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="5.1.0" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="6.0.0" />
     <PackageReference Include="DnDGen.RollGen" Version="16.0.0" />
     <PackageReference Include="Ninject" Version="3.3.6" />
     <PackageReference Include="nunit" Version="4.1.0" />
