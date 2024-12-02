@@ -922,13 +922,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         }
 
         [Test]
-        public void Description_MundaneItem()
+        public void Summary_MundaneItem()
         {
             item.Name = "my name";
             item.Magic.Bonus = 0;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
-            Assert.That(item.Description, Is.EqualTo("my name"));
+            Assert.That(item.Summary, Is.EqualTo("my name"));
         }
 
         public static IEnumerable Weapons => WeaponConstants.GetAllWeapons(false, false).Select(w => new TestCaseData(w));
@@ -952,19 +952,19 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         [TestCaseSource(nameof(WondrousItems))]
         [TestCase(ItemTypeConstants.Scroll)]
         [TestCase("my name")]
-        public void Description_NonSpecificItem_Custom(string name)
+        public void Summary_NonSpecificItem_Custom(string name)
         {
             item.Name = name;
             item.Magic.Bonus = 9266;
-            item.Magic.SpecialAbilities = new[]
-            {
+            item.Magic.SpecialAbilities =
+            [
                 new SpecialAbility { Name = "ability 1" },
                 new SpecialAbility { Name = "ability 2" },
-            };
+            ];
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
-            item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
+            item.Attributes = ["attribute 1", AttributeConstants.Specific, "attribute 2"];
 
-            Assert.That(item.Description, Is.EqualTo($"+9266 Dragonhide {name} of ability 1, ability 2"));
+            Assert.That(item.Summary, Is.EqualTo($"+9266 Dragonhide {name} of ability 1, ability 2"));
         }
 
         public static IEnumerable SpecificWeapons => WeaponConstants.GetAllSpecific().Select(w => new TestCaseData(w));
@@ -972,7 +972,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
         [TestCaseSource(nameof(SpecificWeapons))]
         [TestCaseSource(nameof(SpecificArmors))]
-        public void Description_SpecificItem_Custom(string name)
+        public void Summary_SpecificItem_Custom(string name)
         {
             item.Name = name;
             item.Magic.Bonus = 666;
@@ -984,13 +984,13 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
             item.Attributes = new[] { "attribute 1", AttributeConstants.Specific, "attribute 2" };
 
-            Assert.That(item.Description, Is.EqualTo(name));
+            Assert.That(item.Summary, Is.EqualTo(name));
         }
 
         public static IEnumerable Materials => TraitConstants.SpecialMaterials.All().Select(a => new TestCaseData(a));
 
         [TestCaseSource(nameof(Materials))]
-        public void Description_MundaneItem_SpecialMaterial(string material)
+        public void Summary_MundaneItem_SpecialMaterial(string material)
         {
             item.Name = "my name";
             item.Magic.Bonus = 0;
@@ -998,11 +998,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.Markings);
             item.Traits.Add(material);
 
-            Assert.That(item.Description, Is.EqualTo($"{material} my name"));
+            Assert.That(item.Summary, Is.EqualTo($"{material} my name"));
         }
 
         [Test]
-        public void Description_MundaneItem_SpecialMaterials()
+        public void Summary_MundaneItem_SpecialMaterials()
         {
             item.Name = "my name";
             item.Magic.Bonus = 0;
@@ -1011,43 +1011,43 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.SpecialMaterials.Adamantine);
             item.Traits.Add(TraitConstants.SpecialMaterials.ColdIron);
 
-            Assert.That(item.Description, Is.EqualTo($"{TraitConstants.SpecialMaterials.Adamantine}, {TraitConstants.SpecialMaterials.ColdIron} my name"));
+            Assert.That(item.Summary, Is.EqualTo($"{TraitConstants.SpecialMaterials.Adamantine}, {TraitConstants.SpecialMaterials.ColdIron} my name"));
         }
 
         [Test]
-        public void Description_MagicalItem()
+        public void Summary_MagicalItem()
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
 
-            Assert.That(item.Description, Is.EqualTo("+9266 my name"));
+            Assert.That(item.Summary, Is.EqualTo("+9266 my name"));
         }
 
         [Test]
-        public void Description_MagicalItem_NoBonus()
+        public void Summary_MagicalItem_NoBonus()
         {
             item.Name = "my name";
             item.Magic.Bonus = 0;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
             item.IsMagical = true;
 
-            Assert.That(item.Description, Is.EqualTo("my name"));
+            Assert.That(item.Summary, Is.EqualTo("my name"));
         }
 
         [TestCaseSource(nameof(Materials))]
-        public void Description_MagicalItem_SpecialMaterial(string material)
+        public void Summary_MagicalItem_SpecialMaterial(string material)
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
             item.Magic.SpecialAbilities = Enumerable.Empty<SpecialAbility>();
             item.Traits.Add(material);
 
-            Assert.That(item.Description, Is.EqualTo($"+9266 {material} my name"));
+            Assert.That(item.Summary, Is.EqualTo($"+9266 {material} my name"));
         }
 
         [Test]
-        public void Description_MagicalItem_SpecialMaterials()
+        public void Summary_MagicalItem_SpecialMaterials()
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
@@ -1055,11 +1055,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
             item.Traits.Add(TraitConstants.SpecialMaterials.AlchemicalSilver);
 
-            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name"));
+            Assert.That(item.Summary, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name"));
         }
 
         [Test]
-        public void Description_MagicItem_WithAbility()
+        public void Summary_MagicItem_WithAbility()
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
@@ -1068,11 +1068,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = "ability 1" },
             };
 
-            Assert.That(item.Description, Is.EqualTo("+9266 my name of ability 1"));
+            Assert.That(item.Summary, Is.EqualTo("+9266 my name of ability 1"));
         }
 
         [Test]
-        public void Description_MagicItem_WithAbilities()
+        public void Summary_MagicItem_WithAbilities()
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
@@ -1082,11 +1082,11 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 new SpecialAbility { Name = "ability 2" },
             };
 
-            Assert.That(item.Description, Is.EqualTo("+9266 my name of ability 1, ability 2"));
+            Assert.That(item.Summary, Is.EqualTo("+9266 my name of ability 1, ability 2"));
         }
 
         [Test]
-        public void Description_MagicItem_WithSpecialMaterials_AndAbilities()
+        public void Summary_MagicItem_WithSpecialMaterials_AndAbilities()
         {
             item.Name = "my name";
             item.Magic.Bonus = 9266;
@@ -1098,7 +1098,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             item.Traits.Add(TraitConstants.SpecialMaterials.Dragonhide);
             item.Traits.Add(TraitConstants.SpecialMaterials.AlchemicalSilver);
 
-            Assert.That(item.Description, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name of ability 1, ability 2"));
+            Assert.That(item.Summary, Is.EqualTo("+9266 Dragonhide, Alchemical silver my name of ability 1, ability 2"));
         }
     }
 }

@@ -144,6 +144,9 @@ namespace DnDGen.TreasureGen.Generators.Items.Mundane
             if (weapon.Quantity > 0)
                 return weapon.Quantity;
 
+            if (weapon.NameMatches(WeaponConstants.Net))
+                return 1;
+
             if (weapon.Attributes.Contains(AttributeConstants.Ammunition))
             {
                 var roll = dice.Roll().Percentile().AsSum();
