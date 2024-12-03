@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <Version>11.0.1</Version>
+    <Version>12.0.0</Version>
     <Authors>Karl M. Speer</Authors>
     <Company>DnDGen</Company>
     <Product>TreasureGen</Product>
     <Description>This generates items for the Dungeons and Dragons 3.5 system. One can generate treasure or individual items such as coins, goods, weapons, armor, and magical items.</Description>
     <PackageReleaseNotes>
-      11.0.0: .Net 8
-	  11.0.1: DnDGen.Infrastructure to 6.0.0
-    </PackageReleaseNotes>
+		12.0.0: #132 - Fix security vulnerabilities in NuGet packages
+		    #122 - Net only has quantity of 1
+			Rename Description to Summary
+	</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DnDGen/TreasureGen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DnDGen/TreasureGen</RepositoryUrl>
     <PackageTags>item equipment treasure generator dice dungeons dragons d20 dnd 3.5 equip gen</PackageTags>
@@ -17,6 +18,7 @@
     <PackageIconUrl />
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Tables\Coins\Level100Coins.xml" />
@@ -966,8 +968,8 @@
     <EmbeddedResource Include="Tables\ReplacementStrings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DnDGen.Infrastructure" Version="6.0.0" />
-    <PackageReference Include="DnDGen.RollGen" Version="16.0.0" />
+    <PackageReference Include="DnDGen.Infrastructure" Version="6.0.1" />
+    <PackageReference Include="DnDGen.RollGen" Version="16.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Selectors\Helpers\" />

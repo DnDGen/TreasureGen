@@ -49,7 +49,7 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
             expectedTableName = string.Format(TableNameConstants.Percentiles.Formattable.WEAPONTYPEWeapons, "weapon type");
             mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, expectedTableName)).Returns("weapon name");
             mockPercentileSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns("size");
-            mockPercentileSelector.Setup(s => s.SelectAllFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns(new[] { "size", "other size", "wrong size" });
+            mockPercentileSelector.Setup(s => s.SelectAllFrom(Config.Name, TableNameConstants.Percentiles.Set.MundaneGearSizes)).Returns(["size", "other size", "wrong size"]);
 
             weaponSelection.CriticalMultiplier = "over 9000!!!";
             weaponSelection.SecondaryCriticalMultiplier = string.Empty;
@@ -304,6 +304,36 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items.Mundane
         public void ThrownMeleeWeaponReceivesQuantityOf1()
         {
             var attributes = new[] { "type 1", AttributeConstants.Thrown, AttributeConstants.Melee };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "weapon name")).Returns(attributes);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
+
+            var weapon = mundaneWeaponGenerator.GenerateRandom();
+            Assert.That(weapon.Quantity, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void BUG_NetReceivesQuantityOf1()
+        {
+            mockPercentileSelector.Setup(p => p.SelectFrom(Config.Name, expectedTableName)).Returns(WeaponConstants.Net);
+            mockWeaponDataSelector.Setup(s => s.Select(WeaponConstants.Net)).Returns(weaponSelection);
+
+            var attributes = new[] { "type 1", AttributeConstants.Thrown };
+            var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
+            mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, WeaponConstants.Net)).Returns(attributes);
+            mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);
+
+            var weapon = mundaneWeaponGenerator.GenerateRandom();
+            Assert.That(weapon.Quantity, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void BUG_SpecialNetReceivesQuantityOf1()
+        {
+            var baseNames = new[] { "base name", WeaponConstants.Net };
+            mockCollectionsSelector.Setup(s => s.SelectFrom(Config.Name, TableNameConstants.Collections.Set.ItemGroups, "weapon name")).Returns(baseNames);
+
+            var attributes = new[] { "type 1", AttributeConstants.Thrown };
             var tableName = string.Format(TableNameConstants.Collections.Formattable.ITEMTYPEAttributes, ItemTypeConstants.Weapon);
             mockCollectionsSelector.Setup(p => p.SelectFrom(Config.Name, tableName, "weapon name")).Returns(attributes);
             mockDice.Setup(d => d.Roll(1).d(20).AsSum<int>()).Returns(9266);

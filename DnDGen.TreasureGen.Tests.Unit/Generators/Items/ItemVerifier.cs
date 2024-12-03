@@ -20,37 +20,37 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         public void AssertItem(Item item)
         {
             Assert.That(item.Name, Is.Not.Empty);
-            Assert.That(item.Quantity, Is.Positive, item.Description);
-            Assert.That(item.ItemType, Is.Not.Empty, $"{item.Description} item type");
-            Assert.That(item.BaseNames, Is.Not.Empty, item.Description);
-            Assert.That(item.BaseNames, Is.All.Not.Empty, item.Description);
-            Assert.That(item.BaseNames, Is.Unique, item.Description);
-            Assert.That(item.Attributes, Is.Not.Null, item.Description);
-            Assert.That(item.Attributes, Is.All.Not.Empty, item.Description);
-            Assert.That(item.Attributes, Is.Unique, item.Description);
-            Assert.That(item.Magic, Is.Not.Null, item.Description);
-            Assert.That(item.Traits, Is.Not.Null, item.Description);
-            Assert.That(item.Traits, Is.All.Not.Empty, item.Description);
-            Assert.That(item.Traits, Is.Unique, item.Description);
-            Assert.That(item.Contents, Is.Not.Null, item.Description);
-            Assert.That(item.Contents, Is.All.Not.Empty, item.Description);
+            Assert.That(item.Quantity, Is.Positive, item.Summary);
+            Assert.That(item.ItemType, Is.Not.Empty, $"{item.Summary} item type");
+            Assert.That(item.BaseNames, Is.Not.Empty, item.Summary);
+            Assert.That(item.BaseNames, Is.All.Not.Empty, item.Summary);
+            Assert.That(item.BaseNames, Is.Unique, item.Summary);
+            Assert.That(item.Attributes, Is.Not.Null, item.Summary);
+            Assert.That(item.Attributes, Is.All.Not.Empty, item.Summary);
+            Assert.That(item.Attributes, Is.Unique, item.Summary);
+            Assert.That(item.Magic, Is.Not.Null, item.Summary);
+            Assert.That(item.Traits, Is.Not.Null, item.Summary);
+            Assert.That(item.Traits, Is.All.Not.Empty, item.Summary);
+            Assert.That(item.Traits, Is.Unique, item.Summary);
+            Assert.That(item.Contents, Is.Not.Null, item.Summary);
+            Assert.That(item.Contents, Is.All.Not.Empty, item.Summary);
 
             if (!item.CanBeUsedAsWeaponOrArmor)
-                Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Description);
+                Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Summary);
 
             foreach (var ability in item.Magic.SpecialAbilities)
             {
-                Assert.That(ability.Name, Is.Not.Empty, $"{item.Description} ability name");
+                Assert.That(ability.Name, Is.Not.Empty, $"{item.Summary} ability name");
                 Assert.That(ability.BonusEquivalent, Is.Not.Negative, ability.Name);
                 Assert.That(ability.AttributeRequirements, Is.Not.Null, ability.Name);
                 Assert.That(ability.AttributeRequirements, Is.All.Not.Empty, ability.Name);
-                Assert.That(ability.BaseName, Is.Not.Empty, $"{item.Description} with {ability.Name}");
+                Assert.That(ability.BaseName, Is.Not.Empty, $"{item.Summary} with {ability.Name}");
                 Assert.That(ability.Power, Is.Not.Negative, ability.Name);
 
                 if (ability.BaseName == SpecialAbilityConstants.Bane)
                 {
-                    Assert.That(ability.Damages.Select(d => d.Condition), Is.All.Not.Empty, $"{item.Description} with {ability.Name}");
-                    Assert.That(ability.CriticalDamages.SelectMany(kvp => kvp.Value).Select(d => d.Condition), Is.All.Not.Empty, $"{item.Description} with {ability.Name}");
+                    Assert.That(ability.Damages.Select(d => d.Condition), Is.All.Not.Empty, $"{item.Summary} with {ability.Name}");
+                    Assert.That(ability.CriticalDamages.SelectMany(kvp => kvp.Value).Select(d => d.Condition), Is.All.Not.Empty, $"{item.Summary} with {ability.Name}");
                 }
             }
 
@@ -65,14 +65,14 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 return;
 
             var armor = item as Armor;
-            Assert.That(armor.ArmorBonus, Is.Positive, armor.Description);
-            Assert.That(armor.CanBeUsedAsWeaponOrArmor, Is.True, armor.Description);
-            Assert.That(armor.Size, Is.Not.Empty, armor.Description);
-            Assert.That(armor.MaxDexterityBonus, Is.Not.Negative, armor.Description);
-            Assert.That(armor.ArmorCheckPenalty, Is.Not.Positive, armor.Description);
+            Assert.That(armor.ArmorBonus, Is.Positive, armor.Summary);
+            Assert.That(armor.CanBeUsedAsWeaponOrArmor, Is.True, armor.Summary);
+            Assert.That(armor.Size, Is.Not.Empty, armor.Summary);
+            Assert.That(armor.MaxDexterityBonus, Is.Not.Negative, armor.Summary);
+            Assert.That(armor.ArmorCheckPenalty, Is.Not.Positive, armor.Summary);
 
             if (armor.IsMagical)
-                Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork), armor.Description);
+                Assert.That(armor.Traits, Contains.Item(TraitConstants.Masterwork), armor.Summary);
         }
 
         private void AssertWeapon(Item item)
@@ -81,111 +81,111 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
                 return;
 
             var weapon = item as Weapon;
-            Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Description);
-            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Description} critical multiplier");
-            Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Description} size");
+            Assert.That(weapon.CanBeUsedAsWeaponOrArmor, Is.True, weapon.Summary);
+            Assert.That(weapon.CriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Summary} critical multiplier");
+            Assert.That(weapon.Size, Is.Not.Empty, $"{weapon.Summary} size");
             Assert.That(weapon.Damages, Is.Not.Empty
-                .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities.SelectMany(a => a.Damages).Count()), $"{weapon.Description} damages: {weapon.DamageDescription}");
+                .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities.SelectMany(a => a.Damages).Count()), $"{weapon.Summary} damages: {weapon.DamageDescription}");
             Assert.That(weapon.CriticalDamages, Is.Not.Empty
                 .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities
                     .Where(a => a.CriticalDamages.Any())
                     .SelectMany(a => a.CriticalDamages[weapon.CriticalMultiplier])
-                    .Count()), $"{weapon.Description} critical damages: {weapon.CriticalDamageDescription}");
+                    .Count()), $"{weapon.Summary} critical damages: {weapon.CriticalDamageDescription}");
 
             foreach (var damage in weapon.Damages)
             {
-                Assert.That(damage.Roll, Is.Not.Empty, weapon.Description);
-                Assert.That(damage.Type, Is.Not.Empty, weapon.Description);
-                Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Description);
+                Assert.That(damage.Roll, Is.Not.Empty, weapon.Summary);
+                Assert.That(damage.Type, Is.Not.Empty, weapon.Summary);
+                Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Summary);
             }
 
             foreach (var damage in weapon.CriticalDamages)
             {
-                Assert.That(damage.Roll, Is.Not.Empty, weapon.Description);
-                Assert.That(damage.Type, Is.Not.Empty, weapon.Description);
-                Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Description);
+                Assert.That(damage.Roll, Is.Not.Empty, weapon.Summary);
+                Assert.That(damage.Type, Is.Not.Empty, weapon.Summary);
+                Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Summary);
             }
 
             Assert.That(weapon.Damages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                 .Or.Contains(AttributeConstants.DamageTypes.Piercing)
-                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Description);
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Summary);
             Assert.That(weapon.CriticalDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                 .Or.Contains(AttributeConstants.DamageTypes.Piercing)
-                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Description);
+                .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Summary);
 
-            Assert.That(weapon.ThreatRange, Is.Positive.And.InRange(1, 6), $"{weapon.Description} threat range");
-            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, $"{weapon.Description} threat range description");
-            Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Description);
+            Assert.That(weapon.ThreatRange, Is.Positive.And.InRange(1, 6), $"{weapon.Summary} threat range");
+            Assert.That(weapon.ThreatRangeDescription, Is.Not.Empty, $"{weapon.Summary} threat range description");
+            Assert.That(weapon.Ammunition, Is.Not.Null, weapon.Summary);
 
             if (weapon.IsMagical)
-                Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Description);
+                Assert.That(weapon.Traits, Contains.Item(TraitConstants.Masterwork), weapon.Summary);
 
             Assert.That(weapon.Attributes, Is.Not.Empty
                 .And.Not.Contains(AttributeConstants.DamageTypes.Bludgeoning)
                 .And.Not.Contains(AttributeConstants.DamageTypes.Piercing)
-                .And.Not.Contains(AttributeConstants.DamageTypes.Slashing), $"{weapon.Description} attributes");
+                .And.Not.Contains(AttributeConstants.DamageTypes.Slashing), $"{weapon.Summary} attributes");
 
-            Assert.That(weapon.CombatTypes, Is.Not.Empty, $"{weapon.Description} combat types");
-            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged), weapon.Description);
-            Assert.That(weapon.CombatTypes.Count(), Is.InRange(1, 2), weapon.Description);
+            Assert.That(weapon.CombatTypes, Is.Not.Empty, $"{weapon.Summary} combat types");
+            Assert.That(weapon.CombatTypes, Contains.Item(AttributeConstants.Melee).Or.Contains(AttributeConstants.Ranged), weapon.Summary);
+            Assert.That(weapon.CombatTypes.Count(), Is.InRange(1, 2), weapon.Summary);
 
             if (weapon.Attributes.Contains(AttributeConstants.DoubleWeapon))
             {
-                Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Description} secondary critical multiplier");
-                Assert.That(weapon.SecondaryDamages, Is.Not.Empty, $"{weapon.Description} secondary damages: {weapon.SecondaryDamageDescription}");
-                Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty, $"{weapon.Description} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
+                Assert.That(weapon.SecondaryCriticalMultiplier, Is.EqualTo("x2").Or.EqualTo("x3").Or.EqualTo("x4"), $"{weapon.Summary} secondary critical multiplier");
+                Assert.That(weapon.SecondaryDamages, Is.Not.Empty, $"{weapon.Summary} secondary damages: {weapon.SecondaryDamageDescription}");
+                Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty, $"{weapon.Summary} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
 
                 foreach (var damage in weapon.SecondaryDamages)
                 {
-                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Description);
-                    Assert.That(damage.Type, Is.Not.Empty, weapon.Description);
-                    Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Description);
+                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Summary);
+                    Assert.That(damage.Type, Is.Not.Empty, weapon.Summary);
+                    Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Summary);
                 }
 
                 foreach (var damage in weapon.SecondaryCriticalDamages)
                 {
-                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Description);
-                    Assert.That(damage.Type, Is.Not.Empty, weapon.Description);
-                    Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Description);
+                    Assert.That(damage.Roll, Is.Not.Empty, weapon.Summary);
+                    Assert.That(damage.Type, Is.Not.Empty, weapon.Summary);
+                    Assert.That(damage.Condition, Does.Not.Contain(ReplacementStringConstants.DesignatedFoe), weapon.Summary);
                 }
 
                 Assert.That(weapon.SecondaryDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                     .Or.Contains(AttributeConstants.DamageTypes.Piercing)
-                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Description);
+                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Summary);
                 Assert.That(weapon.SecondaryCriticalDamages[0].Type, Contains.Substring(AttributeConstants.DamageTypes.Bludgeoning)
                     .Or.Contains(AttributeConstants.DamageTypes.Piercing)
-                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Description);
+                    .Or.Contains(AttributeConstants.DamageTypes.Slashing), weapon.Summary);
 
                 if (weapon.SecondaryHasAbilities)
                 {
-                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus), weapon.Description);
+                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus), weapon.Summary);
                     Assert.That(weapon.SecondaryDamages, Is.Not.Empty
-                        .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities.SelectMany(a => a.Damages).Count()), $"{weapon.Description} secondary damages: {weapon.SecondaryDamageDescription}");
+                        .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities.SelectMany(a => a.Damages).Count()), $"{weapon.Summary} secondary damages: {weapon.SecondaryDamageDescription}");
                     Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty
                         .And.Count.EqualTo(1 + weapon.Magic.SpecialAbilities
                             .Where(a => a.CriticalDamages.Any())
                             .SelectMany(a => a.CriticalDamages[weapon.SecondaryCriticalMultiplier])
-                            .Count()), $"{weapon.Description} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
+                            .Count()), $"{weapon.Summary} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
                 }
                 else if (weapon.Magic.Bonus > 0)
                 {
-                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus - 1), weapon.Description);
+                    Assert.That(weapon.SecondaryMagicBonus, Is.EqualTo(weapon.Magic.Bonus - 1), weapon.Summary);
                 }
                 else
                 {
-                    Assert.That(weapon.SecondaryMagicBonus, Is.Zero, weapon.Description);
+                    Assert.That(weapon.SecondaryMagicBonus, Is.Zero, weapon.Summary);
                     Assert.That(weapon.SecondaryDamages, Is.Not.Empty
-                        .And.Count.EqualTo(1), $"{weapon.Description} secondary damages: {weapon.SecondaryDamageDescription}");
+                        .And.Count.EqualTo(1), $"{weapon.Summary} secondary damages: {weapon.SecondaryDamageDescription}");
                     Assert.That(weapon.SecondaryCriticalDamages, Is.Not.Empty
-                        .And.Count.EqualTo(1), $"{weapon.Description} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
+                        .And.Count.EqualTo(1), $"{weapon.Summary} secondary critical damages: {weapon.SecondaryCriticalDamageDescription}");
                 }
             }
             else
             {
-                Assert.That(weapon.SecondaryDamages, Is.Empty, weapon.Description);
-                Assert.That(weapon.SecondaryCriticalDamages, Is.Empty, weapon.Description);
-                Assert.That(weapon.SecondaryCriticalMultiplier, Is.Empty, weapon.Description);
-                Assert.That(weapon.SecondaryMagicBonus, Is.Zero, weapon.Description);
+                Assert.That(weapon.SecondaryDamages, Is.Empty, weapon.Summary);
+                Assert.That(weapon.SecondaryCriticalDamages, Is.Empty, weapon.Summary);
+                Assert.That(weapon.SecondaryCriticalMultiplier, Is.Empty, weapon.Summary);
+                Assert.That(weapon.SecondaryMagicBonus, Is.Zero, weapon.Summary);
             }
         }
 
@@ -193,32 +193,32 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
         {
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.Adamantine))
             {
-                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Description);
-                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Description);
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Summary);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Summary);
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.Darkwood))
             {
-                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Wood), item.Description);
-                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Description);
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Wood), item.Summary);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Summary);
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.Dragonhide))
             {
                 Assert.That(item.Attributes, Does.Not.Contain(AttributeConstants.Metal)
                     .And.Not.Contains(AttributeConstants.Wood), $"{item.Name} of Dragonhide");
-                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), $"{item.Description} of Dragonhide");
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), $"{item.Summary} of Dragonhide");
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.ColdIron))
             {
-                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Description);
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Summary);
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.Mithral))
             {
-                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Description);
-                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Description);
+                Assert.That(item.Attributes, Contains.Item(AttributeConstants.Metal), item.Summary);
+                Assert.That(item.Traits, Contains.Item(TraitConstants.Masterwork), item.Summary);
             }
 
             if (item.Traits.Contains(TraitConstants.SpecialMaterials.AlchemicalSilver))
@@ -249,9 +249,9 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
             var materials = TraitConstants.SpecialMaterials.All();
 
             AssertItem(item);
-            Assert.That(item.Magic.Curse, Is.Not.Empty.And.EqualTo(CurseConstants.SpecificCursedItem), item.Description);
-            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Specific), item.Description);
-            Assert.That(item.Traits.Intersect(materials), Is.Empty, item.Description);
+            Assert.That(item.Magic.Curse, Is.Not.Empty.And.EqualTo(CurseConstants.SpecificCursedItem), item.Summary);
+            Assert.That(item.Attributes, Contains.Item(AttributeConstants.Specific), item.Summary);
+            Assert.That(item.Traits.Intersect(materials), Is.Empty, item.Summary);
         }
 
         public Armor CreateRandomArmorTemplate(string name)
@@ -343,31 +343,31 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
         public void AssertMagicalItemFromTemplate(Item item, Item template)
         {
-            Assert.That(item, Is.Not.EqualTo(template), item.Description);
-            Assert.That(item.IsMagical, Is.True, item.Description);
-            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Description);
+            Assert.That(item, Is.Not.EqualTo(template), item.Summary);
+            Assert.That(item.IsMagical, Is.True, item.Summary);
+            Assert.That(item.Magic.Curse, Is.EqualTo(template.Magic.Curse).Or.EqualTo(CurseConstants.SpecificCursedItem), item.Summary);
 
             var sizes = TraitConstants.Sizes.All();
-            Assert.That(item.Traits, Is.SupersetOf(template.Traits.Except(sizes)), item.Description);
+            Assert.That(item.Traits, Is.SupersetOf(template.Traits.Except(sizes)), item.Summary);
 
             if (item.Attributes.Contains(AttributeConstants.OneTimeUse) || item.Attributes.Contains(AttributeConstants.Ammunition))
             {
-                AssertNoIntelligence(item.Magic.Intelligence, item.Description);
+                AssertNoIntelligence(item.Magic.Intelligence, item.Summary);
             }
             else
             {
-                Assert.That(item.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment), item.Description);
-                Assert.That(item.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat), item.Description);
-                Assert.That(item.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication), item.Description);
-                Assert.That(item.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower), item.Description);
-                Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego), item.Description);
-                Assert.That(item.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat), item.Description);
-                Assert.That(item.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages), item.Description);
-                Assert.That(item.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality), item.Description);
-                Assert.That(item.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers), item.Description);
-                Assert.That(item.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses), item.Description);
-                Assert.That(item.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose), item.Description);
-                Assert.That(item.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat), item.Description);
+                Assert.That(item.Magic.Intelligence.Alignment, Is.EqualTo(template.Magic.Intelligence.Alignment), item.Summary);
+                Assert.That(item.Magic.Intelligence.CharismaStat, Is.EqualTo(template.Magic.Intelligence.CharismaStat), item.Summary);
+                Assert.That(item.Magic.Intelligence.Communication, Is.EquivalentTo(template.Magic.Intelligence.Communication), item.Summary);
+                Assert.That(item.Magic.Intelligence.DedicatedPower, Is.EqualTo(template.Magic.Intelligence.DedicatedPower), item.Summary);
+                Assert.That(item.Magic.Intelligence.Ego, Is.EqualTo(template.Magic.Intelligence.Ego), item.Summary);
+                Assert.That(item.Magic.Intelligence.IntelligenceStat, Is.EqualTo(template.Magic.Intelligence.IntelligenceStat), item.Summary);
+                Assert.That(item.Magic.Intelligence.Languages, Is.EquivalentTo(template.Magic.Intelligence.Languages), item.Summary);
+                Assert.That(item.Magic.Intelligence.Personality, Is.EqualTo(template.Magic.Intelligence.Personality), item.Summary);
+                Assert.That(item.Magic.Intelligence.Powers, Is.EquivalentTo(template.Magic.Intelligence.Powers), item.Summary);
+                Assert.That(item.Magic.Intelligence.Senses, Is.EqualTo(template.Magic.Intelligence.Senses), item.Summary);
+                Assert.That(item.Magic.Intelligence.SpecialPurpose, Is.EqualTo(template.Magic.Intelligence.SpecialPurpose), item.Summary);
+                Assert.That(item.Magic.Intelligence.WisdomStat, Is.EqualTo(template.Magic.Intelligence.WisdomStat), item.Summary);
             }
         }
 
@@ -389,18 +389,18 @@ namespace DnDGen.TreasureGen.Tests.Unit.Generators.Items
 
         public void AssertMundaneItemFromTemplate(Item item, Item template)
         {
-            Assert.That(item, Is.Not.EqualTo(template), item.Description);
+            Assert.That(item, Is.Not.EqualTo(template), item.Summary);
             Assert.That(item.Name, Is.EqualTo(template.Name));
-            Assert.That(item.Contents, Is.EquivalentTo(template.Contents), item.Description);
-            Assert.That(item.IsMagical, Is.False, item.Description);
-            Assert.That(item.Magic.Bonus, Is.EqualTo(0), item.Description);
-            Assert.That(item.Magic.Charges, Is.EqualTo(0), item.Description);
-            Assert.That(item.Magic.Curse, Is.Empty, item.Description);
-            AssertNoIntelligence(item.Magic.Intelligence, item.Description);
-            Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Description);
+            Assert.That(item.Contents, Is.EquivalentTo(template.Contents), item.Summary);
+            Assert.That(item.IsMagical, Is.False, item.Summary);
+            Assert.That(item.Magic.Bonus, Is.EqualTo(0), item.Summary);
+            Assert.That(item.Magic.Charges, Is.EqualTo(0), item.Summary);
+            Assert.That(item.Magic.Curse, Is.Empty, item.Summary);
+            AssertNoIntelligence(item.Magic.Intelligence, item.Summary);
+            Assert.That(item.Magic.SpecialAbilities, Is.Empty, item.Summary);
 
             if (!(item is Armor))
-                Assert.That(template.Traits, Is.SubsetOf(item.Traits), item.Description);
+                Assert.That(template.Traits, Is.SubsetOf(item.Traits), item.Summary);
         }
     }
 }

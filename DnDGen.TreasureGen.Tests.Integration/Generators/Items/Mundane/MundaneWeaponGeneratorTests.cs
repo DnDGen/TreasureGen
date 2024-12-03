@@ -95,5 +95,15 @@ namespace DnDGen.TreasureGen.Tests.Integration.Generators.Items.Mundane
             var weapon = item as Weapon;
             Assert.That(weapon.Ammunition, Is.EqualTo(ammunition), item.Name);
         }
+
+        [Test]
+        [Repeat(100)]
+        public void BUG_GenerateWeapon_NetHasQuantityOf1()
+        {
+            var item = weaponGenerator.Generate(WeaponConstants.Net);
+            itemVerifier.AssertItem(item);
+            Assert.That(item.NameMatches(WeaponConstants.Net), Is.True, item.Summary);
+            Assert.That(item.Quantity, Is.EqualTo(1));
+        }
     }
 }
